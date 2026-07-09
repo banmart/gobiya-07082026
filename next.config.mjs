@@ -5,37 +5,37 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Old top-level city/local landing pages -> consolidated Local Service industry page
-      { source: '/glendale-seo', destination: '/industries/local-service', permanent: true },
-      { source: '/local-seo-glendale', destination: '/industries/local-service', permanent: true },
-      { source: '/local-seo-company-burbank', destination: '/industries/local-service', permanent: true },
-      { source: '/seo-company-encino', destination: '/industries/local-service', permanent: true },
-      { source: '/ai-seo-beverly-hills', destination: '/industries/local-service', permanent: true },
-      { source: '/ai-search-marketing-santa-clarita', destination: '/industries/local-service', permanent: true },
+      // Old city-specific pages (all 3 URL generations) -> dedicated city landing
+      // page under /industries/local-service/<city>-seo
+      { source: '/glendale-seo', destination: '/industries/local-service/glendale-seo', permanent: true },
+      { source: '/local-seo-glendale', destination: '/industries/local-service/glendale-seo', permanent: true },
+      { source: '/locations/glendale', destination: '/industries/local-service/glendale-seo', permanent: true },
+      { source: '/locations/glendale-seo', destination: '/industries/local-service/glendale-seo', permanent: true },
+      { source: '/seo-company-encino', destination: '/industries/local-service/encino-seo', permanent: true },
+      { source: '/locations/encino', destination: '/industries/local-service/encino-seo', permanent: true },
+      { source: '/locations/studio-city', destination: '/industries/local-service/studio-city-seo', permanent: true },
+      { source: '/ai-seo-beverly-hills', destination: '/industries/local-service/beverly-hills-seo', permanent: true },
+      { source: '/locations/beverly-hills', destination: '/industries/local-service/beverly-hills-seo', permanent: true },
+      { source: '/locations/woodland-hills', destination: '/industries/local-service/woodland-hills-seo', permanent: true },
+      { source: '/locations/northridge', destination: '/industries/local-service/northridge-seo', permanent: true },
+      { source: '/locations/sherman-oaks', destination: '/industries/local-service/sherman-oaks-seo', permanent: true },
+      { source: '/locations/santa-monica', destination: '/industries/local-service/santa-monica-seo', permanent: true },
+      { source: '/locations/long-beach-seo', destination: '/industries/local-service/long-beach-seo', permanent: true },
+      { source: '/locations/anaheim-seo', destination: '/industries/local-service/anaheim-seo', permanent: true },
+      { source: '/local-seo-company-burbank', destination: '/industries/local-service/burbank-seo', permanent: true },
+      { source: '/locations/burbank', destination: '/industries/local-service/burbank-seo', permanent: true },
+      { source: '/locations/costa-mesa-seo', destination: '/industries/local-service/costa-mesa-seo', permanent: true },
+      { source: '/locations/culver-city', destination: '/industries/local-service/culver-city-seo', permanent: true },
+      { source: '/locations/north-hollywood', destination: '/industries/local-service/north-hollywood-seo', permanent: true },
+      { source: '/locations/silverlake', destination: '/industries/local-service/silverlake-seo', permanent: true },
+      { source: '/locations/van-nuys', destination: '/industries/local-service/van-nuys-seo', permanent: true },
+      { source: '/locations/ventura', destination: '/industries/local-service/ventura-seo', permanent: true },
+      { source: '/ai-search-marketing-santa-clarita', destination: '/industries/local-service/santa-clarita-seo', permanent: true },
+
+      // Regional/multi-city pages with no single matching city -> Local Service hub
       { source: '/on-page-seo-los-angeles', destination: '/industries/local-service', permanent: true },
       { source: '/markets/southern-california', destination: '/industries/local-service', permanent: true },
       { source: '/markets', destination: '/industries/local-service', permanent: true },
-
-      // Older /locations/* city-page generation (predates /glendale-seo-style URLs) ->
-      // same consolidated Local Service industry page
-      { source: '/locations/anaheim-seo', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/beverly-hills', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/burbank', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/costa-mesa-seo', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/culver-city', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/encino', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/glendale', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/glendale-seo', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/long-beach-seo', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/north-hollywood', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/northridge', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/santa-monica', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/sherman-oaks', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/silverlake', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/studio-city', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/van-nuys', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/ventura', destination: '/industries/local-service', permanent: true },
-      { source: '/locations/woodland-hills', destination: '/industries/local-service', permanent: true },
       { source: '/services/google-business-profile-optimization', destination: '/industries/local-service', permanent: true },
 
       // Old brand/about duplicate -> single canonical About page

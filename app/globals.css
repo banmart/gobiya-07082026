@@ -243,6 +243,25 @@ a.contact__value:hover { color: var(--main); }
   margin-bottom: 0.75rem;
 }
 .capability-card__desc { font-size: 0.9375rem; line-height: 1.7; color: var(--hint); }
+
+.cities__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cities__link {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid var(--border);
+  font-size: 0.9375rem;
+  color: var(--main);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cities__link:hover { border-color: var(--main); background: var(--darkest); }
+
 @media (max-width: 720px) {
   .capability-grid { grid-template-columns: 1fr; }
   .capability-card { border-right: none !important; }

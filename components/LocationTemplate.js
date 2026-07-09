@@ -1,14 +1,17 @@
 import SplitText from './SplitText';
+import { INDUSTRIES } from '../lib/industries';
 
-export default function IndustryTemplate({ industry, cities }) {
+export default function LocationTemplate({ location }) {
+  const localService = INDUSTRIES['local-service'];
+
   return (
     <main id="top">
 
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{industry.eyebrow}</p>
-          <SplitText tag="h1" className="statement" text={industry.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>{industry.lede}</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Local Service Business &middot; {location.name}</p>
+          <SplitText tag="h1" className="statement" text={`SEO for ${location.name} service businesses.`} splitType="words" delay={18} duration={0.9} />
+          <p className="lede" data-reveal>{location.intro}</p>
           <div className="hero__ctas" data-reveal>
             <a href="/contact" className="btn btn--solid">Get a free audit</a>
             <a href="#included" className="btn btn--ghost">How we help</a>
@@ -19,19 +22,19 @@ export default function IndustryTemplate({ industry, cities }) {
       {/* ══════════ Problem ══════════ */}
       <section className="about section section--tint" id="problem">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{industry.problem.eyebrow}</p>
-          <h2 className="statement statement--small" data-words>{industry.problem.statement}</h2>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{localService.problem.eyebrow}</p>
+          <h2 className="statement statement--small" data-words>{localService.problem.statement}</h2>
         </div>
       </section>
 
       {/* ══════════ Capabilities ══════════ */}
       <section className="section" id="included">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we help</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we help {location.name} businesses</p>
         </div>
         <div className="container">
           <div className="capability-grid">
-            {industry.capabilities.map((c) => (
+            {localService.capabilities.map((c) => (
               <div className="capability-card" key={c.title} data-reveal>
                 <span className="capability-card__tag">{c.tag}</span>
                 <h3 className="capability-card__title">{c.title}</h3>
@@ -50,7 +53,7 @@ export default function IndustryTemplate({ industry, cities }) {
         </div>
         <div className="container container--narrow">
           <ul className="process__list">
-            {industry.process.map((p) => (
+            {localService.process.map((p) => (
               <li className="process__item" key={p.step} data-reveal>
                 <span className="process__step">{p.step}</span>
                 <div>
@@ -63,32 +66,17 @@ export default function IndustryTemplate({ industry, cities }) {
         </div>
       </section>
 
-      {/* ══════════ Cities ══════════ */}
-      {cities && cities.length > 0 && (
-        <section className="section" id="cities">
-          <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-            <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Cities we serve</p>
-            <h2 className="statement statement--small" data-words>Local pages for the areas we work in most.</h2>
-          </div>
-          <div className="container">
-            <ul className="cities__list">
-              {cities.map((c) => (
-                <li key={c.slug} data-reveal>
-                  <a href={`/industries/local-service/${c.slug}`} className="cities__link">{c.name}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
       {/* ══════════ FAQ ══════════ */}
       <section className="faq section" id="faq">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>{industry.title}, plainly explained.</h2>
+          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>{location.name} local SEO, plainly explained.</h2>
           <dl className="faq__list">
-            {industry.faqs.map((f) => (
+            <div className="faq__item" data-reveal>
+              <dt>{location.faq.q}</dt>
+              <dd>{location.faq.a}</dd>
+            </div>
+            {localService.faqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>
                 <dt>{f.q}</dt>
                 <dd>{f.a}</dd>
@@ -102,7 +90,7 @@ export default function IndustryTemplate({ industry, cities }) {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>{industry.ctaTitle}</h2>
+          <h2 className="cta__title" data-words>Turn {location.name} searches into booked jobs.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
