@@ -17,6 +17,12 @@ export const metadata = {
     shortcut: '/assets/img/logo-gobiya-red-rocket-07082026.svg',
     apple: '/assets/img/logo-gobiya-red-rocket-07082026.svg',
   },
+  verification: {
+    google: 'BCJ8-9rzY9X5CjZqM2hY7erF-1vFCZHFKl-Y-nbXv3U',
+    other: {
+      'p:domain_verify': '422d36275e412e182dff33f542a68498',
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -37,6 +43,28 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <Script src="/js/main.js" strategy="afterInteractive" />
+
+        {/* Google Analytics 4 */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-3R3D5Q9YV6" strategy="afterInteractive" />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-3R3D5Q9YV6');
+          `}
+        </Script>
+
+        {/* Microsoft Clarity */}
+        <Script id="ms-clarity-init" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "v5j018vnnn");
+          `}
+        </Script>
       </body>
     </html>
   );
