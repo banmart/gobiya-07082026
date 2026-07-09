@@ -70,7 +70,7 @@ export default function Home() {
           <ScrollReveal containerClassName="statement about__reveal">
             {`A Los Angeles technical SEO and AI-visibility firm, making ambitious companies findable — by search engines and by the language models now answering their customers' questions.`}
           </ScrollReveal>
-          <p className="credentials-strip" data-reveal>BBB A+ Rated &nbsp;·&nbsp; Google Partner 2015–2019 &nbsp;·&nbsp; Bilingual English / Spanish &nbsp;·&nbsp; Operating since 2012</p>
+          <p className="credentials-strip" data-reveal>BBB A+ Rated &nbsp;·&nbsp; Google Partner 2015–2019 &nbsp;·&nbsp; Operating since 2012</p>
         </div>
       </section>
 

@@ -28,7 +28,7 @@ export default function SteveMartinPage() {
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder &amp; Principal</p>
             <h2 className="founder__name" data-reveal>Steve Martin</h2>
             <p className="founder__role" data-reveal>Gobiya, Los Angeles</p>
-            <p className="founder__bio" data-reveal>Steve founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve is bilingual in English and Spanish, and works directly with clients rather than handing engagements off to an account team.</p>
+            <p className="founder__bio" data-reveal>Steve founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
             <a href="/contact" className="link-arrow" data-reveal>Talk to Steve<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
         </div>
@@ -66,8 +66,8 @@ export default function SteveMartinPage() {
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">Access</span>
-              <h3 className="capability-card__title">Bilingual client relationships</h3>
-              <p className="capability-card__desc">English and Spanish fluency means direct communication with a broader range of Los Angeles business owners, without anything getting lost in translation between agency and client.</p>
+              <h3 className="capability-card__title">Direct client access</h3>
+              <p className="capability-card__desc">Every engagement is run by Steve directly — no account manager layer between strategy and execution, and no handoff to a junior team partway through.</p>
             </div>
           </div>
         </div>

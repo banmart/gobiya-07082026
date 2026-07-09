@@ -3,7 +3,7 @@ import SplitText from '../../components/SplitText';
 export const metadata = {
   title: 'About — Los Angeles Technical SEO & AI Visibility Agency',
   description:
-    'Gobiya is a Los Angeles technical SEO and AI visibility agency founded in 2010 by Steve Martin. BBB A+ rated, Google Partner 2015–2019, bilingual English/Spanish.',
+    'Gobiya is a Los Angeles technical SEO and AI visibility agency founded in 2010 by Steve Martin. BBB A+ rated, Google Partner 2015–2019.',
 };
 
 export default function AboutPage() {
@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
           <SplitText tag="h1" className="statement" text="Fourteen years recovering traffic that algorithm updates took away." splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>Gobiya is a Los Angeles technical SEO and AI-visibility agency, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019. Bilingual English and Spanish support.</p>
+          <p className="lede" data-reveal>Gobiya is a Los Angeles technical SEO and AI-visibility agency, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
         </div>
       </section>
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder</p>
             <h2 className="founder__name" data-reveal>Steve Martin</h2>
             <p className="founder__role" data-reveal>Founder &amp; Principal, Gobiya</p>
-            <p className="founder__bio" data-reveal>Steve has worked in web development and search since 1996, bringing 25+ years of digital marketing and engineering experience — including time at AT&amp;T WorldNet and Webcastr.com — to every engagement. He has tracked and adapted to every major Google algorithm shift since Panda in 2011, which is the foundation of Gobiya&apos;s specialty in recovering traffic after algorithm updates. He is bilingual in English and Spanish.</p>
+            <p className="founder__bio" data-reveal>Steve has worked in web development and search since 1996, bringing 25+ years of digital marketing and engineering experience — including time at AT&amp;T WorldNet and Webcastr.com — to every engagement. He has tracked and adapted to every major Google algorithm shift since Panda in 2011, which is the foundation of Gobiya&apos;s specialty in recovering traffic after algorithm updates.</p>
             <a href="/contact" className="link-arrow" data-reveal>Talk to Steve<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
         </div>
