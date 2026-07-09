@@ -1,4 +1,5 @@
 import { CASE_STUDIES } from '../../lib/work';
+import SplitText from '../../components/SplitText';
 
 export const metadata = {
   title: 'Work — Client Results',
@@ -13,7 +14,7 @@ export default function WorkPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Selected work</p>
-          <h1 className="statement" data-words>Real businesses. Measurable recovery and growth.</h1>
+          <SplitText tag="h1" className="statement" text="Real businesses. Measurable recovery and growth." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/contact" className="btn btn--solid">Start your own case study</a>

@@ -1,3 +1,8 @@
+import Ballpit from '../components/Ballpit';
+import Hyperspeed from '../components/Hyperspeed';
+import ScrollReveal from '../components/ScrollReveal';
+import SplitText from '../components/SplitText';
+
 export default function Home() {
   return (
     <main id="top">
@@ -7,8 +12,10 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Technical SEO &amp; AI Visibility · Est. 2010</p>
           <h1 className="hero__title">
-            <span className="line-mask"><span className="line">Findable.</span></span>
-            <span className="line-mask"><span className="line">By humans <em>and AI.</em></span></span>
+            <SplitText tag="span" className="hero__title-line" text="Findable." splitType="chars" delay={22} duration={1} textAlign="left" />
+            <br />
+            <SplitText tag="span" className="hero__title-line" text="By humans" splitType="chars" delay={22} duration={1} textAlign="left" />{' '}
+            <SplitText tag="span" className="hero__title-line hero__title-accent" text="and AI." splitType="chars" delay={22} duration={1} textAlign="left" />
           </h1>
           <div className="hero__row">
             <p className="hero__sub" data-reveal>Technical SEO, algorithm recovery, and AI-visibility engineering for companies that are tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
@@ -18,10 +25,36 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="hero__media" data-parallax>
-          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2200&auto=format&fit=crop" alt="Mountain ridges emerging through morning mist" loading="eager" />
+        <div className="hero__media">
+          <div className="hero__media-canvas">
+            <Hyperspeed
+              effectOptions={{
+                distortion: 'turbulentDistortion',
+                length: 400,
+                roadWidth: 10,
+                islandWidth: 2,
+                lanesPerRoad: 3,
+                fov: 90,
+                fovSpeedUp: 150,
+                speedUp: 2,
+                carLightsFade: 0.4,
+                totalSideLightSticks: 20,
+                lightPairsPerRoadWay: 40,
+                colors: {
+                  roadColor: 0x1a1a1a,
+                  islandColor: 0x0d0d0d,
+                  background: 0x000000,
+                  shoulderLines: 0x2b2b2b,
+                  brokenLines: 0x2b2b2b,
+                  leftCars: [0xe41613, 0xff4d4a, 0xb3110f],
+                  rightCars: [0xaaaaaa, 0xe5e5e5, 0x808080],
+                  sticks: 0xe41613,
+                },
+              }}
+            />
+          </div>
           <div className="hero__media-caption">
-            <span>Signal <i>/ˈsɪɡ.nəl/</i> — what remains clear once the algorithmic noise clears.</span>
+            <span>Signal <i>/ˈsɪɡ.nəl/</i> — the thread search engines and AI both follow back to you.</span>
           </div>
         </div>
         <div className="hero__scroll" aria-hidden="true">
@@ -34,7 +67,9 @@ export default function Home() {
       <section className="about section section--tint" id="about">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
-          <h2 className="statement" data-words>A Los Angeles technical SEO and AI-visibility firm, making ambitious companies findable — by search engines and by the language models now answering their customers&apos; questions.</h2>
+          <ScrollReveal containerClassName="statement about__reveal">
+            {`A Los Angeles technical SEO and AI-visibility firm, making ambitious companies findable — by search engines and by the language models now answering their customers' questions.`}
+          </ScrollReveal>
           <p className="credentials-strip" data-reveal>BBB A+ Rated &nbsp;·&nbsp; Google Partner 2015–2019 &nbsp;·&nbsp; Bilingual English / Spanish &nbsp;·&nbsp; Operating since 2012</p>
         </div>
       </section>
@@ -200,6 +235,18 @@ export default function Home() {
 
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
+        <div className="cta__canvas" aria-hidden="true">
+          <Ballpit
+            count={90}
+            colors={['#e41613', '#2b2b2b', '#aaaaaa']}
+            gravity={0.35}
+            friction={0.9975}
+            wallBounce={0.9}
+            followCursor={true}
+            minSize={0.4}
+            maxSize={0.9}
+          />
+        </div>
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-words>Be the answer AI gives — not the link it skips.</h2>

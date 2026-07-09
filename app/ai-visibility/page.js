@@ -1,3 +1,5 @@
+import SplitText from '../../components/SplitText';
+
 export const metadata = {
   title: 'AI Visibility (GEO) — Get Cited by ChatGPT, Perplexity & AI Overviews',
   description:
@@ -11,7 +13,7 @@ export default function AIVisibilityPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>AI Visibility / GEO</p>
-          <h1 className="statement" data-words>The biggest shift in how people find businesses since mobile search.</h1>
+          <SplitText tag="h1" className="statement" text="The biggest shift in how people find businesses since mobile search." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>A growing share of research now ends inside an AI answer — ChatGPT, Perplexity, Google AI&nbsp;Overviews — before a user ever clicks a blue link. If your site isn&apos;t structured to be read, understood, and cited by those systems, you&apos;re invisible to the fastest-growing slice of search.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/contact" className="btn btn--solid">Get an AI visibility audit</a>

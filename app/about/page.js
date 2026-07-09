@@ -1,3 +1,5 @@
+import SplitText from '../../components/SplitText';
+
 export const metadata = {
   title: 'About — Los Angeles Technical SEO & AI Visibility Agency',
   description:
@@ -11,7 +13,7 @@ export default function AboutPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
-          <h1 className="statement" data-words>Fourteen years recovering traffic that algorithm updates took away.</h1>
+          <SplitText tag="h1" className="statement" text="Fourteen years recovering traffic that algorithm updates took away." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>Gobiya is a Los Angeles technical SEO and AI-visibility agency, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019. Bilingual English and Spanish support.</p>
         </div>
       </section>

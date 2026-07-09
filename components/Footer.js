@@ -3,6 +3,7 @@ import { CONTACT } from '../lib/nav';
 export default function Footer() {
   return (
     <footer className="footer">
+      <img className="footer__mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />
       <div className="container">
         <div className="footer__grid">
           <div className="footer__col footer__col--brand">

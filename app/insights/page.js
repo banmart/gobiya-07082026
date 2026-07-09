@@ -1,4 +1,5 @@
 import { INSIGHTS } from '../../lib/insights';
+import SplitText from '../../components/SplitText';
 
 export const metadata = {
   title: 'Insights — SEO, AI Visibility & Search Marketing',
@@ -13,7 +14,7 @@ export default function InsightsPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Insights</p>
-          <h1 className="statement" data-words>Search marketing, explained plainly.</h1>
+          <SplitText tag="h1" className="statement" text="Search marketing, explained plainly." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, and AI visibility — written to actually answer the question, not just rank for it.</p>
         </div>
       </section>

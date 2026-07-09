@@ -1,3 +1,5 @@
+import SplitText from './SplitText';
+
 export default function ArticleTemplate({ article }) {
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -27,7 +29,7 @@ export default function ArticleTemplate({ article }) {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Insights · {article.category}</p>
-          <h1 className="statement" data-words>{article.title}</h1>
+          <SplitText tag="h1" className="statement" text={article.title} splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>{article.dek}</p>
           <p className="article__meta" data-reveal>{article.readTime}</p>
         </div>

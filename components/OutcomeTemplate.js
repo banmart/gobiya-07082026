@@ -1,3 +1,5 @@
+import SplitText from './SplitText';
+
 export default function OutcomeTemplate({ outcome }) {
   return (
     <main id="top">
@@ -5,7 +7,7 @@ export default function OutcomeTemplate({ outcome }) {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{outcome.eyebrow}</p>
-          <h1 className="statement" data-words>{outcome.heroLines.join(' ')}</h1>
+          <SplitText tag="h1" className="statement" text={outcome.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>{outcome.lede}</p>
           <div className="hero__ctas" data-reveal>
             <a href="/contact" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>

@@ -1,3 +1,5 @@
+import SplitText from '../../../components/SplitText';
+
 export const metadata = {
   title: 'Our Approach',
   description:
@@ -11,7 +13,7 @@ export default function ApproachPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About · Approach</p>
-          <h1 className="statement" data-words>Foundation first. Everything else compounds on top of it.</h1>
+          <SplitText tag="h1" className="statement" text="Foundation first. Everything else compounds on top of it." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>Most SEO failures aren&apos;t a strategy problem — they&apos;re a sequencing problem. Content and links get built on top of a technical foundation that can&apos;t support them. We work in a fixed order for a reason: each layer only works if the one underneath it is solid.</p>
         </div>
       </section>

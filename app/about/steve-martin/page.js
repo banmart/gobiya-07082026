@@ -1,3 +1,5 @@
+import SplitText from '../../../components/SplitText';
+
 export const metadata = {
   title: 'Steve Martin — Founder',
   description:
@@ -11,7 +13,7 @@ export default function SteveMartinPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About · Steve Martin</p>
-          <h1 className="statement" data-words>Twenty-five years of watching search change, and adapting every time.</h1>
+          <SplitText tag="h1" className="statement" text="Twenty-five years of watching search change, and adapting every time." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>Founder and Principal of Gobiya. Steve has worked in web development and search since 1996 — long enough to have built for the web before Google existed, and to have tracked every major shift in how it ranks pages since.</p>
         </div>
       </section>

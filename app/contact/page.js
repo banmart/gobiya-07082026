@@ -1,4 +1,5 @@
 import { CONTACT } from '../../lib/nav';
+import SplitText from '../../components/SplitText';
 
 export const metadata = {
   title: 'Contact — Los Angeles SEO & AI Visibility Agency',
@@ -12,7 +13,7 @@ export default function ContactPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Contact</p>
-          <h1 className="statement" data-words>Let&apos;s talk about what&apos;s actually happening in your search traffic.</h1>
+          <SplitText tag="h1" className="statement" text="Let's talk about what's actually happening in your search traffic." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation.</p>
         </div>
       </section>

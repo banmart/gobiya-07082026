@@ -32,7 +32,6 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <img className="bg-mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />
-        <img className="bg-mark bg-mark--second" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />
         <Preloader />
         <Header />
         {children}
