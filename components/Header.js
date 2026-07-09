@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { NAV_ITEMS, CONTACT } from '../lib/nav';
 
 export default function Header() {
@@ -6,7 +7,7 @@ export default function Header() {
       <header className="nav" id="nav">
         <div className="nav__inner">
           <a className="nav__logo" href="/" aria-label="Gobiya — home">
-            <img className="nav__logo-mark" src="/assets/img/logo-gobiya-red.webp" alt="" width="400" height="401" />
+            <Image className="nav__logo-mark" src="/assets/img/logo-gobiya-red.webp" alt="" width={400} height={401} priority />
             <span className="nav__logo-word">Gobiya</span>
           </a>
           <nav className="nav__links" aria-label="Primary">

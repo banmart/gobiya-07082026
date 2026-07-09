@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SplitText from '../../components/SplitText';
 
 export const metadata = {
@@ -22,7 +23,7 @@ export default function AboutPage() {
       <section className="founder section section--tint" id="founder">
         <div className="container founder__grid">
           <div className="founder__portrait" data-reveal>
-            <img src="/assets/img/steve-portrait.webp" alt="Steve Martin, founder of Gobiya" width="960" height="1234" decoding="async" />
+            <Image src="/assets/img/steve-portrait.webp" alt="Steve Martin, founder of Gobiya" fill sizes="(max-width: 768px) 90vw, 42vw" priority />
           </div>
           <div className="founder__text">
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder</p>

@@ -153,7 +153,11 @@ const SplitText = ({
   const Tag = tag || 'p';
 
   return (
-    <Tag ref={ref} style={style} className={classes}>
+    // GSAP's SplitText plugin puts an aria-label on this element for screen
+    // readers (the split chars/words are hidden from AT). A plain <span>/<p>
+    // has an implicit "generic" role, which ARIA prohibits from taking an
+    // accessible name — role="text" is GreenSock's documented fix.
+    <Tag ref={ref} role="text" style={style} className={classes}>
       {text}
     </Tag>
   );

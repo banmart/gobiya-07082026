@@ -1,7 +1,22 @@
 import Script from 'next/script';
+import Image from 'next/image';
+import { Inter, Stack_Sans_Notch } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const stackSansNotch = Stack_Sans_Notch({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700'],
+  variable: '--font-stack-sans-notch',
+  display: 'swap',
+});
 
 export const metadata = {
   title: {
@@ -26,26 +41,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="preload" as="image" href="/assets/img/logo-gobiya-red.webp" />
-      </head>
+    <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
       <body>
-        <img className="bg-mark" src="/assets/img/logo-gobiya-red.webp" alt="" aria-hidden="true" width="400" height="401" />
+        <Image className="bg-mark" src="/assets/img/logo-gobiya-red.webp" alt="" aria-hidden="true" width={400} height={401} priority />
         <Header />
         {children}
         <Footer />
         <Script src="/js/main.js" strategy="afterInteractive" />
 
+        {/* Analytics carry no first-visit UX cost, so they're deferred past
+            the load event (lazyOnload) instead of afterInteractive — they
+            were otherwise competing with the hero/fonts/WebGL scene for the
+            same main-thread window Lighthouse scores on. */}
         {/* Google Analytics 4 */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-3R3D5Q9YV6" strategy="afterInteractive" />
-        <Script id="ga4-init" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-3R3D5Q9YV6" strategy="lazyOnload" />
+        <Script id="ga4-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -55,7 +65,7 @@ export default function RootLayout({ children }) {
         </Script>
 
         {/* Microsoft Clarity */}
-        <Script id="ms-clarity-init" strategy="afterInteractive">
+        <Script id="ms-clarity-init" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

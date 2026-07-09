@@ -357,7 +357,11 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           alpha: true,
         });
         this.renderer.setSize(initW, initH, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        // Bloom is a full-screen postprocessing pass; its cost scales with
+        // canvas resolution squared. Uncapped devicePixelRatio (2-3x on
+        // most phones/retina displays) was multiplying that cost 4-9x for
+        // an ambient background element. 1.5 keeps it visually sharp.
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -414,9 +418,49 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         this.onWindowResize = this.onWindowResize.bind(this);
         window.addEventListener('resize', this.onWindowResize);
 
+        // The render loop otherwise runs forever at full speed even when
+        // the tab is backgrounded or the hero has scrolled out of view —
+        // pure wasted CPU/GPU on every visit, and it also stops Lighthouse
+        // from ever reaching a quiet main thread (inflating TBT/TTI). Both
+        // conditions must hold (tab visible AND hero in viewport) to run.
+        this.paused = false;
+        this.tabVisible = !document.hidden;
+        this.inViewport = false;
+        this.onVisibilityChange = this.onVisibilityChange.bind(this);
+        document.addEventListener('visibilitychange', this.onVisibilityChange);
+        this.intersectionObserver = new IntersectionObserver(
+          (entries) => {
+            this.inViewport = entries[0].isIntersecting;
+            this.syncPauseState();
+          },
+          { threshold: 0 }
+        );
+        this.intersectionObserver.observe(container);
+
         if (container.offsetWidth > 0 && container.offsetHeight > 0) {
           this.hasValidSize = true;
         }
+      }
+
+      onVisibilityChange() {
+        this.tabVisible = !document.hidden;
+        this.syncPauseState();
+      }
+
+      syncPauseState() {
+        if (this.tabVisible && this.inViewport) this.resume();
+        else this.pause();
+      }
+
+      pause() {
+        this.paused = true;
+      }
+
+      resume() {
+        if (!this.paused || this.disposed) return;
+        this.paused = false;
+        this.clock.getDelta();
+        this.tick();
       }
 
       onWindowResize() {
@@ -442,7 +486,10 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           new BloomEffect({
             luminanceThreshold: 0.2,
             luminanceSmoothing: 0,
-            resolutionScale: 1,
+            // Bloom is a soft blur; rendering its internal buffer at half
+            // resolution cuts the blur passes' cost roughly 4x with no
+            // perceptible difference once composited back over the scene.
+            resolutionScale: 0.5,
           })
         );
 
@@ -588,6 +635,8 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         }
 
         window.removeEventListener('resize', this.onWindowResize);
+        document.removeEventListener('visibilitychange', this.onVisibilityChange);
+        this.intersectionObserver?.disconnect();
         if (this.container) {
           this.container.removeEventListener('mousedown', this.onMouseDown);
           this.container.removeEventListener('mouseup', this.onMouseUp);
@@ -610,7 +659,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
       }
 
       tick() {
-        if (this.disposed) return;
+        if (this.disposed || this.paused) return;
 
         if (!this.hasValidSize) {
           const w = this.container.offsetWidth;
@@ -1119,6 +1168,20 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
       colors: { ...DEFAULT_EFFECT_OPTIONS.colors, ...effectOptions.colors },
     };
     options.distortion = distortions[options.distortion];
+
+    // Fewer instanced light-pairs/sticks on narrow viewports: same visual
+    // effect at a glance, meaningfully less instanced-geometry and shader
+    // work per frame on the phones most likely to be main-thread constrained.
+    if (window.innerWidth < 768) {
+      options.totalSideLightSticks = Math.ceil(options.totalSideLightSticks * 0.6);
+      options.lightPairsPerRoadWay = Math.ceil(options.lightPairsPerRoadWay * 0.6);
+    }
+
+    // Respect the OS-level motion preference: skip the WebGL scene entirely
+    // rather than mount it and immediately fight the user's own setting.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return () => {};
+    }
 
     // Building the scene (road planes, ~40 car-light-pairs of instanced
     // geometry, side sticks) plus shader compilation is real synchronous

@@ -16,14 +16,14 @@
   --dark: #aaaaaa;
   --darkest: #2b2b2b;
   --overlay: #18181a;
-  --hint: rgba(44, 42, 43, 0.55);
+  --hint: rgba(44, 42, 43, 0.7);
   --border: rgba(44, 42, 43, 0.18);
   --border-strong: rgba(44, 42, 43, 0.4);
   --border-light: rgba(247, 245, 240, 0.18);
 
   /* type */
-  --font-heading: "Stack Sans Notch", "Helvetica Neue", Arial, sans-serif;
-  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-stack-sans-notch), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
   /* easing (lifted from reference) */
   --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -148,6 +148,7 @@ em { font-style: italic; }
   align-items: center;
 }
 .founder__portrait {
+  position: relative;
   aspect-ratio: 4 / 5;
   background: var(--darkest);
   display: grid;
@@ -634,6 +635,7 @@ a.contact__value:hover { color: var(--main); }
 .hero__media-canvas {
   position: absolute;
   inset: 0;
+  background: #000;
   opacity: 0;
   transform: scale(1.08);
   transition: opacity 1.2s var(--p2-out), transform 4s var(--expo-out);
@@ -986,7 +988,7 @@ body.is-loaded .hero__media-canvas { opacity: 1; transform: scale(1); }
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(247, 245, 240, 0.45);
+  color: rgba(247, 245, 240, 0.6);
   margin-bottom: 1.1rem;
 }
 .footer__col a {
@@ -1019,7 +1021,7 @@ body.is-loaded .hero__media-canvas { opacity: 1; transform: scale(1); }
   flex-wrap: wrap;
   padding-block: 1.5rem 2rem;
   font-size: 0.75rem;
-  color: rgba(247, 245, 240, 0.4);
+  color: rgba(247, 245, 240, 0.6);
 }
 .footer__legal a:hover { color: var(--main); }
 

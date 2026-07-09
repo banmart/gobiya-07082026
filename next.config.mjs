@@ -3,6 +3,9 @@ const nextConfig = {
   turbopack: {
     root: import.meta.dirname,
   },
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
+  },
   async redirects() {
     return [
       // Old city-specific pages (all 3 URL generations) -> dedicated city landing
