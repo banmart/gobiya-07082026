@@ -382,6 +382,12 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         this.clock = new THREE.Clock();
         this.assets = {};
         this.disposed = false;
+        // Capping to 30fps halves render+update calls on 60Hz+ displays —
+        // a deterministic reduction in main-thread work per second that
+        // holds regardless of per-frame GPU cost, unlike resolution/bloom
+        // tuning whose payoff varies by rendering backend.
+        this.frameInterval = 1000 / 30;
+        this.lastFrameTime = 0;
 
         this.road = new Road(this, options);
         this.leftCarLights = new CarLights(
@@ -418,20 +424,18 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         this.onWindowResize = this.onWindowResize.bind(this);
         window.addEventListener('resize', this.onWindowResize);
 
-        // The render loop otherwise runs forever at full speed even when
-        // the tab is backgrounded or the hero has scrolled out of view —
-        // pure wasted CPU/GPU on every visit, and it also stops Lighthouse
-        // from ever reaching a quiet main thread (inflating TBT/TTI). Both
-        // conditions must hold (tab visible AND hero in viewport) to run.
+        // The render loop otherwise keeps running at full speed once the
+        // hero scrolls out of view — pure wasted CPU/GPU. Deliberately NOT
+        // gated on document.hidden/visibilitychange: that reflects window
+        // focus, which is unreliable across browsers and automated/headless
+        // test contexts (it can read `true` at mount time with no later
+        // change event ever firing, permanently freezing the loop).
+        // IntersectionObserver reflects actual on-screen geometry instead.
         this.paused = false;
-        this.tabVisible = !document.hidden;
-        this.inViewport = false;
-        this.onVisibilityChange = this.onVisibilityChange.bind(this);
-        document.addEventListener('visibilitychange', this.onVisibilityChange);
         this.intersectionObserver = new IntersectionObserver(
           (entries) => {
-            this.inViewport = entries[0].isIntersecting;
-            this.syncPauseState();
+            if (entries[0].isIntersecting) this.resume();
+            else this.pause();
           },
           { threshold: 0 }
         );
@@ -440,16 +444,6 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         if (container.offsetWidth > 0 && container.offsetHeight > 0) {
           this.hasValidSize = true;
         }
-      }
-
-      onVisibilityChange() {
-        this.tabVisible = !document.hidden;
-        this.syncPauseState();
-      }
-
-      syncPauseState() {
-        if (this.tabVisible && this.inViewport) this.resume();
-        else this.pause();
       }
 
       pause() {
@@ -635,7 +629,6 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         }
 
         window.removeEventListener('resize', this.onWindowResize);
-        document.removeEventListener('visibilitychange', this.onVisibilityChange);
         this.intersectionObserver?.disconnect();
         if (this.container) {
           this.container.removeEventListener('mousedown', this.onMouseDown);
@@ -685,9 +678,13 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         }
 
         if (this.hasValidSize) {
-          const delta = this.clock.getDelta();
-          this.render(delta);
-          this.update(delta);
+          const now = performance.now();
+          if (now - this.lastFrameTime >= this.frameInterval) {
+            this.lastFrameTime = now;
+            const delta = this.clock.getDelta();
+            this.render(delta);
+            this.update(delta);
+          }
         }
 
         requestAnimationFrame(this.tick);
