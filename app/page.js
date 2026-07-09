@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Ballpit from '../components/BallpitLazy';
-import Hyperspeed from '../components/HyperspeedLazy';
 import ScrollReveal from '../components/ScrollReveal';
 import SplitText from '../components/SplitText';
 
@@ -26,34 +25,14 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="hero__media">
-          <div className="hero__media-canvas">
-            <Hyperspeed
-              effectOptions={{
-                distortion: 'turbulentDistortion',
-                length: 400,
-                roadWidth: 10,
-                islandWidth: 2,
-                lanesPerRoad: 3,
-                fov: 90,
-                fovSpeedUp: 150,
-                speedUp: 2,
-                carLightsFade: 0.4,
-                totalSideLightSticks: 14,
-                lightPairsPerRoadWay: 24,
-                colors: {
-                  roadColor: 0x1a1a1a,
-                  islandColor: 0x0d0d0d,
-                  background: 0x000000,
-                  shoulderLines: 0x2b2b2b,
-                  brokenLines: 0x2b2b2b,
-                  leftCars: [0xe41613, 0xff4d4a, 0xb3110f],
-                  rightCars: [0xaaaaaa, 0xe5e5e5, 0x808080],
-                  sticks: 0xe41613,
-                },
-              }}
-            />
-          </div>
+        <div className="hero__media" data-parallax>
+          <Image
+            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2200&auto=format&fit=crop"
+            alt="Mountain ridges emerging through morning mist"
+            width={2200}
+            height={1310}
+            priority
+          />
           <div className="hero__media-caption">
             <span>Signal <i>/ˈsɪɡ.nəl/</i> — the thread search engines and AI both follow back to you.</span>
           </div>
