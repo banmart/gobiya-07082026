@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap"
           rel="stylesheet"
         />
         <link rel="preload" as="image" href="/assets/img/logo-gobiya-red.webp" />
