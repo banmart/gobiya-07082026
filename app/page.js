@@ -27,10 +27,11 @@ export default function Home() {
         </div>
         <div className="hero__media" data-parallax>
           <Image
-            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2200&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1800&auto=format&fit=crop"
             alt="Mountain ridges emerging through morning mist"
-            width={2200}
-            height={1310}
+            width={1800}
+            height={1072}
+            sizes="100vw"
             priority
           />
           <div className="hero__media-caption">
