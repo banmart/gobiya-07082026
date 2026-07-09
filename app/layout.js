@@ -12,9 +12,9 @@ export const metadata = {
     'Gobiya is a Los Angeles technical SEO and AI visibility agency, operating since 2012. We recover organic traffic after algorithm updates and get brands cited in ChatGPT, Perplexity, and Google AI Overviews.',
   metadataBase: new URL('https://www.gobiya.com'),
   icons: {
-    icon: '/assets/img/logo-gobiya-red-rocket-07082026.svg',
-    shortcut: '/assets/img/logo-gobiya-red-rocket-07082026.svg',
-    apple: '/assets/img/logo-gobiya-red-rocket-07082026.svg',
+    icon: '/assets/img/logo-gobiya-red.webp',
+    shortcut: '/assets/img/logo-gobiya-red.webp',
+    apple: '/assets/img/logo-gobiya-red.webp',
   },
   verification: {
     google: 'BCJ8-9rzY9X5CjZqM2hY7erF-1vFCZHFKl-Y-nbXv3U',
@@ -34,10 +34,10 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap"
           rel="stylesheet"
         />
-        <link rel="preload" as="image" href="/assets/img/logo-gobiya-red-rocket-07082026.svg" />
+        <link rel="preload" as="image" href="/assets/img/logo-gobiya-red.webp" />
       </head>
       <body>
-        <img className="bg-mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />
+        <img className="bg-mark" src="/assets/img/logo-gobiya-red.webp" alt="" aria-hidden="true" width="400" height="401" />
         <Header />
         {children}
         <Footer />

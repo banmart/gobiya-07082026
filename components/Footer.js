@@ -3,12 +3,12 @@ import { CONTACT } from '../lib/nav';
 export default function Footer() {
   return (
     <footer className="footer">
-      <img className="footer__mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />
+      <img className="footer__mark" src="/assets/img/logo-gobiya-red.webp" alt="" aria-hidden="true" width="400" height="401" />
       <div className="container">
         <div className="footer__grid">
           <div className="footer__col footer__col--brand">
             <a className="nav__logo footer__logo" href="#top">
-              <img className="nav__logo-mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" />
+              <img className="nav__logo-mark" src="/assets/img/logo-gobiya-red.webp" alt="" width="400" height="401" />
               <span className="nav__logo-word">Gobiya</span>
             </a>
             <p>Technical SEO, GEO/AI visibility, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, operating since 2012.</p>

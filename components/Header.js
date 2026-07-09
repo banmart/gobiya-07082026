@@ -6,7 +6,7 @@ export default function Header() {
       <header className="nav" id="nav">
         <div className="nav__inner">
           <a className="nav__logo" href="/" aria-label="Gobiya — home">
-            <img className="nav__logo-mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" />
+            <img className="nav__logo-mark" src="/assets/img/logo-gobiya-red.webp" alt="" width="400" height="401" />
             <span className="nav__logo-word">Gobiya</span>
           </a>
           <nav className="nav__links" aria-label="Primary">

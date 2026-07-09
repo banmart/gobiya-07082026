@@ -133,7 +133,7 @@ export default function Home() {
                 <a href="/services/seo-discoverability" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1800&auto=format&fit=crop" alt="Layered mountain ridges in morning mist" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1800&auto=format&fit=crop" alt="Layered mountain ridges in morning mist" width="1800" height="1072" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>
@@ -152,7 +152,7 @@ export default function Home() {
                 <a href="/services/geo-ai-content-writing" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1800&auto=format&fit=crop" alt="Deep blue open sea meeting the horizon" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1800&auto=format&fit=crop" alt="Deep blue open sea meeting the horizon" width="1800" height="3204" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>
@@ -171,7 +171,7 @@ export default function Home() {
                 <a href="/services/authority-link-building" className="link-arrow">Explore Relations<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop" alt="Waterfall cutting through a green gorge" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop" alt="Waterfall cutting through a green gorge" width="1800" height="2700" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>

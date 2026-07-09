@@ -22,7 +22,7 @@ export default function AboutPage() {
       <section className="founder section section--tint" id="founder">
         <div className="container founder__grid">
           <div className="founder__portrait" data-reveal>
-            <img src="/assets/img/steve-portrait.webp" alt="Steve Martin, founder of Gobiya" width="1824" height="2344" />
+            <img src="/assets/img/steve-portrait.webp" alt="Steve Martin, founder of Gobiya" width="960" height="1234" decoding="async" />
           </div>
           <div className="founder__text">
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder</p>

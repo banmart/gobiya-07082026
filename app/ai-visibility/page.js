@@ -88,7 +88,7 @@ export default function AIVisibilityPage() {
                 <a href="/services/seo-discoverability" className="link-arrow">See SEO &amp; Discoverability<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1800&auto=format&fit=crop" alt="Rows of server infrastructure and code" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1800&auto=format&fit=crop" alt="Rows of server infrastructure and code" width="1800" height="1198" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>
@@ -106,7 +106,7 @@ export default function AIVisibilityPage() {
                 <a href="/services/authority-link-building" className="link-arrow">See Authority &amp; Link Building<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1800&auto=format&fit=crop" alt="Open sea meeting the horizon" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1800&auto=format&fit=crop" alt="Open sea meeting the horizon" width="1800" height="1200" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>
@@ -124,7 +124,7 @@ export default function AIVisibilityPage() {
                 <a href="/services/geo-ai-content-writing" className="link-arrow">See GEO &amp; AI Content Writing<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1800&auto=format&fit=crop" alt="Mountain ridges in mist" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1800&auto=format&fit=crop" alt="Mountain ridges in mist" width="1800" height="1200" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>
@@ -142,7 +142,7 @@ export default function AIVisibilityPage() {
                 <a href="/contact" className="link-arrow">Talk to us<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
-                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop" alt="Waterfall through a green gorge" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop" alt="Waterfall through a green gorge" width="1800" height="2700" loading="lazy" decoding="async" />
               </figure>
             </div>
           </article>
