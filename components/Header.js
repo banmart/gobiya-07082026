@@ -49,7 +49,7 @@ export default function Header() {
           </nav>
           <div className="nav__right">
             <span className="nav__lang"><a href="#" className="is-active">EN</a><i>/</i><a href="#">ES</a></span>
-            <a href="/contact" className="btn btn--pill nav__cta">Book a strategy call</a>
+            <a href="/onboarding" className="btn btn--pill nav__cta">Book a strategy call</a>
             <button className="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
               <span></span><span></span>
             </button>

@@ -20,7 +20,7 @@ export default function Home() {
           <div className="hero__row">
             <p className="hero__sub" data-reveal>Technical SEO, algorithm recovery, and AI-visibility engineering for companies that are tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
             <div className="hero__ctas" data-reveal>
-              <a href="/contact" className="btn btn--solid">Get an AI visibility audit</a>
+              <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
             </div>
           </div>

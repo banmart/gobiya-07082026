@@ -14,6 +14,7 @@ export default function sitemap() {
     '/about/steve-martin',
     '/ai-visibility',
     '/contact',
+    '/onboarding',
     '/insights',
     '/services',
     '/outcomes',

@@ -10,7 +10,7 @@ export default function ServiceTemplate({ service }) {
           <SplitText tag="h1" className="statement" text={service.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>{service.lede}</p>
           <div className="hero__ctas" data-reveal>
-            <a href="/contact" className="btn btn--solid">Get a free audit</a>
+            <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
             <a href="#included" className="btn btn--ghost">What&apos;s included</a>
           </div>
         </div>

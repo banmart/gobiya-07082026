@@ -10,7 +10,7 @@ export default function OutcomeTemplate({ outcome }) {
           <SplitText tag="h1" className="statement" text={outcome.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>{outcome.lede}</p>
           <div className="hero__ctas" data-reveal>
-            <a href="/contact" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>
+            <a href="/onboarding" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>
             <a href="#how" className="btn btn--ghost">How it works</a>
           </div>
         </div>

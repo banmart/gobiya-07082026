@@ -17,7 +17,7 @@ export default function WorkPage() {
           <SplitText tag="h1" className="statement" text="Real businesses. Measurable recovery and growth." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
           <div className="hero__ctas" data-reveal>
-            <a href="/contact" className="btn btn--solid">Start your own case study</a>
+            <a href="/onboarding" className="btn btn--solid">Start your own case study</a>
             <a href="#cases" className="btn btn--ghost">See the work</a>
           </div>
         </div>
