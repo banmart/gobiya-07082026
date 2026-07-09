@@ -35,6 +35,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap"
           rel="stylesheet"
         />
+        <link rel="preload" as="image" href="/assets/img/logo-gobiya-red-rocket-07082026.svg" />
       </head>
       <body>
         <img className="bg-mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />

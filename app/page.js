@@ -1,5 +1,5 @@
-import Ballpit from '../components/Ballpit';
-import Hyperspeed from '../components/Hyperspeed';
+import Ballpit from '../components/BallpitLazy';
+import Hyperspeed from '../components/HyperspeedLazy';
 import ScrollReveal from '../components/ScrollReveal';
 import SplitText from '../components/SplitText';
 
