@@ -38,8 +38,8 @@ export default function Home() {
                 fovSpeedUp: 150,
                 speedUp: 2,
                 carLightsFade: 0.4,
-                totalSideLightSticks: 20,
-                lightPairsPerRoadWay: 40,
+                totalSideLightSticks: 14,
+                lightPairsPerRoadWay: 24,
                 colors: {
                   roadColor: 0x1a1a1a,
                   islandColor: 0x0d0d0d,

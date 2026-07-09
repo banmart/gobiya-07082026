@@ -2,7 +2,6 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Preloader from '../components/Preloader';
 
 export const metadata = {
   title: {
@@ -39,7 +38,6 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <img className="bg-mark" src="/assets/img/logo-gobiya-red-rocket-07082026.svg" alt="" aria-hidden="true" />
-        <Preloader />
         <Header />
         {children}
         <Footer />

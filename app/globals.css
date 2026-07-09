@@ -365,56 +365,6 @@ a.contact__value:hover { color: var(--main); }
 .link-arrow:hover::after { transform: scaleX(1); }
 .link-arrow:hover svg { transform: translateX(4px); }
 
-/* ═══════════ preloader ═══════════ */
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: var(--overlay);
-  color: #f7f5f0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  transition: clip-path 0.9s var(--expo-in-out);
-  clip-path: inset(0 0 0 0);
-}
-.preloader.is-done { clip-path: inset(0 0 100% 0); pointer-events: none; }
-.preloader__inner {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  overflow: hidden;
-}
-.preloader__mark {
-  width: 2.75rem;
-  height: 2.75rem;
-  object-fit: contain;
-}
-.preloader__word {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  letter-spacing: 0.01em;
-  animation: rise 0.9s var(--expo-out) both 0.1s;
-}
-@keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
-.preloader__bar {
-  width: min(240px, 50vw);
-  height: 1px;
-  background: rgba(247, 245, 240, 0.2);
-  overflow: hidden;
-}
-.preloader__bar span {
-  display: block;
-  height: 100%;
-  background: var(--main);
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: load 1.1s var(--expo-in-out) forwards 0.15s;
-}
-@keyframes load { to { transform: scaleX(1); } }
-
 /* ═══════════ navigation ═══════════ */
 .nav {
   position: fixed;
@@ -635,15 +585,6 @@ a.contact__value:hover { color: var(--main); }
   line-height: 0.98;
   letter-spacing: -0.02em;
 }
-.hero__title em { color: var(--main); }
-.line-mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
-.line {
-  display: block;
-  transform: translateY(115%);
-  transition: transform 1.1s var(--expo-out);
-}
-.line-mask:nth-child(2) .line { transition-delay: 90ms; }
-body.is-loaded .line { transform: translateY(0); }
 .hero__row {
   display: flex;
   align-items: flex-end;

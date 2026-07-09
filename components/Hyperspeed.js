@@ -1,6 +1,6 @@
 'use client';
 
-import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPreset } from 'postprocessing';
+import { BloomEffect, EffectComposer, EffectPass, RenderPass } from 'postprocessing';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -446,45 +446,20 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           })
         );
 
-        const smaaPass = new EffectPass(
-          this.camera,
-          new SMAAEffect({
-            preset: SMAAPreset.MEDIUM,
-            searchImage: SMAAEffect.searchImageDataURL,
-            areaImage: SMAAEffect.areaImageDataURL,
-          })
-        );
+        // No SMAA pass: it costs an extra shader compile plus two decoded
+        // lookup-table images for a background element that's always in
+        // motion (temporal aliasing is barely perceptible here), and it was
+        // a meaningful share of the main-thread cost during first paint.
         this.renderPass.renderToScreen = false;
-        this.bloomPass.renderToScreen = false;
-        smaaPass.renderToScreen = true;
+        this.bloomPass.renderToScreen = true;
         this.composer.addPass(this.renderPass);
         this.composer.addPass(this.bloomPass);
-        this.composer.addPass(smaaPass);
       }
 
       loadAssets() {
-        const assets = this.assets;
-        return new Promise((resolve) => {
-          const manager = new THREE.LoadingManager(resolve);
-
-          const searchImage = new Image();
-          const areaImage = new Image();
-          assets.smaa = {};
-          searchImage.addEventListener('load', function () {
-            assets.smaa.search = this;
-            manager.itemEnd('smaa-search');
-          });
-
-          areaImage.addEventListener('load', function () {
-            assets.smaa.area = this;
-            manager.itemEnd('smaa-area');
-          });
-          manager.itemStart('smaa-search');
-          manager.itemStart('smaa-area');
-
-          searchImage.src = SMAAEffect.searchImageDataURL;
-          areaImage.src = SMAAEffect.areaImageDataURL;
-        });
+        // No SMAA assets to preload anymore; resolve on the next tick so
+        // callers that chain off this promise still get async behavior.
+        return Promise.resolve();
       }
 
       init() {
@@ -1145,11 +1120,36 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
     };
     options.distortion = distortions[options.distortion];
 
-    const myApp = new App(container, options);
-    appRef.current = myApp;
-    myApp.loadAssets().then(myApp.init);
+    // Building the scene (road planes, ~40 car-light-pairs of instanced
+    // geometry, side sticks) plus shader compilation is real synchronous
+    // main-thread work. Deferring it to an idle slot keeps it from
+    // competing with the browser's first paint of the hero text and the
+    // background logo mark.
+    let disposed = false;
+    let idleId = null;
+    let timeoutId = null;
+
+    const start = () => {
+      if (disposed) return;
+      const myApp = new App(container, options);
+      appRef.current = myApp;
+      myApp.loadAssets().then(() => {
+        if (!disposed) myApp.init();
+      });
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      idleId = window.requestIdleCallback(start, { timeout: 1500 });
+    } else {
+      timeoutId = setTimeout(start, 200);
+    }
 
     return () => {
+      disposed = true;
+      if (idleId !== null && typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) clearTimeout(timeoutId);
       if (appRef.current) {
         appRef.current.dispose();
         appRef.current = null;

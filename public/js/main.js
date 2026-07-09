@@ -1,31 +1,21 @@
 /* Confluence Capital — interactions
    reveal-on-scroll, word splits, count-ups, parallax,
-   smart nav, office clocks, mobile menu, preloader */
+   smart nav, office clocks, mobile menu */
 
 (function () {
   "use strict";
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ── preloader ── */
-  const preloader = document.getElementById("preloader");
+  /* ── mark fonts/content ready (drives hero media fade-in) ── */
   function finishLoading() {
     document.body.classList.add("is-loaded");
-    if (preloader) {
-      // Note: intentionally not removing this node from the DOM — it's rendered by
-      // React (see components/Preloader.js), and imperatively removing a React-owned
-      // node causes insertBefore/removeChild errors on the next re-render. CSS
-      // (.preloader.is-done) fully hides it visually, so removal isn't needed.
-      preloader.classList.add("is-done");
-    }
   }
   if (prefersReduced) {
     finishLoading();
   } else {
-    // wait for fonts + a beat for the bar animation, whichever is longer
-    const minDelay = new Promise((r) => setTimeout(r, 1400));
     const ready = document.fonts ? document.fonts.ready : Promise.resolve();
-    Promise.all([minDelay, ready]).then(finishLoading);
+    ready.then(finishLoading);
     setTimeout(finishLoading, 3500); // hard failsafe
   }
 
