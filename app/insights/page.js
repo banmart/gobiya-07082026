@@ -1,11 +1,13 @@
 import { INSIGHTS } from '../../lib/insights';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Insights — SEO, AI Visibility & Search Marketing',
   description:
     'Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing pricing from the Gobiya team.',
-};
+  path: '/insights',
+});
 
 export default function InsightsPage() {
   return (

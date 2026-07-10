@@ -7,6 +7,8 @@ import { LOCATIONS_LIST } from '../lib/locations';
 const BASE_URL = 'https://www.gobiya.com';
 
 export default function sitemap() {
+  // No lastModified: stamping every URL with the build date is noise, not a
+  // freshness signal. Insight articles carry their real publish date.
   const staticRoutes = [
     '',
     '/about',
@@ -20,34 +22,31 @@ export default function sitemap() {
     '/outcomes',
     '/industries',
     '/work',
+    '/privacy',
+    '/terms',
   ].map((path) => ({
     url: `${BASE_URL}${path}`,
-    lastModified: new Date(),
   }));
 
   const serviceRoutes = Object.keys(SERVICES).map((slug) => ({
     url: `${BASE_URL}/services/${slug}`,
-    lastModified: new Date(),
   }));
 
   const outcomeRoutes = Object.keys(OUTCOMES).map((slug) => ({
     url: `${BASE_URL}/outcomes/${slug}`,
-    lastModified: new Date(),
   }));
 
   const industryRoutes = Object.keys(INDUSTRIES).map((slug) => ({
     url: `${BASE_URL}/industries/${slug}`,
-    lastModified: new Date(),
   }));
 
   const insightRoutes = INSIGHTS.map((insight) => ({
     url: `${BASE_URL}/insights/${insight.slug}`,
-    lastModified: new Date(),
+    lastModified: insight.date,
   }));
 
   const locationRoutes = LOCATIONS_LIST.map((l) => ({
     url: `${BASE_URL}/industries/local-service/${l.slug}`,
-    lastModified: new Date(),
   }));
 
   return [...staticRoutes, ...serviceRoutes, ...outcomeRoutes, ...industryRoutes, ...insightRoutes, ...locationRoutes];

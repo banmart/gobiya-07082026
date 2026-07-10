@@ -1,10 +1,12 @@
 import { CONTACT } from '../../lib/nav';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Contact — Los Angeles SEO & AI Visibility Agency',
   description: 'Reach Gobiya at hello@gobiya.com or 323-744-1338. 3580 Wilshire Blvd, Ste 132, Los Angeles, CA 90010.',
-};
+  path: '/contact',
+});
 
 export default function ContactPage() {
   return (
@@ -14,7 +16,7 @@ export default function ContactPage() {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Contact</p>
           <SplitText tag="h1" className="statement" text="Let's talk about what's actually happening in your search traffic." splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation.</p>
+          <p className="lede" data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation. Prefer a form? <a href="/onboarding">Start with the five-step questionnaire</a> and Steve will follow up directly.</p>
         </div>
       </section>
 

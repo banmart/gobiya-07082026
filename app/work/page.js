@@ -1,11 +1,13 @@
 import { CASE_STUDIES } from '../../lib/work';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Work — Client Results',
   description:
     'Selected client work from Gobiya: technical SEO rebuilds, algorithm recovery, and AI-visibility engineering across dental, local service, and B2B clients.',
-};
+  path: '/work',
+});
 
 export default function WorkPage() {
   return (

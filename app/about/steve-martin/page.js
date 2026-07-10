@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import SplitText from '../../../components/SplitText';
+import { buildMetadata } from '../../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Steve Martin — Founder',
   description:
     'Steve Martin is the founder and principal of Gobiya, a Los Angeles technical SEO and AI-visibility agency. 25+ years in web development and search, tracking every major Google algorithm update since Panda in 2011.',
-};
+  path: '/about/steve-martin',
+});
 
 export default function SteveMartinPage() {
   return (

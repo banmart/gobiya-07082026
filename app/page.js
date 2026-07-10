@@ -2,6 +2,13 @@ import Image from 'next/image';
 import Ballpit from '../components/BallpitLazy';
 import ScrollReveal from '../components/ScrollReveal';
 import SplitText from '../components/SplitText';
+import { buildMetadata } from '../lib/meta';
+
+export const metadata = buildMetadata({
+  description:
+    'Gobiya is a Los Angeles technical SEO and AI visibility agency, founded in 2010. We recover organic traffic after algorithm updates and get brands cited in ChatGPT, Perplexity, and Google AI Overviews.',
+  path: '/',
+});
 
 export default function Home() {
   return (
@@ -27,7 +34,7 @@ export default function Home() {
         </div>
         <div className="hero__media" data-parallax>
           <Image
-            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1800&auto=format&fit=crop"
+            src="/assets/img/mountain-ridges-mist.webp"
             alt="Mountain ridges emerging through morning mist"
             width={1800}
             height={1072}
@@ -51,7 +58,7 @@ export default function Home() {
           <ScrollReveal containerClassName="statement about__reveal">
             {`A Los Angeles technical SEO and AI-visibility firm, making ambitious companies findable — by search engines and by the language models now answering their customers' questions.`}
           </ScrollReveal>
-          <p className="credentials-strip" data-reveal>BBB A+ Rated &nbsp;·&nbsp; Google Partner 2015–2019 &nbsp;·&nbsp; Operating since 2012</p>
+          <p className="credentials-strip" data-reveal>BBB A+ Rated &nbsp;·&nbsp; Google Partner 2015–2019 &nbsp;·&nbsp; Founded 2010</p>
         </div>
       </section>
 
@@ -115,7 +122,7 @@ export default function Home() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/mountain-ridges-mist.webp"
                   alt="Layered mountain ridges in morning mist"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -140,7 +147,7 @@ export default function Home() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/shoreline-aerial.webp"
                   alt="Deep blue open sea meeting the horizon"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -165,7 +172,7 @@ export default function Home() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/waterfall-gorge.webp"
                   alt="Waterfall cutting through a green gorge"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"

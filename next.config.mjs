@@ -3,9 +3,6 @@ const nextConfig = {
   turbopack: {
     root: import.meta.dirname,
   },
-  images: {
-    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
-  },
   async redirects() {
     return [
       // Old city-specific pages (all 3 URL generations) -> dedicated city landing
@@ -64,7 +61,6 @@ const nextConfig = {
       { source: '/onboard', destination: '/contact', permanent: true },
       { source: '/resources', destination: '/insights', permanent: true },
       { source: '/reviews', destination: '/work', permanent: true },
-      { source: '/privacy', destination: '/', permanent: true },
 
       // Old guides/* -> topically matching new page
       { source: '/guides/google-penalty-recovery', destination: '/outcomes/recovery', permanent: true },

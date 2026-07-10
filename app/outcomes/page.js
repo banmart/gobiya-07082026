@@ -1,11 +1,13 @@
 import { OUTCOMES } from '../../lib/outcomes';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Outcomes — Traffic, Rankings, Sales & Penalty Recovery',
   description:
     'What working with Gobiya actually produces: qualified organic traffic, page-one rankings, sales pipeline, and recovery from Google algorithm updates or manual actions.',
-};
+  path: '/outcomes',
+});
 
 export default function OutcomesPage() {
   const outcomes = Object.values(OUTCOMES);

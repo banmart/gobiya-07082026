@@ -1,11 +1,13 @@
 import { INDUSTRIES } from '../../lib/industries';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Industries — SEO for Enterprise, Local, Healthcare & Professional Services',
   description:
     'Gobiya works across enterprise & B2B, local service businesses, healthcare & dental, and professional services — each with its own buyer journey and search behavior.',
-};
+  path: '/industries',
+});
 
 export default function IndustriesPage() {
   const industries = Object.values(INDUSTRIES);

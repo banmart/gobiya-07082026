@@ -504,10 +504,6 @@ a.contact__value:hover { color: var(--main); }
 }
 .nav__link:hover::after { transform: scaleX(1); transform-origin: left; }
 .nav__right { display: flex; align-items: center; gap: 1.25rem; }
-.nav__lang { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--hint); }
-.nav__lang i { margin-inline: 0.35rem; font-style: normal; opacity: 0.5; }
-.nav__lang a.is-active { color: var(--darkest); font-weight: 550; }
-.nav__lang a:not(.is-active):hover { color: var(--main); }
 .nav__burger {
   display: none;
   flex-direction: column;
@@ -979,7 +975,7 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 }
 .footer__logo { color: #f7f5f0; margin-bottom: 1.25rem; }
 .footer__col--brand p { font-size: 0.9375rem; max-width: 22rem; }
-.footer__col h4 {
+.footer__col .footer__heading {
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -1196,7 +1192,7 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
   .offices__tag { display: none; }
 }
 @media (max-width: 48rem) {
-  .nav__links, .nav__lang, .nav__cta { display: none; }
+  .nav__links, .nav__cta { display: none; }
   .nav__burger { display: flex; }
   .hero__scroll { display: none; }
   .hero__media { margin-inline: calc(-1 * var(--gutter)); }

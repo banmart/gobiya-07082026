@@ -6,8 +6,16 @@ export default function ArticleTemplate({ article }) {
     '@type': 'Article',
     headline: article.title,
     description: article.metaDescription,
-    author: { '@type': 'Organization', name: 'Gobiya', url: 'https://www.gobiya.com' },
-    publisher: { '@type': 'Organization', name: 'Gobiya', url: 'https://www.gobiya.com' },
+    datePublished: article.date,
+    dateModified: article.date,
+    image: 'https://www.gobiya.com/assets/img/og-default.jpg',
+    author: {
+      '@type': 'Person',
+      '@id': 'https://www.gobiya.com/about/steve-martin#person',
+      name: 'Steve Martin',
+      url: 'https://www.gobiya.com/about/steve-martin',
+    },
+    publisher: { '@id': 'https://www.gobiya.com/#organization' },
     mainEntityOfPage: `https://www.gobiya.com/insights/${article.slug}`,
   };
 
@@ -31,7 +39,13 @@ export default function ArticleTemplate({ article }) {
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Insights · {article.category}</p>
           <SplitText tag="h1" className="statement" text={article.title} splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>{article.dek}</p>
-          <p className="article__meta" data-reveal>{article.readTime}</p>
+          <p className="article__meta" data-reveal>
+            By <a href="/about/steve-martin">Steve Martin</a> ·{' '}
+            <time dateTime={article.date}>
+              {new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>{' '}
+            · {article.readTime}
+          </p>
         </div>
 
         <div className="article__answer" data-reveal>

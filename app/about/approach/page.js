@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import SplitText from '../../../components/SplitText';
+import { buildMetadata } from '../../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Our Approach',
   description:
     'How Gobiya works: technical foundation first, transparent reporting tied to real business outcomes, and a defined process instead of an open-ended retainer.',
-};
+  path: '/about/approach',
+});
 
 export default function ApproachPage() {
   return (
@@ -69,7 +71,7 @@ export default function ApproachPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/mountain-ridges-mist.webp"
                   alt="Layered mountain ridges in morning mist"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -89,7 +91,7 @@ export default function ApproachPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/shoreline-aerial.webp"
                   alt="Deep blue open sea meeting the horizon"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -109,7 +111,7 @@ export default function ApproachPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/waterfall-gorge.webp"
                   alt="Waterfall cutting through a green gorge"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"

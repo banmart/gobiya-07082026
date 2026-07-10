@@ -4,6 +4,7 @@ import { Inter, Stack_Sans_Notch } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SiteSchema from '../components/SiteSchema';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,12 +25,15 @@ export const metadata = {
     template: '%s — Gobiya',
   },
   description:
-    'Gobiya is a Los Angeles technical SEO and AI visibility agency, operating since 2012. We recover organic traffic after algorithm updates and get brands cited in ChatGPT, Perplexity, and Google AI Overviews.',
+    'Gobiya is a Los Angeles technical SEO and AI visibility agency, founded in 2010. We recover organic traffic after algorithm updates and get brands cited in ChatGPT, Perplexity, and Google AI Overviews.',
   metadataBase: new URL('https://www.gobiya.com'),
   icons: {
-    icon: '/assets/img/logo-gobiya-red.webp',
-    shortcut: '/assets/img/logo-gobiya-red.webp',
-    apple: '/assets/img/logo-gobiya-red.webp',
+    icon: [
+      { url: '/assets/img/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/img/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/assets/img/icon-32.png',
+    apple: '/assets/img/apple-icon-180.png',
   },
   verification: {
     google: 'BCJ8-9rzY9X5CjZqM2hY7erF-1vFCZHFKl-Y-nbXv3U',
@@ -43,6 +47,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
       <body>
+        <SiteSchema />
         <Image className="bg-mark" src="/assets/img/logo-gobiya-red.webp" alt="" aria-hidden="true" width={400} height={401} priority />
         <Header />
         {children}

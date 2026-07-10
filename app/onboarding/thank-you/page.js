@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { CONTACT } from '../../../lib/nav';
+import { buildMetadata } from '../../../lib/meta';
 
-export const metadata = {
-  title: 'Thanks — Gobiya',
+export const metadata = buildMetadata({
+  title: 'Thanks',
   description: 'Your onboarding submission was received.',
   robots: { index: false, follow: true },
-};
+  path: '/onboarding/thank-you',
+});
 
 export default function OnboardingThankYouPage() {
   return (

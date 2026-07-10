@@ -1,11 +1,13 @@
 import { SERVICES } from '../../lib/services';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Services — SEO, AI Visibility & Growth Marketing',
   description:
     'Gobiya services: technical SEO & discoverability, content and GEO/AI writing, authority building and digital PR, CRO, PPC, and full-stack web development.',
-};
+  path: '/services',
+});
 
 const PILLARS = ['Performance', 'Creativity', 'Relations'];
 

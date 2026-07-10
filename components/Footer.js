@@ -12,24 +12,24 @@ export default function Footer() {
               <Image className="nav__logo-mark" src="/assets/img/logo-gobiya-red.webp" alt="" width={400} height={401} />
               <span className="nav__logo-word">Gobiya</span>
             </a>
-            <p>Technical SEO, GEO/AI visibility, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, operating since 2012.</p>
+            <p>Technical SEO, GEO/AI visibility, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, founded in 2010.</p>
           </div>
           <div className="footer__col">
-            <h4>Firm</h4>
+            <p className="footer__heading">Firm</p>
             <a href="/about">About</a>
             <a href="/about/steve-martin">Steve Martin</a>
             <a href="/work">Work</a>
             <a href="/insights">Insights</a>
           </div>
           <div className="footer__col">
-            <h4>Services</h4>
+            <p className="footer__heading">Services</p>
             <a href="/services/seo-discoverability">SEO &amp; Discoverability</a>
             <a href="/services/geo-ai-content-writing">GEO &amp; AI Content</a>
             <a href="/services/authority-link-building">Authority &amp; Link Building</a>
             <a href="/ai-visibility">AI Visibility</a>
           </div>
           <div className="footer__col">
-            <h4>Contact</h4>
+            <p className="footer__heading">Contact</p>
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
             <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
             <a href="/contact">{CONTACT.address1}, {CONTACT.address2}</a>
@@ -37,8 +37,8 @@ export default function Footer() {
         </div>
         <div className="footer__wordmark" aria-hidden="true"><span>GOBIYA</span></div>
         <div className="footer__legal">
-          <span>© 2026 Gobiya LLC. Operating since 2012. BBB A+ Rated.</span>
-          <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+          <span>© 2026 Gobiya LLC. Founded 2010. BBB A+ Rated.</span>
+          <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
         </div>
       </div>
     </footer>

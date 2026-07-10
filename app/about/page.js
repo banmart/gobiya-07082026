@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'About — Los Angeles Technical SEO & AI Visibility Agency',
   description:
     'Gobiya is a Los Angeles technical SEO and AI visibility agency founded in 2010 by Steve Martin. BBB A+ rated, Google Partner 2015–2019.',
-};
+  path: '/about',
+});
 
 export default function AboutPage() {
   return (

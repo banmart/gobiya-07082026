@@ -1,10 +1,12 @@
 import SplitText from '../../components/SplitText';
 import OnboardingStepper from '../../components/OnboardingStepper';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Get Started — Los Angeles SEO & AI Visibility Agency',
   description: 'Tell us about your business in five quick steps and Steve will follow up with what he sees in your search traffic — no generic audit template, no obligation.',
-};
+  path: '/onboarding',
+});
 
 export default function OnboardingPage() {
   return (

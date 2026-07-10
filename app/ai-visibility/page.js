@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import SplitText from '../../components/SplitText';
+import { buildMetadata } from '../../lib/meta';
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'AI Visibility (GEO) — Get Cited by ChatGPT, Perplexity & AI Overviews',
   description:
     'Generative Engine Optimization from Gobiya: the technical, content, and authority engineering that gets your brand cited in AI-generated answers, not just ranked in blue links.',
-};
+  path: '/ai-visibility',
+});
 
 export default function AIVisibilityPage() {
   return (
@@ -90,8 +92,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1800&auto=format&fit=crop"
-                  alt="Rows of server infrastructure and code"
+                  src="/assets/img/earth-night-lights.webp"
+                  alt="Earth at night from orbit, city lights tracing bright networks"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -114,8 +116,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1800&auto=format&fit=crop"
-                  alt="Open sea meeting the horizon"
+                  src="/assets/img/engineers-code-review.webp"
+                  alt="Two engineers reviewing code together on a monitor"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -138,8 +140,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1800&auto=format&fit=crop"
-                  alt="Mountain ridges in mist"
+                  src="/assets/img/glass-towers.webp"
+                  alt="Glass office towers rising against the sky, seen from street level"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -162,7 +164,7 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1800&auto=format&fit=crop"
+                  src="/assets/img/waterfall-gorge.webp"
                   alt="Waterfall through a green gorge"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"

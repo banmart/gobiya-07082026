@@ -1,0 +1,34 @@
+# Gobiya
+
+> Gobiya is a Los Angeles technical SEO and AI visibility agency founded in 2010 by Steve Martin (Gobiya LLC since 2012). We recover organic traffic lost to Google algorithm updates and engineer the technical, content, and authority signals that get brands cited by ChatGPT, Perplexity, and Google AI Overviews. BBB A+ rated; Google Partner 2015–2019.
+
+Contact: hello@gobiya.com · +1-323-744-1338 · 3580 Wilshire Blvd, Ste 132, Los Angeles, CA 90010
+
+## Services
+
+- [SEO & Discoverability](https://www.gobiya.com/services/seo-discoverability): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
+- [GEO & AI Content Writing](https://www.gobiya.com/services/geo-ai-content-writing): Content engineered to be cited in AI-generated answers
+- [Authority & Link Building](https://www.gobiya.com/services/authority-link-building): Editorial link acquisition and entity alignment
+- [AI Visibility (GEO)](https://www.gobiya.com/ai-visibility): How we get brands cited by ChatGPT, Perplexity, and AI Overviews
+- [All services](https://www.gobiya.com/services): SEO, copywriting, content strategy, digital PR, Google Ads, CRO, web development, AI/LLM consulting
+
+## Guides
+
+- [What Is Generative Engine Optimization (GEO)?](https://www.gobiya.com/insights/what-is-generative-engine-optimization): Complete guide to how AI engines crawl, extract, and cite content
+- [How to Get Cited by ChatGPT, Perplexity & AI Overviews](https://www.gobiya.com/insights/get-cited-by-chatgpt-perplexity-ai-overviews)
+- [SEO vs GEO](https://www.gobiya.com/insights/seo-vs-geo): How the two disciplines differ and overlap
+- [Why Did My Website Traffic Drop?](https://www.gobiya.com/insights/why-did-my-website-traffic-drop): Diagnosing algorithm updates, penalties, and technical regressions
+- [How Much Does SEO Cost?](https://www.gobiya.com/insights/how-much-does-seo-cost)
+- [All insights](https://www.gobiya.com/insights)
+
+## Company
+
+- [About Gobiya](https://www.gobiya.com/about): Agency history, credentials, and approach
+- [Steve Martin, Founder](https://www.gobiya.com/about/steve-martin): 25+ years in web development and search
+- [Client work & results](https://www.gobiya.com/work)
+- [Industries served](https://www.gobiya.com/industries): Enterprise B2B, local service, healthcare/dental, professional services
+
+## Optional
+
+- [Outcomes: traffic, rankings, sales, penalty recovery](https://www.gobiya.com/outcomes)
+- [Los Angeles local SEO city pages](https://www.gobiya.com/industries/local-service)
