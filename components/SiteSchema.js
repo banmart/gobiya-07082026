@@ -46,6 +46,8 @@ const SCHEMA = {
       image: `${BASE}/assets/img/steve-portrait.webp`,
       jobTitle: 'Founder & Principal',
       worksFor: { '@id': `${BASE}/#organization` },
+      homeLocation: { '@type': 'Place', name: 'Glendale, CA' },
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Glendale College' },
       sameAs: [CONTACT.linkedin, CONTACT.twitter],
     },
     {

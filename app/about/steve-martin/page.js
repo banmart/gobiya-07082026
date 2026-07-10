@@ -17,7 +17,7 @@ export default function SteveMartinPage() {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About · Steve Martin</p>
           <SplitText tag="h1" className="statement" text="Twenty-five years of watching search change, and adapting every time." splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>Founder and Principal of Gobiya. Steve has worked in web development and search since 1996 — long enough to have built for the web before Google existed, and to have tracked every major shift in how it ranks pages since.</p>
+          <p className="lede" data-reveal>Founder and Principal of Gobiya. A career spent in web development and search, close enough to the ground to have tracked and adapted to every major shift in how Google ranks pages.</p>
         </div>
       </section>
 
@@ -31,7 +31,7 @@ export default function SteveMartinPage() {
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder &amp; Principal</p>
             <h2 className="founder__name" data-reveal>Steve Martin</h2>
             <p className="founder__role" data-reveal>Gobiya, Los Angeles</p>
-            <p className="founder__bio" data-reveal>Steve founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
+            <p className="founder__bio" data-reveal>Steve grew up in Glendale, CA, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
             <a href="/contact" className="link-arrow" data-reveal>Talk to Steve<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function SteveMartinPage() {
           </div>
           <ul className="numbers__list">
             <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Begins working in web development and search</span>
+              <span className="numbers__label">Studies web design at Glendale College, growing up in Glendale, CA</span>
               <span className="numbers__value">1996</span>
             </li>
             <li className="numbers__item" data-reveal>
