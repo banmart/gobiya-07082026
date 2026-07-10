@@ -92,8 +92,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/earth-night-lights.webp"
-                  alt="Earth at night from orbit, city lights tracing bright networks"
+                  src="/assets/img/hallway-code-review.webp"
+                  alt="Two colleagues reviewing code together on a laptop in an office hallway"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -116,8 +116,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/engineers-code-review.webp"
-                  alt="Two engineers reviewing code together on a monitor"
+                  src="/assets/img/developer-dashboard-review.webp"
+                  alt="A developer writing code beside a colleague reviewing a data dashboard"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -140,8 +140,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/glass-towers.webp"
-                  alt="Glass office towers rising against the sky, seen from street level"
+                  src="/assets/img/office-huddle-skyline.webp"
+                  alt="A team huddled around a laptop with a city skyline visible through the windows"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -164,8 +164,8 @@ export default function AIVisibilityPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/waterfall-gorge.webp"
-                  alt="Waterfall through a green gorge"
+                  src="/assets/img/agency-team-walking.webp"
+                  alt="A group of professionals walking together through a glass-walled office corridor"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"

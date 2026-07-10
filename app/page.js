@@ -34,12 +34,13 @@ export default function Home() {
         </div>
         <div className="hero__media" data-parallax>
           <Image
-            src="/assets/img/mountain-ridges-mist.webp"
-            alt="Mountain ridges emerging through morning mist"
+            src="/assets/img/team-desk-huddle.webp"
+            alt="A team of five reviewing code and a strategy whiteboard around a shared desk"
             width={1800}
-            height={1072}
+            height={1005}
             sizes="100vw"
             priority
+            fetchPriority="high"
           />
           <div className="hero__media-caption">
             <span>Signal <i>/ˈsɪɡ.nəl/</i> — the thread search engines and AI both follow back to you.</span>
@@ -122,8 +123,8 @@ export default function Home() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/mountain-ridges-mist.webp"
-                  alt="Layered mountain ridges in morning mist"
+                  src="/assets/img/open-office-desks.webp"
+                  alt="Engineers working at individual workstations in an open office"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -147,8 +148,8 @@ export default function Home() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/shoreline-aerial.webp"
-                  alt="Deep blue open sea meeting the horizon"
+                  src="/assets/img/office-lounge-meeting.webp"
+                  alt="Two colleagues in conversation at a lounge table in a wood-paneled office"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -172,8 +173,8 @@ export default function Home() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/waterfall-gorge.webp"
-                  alt="Waterfall cutting through a green gorge"
+                  src="/assets/img/corporate-atrium-walking.webp"
+                  alt="Professionals walking through a glass-walled corporate atrium"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"

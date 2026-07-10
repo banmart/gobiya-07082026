@@ -71,8 +71,8 @@ export default function ApproachPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/mountain-ridges-mist.webp"
-                  alt="Layered mountain ridges in morning mist"
+                  src="/assets/img/open-office-desks.webp"
+                  alt="Engineers working at individual workstations in an open office"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -91,8 +91,8 @@ export default function ApproachPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/shoreline-aerial.webp"
-                  alt="Deep blue open sea meeting the horizon"
+                  src="/assets/img/office-lounge-meeting.webp"
+                  alt="Two colleagues in conversation at a lounge table in a wood-paneled office"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
@@ -111,8 +111,8 @@ export default function ApproachPage() {
               </div>
               <figure className="stack__media">
                 <Image
-                  src="/assets/img/waterfall-gorge.webp"
-                  alt="Waterfall cutting through a green gorge"
+                  src="/assets/img/corporate-atrium-walking.webp"
+                  alt="Professionals walking through a glass-walled corporate atrium"
                   fill
                   sizes="(max-width: 768px) 100vw, 55vw"
                   loading="lazy"
