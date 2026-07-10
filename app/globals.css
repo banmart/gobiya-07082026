@@ -443,18 +443,23 @@ a.contact__value:hover { color: var(--main); }
 }
 .nav__item:hover .nav__caret { transform: translateY(-2px) rotate(225deg); }
 
+/* Left-aligned to the trigger (not centered) and a fixed, single-column
+   width — the old center-on-trigger + 3-column layout pushed the Services
+   panel (the widest, leftmost item) off the viewport's left edge. Every
+   dropdown now renders the same narrow, stacked shape regardless of how
+   many groups it holds. */
 .nav__dropdown {
   position: absolute;
   top: calc(100% + 1.1rem);
-  left: 50%;
-  transform: translate(-50%, 0.5rem);
-  min-width: 15rem;
+  left: 0;
+  width: 15rem;
   background: #fff;
   border: 1px solid var(--border);
   box-shadow: 0 1.5rem 3rem rgba(20, 18, 16, 0.1);
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   opacity: 0;
   visibility: hidden;
+  transform: translateY(0.5rem);
   transition: opacity 0.3s var(--expo-out), transform 0.3s var(--expo-out), visibility 0.3s;
   z-index: 60;
 }
@@ -462,11 +467,10 @@ a.contact__value:hover { color: var(--main); }
 .nav__item:focus-within .nav__dropdown {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }
-.nav__dropdown-inner { display: flex; gap: 2.25rem; }
-.nav__dropdown-group { min-width: 12rem; }
-.nav__dropdown-group + .nav__dropdown-group { border-left: 1px solid var(--border); padding-left: 2.25rem; }
+.nav__dropdown-inner { display: flex; flex-direction: column; gap: 1.25rem; }
+.nav__dropdown-group + .nav__dropdown-group { border-top: 1px solid var(--border); padding-top: 1.1rem; }
 .nav__dropdown-heading {
   display: block;
   font-family: var(--font-sans);
@@ -474,13 +478,12 @@ a.contact__value:hover { color: var(--main); }
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--hint);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
-.nav__dropdown-group ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.nav__dropdown-group ul { display: flex; flex-direction: column; gap: 0.55rem; }
 .nav__dropdown-group a {
   font-size: 0.875rem;
   color: var(--darkest);
-  white-space: nowrap;
   transition: color 0.25s;
 }
 .nav__dropdown-group a:hover { color: var(--main); }
@@ -891,7 +894,9 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
   font-size: clamp(1.6rem, 3.2vw, 2.8rem);
   font-weight: 550;
   letter-spacing: -0.02em;
-  color: var(--dark);
+  /* var(--dark) (#aaa) fails contrast (2.32:1) at this size against white;
+     #8c8c8c clears the 3:1 large-text minimum with margin (3.36:1). */
+  color: #8c8c8c;
   white-space: nowrap;
   transition: color 0.4s;
   cursor: default;
@@ -1018,20 +1023,26 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 .footer__legal a:hover { color: var(--main); }
 
 /* ═══════════ global background mark ═══════════ */
-.bg-mark {
+/* A CSS background (not a next/image <img>) so this decorative, aria-hidden
+   watermark never competes with real content for LCP candidacy or preload
+   bandwidth — it was previously winning Largest Contentful Paint outright. */
+body::before {
+  content: '';
   position: fixed;
   top: clamp(-7.6rem, -9.7vw, -4.3rem);
   right: clamp(-7.6rem, -8.6vw, -3.2rem);
   width: clamp(30.8rem, 58.8vw, 61.6rem);
-  height: auto;
+  height: clamp(30.8rem, 58.8vw, 61.6rem);
+  background-image: url('/assets/img/logo-gobiya-red.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
   opacity: 0.05;
   transform: rotate(-9deg);
   pointer-events: none;
-  user-select: none;
   z-index: -1;
 }
 @media (max-width: 48rem) {
-  .bg-mark { width: clamp(22.4rem, 84vw, 36.4rem); }
+  body::before { width: clamp(22.4rem, 84vw, 36.4rem); height: clamp(22.4rem, 84vw, 36.4rem); }
 }
 
 /* ═══════════ footer background mark ═══════════ */
@@ -1341,4 +1352,47 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
     transition-duration: 0.01ms !important;
   }
   [data-reveal], .line, [data-words] .w > span { opacity: 1 !important; transform: none !important; }
+  /* SplitText/ScrollReveal (components/) animate via GSAP-set inline styles,
+     not CSS transitions, so the animation-duration override above can't
+     touch them — force their end state directly. */
+  .split-char, .split-word, .split-line,
+  .scroll-reveal-text .word {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* ═══════════ cookie consent banner ═══════════ */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem var(--gutter);
+}
+.cookie-banner__inner {
+  max-width: 72rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.cookie-banner__text {
+  font-size: 0.875rem;
+  color: var(--hint);
+  margin: 0;
+  max-width: 42rem;
+}
+.cookie-banner__text a { color: var(--darkest); text-decoration: underline; }
+.cookie-banner__actions { display: flex; gap: 0.75rem; flex-shrink: 0; }
+@media (max-width: 40rem) {
+  .cookie-banner__inner { flex-direction: column; align-items: stretch; }
+  .cookie-banner__actions { justify-content: flex-end; }
 }

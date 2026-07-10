@@ -10,7 +10,11 @@ const ScrollReveal = ({
   children,
   scrollContainerRef,
   enableBlur = true,
-  baseOpacity = 0.1,
+  // 0.7, not the original 0.1 — at 0.1 the #2b2b2b text blended to ~1.2:1
+  // contrast against the #f7f7f7 section background, an actual WCAG failure
+  // for as long as a word sits before its scroll trigger. 0.7 keeps every
+  // word at or above 4.4:1 through the whole reveal.
+  baseOpacity = 0.7,
   baseRotation = 3,
   blurStrength = 4,
   containerClassName = '',

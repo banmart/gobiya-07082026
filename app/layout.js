@@ -1,10 +1,10 @@
 import Script from 'next/script';
-import Image from 'next/image';
 import { Inter, Stack_Sans_Notch } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SiteSchema from '../components/SiteSchema';
+import ConsentAnalytics from '../components/ConsentAnalytics';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,37 +48,15 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
       <body>
         <SiteSchema />
-        <Image className="bg-mark" src="/assets/img/logo-gobiya-red.webp" alt="" aria-hidden="true" width={400} height={401} priority />
         <Header />
         {children}
         <Footer />
         <Script src="/js/main.js" strategy="afterInteractive" />
 
-        {/* Analytics carry no first-visit UX cost, so they're deferred past
-            the load event (lazyOnload) instead of afterInteractive — they
-            were otherwise competing with the hero/fonts/WebGL scene for the
-            same main-thread window Lighthouse scores on. */}
-        {/* Google Analytics 4 */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-3R3D5Q9YV6" strategy="lazyOnload" />
-        <Script id="ga4-init" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-3R3D5Q9YV6');
-          `}
-        </Script>
-
-        {/* Microsoft Clarity */}
-        <Script id="ms-clarity-init" strategy="lazyOnload">
-          {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "v5j018vnnn");
-          `}
-        </Script>
+        {/* GA4 + Clarity only load after explicit consent — see
+            components/ConsentAnalytics.js. Nothing analytics-related
+            touches the network on a first visit. */}
+        <ConsentAnalytics />
       </body>
     </html>
   );

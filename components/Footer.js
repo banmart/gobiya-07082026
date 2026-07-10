@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { CONTACT } from '../lib/nav';
+import CookiePreferencesLink from './CookiePreferencesLink';
 
 export default function Footer() {
   return (
@@ -38,7 +39,7 @@ export default function Footer() {
         <div className="footer__wordmark" aria-hidden="true"><span>GOBIYA</span></div>
         <div className="footer__legal">
           <span>© 2026 Gobiya LLC. Founded 2010. BBB A+ Rated.</span>
-          <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
+          <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <CookiePreferencesLink /></span>
         </div>
       </div>
     </footer>
