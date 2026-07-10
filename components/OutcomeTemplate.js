@@ -30,7 +30,6 @@ export default function OutcomeTemplate({ outcome }) {
                   <i
                     data-count={s.value}
                     data-decimals={s.decimals}
-                    data-prefix={s.prefix}
                     {...(s.plain ? { 'data-plain': true } : {})}
                   >0</i>
                   {s.suffix}
