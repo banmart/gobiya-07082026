@@ -722,24 +722,33 @@ function createBallpit(e, t = {}) {
 }
 
 const Ballpit = ({ className = '', followCursor = true, ...props }) => {
-  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const spheresInstanceRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    // dispose() force-loses the canvas's WebGL context, so a remounted effect
+    // (React dev StrictMode, client-side nav) can never get a new context from
+    // the same <canvas>. Create a fresh canvas per mount instead.
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'width:100%;height:100%;display:block;';
+    container.appendChild(canvas);
 
     spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
 
     return () => {
       if (spheresInstanceRef.current) {
         spheresInstanceRef.current.dispose();
+        spheresInstanceRef.current = null;
       }
+      canvas.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <canvas className={className} ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
+  return <div className={className} ref={containerRef} style={{ width: '100%', height: '100%' }} />;
 };
 
 export default Ballpit;
