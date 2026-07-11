@@ -43,7 +43,7 @@ export default function Home() {
             fetchPriority="high"
           />
           <div className="hero__media-caption">
-            <span>Signal <i>/ˈsɪɡ.nəl/</i> — the thread search engines and AI both follow back to you.</span>
+            <span>Signal <i>/SIG-nuhl/</i> — the thread search engines and AI both follow back to you.</span>
           </div>
         </div>
         <div className="hero__scroll" aria-hidden="true">

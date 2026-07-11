@@ -12,9 +12,12 @@ const inter = Inter({
   display: 'swap',
 });
 
+// Every CSS rule that sets --font-heading uses it at weight 400 — the other
+// five requested weights (200/300/500/600/700) were dead downloads sitting
+// in the render-blocking CSS and the critical font-loading chain.
 const stackSansNotch = Stack_Sans_Notch({
   subsets: ['latin'],
-  weight: ['200', '300', '400', '500', '600', '700'],
+  weight: ['400'],
   variable: '--font-stack-sans-notch',
   display: 'swap',
 });
