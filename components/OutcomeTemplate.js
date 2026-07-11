@@ -8,7 +8,7 @@ export default function OutcomeTemplate({ outcome }) {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{outcome.eyebrow}</p>
           <SplitText tag="h1" className="statement" text={outcome.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>{outcome.lede}</p>
+          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: outcome.lede }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>
             <a href="#how" className="btn btn--ghost">How it works</a>
@@ -60,7 +60,7 @@ export default function OutcomeTemplate({ outcome }) {
               <div className="capability-card" key={c.title} data-reveal>
                 <span className="capability-card__tag">{c.tag}</span>
                 <h3 className="capability-card__title">{c.title}</h3>
-                <p className="capability-card__desc">{c.desc}</p>
+                <p className="capability-card__desc" dangerouslySetInnerHTML={{ __html: c.desc }} />
               </div>
             ))}
           </div>
@@ -97,7 +97,7 @@ export default function OutcomeTemplate({ outcome }) {
             {outcome.faqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>
                 <dt>{f.q}</dt>
-                <dd>{f.a}</dd>
+                <dd dangerouslySetInnerHTML={{ __html: f.a }} />
               </div>
             ))}
           </dl>

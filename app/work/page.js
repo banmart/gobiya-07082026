@@ -31,7 +31,7 @@ export default function WorkPage() {
           <div className="capability-grid">
             {CASE_STUDIES.map((c) => (
               <div className="capability-card" key={c.client} data-reveal>
-                <span className="capability-card__tag">{c.tag}</span>
+                <a href={c.industryHref} className="capability-card__tag">{c.tag}</a>
                 <h3 className="capability-card__title">{c.client}</h3>
                 <p className="capability-card__desc" style={{ color: 'var(--dark)', fontWeight: 550, marginBottom: '0.6rem' }}>{c.result}</p>
                 <p className="capability-card__desc">{c.desc}</p>

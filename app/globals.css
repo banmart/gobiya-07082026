@@ -1105,6 +1105,31 @@ body::before {
 }
 .article__body p:first-of-type { margin-top: 0; }
 .article__body strong { color: var(--darkest); font-weight: 550; }
+
+/* ═══════════ inline body-copy links ═══════════ */
+/* Contextual cross-links inside prose (lede, capability/process descriptions,
+   FAQ answers, article body) — the base `a` reset makes these invisible
+   without an explicit style, so give them real link affordance. */
+.article__body p a,
+.lede a,
+.capability-card__desc a,
+.process__desc a,
+.faq__item dd a,
+.article__answer a {
+  color: var(--main);
+  text-decoration: underline;
+  text-decoration-color: rgba(228, 22, 19, 0.35);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 0.25s;
+}
+.article__body p a:hover,
+.lede a:hover,
+.capability-card__desc a:hover,
+.process__desc a:hover,
+.faq__item dd a:hover,
+.article__answer a:hover {
+  text-decoration-color: currentColor;
+}
 .article__body ul { margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
 .article__body li {
   font-size: 1rem;

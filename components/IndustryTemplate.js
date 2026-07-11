@@ -8,7 +8,7 @@ export default function IndustryTemplate({ industry, cities }) {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{industry.eyebrow}</p>
           <SplitText tag="h1" className="statement" text={industry.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>{industry.lede}</p>
+          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: industry.lede }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
             <a href="#included" className="btn btn--ghost">How we help</a>
@@ -35,7 +35,7 @@ export default function IndustryTemplate({ industry, cities }) {
               <div className="capability-card" key={c.title} data-reveal>
                 <span className="capability-card__tag">{c.tag}</span>
                 <h3 className="capability-card__title">{c.title}</h3>
-                <p className="capability-card__desc">{c.desc}</p>
+                <p className="capability-card__desc" dangerouslySetInnerHTML={{ __html: c.desc }} />
               </div>
             ))}
           </div>
@@ -91,7 +91,7 @@ export default function IndustryTemplate({ industry, cities }) {
             {industry.faqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>
                 <dt>{f.q}</dt>
-                <dd>{f.a}</dd>
+                <dd dangerouslySetInnerHTML={{ __html: f.a }} />
               </div>
             ))}
           </dl>

@@ -8,7 +8,7 @@ export default function ServiceTemplate({ service }) {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{service.pillar} &middot; {service.title}</p>
           <SplitText tag="h1" className="statement" text={service.heroLines.join(' ')} splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>{service.lede}</p>
+          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: service.lede }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
             <a href="#included" className="btn btn--ghost">What&apos;s included</a>
@@ -35,7 +35,7 @@ export default function ServiceTemplate({ service }) {
               <div className="capability-card" key={c.title} data-reveal>
                 <span className="capability-card__tag">{c.tag}</span>
                 <h3 className="capability-card__title">{c.title}</h3>
-                <p className="capability-card__desc">{c.desc}</p>
+                <p className="capability-card__desc" dangerouslySetInnerHTML={{ __html: c.desc }} />
               </div>
             ))}
           </div>
@@ -72,7 +72,7 @@ export default function ServiceTemplate({ service }) {
             {service.faqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>
                 <dt>{f.q}</dt>
-                <dd>{f.a}</dd>
+                <dd dangerouslySetInnerHTML={{ __html: f.a }} />
               </div>
             ))}
           </dl>

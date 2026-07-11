@@ -185,19 +185,19 @@ export default function AIVisibilityPage() {
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>Is GEO different from SEO, or the same discipline?</dt>
-              <dd>Same foundation, different endpoint. Traditional SEO optimizes for a ranked list of links; GEO optimizes for being the source an AI model paraphrases or quotes directly. Nearly everything that makes a page rank well — clean technical delivery, clear structure, real authority — is also what makes it citable. GEO adds a layer on top: structuring answers the way a language model actually extracts and quotes them.</dd>
+              <dd dangerouslySetInnerHTML={{ __html: 'Same foundation, different endpoint. Traditional <a href="/services/seo-discoverability">technical SEO</a> optimizes for a ranked list of links; GEO optimizes for being the source an AI model paraphrases or quotes directly. Nearly everything that makes a page rank well — clean technical delivery, clear structure, real authority — is also what makes it citable. Read the full breakdown in <a href="/insights/seo-vs-geo">SEO vs. GEO</a>.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>How do I know if I&apos;m already being cited by AI platforms?</dt>
-              <dd>Run your brand and your core topics as prompts in ChatGPT, Perplexity, and Google AI Overviews and see what comes back. If you don&apos;t appear, or a competitor does instead, that's the gap. We run this audit systematically across dozens of buyer-intent prompts as the first step of any engagement.</dd>
+              <dd dangerouslySetInnerHTML={{ __html: 'Run your brand and your core topics as prompts in ChatGPT, Perplexity, and Google AI Overviews and see what comes back. If you don&apos;t appear, or a competitor does instead, that&apos;s the gap — see <a href="/insights/get-cited-by-chatgpt-perplexity-ai-overviews">how to get cited by ChatGPT, Perplexity, and AI Overviews</a> for what each platform actually checks. We run this audit systematically across dozens of buyer-intent prompts as the first step of any engagement.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>Will this replace the need for traditional SEO?</dt>
-              <dd>No — it depends on it. AI systems still rely heavily on the same crawlability, indexation, and authority signals that drive organic rankings. A site with weak technical SEO will struggle to be cited by AI for the same reasons it struggles to rank: the systems can&apos;t reliably read or trust it.</dd>
+              <dd dangerouslySetInnerHTML={{ __html: 'No — it depends on it. AI systems still rely heavily on the same crawlability, indexation, and authority signals that drive organic rankings. A site with weak <a href="/services/seo-discoverability">technical SEO</a> will struggle to be cited by AI for the same reasons it struggles to rank: the systems can&apos;t reliably read or trust it.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>How long before we see AI citations after the work is done?</dt>
-              <dd>Technical and structured-data fixes can affect crawler behavior within weeks. Content and authority signals compound over months, similar to organic SEO timelines. We track citation appearances directly, not just rankings, so progress is visible before full compounding.</dd>
+              <dd dangerouslySetInnerHTML={{ __html: 'Technical and structured-data fixes can affect crawler behavior within weeks. Content and authority signals compound over months, similar to organic SEO timelines — see <a href="/outcomes/rankings">how we approach rankings</a>. We track citation appearances directly, not just rankings, so progress is visible before full compounding.' }} />
             </div>
           </dl>
         </div>

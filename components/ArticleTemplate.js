@@ -49,7 +49,7 @@ export default function ArticleTemplate({ article }) {
         </div>
 
         <div className="article__answer" data-reveal>
-          <p>{article.answer}</p>
+          <p dangerouslySetInnerHTML={{ __html: article.answer }} />
         </div>
       </section>
 
@@ -87,7 +87,7 @@ export default function ArticleTemplate({ article }) {
             {article.faqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>
                 <dt>{f.q}</dt>
-                <dd>{f.a}</dd>
+                <dd dangerouslySetInnerHTML={{ __html: f.a }} />
               </div>
             ))}
           </dl>

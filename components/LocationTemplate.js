@@ -11,7 +11,7 @@ export default function LocationTemplate({ location }) {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Local Service Business &middot; {location.name}</p>
           <SplitText tag="h1" className="statement" text={`SEO for ${location.name} service businesses.`} splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>{location.intro}</p>
+          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: location.intro }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
             <a href="#included" className="btn btn--ghost">How we help</a>
