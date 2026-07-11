@@ -60,6 +60,8 @@ const nextConfig = {
       { source: '/mcp', destination: '/ai-visibility', permanent: true },
       { source: '/onboard', destination: '/contact', permanent: true },
       { source: '/resources', destination: '/insights', permanent: true },
+      { source: '/contact-us', destination: '/contact', permanent: true },
+      { source: '/solutions', destination: '/services', permanent: true },
       { source: '/reviews', destination: '/work', permanent: true },
 
       // Old guides/* -> topically matching new page
