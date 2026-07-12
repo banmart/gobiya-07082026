@@ -3,14 +3,26 @@ import { INDUSTRIES } from '../lib/industries';
 
 export default function LocationTemplate({ location }) {
   const localService = INDUSTRIES['local-service'];
+  // City-specific FAQs first, shared local-service FAQs after.
+  const allFaqs = [location.faq, ...(location.faqs || []), ...localService.faqs];
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: allFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
 
   return (
     <main id="top">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Local Service Business &middot; {location.name}</p>
-          <SplitText tag="h1" className="statement" text={`SEO for ${location.name} service businesses.`} splitType="words" delay={18} duration={0.9} />
+          <SplitText tag="h1" className="statement" text={location.h1 || `SEO for ${location.name} service businesses.`} splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: location.intro }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
@@ -45,6 +57,24 @@ export default function LocationTemplate({ location }) {
         </div>
       </section>
 
+      {/* ══════════ City-specific depth (only cities with `sections` data) ══════════ */}
+      {location.sections && (
+        <section className="section" id="local-depth">
+          <div className="container">
+            <div className="article__body">
+              {location.sections.map((block) => (
+                <div key={block.heading} data-reveal>
+                  <h2>{block.heading}</h2>
+                  {block.paragraphs.map((p, i) => (
+                    <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ══════════ Process ══════════ */}
       <section className="section section--tint" id="process">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
@@ -72,14 +102,10 @@ export default function LocationTemplate({ location }) {
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>{location.name} local SEO, plainly explained.</h2>
           <dl className="faq__list">
-            <div className="faq__item" data-reveal>
-              <dt>{location.faq.q}</dt>
-              <dd>{location.faq.a}</dd>
-            </div>
-            {localService.faqs.map((f) => (
+            {allFaqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>
                 <dt>{f.q}</dt>
-                <dd>{f.a}</dd>
+                <dd dangerouslySetInnerHTML={{ __html: f.a }} />
               </div>
             ))}
           </dl>

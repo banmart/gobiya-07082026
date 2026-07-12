@@ -1,4 +1,5 @@
 import { CONTACT } from '../lib/nav';
+import { SERVICES } from '../lib/services';
 
 const BASE = 'https://www.gobiya.com';
 
@@ -37,6 +38,18 @@ const SCHEMA = {
       ],
       priceRange: '$$$',
       sameAs: [CONTACT.linkedin, CONTACT.twitter, CONTACT.facebook, CONTACT.yelp],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Services',
+        itemListElement: Object.values(SERVICES).map((s) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: s.title,
+            url: `${BASE}/services/${s.slug}`,
+          },
+        })),
+      },
     },
     {
       '@type': 'Person',

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   const location = LOCATIONS[city];
   if (!location) return {};
   return buildMetadata({
-    title: `Local SEO in ${location.name}, CA`,
+    title: location.title || `Local SEO in ${location.name}, CA`,
     description: location.metaDescription,
     path: `/industries/local-service/${location.slug}`,
   });
