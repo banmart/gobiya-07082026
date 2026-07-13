@@ -24,11 +24,11 @@ const stackSansNotch = Stack_Sans_Notch({
 
 export const metadata = {
   title: {
-    default: 'Gobiya — AI Web SEO Agency, Los Angeles',
+    default: 'Gobiya — Web & AI SEO Agency, Los Angeles',
     template: '%s — Gobiya',
   },
   description:
-    'Gobiya is a Los Angeles technical SEO and AI visibility agency, founded in 2010. We recover organic traffic after algorithm updates and get brands cited in ChatGPT, Perplexity, and Google AI Overviews.',
+    'Gobiya is a Los Angeles web and AI SEO agency, founded in 2010. We build SEO into web development and web design, recover organic traffic after algorithm updates, and get brands cited in ChatGPT and Google AI Overviews.',
   metadataBase: new URL('https://www.gobiya.com'),
   icons: {
     icon: [

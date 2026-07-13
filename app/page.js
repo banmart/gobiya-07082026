@@ -6,7 +6,7 @@ import { buildMetadata } from '../lib/meta';
 
 export const metadata = buildMetadata({
   description:
-    'Gobiya is a Los Angeles technical SEO and AI visibility agency, founded in 2010. We recover organic traffic after algorithm updates and get brands cited in ChatGPT, Perplexity, and Google AI Overviews.',
+    'Gobiya is a Los Angeles web and AI SEO agency: SEO built into web development and web design, algorithm recovery, and AI visibility that gets brands cited in ChatGPT, Perplexity, and AI Overviews.',
   path: '/',
 });
 
@@ -17,7 +17,7 @@ export default function Home() {
       {/* ══════════ Hero ══════════ */}
       <section className="hero" id="hero">
         <div className="container">
-          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Technical SEO &amp; AI Visibility · Est. 2010</p>
+          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Web SEO Optimization &amp; AI Visibility · Est. 2010</p>
           <h1 className="hero__title">
             <SplitText tag="span" className="hero__title-line" text="Findable." splitType="chars" delay={22} duration={1} textAlign="left" />
             <br />
@@ -25,7 +25,7 @@ export default function Home() {
             <SplitText tag="span" className="hero__title-line hero__title-accent" text="and AI." splitType="chars" delay={22} duration={1} textAlign="left" />
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>Technical SEO, algorithm recovery, and AI-visibility engineering for companies that are tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
+            <p className="hero__sub" data-reveal>Web and AI SEO, algorithm recovery, and the SEO work built into web development and web design — for companies tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
