@@ -1,5 +1,6 @@
 import { INSIGHTS } from '../../lib/insights';
 import SplitText from '../../components/SplitText';
+import InsightsGrid from '../../components/InsightsGrid';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -24,16 +25,7 @@ export default function InsightsPage() {
       {/* ══════════ Article grid ══════════ */}
       <section className="section" id="articles">
         <div className="container">
-          <div className="insights__grid">
-            {INSIGHTS.map((a) => (
-              <a className="insights__card" href={`/insights/${a.slug}`} key={a.slug} data-reveal>
-                <span className="insights__card-cat">{a.category}</span>
-                <h2 className="insights__card-title">{a.title}</h2>
-                <p className="insights__card-dek">{a.dek}</p>
-                <span className="link-arrow">Read<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></span>
-              </a>
-            ))}
-          </div>
+          <InsightsGrid articles={INSIGHTS} />
         </div>
       </section>
 
