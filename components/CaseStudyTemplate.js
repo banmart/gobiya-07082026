@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SplitText from './SplitText';
 
 export default function CaseStudyTemplate({ cs }) {
@@ -33,6 +34,28 @@ export default function CaseStudyTemplate({ cs }) {
           <p>{cs.study.answer}</p>
         </div>
       </section>
+
+      {/* ══════════ Product screencast ══════════ */}
+      {cs.media && (
+        <section className="section case-media" id="media">
+          <div className="container">
+            <div className="case-media__frame">
+              <video
+                className="case-media__video"
+                src={cs.media.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label={`${cs.client} product screencast`}
+              />
+              <div className="case-media__logo">
+                <Image src={cs.media.logo} alt={cs.media.logoAlt} width={cs.media.logoWidth} height={cs.media.logoHeight} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ══════════ Headline metrics ══════════ */}
       <section className="section section--tint" id="results">
