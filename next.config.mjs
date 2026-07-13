@@ -85,18 +85,21 @@ const nextConfig = {
       { source: '/insights/what-data-sources-do-llms-crawl-to-verify-b2b-company-information', destination: '/insights/get-cited-by-chatgpt-perplexity-ai-overviews', permanent: true },
       { source: '/insights/introducing-open-knowledge-format-why-it-matters-for-ai-ready-businesses', destination: '/insights/what-is-generative-engine-optimization', permanent: true },
       { source: '/insights/google-business-profile-optimization', destination: '/insights/google-business-profile-seo-checklist', permanent: true },
-      { source: '/insights/seo-case-study-traffic-recovery', destination: '/outcomes/recovery', permanent: true },
-      { source: '/insights/what-is-the-difference-between-a-manual-action-and-an-algorithmic-penalty', destination: '/outcomes/recovery', permanent: true },
-      { source: '/insights/best-seo-agency-for-b2b-brands', destination: '/industries/enterprise-b2b', permanent: true },
-      { source: '/insights/best-website-structure-multiple-locations-different-cities', destination: '/industries/local-service', permanent: true },
-      { source: '/insights/local-seo-los-angeles', destination: '/industries/local-service', permanent: true },
-      { source: '/insights/multi-location-websites-for-franchises', destination: '/industries/local-service', permanent: true },
-      { source: '/insights/ai-paid-media/social-media-ai-transforming-content-creation', destination: '/services/ai-video-ads', permanent: true },
-      { source: '/insights/ai-powered-seo/algorithmic-update-recovery-entity-seo', destination: '/outcomes/recovery', permanent: true },
-      { source: '/insights/ai-powered-seo/map-pack-vs-ai-overview-la-remodeling', destination: '/industries/local-service', permanent: true },
-      { source: '/insights/automated-lead-generation-seo', destination: '/outcomes/sales', permanent: true },
-      { source: '/insights/how-do-b2b-companies-use-seo-to-generate-predictable-revenue', destination: '/industries/enterprise-b2b', permanent: true },
-      { source: '/insights/outbound-seo-prospecting', destination: '/outcomes/sales', permanent: true },
+
+      // Old nested-path insights posts -> flattened slug for the same rebuilt article
+      // (single-segment /insights/[slug] routing can't preserve the old nested path)
+      { source: '/insights/ai-paid-media/social-media-ai-transforming-content-creation', destination: '/insights/ai-transforming-social-media-content-creation', permanent: true },
+      { source: '/insights/ai-powered-seo/algorithmic-update-recovery-entity-seo', destination: '/insights/algorithmic-update-recovery-entity-seo', permanent: true },
+      { source: '/insights/ai-powered-seo/map-pack-vs-ai-overview-la-remodeling', destination: '/insights/map-pack-vs-ai-overview-la-remodeling', permanent: true },
+
+      // Note: seo-case-study-traffic-recovery, what-is-the-difference-between-a-manual-action-
+      // and-an-algorithmic-penalty, best-seo-agency-for-b2b-brands, best-website-structure-
+      // multiple-locations-different-cities, local-seo-los-angeles, multi-location-websites-
+      // for-franchises, automated-lead-generation-seo, how-do-b2b-companies-use-seo-to-generate-
+      // predictable-revenue, and outbound-seo-prospecting were previously redirected away from
+      // their original /insights/<slug> URL. They're now rebuilt as real articles at that exact
+      // same slug in lib/insights.js, so the redirect entries are gone — the URL just serves the
+      // real page again.
     ];
   },
 };
