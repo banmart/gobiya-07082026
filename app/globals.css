@@ -1109,6 +1109,45 @@ body::before {
   line-height: 1.7;
   color: var(--darkest);
 }
+.article__toc {
+  max-width: 42rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--border-strong);
+}
+.article__toc h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.article__toc ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  counter-reset: toc;
+}
+.article__toc li {
+  counter-increment: toc;
+  padding-left: 1.6rem;
+  position: relative;
+}
+.article__toc li::before {
+  content: counter(toc) '.';
+  position: absolute;
+  left: 0;
+  color: var(--main);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.article__toc a {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--hint);
+  text-decoration: none;
+}
+.article__toc a:hover { color: var(--darkest); text-decoration: underline; }
 .article__body {
   max-width: 42rem;
   margin-inline: auto;

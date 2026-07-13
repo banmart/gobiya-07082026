@@ -25,7 +25,11 @@ export default function InsightsPage() {
       {/* ══════════ Article grid ══════════ */}
       <section className="section" id="articles">
         <div className="container">
-          <InsightsGrid articles={INSIGHTS} />
+          <InsightsGrid
+            articles={INSIGHTS.map((a, i) => ({ a, i }))
+              .sort((x, y) => new Date(y.a.date) - new Date(x.a.date) || y.i - x.i)
+              .map(({ a }) => a)}
+          />
         </div>
       </section>
 

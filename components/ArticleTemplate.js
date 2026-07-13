@@ -1,5 +1,9 @@
 import SplitText from './SplitText';
 
+function slugifyHeading(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 export default function ArticleTemplate({ article }) {
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -56,10 +60,21 @@ export default function ArticleTemplate({ article }) {
       {/* ══════════ Body ══════════ */}
       <section className="section" id="body">
         <div className="container">
+          <nav className="article__toc" aria-label="Table of contents" data-reveal>
+            <h3>On this page</h3>
+            <ol>
+              {article.body.map((block) => (
+                <li key={block.heading}>
+                  <a href={`#${slugifyHeading(block.heading)}`}>{block.heading}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
           <div className="article__body">
             {article.body.map((block) => (
               <div key={block.heading} data-reveal>
-                <h2>{block.heading}</h2>
+                <h2 id={slugifyHeading(block.heading)}>{block.heading}</h2>
                 {block.paragraphs.map((p, i) => (
                   <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
                 ))}
