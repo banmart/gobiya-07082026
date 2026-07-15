@@ -5,7 +5,7 @@ import { buildMetadata } from '../../lib/meta';
 export const metadata = buildMetadata({
   title: 'AI Visibility (GEO) — Get Cited by ChatGPT, Perplexity & AI Overviews',
   description:
-    'Generative Engine Optimization from Gobiya: the technical, content, and authority engineering that gets your brand cited in AI-generated answers, not just ranked in blue links.',
+    'AI visibility (Generative Engine Optimization) from Gobiya: the technical, content, and authority engineering that gets your brand cited in AI-generated answers, not just ranked in blue links.',
   path: '/ai-visibility',
 });
 
