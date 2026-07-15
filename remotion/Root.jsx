@@ -2,6 +2,7 @@ import React from 'react';
 import { Composition } from 'remotion';
 import { GobiyaIntro } from './GobiyaIntro.jsx';
 import { CitationStudyPromo, CITATION_STUDY_DURATION } from './citation-study/CitationStudyPromo.jsx';
+import { ChatbratPromo, CHATBRAT_PROMO_DURATION } from './chatbrat-promo/ChatbratPromo.jsx';
 
 export const RemotionRoot = () => {
   return (
@@ -19,6 +20,14 @@ export const RemotionRoot = () => {
         id="CitationStudyPromo"
         component={CitationStudyPromo}
         durationInFrames={CITATION_STUDY_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="ChatbratPromo"
+        component={ChatbratPromo}
+        durationInFrames={CHATBRAT_PROMO_DURATION}
         fps={30}
         width={1080}
         height={1920}
