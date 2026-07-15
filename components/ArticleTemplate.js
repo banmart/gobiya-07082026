@@ -75,9 +75,53 @@ export default function ArticleTemplate({ article }) {
             {article.body.map((block) => (
               <div key={block.heading} data-reveal>
                 <h2 id={slugifyHeading(block.heading)}>{block.heading}</h2>
-                {block.paragraphs.map((p, i) => (
-                  <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-                ))}
+                {block.paragraphs.map((p, i) => {
+                  if (typeof p === 'string') {
+                    return <p key={i} dangerouslySetInnerHTML={{ __html: p }} />;
+                  }
+                  if (p.type === 'list') {
+                    return (
+                      <ul key={i}>
+                        {p.items.map((item, ii) => (
+                          <li key={ii} dangerouslySetInnerHTML={{ __html: item }} />
+                        ))}
+                      </ul>
+                    );
+                  }
+                  if (p.type === 'table') {
+                    return (
+                      <div className="article__table-wrap" key={i}>
+                        <table className="article__table">
+                          <thead>
+                            <tr>
+                              {p.headers.map((h, hi) => (
+                                <th key={hi}>{h}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {p.rows.map((row, ri) => (
+                              <tr key={ri}>
+                                {row.map((cell, ci) => (
+                                  <td key={ci} dangerouslySetInnerHTML={{ __html: cell }} />
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                  }
+                  if (p.type === 'image') {
+                    return (
+                      <figure className="article__figure" key={i}>
+                        <img src={p.src} alt={p.alt} loading="lazy" />
+                        {p.caption && <figcaption>{p.caption}</figcaption>}
+                      </figure>
+                    );
+                  }
+                  return null;
+                })}
               </div>
             ))}
           </div>
