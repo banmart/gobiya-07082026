@@ -5,9 +5,9 @@ import SplitText from '../components/SplitText';
 import { buildMetadata } from '../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Top Rated Internet Marketing Consultants',
+  title: 'AI Driven Internet Marketing Consultants',
   description:
-    'Gobiya is a team of top rated internet marketing consultants in Los Angeles: SEO built into web development and web design, algorithm recovery, and AI visibility that gets brands cited in ChatGPT, Perplexity, and AI Overviews.',
+    'Gobiya is a team of AI driven internet marketing consultants in Los Angeles: SEO built into web development and web design, algorithm recovery, and AI visibility that gets brands cited in ChatGPT, Perplexity, and AI Overviews.',
   path: '/',
 });
 
@@ -18,15 +18,15 @@ export default function Home() {
       {/* ══════════ Hero ══════════ */}
       <section className="hero" id="hero">
         <div className="container">
-          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Top Rated Internet Marketing Consultants · Est. 2010</p>
+          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Driven Internet Marketing Consultants · Est. 2010</p>
           <h1 className="hero__title">
-            <SplitText tag="span" className="hero__title-line" text="Top Rated" splitType="chars" delay={22} duration={1} textAlign="left" />
+            <SplitText tag="span" className="hero__title-line" text="AI Driven" splitType="chars" delay={22} duration={1} textAlign="left" />
             <br />
             <SplitText tag="span" className="hero__title-line" text="Internet Marketing" splitType="chars" delay={22} duration={1} textAlign="left" />{' '}
             <SplitText tag="span" className="hero__title-line hero__title-accent" text="Consultants." splitType="chars" delay={22} duration={1} textAlign="left" />
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>As top rated internet marketing consultants, we provide web and AI SEO, algorithm recovery, and the SEO work built into web development — for companies tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
+            <p className="hero__sub" data-reveal>As AI driven internet marketing consultants, we provide web and AI SEO, algorithm recovery, and the SEO work built into web development — for companies tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
