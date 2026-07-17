@@ -2,9 +2,9 @@ import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'About — Los Angeles Technical SEO & AI Visibility Agency',
+  title: 'About — Los Angeles Internet Marketing Consulting Firm',
   description:
-    'Gobiya is a Los Angeles technical SEO and AI visibility agency founded in 2010 by Steve Martin. BBB A+ rated, Google Partner 2015–2019.',
+    'Gobiya is a Los Angeles internet marketing consulting firm founded in 2010 by Steve Martin. BBB A+ rated, Google Partner 2015–2019.',
   path: '/about',
 });
 
@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
           <SplitText tag="h1" className="statement" text="Fourteen years recovering traffic that algorithm updates took away." splitType="words" delay={18} duration={0.9} />
-          <p className="lede" data-reveal>Gobiya is a Los Angeles technical SEO and AI-visibility agency, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
+          <p className="lede" data-reveal>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
         </div>
       </section>
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
       <section className="numbers section" id="timeline">
         <div className="container numbers__grid">
           <div className="numbers__intro">
-            <p className="numbers__lede" data-reveal>Gobiya&apos;s specialization in algorithm recovery and, more recently, AI visibility, comes from tracking search behavior continuously since before "SEO agency" was a common job title.</p>
+            <p className="numbers__lede" data-reveal>Gobiya&apos;s specialization in algorithm recovery and, more recently, AI visibility, comes from tracking search behavior continuously since before "internet marketing consulting" was a common practice.</p>
             <a href="/ai-visibility" className="link-arrow" data-reveal>Our AI visibility approach<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
           <ul className="numbers__list">

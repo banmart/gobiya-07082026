@@ -13,7 +13,7 @@ export default function Footer() {
               <Image className="nav__logo-mark" src="/assets/img/logo-gobiya-red.webp" alt="" width={400} height={401} />
               <span className="nav__logo-word">Gobiya</span>
             </a>
-            <p>Technical SEO, GEO/AI visibility, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, founded in 2010.</p>
+            <p>Internet marketing consulting, technical SEO, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, founded in 2010.</p>
           </div>
           <div className="footer__col">
             <p className="footer__heading">Firm</p>
@@ -23,7 +23,7 @@ export default function Footer() {
             <a href="/insights">Insights</a>
           </div>
           <div className="footer__col">
-            <p className="footer__heading">Services</p>
+            <p className="footer__heading">Consulting</p>
             <a href="/services/seo-discoverability">SEO &amp; Discoverability</a>
             <a href="/services/geo-ai-content-writing">GEO &amp; AI Content</a>
             <a href="/services/authority-link-building">Authority &amp; Link Building</a>

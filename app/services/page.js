@@ -3,9 +3,9 @@ import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Services — SEO, AI Visibility & Growth Marketing',
+  title: 'Consulting Services — SEO, AI Visibility & Growth Marketing',
   description:
-    'Gobiya services: technical SEO & discoverability, content and GEO/AI writing, authority building and digital PR, CRO, PPC, and full-stack web development.',
+    'Gobiya internet marketing consulting services: technical SEO & discoverability, content and GEO/AI writing, authority building and digital PR, CRO, PPC, and full-stack web development.',
   path: '/services',
 });
 
@@ -22,7 +22,7 @@ export default function ServicesPage() {
 
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Services</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Consulting</p>
           <SplitText tag="h1" className="statement" text="Every lever, built to work together." splitType="words" delay={18} duration={0.9} />
           <p className="lede" data-reveal>Performance, creativity, and relations — three disciplines that compound instead of compete when they're run by one team.</p>
         </div>
