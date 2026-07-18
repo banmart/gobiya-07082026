@@ -5,6 +5,16 @@ export default function Header() {
   return (
     <>
       <header className="nav" id="nav">
+        <div className="topbar">
+          <div className="topbar__inner">
+            <span className="topbar__note">Los Angeles · Est. 2010 · BBB A+ Rated</span>
+            <div className="topbar__links">
+              <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+              <a href="/onboarding" className="topbar__cta">Get an AI visibility audit</a>
+            </div>
+          </div>
+        </div>
         <div className="nav__inner">
           <a className="nav__logo" href="/" aria-label="Gobiya — home">
             <LogoMark className="nav__logo-mark" size={30} />
