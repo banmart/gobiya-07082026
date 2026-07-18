@@ -67,11 +67,17 @@ const nextConfig = {
       // Old guides/* -> topically matching new page
       { source: '/guides/google-penalty-recovery', destination: '/outcomes/recovery', permanent: true },
       { source: '/guides/helpful-content-update-recovery', destination: '/outcomes/recovery', permanent: true },
-      { source: '/guides/topic-cluster-architecture', destination: '/services/content-strategy', permanent: true },
+      { source: '/guides/topic-cluster-architecture', destination: '/services/seo-web-copywriting', permanent: true },
 
       // Old services/* pages with no direct new slug -> closest current service/outcome
       { source: '/services/on-page-seo', destination: '/services/seo-discoverability', permanent: true },
       { source: '/services/unnatural-links-penalty-recovery', destination: '/outcomes/recovery', permanent: true },
+
+      // Services consolidation (2026-07): three overlapping pages merged into
+      // the survivor that owns the stronger commercial query.
+      { source: '/services/content-strategy', destination: '/services/seo-web-copywriting', permanent: true },
+      { source: '/services/digital-pr', destination: '/services/authority-link-building', permanent: true },
+      { source: '/services/ai-video-ads', destination: '/services/google-ads-ppc', permanent: true },
 
       // Old GEO-related pages -> new dedicated GEO pillar guide
       { source: '/capabilities/generative-engine-optimization', destination: '/insights/what-is-generative-engine-optimization', permanent: true },

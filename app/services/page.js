@@ -4,7 +4,7 @@ import { buildMetadata } from '../../lib/meta';
 export const metadata = buildMetadata({
   title: 'Consulting Services — SEO, AI Visibility & Growth Marketing',
   description:
-    'Gobiya internet marketing consulting services: technical SEO & discoverability, content and GEO/AI writing, authority building and digital PR, CRO, PPC, and full-stack web development.',
+    'Gobiya internet marketing consulting services: technical SEO & discoverability, copywriting and content strategy, digital PR and link building, GEO/AI writing, CRO, Google Ads and AI creative, and full-stack web development.',
   path: '/services',
 });
 
