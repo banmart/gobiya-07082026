@@ -60,7 +60,20 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Internet Marketing Consulting · Los Angeles · Est. 2010</p>
           <h1 className="hero__title" data-split>
-            AI-driven internet marketing consultants for the <em className="hero__title-accent">era of answers.</em>
+            AI-driven internet marketing consultants for the{' '}
+            <span className="hero__title-video">
+              <video
+                src="/assets/videos/gobiyaRace.webm"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="hero__title-video-el"
+                aria-hidden="true"
+              />
+            </span>{' '}
+            <em className="hero__title-accent">era of answers.</em>
           </h1>
           <div className="hero__row">
             <p className="hero__sub" data-reveal>Gobiya&apos;s AI driven internet marketing consultants make companies findable in Google and cited by ChatGPT, Perplexity, and AI Overviews — technical SEO, algorithm recovery, and SEO built into web development.</p>
@@ -119,23 +132,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 4. AI Visibility feature (pinned scene) ══ */}
-      <section className="offices section section--dark" id="ai-visibility-teaser" data-pin-scene>
+      {/* ══ 4. AI Visibility feature ══ */}
+      <section className="offices section section--dark" id="ai-visibility-teaser">
         <div className="container">
           <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where buyers ask first, now</p>
           <h2 className="offices__title" data-split>Search didn&apos;t disappear. It moved into a conversation.</h2>
           <ul className="offices__list">
-            <li className="offices__row offices__row--3col" data-pin-row>
+            <li className="offices__row offices__row--3col">
               <span className="offices__city">Google AI Overviews</span>
               <span className="offices__addr">Summarized answers above the fold, sourced from a handful of cited pages</span>
               <span className="offices__tag">Live</span>
             </li>
-            <li className="offices__row offices__row--3col" data-pin-row>
+            <li className="offices__row offices__row--3col">
               <span className="offices__city">ChatGPT</span>
               <span className="offices__addr">Browses and cites live sources when asked for recommendations or comparisons</span>
               <span className="offices__tag">Live</span>
             </li>
-            <li className="offices__row offices__row--3col" data-pin-row>
+            <li className="offices__row offices__row--3col">
               <span className="offices__city">Perplexity</span>
               <span className="offices__addr">Built entirely around citing sources — visibility here is binary: cited or invisible</span>
               <span className="offices__tag">Live</span>

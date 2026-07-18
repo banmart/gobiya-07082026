@@ -582,6 +582,28 @@ a.contact__value:hover { color: var(--main); }
   line-height: 0.98;
   letter-spacing: -0.02em;
 }
+/* Inline video pill inside hero h1 */
+.hero__title-video {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  width: clamp(6rem, 14vw, 14rem);
+  height: clamp(2.4rem, 5.5vw, 5.5rem);
+  border-radius: 0.5em;
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+  position: relative;
+  top: -0.05em;
+  margin: 0 0.15em;
+}
+.hero__title-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
 .hero__row {
   display: flex;
   align-items: flex-end;
