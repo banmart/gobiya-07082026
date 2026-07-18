@@ -28,8 +28,8 @@ export default function Motion() {
       const ready = document.fonts ? document.fonts.ready : Promise.resolve();
       ready.then(() => {
         document.querySelectorAll('[data-split]').forEach((el) => {
-          const split = SplitText.create(el, { type: 'lines', mask: 'lines' });
           if (isAboveFold(el)) return;
+          const split = SplitText.create(el, { type: 'lines', mask: 'lines' });
           gsap.from(split.lines, {
             yPercent: 110,
             duration: 0.9,

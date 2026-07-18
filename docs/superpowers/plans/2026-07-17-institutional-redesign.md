@@ -18,7 +18,7 @@
 - Motion: GSAP core + ScrollTrigger + SplitText only. No three.js, no React Bits. Max ONE pinned scroll scene per page. Every animation gated by `prefers-reduced-motion`.
 - Content must never be hidden before JS runs — no CSS `opacity: 0` initial states; GSAP `.from()` tweens only.
 - Retired URLs must 301 (Next.js emits 308 for `permanent: true` — that is the expected status), never 404.
-- Performance gates (verified in Task 7): PSI mobile ≥ 95, LCP < 2.0s, CLS < 0.05, INP < 200ms; net route JS smaller than pre-redesign baseline.
+- Performance gates: PSI mobile ≥ 95, LCP < 2.0s, CLS < 0.05, INP < 200ms; net route JS smaller than pre-redesign baseline. **Status as of Task 7: CLS, SEO score, and net JS reduction confirmed. LCP/perf-score are NOT confirmed passing** — local Lighthouse testing showed the homepage and a service page exceeding the LCP budget under real device throttling (though passing under Lighthouse's default lantern-simulation mode), with a 20+ point performance-score swing and 1.7s–2.7s LCP range on the *same unchanged page* purely from throttling methodology. Root-caused as a local-sandbox measurement reliability issue, not a specific code regression (see Task 7's investigation), but this gate remains **pending real PageSpeed Insights / CrUX field validation against the deployed site** as a required post-deploy follow-up before treating it as met.
 - No generated/raster logo art — all brand geometry is hand-written SVG.
 - **Spec deviation (approved path):** the GOBIYA wordmark renders as styled live text in Stack Sans Notch (already loaded site-wide), not converted-to-outline paths — outline conversion needs font tooling out of scope. The mark, favicons, and OG image are pure SVG geometry.
 
