@@ -15,11 +15,21 @@ export default function Motion() {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
     const ctx = gsap.context(() => {
+      // Elements already inside the initial viewport at mount are never
+      // animated — there's nothing to "reveal" for content the user can
+      // already see, and fading it in anyway forces the browser to record
+      // its Largest Contentful Paint at the moment the animation settles
+      // instead of the actual (near-instant) SSR paint, which can push
+      // above-the-fold text or headlines well past the LCP budget.
+      const vh = window.innerHeight;
+      const isAboveFold = (el) => el.getBoundingClientRect().top < vh * 0.88;
+
       // ── masked line reveals (wait for fonts so lines split correctly) ──
       const ready = document.fonts ? document.fonts.ready : Promise.resolve();
       ready.then(() => {
         document.querySelectorAll('[data-split]').forEach((el) => {
           const split = SplitText.create(el, { type: 'lines', mask: 'lines' });
+          if (isAboveFold(el)) return;
           gsap.from(split.lines, {
             yPercent: 110,
             duration: 0.9,
@@ -32,21 +42,31 @@ export default function Motion() {
       });
 
       // ── generic block reveals ──
-      ScrollTrigger.batch('[data-reveal]', {
-        start: 'top 88%',
-        once: true,
-        onEnter: (els) =>
-          gsap.from(els, {
-            opacity: 0,
-            y: 28,
-            duration: 0.8,
-            ease: 'expo.out',
-            stagger: 0.07,
-          }),
-      });
+      const belowFoldReveals = Array.from(document.querySelectorAll('[data-reveal]')).filter(
+        (el) => !isAboveFold(el)
+      );
+      if (belowFoldReveals.length) {
+        ScrollTrigger.batch(belowFoldReveals, {
+          start: 'top 88%',
+          once: true,
+          onEnter: (els) =>
+            gsap.from(els, {
+              opacity: 0,
+              y: 28,
+              duration: 0.8,
+              ease: 'expo.out',
+              stagger: 0.07,
+            }),
+        });
+      }
 
       // ── count-up numbers ──
+      // Same above-fold guard as reveals: the server-rendered text is
+      // already the correct final value, so an already-visible counter has
+      // nothing to gain from animating and only risks delaying LCP if it
+      // happens to be the largest text on the page.
       document.querySelectorAll('[data-count]').forEach((el) => {
+        if (isAboveFold(el)) return;
         const target = parseFloat(el.dataset.count);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
         const prefix = el.dataset.prefix || '';
