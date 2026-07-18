@@ -360,6 +360,8 @@ a.contact__value:hover { color: var(--main); }
 .link-arrow:hover { color: var(--main); }
 .link-arrow:hover::after { transform: scaleX(1); }
 .link-arrow:hover svg { transform: translateX(4px); }
+.link-arrow--light { color: rgba(244, 247, 251, 0.85); }
+.link-arrow--light:hover { color: var(--main); }
 
 /* ═══════════ navigation ═══════════ */
 .nav {

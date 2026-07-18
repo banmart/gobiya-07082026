@@ -141,7 +141,7 @@ export default function Home() {
               <span className="offices__tag">Live</span>
             </li>
           </ul>
-          <a href="/ai-visibility" className="link-arrow" data-reveal style={{ marginTop: '2.5rem' }}>See how AI visibility works{ARROW}</a>
+          <a href="/ai-visibility" className="link-arrow link-arrow--light" data-reveal style={{ marginTop: '2.5rem' }}>See how AI visibility works{ARROW}</a>
         </div>
       </section>
 
