@@ -1,4 +1,3 @@
-import SplitText from './SplitText';
 import { INDUSTRIES } from '../lib/industries';
 
 export default function LocationTemplate({ location }) {
@@ -22,7 +21,7 @@ export default function LocationTemplate({ location }) {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Local Service Business &middot; {location.name}</p>
-          <SplitText tag="h1" className="statement" text={location.h1 || `SEO for ${location.name} service businesses.`} splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>{location.h1 || `SEO for ${location.name} service businesses.`}</h1>
           <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: location.intro }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
@@ -35,7 +34,7 @@ export default function LocationTemplate({ location }) {
       <section className="about section section--tint" id="problem">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{localService.problem.eyebrow}</p>
-          <h2 className="statement statement--small" data-words>{localService.problem.statement}</h2>
+          <h2 className="statement statement--small" data-split>{localService.problem.statement}</h2>
         </div>
       </section>
 
@@ -79,7 +78,7 @@ export default function LocationTemplate({ location }) {
       <section className="section section--tint" id="process">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How it runs</p>
-          <h2 className="statement statement--small" data-words>A defined process, not an open-ended retainer.</h2>
+          <h2 className="statement statement--small" data-split>A defined process, not an open-ended retainer.</h2>
         </div>
         <div className="container container--narrow">
           <ul className="process__list">
@@ -116,7 +115,7 @@ export default function LocationTemplate({ location }) {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Turn {location.name} searches into booked jobs.</h2>
+          <h2 className="cta__title" data-split>Turn {location.name} searches into booked jobs.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

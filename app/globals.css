@@ -293,37 +293,7 @@ a.contact__value:hover { color: var(--main); }
 }
 .process__desc { font-size: 0.9375rem; line-height: 1.7; color: var(--hint); max-width: 34rem; }
 
-/* scroll-reveal (React Bits) word spans */
-.scroll-reveal { margin: 0; }
-.scroll-reveal-text .word { display: inline-block; }
-
-/* split-text (React Bits) hero headings */
-.statement.split-parent { display: block !important; text-align: center !important; }
-.hero__title-line { font: inherit; letter-spacing: inherit; }
 .hero__title-accent { color: var(--main); font-style: italic; }
-
-/* word-by-word reveal */
-[data-words] .w {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-[data-words] .w > span {
-  display: inline-block;
-  transform: translateY(110%);
-  transition: transform 0.9s var(--expo-out);
-  transition-delay: calc(var(--i) * 45ms);
-}
-[data-words].in-view .w > span { transform: translateY(0); }
-
-/* generic reveal */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(2.2rem);
-  transition: opacity 0.8s var(--p2-out), transform 0.9s var(--expo-out);
-  transition-delay: var(--d, 0ms);
-}
-[data-reveal].in-view { opacity: 1; transform: none; }
 
 /* buttons */
 .btn {
@@ -1510,16 +1480,6 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  [data-reveal], .line, [data-words] .w > span { opacity: 1 !important; transform: none !important; }
-  /* SplitText/ScrollReveal (components/) animate via GSAP-set inline styles,
-     not CSS transitions, so the animation-duration override above can't
-     touch them — force their end state directly. */
-  .split-char, .split-word, .split-line,
-  .scroll-reveal-text .word {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
   }
 }
 

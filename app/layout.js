@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import SiteSchema from '../components/SiteSchema';
 import ConsentAnalytics from '../components/ConsentAnalytics';
 import BrandWatermark from '../components/BrandWatermark';
+import Motion from '../components/Motion';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -56,6 +57,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+        <Motion />
         <Script src="/js/main.js" strategy="afterInteractive" />
 
         {/* GA4 + Clarity only load after explicit consent — see

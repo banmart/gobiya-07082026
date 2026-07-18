@@ -1,5 +1,4 @@
 import { CONTACT } from '../../lib/nav';
-import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -15,7 +14,7 @@ export default function ContactPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Contact</p>
-          <SplitText tag="h1" className="statement" text="Let's talk about what's actually happening in your search traffic." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>Let's talk about what's actually happening in your search traffic.</h1>
           <p className="lede" data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation. Prefer a form? <a href="/onboarding">Start with the five-step questionnaire</a> and Steve will follow up directly.</p>
         </div>
       </section>
@@ -66,7 +65,7 @@ export default function ContactPage() {
       <section className="cta section" id="get-in-touch">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Ready when you are</p>
-          <h2 className="cta__title" data-words>Email or call — Steve reads and answers both himself.</h2>
+          <h2 className="cta__title" data-split>Email or call — Steve reads and answers both himself.</h2>
           <div className="cta__actions" data-reveal>
             <a href={`mailto:${CONTACT.email}`} className="btn btn--solid btn--big">{CONTACT.email}</a>
             <a href={CONTACT.phoneHref} className="btn btn--ghost btn--big">{CONTACT.phone}</a>

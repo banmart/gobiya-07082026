@@ -1,5 +1,4 @@
 import { CASE_STUDIES } from '../../lib/work';
-import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -16,7 +15,7 @@ export default function WorkPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Selected work</p>
-          <SplitText tag="h1" className="statement" text="Real businesses. Measurable recovery and growth." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>Real businesses. Measurable recovery and growth.</h1>
           <p className="lede" data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Start your own case study</a>
@@ -50,7 +49,7 @@ export default function WorkPage() {
       <section className="portfolio section section--tint" id="clients">
         <div className="container container--narrow portfolio__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Who we&apos;ve built for</p>
-          <h2 className="statement statement--small" data-words>Local service businesses and B2B firms, engineered for search and cited by AI.</h2>
+          <h2 className="statement statement--small" data-split>Local service businesses and B2B firms, engineered for search and cited by AI.</h2>
         </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">
@@ -78,7 +77,7 @@ export default function WorkPage() {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Become the next result on this page.</h2>
+          <h2 className="cta__title" data-split>Become the next result on this page.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

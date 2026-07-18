@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -16,7 +15,7 @@ export default function AIVisibilityPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>AI Visibility / GEO</p>
-          <SplitText tag="h1" className="statement" text="The biggest shift in how people find businesses since mobile search." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>The biggest shift in how people find businesses since mobile search.</h1>
           <p className="lede" data-reveal>A growing share of research now ends inside an AI answer — ChatGPT, Perplexity, Google AI&nbsp;Overviews — before a user ever clicks a blue link. If your site isn&apos;t structured to be read, understood, and cited by those systems, you&apos;re invisible to the fastest-growing slice of search.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
@@ -29,7 +28,7 @@ export default function AIVisibilityPage() {
       <section className="about section section--tint" id="what-is-geo">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What GEO actually is</p>
-          <h2 className="statement" data-words>Generative Engine Optimization: engineering to be the source an AI model trusts enough to cite.</h2>
+          <h2 className="statement" data-split>Generative Engine Optimization: engineering to be the source an AI model trusts enough to cite.</h2>
         </div>
       </section>
 
@@ -37,7 +36,7 @@ export default function AIVisibilityPage() {
       <section className="offices section section--dark" id="platforms">
         <div className="container">
           <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Platforms we engineer for</p>
-          <h2 className="offices__title" data-words>Every major AI answer engine reads your site differently. We build for all of them.</h2>
+          <h2 className="offices__title" data-split>Every major AI answer engine reads your site differently. We build for all of them.</h2>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city">Google AI Overviews</span>
@@ -72,7 +71,7 @@ export default function AIVisibilityPage() {
       <section className="solutions section section--tint" id="how">
         <div className="container container--narrow solutions__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we build it</p>
-          <h2 className="statement statement--small" data-words>Four layers, engineered in order — skip one and the rest doesn&apos;t hold.</h2>
+          <h2 className="statement statement--small" data-split>Four layers, engineered in order — skip one and the rest doesn&apos;t hold.</h2>
         </div>
 
         <div className="stack">
@@ -207,7 +206,7 @@ export default function AIVisibilityPage() {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Find out what AI is already saying about you.</h2>
+          <h2 className="cta__title" data-split>Find out what AI is already saying about you.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

@@ -1,4 +1,3 @@
-import SplitText from './SplitText';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -41,7 +40,7 @@ export default function ArticleTemplate({ article }) {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Insights · {article.category}</p>
-          <SplitText tag="h1" className="statement" text={article.title} splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>{article.title}</h1>
           <p className="lede" data-reveal>{article.dek}</p>
           <p className="article__meta" data-reveal>
             By <a href="/about/steve-martin">Steve Martin</a> ·{' '}
@@ -157,7 +156,7 @@ export default function ArticleTemplate({ article }) {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Related</p>
-          <h2 className="cta__title" data-words>See how we approach {article.relatedLabel}.</h2>
+          <h2 className="cta__title" data-split>See how we approach {article.relatedLabel}.</h2>
           <div className="cta__actions" data-reveal>
             <a href={article.relatedHref} className="btn btn--solid btn--big">{article.relatedLabel}</a>
             <a href="/insights" className="btn btn--ghost btn--big">More Insights</a>

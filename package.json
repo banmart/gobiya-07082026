@@ -26,8 +26,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "remotion": "4.0.489",
-    "resend": "^6.17.2",
-    "three": "^0.180.0"
+    "resend": "^6.17.2"
   },
   "devDependencies": {
     "shadcn": "^4.13.0",

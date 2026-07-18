@@ -1,4 +1,3 @@
-import SplitText from '../../components/SplitText';
 import OnboardingStepper from '../../components/OnboardingStepper';
 import { buildMetadata } from '../../lib/meta';
 
@@ -15,7 +14,7 @@ export default function OnboardingPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Get started</p>
-          <SplitText tag="h1" className="statement" text="A few questions, then we'll take it from here." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>A few questions, then we'll take it from here.</h1>
           <p className="lede" data-reveal>Five short steps. Steve reads every submission himself and replies within one business day with what he actually sees — not a template.</p>
         </div>
       </section>

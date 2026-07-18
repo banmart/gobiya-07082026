@@ -1,5 +1,4 @@
 import { OUTCOMES } from '../../lib/outcomes';
-import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -18,7 +17,7 @@ export default function OutcomesPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Outcomes</p>
-          <SplitText tag="h1" className="statement" text="Judge us by what changes, not what we do." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>Judge us by what changes, not what we do.</h1>
           <p className="lede" data-reveal>Traffic, rankings, and sales are the scoreboard — recovery is the fire drill when an update or a manual action costs you all three at once.</p>
         </div>
       </section>
@@ -41,7 +40,7 @@ export default function OutcomesPage() {
       <section className="cta section section--tint" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Which outcome matters most to you right now?</h2>
+          <h2 className="cta__title" data-split>Which outcome matters most to you right now?</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

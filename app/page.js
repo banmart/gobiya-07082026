@@ -1,7 +1,4 @@
 import Image from 'next/image';
-import Ballpit from '../components/BallpitLazy';
-import ScrollReveal from '../components/ScrollReveal';
-import SplitText from '../components/SplitText';
 import { buildMetadata } from '../lib/meta';
 
 export const metadata = buildMetadata({
@@ -20,10 +17,10 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Driven Internet Marketing Consultants · Est. 2010</p>
           <h1 className="hero__title">
-            <SplitText tag="span" className="hero__title-line" text="AI Driven" splitType="chars" delay={22} duration={1} textAlign="left" />
+            <span className="hero__title-line">AI Driven</span>
             <br />
-            <SplitText tag="span" className="hero__title-line" text="Internet Marketing" splitType="chars" delay={22} duration={1} textAlign="left" />{' '}
-            <SplitText tag="span" className="hero__title-line hero__title-accent" text="Consultants." splitType="chars" delay={22} duration={1} textAlign="left" />
+            <span className="hero__title-line">Internet Marketing</span>{' '}
+            <span className="hero__title-line hero__title-accent">Consultants.</span>
           </h1>
           <div className="hero__row">
             <p className="hero__sub" data-reveal>As AI driven internet marketing consultants, we provide web and AI SEO, algorithm recovery, and the SEO work built into web development — for companies tired of paying for&nbsp;traffic that&nbsp;never converts.</p>
@@ -57,9 +54,9 @@ export default function Home() {
       <section className="about section section--tint" id="about">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
-          <ScrollReveal containerClassName="statement about__reveal">
+          <p className="statement about__reveal" data-split>
             {`A Los Angeles technical SEO and AI-visibility firm, making ambitious companies findable — by search engines and by the language models now answering their customers' questions.`}
-          </ScrollReveal>
+          </p>
           <p className="credentials-strip" data-reveal>BBB A+ Rated &nbsp;·&nbsp; Google Partner 2015–2019 &nbsp;·&nbsp; Founded 2010</p>
         </div>
       </section>
@@ -104,7 +101,7 @@ export default function Home() {
       <section className="solutions section section--tint" id="solutions">
         <div className="container container--narrow solutions__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we work</p>
-          <h2 className="statement statement--small" data-words>Three disciplines, one mandate — make you the answer, not just a result.</h2>
+          <h2 className="statement statement--small" data-split>Three disciplines, one mandate — make you the answer, not just a result.</h2>
         </div>
 
         <div className="stack">
@@ -191,7 +188,7 @@ export default function Home() {
       <section className="offices section section--dark" id="ai-visibility-teaser">
         <div className="container">
           <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where buyers ask first, now</p>
-          <h2 className="offices__title" data-words>Search didn&apos;t disappear. It moved into a conversation.</h2>
+          <h2 className="offices__title" data-split>Search didn&apos;t disappear. It moved into a conversation.</h2>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city">Google AI Overviews</span>
@@ -217,7 +214,7 @@ export default function Home() {
       <section className="portfolio section" id="portfolio">
         <div className="container container--narrow portfolio__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Who we&apos;ve built for</p>
-          <h2 className="statement statement--small" data-words>Local service businesses and B2B firms, engineered for search and cited by AI.</h2>
+          <h2 className="statement statement--small" data-split>Local service businesses and B2B firms, engineered for search and cited by AI.</h2>
         </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">
@@ -243,21 +240,9 @@ export default function Home() {
 
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
-        <div className="cta__canvas" aria-hidden="true">
-          <Ballpit
-            count={90}
-            colors={['#e41613', '#2b2b2b', '#aaaaaa']}
-            gravity={0.35}
-            friction={0.9975}
-            wallBounce={0.9}
-            followCursor={true}
-            minSize={0.4}
-            maxSize={0.9}
-          />
-        </div>
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Be the answer AI gives — not the link it skips.</h2>
+          <h2 className="cta__title" data-split>Be the answer AI gives — not the link it skips.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

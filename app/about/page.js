@@ -1,4 +1,3 @@
-import SplitText from '../../components/SplitText';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -15,7 +14,7 @@ export default function AboutPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
-          <SplitText tag="h1" className="statement" text="Fourteen years recovering traffic that algorithm updates took away." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>Fourteen years recovering traffic that algorithm updates took away.</h1>
           <p className="lede" data-reveal>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
         </div>
       </section>
@@ -56,7 +55,7 @@ export default function AboutPage() {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Fourteen years of algorithm recovery, ready to look at your traffic.</h2>
+          <h2 className="cta__title" data-split>Fourteen years of algorithm recovery, ready to look at your traffic.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

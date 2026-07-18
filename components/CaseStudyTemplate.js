@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import SplitText from './SplitText';
 
 export default function CaseStudyTemplate({ cs }) {
   const schema = {
@@ -26,7 +25,7 @@ export default function CaseStudyTemplate({ cs }) {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Case study · {cs.tag}</p>
-          <SplitText tag="h1" className="statement" text={`${cs.client}: ${cs.result}`} splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>{`${cs.client}: ${cs.result}`}</h1>
           <p className="lede" data-reveal>{cs.study.dek}</p>
         </div>
 
@@ -112,7 +111,7 @@ export default function CaseStudyTemplate({ cs }) {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>Your business could be the next case study.</h2>
+          <h2 className="cta__title" data-split>Your business could be the next case study.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Start onboarding</a>
             <a href="/work" className="btn btn--ghost btn--big">More client work</a>

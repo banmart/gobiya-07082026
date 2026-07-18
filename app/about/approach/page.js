@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import SplitText from '../../../components/SplitText';
 import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -16,7 +15,7 @@ export default function ApproachPage() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About · Approach</p>
-          <SplitText tag="h1" className="statement" text="Foundation first. Everything else compounds on top of it." splitType="words" delay={18} duration={0.9} />
+          <h1 className="statement" data-split>Foundation first. Everything else compounds on top of it.</h1>
           <p className="lede" data-reveal>Most SEO failures aren&apos;t a strategy problem — they&apos;re a sequencing problem. Content and links get built on top of a technical foundation that can&apos;t support them. We work in a fixed order for a reason: each layer only works if the one underneath it is solid.</p>
         </div>
       </section>
@@ -25,7 +24,7 @@ export default function ApproachPage() {
       <section className="section" id="principles">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we work</p>
-          <h2 className="statement statement--small" data-words>Four principles that shape every engagement.</h2>
+          <h2 className="statement statement--small" data-split>Four principles that shape every engagement.</h2>
         </div>
         <div className="container">
           <div className="capability-grid">
@@ -57,7 +56,7 @@ export default function ApproachPage() {
       <section className="solutions section section--tint" id="pillars">
         <div className="container container--narrow solutions__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>The three pillars</p>
-          <h2 className="statement statement--small" data-words>Performance, Creativity, and Relations — built to reinforce each other, not compete for budget.</h2>
+          <h2 className="statement statement--small" data-split>Performance, Creativity, and Relations — built to reinforce each other, not compete for budget.</h2>
         </div>
 
         <div className="stack">
@@ -127,7 +126,7 @@ export default function ApproachPage() {
       <section className="cta section" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-words>See how this approach applies to your site.</h2>
+          <h2 className="cta__title" data-split>See how this approach applies to your site.</h2>
           <div className="cta__actions" data-reveal>
             <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
