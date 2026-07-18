@@ -1,5 +1,6 @@
 import { INDUSTRIES } from '../lib/industries';
 import Breadcrumbs from './Breadcrumbs';
+import TopicMarquee from './TopicMarquee';
 
 export default function LocationTemplate({ location }) {
   const localService = INDUSTRIES['local-service'];
@@ -35,6 +36,8 @@ export default function LocationTemplate({ location }) {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={[location.title, location.city, "Local SEO", "Google Business Profile", "Local Search Authority"]} />
+
 
       {/* ══════════ Problem ══════════ */}
       <section className="about section section--tint" id="problem">

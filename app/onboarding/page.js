@@ -1,5 +1,6 @@
 import OnboardingStepper from '../../components/OnboardingStepper';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Get Started — Los Angeles SEO & AI Visibility Agency',
@@ -18,6 +19,8 @@ export default function OnboardingPage() {
           <p className="lede" data-reveal>Five short steps. Steve reads every submission himself and replies within one business day with what he actually sees — not a template.</p>
         </div>
       </section>
+      <TopicMarquee topics={["Begin Onboarding", "Strategy Discovery", "Initial Audit", "Client Setup", "SEO Intake"]} />
+
 
       <section className="section section--tint stepper-section">
         <div className="container container--narrow">

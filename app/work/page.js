@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Work — Client Results',
@@ -33,6 +34,8 @@ export default function WorkPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Client Portfolio", "Success Stories", "SEO Case Studies", "Search Dominance", "Proven Results"]} />
+
 
 
       {/* ══════════ Case studies ══════════ */}

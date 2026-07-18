@@ -1,5 +1,6 @@
 import { buildMetadata } from '../../lib/meta';
 import HeroQuickForm from '../../components/HeroQuickForm';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'About — Los Angeles Internet Marketing Consulting Firm',
@@ -24,6 +25,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Gobiya History", "Algorithm Recovery", "Los Angeles Agency", "Search First Consulting", "Since 2010"]} />
+
 
       {/* ══════════ Timeline ══════════ */}
       <section className="numbers section" id="timeline">

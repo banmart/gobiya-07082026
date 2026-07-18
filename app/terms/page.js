@@ -1,5 +1,6 @@
 import { buildMetadata } from '../../lib/meta';
 import { CONTACT } from '../../lib/nav';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Terms of Use',
@@ -17,6 +18,8 @@ export default function TermsPage() {
           <p className="lede" data-reveal>Last updated July 10, 2026</p>
         </div>
       </section>
+      <TopicMarquee topics={["Terms of Service", "Legal Agreement", "Agency Terms", "Client Policies", "Copyright"]} />
+
 
       <section className="section" id="body">
         <div className="container">

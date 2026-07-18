@@ -1,5 +1,6 @@
 import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
+import TopicMarquee from './TopicMarquee';
 
 export default function OutcomeTemplate({ outcome }) {
   return (
@@ -26,6 +27,8 @@ export default function OutcomeTemplate({ outcome }) {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={[outcome.title, outcome.metric, "Traffic Growth", "Revenue Increase", "Search Performance"]} />
+
 
       {/* ══════════ Proof stats ══════════ */}
       <section className="numbers section section--tint" id="results">

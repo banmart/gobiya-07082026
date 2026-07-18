@@ -1,5 +1,6 @@
 import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
+import TopicMarquee from './TopicMarquee';
 
 export default function IndustryTemplate({ industry, cities }) {
   return (
@@ -26,6 +27,8 @@ export default function IndustryTemplate({ industry, cities }) {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={[industry.title, "Industry Specific SEO", "Lead Generation", "Search Dominance", "AI Visibility"]} />
+
 
       {/* ══════════ Problem ══════════ */}
       <section className="about section section--tint" id="problem">

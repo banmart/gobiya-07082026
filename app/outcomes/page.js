@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { OUTCOMES } from '../../lib/outcomes';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Outcomes — Traffic, Rankings, Sales & Penalty Recovery',
@@ -31,6 +32,8 @@ export default function OutcomesPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Traffic Spikes", "Keyword Dominance", "Revenue Growth", "Algorithm Recovery", "Search Visibility"]} />
+
 
 
       <section className="section" id="outcomes">

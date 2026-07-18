@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { SERVICES } from '../../lib/services';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'SEO Services & Digital Marketing Agency — Gobiya',
@@ -36,6 +37,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Core Services", "Technical SEO", "AI Optimization", "Link Building", "Web Development"]} />
+
 
 
       {byPillar.map(({ pillar, items }) => (

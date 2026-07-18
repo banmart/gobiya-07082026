@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
 import { SERVICES } from '../lib/services';
 import { INSIGHTS } from '../lib/insights';
+import TopicMarquee from '../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'AI SEO Company Near Me | LA, Beverly Hills, Koreatown | Gobiya',
@@ -95,6 +96,8 @@ export default function Home() {
           />
         </div>
       </section>
+      <TopicMarquee topics={["Los Angeles AI SEO", "Generative Engine Optimization", "ChatGPT Optimization", "Technical SEO", "Semantic Search"]} />
+
 
       {/* ══ 2. Stats band ══ */}
       <section className="stats-band" aria-label="Results and credentials">

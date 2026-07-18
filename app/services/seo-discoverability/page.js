@@ -2,6 +2,7 @@ import Breadcrumbs from '../../../components/Breadcrumbs';
 import { SERVICES } from '../../../lib/services';
 import { buildMetadata } from '../../../lib/meta';
 import HeroQuickForm from '../../../components/HeroQuickForm';
+import TopicMarquee from '../../../components/TopicMarquee';
 
 const service = SERVICES['seo-discoverability'];
 
@@ -77,6 +78,8 @@ export default function SeoDiscoverabilityPage() {
 
         </div>
       </section>
+      <TopicMarquee topics={["Technical SEO Audits", "Crawl Budget", "Indexation Fixes", "Site Architecture", "Schema Markup"]} />
+
 
       {/* ══ 2. Problem — pull-quote band ══ */}
       <section className="seo-pull" id="problem">

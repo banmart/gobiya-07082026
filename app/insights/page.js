@@ -1,6 +1,7 @@
 import { INSIGHTS } from '../../lib/insights';
 import InsightsGrid from '../../components/InsightsGrid';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Insights — SEO, AI Visibility & Search Marketing',
@@ -20,6 +21,8 @@ export default function InsightsPage() {
           <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, and AI visibility — written to actually answer the question, not just rank for it.</p>
         </div>
       </section>
+      <TopicMarquee topics={["SEO News", "Algorithm Updates", "Generative Search Trends", "Digital Marketing Blog", "Agency Perspectives"]} />
+
 
       {/* ══════════ Article grid ══════════ */}
       <section className="section" id="articles">

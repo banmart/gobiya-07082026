@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Contact — Los Angeles SEO & AI Visibility Agency',
@@ -28,6 +29,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Schedule Consultation", "SEO Audit", "Speak With Experts", "Los Angeles Office", "Digital Growth"]} />
+
 
 
       <section className="contact section section--tint" id="contact-details">

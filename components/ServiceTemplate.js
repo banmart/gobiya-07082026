@@ -1,6 +1,7 @@
 import Breadcrumbs from './Breadcrumbs';
 import { SERVICES } from '../lib/services';
 import HeroQuickForm from './HeroQuickForm';
+import TopicMarquee from './TopicMarquee';
 
 export default function ServiceTemplate({ service }) {
   return (
@@ -27,6 +28,8 @@ export default function ServiceTemplate({ service }) {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={[service.title, service.pillar, ...service.capabilities.map(c => c.title), "Enterprise SEO"]} />
+
 
       {/* ══════════ Problem ══════════ */}
       <section className="about section section--tint" id="problem">

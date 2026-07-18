@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
+import TopicMarquee from '../../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Steve Martin — Founder',
@@ -29,6 +30,8 @@ export default function SteveMartinPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Steve Martin", "SEO Expert", "Digital Marketing Consultant", "Los Angeles SEO", "Algorithm Specialist"]} />
+
 
 
       {/* ══════════ Founder ══════════ */}

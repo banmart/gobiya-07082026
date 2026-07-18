@@ -1,4 +1,5 @@
 import Breadcrumbs from './Breadcrumbs';
+import TopicMarquee from './TopicMarquee';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -61,6 +62,8 @@ export default function ArticleTemplate({ article }) {
           <p dangerouslySetInnerHTML={{ __html: article.answer }} />
         </div>
       </section>
+      <TopicMarquee topics={[article.title, article.category, "SEO Insights", "Algorithm Updates", "Digital Strategy"]} />
+
 
       {/* ══════════ Body ══════════ */}
       <section className="section" id="body">

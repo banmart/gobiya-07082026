@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { INDUSTRIES } from '../../lib/industries';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
   title: 'Industries — SEO for Enterprise, Local, Healthcare & Professional Services',
@@ -31,6 +32,8 @@ export default function IndustriesPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["B2B Enterprise", "Healthcare SEO", "Legal Practice Marketing", "Local Service Businesses", "Professional Services"]} />
+
 
 
       <section className="section" id="industries">
