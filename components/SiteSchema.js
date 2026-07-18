@@ -15,7 +15,7 @@ const SCHEMA = {
       name: 'Gobiya',
       legalName: 'Gobiya LLC',
       url: `${BASE}/`,
-      logo: `${BASE}/assets/img/logo-gobiya-red.webp`,
+      logo: `${BASE}/assets/img/icon-192.png`,
       image: `${BASE}/assets/img/og-default.jpg`,
       description:
         'Los Angeles technical SEO and AI visibility agency. Algorithm and penalty recovery, GEO/AI-citation engineering, content strategy, authority building, and custom Next.js development.',

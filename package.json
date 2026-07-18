@@ -30,6 +30,7 @@
     "three": "^0.180.0"
   },
   "devDependencies": {
-    "shadcn": "^4.13.0"
+    "shadcn": "^4.13.0",
+    "sharp": "^0.35.3"
   }
 }
