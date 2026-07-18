@@ -34,7 +34,7 @@ export default function CaseStudyTemplate({ cs }) {
           <p>{cs.study.answer}</p>
         </div>
       </section>
-      <TopicMarquee topics={[study.client, study.industry, "Algorithm Recovery", "Search Strategy", "Case Study"]} />
+      <TopicMarquee topics={[cs.client, cs.tag, "Algorithm Recovery", "Search Strategy", "Case Study"]} />
 
 
       {/* ══════════ Product screencast ══════════ */}
