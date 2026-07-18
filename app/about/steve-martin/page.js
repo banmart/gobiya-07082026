@@ -121,7 +121,7 @@ export default function SteveMartinPage() {
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>Work directly with the person who does the work.</h2>
           <div className="cta__actions" data-reveal>
-            <a href="mailto:hello@gobiya.com" className="btn btn--solid btn--big">hello@gobiya.com</a>
+            <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
         </div>
