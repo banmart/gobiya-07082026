@@ -1046,6 +1046,26 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 }
 .footer__legal a:hover { color: var(--main); }
 
+/* ═══════════ global background mark ═══════════ */
+/* Inline SVG (components/BrandWatermark.js), not a raster <img> or CSS
+   background-image url() — that distinction matters because LCP candidacy
+   is defined over loaded image resources; a directly-painted SVG element
+   has none, so this decorative mark can never compete with real content
+   for Largest Contentful Paint the way the old webp version once did. */
+.brand-watermark {
+  position: fixed;
+  top: clamp(-7.6rem, -9.7vw, -4.3rem);
+  right: clamp(-7.6rem, -8.6vw, -3.2rem);
+  width: clamp(30.8rem, 58.8vw, 61.6rem);
+  height: clamp(30.8rem, 58.8vw, 61.6rem);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+@media (max-width: 48rem) {
+  .brand-watermark { width: clamp(22.4rem, 84vw, 36.4rem); height: clamp(22.4rem, 84vw, 36.4rem); }
+}
+
 /* ═══════════ footer background mark ═══════════ */
 .footer { position: relative; }
 .footer__mark {

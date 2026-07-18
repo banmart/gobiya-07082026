@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SiteSchema from '../components/SiteSchema';
 import ConsentAnalytics from '../components/ConsentAnalytics';
+import BrandWatermark from '../components/BrandWatermark';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
       <body>
         <SiteSchema />
+        <BrandWatermark />
         <Header />
         {children}
         <Footer />
