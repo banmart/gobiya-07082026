@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {
-    root: import.meta.dirname,
+    root: process.cwd(),
   },
   async redirects() {
     return [
