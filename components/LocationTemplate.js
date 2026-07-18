@@ -1,4 +1,5 @@
 import { INDUSTRIES } from '../lib/industries';
+import Breadcrumbs from './Breadcrumbs';
 
 export default function LocationTemplate({ location }) {
   const localService = INDUSTRIES['local-service'];
@@ -18,10 +19,15 @@ export default function LocationTemplate({ location }) {
     <main id="top">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <section className="page-hero section">
+      <section className="page-hero page-hero--left section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Local Service Business &middot; {location.name}</p>
-          <h1 className="statement" data-split>{location.h1 || `SEO for ${location.name} service businesses.`}</h1>
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Local Service', href: '/industries/local-service' },
+            { label: location.name },
+          ]} />
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Local Service Business &middot; {location.name}</p>
+          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{location.h1 || `SEO for ${location.name} service businesses.`}</h1>
           <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: location.intro }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>

@@ -1,12 +1,18 @@
+import Breadcrumbs from './Breadcrumbs';
 
 export default function OutcomeTemplate({ outcome }) {
   return (
     <main id="top">
 
-      <section className="page-hero section">
+      <section className="page-hero page-hero--left section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{outcome.eyebrow}</p>
-          <h1 className="statement" data-split>{outcome.heroLines.join(' ')}</h1>
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Outcomes', href: '/outcomes' },
+            { label: outcome.title },
+          ]} />
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{outcome.eyebrow}</p>
+          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{outcome.heroLines.join(' ')}</h1>
           <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: outcome.lede }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>

@@ -1,3 +1,4 @@
+import Breadcrumbs from './Breadcrumbs';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -39,6 +40,11 @@ export default function ArticleTemplate({ article }) {
 
       <section className="page-hero section">
         <div className="container container--narrow">
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Insights', href: '/insights' },
+            { label: article.title },
+          ]} />
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Insights · {article.category}</p>
           <h1 className="statement" data-split>{article.title}</h1>
           <p className="lede" data-reveal>{article.dek}</p>

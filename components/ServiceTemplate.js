@@ -1,12 +1,19 @@
+import Breadcrumbs from './Breadcrumbs';
+import { SERVICES } from '../lib/services';
 
 export default function ServiceTemplate({ service }) {
   return (
     <main id="top">
 
-      <section className="page-hero section">
+      <section className="page-hero page-hero--left section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{service.pillar} &middot; {service.title}</p>
-          <h1 className="statement" data-split>{service.heroLines.join(' ')}</h1>
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Consulting', href: '/services' },
+            { label: service.title },
+          ]} />
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{service.pillar} &middot; {service.title}</p>
+          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{service.heroLines.join(' ')}</h1>
           <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: service.lede }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
@@ -75,6 +82,29 @@ export default function ServiceTemplate({ service }) {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* ══════════ Related consulting ══════════ */}
+      <section className="related section section--tint" id="related">
+        <div className="container">
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Related consulting</p>
+          <div className="related__grid">
+            {(() => {
+              const siblings = Object.values(SERVICES).filter((s) => s.slug !== service.slug);
+              const related = [
+                ...siblings.filter((s) => s.pillar === service.pillar),
+                ...siblings.filter((s) => s.pillar !== service.pillar),
+              ].slice(0, 3);
+              return related.map((s) => (
+                <a className="svc-card" href={`/services/${s.slug}`} key={s.slug} data-reveal>
+                  <span className="svc-card__tag">{s.pillar}</span>
+                  <h3 className="svc-card__title">{s.title}</h3>
+                  <p className="svc-card__desc">{s.blurb}</p>
+                </a>
+              ));
+            })()}
+          </div>
         </div>
       </section>
 

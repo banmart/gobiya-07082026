@@ -1594,3 +1594,27 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 
 /* dark-ground ghost button */
 .btn--ghost-light { border-color: rgba(244, 247, 251, 0.5); color: #f4f7fb; }
+
+/* ═══════════ breadcrumbs ═══════════ */
+.crumbs { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.crumbs__list { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; letter-spacing: 0.04em; color: var(--hint); }
+.crumbs__item + .crumbs__item::before { content: '/'; margin-right: 0.5rem; opacity: 0.5; }
+.crumbs__item a:hover { color: var(--main); }
+.crumbs__item [aria-current] { color: var(--darkest); }
+
+/* ═══════════ left-aligned page hero ═══════════ */
+.page-hero--left { text-align: left; }
+.page-hero--left .statement { text-align: left; }
+.page-hero--left .lede { margin-inline: 0; }
+.page-hero--left .hero__ctas { justify-content: flex-start; }
+
+/* ═══════════ related services ═══════════ */
+.related__grid {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+@media (max-width: 48rem) { .related__grid { grid-template-columns: 1fr; } }

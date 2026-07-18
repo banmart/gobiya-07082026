@@ -1,12 +1,18 @@
+import Breadcrumbs from './Breadcrumbs';
 
 export default function IndustryTemplate({ industry, cities }) {
   return (
     <main id="top">
 
-      <section className="page-hero section">
+      <section className="page-hero page-hero--left section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{industry.eyebrow}</p>
-          <h1 className="statement" data-split>{industry.heroLines.join(' ')}</h1>
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Industries', href: '/industries' },
+            { label: industry.title },
+          ]} />
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{industry.eyebrow}</p>
+          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{industry.heroLines.join(' ')}</h1>
           <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: industry.lede }} />
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
