@@ -1,22 +1,28 @@
 import Breadcrumbs from './Breadcrumbs';
+import HeroQuickForm from './HeroQuickForm';
 
 export default function OutcomeTemplate({ outcome }) {
   return (
     <main id="top">
 
-      <section className="page-hero page-hero--left section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[
-            { label: 'Home', href: '/' },
-            { label: 'Outcomes', href: '/outcomes' },
-            { label: outcome.title },
-          ]} />
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{outcome.eyebrow}</p>
-          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{outcome.heroLines.join(' ')}</h1>
-          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: outcome.lede }} />
-          <div className="hero__ctas" data-reveal>
-            <a href="/onboarding" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>
-            <a href="#how" className="btn btn--ghost">How it works</a>
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            <Breadcrumbs items={[
+              { label: 'Home', href: '/' },
+              { label: 'Outcomes', href: '/outcomes' },
+              { label: outcome.title },
+            ]} />
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{outcome.eyebrow}</p>
+            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>{outcome.heroLines.join(' ')}</h1>
+            <p className="lede" data-reveal style={{ marginInline: 0 }} dangerouslySetInnerHTML={{ __html: outcome.lede }} />
+            <div className="hero__ctas" data-reveal style={{ justifyContent: 'flex-start' }}>
+              <a href="/onboarding" className="btn btn--solid">Talk to us about {outcome.title.toLowerCase()}</a>
+              <a href="#how" className="btn btn--ghost">How it works</a>
+            </div>
+          </div>
+          <div>
+            <HeroQuickForm />
           </div>
         </div>
       </section>

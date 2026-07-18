@@ -1,3 +1,4 @@
+import HeroQuickForm from '../../components/HeroQuickForm';
 import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
 
@@ -12,17 +13,27 @@ export default function WorkPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Selected work</p>
-          <h1 className="statement" data-split>Real businesses. Measurable recovery and growth.</h1>
-          <p className="lede" data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Selected work</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Real businesses. Measurable recovery and growth.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Start your own case study</a>
             <a href="#cases" className="btn btn--ghost">See the work</a>
           </div>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       {/* ══════════ Case studies ══════════ */}
       <section className="section" id="cases">

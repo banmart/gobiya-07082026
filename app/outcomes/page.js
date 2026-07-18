@@ -1,3 +1,4 @@
+import HeroQuickForm from '../../components/HeroQuickForm';
 import { OUTCOMES } from '../../lib/outcomes';
 import { buildMetadata } from '../../lib/meta';
 
@@ -14,13 +15,23 @@ export default function OutcomesPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Outcomes</p>
-          <h1 className="statement" data-split>Judge us by what changes, not what we do.</h1>
-          <p className="lede" data-reveal>Traffic, rankings, and sales are the scoreboard — recovery is the fire drill when an update or a manual action costs you all three at once.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Outcomes</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Judge us by what changes, not what we do.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Traffic, rankings, and sales are the scoreboard — recovery is the fire drill when an update or a manual action costs you all three at once.</p>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       <section className="section" id="outcomes">
         <div className="container">

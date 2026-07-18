@@ -1,22 +1,28 @@
 import Breadcrumbs from './Breadcrumbs';
+import HeroQuickForm from './HeroQuickForm';
 
 export default function IndustryTemplate({ industry, cities }) {
   return (
     <main id="top">
 
-      <section className="page-hero page-hero--left section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[
-            { label: 'Home', href: '/' },
-            { label: 'Industries', href: '/industries' },
-            { label: industry.title },
-          ]} />
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{industry.eyebrow}</p>
-          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{industry.heroLines.join(' ')}</h1>
-          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: industry.lede }} />
-          <div className="hero__ctas" data-reveal>
-            <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
-            <a href="#included" className="btn btn--ghost">How we help</a>
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            <Breadcrumbs items={[
+              { label: 'Home', href: '/' },
+              { label: 'Industries', href: '/industries' },
+              { label: industry.title },
+            ]} />
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{industry.eyebrow}</p>
+            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>{industry.heroLines.join(' ')}</h1>
+            <p className="lede" data-reveal style={{ marginInline: 0 }} dangerouslySetInnerHTML={{ __html: industry.lede }} />
+            <div className="hero__ctas" data-reveal style={{ justifyContent: 'flex-start' }}>
+              <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
+              <a href="#included" className="btn btn--ghost">How we help</a>
+            </div>
+          </div>
+          <div>
+            <HeroQuickForm />
           </div>
         </div>
       </section>

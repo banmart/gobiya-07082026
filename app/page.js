@@ -4,9 +4,9 @@ import { SERVICES } from '../lib/services';
 import { INSIGHTS } from '../lib/insights';
 
 export const metadata = buildMetadata({
-  title: 'AI Driven Internet Marketing Consultants',
+  title: 'AI SEO Company Near Me | LA, Beverly Hills, Koreatown | Gobiya',
   description:
-    'Gobiya is a team of AI driven internet marketing consultants in Los Angeles: SEO built into web development and web design, algorithm recovery, and AI visibility that gets brands cited in ChatGPT, Perplexity, and AI Overviews.',
+    'Looking for an AI SEO company near you? Gobiya is a specialized SEO agency serving Los Angeles, Beverly Hills, and Koreatown. We optimize your brand for ChatGPT, Perplexity, and AI Overviews, alongside traditional technical SEO and organic search strategy.',
   path: '/',
 });
 
@@ -58,9 +58,9 @@ export default function Home() {
       {/* ══ 1. Hero ══ */}
       <section className="hero" id="hero">
         <div className="container">
-          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Internet Marketing Consulting · Los Angeles · Est. 2010</p>
+          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>AI SEO Company · LA · Beverly Hills · Koreatown</p>
           <h1 className="hero__title" data-split>
-            AI-driven internet marketing consultants for the{' '}
+            The top-rated AI SEO company near you, built for the{' '}
             <span className="hero__title-video">
               <video
                 src="/assets/videos/gobiyaRace.webm"
@@ -76,7 +76,7 @@ export default function Home() {
             <em className="hero__title-accent">era of answers.</em>
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>Gobiya&apos;s AI driven internet marketing consultants make companies findable in Google and cited by ChatGPT, Perplexity, and AI Overviews — technical SEO, algorithm recovery, and SEO built into web development.</p>
+            <p className="hero__sub" data-reveal>If you are searching for an &quot;AI SEO company near me,&quot; Gobiya is your local partner in Los Angeles, Beverly Hills, and Koreatown. We make local and global brands findable in Google and cited by ChatGPT, Perplexity, and AI Overviews through expert technical SEO and organic search strategy.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
@@ -210,7 +210,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 8. CTA ══ */}
+      {/* ══ 8. FAQ ══ */}
+      <section className="faq section" id="faq">
+        <div className="container container--narrow">
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
+          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
+            The future of search, plainly explained.
+          </h2>
+          <dl className="faq__list">
+            <div className="faq__item" data-reveal>
+              <dt>What are the most important trends in SEO for 2026?</dt>
+              <dd>The biggest shift is from traditional ten-blue-links optimization to Generative Engine Optimization (GEO). AI models like ChatGPT and Perplexity are becoming primary search interfaces, and they look for direct answers, original data, and strong entity signals rather than just keyword density. If your SEO strategy doesn&apos;t include an AI citation plan, you&apos;re optimizing for yesterday&apos;s search engine.</dd>
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>How has the evolution of search engine algorithms changed the game?</dt>
+              <dd>Algorithms have moved from lexical matching (finding words on a page) to semantic understanding (understanding the topic) to generative answers (reading the page and synthesizing an answer). The result is that you can no longer win by just having the most complete guide; you have to be the most citable authority with unique insights that an AI model actually wants to quote.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* ══ 9. CTA ══ */}
       <section className="cta section section--dark" id="contact">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>

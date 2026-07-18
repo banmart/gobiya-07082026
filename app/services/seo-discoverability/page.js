@@ -1,6 +1,7 @@
 import Breadcrumbs from '../../../components/Breadcrumbs';
 import { SERVICES } from '../../../lib/services';
 import { buildMetadata } from '../../../lib/meta';
+import HeroQuickForm from '../../../components/HeroQuickForm';
 
 const service = SERVICES['seo-discoverability'];
 
@@ -70,25 +71,8 @@ export default function SeoDiscoverabilityPage() {
             </div>
           </div>
 
-          <aside className="seo-hero__right" aria-label="Client results">
-            <div className="seo-stat" data-reveal>
-              <span className="seo-stat__value">
-                +<i data-count="47" data-plain>47</i>
-              </span>
-              <span className="seo-stat__label">Page-one keywords after rebuild</span>
-            </div>
-            <div className="seo-stat" data-reveal>
-              <span className="seo-stat__value">
-                <i data-count="61" data-plain>61</i><em>%</em>
-              </span>
-              <span className="seo-stat__label">Cost-per-lead reduction</span>
-            </div>
-            <div className="seo-stat" data-reveal>
-              <span className="seo-stat__value">
-                <i data-count="213" data-plain>213</i>K
-              </span>
-              <span className="seo-stat__label">Monthly impressions, one client</span>
-            </div>
+          <aside className="seo-hero__right" aria-label="Request consultation">
+            <HeroQuickForm />
           </aside>
 
         </div>

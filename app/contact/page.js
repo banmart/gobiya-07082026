@@ -1,3 +1,4 @@
+import HeroQuickForm from '../../components/HeroQuickForm';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 
@@ -11,13 +12,23 @@ export default function ContactPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Contact</p>
-          <h1 className="statement" data-split>Let's talk about what's actually happening in your search traffic.</h1>
-          <p className="lede" data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation. Prefer a form? <a href="/onboarding">Start with the five-step questionnaire</a> and Steve will follow up directly.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Contact</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Let's talk about what's actually happening in your search traffic.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation. Prefer a form? <a href="/onboarding">Start with the five-step questionnaire</a> and Steve will follow up directly.</p>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       <section className="contact section section--tint" id="contact-details">
         <div className="container contact__grid">

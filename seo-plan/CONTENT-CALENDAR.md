@@ -17,6 +17,7 @@
 | Sep | **Research asset #1: "We audited 100 LA dental practice sites for AI visibility"** | Original research | Link magnet + PR pitch + healthcare vertical proof |
 | Sep | SafetyCentric case study page | Case study | recovery/rankings cluster; professional-services anchor |
 | Sep | *What a technical SEO audit actually covers* | Insight | "technical seo audit checklist" |
+| Sep | *SEO vs. Full-Service Digital Marketing Agency: What's the Difference?* | Insight | "digital marketing agency" |
 
 ## Q4 2026 (Oct–Dec) — Comparison & vertical depth
 
@@ -25,9 +26,11 @@
 | Oct | QuickPass AiD case study page | Case study | JS-rendering/indexation proof — rare technical story |
 | Oct | *Big SEO agency alternatives for LA small businesses* | Comparison (BOFU) | "[coalition technologies] alternatives"-class queries |
 | Oct | *AI Overviews traffic study: what clicks still exist* | Insight | citable data commentary |
+| Oct | *What SEO Services Do Small Businesses Actually Need?* | Insight | "seo services for small business" |
 | Nov | Remodel Me Pros case study page | Case study | Google Ads cluster; 61% CPL stat |
 | Nov | *Google Business Profile for medical practices* | Insight | healthcare × local intersection |
 | Nov | *GEO tools compared: what's worth paying for* | Insight | tool-intent, affiliate-free trust play |
+| Nov | *Ecommerce SEO Services: What to Look for in an Agency* | Insight | "ecommerce seo services" |
 | Dec | Medicine Metta case study page | Case study | AI-citation case — the flagship GEO proof |
 | Dec | **Research asset #2: LA local-service AI visibility index** | Original research | expands Q3 methodology to plumbers/HVAC/legal |
 | Dec | *2027 SEO predictions from 15 years of algorithm updates* | Insight | founder-experience E-E-A-T flex; annual traffic evergreen |

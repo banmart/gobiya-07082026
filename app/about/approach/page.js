@@ -1,3 +1,4 @@
+import HeroQuickForm from '../../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 
@@ -12,13 +13,23 @@ export default function ApproachPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About · Approach</p>
-          <h1 className="statement" data-split>Foundation first. Everything else compounds on top of it.</h1>
-          <p className="lede" data-reveal>Most SEO failures aren&apos;t a strategy problem — they&apos;re a sequencing problem. Content and links get built on top of a technical foundation that can&apos;t support them. We work in a fixed order for a reason: each layer only works if the one underneath it is solid.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About · Approach</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Foundation first. Everything else compounds on top of it.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Most SEO failures aren&apos;t a strategy problem — they&apos;re a sequencing problem. Content and links get built on top of a technical foundation that can&apos;t support them. We work in a fixed order for a reason: each layer only works if the one underneath it is solid.</p>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       {/* ══════════ Principles ══════════ */}
       <section className="section" id="principles">

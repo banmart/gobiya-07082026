@@ -1,10 +1,11 @@
+import HeroQuickForm from '../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'AI Visibility (GEO) — Get Cited by ChatGPT, Perplexity & AI Overviews',
+  title: 'AI Visibility & GEO — AI Marketing Tools That Get You Cited',
   description:
-    'AI visibility (Generative Engine Optimization) from Gobiya: the technical, content, and authority engineering that gets your brand cited in AI-generated answers, not just ranked in blue links.',
+    'AI visibility (GEO) from Gobiya: AI marketing tools, content optimization, and authority engineering that get your brand cited in AI-generated search engine results — not just ranked in blue links.',
   path: '/ai-visibility',
 });
 
@@ -12,17 +13,27 @@ export default function AIVisibilityPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>AI Visibility / GEO</p>
-          <h1 className="statement" data-split>The biggest shift in how people find businesses since mobile search.</h1>
-          <p className="lede" data-reveal>A growing share of research now ends inside an AI answer — ChatGPT, Perplexity, Google AI&nbsp;Overviews — before a user ever clicks a blue link. If your site isn&apos;t structured to be read, understood, and cited by those systems, you&apos;re invisible to the fastest-growing slice of search.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Visibility / GEO</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>The biggest shift in how people find businesses since mobile search.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>A growing share of research now ends inside an AI answer — ChatGPT, Perplexity, Google AI&nbsp;Overviews — before a user ever clicks a blue link. If your site isn&apos;t structured to be read, understood, and cited by those systems, you&apos;re invisible to the fastest-growing slice of search.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
             <a href="#how" className="btn btn--ghost">How it works</a>
           </div>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       {/* ══════════ What GEO means ══════════ */}
       <section className="about section section--tint" id="what-is-geo">
@@ -197,6 +208,14 @@ export default function AIVisibilityPage() {
             <div className="faq__item" data-reveal>
               <dt>How long before we see AI citations after the work is done?</dt>
               <dd dangerouslySetInnerHTML={{ __html: 'Technical and structured-data fixes can affect crawler behavior within weeks. Content and authority signals compound over months, similar to organic SEO timelines — see <a href="/outcomes/rankings">how we approach rankings</a>. We track citation appearances directly, not just rankings, so progress is visible before full compounding.' }} />
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>What is the role of AI in search engine results today?</dt>
+              <dd>AI now directly generates answers at the top of search results (like Google&apos;s AI Overviews) rather than just ranking links. This means a user often gets their answer without ever clicking through to a website. To remain visible, brands must optimize to be the source that the AI actually cites and links to within its generated response.</dd>
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>How does AI-driven web analytics fit into visibility tracking?</dt>
+              <dd>Traditional analytics track clicks and sessions, but they miss when a user gets their answer from an AI without visiting your site. AI-driven analytics track brand mentions, sentiment, and citation frequency across major AI models like ChatGPT and Perplexity. It allows us to measure visibility in places where a traditional web tracker simply can&apos;t reach.</dd>
             </div>
           </dl>
         </div>

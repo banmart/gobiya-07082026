@@ -1,3 +1,4 @@
+import HeroQuickForm from '../../components/HeroQuickForm';
 import { INDUSTRIES } from '../../lib/industries';
 import { buildMetadata } from '../../lib/meta';
 
@@ -14,13 +15,23 @@ export default function IndustriesPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Industries</p>
-          <h1 className="statement" data-split>Every industry searches differently.</h1>
-          <p className="lede" data-reveal>A B2B buyer, a patient, and a homeowner calling a plumber all use search completely differently — we build for the one you're actually selling to.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Industries</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Every industry searches differently.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>A B2B buyer, a patient, and a homeowner calling a plumber all use search completely differently — we build for the one you're actually selling to.</p>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       <section className="section" id="industries">
         <div className="container">

@@ -1,3 +1,4 @@
+import HeroQuickForm from '../../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 
@@ -12,13 +13,23 @@ export default function SteveMartinPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About · Steve Martin</p>
-          <h1 className="statement" data-split>Twenty-five years of watching search change, and adapting every time.</h1>
-          <p className="lede" data-reveal>Founder and Principal of Gobiya. A career spent in web development and search, close enough to the ground to have tracked and adapted to every major shift in how Google ranks pages.</p>
+      
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            
+        
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About · Steve Martin</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Twenty-five years of watching search change, and adapting every time.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Founder and Principal of Gobiya. A career spent in web development and search, close enough to the ground to have tracked and adapted to every major shift in how Google ranks pages.</p>
+        
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
+
 
       {/* ══════════ Founder ══════════ */}
       <section className="founder section section--tint" id="founder">

@@ -1,23 +1,29 @@
 import Breadcrumbs from './Breadcrumbs';
 import { SERVICES } from '../lib/services';
+import HeroQuickForm from './HeroQuickForm';
 
 export default function ServiceTemplate({ service }) {
   return (
     <main id="top">
 
-      <section className="page-hero page-hero--left section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[
-            { label: 'Home', href: '/' },
-            { label: 'Consulting', href: '/services' },
-            { label: service.title },
-          ]} />
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{service.pillar} &middot; {service.title}</p>
-          <h1 className="statement" data-split style={{ textAlign: 'left' }}>{service.heroLines.join(' ')}</h1>
-          <p className="lede" data-reveal dangerouslySetInnerHTML={{ __html: service.lede }} />
-          <div className="hero__ctas" data-reveal>
-            <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
-            <a href="#included" className="btn btn--ghost">What&apos;s included</a>
+      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
+        <div className="container seo-hero__grid">
+          <div>
+            <Breadcrumbs items={[
+              { label: 'Home', href: '/' },
+              { label: 'Consulting', href: '/services' },
+              { label: service.title },
+            ]} />
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{service.pillar} &middot; {service.title}</p>
+            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>{service.heroLines.join(' ')}</h1>
+            <p className="lede" data-reveal style={{ marginInline: 0 }} dangerouslySetInnerHTML={{ __html: service.lede }} />
+            <div className="hero__ctas" data-reveal style={{ justifyContent: 'flex-start' }}>
+              <a href="/onboarding" className="btn btn--solid">Get a free audit</a>
+              <a href="#included" className="btn btn--ghost">What&apos;s included</a>
+            </div>
+          </div>
+          <div>
+            <HeroQuickForm />
           </div>
         </div>
       </section>

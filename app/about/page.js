@@ -1,4 +1,5 @@
 import { buildMetadata } from '../../lib/meta';
+import HeroQuickForm from '../../components/HeroQuickForm';
 
 export const metadata = buildMetadata({
   title: 'About — Los Angeles Internet Marketing Consulting Firm',
@@ -11,11 +12,16 @@ export default function AboutPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
-          <h1 className="statement" data-split>Fourteen years recovering traffic that algorithm updates took away.</h1>
-          <p className="lede" data-reveal>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
+      <section className="page-hero page-hero--left section">
+        <div className="container seo-hero__grid">
+          <div>
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
+            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>Fourteen years recovering traffic that algorithm updates took away.</h1>
+            <p className="lede" data-reveal style={{ marginInline: 0 }}>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
+          </div>
+          <div>
+            <HeroQuickForm />
+          </div>
         </div>
       </section>
 
