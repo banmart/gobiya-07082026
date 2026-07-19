@@ -46,6 +46,8 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/totalcapital.webp', alt: 'Total Capital' },
   { src: '/assets/img/remodelmepros.webp', alt: 'Remodel Me Pros' },
   { src: '/assets/img/safetycentric-logo.png', alt: 'SafetyCentric' },
+  { src: '/assets/img/dgplumbing-logo.webp', alt: 'DG Plumbing' },
+  { src: '/assets/img/mtw-logo-mark-nFG9LpnH.webp', alt: 'MTW' },
   { src: '/assets/img/client-5.webp', alt: 'Gobiya client' },
 ];
 
