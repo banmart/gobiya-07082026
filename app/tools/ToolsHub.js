@@ -14,50 +14,57 @@ const TOOLS = [
     id: 'dns',
     title: 'DNS Lookup API',
     description: 'Query global DNS records (A, MX, TXT, CNAME) instantly to diagnose routing issues and misconfigurations.',
-    status: 'Coming Soon',
-    category: 'Network'
+    status: 'Active',
+    category: 'Network',
+    href: '/tools/dns-lookup'
   },
   {
     id: 'ip-geo',
     title: 'IP Geolocation API',
     description: 'Map IP addresses to precise geographical locations, ASNs, and ISPs for traffic analysis and targeting.',
-    status: 'Coming Soon',
-    category: 'Network'
+    status: 'Active',
+    category: 'Network',
+    href: '/tools/ip-geolocation'
   },
   {
     id: 'domain-rep',
     title: 'Domain Reputation API',
     description: 'Analyze a domain\'s trust score and historical reputation to identify potential search engine penalties or flags.',
-    status: 'Coming Soon',
-    category: 'Security'
+    status: 'Active',
+    category: 'Security',
+    href: '/tools/domain-reputation'
   },
   {
     id: 'web-cat',
     title: 'Website Categorization API',
     description: 'Automatically classify domain content into IAB standard categories for competitive mapping and clustering.',
-    status: 'Coming Soon',
-    category: 'Domain Research'
+    status: 'Active',
+    category: 'Domain Research',
+    href: '/tools/website-categorization'
   },
   {
     id: 'ssl',
     title: 'SSL Certificates API',
     description: 'Verify SSL certificate validity, issuer chains, and expiration dates across extensive server infrastructures.',
-    status: 'Coming Soon',
-    category: 'Security'
+    status: 'Active',
+    category: 'Security',
+    href: '/tools/ssl-certificates'
   },
   {
     id: 'threat',
     title: 'Threat Intelligence API',
     description: 'Cross-reference domains and IPs against global threat feeds to detect malware, phishing, and botnets.',
-    status: 'Coming Soon',
-    category: 'Security'
+    status: 'Active',
+    category: 'Security',
+    href: '/tools/threat-intelligence'
   },
   {
     id: 'email',
     title: 'Email Verification API',
     description: 'Verify MX records and inbox existence to ensure high deliverability and protect sender reputation scores.',
-    status: 'Coming Soon',
-    category: 'Domain Research'
+    status: 'Active',
+    category: 'Domain Research',
+    href: '/tools/email-verification'
   }
 ];
 
