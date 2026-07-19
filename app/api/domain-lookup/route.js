@@ -9,31 +9,23 @@ export async function GET(request) {
   }
 
   try {
-    const response = await fetch(`https://api.whoisjson.com/v1/whois?domain=${encodeURIComponent(domain)}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${process.env.WHOISJSON_API_KEY}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Upstream API responded with status ${response.status}`);
+    const apiKey = process.env.WHOIS_XML_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: 'API key is not configured. Please add WHOIS_XML_API_KEY to your environment variables.' }, { status: 500 });
     }
 
+    const url = `https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=${apiKey}&domainName=${encodeURIComponent(domain)}&outputFormat=JSON`;
+    const response = await fetch(url);
     const data = await response.json();
-    
-    // Transform raw schema into high-impact SEO metrics
-    return NextResponse.json({
-      domain: data.domain,
-      available: data.statusAnalysis?.isAvailable || false,
-      domainAgeDays: data.age?.days || 0,
-      creationDate: data.creation_date,
-      expirationDate: data.expiration_date,
-      registrar: data.registrar?.name || 'Unknown',
-      nameservers: data.name_servers || []
-    });
 
+    if (!response.ok) {
+      return NextResponse.json({ 
+        error: data.ErrorMessage?.msg || 'Failed to fetch WHOIS data',
+        details: `Upstream API responded with status ${response.status}`
+      }, { status: response.status });
+    }
+
+    return NextResponse.json(data);
   } catch (error) {
     console.error('Domain Lookup Error:', error);
     return NextResponse.json({ 

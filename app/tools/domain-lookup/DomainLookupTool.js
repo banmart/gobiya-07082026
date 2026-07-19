@@ -22,7 +22,8 @@ export default function DomainLookupTool() {
       
       if (!res.ok) throw new Error(json.details || json.error || 'Failed to fetch domain intelligence');
 
-      setData(json);
+      // WhoisXML nests the result under WhoisRecord
+      setData(json.WhoisRecord || json);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -78,46 +79,47 @@ export default function DomainLookupTool() {
           {data && (
             <div style={{ marginTop: '3rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Results for {data.domain || domain}</h3>
-                {data.available ? (
+                <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Results for {data.domainName || domain}</h3>
+                {data.dataError ? (
                   <span className="eyebrow" style={{ color: 'var(--main)' }}>Available</span>
                 ) : (
                   <span className="eyebrow" style={{ color: 'var(--dark)' }}>Registered</span>
                 )}
               </div>
 
-              {!data.available ? (
+              {!data.dataError ? (
                 <div style={{ display: 'grid', gap: '1rem' }}>
                   <div className="capability-card" style={{ padding: '1.5rem', margin: 0 }}>
                     <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Registrar</h4>
-                    <p style={{ margin: 0, fontWeight: 500 }}>{data.registrar || 'N/A'}</p>
+                    <p style={{ margin: 0, fontWeight: 500 }}>{data.registrarName || 'N/A'}</p>
                   </div>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-                    <div className="capability-card" style={{ padding: '1.5rem', margin: 0 }}>
-                      <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Domain Age</h4>
-                      <p style={{ margin: 0, fontWeight: 500 }}>{data.domainAgeDays} days</p>
-                    </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                     <div className="capability-card" style={{ padding: '1.5rem', margin: 0 }}>
                       <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Created On</h4>
-                      <p style={{ margin: 0, fontWeight: 500 }}>{data.creationDate ? new Date(data.creationDate).toLocaleDateString() : 'N/A'}</p>
+                      <p style={{ margin: 0, fontWeight: 500 }}>{data.createdDateNormalized ? new Date(data.createdDateNormalized).toLocaleDateString() : 'N/A'}</p>
                     </div>
                     <div className="capability-card" style={{ padding: '1.5rem', margin: 0 }}>
                       <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Expires On</h4>
-                      <p style={{ margin: 0, fontWeight: 500 }}>{data.expirationDate ? new Date(data.expirationDate).toLocaleDateString() : 'N/A'}</p>
+                      <p style={{ margin: 0, fontWeight: 500 }}>{data.expiresDateNormalized ? new Date(data.expiresDateNormalized).toLocaleDateString() : 'N/A'}</p>
                     </div>
                   </div>
 
-                  {data.nameservers && data.nameservers.length > 0 && (
+                  {data.nameServers?.hostNames && data.nameServers.hostNames.length > 0 && (
                     <div className="capability-card" style={{ padding: '1.5rem', margin: 0 }}>
                       <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Nameservers</h4>
                       <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
-                        {data.nameservers.map((ns, i) => (
+                        {data.nameServers.hostNames.map((ns, i) => (
                           <li key={i} style={{ paddingBottom: '0.25rem' }}>{ns}</li>
                         ))}
                       </ul>
                     </div>
                   )}
+
+                  <div className="capability-card" style={{ padding: '1.5rem', margin: 0, overflowX: 'auto' }}>
+                    <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '1rem' }}>Raw Data</h4>
+                    <pre style={{ fontSize: '0.75rem', margin: 0 }}>{JSON.stringify(data, null, 2)}</pre>
+                  </div>
                 </div>
               ) : (
                 <div className="capability-card" style={{ padding: '2rem', textAlign: 'center' }}>
