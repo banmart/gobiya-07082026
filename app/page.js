@@ -176,13 +176,13 @@ export default function Home() {
             <div className="offer-card__content">
               <span className="offer-card__badge">Limited Time Offer</span>
               <h2 className="offer-card__title">
-                The complete <span>growth engine</span>
+                The Q3 <span>Growth Bundle</span> Offer
               </h2>
               <p className="offer-card__desc">
                 <strong style={{ display: 'block', color: 'var(--main)', marginBottom: '0.75rem', fontSize: '1.1em', fontWeight: 600 }}>
                   Custom Web Dev Starting at $3,500 &amp; up
                 </strong>
-                All new custom websites, Next.js or React/Vite, come with a CRM to manage web leads and until September 30th a YouTube pre-roll ad.
+                Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube pre-roll ad campaign to drive traffic from day one.
               </p>
               <a href="/onboarding" className="btn btn--solid">Claim Offer</a>
             </div>
