@@ -56,7 +56,6 @@ const nextConfig = {
       { source: '/creativity', destination: '/', permanent: true },
 
       // Old misc pages, no direct new equivalent -> closest live page
-      { source: '/tools', destination: '/ai-visibility', permanent: true },
       { source: '/mcp', destination: '/ai-visibility', permanent: true },
       { source: '/onboard', destination: '/contact', permanent: true },
       { source: '/resources', destination: '/insights', permanent: true },
