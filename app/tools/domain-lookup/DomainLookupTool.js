@@ -77,18 +77,20 @@ export default function DomainLookupTool() {
             </div>
           )}
 
-          {data && (
+          {data && (() => {
+            const isAvailable = data.dataError === 'MISSING_WHOIS_DATA';
+            return (
             <div style={{ marginTop: '3rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Registration Results for: {data.domainName || domain}</h3>
-                {data.dataError ? (
+                {isAvailable ? (
                   <span className="eyebrow" style={{ color: 'var(--main)' }}>Domain Available</span>
                 ) : (
                   <span className="eyebrow" style={{ color: 'var(--dark)' }}>Domain Registered</span>
                 )}
               </div>
 
-              {!data.dataError ? (
+              {!isAvailable ? (
                 <>
                   <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
                     {['Overview', 'Dates', 'Nameservers', 'Raw Data'].map((tab) => (
@@ -171,7 +173,8 @@ export default function DomainLookupTool() {
                 </div>
               )}
             </div>
-          )}
+            );
+          })()}
         </div>
       </section>
     </main>
