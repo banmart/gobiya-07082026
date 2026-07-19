@@ -137,7 +137,7 @@ export default function AIChatBubble() {
           maxWidth: 'calc(100vw - 4rem)',
           height: '500px',
           maxHeight: 'calc(100vh - 8rem)',
-          backgroundColor: 'var(--panel)',
+          backgroundColor: '#ffffff',
           borderRadius: '1rem',
           border: '1px solid var(--border)',
           boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
@@ -151,7 +151,7 @@ export default function AIChatBubble() {
           <div style={{
             padding: '1rem',
             borderBottom: '1px solid var(--border)',
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: '#f8fafc',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
@@ -233,7 +233,7 @@ export default function AIChatBubble() {
             borderTop: '1px solid var(--border)',
             display: 'flex',
             gap: '0.5rem',
-            backgroundColor: 'rgba(0,0,0,0.1)'
+            backgroundColor: '#f8fafc'
           }}>
             <input
               type="text"
@@ -245,7 +245,7 @@ export default function AIChatBubble() {
                 padding: '0.75rem 1rem',
                 borderRadius: '2rem',
                 border: '1px solid var(--border)',
-                background: 'var(--panel)',
+                background: '#ffffff',
                 color: 'var(--text)',
                 fontSize: '0.875rem',
                 outline: 'none'
