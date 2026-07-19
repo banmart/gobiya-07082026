@@ -3,6 +3,7 @@ import { buildMetadata } from '../lib/meta';
 import { SERVICES } from '../lib/services';
 import { INSIGHTS } from '../lib/insights';
 import TopicMarquee from '../components/TopicMarquee';
+import CountdownBadge from '../components/CountdownBadge';
 
 export const metadata = buildMetadata({
   title: 'AI SEO Company Near Me | LA, Glendale, Koreatown | Gobiya',
@@ -179,7 +180,7 @@ export default function Home() {
               aria-hidden="true"
             />
             <div className="offer-card__content">
-              <span className="offer-card__badge">Limited Time Offer</span>
+              <CountdownBadge targetDate="2026-09-30T23:59:59" />
               <h2 className="offer-card__title">
                 The Q3 <span>Growth Bundle</span> Offer
               </h2>
