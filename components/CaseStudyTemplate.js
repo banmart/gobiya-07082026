@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import TopicMarquee from './TopicMarquee';
 
 export default function CaseStudyTemplate({ cs }) {
   const schema = {
@@ -47,8 +46,6 @@ export default function CaseStudyTemplate({ cs }) {
           <p>{cs.study.answer}</p>
         </div>
       </section>
-      <TopicMarquee topics={[cs.client, cs.tag, "Algorithm Recovery", "Search Strategy", "Case Study"]} />
-
 
       {/* ══════════ Product screencast ══════════ */}
       {cs.media?.video && (
