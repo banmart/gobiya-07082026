@@ -43,7 +43,7 @@ export default function CaseStudyTemplate({ cs }) {
 
 
       {/* ══════════ Product screencast ══════════ */}
-      {cs.media && (
+      {cs.media?.video && (
         <section className="section case-media" id="media">
           <div className="container">
             <div className="case-media__frame">
@@ -56,9 +56,11 @@ export default function CaseStudyTemplate({ cs }) {
                 playsInline
                 aria-label={`${cs.client} product screencast`}
               />
-              <div className="case-media__logo">
-                <Image src={cs.media.logo} alt={cs.media.logoAlt} width={cs.media.logoWidth} height={cs.media.logoHeight} />
-              </div>
+              {cs.media?.logo && (
+                <div className="case-media__logo">
+                  <img src={cs.media.logo} alt={`${cs.client} logo`} style={{ maxWidth: '200px', maxHeight: '60px', objectFit: 'contain' }} />
+                </div>
+              )}
             </div>
           </div>
         </section>
