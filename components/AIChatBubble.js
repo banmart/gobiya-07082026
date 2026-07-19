@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 // Simple parser for [text](/link) markdown syntax that our AI is instructed to use
 const parseMarkdownLinks = (text) => {
@@ -13,11 +14,16 @@ const parseMarkdownLinks = (text) => {
 };
 
 export default function AIChatBubble() {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Load chat history on mount
   useEffect(() => {
@@ -84,7 +90,9 @@ export default function AIChatBubble() {
     localStorage.setItem('gobiya_chat_history', JSON.stringify(initial));
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <>
       {/* Floating Bubble Button */}
       <button 
@@ -133,7 +141,7 @@ export default function AIChatBubble() {
           borderRadius: '1rem',
           border: '1px solid var(--border)',
           boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-          zIndex: 2147483646,
+          zIndex: 2147483647,
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -279,6 +287,7 @@ export default function AIChatBubble() {
           100% { opacity: .2; }
         }
       `}} />
-    </>
+    </>,
+    document.body
   );
 }
