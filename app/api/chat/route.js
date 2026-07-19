@@ -77,7 +77,18 @@ export async function POST(request) {
       body: JSON.stringify(payload),
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseErr) {
+      console.error('Failed to parse Gemini response as JSON. Raw response:', responseText);
+      return NextResponse.json({
+        error: 'Failed to parse Gemini response',
+        rawResponse: responseText,
+        status: response.status
+      }, { status: 500 });
+    }
 
     if (!response.ok) {
       console.error('Gemini API Error:', data);
