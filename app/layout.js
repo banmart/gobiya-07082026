@@ -7,6 +7,7 @@ import SiteSchema from '../components/SiteSchema';
 import ConsentAnalytics from '../components/ConsentAnalytics';
 import BrandWatermark from '../components/BrandWatermark';
 import Motion from '../components/Motion';
+import AIChatBubble from '../components/AIChatBubble';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -56,6 +57,7 @@ export default function RootLayout({ children }) {
         <BrandWatermark />
         <Header />
         {children}
+        <AIChatBubble />
         <Footer />
         <Motion />
         <Script src="/js/main.js" strategy="afterInteractive" />
