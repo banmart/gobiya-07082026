@@ -25,6 +25,11 @@ export default function CaseStudyTemplate({ cs }) {
 
       <section className="page-hero section">
         <div className="container container--narrow">
+          {cs.media?.logo && (
+            <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
+              <img src={cs.media.logo} alt={`${cs.client} logo`} style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
+            </div>
+          )}
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Case study · {cs.tag}</p>
           <h1 className="statement" data-split>{`${cs.client}: ${cs.result}`}</h1>
           <p className="lede" data-reveal>{cs.study.dek}</p>

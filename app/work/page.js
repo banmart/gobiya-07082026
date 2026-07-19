@@ -44,6 +44,11 @@ export default function WorkPage() {
           <div className="capability-grid">
             {CASE_STUDIES.map((c) => (
               <div className="capability-card" key={c.client} data-reveal>
+                {c.media?.logo && (
+                  <div style={{ marginBottom: '1.25rem', height: '40px', display: 'flex', alignItems: 'center' }}>
+                    <img src={c.media.logo} alt={`${c.client} logo`} style={{ maxHeight: '100%', maxWidth: '140px', objectFit: 'contain' }} />
+                  </div>
+                )}
                 <a href={c.industryHref} className="capability-card__tag">{c.tag}</a>
                 <h3 className="capability-card__title">{c.study ? <a href={`/work/${c.slug}`}>{c.client}</a> : c.client}</h3>
                 <p className="capability-card__desc" style={{ color: 'var(--dark)', fontWeight: 550, marginBottom: '0.6rem' }}>{c.result}</p>
