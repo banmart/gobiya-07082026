@@ -188,7 +188,7 @@ export default function Home() {
             </div>
             <div className="offer-card__visual">
               <video
-                src="/assets/videos/sc-hero-background-compressed.webm"
+                src="/assets/videos/home-hero-background.webm"
                 autoPlay
                 loop
                 muted
