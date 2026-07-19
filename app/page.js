@@ -179,6 +179,9 @@ export default function Home() {
                 The complete <span>growth engine</span>
               </h2>
               <p className="offer-card__desc">
+                <strong style={{ display: 'block', color: 'var(--main)', marginBottom: '0.75rem', fontSize: '1.1em', fontWeight: 600 }}>
+                  Custom Web Dev Starting at $3,500 &amp; up
+                </strong>
                 All new custom websites, Next.js or React/Vite, come with a CRM to manage web leads and until September 30th a YouTube pre-roll ad.
               </p>
               <a href="/onboarding" className="btn btn--solid">Claim Offer</a>
