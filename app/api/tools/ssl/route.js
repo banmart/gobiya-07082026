@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { checkRateLimit } from '../../../../lib/rate-limit';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -6,6 +7,11 @@ export async function GET(request) {
 
   if (!domain) {
     return NextResponse.json({ error: 'Domain parameter is required' }, { status: 400 });
+  }
+
+  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+  if (!checkRateLimit(ip, 'ssl-certs', 2, 24)) {
+    return NextResponse.json({ error: 'Rate limit exceeded', details: 'You have reached your limit of 2 searches per 24 hours for this tool.' }, { status: 429 });
   }
 
   try {
