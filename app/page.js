@@ -50,6 +50,7 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/mtw-logo-mark-nFG9LpnH.webp', alt: 'MTW' },
   { src: '/assets/img/quickpass-logo.webp', alt: 'Quickpass' },
   { src: '/assets/img/sonrisa-dental.webp', alt: 'Sonrisa Dental' },
+  { src: '/assets/img/trusted-logo.webp', alt: 'Trusted' },
   { src: '/assets/img/client-5.webp', alt: 'Gobiya client' },
 ];
 
