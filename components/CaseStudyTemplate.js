@@ -32,7 +32,15 @@ export default function CaseStudyTemplate({ cs }) {
           )}
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Case study · {cs.tag}</p>
           <h1 className="statement" data-split>{`${cs.client}: ${cs.result}`}</h1>
-          <p className="lede" data-reveal>{cs.study.dek}</p>
+          {cs.study?.dek && <p className="lede" data-reveal>{cs.study.dek}</p>}
+          {cs.url && (
+            <div data-reveal style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center' }}>
+              <a href={cs.url} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                Visit {cs.client}
+                <svg viewBox="0 0 16 16" width="14" height="14" style={{ marginLeft: '0.5rem' }}><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="article__answer" data-reveal>
