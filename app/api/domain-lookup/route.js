@@ -35,6 +35,10 @@ export async function GET(request) {
     });
 
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch domain intelligence' }, { status: 500 });
+    console.error('Domain Lookup Error:', error);
+    return NextResponse.json({ 
+      error: 'Failed to fetch domain intelligence', 
+      details: error.message 
+    }, { status: 500 });
   }
 }

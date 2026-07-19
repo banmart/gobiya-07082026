@@ -20,7 +20,7 @@ export default function DomainLookupTool() {
       const res = await fetch(`/api/domain-lookup?domain=${encodeURIComponent(domain.trim())}`);
       const json = await res.json();
       
-      if (!res.ok) throw new Error(json.error || 'Failed to fetch domain intelligence');
+      if (!res.ok) throw new Error(json.details || json.error || 'Failed to fetch domain intelligence');
 
       setData(json);
     } catch (err) {
