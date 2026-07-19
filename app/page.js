@@ -178,10 +178,10 @@ export default function Home() {
               <h2 className="offer-card__title">
                 The Q3 <span>Growth Bundle</span> Offer
               </h2>
+              <div className="offer-card__price-pill">
+                Custom Web Dev Starting at <strong>$3,500</strong> &amp; up
+              </div>
               <p className="offer-card__desc">
-                <strong style={{ display: 'block', color: 'var(--main)', marginBottom: '0.75rem', fontSize: '1.1em', fontWeight: 600 }}>
-                  Custom Web Dev Starting at $3,500 &amp; up
-                </strong>
                 Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube pre-roll ad campaign to drive traffic from day one.
               </p>
               <a href="/onboarding" className="btn btn--solid">Claim Offer</a>
