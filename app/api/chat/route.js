@@ -81,7 +81,11 @@ export async function POST(request) {
 
     if (!response.ok) {
       console.error('Gemini API Error:', data);
-      return NextResponse.json({ error: 'Failed to generate response' }, { status: 500 });
+      return NextResponse.json({ 
+        error: 'Failed to generate response', 
+        details: data,
+        status: response.status
+      }, { status: 500 });
     }
 
     let assistantMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I am sorry, I am having trouble responding right now. Please try again.';
@@ -131,6 +135,10 @@ export async function POST(request) {
     return NextResponse.json({ reply: assistantMessage });
   } catch (error) {
     console.error('Chat API Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Internal Server Error', 
+      message: error.message,
+      stack: error.stack
+    }, { status: 500 });
   }
 }

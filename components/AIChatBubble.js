@@ -75,9 +75,11 @@ export default function AIChatBubble() {
       if (res.ok && data.reply) {
         setMessages([...newMessages, { role: 'model', content: data.reply }]);
       } else {
+        console.error('AI Assistant API Error Details:', data);
         setMessages([...newMessages, { role: 'model', content: 'Sorry, I am having trouble connecting right now.' }]);
       }
     } catch (err) {
+      console.error('AI Assistant Network Error:', err);
       setMessages([...newMessages, { role: 'model', content: 'Sorry, a network error occurred.' }]);
     } finally {
       setLoading(false);
