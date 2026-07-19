@@ -52,6 +52,12 @@ export async function POST(request) {
       parts: [{ text: msg.content }]
     }));
 
+    // Gemini requires the conversation history to start with a 'user' message.
+    // Our frontend injects a hardcoded 'model' greeting at the start, so we must remove it.
+    if (formattedContents.length > 0 && formattedContents[0].role === 'model') {
+      formattedContents.shift();
+    }
+
     const payload = {
       systemInstruction: {
         parts: [{ text: SYSTEM_PROMPT }]
