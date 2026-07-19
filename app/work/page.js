@@ -72,21 +72,21 @@ export default function WorkPage() {
         </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">
-            <span className="marquee__item">Smile Center Dentistry</span><i>✳</i>
+            <span className="marquee__item">SmileCenter.com</span><i>✳</i>
             <span className="marquee__item marquee__item--serif">American Livescan</span><i>✳</i>
-            <span className="marquee__item">SafetyCentric</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">QuickPass AiD</span><i>✳</i>
+            <span className="marquee__item">Safety-Centric.com</span><i>✳</i>
+            <span className="marquee__item marquee__item--serif">QuickPassAiD.Com</span><i>✳</i>
             <span className="marquee__item">The ARK</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">Remodel Me Pros</span><i>✳</i>
+            <span className="marquee__item marquee__item--serif">RemodelMePros.com</span><i>✳</i>
           </div>
         </div>
         <div className="marquee marquee--reverse" aria-hidden="true">
           <div className="marquee__track">
             <span className="marquee__item marquee__item--serif">The Healing Metta</span><i>✳</i>
             <span className="marquee__item">Trusted Home Contractors</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">Total Capital</span><i>✳</i>
+            <span className="marquee__item marquee__item--serif">TotalCapitalInc.Com</span><i>✳</i>
             <span className="marquee__item">Tidder</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">QuickPass AiD</span><i>✳</i>
+            <span className="marquee__item marquee__item--serif">QuickPassAiD.Com</span><i>✳</i>
             <span className="marquee__item">American Livescan</span><i>✳</i>
           </div>
         </div>
