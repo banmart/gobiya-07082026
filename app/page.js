@@ -161,6 +161,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ══ 4.5 Offer ══ */}
+      <section className="section offer-section" id="special-offer">
+        <div className="container">
+          <div className="offer-card" data-reveal>
+            <Image
+              src="/assets/img/office-collage-montage.webp"
+              alt="Office background collage"
+              fill
+              className="offer-card__bg"
+              style={{ objectFit: 'cover' }}
+              aria-hidden="true"
+            />
+            <div className="offer-card__content">
+              <span className="offer-card__badge">Limited Time Offer</span>
+              <h2 className="offer-card__title">
+                The complete <span>growth engine</span>
+              </h2>
+              <p className="offer-card__desc">
+                All new custom websites, Next.js or React/Vite, come with a CRM to manage web leads and until September 30th a YouTube pre-roll ad.
+              </p>
+              <a href="/onboarding" className="btn btn--solid">Claim Offer</a>
+            </div>
+            <div className="offer-card__visual">
+              <video
+                src="/assets/videos/sc-hero-background-compressed.webm"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+                aria-label="Video looping of hero background"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ══ 5. Four pillars ══ */}
       <section className="pillars section">
         <div className="container">
