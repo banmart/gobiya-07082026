@@ -82,7 +82,7 @@ export default function WorkPage() {
         </div>
         <div className="marquee marquee--reverse" aria-hidden="true">
           <div className="marquee__track">
-            <span className="marquee__item marquee__item--serif">Medicine Metta</span><i>✳</i>
+            <span className="marquee__item marquee__item--serif">The Healing Metta</span><i>✳</i>
             <span className="marquee__item">Trusted Home Contractors</span><i>✳</i>
             <span className="marquee__item marquee__item--serif">Total Capital</span><i>✳</i>
             <span className="marquee__item">Tidder</span><i>✳</i>
