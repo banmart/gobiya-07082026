@@ -7,7 +7,7 @@ import TopicMarquee from '../../../components/TopicMarquee';
 const service = SERVICES['seo-discoverability'];
 
 export const metadata = buildMetadata({
-  title: service.title,
+  title: service.metaTitle || service.title,
   description: service.metaDescription,
   path: '/services/seo-discoverability',
 });

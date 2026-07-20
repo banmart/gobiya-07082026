@@ -5,7 +5,7 @@ import { buildMetadata } from '../../../lib/meta';
 const service = SERVICES['cro-ux'];
 
 export const metadata = buildMetadata({
-  title: service.title,
+  title: service.metaTitle || service.title,
   description: service.metaDescription,
   path: '/services/cro-ux',
 });

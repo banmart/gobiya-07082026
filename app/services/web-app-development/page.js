@@ -5,7 +5,7 @@ import { buildMetadata } from '../../../lib/meta';
 const service = SERVICES['web-app-development'];
 
 export const metadata = buildMetadata({
-  title: service.title,
+  title: service.metaTitle || service.title,
   description: service.metaDescription,
   path: '/services/web-app-development',
 });

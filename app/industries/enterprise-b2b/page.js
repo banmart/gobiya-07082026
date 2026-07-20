@@ -5,7 +5,7 @@ import { buildMetadata } from '../../../lib/meta';
 const industry = INDUSTRIES['enterprise-b2b'];
 
 export const metadata = buildMetadata({
-  title: industry.title,
+  title: industry.metaTitle || industry.title,
   description: industry.metaDescription,
   path: '/industries/enterprise-b2b',
 });

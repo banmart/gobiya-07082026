@@ -5,7 +5,7 @@ import { buildMetadata } from '../../../lib/meta';
 const service = SERVICES['google-ads-ppc'];
 
 export const metadata = buildMetadata({
-  title: service.title,
+  title: service.metaTitle || service.title,
   description: service.metaDescription,
   path: '/services/google-ads-ppc',
 });
