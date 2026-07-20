@@ -2,8 +2,20 @@ import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
 import { SERVICES } from '../lib/services';
 import { INSIGHTS } from '../lib/insights';
+import { SEARCH_WINS } from '../lib/searchWins';
+import { LOCATIONS } from '../lib/locations';
 import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
+
+// Location pages with the least current search visibility (per the same GSC
+// comparison SEARCH_WINS is drawn from) -- linked directly from the homepage
+// so the site's highest-traffic page passes link equity to its lowest.
+const LOW_VISIBILITY_CITIES = [
+  'encino-seo', 'studio-city-seo', 'beverly-hills-seo', 'woodland-hills-seo',
+  'santa-monica-seo', 'long-beach-seo', 'anaheim-seo', 'costa-mesa-seo',
+  'culver-city-seo', 'north-hollywood-seo', 'silverlake-seo', 'van-nuys-seo',
+  'ventura-seo', 'santa-clarita-seo',
+].map((slug) => LOCATIONS[slug]);
 
 export const metadata = buildMetadata({
   title: 'Website Marketing Company Near Me | LA, Glendale | Gobiya',
@@ -120,6 +132,31 @@ export default function Home() {
             <li><span className="stat__value">+<i data-count="47" data-plain>47</i></span><span className="stat__label">Page-one keywords after rebuild</span></li>
           </ul>
           <i className="stats-band__rule" data-rule></i>
+        </div>
+      </section>
+
+      {/* ══ 2.5 Recent search wins ══ */}
+      <section className="section" id="search-wins" aria-label="Recent search performance">
+        <div className="container">
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>What&apos;s moving in search right now</p>
+          <div className="insights__grid">
+            {SEARCH_WINS.wins.map((w) => (
+              <a className="insights__card" href={w.href} key={w.href} data-reveal>
+                <span className="insights__card-cat">Search Console</span>
+                <h3 className="insights__card-title">{w.label}</h3>
+                <p className="insights__card-dek">{w.detail}</p>
+                <span className="link-arrow">See page{ARROW}</span>
+              </a>
+            ))}
+          </div>
+          <p className="eyebrow" data-reveal style={{ marginTop: '3rem' }}><span className="eyebrow__dot"></span>Also building visibility for</p>
+          <ul className="cities__list">
+            {LOW_VISIBILITY_CITIES.map((c) => (
+              <li key={c.slug}>
+                <a href={`/industries/local-service/${c.slug}`} className="cities__link">{c.name}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
