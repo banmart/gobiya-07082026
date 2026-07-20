@@ -6,9 +6,9 @@ import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
 
 export const metadata = buildMetadata({
-  title: 'AI SEO Company Near Me | LA, Glendale, Koreatown | Gobiya',
+  title: 'Website Marketing Company Near Me | LA, Glendale | Gobiya',
   description:
-    'Gobiya is an AI SEO company in Los Angeles, Glendale, and Koreatown — technical SEO and AI visibility that gets you found and cited. Free audit.',
+    'Gobiya is a website marketing company in Los Angeles helping brands rank higher, get found in Google, and get cited by AI. Get a free audit.',
   path: '/',
 });
 
@@ -65,9 +65,9 @@ export default function Home() {
       {/* ══ 1. Hero ══ */}
       <section className="hero" id="hero">
         <div className="container">
-          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>AI SEO Company · LA · Glendale · Koreatown</p>
+          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Website Marketing Company · LA · Glendale · Koreatown</p>
           <h1 className="hero__title" data-split>
-            The top-rated AI SEO company near you, built for the{' '}
+            The website marketing company built for the{' '}
             <span className="hero__title-video">
               <video
                 src="/assets/videos/gobiyaRace.webm"
@@ -83,7 +83,7 @@ export default function Home() {
             <em className="hero__title-accent">era of answers.</em>
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>If you are searching for an &quot;AI SEO company near me,&quot; Gobiya is your local partner in Los Angeles, Glendale, and Koreatown. We make local and global brands findable in Google and cited by ChatGPT, Perplexity, and AI Overviews through expert technical SEO and organic search strategy.</p>
+            <p className="hero__sub" data-reveal>If you are searching for a &quot;website marketing company near me,&quot; Gobiya is your local partner in Los Angeles, Glendale, and Koreatown. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
