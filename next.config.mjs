@@ -65,6 +65,7 @@ const nextConfig = {
       { source: '/reviews', destination: '/work', permanent: true },
 
       // Old guides/* -> topically matching new page
+      { source: '/google-penalty-service', destination: '/outcomes/recovery', permanent: true },
       { source: '/guides/google-penalty-recovery', destination: '/outcomes/recovery', permanent: true },
       { source: '/guides/helpful-content-update-recovery', destination: '/outcomes/recovery', permanent: true },
       { source: '/guides/topic-cluster-architecture', destination: '/services/seo-web-copywriting', permanent: true },
