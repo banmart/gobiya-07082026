@@ -34,6 +34,7 @@ const nextConfig = {
 
       // Regional/multi-city pages with no single matching city -> Local Service hub
       { source: '/on-page-seo-los-angeles', destination: '/industries/local-service', permanent: true },
+      { source: '/los-angeles-seo-services', destination: '/industries/local-service', permanent: true },
       { source: '/markets/southern-california', destination: '/industries/local-service', permanent: true },
       { source: '/markets', destination: '/industries/local-service', permanent: true },
       { source: '/services/google-business-profile-optimization', destination: '/industries/local-service', permanent: true },
