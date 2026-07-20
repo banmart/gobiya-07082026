@@ -5,7 +5,7 @@ import { buildMetadata } from '../../../lib/meta';
 const outcome = OUTCOMES['traffic'];
 
 export const metadata = buildMetadata({
-  title: outcome.title,
+  title: outcome.metaTitle || outcome.title,
   description: outcome.metaDescription,
   path: '/outcomes/traffic',
 });

@@ -8,7 +8,7 @@ import CountdownBadge from '../components/CountdownBadge';
 export const metadata = buildMetadata({
   title: 'AI SEO Company Near Me | LA, Glendale, Koreatown | Gobiya',
   description:
-    'Looking for an AI SEO company near you? Gobiya is a specialized SEO agency serving Los Angeles, Glendale, and Koreatown. We optimize your brand for ChatGPT, Perplexity, and AI Overviews, alongside traditional technical SEO and organic search strategy.',
+    'Gobiya is an AI SEO company in Los Angeles, Glendale, and Koreatown — technical SEO and AI visibility that gets you found and cited. Free audit.',
   path: '/',
 });
 

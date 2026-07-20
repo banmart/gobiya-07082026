@@ -4,9 +4,9 @@ import { buildMetadata } from '../../../lib/meta';
 import TopicMarquee from '../../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Our Approach',
+  title: 'Our SEO Process | How Gobiya Runs an Engagement',
   description:
-    'How Gobiya works: technical foundation first, transparent reporting tied to real business outcomes, and a defined process instead of an open-ended retainer.',
+    'Gobiya’s SEO process: technical foundation first, transparent reporting tied to real outcomes, and a defined process, not an open-ended retainer.',
   path: '/about/approach',
 });
 

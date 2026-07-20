@@ -4,9 +4,9 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Outcomes — Traffic, Rankings, Sales & Penalty Recovery',
+  title: 'SEO Outcomes: Traffic, Rankings, Sales & Recovery',
   description:
-    'What working with Gobiya actually produces: qualified organic traffic, page-one rankings, sales pipeline, and recovery from Google algorithm updates or manual actions.',
+    'What working with Gobiya produces: qualified organic traffic, page-one rankings, sales pipeline, and recovery from algorithm updates. See the results.',
   path: '/outcomes',
 });
 

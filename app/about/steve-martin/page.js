@@ -4,9 +4,9 @@ import { buildMetadata } from '../../../lib/meta';
 import TopicMarquee from '../../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Steve Martin — Founder',
+  title: 'Steve Martin | Los Angeles SEO Expert & Founder',
   description:
-    'Steve Martin is the founder and principal of Gobiya, a Los Angeles technical SEO and AI-visibility agency. 25+ years in web development and search, tracking every major Google algorithm update since Panda in 2011.',
+    'Steve Martin is the founder of Gobiya, a Los Angeles SEO expert with 25+ years in web development and search. Talk to Steve about your site.',
   path: '/about/steve-martin',
 });
 
