@@ -42,6 +42,25 @@ const nextConfig = {
       // Old brand/about duplicate -> single canonical About page
       { source: '/company/about', destination: '/about', permanent: true },
 
+      // Old /case-studies/* portfolio IA -> /work/* case studies. Found via GSC:
+      // /case-studies/smile-center-dentistry, /american-livescan, and /tidder are
+      // still ranking (positions 5-14, real impressions in the last 90 days) with
+      // no redirect in place, so that visibility was stranding on a dead path
+      // instead of reaching the live page. Entries without a dedicated /work/[slug]
+      // page (no `study` object in lib/work.js) fall back to the /work hub.
+      { source: '/case-studies/smile-center-dentistry', destination: '/work/smile-center-dentistry', permanent: true },
+      { source: '/case-studies/american-livescan', destination: '/work/american-livescan', permanent: true },
+      { source: '/case-studies/safetycentric', destination: '/work/safetycentric', permanent: true },
+      { source: '/case-studies/quickpass-aid', destination: '/work/quickpass-aid', permanent: true },
+      { source: '/case-studies/remodel-me-pros', destination: '/work/remodel-me-pros', permanent: true },
+      { source: '/case-studies/the-healing-metta', destination: '/work/the-healing-metta', permanent: true },
+      { source: '/case-studies/total-capital', destination: '/work/total-capital', permanent: true },
+      { source: '/case-studies/dg-plumbing', destination: '/work/dg-plumbing', permanent: true },
+      { source: '/case-studies/mtw', destination: '/work/mtw', permanent: true },
+      { source: '/case-studies/tidder', destination: '/work', permanent: true },
+      { source: '/case-studies/sonrisa-dental', destination: '/work', permanent: true },
+      { source: '/case-studies/trusted-home-contractors', destination: '/work', permanent: true },
+
       // Old "capabilities" IA -> new "services" IA (same Performance/Creativity/Relations
       // groupings, flattened under /services/*)
       { source: '/capabilities/authority-building', destination: '/services/authority-link-building', permanent: true },
