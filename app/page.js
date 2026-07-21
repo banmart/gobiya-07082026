@@ -194,7 +194,7 @@ export default function Home() {
               <p className="offer-card__desc">
                 Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube AI video pre-roll ad campaign to drive traffic from day one.
               </p>
-              <a href="/onboarding" className="btn btn--solid">Claim Offer</a>
+              <a href="/lp?ref=homepage" className="btn btn--solid">Claim Offer</a>
             </div>
             <div className="offer-card__visual">
               <video
