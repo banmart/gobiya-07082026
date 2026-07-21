@@ -24,8 +24,8 @@ export default function Footer() {
           </div>
           <div className="footer__col">
             <p className="footer__heading">Consulting</p>
-            <a href="/services/seo-discoverability">SEO &amp; Discoverability</a>
-            <a href="/services/geo-ai-content-writing">GEO &amp; AI Content</a>
+            <a href="/seo-services">SEO Services</a>
+            <a href="/geo-services">GEO Services</a>
             <a href="/services/authority-link-building">Authority &amp; Link Building</a>
             <a href="/ai-visibility">AI Visibility</a>
           </div>
