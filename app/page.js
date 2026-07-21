@@ -3,24 +3,15 @@ import { buildMetadata } from '../lib/meta';
 import { SERVICES } from '../lib/services';
 import { INSIGHTS } from '../lib/insights';
 import { SEARCH_WINS } from '../lib/searchWins';
-import { LOCATIONS } from '../lib/locations';
+import { TESTIMONIALS } from '../lib/testimonials';
 import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
-
-// Location pages with the least current search visibility (per the same GSC
-// comparison SEARCH_WINS is drawn from) -- linked directly from the homepage
-// so the site's highest-traffic page passes link equity to its lowest.
-const LOW_VISIBILITY_CITIES = [
-  'encino-seo', 'studio-city-seo', 'beverly-hills-seo', 'woodland-hills-seo',
-  'santa-monica-seo', 'long-beach-seo', 'anaheim-seo', 'costa-mesa-seo',
-  'culver-city-seo', 'north-hollywood-seo', 'silverlake-seo', 'van-nuys-seo',
-  'ventura-seo', 'santa-clarita-seo',
-].map((slug) => LOCATIONS[slug]);
+import TestimonialRotator from '../components/TestimonialRotator';
 
 export const metadata = buildMetadata({
-  title: 'Website Marketing Company Near Me | LA, Glendale | Gobiya',
+  title: 'Website Marketing Company | Gobiya',
   description:
-    'Gobiya is a website marketing company in Los Angeles helping brands rank higher, get found in Google, and get cited by AI. Get a free audit.',
+    'Gobiya is a website marketing company helping brands rank higher, get found in Google, and get cited by AI. Get a free audit.',
   path: '/',
 });
 
@@ -116,47 +107,23 @@ export default function Home() {
       </section>
       <TopicMarquee topics={["Los Angeles AI SEO", "Generative Engine Optimization", "ChatGPT Optimization", "Technical SEO", "Semantic Search"]} />
 
-
-      {/* ══ 2. Stats band ══ */}
-      <section className="stats-band" aria-label="Results and credentials">
-        <div className="container">
-          <i className="stats-band__rule" data-rule></i>
-          <ul className="stats-band__grid">
-            {/* Server-rendered text is the FINAL value — no-JS and reduced-motion
-                users see real numbers; Motion.js animates 0→value on capable clients. */}
-            <li><span className="stat__value"><i data-count="16" data-plain>16</i></span><span className="stat__label">Years in practice</span></li>
-            <li><span className="stat__value">A+</span><span className="stat__label">BBB rating</span></li>
-            <li><span className="stat__value"><i data-count="5.7" data-decimals="1">5.7</i>x</span><span className="stat__label">Google Ads ROAS</span></li>
-            <li><span className="stat__value"><i data-count="213" data-plain>213</i>K</span><span className="stat__label">Monthly impressions, one client</span></li>
-            <li><span className="stat__value"><i data-count="61" data-plain>61</i>%</span><span className="stat__label">Cost-per-lead reduction</span></li>
-            <li><span className="stat__value">+<i data-count="47" data-plain>47</i></span><span className="stat__label">Page-one keywords after rebuild</span></li>
-          </ul>
-          <i className="stats-band__rule" data-rule></i>
-        </div>
-      </section>
-
       {/* ══ 2.5 Recent search wins ══ */}
-      <section className="section" id="search-wins" aria-label="Recent search performance">
+      <section className="section" id="search-wins" aria-label="Aggregated Search Console performance">
         <div className="container">
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>What&apos;s moving in search right now</p>
-          <div className="insights__grid">
-            {SEARCH_WINS.wins.map((w) => (
-              <a className="insights__card" href={w.href} key={w.href} data-reveal>
-                <span className="insights__card-cat">Search Console</span>
-                <h3 className="insights__card-title">{w.label}</h3>
-                <p className="insights__card-dek">{w.detail}</p>
-                <span className="link-arrow">See page{ARROW}</span>
-              </a>
+          <p className="search-wins__note" data-reveal>{SEARCH_WINS.note}</p>
+          <div className="search-wins__grid">
+            {SEARCH_WINS.cards.map((c) => (
+              <div className="search-wins__card" key={c.id} data-reveal>
+                <span className="search-wins__label">{c.label}</span>
+                <span className="search-wins__value">
+                  <i data-count={c.value} data-decimals={c.decimals}>{c.display}</i>
+                </span>
+                <p className="search-wins__detail">{c.detail}</p>
+                <span className="search-wins__window">{c.window}</span>
+              </div>
             ))}
           </div>
-          <p className="eyebrow" data-reveal style={{ marginTop: '3rem' }}><span className="eyebrow__dot"></span>Also building visibility for</p>
-          <ul className="cities__list">
-            {LOW_VISIBILITY_CITIES.map((c) => (
-              <li key={c.slug}>
-                <a href={`/industries/local-service/${c.slug}`} className="cities__link">{c.name}</a>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -293,6 +260,17 @@ export default function Home() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ══ 7.5 Testimonials ══ */}
+      <section className="testimonials section section--dark" id="testimonials" aria-label="What clients say">
+        <div className="container container--narrow">
+          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>In their own words</p>
+          <h2 className="statement statement--small" data-split style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
+            {TESTIMONIALS.length} owners, {TESTIMONIALS.length} different problems, one accountable team.
+          </h2>
+          <TestimonialRotator items={TESTIMONIALS} />
         </div>
       </section>
 

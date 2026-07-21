@@ -110,6 +110,33 @@ export default function CaseStudyTemplate({ cs }) {
         </div>
       </section>
 
+      {/* ══════════ Client testimonial ══════════ */}
+      {cs.study.testimonial && (
+        <section className="testimonials section section--dark" id="testimonial" aria-label={`What ${cs.client} said`}>
+          <div className="container container--narrow">
+            <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>In their own words</p>
+            <div className="testimonial-rotator" data-reveal>
+              <blockquote className="testimonial-rotator__quote">
+                <p>{cs.study.testimonial.quote}</p>
+              </blockquote>
+              <div className="testimonial-rotator__byline">
+                <p className="testimonial-rotator__attrib">
+                  {cs.study.testimonial.name && (
+                    <>
+                      <span className="testimonial-rotator__name">{cs.study.testimonial.name}</span>
+                      <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
+                    </>
+                  )}
+                  <span className="testimonial-rotator__company">{cs.client}</span>
+                  <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
+                  <span className="testimonial-rotator__role">{cs.study.testimonial.role}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ══════════ Related pages ══════════ */}
       <section className="section section--tint" id="related">
         <div className="container container--narrow">

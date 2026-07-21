@@ -44,7 +44,7 @@ export default function SteveMartinPage() {
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder &amp; Principal</p>
             <h2 className="founder__name" data-reveal>Steve Martin</h2>
             <p className="founder__role" data-reveal>Gobiya, Los Angeles</p>
-            <p className="founder__bio" data-reveal>Steve grew up in <a href="/industries/local-service/glendale-seo">Glendale, CA</a>, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
+            <p className="founder__bio" data-reveal>Steve grew up in Glendale, CA, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
             <a href="/contact" className="link-arrow" data-reveal>Talk to Steve<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
         </div>

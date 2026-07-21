@@ -2,7 +2,7 @@ import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
 
-export default function IndustryTemplate({ industry, cities }) {
+export default function IndustryTemplate({ industry }) {
   return (
     <main id="top">
 
@@ -76,25 +76,6 @@ export default function IndustryTemplate({ industry, cities }) {
           </ul>
         </div>
       </section>
-
-      {/* ══════════ Cities ══════════ */}
-      {cities && cities.length > 0 && (
-        <section className="section" id="cities">
-          <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-            <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Cities we serve</p>
-            <h2 className="statement statement--small" data-split>Local pages for the areas we work in most.</h2>
-          </div>
-          <div className="container">
-            <ul className="cities__list">
-              {cities.map((c) => (
-                <li key={c.slug} data-reveal>
-                  <a href={`/industries/local-service/${c.slug}`} className="cities__link">{c.name}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
 
       {/* ══════════ FAQ ══════════ */}
       <section className="faq section" id="faq">

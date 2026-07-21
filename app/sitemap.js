@@ -2,7 +2,6 @@ import { INSIGHTS } from '../lib/insights';
 import { SERVICES } from '../lib/services';
 import { OUTCOMES } from '../lib/outcomes';
 import { INDUSTRIES } from '../lib/industries';
-import { LOCATIONS_LIST } from '../lib/locations';
 import { CASE_STUDIES } from '../lib/work';
 
 const BASE_URL = 'https://www.gobiya.com';
@@ -46,14 +45,10 @@ export default function sitemap() {
     lastModified: insight.date,
   }));
 
-  const locationRoutes = LOCATIONS_LIST.map((l) => ({
-    url: `${BASE_URL}/industries/local-service/${l.slug}`,
-  }));
-
   // Only case studies with full study content have pages; cards-only entries stay out.
   const caseStudyRoutes = CASE_STUDIES.filter((c) => c.study).map((c) => ({
     url: `${BASE_URL}/work/${c.slug}`,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...outcomeRoutes, ...industryRoutes, ...insightRoutes, ...locationRoutes, ...caseStudyRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...outcomeRoutes, ...industryRoutes, ...insightRoutes, ...caseStudyRoutes];
 }
