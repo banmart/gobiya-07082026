@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CONTACT } from '../../../lib/nav';
 import { buildMetadata } from '../../../lib/meta';
 
@@ -23,7 +22,7 @@ export default function LpThankYouPage() {
             or call <a href={CONTACT.phoneHref} style={{ borderBottom: '1px solid currentColor' }}>{CONTACT.phone}</a>.
           </p>
           <div className="hero__ctas">
-            <Link href="/" className="btn btn--solid">Back to home</Link>
+            <a href="/" className="btn btn--solid">Back to home</a>
           </div>
         </div>
       </section>
