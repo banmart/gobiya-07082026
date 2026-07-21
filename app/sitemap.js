@@ -1,7 +1,5 @@
 import { INSIGHTS } from '../lib/insights';
 import { SERVICES } from '../lib/services';
-import { OUTCOMES } from '../lib/outcomes';
-import { INDUSTRIES } from '../lib/industries';
 import { CASE_STUDIES } from '../lib/work';
 
 const BASE_URL = 'https://www.gobiya.com';
@@ -23,8 +21,6 @@ export default function sitemap() {
     '/geo-services',
     '/ppc-management-services',
     '/content-marketing-services',
-    '/outcomes',
-    '/industries',
     '/work',
     '/privacy',
     '/terms',
@@ -34,14 +30,6 @@ export default function sitemap() {
 
   const serviceRoutes = Object.keys(SERVICES).map((slug) => ({
     url: `${BASE_URL}/services/${slug}`,
-  }));
-
-  const outcomeRoutes = Object.keys(OUTCOMES).map((slug) => ({
-    url: `${BASE_URL}/outcomes/${slug}`,
-  }));
-
-  const industryRoutes = Object.keys(INDUSTRIES).map((slug) => ({
-    url: `${BASE_URL}/industries/${slug}`,
   }));
 
   const insightRoutes = INSIGHTS.map((insight) => ({
@@ -54,5 +42,5 @@ export default function sitemap() {
     url: `${BASE_URL}/work/${c.slug}`,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...outcomeRoutes, ...industryRoutes, ...insightRoutes, ...caseStudyRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...insightRoutes, ...caseStudyRoutes];
 }
