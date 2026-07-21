@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { headers } from 'next/headers';
 import { Inter, Stack_Sans_Notch } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
@@ -49,16 +50,19 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const headerList = await headers();
+  const minimalChrome = headerList.get('x-minimal-chrome') === '1';
+
   return (
     <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
       <body>
         <SiteSchema />
         <BrandWatermark />
-        <Header />
+        {!minimalChrome && <Header />}
         {children}
-        <AIChatBubble />
-        <Footer />
+        {!minimalChrome && <AIChatBubble />}
+        {!minimalChrome && <Footer />}
         <Motion />
         <Script src="/js/main.js" strategy="afterInteractive" />
 
