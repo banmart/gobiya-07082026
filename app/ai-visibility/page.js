@@ -210,7 +210,7 @@ export default function AIVisibilityPage() {
             </div>
             <div className="faq__item" data-reveal>
               <dt>How long before we see AI citations after the work is done?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'Technical and structured-data fixes can affect crawler behavior within weeks. Content and authority signals compound over months, similar to organic SEO timelines — see <a href="/outcomes/rankings">how we approach rankings</a>. We track citation appearances directly, not just rankings, so progress is visible before full compounding.' }} />
+              <dd dangerouslySetInnerHTML={{ __html: 'Technical and structured-data fixes can affect crawler behavior within weeks. Content and authority signals compound over months, similar to organic SEO timelines — see <a href="/seo-services">how we approach rankings</a>. We track citation appearances directly, not just rankings, so progress is visible before full compounding.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>What is the role of AI in search engine results today?</dt>
