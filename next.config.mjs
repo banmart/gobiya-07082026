@@ -5,6 +5,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Flat, keyword-first service pages (2026-07) replacing the 4 old /services/[slug] pages
+      { source: '/services/seo-discoverability', destination: '/seo-services', permanent: true },
+      { source: '/services/geo-ai-content-writing', destination: '/geo-services', permanent: true },
+      { source: '/services/google-ads-ppc', destination: '/ppc-management-services', permanent: true },
+      { source: '/services/seo-web-copywriting', destination: '/content-marketing-services', permanent: true },
+
       // City-specific location pages (2026-07): the /industries/local-service/<city>-seo
       // pages were removed as a set (low traffic relative to maintenance cost of 18
       // near-duplicate city pages). Every old alias and every former city-page URL now
@@ -87,9 +93,9 @@ const nextConfig = {
       { source: '/capabilities/authority-building', destination: '/services/authority-link-building', permanent: true },
       { source: '/capabilities/conversion-architecture', destination: '/services/cro-ux', permanent: true },
       { source: '/capabilities/forensic-seo-penalty-recovery', destination: '/outcomes/recovery', permanent: true },
-      { source: '/performance/technical-seo-audit-agency', destination: '/services/seo-discoverability', permanent: true },
+      { source: '/performance/technical-seo-audit-agency', destination: '/seo-services', permanent: true },
       { source: '/relations/authority-building-agency', destination: '/services/authority-link-building', permanent: true },
-      { source: '/relations/google-shopping-ads-agency', destination: '/services/google-ads-ppc', permanent: true },
+      { source: '/relations/google-shopping-ads-agency', destination: '/ppc-management-services', permanent: true },
 
       // Old "capabilities" and "creativity" hub pages have no direct new equivalent -> home
       // (/services now has its own built hub page, so no redirect needed there)
@@ -108,17 +114,17 @@ const nextConfig = {
       { source: '/google-penalty-service', destination: '/outcomes/recovery', permanent: true },
       { source: '/guides/google-penalty-recovery', destination: '/outcomes/recovery', permanent: true },
       { source: '/guides/helpful-content-update-recovery', destination: '/outcomes/recovery', permanent: true },
-      { source: '/guides/topic-cluster-architecture', destination: '/services/seo-web-copywriting', permanent: true },
+      { source: '/guides/topic-cluster-architecture', destination: '/content-marketing-services', permanent: true },
 
       // Old services/* pages with no direct new slug -> closest current service/outcome
-      { source: '/services/on-page-seo', destination: '/services/seo-discoverability', permanent: true },
+      { source: '/services/on-page-seo', destination: '/seo-services', permanent: true },
       { source: '/services/unnatural-links-penalty-recovery', destination: '/outcomes/recovery', permanent: true },
 
       // Services consolidation (2026-07): three overlapping pages merged into
       // the survivor that owns the stronger commercial query.
-      { source: '/services/content-strategy', destination: '/services/seo-web-copywriting', permanent: true },
+      { source: '/services/content-strategy', destination: '/content-marketing-services', permanent: true },
       { source: '/services/digital-pr', destination: '/services/authority-link-building', permanent: true },
-      { source: '/services/ai-video-ads', destination: '/services/google-ads-ppc', permanent: true },
+      { source: '/services/ai-video-ads', destination: '/ppc-management-services', permanent: true },
 
       // Old GEO-related pages -> new dedicated GEO pillar guide
       { source: '/capabilities/generative-engine-optimization', destination: '/insights/what-is-generative-engine-optimization', permanent: true },
