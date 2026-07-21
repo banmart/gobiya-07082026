@@ -6,8 +6,8 @@ Contact: hello@gobiya.com · +1-323-744-1338 · 3580 Wilshire Blvd, Ste 132, Los
 
 ## Services
 
-- [SEO & Discoverability](https://www.gobiya.com/services/seo-discoverability): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
-- [GEO & AI Content Writing](https://www.gobiya.com/services/geo-ai-content-writing): Content engineered to be cited in AI-generated answers
+- [SEO & Discoverability](https://www.gobiya.com/seo-services): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
+- [GEO & AI Content Writing](https://www.gobiya.com/geo-services): Content engineered to be cited in AI-generated answers
 - [Digital PR & Link Building](https://www.gobiya.com/services/authority-link-building): Editorial link acquisition and entity alignment
 - [AI Visibility (GEO)](https://www.gobiya.com/ai-visibility): How we get brands cited by ChatGPT, Perplexity, and AI Overviews
 - [All services](https://www.gobiya.com/services): SEO, copywriting and content strategy, digital PR and link building, Google Ads and AI creative, CRO, web development, AI/LLM consulting

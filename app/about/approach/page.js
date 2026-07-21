@@ -80,7 +80,7 @@ export default function ApproachPage() {
                 <span className="stack__index">01</span>
                 <h3 className="stack__title">Performance<br /><em>Engineering</em></h3>
                 <p className="stack__desc">The technical layer everything else depends on — crawlability, rendering, and Core Web Vitals fixed before content or links are asked to do any work.</p>
-                <a href="/services/seo-discoverability" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/seo-services" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -100,7 +100,7 @@ export default function ApproachPage() {
                 <span className="stack__index">02</span>
                 <h3 className="stack__title">Creativity<br /><em>&amp; Content</em></h3>
                 <p className="stack__desc">Content built on a solid technical foundation is what actually earns rankings and AI citations — the same words fall flat on a page a crawler can&apos;t properly read.</p>
-                <a href="/services/geo-ai-content-writing" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/geo-services" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image

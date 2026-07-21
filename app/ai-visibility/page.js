@@ -101,7 +101,7 @@ export default function AIVisibilityPage() {
                   <div><dt></dt><dd>Bot access &amp; robots.txt</dd></div>
                   <div><dt></dt><dd>Core Web Vitals</dd></div>
                 </dl>
-                <a href="/services/seo-discoverability" className="link-arrow">See SEO &amp; Discoverability<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/seo-services" className="link-arrow">See SEO &amp; Discoverability<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -149,7 +149,7 @@ export default function AIVisibilityPage() {
                   <div><dt>Writes</dt><dd>GEO &amp; AI content</dd></div>
                   <div><dt></dt><dd>FAQ &amp; comparison pages</dd></div>
                 </dl>
-                <a href="/services/geo-ai-content-writing" className="link-arrow">See GEO &amp; AI Content Writing<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/geo-services" className="link-arrow">See GEO &amp; AI Content Writing<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -198,7 +198,7 @@ export default function AIVisibilityPage() {
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>Is GEO different from SEO, or the same discipline?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'Same foundation, different endpoint. Traditional <a href="/services/seo-discoverability">technical SEO</a> optimizes for a ranked list of links; GEO optimizes for being the source an AI model paraphrases or quotes directly. Nearly everything that makes a page rank well — clean technical delivery, clear structure, real authority — is also what makes it citable. Read the full breakdown in <a href="/insights/seo-vs-geo">SEO vs. GEO</a>.' }} />
+              <dd dangerouslySetInnerHTML={{ __html: 'Same foundation, different endpoint. Traditional <a href="/seo-services">technical SEO</a> optimizes for a ranked list of links; GEO optimizes for being the source an AI model paraphrases or quotes directly. Nearly everything that makes a page rank well — clean technical delivery, clear structure, real authority — is also what makes it citable. Read the full breakdown in <a href="/insights/seo-vs-geo">SEO vs. GEO</a>.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>How do I know if I&apos;m already being cited by AI platforms?</dt>
@@ -206,7 +206,7 @@ export default function AIVisibilityPage() {
             </div>
             <div className="faq__item" data-reveal>
               <dt>Will this replace the need for traditional SEO?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'No — it depends on it. AI systems still rely heavily on the same crawlability, indexation, and authority signals that drive organic rankings. A site with weak <a href="/services/seo-discoverability">technical SEO</a> will struggle to be cited by AI for the same reasons it struggles to rank: the systems can&apos;t reliably read or trust it.' }} />
+              <dd dangerouslySetInnerHTML={{ __html: 'No — it depends on it. AI systems still rely heavily on the same crawlability, indexation, and authority signals that drive organic rankings. A site with weak <a href="/seo-services">technical SEO</a> will struggle to be cited by AI for the same reasons it struggles to rank: the systems can&apos;t reliably read or trust it.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>How long before we see AI citations after the work is done?</dt>

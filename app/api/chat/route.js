@@ -20,7 +20,7 @@ STRICT RULES:
 3. ALWAYS suggest relevant internal pages when applicable to funnel users:
   - Onboarding / Free AI Audit / Quote & Estimate: [Get a Quote / AI Visibility Audit](/onboarding)
   - Contact Us: [Contact Us](/contact)
-  - Core SEO Services: [SEO & Discoverability](/services/seo-discoverability)
+  - Core SEO Services: [SEO & Discoverability](/seo-services)
   - Web Development: [Web & App Development](/services/web-app-development)
   - AI Consulting: [AI & LLM Consulting](/services/ai-llm-consulting)
   - Tools Hub (Domain, IP, SSL checks): [Free Tools Hub](/tools)
