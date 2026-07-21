@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { CLIENT_SEARCH_WINS } from '../lib/clientSearchWins';
 
 export default function CaseStudyTemplate({ cs }) {
+  const searchWins = CLIENT_SEARCH_WINS[cs.slug];
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -84,6 +86,28 @@ export default function CaseStudyTemplate({ cs }) {
           </div>
         </div>
       </section>
+
+      {/* ══════════ Search Console performance (this client only) ══════════ */}
+      {searchWins && (
+        <section className="section" id="search-wins" aria-label={`${cs.client} Search Console performance`}>
+          <div className="container">
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>What&apos;s moving in search for {cs.client}</p>
+            <p className="search-wins__note" data-reveal>{searchWins.note}</p>
+            <div className="search-wins__grid">
+              {searchWins.cards.map((c) => (
+                <div className="search-wins__card" key={c.id} data-reveal>
+                  <span className="search-wins__label">{c.label}</span>
+                  <span className="search-wins__value">
+                    <i data-count={c.value} data-decimals={c.decimals}>{c.display}</i>
+                  </span>
+                  <p className="search-wins__detail">{c.detail}</p>
+                  <span className="search-wins__window">{c.window}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ══════════ Body ══════════ */}
       <section className="section" id="body">
