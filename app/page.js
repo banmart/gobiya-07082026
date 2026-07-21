@@ -118,6 +118,7 @@ export default function Home() {
                 <span className="search-wins__label">{c.label}</span>
                 <span className="search-wins__value">
                   <i data-count={c.value} data-decimals={c.decimals}>{c.display}</i>
+                  {c.suffix && <em>{c.suffix}</em>}
                 </span>
                 <p className="search-wins__detail">{c.detail}</p>
                 <span className="search-wins__window">{c.window}</span>

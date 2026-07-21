@@ -79,12 +79,16 @@ export default function CaseStudyTemplate({ cs }) {
           <div className="container">
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>What&apos;s moving in search for {cs.client}</p>
             <p className="search-wins__note" data-reveal>{searchWins.note}</p>
-            <div className="search-wins__grid">
+            <div
+              className="search-wins__grid"
+              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}
+            >
               {searchWins.cards.map((c) => (
                 <div className="search-wins__card" key={c.id} data-reveal>
                   <span className="search-wins__label">{c.label}</span>
                   <span className="search-wins__value">
                     <i data-count={c.value} data-decimals={c.decimals}>{c.display}</i>
+                    {c.suffix && <em>{c.suffix}</em>}
                   </span>
                   <p className="search-wins__detail">{c.detail}</p>
                   <span className="search-wins__window">{c.window}</span>
