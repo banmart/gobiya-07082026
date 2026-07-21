@@ -73,20 +73,6 @@ export default function CaseStudyTemplate({ cs }) {
         </section>
       )}
 
-      {/* ══════════ Headline metrics ══════════ */}
-      <section className="section section--tint" id="results">
-        <div className="container">
-          <div className="capability-grid">
-            {cs.study.metrics.map((m) => (
-              <div className="capability-card" key={m.label} data-reveal>
-                <h3 className="capability-card__title" style={{ fontSize: '2.5rem' }}>{m.value}</h3>
-                <p className="capability-card__desc">{m.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ══════════ Search Console performance (this client only) ══════════ */}
       {searchWins && (
         <section className="section" id="search-wins" aria-label={`${cs.client} Search Console performance`}>
