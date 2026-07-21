@@ -1,5 +1,6 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { SERVICES } from '../../lib/services';
+import { SERVICES_FLAT } from '../../lib/servicesFlat';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
@@ -10,7 +11,7 @@ export const metadata = buildMetadata({
   path: '/services',
 });
 
-const PILLARS = ['Performance', 'Creativity', 'Relations'];
+const PILLARS = ['Performance', 'Relations'];
 
 export default function ServicesPage() {
   const byPillar = PILLARS.map((pillar) => ({
@@ -39,7 +40,21 @@ export default function ServicesPage() {
       </section>
       <TopicMarquee topics={["Core Services", "Technical SEO", "AI Optimization", "Link Building", "Web Development"]} />
 
-
+      <section className="section" id="flat-services">
+        <div className="container">
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Core Services</p>
+          <div className="insights__grid">
+            {Object.values(SERVICES_FLAT).map((s) => (
+              <a className="insights__card" href={`/${s.slug}`} key={s.slug} data-reveal>
+                <span className="insights__card-cat">Consulting</span>
+                <h2 className="insights__card-title">{s.title.split(' - ')[0]}</h2>
+                <p className="insights__card-dek">{s.metaDescription}</p>
+                <span className="link-arrow">Learn more<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {byPillar.map(({ pillar, items }) => (
         <section className="section" id={pillar.toLowerCase()} key={pillar}>
