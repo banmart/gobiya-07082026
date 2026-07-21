@@ -65,8 +65,6 @@ for (const file of files) {
     newTopics = '{["Traffic Spikes", "Keyword Dominance", "Revenue Growth", "Algorithm Recovery", "Search Visibility"]}';
   } else if (file.includes('privacy')) {
     newTopics = '{["Data Protection", "Privacy Policy", "User Security", "Analytics Consent", "Compliance"]}';
-  } else if (file.includes('services\\seo-discoverability')) {
-    newTopics = '{["Technical SEO Audits", "Crawl Budget", "Indexation Fixes", "Site Architecture", "Schema Markup"]}';
   } else if (file.includes('services')) {
     newTopics = '{["Core Services", "Technical SEO", "AI Optimization", "Link Building", "Web Development"]}';
   } else if (file.includes('terms')) {
