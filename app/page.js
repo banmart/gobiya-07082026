@@ -86,7 +86,7 @@ export default function Home() {
             <em className="hero__title-accent">era of answers.</em>
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>If you are searching for a &quot;website marketing company near me,&quot; Gobiya is your local partner in Los Angeles, Glendale, and Koreatown. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
+            <p className="hero__sub" data-reveal>If you are searching for a &quot;website marketing company near me,&quot; Gobiya is your local partner in Los Angeles. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
@@ -189,7 +189,7 @@ export default function Home() {
                 The Q3 <span>Growth Bundle</span> Offer
               </h2>
               <div className="offer-card__price-pill">
-                Custom Web Dev Starting at <strong>$3,500</strong> &amp; up
+                Custom Web Dev Starting at <strong>$3,500</strong>
               </div>
               <p className="offer-card__desc">
                 Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube AI video pre-roll ad campaign to drive traffic from day one.

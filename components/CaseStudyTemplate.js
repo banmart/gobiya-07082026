@@ -120,17 +120,28 @@ export default function CaseStudyTemplate({ cs }) {
                 <p>{cs.study.testimonial.quote}</p>
               </blockquote>
               <div className="testimonial-rotator__byline">
-                <p className="testimonial-rotator__attrib">
-                  {cs.study.testimonial.name && (
-                    <>
-                      <span className="testimonial-rotator__name">{cs.study.testimonial.name}</span>
-                      <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
-                    </>
+                <div className="testimonial-rotator__who">
+                  {cs.study.testimonial.photo && (
+                    <Image
+                      src={cs.study.testimonial.photo}
+                      alt={cs.study.testimonial.name || cs.client}
+                      width={56}
+                      height={56}
+                      className="testimonial-rotator__photo"
+                    />
                   )}
-                  <span className="testimonial-rotator__company">{cs.client}</span>
-                  <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
-                  <span className="testimonial-rotator__role">{cs.study.testimonial.role}</span>
-                </p>
+                  <p className="testimonial-rotator__attrib">
+                    {cs.study.testimonial.name && (
+                      <>
+                        <span className="testimonial-rotator__name">{cs.study.testimonial.name}</span>
+                        <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
+                      </>
+                    )}
+                    <span className="testimonial-rotator__company">{cs.client}</span>
+                    <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
+                    <span className="testimonial-rotator__role">{cs.study.testimonial.role}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

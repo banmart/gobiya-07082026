@@ -940,6 +940,19 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 .testimonial-rotator__company { color: rgba(244, 247, 251, 0.85); }
 .testimonial-rotator__sep { opacity: 0.4; }
 .testimonial-rotator__link { flex: 0 0 auto; }
+.testimonial-rotator__who {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.testimonial-rotator__photo {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+  border: 1px solid var(--border-light);
+}
 
 .testimonial-rotator__controls {
   display: flex;
@@ -2199,14 +2212,27 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
   display: inline-block;
   background: var(--main);
   color: #fff;
-  padding: 0.6rem 1.25rem;
+  padding: 0.85rem 1.75rem;
   border-radius: 2rem;
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
   box-shadow: 0 8px 24px rgba(200, 16, 46, 0.4);
-  transform: rotate(-2deg);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: rotate(-2deg);
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .offer-card__price-pill { animation: price-pill-wiggle 5s ease-in-out infinite; }
+}
+@keyframes price-pill-wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  2% { transform: rotate(9deg); }
+  4% { transform: rotate(-11deg); }
+  6% { transform: rotate(7deg); }
+  8% { transform: rotate(-7deg); }
+  10% { transform: rotate(4deg); }
+  12% { transform: rotate(-2deg); }
 }
 .offer-card__price-pill strong {
   font-size: 1.35em;

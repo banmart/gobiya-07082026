@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 const AUTOPLAY_MS = 7000;
@@ -57,17 +58,28 @@ export default function TestimonialRotator({ items }) {
       </div>
 
       <div className="testimonial-rotator__byline" key={`byline-${index}`}>
-        <p className="testimonial-rotator__attrib">
-          {current.name && (
-            <>
-              <span className="testimonial-rotator__name">{current.name}</span>
-              <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
-            </>
+        <div className="testimonial-rotator__who">
+          {current.photo && (
+            <Image
+              src={current.photo}
+              alt={current.name || current.company}
+              width={56}
+              height={56}
+              className="testimonial-rotator__photo"
+            />
           )}
-          <span className="testimonial-rotator__company">{current.company}</span>
-          <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
-          <span className="testimonial-rotator__role">{current.role}</span>
-        </p>
+          <p className="testimonial-rotator__attrib">
+            {current.name && (
+              <>
+                <span className="testimonial-rotator__name">{current.name}</span>
+                <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
+              </>
+            )}
+            <span className="testimonial-rotator__company">{current.company}</span>
+            <span className="testimonial-rotator__sep" aria-hidden="true">·</span>
+            <span className="testimonial-rotator__role">{current.role}</span>
+          </p>
+        </div>
         {current.href && (
           <a href={current.href} className="link-arrow link-arrow--light testimonial-rotator__link">
             View the case study{CHEVRON}
