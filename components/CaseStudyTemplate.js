@@ -168,8 +168,6 @@ export default function CaseStudyTemplate({ cs }) {
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Go deeper</p>
           <div className="hero__ctas" data-reveal>
             <a href={cs.serviceHref} className="btn btn--ghost">{cs.serviceLabel}</a>
-            <a href={cs.industryHref} className="btn btn--ghost">{cs.tag}</a>
-            <a href={cs.outcomeHref} className="btn btn--ghost">The outcome</a>
           </div>
         </div>
       </section>
