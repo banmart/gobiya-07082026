@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
-import { SERVICES } from '../lib/services';
+import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import { INSIGHTS } from '../lib/insights';
 import { SEARCH_WINS } from '../lib/searchWins';
 import { TESTIMONIALS } from '../lib/testimonials';
@@ -59,7 +59,7 @@ const CLIENT_LOGOS = [
 ];
 
 export default function Home() {
-  const services = Object.values(SERVICES);
+  const services = CONSULTING_ITEMS;
   const latest = [...INSIGHTS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 
   return (
@@ -70,7 +70,20 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Expert SEO Services Company · LA · Glendale · Koreatown</p>
           <h1 className="hero__title" data-split>
-            Expert SEO Services Company | Gobiya Internet Marketing
+            Expert SEO Services Company the{' '}
+            <span className="hero__title-video">
+              <video
+                src="/assets/videos/gobiyaRace.webm"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="hero__title-video-el"
+                aria-hidden="true"
+              />
+            </span>{' '}
+            <em className="hero__title-accent">Affordable Internet Marketing.</em>
           </h1>
           <div className="hero__row">
             <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
@@ -122,10 +135,10 @@ export default function Home() {
           <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>Every discipline a search-first company needs, under one mandate.</h2>
           <div className="svc-grid">
             {services.map((s) => (
-              <a className="svc-card" href={`/services/${s.slug}`} key={s.slug} data-reveal>
-                <span className="svc-card__tag">{s.pillar}</span>
+              <a className="svc-card" href={s.href} key={s.slug} data-reveal>
+                <span className="svc-card__tag">{s.tag}</span>
                 <h3 className="svc-card__title">{s.title}</h3>
-                <p className="svc-card__desc">{s.blurb}</p>
+                <p className="svc-card__desc">{s.desc}</p>
                 <span className="link-arrow">Explore{ARROW}</span>
               </a>
             ))}

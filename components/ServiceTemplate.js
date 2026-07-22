@@ -1,5 +1,5 @@
 import Breadcrumbs from './Breadcrumbs';
-import { SERVICES } from '../lib/services';
+import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
 
@@ -100,16 +100,16 @@ export default function ServiceTemplate({ service }) {
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Related consulting</p>
           <div className="related__grid">
             {(() => {
-              const siblings = Object.values(SERVICES).filter((s) => s.slug !== service.slug);
+              const siblings = CONSULTING_ITEMS.filter((s) => s.slug !== service.slug);
               const related = [
-                ...siblings.filter((s) => s.pillar === service.pillar),
-                ...siblings.filter((s) => s.pillar !== service.pillar),
+                ...siblings.filter((s) => s.tag === service.pillar),
+                ...siblings.filter((s) => s.tag !== service.pillar),
               ].slice(0, 3);
               return related.map((s) => (
-                <a className="svc-card" href={`/services/${s.slug}`} key={s.slug} data-reveal>
-                  <span className="svc-card__tag">{s.pillar}</span>
+                <a className="svc-card" href={s.href} key={s.slug} data-reveal>
+                  <span className="svc-card__tag">{s.tag}</span>
                   <h3 className="svc-card__title">{s.title}</h3>
-                  <p className="svc-card__desc">{s.blurb}</p>
+                  <p className="svc-card__desc">{s.desc}</p>
                 </a>
               ));
             })()}

@@ -1,5 +1,5 @@
 import { CONTACT } from '../lib/nav';
-import { SERVICES } from '../lib/services';
+import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 
 const BASE = 'https://www.gobiya.com';
 
@@ -41,12 +41,12 @@ const SCHEMA = {
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Services',
-        itemListElement: Object.values(SERVICES).map((s) => ({
+        itemListElement: CONSULTING_ITEMS.map((s) => ({
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
             name: s.title,
-            url: `${BASE}/services/${s.slug}`,
+            url: `${BASE}${s.href}`,
           },
         })),
       },

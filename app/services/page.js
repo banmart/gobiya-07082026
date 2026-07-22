@@ -1,6 +1,6 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { SERVICES } from '../../lib/services';
-import { SERVICES_FLAT } from '../../lib/servicesFlat';
+import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
@@ -44,11 +44,11 @@ export default function ServicesPage() {
         <div className="container">
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Core Services</p>
           <div className="insights__grid">
-            {Object.values(SERVICES_FLAT).map((s) => (
-              <a className="insights__card" href={`/${s.slug}`} key={s.slug} data-reveal>
+            {CONSULTING_ITEMS.filter((s) => s.tag === 'Consulting').map((s) => (
+              <a className="insights__card" href={s.href} key={s.slug} data-reveal>
                 <span className="insights__card-cat">Consulting</span>
-                <h2 className="insights__card-title">{s.title.split(' - ')[0]}</h2>
-                <p className="insights__card-dek">{s.metaDescription}</p>
+                <h2 className="insights__card-title">{s.title}</h2>
+                <p className="insights__card-dek">{s.desc}</p>
                 <span className="link-arrow">Learn more<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></span>
               </a>
             ))}

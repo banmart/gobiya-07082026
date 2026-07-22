@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
-import { SERVICES_FLAT } from '../lib/servicesFlat';
+import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 
 export default function FlatServiceTemplate({ service }) {
   return (
@@ -150,13 +150,13 @@ export default function FlatServiceTemplate({ service }) {
         <div className="container">
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Related consulting</p>
           <div className="related__grid">
-            {['seo-services', 'geo-services', 'ppc-management-services', 'content-marketing-services']
-              .filter((slug) => slug !== service.slug)
+            {CONSULTING_ITEMS
+              .filter((s) => s.slug !== service.slug)
               .slice(0, 3)
-              .map((slug) => (
-                <a className="svc-card" href={`/${slug}`} key={slug} data-reveal>
-                  <span className="svc-card__tag">Consulting</span>
-                  <h3 className="svc-card__title">{SERVICES_FLAT[slug].title.split(' - ')[0]}</h3>
+              .map((s) => (
+                <a className="svc-card" href={s.href} key={s.slug} data-reveal>
+                  <span className="svc-card__tag">{s.tag}</span>
+                  <h3 className="svc-card__title">{s.title}</h3>
                 </a>
               ))}
           </div>
