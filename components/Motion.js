@@ -133,6 +133,67 @@ export default function Motion() {
         );
       });
 
+      // ── hero scroll zoom & subtle parallax ──
+      document.querySelectorAll('.page-hero, [data-scroll-zoom]').forEach((hero) => {
+        const target = hero.querySelector('img, video, .hero-zoom-target, .seo-hero__grid > div:last-child');
+        if (!target) return;
+        gsap.to(target, {
+          scale: 1.05,
+          yPercent: 8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.5,
+          },
+        });
+      });
+
+      // ── clip-path curtain reveal & image sweep ──
+      document.querySelectorAll('.img-sweep, [data-sweep], .case-study-media img, .capability-card img').forEach((img) => {
+        gsap.fromTo(
+          img,
+          { clipPath: 'inset(0% 100% 0% 0%)', scale: 1.08 },
+          {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            scale: 1,
+            duration: 1.2,
+            ease: 'expo.out',
+            scrollTrigger: {
+              trigger: img,
+              start: 'top 88%',
+              once: true,
+              onEnter: () => {
+                const parent = img.closest('.img-sweep') || img.parentElement;
+                if (parent) parent.classList.add('is-sweeping');
+              },
+            },
+          }
+        );
+      });
+
+      // ── interactive card scroll zoom ──
+      const cards = document.querySelectorAll('.capability-card, .seo-proof__item, [data-card-zoom]');
+      cards.forEach((card) => {
+        if (isAboveFold(card)) return;
+        gsap.fromTo(
+          card,
+          { scale: 0.95, opacity: 0.8 },
+          {
+            scale: 1,
+            opacity: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 92%',
+              end: 'top 65%',
+              scrub: 0.5,
+            },
+          }
+        );
+      });
+
       // ── magnetic primary CTAs (fine pointers only) ──
       if (window.matchMedia('(pointer: fine)').matches) {
         document.querySelectorAll('.btn--solid').forEach((btn) => {

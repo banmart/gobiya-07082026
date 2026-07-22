@@ -2387,3 +2387,37 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
   }
   .scroll-story__step { min-height: auto; padding-block: 2rem; opacity: 1; }
 }
+
+/* ═══════════ Hero Scroll Zoom & Sweep Utilities ═══════════ */
+.hero-zoom-container {
+  overflow: hidden;
+}
+.hero-zoom-target {
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.img-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.img-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: translateX(-100%) skewX(-20deg);
+  pointer-events: none;
+}
+.img-sweep.is-sweeping::after {
+  animation: sweepLight 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sweepLight {
+  0% { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}
+
