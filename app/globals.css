@@ -435,63 +435,6 @@ a.contact__value:hover { color: var(--main); }
 .nav__logo-word em { color: var(--hint); margin-left: 0.3rem; }
 .nav__links { display: flex; gap: clamp(1.25rem, 2.5vw, 2.5rem); }
 .nav__item { position: relative; display: flex; align-items: center; }
-.nav__link--parent { cursor: default; }
-.nav__caret {
-  display: inline-block;
-  width: 6px; height: 6px;
-  margin-left: 0.4rem;
-  border-right: 1.4px solid currentColor;
-  border-bottom: 1.4px solid currentColor;
-  transform: translateY(-2px) rotate(45deg);
-  transition: transform 0.3s var(--expo-out);
-  opacity: 0.6;
-}
-.nav__item:hover .nav__caret { transform: translateY(-2px) rotate(225deg); }
-
-/* Left-aligned to the trigger (not centered) and a fixed, single-column
-   width — the old center-on-trigger + 3-column layout pushed the Services
-   panel (the widest, leftmost item) off the viewport's left edge. Every
-   dropdown now renders the same narrow, stacked shape regardless of how
-   many groups it holds. */
-.nav__dropdown {
-  position: absolute;
-  top: calc(100% + 1.1rem);
-  left: 0;
-  width: 15rem;
-  background: #fff;
-  border: 1px solid var(--border);
-  box-shadow: 0 1.5rem 3rem rgba(20, 18, 16, 0.1);
-  padding: 1.25rem 1.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(0.5rem);
-  transition: opacity 0.3s var(--expo-out), transform 0.3s var(--expo-out), visibility 0.3s;
-  z-index: 60;
-}
-.nav__item:hover .nav__dropdown,
-.nav__item:focus-within .nav__dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.nav__dropdown-inner { display: flex; flex-direction: column; gap: 1.25rem; }
-.nav__dropdown-group + .nav__dropdown-group { border-top: 1px solid var(--border); padding-top: 1.1rem; }
-.nav__dropdown-heading {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--hint);
-  margin-bottom: 0.6rem;
-}
-.nav__dropdown-group ul { display: flex; flex-direction: column; gap: 0.55rem; }
-.nav__dropdown-group a {
-  font-size: 0.875rem;
-  color: var(--darkest);
-  transition: color 0.25s;
-}
-.nav__dropdown-group a:hover { color: var(--main); }
 
 .nav__link {
   font-size: 0.8125rem;
@@ -549,8 +492,7 @@ a.contact__value:hover { color: var(--main); }
 .menu.is-open { clip-path: inset(0 0 0 0); visibility: visible; }
 .menu__links { display: flex; flex-direction: column; gap: 1.5rem; flex: 1; }
 .menu__block { display: flex; flex-direction: column; gap: 0.6rem; }
-.menu__links a,
-.menu__parent {
+.menu__links a {
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 7vw, 3rem);
   line-height: 1.2;
@@ -562,10 +504,28 @@ a.contact__value:hover { color: var(--main); }
   transition: opacity 0.6s var(--p2-out), transform 0.7s var(--expo-out), color 0.3s;
   transition-delay: calc(0.15s + var(--i, 0) * 60ms);
 }
-.menu__parent { color: rgba(244, 247, 251, 0.55); }
-.menu.is-open .menu__links a,
-.menu.is-open .menu__parent { opacity: 1; transform: none; }
+.menu.is-open .menu__links a { opacity: 1; transform: none; }
 .menu__links a:hover { color: var(--main); }
+.menu__block--more {
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border-light);
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.6s var(--p2-out), transform 0.7s var(--expo-out);
+  transition-delay: calc(0.15s + var(--i, 0) * 60ms);
+}
+.menu.is-open .menu__block--more { opacity: 1; transform: none; }
+.menu__more-heading {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 251, 0.45);
+  margin-bottom: 0.85rem;
+}
 .menu__links em {
   font-family: var(--font-sans);
   font-style: normal;

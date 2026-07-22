@@ -1,5 +1,5 @@
 import { LogoMark } from './Logo';
-import { CONTACT } from '../lib/nav';
+import { SECONDARY_NAV, CONTACT } from '../lib/nav';
 import CookiePreferencesLink from './CookiePreferencesLink';
 
 export default function Footer() {
@@ -15,20 +15,14 @@ export default function Footer() {
             </a>
             <p>Internet marketing consulting, technical SEO, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, founded in 2010.</p>
           </div>
-          <div className="footer__col">
-            <p className="footer__heading">Firm</p>
-            <a href="/about">About</a>
-            <a href="/about/steve-martin">Steve Martin</a>
-            <a href="/work">Work</a>
-            <a href="/insights">Insights</a>
-          </div>
-          <div className="footer__col">
-            <p className="footer__heading">Consulting</p>
-            <a href="/seo-services">SEO Services</a>
-            <a href="/geo-services">GEO Services</a>
-            <a href="/services/authority-link-building">Authority &amp; Link Building</a>
-            <a href="/ai-visibility">AI Visibility</a>
-          </div>
+          {SECONDARY_NAV.map((group) => (
+            <div className="footer__col" key={group.heading}>
+              <p className="footer__heading">{group.heading}</p>
+              {group.items.map((item) => (
+                <a href={item.href} key={item.href}>{item.label}</a>
+              ))}
+            </div>
+          ))}
           <div className="footer__col">
             <p className="footer__heading">Contact</p>
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
