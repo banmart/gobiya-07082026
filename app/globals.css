@@ -294,6 +294,16 @@ a.contact__value:hover { color: var(--main); }
 .process__desc { font-size: 0.9375rem; line-height: 1.7; color: var(--hint); max-width: 34rem; }
 
 .hero__title-accent { color: var(--main); font-style: italic; }
+.hero__title-swash-wrap { position: relative; display: inline-block; }
+.hero__title-swash {
+  position: absolute;
+  left: -3%;
+  bottom: -0.34em;
+  width: 106%;
+  height: auto;
+  color: var(--main);
+  pointer-events: none;
+}
 
 /* buttons */
 .btn {
@@ -570,10 +580,15 @@ a.contact__value:hover { color: var(--main); }
 .hero__eyebrow { margin-bottom: clamp(1.25rem, 2.5vw, 2rem); }
 .hero__title {
   font-family: var(--font-heading);
+  /* font-weight stays 400 — the other 5 weights were deliberately dropped
+     from the font load for LCP (see app/layout.js). Optical weight for the
+     editorial feel comes from size, tighter tracking, and a hairline text
+     stroke instead of a second font-weight download. */
   font-weight: 400;
-  font-size: clamp(3rem, 8.5vw, 8rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  font-size: clamp(3.2rem, 9vw, 8.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  -webkit-text-stroke: 0.4px currentColor;
 }
 /* Inline video pill inside hero h1 */
 .hero__title-video {

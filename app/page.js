@@ -7,7 +7,7 @@ import { TESTIMONIALS } from '../lib/testimonials';
 import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
-import { ServiceIcon, PlatformIcon, CircleMark } from '../components/icons/HandDrawn';
+import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
   title: 'Expert SEO Services Company | Gobiya Internet Marketing',
@@ -84,7 +84,7 @@ export default function Home() {
                 aria-hidden="true"
               />
             </span>{' '}
-            <em className="hero__title-accent">to be seen first.</em>
+            <em className="hero__title-accent">to be seen <span className="hero__title-swash-wrap">first<Swash className="hero__title-swash" /></span>.</em>
           </h1>
           <div className="hero__row">
             <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. Search isn&apos;t just a Google box anymore — it&apos;s every place someone asks a question about your business, so we make local and global brands findable everywhere that happens, recognizable enough to be remembered, and the answer ChatGPT, Perplexity, and AI Overviews actually give, not just a link they skip. One accountable team runs all of it, not a patchwork of vendors.</p>

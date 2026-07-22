@@ -211,3 +211,29 @@ export function CircleMark({ size = 60, className }) {
     </svg>
   );
 }
+
+// Underline swash — a single confident stroke (plus the usual faint ghost
+// pass) that draws itself once via the same [data-draw] mechanism as the
+// pillar glyphs, then stays put. No loop, no repeat.
+export function Swash({ size = 180, className }) {
+  return (
+    <svg width={size} height={size * 0.24} viewBox="0 0 220 52" className={className} data-draw aria-hidden="true">
+      <path
+        d="M4,18 C46,40 96,42 138,26 C164,16 188,8 216,13"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.32"
+        transform="translate(1 -1) rotate(0.6 110 26)"
+      />
+      <path
+        d="M4,18 C46,40 96,42 138,26 C164,16 188,8 216,13"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="5.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
