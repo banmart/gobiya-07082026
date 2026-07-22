@@ -6,8 +6,72 @@ import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import { ServiceIcon } from './icons/HandDrawn';
 
 export default function FlatServiceTemplate({ service }) {
+  const serviceName = service.title.split(' - ')[0];
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: serviceName,
+    serviceType: service.eyebrow,
+    description: service.metaDescription || service.intro,
+    url: `https://www.gobiya.com/${service.slug}`,
+    provider: {
+      '@type': 'ProfessionalService',
+      name: 'Gobiya',
+      url: 'https://www.gobiya.com',
+      telephone: '+1-323-744-1338',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Los Angeles',
+        addressRegion: 'CA',
+        addressCountry: 'US',
+      },
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${serviceName} Capabilities`,
+      itemListElement: service.capabilities?.map((c) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: c.title,
+          description: c.desc,
+        },
+      })),
+    },
+  };
+
+  const faqSchema = service.faqs?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: service.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.a.replace(/<[^>]+>/g, ''),
+          },
+        })),
+      }
+    : null;
+
   return (
     <main id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container seo-hero__grid">
