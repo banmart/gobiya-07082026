@@ -153,6 +153,16 @@ export default function ToolsHub() {
 
         </div>
       </section>
+
+      {/* Conversion Bridge */}
+      <section className="section section--dark" style={{ padding: '4rem 0' }}>
+        <div className="container container--narrow" style={{ textAlign: 'center' }}>
+          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Take Action</p>
+          <h2 className="statement" data-split style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Need an automated technical & AI visibility audit?</h2>
+          <p className="lede" data-reveal style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our engineering team audits site rendering, structured data schema, and AI citation potential end-to-end.</p>
+          <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Get a free technical & AI audit</a>
+        </div>
+      </section>
     </main>
   );
 }

@@ -25,7 +25,7 @@ export default function AIVisibilityPage() {
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>The biggest shift in how people find businesses since mobile search.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>A growing share of research now ends inside an AI answer — ChatGPT, Perplexity, Google AI&nbsp;Overviews — before a user ever clicks a blue link. If your site isn&apos;t structured to be read, understood, and cited by those systems, you&apos;re invisible to the fastest-growing slice of search.</p>
           <div className="hero__ctas" data-reveal>
-            <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
+            <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Audit Your Brand&apos;s AI Citation Score</a>
             <a href="#how" className="btn btn--ghost">How it works</a>
           </div>
         

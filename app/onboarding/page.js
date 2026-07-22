@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import OnboardingStepper from '../../components/OnboardingStepper';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
@@ -24,7 +25,9 @@ export default function OnboardingPage() {
 
       <section className="section section--tint stepper-section">
         <div className="container container--narrow">
-          <OnboardingStepper />
+          <Suspense fallback={<div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>Loading form...</div>}>
+            <OnboardingStepper />
+          </Suspense>
         </div>
       </section>
 

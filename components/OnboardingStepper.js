@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const INDUSTRIES = [
   { value: 'local-service', label: 'Local service business' },
@@ -68,10 +68,18 @@ function toggleChallenge(list, value) {
 
 export default function OnboardingStepper() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [form, setForm] = useState(INITIAL_STATE);
   const [error, setError] = useState('');
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+
+  useEffect(() => {
+    const goalParam = searchParams?.get('goal') || searchParams?.get('service');
+    if (goalParam) {
+      setForm((prev) => ({ ...prev, goal: goalParam }));
+    }
+  }, [searchParams]);
 
   function update(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -145,6 +153,14 @@ export default function OnboardingStepper() {
 
   return (
     <form className="stepper" onSubmit={handleSubmit} noValidate>
+      <div className="stepper__fast-contact" style={{ marginBottom: '1.25rem', padding: '0.75rem 1.25rem', background: 'rgba(255,255,255,0.03)', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+        <span style={{ color: 'var(--text-muted)' }}>Prefer a direct quick response?</span>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <a href="tel:+13237441338" style={{ fontWeight: 600, color: 'var(--main)', textDecoration: 'none' }}>📞 323-744-1338</a>
+          <a href="mailto:hello@gobiya.com" style={{ fontWeight: 600, color: 'var(--text)', textDecoration: 'none' }}>✉️ hello@gobiya.com</a>
+        </div>
+      </div>
+
       <div className="stepper__progress" role="progressbar" aria-valuemin={1} aria-valuemax={STEP_COUNT} aria-valuenow={step}>
         <div className="stepper__progress-bar" style={{ width: `${(step / STEP_COUNT) * 100}%` }} />
       </div>
