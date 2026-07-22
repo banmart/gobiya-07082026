@@ -70,7 +70,7 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Expert SEO Services Company · LA · Glendale · Koreatown</p>
           <h1 className="hero__title" data-split>
-            Expert SEO Services Company the{' '}
+            Every search starts the{' '}
             <span className="hero__title-video">
               <video
                 src="/assets/videos/gobiyaRace.webm"
@@ -83,7 +83,7 @@ export default function Home() {
                 aria-hidden="true"
               />
             </span>{' '}
-            <em className="hero__title-accent">Affordable Internet Marketing.</em>
+            <em className="hero__title-accent">to be seen first.</em>
           </h1>
           <div className="hero__row">
             <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
@@ -290,6 +290,14 @@ export default function Home() {
             <div className="faq__item" data-reveal>
               <dt>How has the evolution of search engine algorithms changed the game?</dt>
               <dd>Algorithms have moved from lexical matching (finding words on a page) to semantic understanding (understanding the topic) to generative answers (reading the page and synthesizing an answer). The result is that you can no longer win by just having the most complete guide; you have to be the most citable authority with unique insights that an AI model actually wants to quote.</dd>
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>What does an SEO services company actually do, day to day?</dt>
+              <dd>Less blog-posting than most people expect. A real engagement starts with a technical audit — can Google and AI crawlers actually read your site — then moves into structured data, content built around real search demand, and authority work like digital PR and link building. We run all of it as one accountable team rather than handing pieces off to separate vendors. See how the <a href="/about/approach">full process</a> runs end to end.</dd>
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>How do I choose an SEO services company near me instead of a national chain?</dt>
+              <dd>A local agency usually means direct access to the person doing the strategy work, not an account manager relaying updates from an offshore team. Ask who actually touches your account, whether they can show verified Search Console results (not just self-reported numbers), and whether their process covers AI visibility, not just Google rankings. <a href="/work">Our case studies</a> show real, client-verified outcomes.</dd>
             </div>
           </dl>
         </div>

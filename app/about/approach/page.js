@@ -20,7 +20,7 @@ export default function ApproachPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About · Approach</p>
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our SEO Process &amp; Methodology</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Foundation first. Everything else compounds on top of it.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Most SEO failures aren&apos;t a strategy problem — they&apos;re a sequencing problem. Content and links get built on top of a technical foundation that can&apos;t support them. We work in a fixed order for a reason: each layer only works if the one underneath it is solid.</p>
         

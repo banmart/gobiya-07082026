@@ -19,7 +19,7 @@ export default function ContactPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Contact</p>
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Contact · Los Angeles SEO &amp; AI Visibility Agency</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Let's talk about what's actually happening in your search traffic.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation. Prefer a form? <a href="/onboarding">Start with the five-step questionnaire</a> and Steve will follow up directly.</p>
         
@@ -73,6 +73,29 @@ export default function ContactPage() {
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="faq section" id="faq">
+        <div className="container container--narrow">
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Before you reach out</p>
+          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
+            A few things people usually ask first.
+          </h2>
+          <dl className="faq__list">
+            <div className="faq__item" data-reveal>
+              <dt>What should I include when I reach out?</dt>
+              <dd>Your domain, at minimum — that&apos;s enough for us to pull a first look at crawlability, indexation, and AI-citation gaps before we talk. If you already know the problem (a traffic drop, a rebuild gone wrong, an ad account burning budget), mention it; it saves a round of back-and-forth.</dd>
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>How fast will I hear back?</dt>
+              <dd>Steve reads and answers messages himself, usually within one business day. There&apos;s no ticketing queue or account-manager relay in between.</dd>
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>Is the initial audit actually free, or is that a sales pitch?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'It&apos;s a real look at your site&apos;s technical health and AI visibility, not a scripted pitch deck. Prefer a structured version of that same conversation? <a href="/onboarding">Start the five-step questionnaire</a> instead.' }} />
+            </div>
+          </dl>
         </div>
       </section>
 

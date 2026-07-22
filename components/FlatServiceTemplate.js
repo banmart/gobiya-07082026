@@ -16,7 +16,8 @@ export default function FlatServiceTemplate({ service }) {
               { label: 'Consulting', href: '/services' },
               { label: service.title.split(' - ')[0] },
             ]} />
-            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>{service.title}</h1>
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{service.eyebrow}</p>
+            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>{service.h1}</h1>
             <p className="lede" data-reveal style={{ marginInline: 0 }}>{service.intro}</p>
             <div className="hero__ctas" data-reveal style={{ justifyContent: 'flex-start' }}>
               <a href="/onboarding" className="btn btn--solid">Get a free audit</a>

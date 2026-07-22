@@ -20,7 +20,7 @@ export default function SteveMartinPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About · Steve Martin</p>
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Steve Martin · Los Angeles SEO Expert</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Twenty-five years of watching search change, and adapting every time.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Founder and Principal of Gobiya. A career spent in web development and search, close enough to the ground to have tracked and adapted to every major shift in how Google ranks pages.</p>
         

@@ -16,7 +16,7 @@ export default function AboutPage() {
       <section className="page-hero page-hero--left section">
         <div className="container seo-hero__grid">
           <div>
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About Gobiya</p>
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About Gobiya · Los Angeles SEO Agency Since 2010</p>
             <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>Fourteen years recovering traffic that algorithm updates took away.</h1>
             <p className="lede" data-reveal style={{ marginInline: 0 }}>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
           </div>
@@ -57,6 +57,34 @@ export default function AboutPage() {
               <span className="numbers__value">Now</span>
             </li>
           </ul>
+        </div>
+      </section>
+
+      {/* ══════════ FAQ ══════════ */}
+      <section className="faq section" id="faq">
+        <div className="container container--narrow">
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
+          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
+            About Gobiya, plainly explained.
+          </h2>
+          <dl className="faq__list">
+            <div className="faq__item" data-reveal>
+              <dt>Is Gobiya really based in Los Angeles, or is this a marketing front for an offshore team?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'One real office at 3580 Wilshire Blvd in Los Angeles, founded and still run day-to-day by Steve Martin. <a href="/about/steve-martin">Meet Steve</a>, or see the office details on our <a href="/contact">contact page</a>.' }} />
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>How big is the Gobiya team, and will I actually work with senior people?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'Gobiya is built around direct access to the person doing the strategy work, rather than an account-management layer between you and execution. <a href="/about/steve-martin">Steve runs engagements directly</a>, instead of handing them off to a rotating junior team.' }} />
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>Does Gobiya only work with businesses in Los Angeles?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'Our roots and a lot of our referral relationships are in Los Angeles, but the work itself — technical SEO, GEO, content, and paid search — travels. We work with local and national clients alike; see examples across industries in <a href="/work">our case studies</a>.' }} />
+            </div>
+            <div className="faq__item" data-reveal>
+              <dt>Why has Gobiya been around since 2010 while a lot of agencies don&apos;t last?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'Because the company was built around adapting to how search actually changes, not a single fixed playbook. <a href="/about/approach">Our approach</a> walks through the process that&apos;s been rebuilt as algorithms and AI answer engines have evolved over fourteen years.' }} />
+            </div>
+          </dl>
         </div>
       </section>
 

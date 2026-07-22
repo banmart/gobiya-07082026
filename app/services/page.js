@@ -28,7 +28,7 @@ export default function ServicesPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Consulting</p>
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Consulting Services · SEO, GEO, PPC &amp; Web Development</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Every lever, built to work together.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Performance, creativity, and relations — three disciplines that compound instead of compete when they're run by one team.</p>
         
