@@ -9,9 +9,9 @@ import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
 
 export const metadata = buildMetadata({
-  title: 'Website Marketing Company | Gobiya',
+  title: 'Expert SEO Services Company | Gobiya Internet Marketing',
   description:
-    'Gobiya is a website marketing company helping brands rank higher, get found in Google, and get cited by AI. Get a free audit.',
+    'Gobiya is an expert SEO services company helping brands rank higher, get found in Google, and get cited by AI. Real client results, free audit.',
   path: '/',
 });
 
@@ -68,25 +68,12 @@ export default function Home() {
       {/* ══ 1. Hero ══ */}
       <section className="hero" id="hero">
         <div className="container">
-          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Website Marketing Company · LA · Glendale · Koreatown</p>
+          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Expert SEO Services Company · LA · Glendale · Koreatown</p>
           <h1 className="hero__title" data-split>
-            The website marketing company built for the{' '}
-            <span className="hero__title-video">
-              <video
-                src="/assets/videos/gobiyaRace.webm"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="hero__title-video-el"
-                aria-hidden="true"
-              />
-            </span>{' '}
-            <em className="hero__title-accent">era of answers.</em>
+            Expert SEO Services Company | Gobiya Internet Marketing
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>If you are searching for a &quot;website marketing company near me,&quot; Gobiya is your local partner in Los Angeles. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
+            <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
