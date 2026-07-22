@@ -2,6 +2,7 @@ import Breadcrumbs from './Breadcrumbs';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
+import { ServiceIcon } from './icons/HandDrawn';
 
 export default function ServiceTemplate({ service }) {
   return (
@@ -107,6 +108,7 @@ export default function ServiceTemplate({ service }) {
               ].slice(0, 3);
               return related.map((s) => (
                 <a className="svc-card" href={s.href} key={s.slug} data-reveal>
+                  <ServiceIcon slug={s.slug} />
                   <span className="svc-card__tag">{s.tag}</span>
                   <h3 className="svc-card__title">{s.title}</h3>
                   <p className="svc-card__desc">{s.desc}</p>

@@ -7,6 +7,7 @@ import { TESTIMONIALS } from '../lib/testimonials';
 import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
+import { ServiceIcon, PlatformIcon, CircleMark } from '../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
   title: 'Expert SEO Services Company | Gobiya Internet Marketing',
@@ -86,7 +87,7 @@ export default function Home() {
             <em className="hero__title-accent">to be seen first.</em>
           </h1>
           <div className="hero__row">
-            <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. We make local and global brands findable in Google, cited by ChatGPT and AI Overviews, and profitable through technical SEO, content, and paid search — one accountable team, not a patchwork of vendors.</p>
+            <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. Search isn&apos;t just a Google box anymore — it&apos;s every place someone asks a question about your business, so we make local and global brands findable everywhere that happens, recognizable enough to be remembered, and the answer ChatGPT, Perplexity, and AI Overviews actually give, not just a link they skip. One accountable team runs all of it, not a patchwork of vendors.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
@@ -136,6 +137,7 @@ export default function Home() {
           <div className="svc-grid">
             {services.map((s) => (
               <a className="svc-card" href={s.href} key={s.slug} data-reveal>
+                <ServiceIcon slug={s.slug} />
                 <span className="svc-card__tag">{s.tag}</span>
                 <h3 className="svc-card__title">{s.title}</h3>
                 <p className="svc-card__desc">{s.desc}</p>
@@ -151,19 +153,20 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where buyers ask first, now</p>
           <h2 className="offices__title" data-split>Search didn&apos;t disappear. It moved into a conversation.</h2>
+          <p className="offices__intro" data-reveal>We&apos;re not another SEO shop chasing blue-link rankings. A buyer asks once and acts on whatever answer comes back — so we engineer your brand to be that answer, on every platform where the question gets asked.</p>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col">
-              <span className="offices__city">Google AI Overviews</span>
+              <span className="offices__city"><PlatformIcon name="Google AI Overviews" />Google AI Overviews</span>
               <span className="offices__addr">Summarized answers above the fold, sourced from a handful of cited pages</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col">
-              <span className="offices__city">ChatGPT</span>
+              <span className="offices__city"><PlatformIcon name="ChatGPT" />ChatGPT</span>
               <span className="offices__addr">Browses and cites live sources when asked for recommendations or comparisons</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col">
-              <span className="offices__city">Perplexity</span>
+              <span className="offices__city"><PlatformIcon name="Perplexity" />Perplexity</span>
               <span className="offices__addr">Built entirely around citing sources — visibility here is binary: cited or invisible</span>
               <span className="offices__tag">Live</span>
             </li>
@@ -190,7 +193,7 @@ export default function Home() {
                 The Q3 <span>Growth Bundle</span> Offer
               </h2>
               <div className="offer-card__price-pill">
-                Custom Web Dev Starting at <strong>$3,500</strong>
+                Custom Web Dev Starting at <strong className="price-mark">$3,500<CircleMark className="price-mark__circle" /></strong>
               </div>
               <p className="offer-card__desc">
                 Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube AI video pre-roll ad campaign to drive traffic from day one.
@@ -221,6 +224,7 @@ export default function Home() {
             {PILLARS.map((p) => (
               <div className="pillar" key={p.title} data-reveal>
                 <svg className="pillar__glyph" viewBox="0 0 48 48" width="48" height="48" data-draw aria-hidden="true">
+                  <path d={p.d} fill="none" stroke="currentColor" strokeWidth="1.4" opacity="0.32" transform="translate(0.8 -0.6) rotate(0.8 24 24)" />
                   <path d={p.d} fill="none" stroke="currentColor" strokeWidth="1.5" />
                 </svg>
                 <h3 className="pillar__title">{p.title}</h3>

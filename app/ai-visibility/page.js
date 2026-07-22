@@ -2,6 +2,7 @@ import HeroQuickForm from '../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
+import { PlatformIcon } from '../../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
   title: 'AI Visibility & GEO — AI Marketing Tools That Get You Cited',
@@ -53,27 +54,27 @@ export default function AIVisibilityPage() {
           <h2 className="offices__title" data-split>Every major AI answer engine reads your site differently. We build for all of them.</h2>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col" data-reveal>
-              <span className="offices__city">Google AI Overviews</span>
+              <span className="offices__city"><PlatformIcon name="Google AI Overviews" />Google AI Overviews</span>
               <span className="offices__addr">Synthesized answers above organic results, drawn from a small set of cited pages per query</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
-              <span className="offices__city">ChatGPT</span>
+              <span className="offices__city"><PlatformIcon name="ChatGPT" />ChatGPT</span>
               <span className="offices__addr">Browses and cites live sources for recommendations, comparisons, and "best of" queries</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
-              <span className="offices__city">Perplexity</span>
+              <span className="offices__city"><PlatformIcon name="Perplexity" />Perplexity</span>
               <span className="offices__addr">An answer engine built entirely around citation — visibility here is binary: cited or invisible</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
-              <span className="offices__city">Google Gemini</span>
+              <span className="offices__city"><PlatformIcon name="Google Gemini" />Google Gemini</span>
               <span className="offices__addr">Powers AI Mode and Overviews, weighted heavily toward Google&apos;s existing Knowledge Graph entities</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
-              <span className="offices__city">Claude</span>
+              <span className="offices__city"><PlatformIcon name="Claude" />Claude</span>
               <span className="offices__addr">Growing web-search and citation use in research and business-recommendation contexts</span>
               <span className="offices__tag">Growing</span>
             </li>

@@ -3,6 +3,7 @@ import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
+import { ServiceIcon } from './icons/HandDrawn';
 
 export default function FlatServiceTemplate({ service }) {
   return (
@@ -156,6 +157,7 @@ export default function FlatServiceTemplate({ service }) {
               .slice(0, 3)
               .map((s) => (
                 <a className="svc-card" href={s.href} key={s.slug} data-reveal>
+                  <ServiceIcon slug={s.slug} />
                   <span className="svc-card__tag">{s.tag}</span>
                   <h3 className="svc-card__title">{s.title}</h3>
                 </a>
