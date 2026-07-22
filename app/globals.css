@@ -2326,14 +2326,14 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 }
 .scroll-story__text { display: flex; flex-direction: column; }
 .scroll-story__step {
-  min-height: 78svh;
+  min-height: clamp(340px, 52vh, 520px);
   display: flex;
   align-items: center;
-  opacity: 0.4;
-  transition: opacity 0.5s var(--expo-out);
+  opacity: 0.35;
+  transition: opacity 0.4s var(--expo-out), transform 0.4s var(--expo-out);
 }
 .scroll-story__step.is-active { opacity: 1; }
-.scroll-story__step-inner { max-width: 30rem; padding-block: 1rem; }
+.scroll-story__step-inner { max-width: 30rem; padding-block: 1.5rem; }
 .scroll-story__client {
   display: block;
   font-size: 0.75rem;

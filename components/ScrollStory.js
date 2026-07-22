@@ -80,8 +80,8 @@ export default function ScrollStory() {
         if (!el) return;
         ScrollTrigger.create({
           trigger: el,
-          start: 'top center',
-          end: 'bottom center',
+          start: 'top 60%',
+          end: 'bottom 40%',
           onEnter: () => setActiveIndex(i),
           onEnterBack: () => setActiveIndex(i),
         });
@@ -94,12 +94,12 @@ export default function ScrollStory() {
             video,
             { scale: 1.02 },
             {
-              scale: 1.1,
+              scale: 1.08,
               ease: 'none',
               scrollTrigger: {
                 trigger: el,
-                start: 'top bottom',
-                end: 'bottom top',
+                start: 'top 80%',
+                end: 'bottom 20%',
                 scrub: 0.6,
               },
             }
@@ -107,21 +107,27 @@ export default function ScrollStory() {
         }
       });
 
-      // pin the visual column only once there's room for it beside the
-      // text (matches the CSS breakpoint that switches it to sticky).
-      // Trigger is the grid itself, not the whole section — pinning
-      // against the section would lock the video wherever it happened
-      // to sit under the eyebrow/heading, leaving it below the fold.
-      // Offsetting start by the fixed nav's height keeps it from
-      // pinning underneath the nav bar.
-      const navH = document.querySelector('.nav')?.offsetHeight || 72;
+      // Pin the visual column vertically centered in the viewport space below
+      // the fixed top navigation bar.
       mm.add('(min-width: 900px)', () => {
+        const getTopOffset = () => {
+          const navH = document.querySelector('.nav')?.offsetHeight || 72;
+          const visH = visualRef.current?.offsetHeight || 320;
+          const targetTop = (window.innerHeight + navH - visH) / 2;
+          return Math.max(navH + 20, targetTop);
+        };
+
         ScrollTrigger.create({
           trigger: gridRef.current,
-          start: `top top+=${navH}`,
-          end: 'bottom bottom',
+          start: () => `top top+=${getTopOffset()}`,
+          end: () => {
+            const visH = visualRef.current?.offsetHeight || 320;
+            const topOffset = getTopOffset();
+            return `bottom top+=${topOffset + visH}`;
+          },
           pin: visualRef.current,
           pinSpacing: false,
+          invalidateOnRefresh: true,
         });
       });
     }, sectionRef);
