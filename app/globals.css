@@ -643,6 +643,12 @@ a.contact__value:hover { color: var(--main); }
 }
 body.is-loaded .hero__media img { transform: scale(1.02); }
 /* ═══════════ case study media ═══════════ */
+/* Every section on a case study page shares this one tighter rhythm
+   instead of the sitewide `.section` default (5-10rem) — case studies
+   stack far more consecutive sections than a typical page, so the
+   default padding compounds into a lot of dead space. Excludes
+   `.page-hero`, which needs its own padding-top to clear the fixed nav. */
+.case-study .section:not(.page-hero) { padding-block: clamp(2.5rem, 5vw, 4rem); }
 .case-media__frame {
   position: relative;
   overflow: hidden;
@@ -665,6 +671,42 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
   align-items: center;
 }
 .case-media__logo img { display: block; width: clamp(120px, 14vw, 180px); height: auto; }
+.case-gallery__grid {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+.case-gallery__card {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--darkest);
+  box-shadow: 0 16px 32px -12px rgba(11, 31, 58, 0.3);
+}
+.case-gallery__media { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 720px) {
+  .case-gallery__grid { grid-template-columns: 1fr; }
+}
+.case-media__sound-btn {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 1.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(11, 31, 58, 0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s var(--expo-out), border-color 0.25s var(--expo-out);
+}
+.case-media__sound-btn:hover { background: var(--main); border-color: var(--main); }
 /* ═══════════ numbers ═══════════ */
 .numbers__grid {
   display: grid;

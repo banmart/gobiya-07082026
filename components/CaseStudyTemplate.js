@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { CLIENT_SEARCH_WINS } from '../lib/clientSearchWins';
+import CaseMediaVideo from './CaseMediaVideo';
 
 export default function CaseStudyTemplate({ cs }) {
   const searchWins = CLIENT_SEARCH_WINS[cs.slug];
@@ -21,7 +22,7 @@ export default function CaseStudyTemplate({ cs }) {
   };
 
   return (
-    <main id="top">
+    <main id="top" className="case-study">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <section className="page-hero section">
@@ -54,14 +55,11 @@ export default function CaseStudyTemplate({ cs }) {
         <section className="section case-media" id="media">
           <div className="container">
             <div className="case-media__frame">
-              <video
-                className="case-media__video"
+              <CaseMediaVideo
                 src={cs.media.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-label={`${cs.client} product screencast`}
+                mp4Src={cs.media.videoMp4}
+                sound={cs.media.hasSound}
+                label={`${cs.client} ${cs.media.hasSound ? 'commercial' : 'product screencast'}`}
               />
               {cs.media?.logo && (
                 <div className="case-media__logo">
@@ -123,6 +121,34 @@ export default function CaseStudyTemplate({ cs }) {
           </div>
         </div>
       </section>
+
+      {/* ══════════ Project media ══════════ */}
+      {cs.media?.gallery?.length > 0 && (
+        <section className="section case-gallery" id="gallery">
+          <div className="container">
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>On the job</p>
+            <div className="case-gallery__grid">
+              {cs.media.gallery.map((item, i) => (
+                <div className="case-gallery__card" key={i} data-reveal>
+                  {item.type === 'video' ? (
+                    <video
+                      className="case-gallery__media"
+                      src={item.src}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      aria-label={item.label}
+                    />
+                  ) : (
+                    <img className="case-gallery__media" src={item.src} alt={item.alt} loading="lazy" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ══════════ Client testimonial ══════════ */}
       {cs.study.testimonial && (
