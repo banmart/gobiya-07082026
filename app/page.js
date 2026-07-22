@@ -7,6 +7,7 @@ import { TESTIMONIALS } from '../lib/testimonials';
 import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
+import ScrollStory from '../components/ScrollStory';
 import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
@@ -128,6 +129,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ══ 2.6 Scroll story: pinned client reel ══ */}
+      <ScrollStory />
 
       {/* ══ 3. Services grid ══ */}
       <section className="section section--tint" id="services">

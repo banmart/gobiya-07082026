@@ -2271,3 +2271,77 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
   }
   .offer-card__desc { margin-inline: auto; }
 }
+
+/* ═══════════ scroll story (pinned client reel) ═══════════ */
+.scroll-story { padding-block: clamp(2.5rem, 5vw, 4rem); }
+.scroll-story__heading { margin-bottom: 0; max-width: 40rem; }
+.scroll-story__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+.scroll-story__text { display: flex; flex-direction: column; }
+.scroll-story__step {
+  min-height: 78svh;
+  display: flex;
+  align-items: center;
+  opacity: 0.4;
+  transition: opacity 0.5s var(--expo-out);
+}
+.scroll-story__step.is-active { opacity: 1; }
+.scroll-story__step-inner { max-width: 30rem; padding-block: 1rem; }
+.scroll-story__client {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--main);
+  margin-bottom: 0.85rem;
+}
+.scroll-story__stat {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.scroll-story__desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--hint);
+  margin-bottom: 1.5rem;
+}
+.scroll-story__visual {
+  align-self: start;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--overlay);
+  box-shadow: 0 24px 48px -12px rgba(11, 31, 58, 0.4);
+}
+.scroll-story__visual-frame { position: relative; width: 100%; height: 100%; }
+.scroll-story__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s var(--expo-out);
+  will-change: transform, opacity;
+}
+.scroll-story__video.is-active { opacity: 1; z-index: 1; }
+@media (max-width: 900px) {
+  .scroll-story__grid { grid-template-columns: 1fr; }
+  .scroll-story__visual {
+    order: -1;
+    position: static;
+    margin-bottom: 1rem;
+  }
+  .scroll-story__step { min-height: auto; padding-block: 2rem; opacity: 1; }
+}
