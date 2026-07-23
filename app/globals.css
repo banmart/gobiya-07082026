@@ -585,8 +585,8 @@ a.contact__value:hover { color: var(--main); }
      editorial feel comes from size, tighter tracking, and a hairline text
      stroke instead of a second font-weight download. */
   font-weight: 400;
-  font-size: clamp(3.2rem, 9vw, 8.75rem);
-  line-height: 0.96;
+  font-size: clamp(2.5rem, 4.6vw, 4.75rem);
+  line-height: 1.02;
   letter-spacing: -0.025em;
   -webkit-text-stroke: 0.4px currentColor;
 }
@@ -595,8 +595,8 @@ a.contact__value:hover { color: var(--main); }
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
-  width: clamp(6rem, 14vw, 14rem);
-  height: clamp(2.4rem, 5.5vw, 5.5rem);
+  width: clamp(4.75rem, 7.5vw, 8rem);
+  height: clamp(1.9rem, 3vw, 3.1rem);
   border-radius: 0.5em;
   overflow: hidden;
   background: #0a0a0a;
@@ -614,11 +614,10 @@ a.contact__value:hover { color: var(--main); }
 }
 .hero__row {
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: clamp(2.5rem, 5vw, 5rem);
   flex-wrap: wrap;
-  margin-top: clamp(2rem, 4.5vw, 4rem);
 }
 .hero__sub {
   max-width: 26rem;
@@ -632,13 +631,14 @@ a.contact__value:hover { color: var(--main); }
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
-  flex: 1 1 24rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  flex: 1 1 30rem;
+  min-width: 0;
 }
 .hero__video {
   position: relative;
   flex: 0 0 auto;
-  width: clamp(14rem, 21vw, 19.5rem);
+  width: clamp(18rem, 30vw, 27.5rem);
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--darkest);
@@ -652,7 +652,7 @@ a.contact__value:hover { color: var(--main); }
 }
 .hero__video-sound {
   position: absolute;
-  bottom: 0.75rem;
+  top: 0.75rem;
   right: 0.75rem;
   display: inline-flex;
   align-items: center;

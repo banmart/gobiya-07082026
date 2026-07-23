@@ -72,24 +72,24 @@ export default function Home() {
       <section className="hero" id="hero">
         <div className="container">
           <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Expert SEO Services Company · LA · Glendale · Koreatown</p>
-          <h1 className="hero__title" data-split>
-            Every search starts the{' '}
-            <span className="hero__title-video">
-              <video
-                src="/assets/videos/gobiyaRace.webm"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="hero__title-video-el"
-                aria-hidden="true"
-              />
-            </span>{' '}
-            <em className="hero__title-accent">to be seen <span className="hero__title-swash-wrap">first<Swash className="hero__title-swash" /></span>.</em>
-          </h1>
           <div className="hero__row">
             <div className="hero__lead">
+              <h1 className="hero__title" data-split>
+                Every search starts the{' '}
+                <span className="hero__title-video">
+                  <video
+                    src="/assets/videos/gobiyaRace.webm"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="hero__title-video-el"
+                    aria-hidden="true"
+                  />
+                </span>{' '}
+                <em className="hero__title-accent">to be seen <span className="hero__title-swash-wrap">first<Swash className="hero__title-swash" /></span>.</em>
+              </h1>
               <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. Search isn&apos;t just a Google box anymore — it&apos;s every place someone asks a question about your business, so we make local and global brands findable everywhere that happens, recognizable enough to be remembered, and the answer ChatGPT, Perplexity, and AI Overviews actually give, not just a link they skip. One accountable team runs all of it, not a patchwork of vendors.</p>
               <div className="hero__ctas" data-reveal>
                 <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
