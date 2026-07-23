@@ -1927,6 +1927,26 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   .search-wins__card:last-child { border-bottom: none; }
 }
 
+/* ═══════════ copy button (code blocks) ═══════════ */
+.code-block { position: relative; }
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f4f7fb;
+  background: rgba(244, 247, 251, 0.1);
+  border: 1px solid rgba(244, 247, 251, 0.18);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.copy-btn:hover { background: rgba(244, 247, 251, 0.18); border-color: rgba(244, 247, 251, 0.3); }
+
 /* ═══════════ services grid ═══════════ */
 .svc-grid {
   margin-top: clamp(2.5rem, 5vw, 4rem);
