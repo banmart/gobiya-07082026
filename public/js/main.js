@@ -42,7 +42,7 @@
   );
 
   /* ── hero parallax (object-position, so it never fights the zoom transition) ── */
-  const parallaxEls = document.querySelectorAll("[data-parallax] img");
+  const parallaxEls = document.querySelectorAll("[data-parallax] img, [data-parallax] video");
   function updateParallax() {
     if (prefersReduced) return;
     parallaxEls.forEach((img) => {

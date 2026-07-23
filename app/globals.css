@@ -674,7 +674,8 @@ a.contact__value:hover { color: var(--main); }
   overflow: hidden;
   position: relative;
 }
-.hero__media img {
+.hero__media img,
+.hero__media video {
   width: 100%;
   height: 118%;
   object-fit: cover;
@@ -682,7 +683,8 @@ a.contact__value:hover { color: var(--main); }
   transition: transform 4s var(--expo-out);
   will-change: transform;
 }
-body.is-loaded .hero__media img { transform: scale(1.02); }
+body.is-loaded .hero__media img,
+body.is-loaded .hero__media video { transform: scale(1.02); }
 /* ═══════════ case study media ═══════════ */
 /* Every section on a case study page shares this one tighter rhythm
    instead of the sitewide `.section` default (5-10rem) — case studies

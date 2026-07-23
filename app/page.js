@@ -88,14 +88,14 @@ export default function Home() {
           </div>
         </div>
         <div className="hero__media" data-parallax>
-          <Image
-            src="/assets/img/team-desk-huddle.webp"
-            alt="A team of five reviewing code and a strategy whiteboard around a shared desk"
-            width={1800}
-            height={1005}
-            sizes="100vw"
-            priority
-            fetchPriority="high"
+          <video
+            src="/assets/videos/gobiyaRace.webm"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-label="Looping video of a race, illustrating every search as a race to be seen first"
           />
         </div>
       </section>
