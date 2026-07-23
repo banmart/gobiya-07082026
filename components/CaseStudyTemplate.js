@@ -48,6 +48,20 @@ export default function CaseStudyTemplate({ cs }) {
         <div className="article__answer" data-reveal>
           <p>{cs.study.answer}</p>
         </div>
+
+        {cs.study?.metrics?.length > 0 && (
+          <div className="container" style={{ marginTop: '2.5rem' }}>
+            <div className="search-wins__grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+              {cs.study.metrics.map((m, idx) => (
+                <div className="search-wins__card" key={idx} data-reveal>
+                  <span className="search-wins__label">Key Outcome</span>
+                  <span className="search-wins__value">{m.value}</span>
+                  <p className="search-wins__detail">{m.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ══════════ Product screencast ══════════ */}
