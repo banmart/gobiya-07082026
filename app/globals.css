@@ -1795,7 +1795,7 @@ body.is-loaded .hero__media img { transform: scale(1.02); }
 }
 .search-wins__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   border: 1px solid var(--border);
 }
 .search-wins__card {

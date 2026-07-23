@@ -91,6 +91,8 @@ const nextConfig = {
       { source: '/case-studies/smile-center-dentistry', destination: '/work/smile-center-dentistry', permanent: true },
       { source: '/case-studies/american-livescan', destination: '/work/american-livescan', permanent: true },
       { source: '/case-studies/safetycentric', destination: '/work/safetycentric', permanent: true },
+      { source: '/case-studies/safety-centric', destination: '/work/safetycentric', permanent: true },
+      { source: '/work/safety-centric', destination: '/work/safetycentric', permanent: true },
       { source: '/case-studies/quickpass-aid', destination: '/work/quickpass-aid', permanent: true },
       { source: '/case-studies/remodel-me-pros', destination: '/work/remodel-me-pros', permanent: true },
       { source: '/case-studies/the-healing-metta', destination: '/work/the-healing-metta', permanent: true },
