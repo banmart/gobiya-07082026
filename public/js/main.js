@@ -28,6 +28,7 @@
     else nav.classList.remove("is-hidden");
     lastY = y;
     updateParallax();
+    updateScrub();
     ticking = false;
   }
   window.addEventListener(
@@ -51,6 +52,67 @@
       const progress = Math.max(-1, Math.min(1, rect.top / window.innerHeight));
       img.style.objectPosition = `50% ${50 - progress * 18}%`;
     });
+  }
+
+  /* ── scroll-scrubbed hero video: pins in place and plays frame-by-frame
+     as the user scrolls, then releases and the page continues normally ── */
+  const scrubWrap = document.querySelector("[data-scrub-video]");
+  const scrubMedia = scrubWrap ? scrubWrap.querySelector(".hero__media") : null;
+  const scrubVideo = scrubMedia ? scrubMedia.querySelector("video") : null;
+  let scrubNavH = 0;
+  let scrubActive = false;
+
+  function sizeScrub() {
+    if (!scrubWrap || !scrubMedia) return;
+    scrubNavH = nav.offsetHeight;
+    scrubMedia.style.top = `${scrubNavH}px`;
+    // ~2.5 viewports of scroll to scrub the full clip — enough range for
+    // frame-by-frame control without making the page too long.
+    const range = window.innerHeight * 2.5;
+    scrubWrap.style.height = `${scrubMedia.offsetHeight + range}px`;
+  }
+
+  function updateScrub() {
+    if (!scrubActive || !scrubWrap || !scrubMedia || !scrubVideo) return;
+    const duration = scrubVideo.duration;
+    if (!duration || Number.isNaN(duration)) return;
+    const wrapRect = scrubWrap.getBoundingClientRect();
+    const scrollable = scrubWrap.offsetHeight - scrubMedia.offsetHeight;
+    if (scrollable <= 0) return;
+    const scrolledIntoPin = scrubNavH - wrapRect.top;
+    const progress = Math.max(0, Math.min(1, scrolledIntoPin / scrollable));
+    const target = progress * duration;
+    if (Math.abs(scrubVideo.currentTime - target) > 0.03) {
+      scrubVideo.currentTime = target;
+    }
+  }
+
+  if (scrubWrap && scrubMedia && scrubVideo) {
+    if (prefersReduced) {
+      // Leave it as a plain autoplay/loop background video — no pin, no
+      // scroll-jacking, matches the rest of the site's reduced-motion story.
+    } else {
+      const enableScrub = () => {
+        scrubVideo.pause();
+        scrubActive = true;
+        sizeScrub();
+        updateScrub();
+      };
+      if (scrubVideo.readyState >= 1) {
+        enableScrub();
+      } else {
+        scrubVideo.addEventListener("loadedmetadata", enableScrub, { once: true });
+      }
+      let resizeTimer;
+      window.addEventListener(
+        "resize",
+        () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(sizeScrub, 150);
+        },
+        { passive: true }
+      );
+    }
   }
 
   /* ── mobile menu ── */

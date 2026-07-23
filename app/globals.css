@@ -668,6 +668,15 @@ a.contact__value:hover { color: var(--main); }
   transition: background 0.25s var(--p2-out);
 }
 .hero__video-sound:hover { background: #ffffff; }
+/* Scroll-scrubbed hero video: .hero__scrub is sized taller than its content
+   by JS (see public/js/main.js) so .hero__media can pin via position:sticky
+   while the extra scroll range drives the video's currentTime frame by
+   frame; once the range is used up, sticky releases and the page continues
+   normally into the marquee. Reduced-motion / pre-JS: no inline height or
+   top gets set, so .hero__media stays in normal flow and the video just
+   autoplay-loops like a regular background video. */
+.hero__scrub { position: relative; }
+.hero__scrub .hero__media { position: sticky; }
 .hero__media {
   margin-top: clamp(3rem, 7vw, 6rem);
   height: clamp(20rem, 62vh, 44rem);

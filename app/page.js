@@ -87,16 +87,19 @@ export default function Home() {
             <HeroIntroVideo />
           </div>
         </div>
-        <div className="hero__media" data-parallax>
-          <video
-            src="/assets/videos/gobiyaRace.webm"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            aria-label="Looping video of a race, illustrating every search as a race to be seen first"
-          />
+        <div className="hero__scrub" data-scrub-video>
+          <div className="hero__media">
+            <video
+              src="/assets/videos/gobiyaRace-scrub.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster="/assets/videos/gobiyaRace-scrub-poster.jpg"
+              aria-label="Race video that advances frame by frame as you scroll, illustrating every search as a race to be seen first"
+            />
+          </div>
         </div>
       </section>
       <TopicMarquee topics={["Los Angeles AI SEO", "Generative Engine Optimization", "ChatGPT Optimization", "Technical SEO", "Semantic Search"]} />
