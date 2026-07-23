@@ -313,6 +313,10 @@ export default function OnboardingStepper() {
           </button>
         )}
       </div>
+
+      <p className="stepper__disclaimer">
+        By submitting this form, you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. We will never share your information. Submitting this form does not guarantee specific rankings, traffic, or results — every engagement starts with Steve reviewing your actual data before any recommendation is made.
+      </p>
     </form>
   );
 }
