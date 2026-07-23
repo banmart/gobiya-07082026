@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { checkRateLimit } from '../../../../lib/rate-limit';
+import { queryWhoisXml } from '../../../../lib/whoisxml';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -8,30 +10,14 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Domain parameter is required' }, { status: 400 });
   }
 
-  try {
-    const apiKey = process.env.WHOIS_XML_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: 'API key is not configured' }, { status: 500 });
-    }
-
-    const url = `https://threat-intelligence.whoisxmlapi.com/api/v1?apiKey=${apiKey}&domainName=${encodeURIComponent(domain)}&outputFormat=JSON`;
-    
-    const response = await fetch(url);
-    const data = await response.json();
-
-    if (!response.ok || data.ErrorMessage) {
-      return NextResponse.json({ 
-        error: data.ErrorMessage?.msg || 'Failed to fetch Threat Intelligence data',
-        details: `Upstream API responded with status ${response.status}`
-      }, { status: response.ok ? 400 : response.status });
-    }
-
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error('Threat Intelligence Error:', error);
-    return NextResponse.json({ 
-      error: 'Failed to fetch Threat Intelligence', 
-      details: error.message 
-    }, { status: 500 });
+  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+  if (!checkRateLimit(ip, 'threat-intel', 2, 24)) {
+    return NextResponse.json({ error: 'Rate limit exceeded', details: 'You have reached your limit of 2 searches per 24 hours for this tool.' }, { status: 429 });
   }
+
+  const result = await queryWhoisXml('threat', domain);
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error, details: `Upstream API responded with status ${result.status}` }, { status: result.status });
+  }
+  return NextResponse.json(result.data);
 }
