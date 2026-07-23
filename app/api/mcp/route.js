@@ -1,8 +1,10 @@
 import { createMcpHandler } from 'mcp-handler';
+import { ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { checkRateLimit } from '../../../lib/rate-limit';
 import { queryWhoisXml } from '../../../lib/whoisxml';
 import { sendContactEmail, sendOnboardingEmail } from '../../../lib/leadForms';
+import { listMcpResources, readMcpResource } from '../../../lib/mcpResources';
 
 // extra.requestInfo.headers values can be string | string[] | undefined
 // (IsomorphicHeaders) — normalize to a single string the same way the REST
@@ -165,6 +167,24 @@ const handler = createMcpHandler(
         const result = await sendOnboardingEmail(args);
         if (!result.ok) return { isError: true, content: [{ type: 'text', text: result.error }] };
         return { content: [{ type: 'text', text: 'Audit request sent to Gobiya. Someone will follow up by email.' }] };
+      }
+    );
+
+    server.registerResource(
+      'gobiya-content',
+      new ResourceTemplate('gobiya://{kind}/{slug}', {
+        list: () => ({ resources: listMcpResources() }),
+      }),
+      {
+        title: 'Gobiya content',
+        description: 'Insights articles, /work case studies, and consulting service pages.',
+      },
+      async (uri) => {
+        const text = readMcpResource(uri.href);
+        if (text == null) {
+          throw new Error(`Resource not found: ${uri.href}`);
+        }
+        return { contents: [{ uri: uri.href, mimeType: 'text/markdown', text }] };
       }
     );
   },
