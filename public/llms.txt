@@ -27,4 +27,8 @@ Contact: hello@gobiya.com · +1-323-744-1338 · 3580 Wilshire Blvd, Ste 132, Los
 - [Steve Martin, Founder](https://www.gobiya.com/about/steve-martin): 25+ years in web development and search
 - [Client work & results](https://www.gobiya.com/work)
 
+## MCP Server
+
+- [MCP server for AI agents](https://www.gobiya.com/mcp): Callable tools (domain/security lookups, contact forms) and readable resources (insights, case studies, services) via the Model Context Protocol at https://www.gobiya.com/api/mcp
+
 ## Optional
