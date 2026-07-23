@@ -44,18 +44,20 @@ export default function HeroIntroVideo() {
 
   return (
     <div className="hero__video" data-reveal>
-      <video
-        ref={videoRef}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/assets/videos/hero-intro-poster.jpg"
-        aria-label="44-second intro: Gobiya makes your business the answer on Google, ChatGPT, and Perplexity — real client numbers included"
-      >
-        <source src="/assets/videos/hero-intro.webm" type="video/webm" />
-        <source src="/assets/videos/hero-intro.mp4" type="video/mp4" />
-      </video>
+      <a href="/onboarding" className="hero__video-link" aria-label="Watch the intro and get your free AI visibility audit">
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/assets/videos/hero-intro-poster.jpg"
+          aria-label="44-second intro: Gobiya makes your business the answer on Google, ChatGPT, and Perplexity — real client numbers included"
+        >
+          <source src="/assets/videos/hero-intro.webm" type="video/webm" />
+          <source src="/assets/videos/hero-intro.mp4" type="video/mp4" />
+        </video>
+      </a>
       <button type="button" className="hero__video-sound" onClick={toggleSound}>
         {muted ? (
           <>

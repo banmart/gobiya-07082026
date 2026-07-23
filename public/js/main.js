@@ -92,16 +92,20 @@
       // Leave it as a plain autoplay/loop background video — no pin, no
       // scroll-jacking, matches the rest of the site's reduced-motion story.
     } else {
-      const enableScrub = () => {
-        scrubVideo.pause();
-        scrubActive = true;
-        sizeScrub();
-        updateScrub();
-      };
-      if (scrubVideo.readyState >= 1) {
-        enableScrub();
-      } else {
-        scrubVideo.addEventListener("loadedmetadata", enableScrub, { once: true });
+      // Size synchronously, immediately — not gated behind the video's
+      // loadedmetadata event. Waiting on that used to grow this wrapper by
+      // ~2250px well after first paint (CSS below already reserves roughly
+      // this much space so the real shift is only a few px), which shifted
+      // every section below it — including ScrollStory's GSAP ScrollTrigger
+      // pin, which caches its trigger offsets once and doesn't know to
+      // recompute for a plain style.height mutation. That stale offset is
+      // what made the client-reel pin feel mistimed against this video.
+      scrubVideo.pause();
+      scrubActive = true;
+      sizeScrub();
+      updateScrub();
+      if (scrubVideo.readyState < 1) {
+        scrubVideo.addEventListener("loadedmetadata", updateScrub, { once: true });
       }
       let resizeTimer;
       window.addEventListener(

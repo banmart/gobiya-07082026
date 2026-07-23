@@ -644,12 +644,19 @@ a.contact__value:hover { color: var(--main); }
   background: var(--darkest);
   border: 1px solid var(--border);
 }
+.hero__video-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .hero__video video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s var(--expo-out);
 }
+.hero__video-link:hover video { transform: scale(1.04); }
 .hero__video-sound {
   position: absolute;
   top: 0.75rem;
@@ -677,6 +684,13 @@ a.contact__value:hover { color: var(--main); }
    autoplay-loops like a regular background video. */
 .hero__scrub { position: relative; }
 .hero__scrub .hero__media { position: sticky; }
+/* Approximates JS's sizeScrub() (media height + 2.5 viewports) so the
+   scroll range is reserved from first paint instead of appearing only once
+   main.js runs — avoids a late layout shift that would push every section
+   below (including ScrollStory's pin, which caches its trigger offsets). */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__scrub { height: calc(clamp(20rem, 62vh, 44rem) + 250vh); }
+}
 .hero__media {
   margin-top: clamp(3rem, 7vw, 6rem);
   height: clamp(20rem, 62vh, 44rem);
