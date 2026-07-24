@@ -12,7 +12,7 @@ export const metadata = buildMetadata({
 const TIERS = [
   {
     name: 'Findable',
-    price: '$1,500–$3,500',
+    price: '$999–$2,500',
     unit: '/mo',
     bestFor: 'You want your business to actually show up when people search for you.',
     features: [
