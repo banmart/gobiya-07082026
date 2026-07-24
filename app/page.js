@@ -12,7 +12,7 @@ import HeroIntroVideo from '../components/HeroIntroVideo';
 import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
-  title: 'Expert SEO Services Company | Gobiya Internet Marketing',
+  title: 'Gobiya - Be Seen First',
   description:
     'Gobiya is an expert SEO services company helping brands rank higher, get found in Google, and get cited by AI. Real client results, free audit.',
   path: '/',
