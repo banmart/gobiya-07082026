@@ -51,9 +51,9 @@ export default function DNSLookupTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Infrastructure Utility</p>
-          <h1 className="statement" data-split>Global DNS Record Lookup</h1>
-          <p className="lede" data-reveal>Query global DNS records instantly to diagnose routing issues, verify email configurations, and inspect server IP addresses.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <h1 className="statement" data-split>DNS Lookup Tool</h1>
+          <p className="lede" data-reveal>Look up any domain&apos;s technical records to spot connection problems, check email setup, and see which servers it points to.</p>
         </div>
       </section>
 

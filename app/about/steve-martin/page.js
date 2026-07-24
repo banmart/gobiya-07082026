@@ -68,22 +68,22 @@ export default function SteveMartinPage() {
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">Diagnosis</span>
               <h3 className="capability-card__title">Algorithm & penalty recovery</h3>
-              <p className="capability-card__desc">Fourteen years of tracking Google&apos;s core updates means recognizing the pattern of a new one fast, and knowing which fixes actually address it versus which just look like activity.</p>
+              <p className="capability-card__desc">After years of watching Google&apos;s major updates happen in real time, Steve can spot a new one quickly — and knows which fixes actually help, versus which just look like busywork.</p>
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">Engineering</span>
               <h3 className="capability-card__title">Technical SEO & development</h3>
-              <p className="capability-card__desc">A background in hands-on web development means technical recommendations come from someone who has actually built and shipped the fix, not just diagnosed it from a report.</p>
+              <p className="capability-card__desc">Because Steve has hands-on experience building websites, his technical advice comes from someone who has actually built and launched the fix himself — not just pointed it out in a report.</p>
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">Frontier</span>
-              <h3 className="capability-card__title">AI visibility & GEO</h3>
-              <p className="capability-card__desc">The same instinct that tracked Panda, Penguin, and Core Updates in real time is now applied to how AI Overviews, ChatGPT, and Perplexity decide what to cite.</p>
+              <h3 className="capability-card__title">Getting found by AI tools</h3>
+              <p className="capability-card__desc">The same close attention that tracked Google&apos;s biggest updates over the years is now focused on how tools like ChatGPT, Perplexity, and Google&apos;s AI answers decide what to recommend.</p>
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">Access</span>
               <h3 className="capability-card__title">Direct client access</h3>
-              <p className="capability-card__desc">Every engagement is run by Steve directly — no account manager layer between strategy and execution, and no handoff to a junior team partway through.</p>
+              <p className="capability-card__desc">Every project is run by Steve personally — no account manager standing between strategy and the actual work, and no handoff to a junior team halfway through.</p>
             </div>
           </div>
         </div>

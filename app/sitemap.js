@@ -21,6 +21,7 @@ export default function sitemap() {
     '/geo-services',
     '/ppc-management-services',
     '/content-marketing-services',
+    '/pricing',
     '/work',
     '/privacy',
     '/terms',

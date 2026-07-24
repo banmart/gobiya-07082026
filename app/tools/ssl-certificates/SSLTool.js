@@ -34,9 +34,9 @@ export default function SSLTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Infrastructure Utility</p>
-          <h1 className="statement" data-split>SSL Certificates Checker</h1>
-          <p className="lede" data-reveal>Verify SSL certificate validity, extract Subject Alternative Names (SANs), and audit entire issuer chains instantly.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <h1 className="statement" data-split>SSL Certificate Checker</h1>
+          <p className="lede" data-reveal>Check whether a website's security certificate is valid, see which other domains it covers, and verify who issued it.</p>
         </div>
       </section>
 

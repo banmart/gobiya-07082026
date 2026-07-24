@@ -7,7 +7,7 @@ import TopicMarquee from '../../components/TopicMarquee';
 export const metadata = buildMetadata({
   title: 'SEO Services & Digital Marketing Agency — Gobiya',
   description:
-    'Gobiya digital marketing agency services: SEO services, search engine marketing, content optimization, digital PR and link building, GEO/AI writing, CRO, Google Ads, and full-stack web development.',
+    'Gobiya\'s services: SEO, content writing, digital PR and link building, getting found by AI tools, website testing, Google Ads, and web development — all run by one team.',
   path: '/services',
 });
 
@@ -28,9 +28,9 @@ export default function ServicesPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Consulting Services · SEO, GEO, PPC &amp; Web Development</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Every lever, built to work together.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Performance, creativity, and relations — three disciplines that compound instead of compete when they're run by one team.</p>
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our Services · SEO, AI Visibility, Ads &amp; Web Design</p>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Every piece of your marketing, working together.</h1>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Performance, creativity, and relationships — three parts of marketing that work best when one team runs all of them together, instead of three separate vendors pulling in different directions.</p>
         
           </div>
           <div>
@@ -83,11 +83,11 @@ export default function ServicesPage() {
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>How do SEO services compare to content marketing?</dt>
-              <dd>SEO services cover the full system: technical foundation, site authority, content strategy, and on-page optimization. Content marketing is the editorial and production side — writing, publishing, and distributing content. In practice, content marketing without SEO produces pieces that are well-written but rarely found; SEO without content produces a technically clean site with nothing worth ranking. Gobiya runs both as a single system — every piece is planned around real search demand and written to rank and convert. <a href="/content-marketing-services">See how SEO copywriting and content strategy work together.</a></dd>
+              <dd>SEO covers everything that affects whether your site can be found at all — the technical setup, your reputation online, and how your pages are built. Content marketing is the writing and publishing side. On their own, great content without SEO rarely gets found, and SEO without content leaves you with a clean site and nothing worth reading. We treat them as one job: every page is planned around what people are actually searching for, then written to be found and to turn visitors into customers. <a href="/content-marketing-services">See how our writing and search work fit together.</a></dd>
             </div>
             <div className="faq__item" data-reveal>
               <dt>What is the difference between an SEO agency and a digital marketing agency?</dt>
-              <dd>An SEO agency focuses on organic search visibility — rankings, traffic, and the technical and content work that drives both. A digital marketing agency typically covers a broader set of channels: paid search, paid social, email, creative, and branding alongside SEO. Gobiya operates at the intersection: search-first strategy across SEO, content, and paid search, run as an integrated system rather than siloed channels. <a href="/ppc-management-services">See how search engine marketing integrates with our paid search work.</a></dd>
+              <dd>An SEO agency focuses on getting you found in search — rankings, traffic, and the technical and content work behind both. A digital marketing agency usually covers more ground: paid ads, social media, email, and branding, on top of SEO. We sit in between: everything we do starts with search, then extends into content and paid ads as one connected plan instead of separate pieces. <a href="/ppc-management-services">See how our paid ads work fits in.</a></dd>
             </div>
           </dl>
         </div>

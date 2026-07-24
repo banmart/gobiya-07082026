@@ -36,9 +36,9 @@ export default function DomainLookupTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Infrastructure Utility</p>
-          <h1 className="statement" data-split>WHOIS Domain Name Lookup & DNS Intelligence</h1>
-          <p className="lede" data-reveal>Perform a deep-dive WHOIS search to instantly uncover a domain's availability, registration dates, registrar details, and DNS nameserver configurations.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <h1 className="statement" data-split>WHOIS Domain Lookup</h1>
+          <p className="lede" data-reveal>Look up any domain to instantly see if it's available, who registered it, when, and which servers manage it.</p>
         </div>
       </section>
 

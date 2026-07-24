@@ -5,63 +5,63 @@ const TOOLS = [
   {
     id: 'whois',
     title: 'WHOIS Domain Lookup',
-    description: 'Check domain availability and extract raw WHOIS registration data (registrar, creation dates, nameservers) in real-time.',
+    description: 'Check if a domain is available, and see who registered it, when, and which servers manage it.',
     status: 'Active',
     category: 'Domain Research',
     href: '/tools/domain-lookup'
   },
   {
     id: 'dns',
-    title: 'DNS Lookup API',
-    description: 'Query global DNS records (A, MX, TXT, CNAME) instantly to diagnose routing issues and misconfigurations.',
+    title: 'DNS Lookup',
+    description: 'Look up a domain’s technical records instantly to spot setup problems or errors.',
     status: 'Active',
     category: 'Network',
     href: '/tools/dns-lookup'
   },
   {
     id: 'ip-geo',
-    title: 'IP Geolocation API',
-    description: 'Map IP addresses to precise geographical locations, ASNs, and ISPs for traffic analysis and targeting.',
+    title: 'IP Geolocation',
+    description: 'Find out roughly where an IP address is located and which internet provider it belongs to.',
     status: 'Active',
     category: 'Network',
     href: '/tools/ip-geolocation'
   },
   {
     id: 'domain-rep',
-    title: 'Domain Reputation API',
-    description: 'Analyze a domain\'s trust score and historical reputation to identify potential search engine penalties or flags.',
+    title: 'Domain Reputation Check',
+    description: 'Check a domain’s trust score and history to see if it’s ever been flagged or penalized by search engines.',
     status: 'Active',
     category: 'Security',
     href: '/tools/domain-reputation'
   },
   {
     id: 'web-cat',
-    title: 'Website Categorization API',
-    description: 'Automatically classify domain content into IAB standard categories for competitive mapping and clustering.',
+    title: 'Website Categorization',
+    description: 'Automatically sort a website into standard industry categories — useful for comparing it to competitors.',
     status: 'Active',
     category: 'Domain Research',
     href: '/tools/website-categorization'
   },
   {
     id: 'ssl',
-    title: 'SSL Certificates API',
-    description: 'Verify SSL certificate validity, issuer chains, and expiration dates across extensive server infrastructures.',
+    title: 'SSL Certificate Checker',
+    description: 'Check whether a website’s security certificate is valid, who issued it, and when it expires.',
     status: 'Active',
     category: 'Security',
     href: '/tools/ssl-certificates'
   },
   {
     id: 'threat',
-    title: 'Threat Intelligence API',
-    description: 'Cross-reference domains and IPs against global threat feeds to detect malware, phishing, and botnets.',
+    title: 'Threat Intelligence Check',
+    description: 'Check a domain or IP address against known threat lists to spot malware, phishing, or other risks.',
     status: 'Active',
     category: 'Security',
     href: '/tools/threat-intelligence'
   },
   {
     id: 'email',
-    title: 'Email Verification API',
-    description: 'Verify MX records and inbox existence to ensure high deliverability and protect sender reputation scores.',
+    title: 'Email Verification',
+    description: 'Check whether an email address is real and can actually receive mail, to help protect your sender reputation.',
     status: 'Active',
     category: 'Domain Research',
     href: '/tools/email-verification'
@@ -81,9 +81,9 @@ export default function ToolsHub() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Internal Infrastructure</p>
-          <h1 className="statement" data-split>Intelligence & Research Suite</h1>
-          <p className="lede" data-reveal>Powered by our enterprise partnerships, these tools allow us to conduct deep technical investigations, from raw WHOIS records to comprehensive domain reputation mapping.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tools</p>
+          <h1 className="statement" data-split>Free SEO & Domain Tools</h1>
+          <p className="lede" data-reveal>Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
         </div>
       </section>
 
@@ -157,10 +157,10 @@ export default function ToolsHub() {
       {/* Conversion Bridge */}
       <section className="section section--dark" style={{ padding: '4rem 0' }}>
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
-          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Take Action</p>
-          <h2 className="statement" data-split style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Need an automated technical & AI visibility audit?</h2>
-          <p className="lede" data-reveal style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our engineering team audits site rendering, structured data schema, and AI citation potential end-to-end.</p>
-          <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Get a free technical & AI audit</a>
+          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Want more?</p>
+          <h2 className="statement" data-split style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Want a full check of your whole site, not just one piece?</h2>
+          <p className="lede" data-reveal style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our team checks your whole site — how well it loads, whether Google and AI tools can read it, and where you&apos;re missing out.</p>
+          <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Get a free full site check</a>
         </div>
       </section>
     </main>

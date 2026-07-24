@@ -40,9 +40,9 @@ export default function ReputationTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Threat Intelligence Utility</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
           <h1 className="statement" data-split>Domain Reputation & Threat Check</h1>
-          <p className="lede" data-reveal>Analyze any domain's trust score and historical reputation to detect malware, phishing flags, and potential search engine penalties.</p>
+          <p className="lede" data-reveal>Check any domain's trust score and history to spot malware, phishing flags, or possible search engine penalties.</p>
         </div>
       </section>
 

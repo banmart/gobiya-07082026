@@ -14,7 +14,7 @@ import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icon
 export const metadata = buildMetadata({
   title: 'Gobiya - Be Seen First',
   description:
-    'Gobiya is an expert SEO services company helping brands rank higher, get found in Google, and get cited by AI. Real client results, free audit.',
+    'Gobiya helps businesses get found on Google, build real trust, and get recommended by AI tools like ChatGPT. Real client results, free audit.',
   path: '/',
 });
 
@@ -27,22 +27,22 @@ const ARROW = (
 const PILLARS = [
   {
     title: 'Findable',
-    desc: 'Technical SEO and site architecture a crawler can read on the first pass.',
+    desc: 'We fix the behind-the-scenes parts of your site so Google can actually find and read it.',
     d: 'M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36M24 14v20M14 24h20',
   },
   {
     title: 'Credible',
-    desc: 'Authority signals — links, citations, entities — that hold up to scrutiny.',
+    desc: 'We build real trust online — through other websites linking to you and mentions that hold up when people check.',
     d: 'M24 5 40 11v12c0 10-7 17-16 20C15 40 8 33 8 23V11ZM17 24l5 5 9-10',
   },
   {
     title: 'Cited',
-    desc: 'Content structured so AI answer engines quote you, not a competitor.',
+    desc: 'We write content in a way that AI tools like ChatGPT choose to quote — not your competitor.',
     d: 'M12 16h8v8c0 5-3 8-8 8M28 16h8v8c0 5-3 8-8 8',
   },
   {
     title: 'Chosen',
-    desc: 'Landing experiences and offers tuned until traffic becomes booked business.',
+    desc: 'We keep improving your website and offers until visitors turn into paying customers.',
     d: 'M24 10a14 14 0 1 0 0 28 14 14 0 0 0 0-28M24 18a6 6 0 1 0 0 12 6 6 0 0 0 0-12',
   },
 ];
@@ -78,7 +78,7 @@ export default function Home() {
                 Every search starts the race{' '}
                 <em className="hero__title-accent">to be seen <span className="hero__title-swash-wrap">first<Swash className="hero__title-swash" /></span>.</em>
               </h1>
-              <p className="hero__sub" data-reveal>If you are searching for an &quot;SEO services company near me,&quot; Gobiya is your local partner in Los Angeles. Search isn&apos;t just a Google box anymore — it&apos;s every place someone asks a question about your business, so we make local and global brands findable everywhere that happens, recognizable enough to be remembered, and the answer ChatGPT, Perplexity, and AI Overviews actually give, not just a link they skip. One accountable team runs all of it, not a patchwork of vendors.</p>
+              <p className="hero__sub" data-reveal>Looking for an SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past. One team handles it all, so nothing falls through the cracks between vendors.</p>
               <div className="hero__ctas" data-reveal>
                 <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
                 <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
@@ -132,7 +132,7 @@ export default function Home() {
       <section className="section section--tint" id="services">
         <div className="container">
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Consulting</p>
-          <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>Every discipline a search-first company needs, under one mandate.</h2>
+          <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>Everything your business needs to get found — all from one team.</h2>
           <div className="svc-grid">
             {services.map((s) => (
               <a className="svc-card" href={s.href} key={s.slug} data-reveal>
@@ -152,21 +152,21 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where buyers ask first, now</p>
           <h2 className="offices__title" data-split>Search didn&apos;t disappear. It moved into a conversation.</h2>
-          <p className="offices__intro" data-reveal>We&apos;re not another SEO shop chasing blue-link rankings. A buyer asks once and acts on whatever answer comes back — so we engineer your brand to be that answer, on every platform where the question gets asked.</p>
+          <p className="offices__intro" data-reveal>We&apos;re not just chasing a higher spot on a Google results page. Most people trust the first answer they get and stop looking — so our job is making sure that answer is you, wherever the question gets asked.</p>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col">
               <span className="offices__city"><PlatformIcon name="Google AI Overviews" />Google AI Overviews</span>
-              <span className="offices__addr">Summarized answers above the fold, sourced from a handful of cited pages</span>
+              <span className="offices__addr">Shows a short summary at the top of the page, pulled from a handful of trusted websites</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col">
               <span className="offices__city"><PlatformIcon name="ChatGPT" />ChatGPT</span>
-              <span className="offices__addr">Browses and cites live sources when asked for recommendations or comparisons</span>
+              <span className="offices__addr">Looks up real websites when someone asks for a recommendation or comparison</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col">
               <span className="offices__city"><PlatformIcon name="Perplexity" />Perplexity</span>
-              <span className="offices__addr">Built entirely around citing sources — visibility here is binary: cited or invisible</span>
+              <span className="offices__addr">Built entirely around quoting its sources — you&apos;re either mentioned, or you&apos;re invisible here</span>
               <span className="offices__tag">Live</span>
             </li>
           </ul>
@@ -217,7 +217,7 @@ export default function Home() {
       {/* ══ 5. Four pillars ══ */}
       <section className="pillars section">
         <div className="container">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>The mandate</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What we build</p>
           <h2 className="statement statement--small" data-split>Make you the answer, not just a result.</h2>
           <div className="pillars__grid">
             {PILLARS.map((p) => (
@@ -287,20 +287,20 @@ export default function Home() {
           </h2>
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
-              <dt>What are the most important trends in SEO for 2026?</dt>
-              <dd>The biggest shift is from traditional ten-blue-links optimization to Generative Engine Optimization (GEO). AI models like ChatGPT and Perplexity are becoming primary search interfaces, and they look for direct answers, original data, and strong entity signals rather than just keyword density. If your SEO strategy doesn&apos;t include an AI citation plan, you&apos;re optimizing for yesterday&apos;s search engine.</dd>
+              <dt>What&apos;s changing about search right now?</dt>
+              <dd>More people are getting answers straight from AI tools like ChatGPT and Perplexity, not just a list of Google links. These tools look for clear, original information from a business they can trust — not pages stuffed with the same keyword over and over. If your website isn&apos;t built with that in mind, you&apos;re missing a growing part of where people actually search.</dd>
             </div>
             <div className="faq__item" data-reveal>
-              <dt>How has the evolution of search engine algorithms changed the game?</dt>
-              <dd>Algorithms have moved from lexical matching (finding words on a page) to semantic understanding (understanding the topic) to generative answers (reading the page and synthesizing an answer). The result is that you can no longer win by just having the most complete guide; you have to be the most citable authority with unique insights that an AI model actually wants to quote.</dd>
+              <dt>How has search changed over the years?</dt>
+              <dd>Search used to just match the words on your page to the words someone typed in. Then it got better at understanding what people actually meant. Now, tools like ChatGPT read whole pages and write a summary answer. That means having the most complete page isn&apos;t enough anymore — you need to be a source clear and trustworthy enough that an AI tool wants to quote you.</dd>
             </div>
             <div className="faq__item" data-reveal>
-              <dt>What does an SEO services company actually do, day to day?</dt>
-              <dd>Less blog-posting than most people expect. A real engagement starts with a technical audit — can Google and AI crawlers actually read your site — then moves into structured data, content built around real search demand, and authority work like digital PR and link building. We run all of it as one accountable team rather than handing pieces off to separate vendors. See how the <a href="/about/approach">full process</a> runs end to end.</dd>
+              <dt>What does an SEO company actually do, day to day?</dt>
+              <dd>Less blog writing than most people expect. We usually start by checking whether Google — and AI tools — can even read your site properly. From there, we clean up what&apos;s broken, write content people are genuinely searching for, and help other trusted websites mention and link to you. One team handles all of it, instead of passing pieces between different vendors. See how the <a href="/about/approach">full process</a> works from start to finish.</dd>
             </div>
             <div className="faq__item" data-reveal>
-              <dt>How do I choose an SEO services company near me instead of a national chain?</dt>
-              <dd>A local agency usually means direct access to the person doing the strategy work, not an account manager relaying updates from an offshore team. Ask who actually touches your account, whether they can show verified Search Console results (not just self-reported numbers), and whether their process covers AI visibility, not just Google rankings. <a href="/work">Our case studies</a> show real, client-verified outcomes.</dd>
+              <dt>How do I choose a local SEO company instead of a big national chain?</dt>
+              <dd>With a local team, you&apos;re usually talking directly to the person doing the actual work, not an account manager passing along updates from someone overseas. Ask who really works on your account, whether they can show you real, verified results — not just numbers they typed up themselves — and whether they think about AI tools, not just Google. <a href="/work">Our case studies</a> show real results our clients have confirmed.</dd>
             </div>
           </dl>
         </div>

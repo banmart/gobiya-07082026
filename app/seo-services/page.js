@@ -5,8 +5,8 @@ import { buildMetadata } from '../../lib/meta';
 const service = SERVICES_FLAT['seo-services'];
 
 export const metadata = buildMetadata({
-  title: 'Expert SEO Services & Organic Search Strategy | Gobiya Internet Marketing',
-  description: 'Gobiya provides technical SEO services fixing crawlability, indexation, Core Web Vitals, and structured data so your business ranks on Google and AI crawlers. Free SEO audit.',
+  title: 'SEO Services That Get You Found on Google | Gobiya',
+  description: 'Gobiya fixes the technical problems keeping Google and AI tools from finding and reading your site, so your business actually shows up. Free SEO check.',
   path: '/seo-services',
   robots: {
     index: true,

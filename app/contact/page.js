@@ -21,7 +21,7 @@ export default function ContactPage() {
         
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Contact · Los Angeles SEO &amp; AI Visibility Agency</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Let's talk about what's actually happening in your search traffic.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Send your domain and we&apos;ll return what we see — the technical issues, the AI-citation gaps, and where the fastest wins actually are. No generic audit template, no obligation. Prefer a form? <a href="/onboarding">Start with the five-step questionnaire</a> and Steve will follow up directly.</p>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Send us your website address and we&apos;ll tell you what we find — the technical problems, where you&apos;re missing out on AI recommendations, and where the fastest wins actually are. No generic template, no obligation. Prefer a form? <a href="/onboarding">Start with our five-step questionnaire</a> and Steve will follow up directly.</p>
         
           </div>
           <div>
@@ -85,7 +85,7 @@ export default function ContactPage() {
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>What should I include when I reach out?</dt>
-              <dd>Your domain, at minimum — that&apos;s enough for us to pull a first look at crawlability, indexation, and AI-citation gaps before we talk. If you already know the problem (a traffic drop, a rebuild gone wrong, an ad account burning budget), mention it; it saves a round of back-and-forth.</dd>
+              <dd>Your website address, at minimum — that&apos;s enough for us to take a first look at how well Google and AI tools can read your site before we talk. If you already know the problem (a traffic drop, a rebuild gone wrong, an ad account burning through budget), mention it — it saves a round of back-and-forth.</dd>
             </div>
             <div className="faq__item" data-reveal>
               <dt>How fast will I hear back?</dt>

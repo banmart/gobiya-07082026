@@ -40,9 +40,9 @@ export default function WebCatTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Machine Learning Utility</p>
-          <h1 className="statement" data-split>Website Categorization API</h1>
-          <p className="lede" data-reveal>Leverage AI and Natural Language Processing to automatically classify any website's content into standardized categories.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <h1 className="statement" data-split>Website Categorization Tool</h1>
+          <p className="lede" data-reveal>Automatically sort any website into standard industry categories, using AI to read and understand its content.</p>
         </div>
       </section>
 

@@ -3,7 +3,7 @@ import DNSLookupTool from './DNSLookupTool';
 
 export const metadata = buildMetadata({
   title: 'Free DNS Lookup Tool | Check DNS Records Instantly',
-  description: 'Instantly query global DNS records. Check A, MX, TXT, NS, and CNAME records to diagnose routing issues and verify server configurations.',
+  description: 'Instantly look up a domain\'s DNS records to spot connection problems and verify server setup. Free tool, no signup required.',
   path: '/tools/dns-lookup',
 });
 

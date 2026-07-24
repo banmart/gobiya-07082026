@@ -2533,3 +2533,91 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   100% { transform: translateX(250%) skewX(-20deg); }
 }
 
+/* ═══════════ pricing tiers ═══════════ */
+.pricing-grid {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.pricing-card {
+  background: var(--bg);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.pricing-card--featured { background: var(--darkest); color: #fff; }
+.pricing-card__badge {
+  position: absolute;
+  top: clamp(1.75rem, 3vw, 2.5rem);
+  right: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--main);
+}
+.pricing-card__name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.pricing-card__price {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  margin-bottom: 0.5rem;
+}
+.pricing-card__unit { font-size: 0.9rem; opacity: 0.6; margin-left: 0.25em; }
+.pricing-card__best-for {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--hint);
+}
+.pricing-card--featured .pricing-card__best-for { color: rgba(255, 255, 255, 0.75); }
+.pricing-card__features {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  flex-grow: 1;
+}
+.pricing-card__features li {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  padding-left: 1.1em;
+  position: relative;
+}
+.pricing-card__features li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+}
+.pricing-card__features a { text-decoration: underline; text-underline-offset: 0.2em; }
+.pricing-card--featured .pricing-card__features a { color: #fff; }
+@media (max-width: 64rem) { .pricing-grid { grid-template-columns: 1fr; } }
+
+/* ═══════════ à la carte add-on table ═══════════ */
+.addon-table { border-top: 1px solid var(--border); }
+.addon-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.4fr;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--darkest);
+  transition: color 0.3s var(--expo-out);
+}
+.addon-row:hover { color: var(--main); }
+.addon-row__name { font-family: var(--font-heading); font-size: 1rem; }
+.addon-row__price { font-size: 0.9375rem; font-weight: 600; }
+.addon-row__note { font-size: 0.8125rem; color: var(--hint); text-align: right; }
+@media (max-width: 40rem) {
+  .addon-row { grid-template-columns: 1fr; gap: 0.35rem; }
+  .addon-row__note { text-align: left; }
+}
+

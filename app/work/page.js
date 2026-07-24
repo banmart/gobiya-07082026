@@ -6,7 +6,7 @@ import TopicMarquee from '../../components/TopicMarquee';
 export const metadata = buildMetadata({
   title: 'Work — Client Results',
   description:
-    'Selected client work from Gobiya: technical SEO rebuilds, algorithm recovery, and AI-visibility engineering across dental, local service, and B2B clients.',
+    'Real client results from Gobiya: website rebuilds, traffic recovery, and getting found by AI tools, across dental, local service, and B2B businesses.',
   path: '/work',
 });
 
@@ -68,7 +68,7 @@ export default function WorkPage() {
       <section className="portfolio section section--tint" id="clients">
         <div className="container container--narrow portfolio__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Who we&apos;ve built for</p>
-          <h2 className="statement statement--small" data-split>Local service businesses and B2B firms, engineered for search and cited by AI.</h2>
+          <h2 className="statement statement--small" data-split>Local service businesses and B2B companies, built to show up in Google and get recommended by AI.</h2>
         </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">

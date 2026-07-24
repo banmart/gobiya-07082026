@@ -4,9 +4,9 @@ import { buildMetadata } from '../../../lib/meta';
 import TopicMarquee from '../../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Our SEO Process | How Gobiya Runs an Engagement',
+  title: 'Our SEO Process | How Gobiya Works With Clients',
   description:
-    'Gobiya’s SEO process: technical foundation first, transparent reporting tied to real outcomes, and a defined process, not an open-ended retainer.',
+    'How Gobiya works: fix the technical basics first, report on real results you can see, and follow a clear process — not an open-ended bill.',
   path: '/about/approach',
 });
 
@@ -22,7 +22,7 @@ export default function ApproachPage() {
         
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our SEO Process &amp; Methodology</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Foundation first. Everything else compounds on top of it.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Most SEO failures aren&apos;t a strategy problem — they&apos;re a sequencing problem. Content and links get built on top of a technical foundation that can&apos;t support them. We work in a fixed order for a reason: each layer only works if the one underneath it is solid.</p>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>Most SEO problems aren&apos;t about strategy — they&apos;re about order. Content and links get built on top of a technical foundation that can&apos;t actually support them. We always work in the same order, for one reason: each step only works if the one before it is solid.</p>
         
           </div>
           <div>
@@ -45,22 +45,22 @@ export default function ApproachPage() {
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">01 · Sequence</span>
               <h3 className="capability-card__title">Technical foundation before anything else</h3>
-              <p className="capability-card__desc">If a crawler can&apos;t read the page, no amount of content, links, or ad spend on top of it will work. We fix rendering, indexation, and crawl issues before touching strategy.</p>
+              <p className="capability-card__desc">If Google can&apos;t actually read your page, nothing else matters — no amount of content, links, or ad spend on top of it will help. We fix those basic technical problems first, before touching anything else.</p>
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">02 · Evidence</span>
-              <h3 className="capability-card__title">Diagnosis before prescription</h3>
-              <p className="capability-card__desc">We don&apos;t run a standard playbook on every account. Every engagement starts with an audit that determines what&apos;s actually capping performance, not an assumption carried over from the last client.</p>
+              <h3 className="capability-card__title">We look before we act</h3>
+              <p className="capability-card__desc">We don&apos;t run the same playbook for every client. Every project starts with a real look at your website to find out what&apos;s actually holding it back — not a guess carried over from someone else&apos;s business.</p>
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">03 · Accountability</span>
-              <h3 className="capability-card__title">Reporting tied to revenue, not vanity metrics</h3>
-              <p className="capability-card__desc">Traffic and rankings matter because of what they produce. We report on leads, bookings, and sales wherever attribution allows it — not just movement that looks good in isolation.</p>
+              <h3 className="capability-card__title">We report on results that matter, not just numbers</h3>
+              <p className="capability-card__desc">Traffic and rankings only matter because of what they lead to. Whenever we can track it, we report on real leads, bookings, and sales — not just movement that looks good but doesn&apos;t mean much on its own.</p>
             </div>
             <div className="capability-card" data-reveal>
               <span className="capability-card__tag">04 · Structure</span>
-              <h3 className="capability-card__title">A defined process, not an open-ended retainer</h3>
-              <p className="capability-card__desc">Every service runs on a clear four-step process with a visible endpoint for the initial engagement, so you always know what&apos;s being done and why, not just that a monthly invoice went out.</p>
+              <h3 className="capability-card__title">A clear process, not an open-ended bill</h3>
+              <p className="capability-card__desc">Every service follows a clear, four-step process with a visible end point for the first phase of work, so you always know what we&apos;re doing and why — not just that a monthly invoice went out.</p>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function ApproachPage() {
       <section className="solutions section section--tint" id="pillars">
         <div className="container container--narrow solutions__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>The three pillars</p>
-          <h2 className="statement statement--small" data-split>Performance, Creativity, and Relations — built to reinforce each other, not compete for budget.</h2>
+          <h2 className="statement statement--small" data-split>Performance, Creativity, and Relations — three parts of your marketing that work together, not against each other.</h2>
         </div>
 
         <div className="stack">
@@ -79,7 +79,7 @@ export default function ApproachPage() {
               <div className="stack__text">
                 <span className="stack__index">01</span>
                 <h3 className="stack__title">Performance<br /><em>Engineering</em></h3>
-                <p className="stack__desc">The technical layer everything else depends on — crawlability, rendering, and Core Web Vitals fixed before content or links are asked to do any work.</p>
+                <p className="stack__desc">The technical groundwork everything else depends on — making sure your site loads fast and Google can actually read it, before content or links are asked to do any work.</p>
                 <a href="/seo-services" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
@@ -99,7 +99,7 @@ export default function ApproachPage() {
               <div className="stack__text">
                 <span className="stack__index">02</span>
                 <h3 className="stack__title">Creativity<br /><em>&amp; Content</em></h3>
-                <p className="stack__desc">Content built on a solid technical foundation is what actually earns rankings and AI citations — the same words fall flat on a page a crawler can&apos;t properly read.</p>
+                <p className="stack__desc">Great content only works once the technical foundation is solid — the same well-written page falls flat if Google can&apos;t properly read it in the first place.</p>
                 <a href="/geo-services" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
@@ -119,7 +119,7 @@ export default function ApproachPage() {
               <div className="stack__text">
                 <span className="stack__index">03</span>
                 <h3 className="stack__title">Relations<br /><em>&amp; Authority</em></h3>
-                <p className="stack__desc">Trust signals — editorial links, consistent citations, entity alignment — compound fastest once the technical and content layers underneath them are already solid.</p>
+                <p className="stack__desc">Building real trust — other sites linking to you, consistent listings, a business people actually recognize — works best once the technical and content pieces underneath are already solid.</p>
                 <a href="/services/authority-link-building" className="link-arrow">Explore Relations<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">

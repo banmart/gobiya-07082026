@@ -5,9 +5,9 @@ import TopicMarquee from '../../components/TopicMarquee';
 import { PlatformIcon } from '../../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
-  title: 'AI Visibility & GEO — AI Marketing Tools That Get You Cited',
+  title: 'AI Visibility — Get Recommended by ChatGPT & Google AI | Gobiya',
   description:
-    'AI visibility (GEO) from Gobiya: AI marketing tools, content optimization, and authority engineering that get your brand cited in AI-generated search engine results — not just ranked in blue links.',
+    'Gobiya helps your brand get recommended by ChatGPT, Perplexity, and Google\'s AI answers — not just ranked in a list of links.',
   path: '/ai-visibility',
 });
 
@@ -21,11 +21,11 @@ export default function AIVisibilityPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Visibility / GEO</p>
+          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Visibility · Get Found by ChatGPT &amp; Google&apos;s AI</p>
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>The biggest shift in how people find businesses since mobile search.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>A growing share of research now ends inside an AI answer — ChatGPT, Perplexity, Google AI&nbsp;Overviews — before a user ever clicks a blue link. If your site isn&apos;t structured to be read, understood, and cited by those systems, you&apos;re invisible to the fastest-growing slice of search.</p>
+          <p className="lede" style={{ marginInline: 0 }} data-reveal>More and more people now get their answer straight from AI tools — ChatGPT, Perplexity, Google&apos;s AI&nbsp;Overviews — before they ever click through to a website. If your site isn&apos;t set up so those tools can read, understand, and recommend it, you&apos;re invisible to a fast-growing part of search.</p>
           <div className="hero__ctas" data-reveal>
-            <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Audit Your Brand&apos;s AI Citation Score</a>
+            <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Check Your Brand&apos;s AI Visibility</a>
             <a href="#how" className="btn btn--ghost">How it works</a>
           </div>
         
@@ -42,40 +42,40 @@ export default function AIVisibilityPage() {
       {/* ══════════ What GEO means ══════════ */}
       <section className="about section section--tint" id="what-is-geo">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What GEO actually is</p>
-          <h2 className="statement" data-split>Generative Engine Optimization: engineering to be the source an AI model trusts enough to cite.</h2>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What this actually means</p>
+          <h2 className="statement" data-split>Getting your business built so an AI tool trusts it enough to recommend it.</h2>
         </div>
       </section>
 
       {/* ══════════ Where buyers ask now (dark) ══════════ */}
       <section className="offices section section--dark" id="platforms">
         <div className="container">
-          <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Platforms we engineer for</p>
-          <h2 className="offices__title" data-split>Every major AI answer engine reads your site differently. We build for all of them.</h2>
+          <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where we make sure you show up</p>
+          <h2 className="offices__title" data-split>Every major AI tool reads your site a little differently. We make sure you show up well in all of them.</h2>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city"><PlatformIcon name="Google AI Overviews" />Google AI Overviews</span>
-              <span className="offices__addr">Synthesized answers above organic results, drawn from a small set of cited pages per query</span>
+              <span className="offices__addr">Shows a summarized answer above the regular results, pulled from just a handful of pages</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city"><PlatformIcon name="ChatGPT" />ChatGPT</span>
-              <span className="offices__addr">Browses and cites live sources for recommendations, comparisons, and "best of" queries</span>
+              <span className="offices__addr">Looks up real websites when someone asks for a recommendation, comparison, or a &quot;best of&quot; list</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city"><PlatformIcon name="Perplexity" />Perplexity</span>
-              <span className="offices__addr">An answer engine built entirely around citation — visibility here is binary: cited or invisible</span>
+              <span className="offices__addr">Built entirely around quoting sources — you&apos;re either mentioned, or you&apos;re invisible here</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city"><PlatformIcon name="Google Gemini" />Google Gemini</span>
-              <span className="offices__addr">Powers AI Mode and Overviews, weighted heavily toward Google&apos;s existing Knowledge Graph entities</span>
+              <span className="offices__addr">Powers Google&apos;s AI Mode and Overviews, and leans heavily on businesses Google already recognizes</span>
               <span className="offices__tag">Live</span>
             </li>
             <li className="offices__row offices__row--3col" data-reveal>
               <span className="offices__city"><PlatformIcon name="Claude" />Claude</span>
-              <span className="offices__addr">Growing web-search and citation use in research and business-recommendation contexts</span>
+              <span className="offices__addr">Increasingly used for research and business recommendations, with growing use of real web sources</span>
               <span className="offices__tag">Growing</span>
             </li>
           </ul>
@@ -86,7 +86,7 @@ export default function AIVisibilityPage() {
       <section className="solutions section section--tint" id="how">
         <div className="container container--narrow solutions__head">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we build it</p>
-          <h2 className="statement statement--small" data-split>Four layers, engineered in order — skip one and the rest doesn&apos;t hold.</h2>
+          <h2 className="statement statement--small" data-split>Four steps, always in this order — skip one and the rest doesn&apos;t hold up.</h2>
         </div>
 
         <div className="stack">
@@ -96,13 +96,13 @@ export default function AIVisibilityPage() {
               <div className="stack__text">
                 <span className="stack__index">01</span>
                 <h3 className="stack__title">Technical<br /><em>Foundation</em></h3>
-                <p className="stack__desc">If an AI crawler can&apos;t fetch and parse your page, nothing else matters. We fix server-side rendering, crawl budget, and blank-page JavaScript errors first.</p>
+                <p className="stack__desc">If an AI tool can&apos;t even load your page properly, nothing else matters. We fix the basic technical problems — like pages that load up blank — before touching anything else.</p>
                 <dl className="stack__meta">
-                  <div><dt>Fixes</dt><dd>SSR &amp; crawlability</dd></div>
-                  <div><dt></dt><dd>Bot access &amp; robots.txt</dd></div>
-                  <div><dt></dt><dd>Core Web Vitals</dd></div>
+                  <div><dt>Fixes</dt><dd>Pages Google &amp; AI can actually read</dd></div>
+                  <div><dt></dt><dd>Making sure AI tools are allowed in</dd></div>
+                  <div><dt></dt><dd>Faster loading speed</dd></div>
                 </dl>
-                <a href="/seo-services" className="link-arrow">See SEO &amp; Discoverability<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/seo-services" className="link-arrow">See our SEO work<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -121,12 +121,12 @@ export default function AIVisibilityPage() {
               <div className="stack__text">
                 <span className="stack__index">02</span>
                 <h3 className="stack__title">Entity &amp;<br /><em>Structured Data</em></h3>
-                <p className="stack__desc">JSON-LD schema and clean semantic markup tell AI systems exactly what your business is, so they can link you to verified entities instead of guessing.</p>
+                <p className="stack__desc">Clear, behind-the-scenes details tell AI tools exactly what your business is, so they can confidently connect you to the right information instead of guessing.</p>
                 <dl className="stack__meta">
-                  <div><dt>Builds</dt><dd>Organization &amp; LocalBusiness schema</dd></div>
-                  <div><dt></dt><dd>Knowledge-graph alignment</dd></div>
+                  <div><dt>Builds</dt><dd>Clear business details behind the scenes</dd></div>
+                  <div><dt></dt><dd>Getting recognized as one trusted business</dd></div>
                 </dl>
-                <a href="/services/authority-link-building" className="link-arrow">See Authority &amp; Link Building<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/authority-link-building" className="link-arrow">See our trust-building work<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -145,12 +145,12 @@ export default function AIVisibilityPage() {
               <div className="stack__text">
                 <span className="stack__index">03</span>
                 <h3 className="stack__title">Citable<br /><em>Content</em></h3>
-                <p className="stack__desc">AI models quote direct, well-structured answers — not marketing copy. We write pages built around the exact questions your buyers ask an AI assistant.</p>
+                <p className="stack__desc">AI tools quote clear, direct answers — not typical marketing copy. We write pages built around the exact questions your customers actually ask an AI assistant.</p>
                 <dl className="stack__meta">
-                  <div><dt>Writes</dt><dd>GEO &amp; AI content</dd></div>
+                  <div><dt>Writes</dt><dd>Content AI tools want to quote</dd></div>
                   <div><dt></dt><dd>FAQ &amp; comparison pages</dd></div>
                 </dl>
-                <a href="/geo-services" className="link-arrow">See GEO &amp; AI Content Writing<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/geo-services" className="link-arrow">See our AI content writing<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -169,10 +169,10 @@ export default function AIVisibilityPage() {
               <div className="stack__text">
                 <span className="stack__index">04</span>
                 <h3 className="stack__title">Trust &amp;<br /><em>Authority</em></h3>
-                <p className="stack__desc">AI systems weight citations from sites the web already trusts. Editorial backlinks and consistent citations are what earn that trust in the first place.</p>
+                <p className="stack__desc">AI tools trust sources that the rest of the web already trusts. Real links from other sites, and consistent business listings, are what earn that trust in the first place.</p>
                 <dl className="stack__meta">
-                  <div><dt>Builds</dt><dd>Editorial backlinks</dd></div>
-                  <div><dt></dt><dd>Digital PR &amp; NAP consistency</dd></div>
+                  <div><dt>Builds</dt><dd>Real links from other websites</dd></div>
+                  <div><dt></dt><dd>Media coverage &amp; consistent listings</dd></div>
                 </dl>
                 <a href="/contact" className="link-arrow">Talk to us<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
@@ -198,28 +198,28 @@ export default function AIVisibilityPage() {
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>AI visibility, plainly explained.</h2>
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
-              <dt>Is GEO different from SEO, or the same discipline?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'Same foundation, different endpoint. Traditional <a href="/seo-services">technical SEO</a> optimizes for a ranked list of links; GEO optimizes for being the source an AI model paraphrases or quotes directly. Nearly everything that makes a page rank well — clean technical delivery, clear structure, real authority — is also what makes it citable. Read the full breakdown in <a href="/insights/seo-vs-geo">SEO vs. GEO</a>.' }} />
+              <dt>Is this different from SEO, or the same thing?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'Same foundation, different goal. Traditional <a href="/seo-services">SEO</a> aims for a spot in the ranked list of links. This aims for being the source an AI tool actually quotes or paraphrases directly. Almost everything that makes a page rank well — a clean technical setup, clear structure, real trust — is also what makes it worth quoting. Read the full breakdown in <a href="/insights/seo-vs-geo">SEO vs. GEO, explained simply</a>.' }} />
             </div>
             <div className="faq__item" data-reveal>
-              <dt>How do I know if I&apos;m already being cited by AI platforms?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'Run your brand and your core topics as prompts in ChatGPT, Perplexity, and Google AI Overviews and see what comes back. If you don&apos;t appear, or a competitor does instead, that&apos;s the gap — see <a href="/insights/get-cited-by-chatgpt-perplexity-ai-overviews">how to get cited by ChatGPT, Perplexity, and AI Overviews</a> for what each platform actually checks. We run this audit systematically across dozens of buyer-intent prompts as the first step of any engagement.' }} />
+              <dt>How do I know if I&apos;m already being mentioned by AI tools?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'Try typing your brand name and your main topics into ChatGPT, Perplexity, and Google&apos;s AI answers and see what comes back. If you don&apos;t show up, or a competitor does instead, that&apos;s the gap — see <a href="/insights/get-cited-by-chatgpt-perplexity-ai-overviews">how to get recommended by ChatGPT, Perplexity, and AI Overviews</a> for what each one actually checks. We run this same check across dozens of real customer questions as the first step of any project.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>Will this replace the need for traditional SEO?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'No — it depends on it. AI systems still rely heavily on the same crawlability, indexation, and authority signals that drive organic rankings. A site with weak <a href="/seo-services">technical SEO</a> will struggle to be cited by AI for the same reasons it struggles to rank: the systems can&apos;t reliably read or trust it.' }} />
+              <dd dangerouslySetInnerHTML={{ __html: 'No — it actually depends on it. AI tools still rely heavily on the same basics that drive good Google rankings: can they read your site, and do they trust it? A site with weak <a href="/seo-services">SEO</a> will struggle to get recommended by AI for the same reason it struggles to rank: these tools can&apos;t reliably read or trust it.' }} />
             </div>
             <div className="faq__item" data-reveal>
-              <dt>How long before we see AI citations after the work is done?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'Technical and structured-data fixes can affect crawler behavior within weeks. Content and authority signals compound over months, similar to organic SEO timelines — see <a href="/seo-services">how we approach rankings</a>. We track citation appearances directly, not just rankings, so progress is visible before full compounding.' }} />
+              <dt>How long before we see AI mentions after the work is done?</dt>
+              <dd dangerouslySetInnerHTML={{ __html: 'Technical fixes can start affecting how AI tools read your site within weeks. Content and trust-building take longer to build up, usually months, similar to regular SEO timelines — see <a href="/seo-services">how we approach rankings</a>. We track whether you&apos;re actually being mentioned by AI tools directly, not just your Google rankings, so you can see progress along the way.' }} />
             </div>
             <div className="faq__item" data-reveal>
-              <dt>What is the role of AI in search engine results today?</dt>
-              <dd>AI now directly generates answers at the top of search results (like Google&apos;s AI Overviews) rather than just ranking links. This means a user often gets their answer without ever clicking through to a website. To remain visible, brands must optimize to be the source that the AI actually cites and links to within its generated response.</dd>
+              <dt>What is the role of AI in search results today?</dt>
+              <dd>AI now writes its own answer at the top of search results (like Google&apos;s AI Overviews), instead of just showing a list of links. That means someone can often get their answer without ever clicking through to a website. To stay visible, a business needs to be the source that AI actually mentions and links to inside that answer.</dd>
             </div>
             <div className="faq__item" data-reveal>
-              <dt>How does AI-driven web analytics fit into visibility tracking?</dt>
-              <dd>Traditional analytics track clicks and sessions, but they miss when a user gets their answer from an AI without visiting your site. AI-driven analytics track brand mentions, sentiment, and citation frequency across major AI models like ChatGPT and Perplexity. It allows us to measure visibility in places where a traditional web tracker simply can&apos;t reach.</dd>
+              <dt>How do you track AI mentions, if regular website analytics can&apos;t see them?</dt>
+              <dd>Regular website analytics track clicks and visits, but they miss it completely when someone gets their answer from AI without ever visiting your site. We use a different kind of tracking that watches how often — and how positively — your brand gets mentioned across AI tools like ChatGPT and Perplexity. It lets us measure visibility in places a normal website tracker simply can&apos;t see.</dd>
             </div>
           </dl>
         </div>

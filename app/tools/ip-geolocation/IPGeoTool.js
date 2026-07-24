@@ -34,9 +34,9 @@ export default function IPGeoTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Infrastructure Utility</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
           <h1 className="statement" data-split>IP Geolocation Lookup</h1>
-          <p className="lede" data-reveal>Map any IPv4 or IPv6 address to precise geographical coordinates, trace its Internet Service Provider, and uncover network intelligence.</p>
+          <p className="lede" data-reveal>Find out roughly where any IP address is located and which internet provider it belongs to.</p>
         </div>
       </section>
 

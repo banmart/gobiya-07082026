@@ -34,9 +34,9 @@ export default function EmailTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Deliverability Utility</p>
-          <h1 className="statement" data-split>Email Verification API</h1>
-          <p className="lede" data-reveal>Validate the existence and deliverability of an email address in real-time to protect your sender reputation.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <h1 className="statement" data-split>Email Verification Tool</h1>
+          <p className="lede" data-reveal>Check whether an email address is real and can actually receive mail, to help protect your sender reputation.</p>
         </div>
       </section>
 

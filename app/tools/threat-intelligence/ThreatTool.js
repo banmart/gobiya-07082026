@@ -40,9 +40,9 @@ export default function ThreatTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Cybersecurity Utility</p>
-          <h1 className="statement" data-split>Threat Intelligence API Checker</h1>
-          <p className="lede" data-reveal>Cross-reference any domain against comprehensive global threat feeds to instantly detect malware, phishing campaigns, and malicious actors.</p>
+          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <h1 className="statement" data-split>Threat Intelligence Checker</h1>
+          <p className="lede" data-reveal>Check any domain against known threat lists to spot malware, phishing, or other malicious activity.</p>
         </div>
       </section>
 

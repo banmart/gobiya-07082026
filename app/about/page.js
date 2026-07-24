@@ -32,7 +32,7 @@ export default function AboutPage() {
       <section className="numbers section" id="timeline">
         <div className="container numbers__grid">
           <div className="numbers__intro">
-            <p className="numbers__lede" data-reveal>Gobiya&apos;s specialization in algorithm recovery and, more recently, AI visibility, comes from tracking search behavior continuously since before "internet marketing consulting" was a common practice.</p>
+            <p className="numbers__lede" data-reveal>We&apos;ve been closely watching how search works — and helping businesses recover when a Google update changes the rules — since before &quot;internet marketing consulting&quot; was even a common phrase.</p>
             <a href="/ai-visibility" className="link-arrow" data-reveal>Our AI visibility approach<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
           <ul className="numbers__list">
@@ -78,7 +78,7 @@ export default function AboutPage() {
             </div>
             <div className="faq__item" data-reveal>
               <dt>Does Gobiya only work with businesses in Los Angeles?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'Our roots and a lot of our referral relationships are in Los Angeles, but the work itself — technical SEO, GEO, content, and paid search — travels. We work with local and national clients alike; see examples across industries in <a href="/work">our case studies</a>.' }} />
+              <dd dangerouslySetInnerHTML={{ __html: 'Our roots — and a lot of our referral relationships — are in Los Angeles, but the work itself works no matter where your business is: fixing your site, getting found by AI tools, writing content, and running ads all travel just fine. We work with local and national clients alike; see examples across industries in <a href="/work">our case studies</a>.' }} />
             </div>
             <div className="faq__item" data-reveal>
               <dt>Why has Gobiya been around since 2010 while a lot of agencies don&apos;t last?</dt>
