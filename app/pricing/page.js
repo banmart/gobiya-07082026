@@ -55,7 +55,7 @@ const TIERS = [
 const ADDONS = [
   {
     name: 'A New Website',
-    price: 'Starting at $3,500',
+    price: 'Starting at $2,500',
     note: 'a one-time project, not a monthly fee',
     href: '/services/web-app-development',
   },

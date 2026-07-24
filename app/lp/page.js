@@ -7,7 +7,7 @@ import LpOfferForm from '../../components/LpOfferForm';
 
 export const metadata = buildMetadata({
   title: 'The Q3 Growth Bundle Offer',
-  description: 'Custom Next.js/React web development starting at $3,500, with an integrated CRM and a YouTube AI video pre-roll ad campaign included. Limited time — ends September 30.',
+  description: 'Custom Next.js/React web development starting at $2,500, with an integrated CRM and a YouTube AI video pre-roll ad campaign included. Limited time — ends September 30.',
   path: '/lp',
   robots: { index: false, follow: true },
 });
@@ -42,7 +42,7 @@ export default async function LpPage({ searchParams }) {
                 The Q3 <span>Growth Bundle</span> Offer
               </h1>
               <div className="offer-card__price-pill">
-                Custom Web Dev Starting at <strong>$3,500</strong>
+                Custom Web Dev Starting at <strong>$2,500</strong>
               </div>
               <p className="offer-card__desc">
                 Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube AI video pre-roll ad campaign to drive traffic from day one.

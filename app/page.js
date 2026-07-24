@@ -192,7 +192,7 @@ export default function Home() {
                 The Q3 <span>Growth Bundle</span> Offer
               </h2>
               <div className="offer-card__price-pill">
-                Custom Web Dev Starting at <strong className="price-mark">$3,500<CircleMark className="price-mark__circle" /></strong>
+                Custom Web Dev Starting at <strong className="price-mark">$2,500<CircleMark className="price-mark__circle" /></strong>
               </div>
               <p className="offer-card__desc">
                 Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube AI video pre-roll ad campaign to drive traffic from day one.
