@@ -5,6 +5,32 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // ── Legacy URLs still in Google's index that were returning 404 ──
+      // Found 2026-07-25 by checking what actually surfaces for gobiya.com in
+      // Google: the index is still largely the pre-migration site, and several
+      // of those URLs had no redirect at all. A 404 on an indexed URL throws
+      // away whatever signal it had accumulated, so each one goes to its
+      // closest live equivalent.
+      //
+      // /california/:city/:service was a programmatic city-x-service set. Both
+      // known survivors (compton/seo, compton/webdesign) were 404ing, and the
+      // pattern implies more cities than we can enumerate, so these are
+      // matched by shape rather than listed one by one.
+      { source: '/california/:city/seo', destination: '/seo-services', permanent: true },
+      { source: '/california/:city/webdesign', destination: '/services/web-app-development', permanent: true },
+      { source: '/california/:path*', destination: '/services', permanent: true },
+
+      // Old services slug -> the page that replaced it (was a 404, and it
+      // ranks for web design queries).
+      { source: '/services/web-design-development', destination: '/services/web-app-development', permanent: true },
+
+      // /resources itself already redirected, but nested article URLs under it
+      // did not — e.g. the algorithm-update recovery guide, which is indexed.
+      { source: '/resources/:path*', destination: '/insights', permanent: true },
+
+      // Stray app route from the previous build.
+      { source: '/user', destination: '/', permanent: true },
+
       // Flat, keyword-first service pages (2026-07) replacing the 4 old /services/[slug] pages
       { source: '/services/seo-discoverability', destination: '/seo-services', permanent: true },
       { source: '/services/geo-ai-content-writing', destination: '/geo-services', permanent: true },
