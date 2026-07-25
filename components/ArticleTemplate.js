@@ -1,6 +1,7 @@
 import Breadcrumbs from './Breadcrumbs';
 import DataPanel from './sections/DataPanel';
 import StepList from './sections/StepList';
+import ReadingProgress from './sections/ReadingProgress';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -37,6 +38,7 @@ export default function ArticleTemplate({ article }) {
 
   return (
     <main id="top">
+      <ReadingProgress />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
@@ -59,7 +61,15 @@ export default function ArticleTemplate({ article }) {
           </p>
         </div>
 
+        {/* The `answer` field is the self-contained, quotable summary — the
+            one block on the page an AI assistant is most likely to lift. It
+            was rendering as an unlabelled paragraph; labelling it makes the
+            role obvious to a reader skimming and to anything parsing the page. */}
         <div className="article__answer" data-reveal>
+          <span className="article__answer-tag">
+            <span className="article__answer-dot" aria-hidden="true" />
+            The short answer
+          </span>
           <p dangerouslySetInnerHTML={{ __html: article.answer }} />
         </div>
       </section>
@@ -79,8 +89,12 @@ export default function ArticleTemplate({ article }) {
           </nav>
 
           <div className="article__body">
-            {article.body.map((block) => (
+            {article.body.map((block, bi) => (
               <div key={block.heading} data-reveal>
+                <p className="article__chapter-num" aria-hidden="true">
+                  {String(bi + 1).padStart(2, '0')}
+                  <span className="article__chapter-rule" />
+                </p>
                 <h2 id={slugifyHeading(block.heading)}>{block.heading}</h2>
                 {block.paragraphs.map((p, i) => {
                   if (typeof p === 'string') {
@@ -110,7 +124,7 @@ export default function ArticleTemplate({ article }) {
 
           <div className="article__takeaways" data-reveal>
             <h3>Key takeaways</h3>
-            <ul>
+            <ul data-stagger>
               {article.takeaways.map((t) => (
                 <li key={t}>{t}</li>
               ))}

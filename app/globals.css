@@ -3297,3 +3297,107 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .article__body .chapter .statement,
 .article__body .chapter__eyebrow { text-align: left; justify-content: flex-start; margin-inline: 0; }
 .article__body .chapter { margin-top: clamp(2.5rem, 6vw, 4rem); }
+
+/* ═══════════════════════════════════════════════════════════
+   Article reading experience
+   Progress rail, scroll-spy TOC, numbered sections, and a
+   labelled short-answer block. Mobile-first.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── progress rail, pinned under the fixed nav ── */
+.reading-progress {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 40;
+  background: transparent;
+  pointer-events: none;
+}
+.reading-progress__fill {
+  display: block;
+  height: 100%;
+  background: var(--main);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ── short answer: the block most likely to be quoted ── */
+.article__answer-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hint);
+  margin-bottom: 0.75rem;
+}
+.article__answer-dot { width: 7px; height: 7px; background: var(--main); }
+
+/* ── numbered body sections ── */
+.article__chapter-num {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  color: var(--main);
+  margin-bottom: 0.5rem;
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+}
+.article__chapter-rule {
+  flex: 0 0 2rem;
+  height: 1px;
+  background: var(--border-strong);
+}
+.article__body > div:first-child .article__chapter-num { margin-top: 0; }
+
+/* ── scroll-spy state on the TOC ── */
+.article__toc a {
+  transition: color 0.25s var(--expo-out), border-color 0.25s var(--expo-out);
+  border-left: 2px solid transparent;
+  padding-left: 0.6rem;
+  display: block;
+}
+.article__toc a.is-current {
+  color: var(--main);
+  border-left-color: var(--main);
+  font-weight: 600;
+}
+
+/* On a wide screen the TOC becomes a real sidebar that rides along with the
+   reader. It cannot just be given position:sticky where it sits — it is a
+   centred box stacked above the body, so sticking it in place leaves the body
+   scrolling underneath and the two overlap. The column has to exist first. */
+@media (min-width: 64rem) {
+  #body > .container {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 42rem);
+    gap: clamp(2rem, 4vw, 4rem);
+    justify-content: center;
+    align-items: start;
+  }
+  .article__toc {
+    position: sticky;
+    top: calc(var(--nav-h) + 1.5rem);
+    max-width: none;
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    border: 0;
+    border-left: 1px solid var(--border);
+    max-height: calc(100vh - var(--nav-h) - 3rem);
+    overflow-y: auto;
+  }
+  .article__toc h3 { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hint); }
+  .article__toc a { font-size: 0.875rem; }
+  .article__body { margin-inline: 0; }
+  /* both live in the content column, not stacked under the sidebar */
+  .article__takeaways { grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article__toc a { transition: none; }
+}
