@@ -26,6 +26,21 @@ export default function sitemap() {
     '/work',
     '/privacy',
     '/terms',
+    // Free tools + MCP server. These are indexable (200, index/follow) and
+    // linked from the footer, but were never listed here — the array is
+    // hand-maintained, so anything added outside it stays invisible to the
+    // sitemap. /lp and the thank-you pages stay out on purpose: they're
+    // noindex.
+    '/tools',
+    '/tools/dns-lookup',
+    '/tools/domain-lookup',
+    '/tools/domain-reputation',
+    '/tools/email-verification',
+    '/tools/ip-geolocation',
+    '/tools/ssl-certificates',
+    '/tools/threat-intelligence',
+    '/tools/website-categorization',
+    '/mcp',
   ].map((path) => ({
     url: `${BASE_URL}${path}`,
   }));

@@ -15,18 +15,11 @@ export default function FlatServiceTemplate({ service }) {
     serviceType: service.eyebrow,
     description: service.metaDescription || service.intro,
     url: `https://www.gobiya.com/${service.slug}`,
-    provider: {
-      '@type': 'ProfessionalService',
-      name: 'Gobiya',
-      url: 'https://www.gobiya.com',
-      telephone: '+1-323-744-1338',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        addressCountry: 'US',
-      },
-    },
+    // Reference the sitewide organization node from components/SiteSchema.js
+    // rather than restating it. Declaring a second, @id-less ProfessionalService
+    // here put two unlinked copies of the same company on every service page,
+    // which splits the entity instead of consolidating it.
+    provider: { '@id': 'https://www.gobiya.com/#organization' },
     areaServed: {
       '@type': 'Country',
       name: 'United States',
