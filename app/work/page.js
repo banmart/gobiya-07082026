@@ -2,6 +2,7 @@ import HeroQuickForm from '../../components/HeroQuickForm';
 import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
+import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
   title: 'Client Results & Case Studies',
@@ -41,9 +42,10 @@ export default function WorkPage() {
       {/* ══════════ Case studies ══════════ */}
       <section className="section" id="cases">
         <div className="container">
-          <div className="capability-grid">
+          <Chapter n={1} label="Selected engagements" title="Every one measured against the same standard: traffic, rankings, and sales that actually moved." />
+          <div className="capability-grid" data-stagger>
             {CASE_STUDIES.map((c) => (
-              <div className="capability-card" key={c.client} data-reveal>
+              <div className="capability-card" key={c.client}>
                 {c.media?.logo && (
                   <div style={{ marginBottom: '1.25rem', height: '40px', display: 'flex', alignItems: 'center' }}>
                     <img src={c.media.logo} alt={`${c.client} logo`} style={{ maxHeight: '100%', maxWidth: '140px', objectFit: 'contain' }} />
@@ -67,8 +69,7 @@ export default function WorkPage() {
       {/* ══════════ Client sectors marquee ══════════ */}
       <section className="portfolio section section--tint" id="clients">
         <div className="container container--narrow portfolio__head">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Who we&apos;ve built for</p>
-          <h2 className="statement statement--small" data-split>Local service businesses and B2B companies, built to show up in Google and get recommended by AI.</h2>
+          <Chapter n={2} label="Who we've built for" title="Local service businesses and B2B companies, built to show up in Google and get recommended by AI." />
         </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">

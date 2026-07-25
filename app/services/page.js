@@ -3,6 +3,7 @@ import { SERVICES } from '../../lib/services';
 import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
+import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
   title: 'Services — SEO, Content, Ads & Web',
@@ -42,10 +43,10 @@ export default function ServicesPage() {
 
       <section className="section" id="flat-services">
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Core Services</p>
-          <div className="insights__grid">
+          <Chapter n={1} label="Core services" />
+          <div className="insights__grid" data-stagger>
             {CONSULTING_ITEMS.filter((s) => s.tag === 'Consulting').map((s) => (
-              <a className="insights__card" href={s.href} key={s.slug} data-reveal>
+              <a className="insights__card" href={s.href} key={s.slug}>
                 <span className="insights__card-cat">Consulting</span>
                 <h2 className="insights__card-title">{s.title}</h2>
                 <p className="insights__card-dek">{s.desc}</p>
@@ -56,13 +57,13 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {byPillar.map(({ pillar, items }) => (
+      {byPillar.map(({ pillar, items }, pi) => (
         <section className="section" id={pillar.toLowerCase()} key={pillar}>
           <div className="container">
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{pillar}</p>
-            <div className="insights__grid">
+            <Chapter n={pi + 2} label={pillar} />
+            <div className="insights__grid" data-stagger>
               {items.map((s) => (
-                <a className="insights__card" href={`/services/${s.slug}`} key={s.slug} data-reveal>
+                <a className="insights__card" href={`/services/${s.slug}`} key={s.slug}>
                   <span className="insights__card-cat">{s.pillar}</span>
                   <h2 className="insights__card-title">{s.title}</h2>
                   <p className="insights__card-dek">{s.metaDescription}</p>
@@ -76,7 +77,7 @@ export default function ServicesPage() {
 
       <section className="faq section" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
+          <Chapter n={PILLARS.length + 2} label="Common questions" />
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
             SEO and digital marketing, plainly explained.
           </h2>

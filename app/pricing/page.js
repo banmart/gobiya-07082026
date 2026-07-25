@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
+import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
   // Leading with the entry price: a concrete number in the SERP title is one
@@ -107,11 +108,10 @@ export default function PricingPage() {
 
       <section className="section" id="tiers">
         <div className="container">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Monthly plans</p>
-          <h2 className="statement statement--small" data-split style={{ textAlign: 'center' }}>Pick the plan that matches where your business is today.</h2>
-          <div className="pricing-grid">
+          <Chapter n={1} label="Monthly plans" title="Pick the plan that matches where your business is today." />
+          <div className="pricing-grid" data-stagger>
             {TIERS.map((t) => (
-              <div className={`pricing-card${t.featured ? ' pricing-card--featured' : ''}`} key={t.name} data-reveal>
+              <div className={`pricing-card${t.featured ? ' pricing-card--featured' : ''}`} key={t.name}>
                 {t.badge && <span className="pricing-card__badge">{t.badge}</span>}
                 <h3 className="pricing-card__name">{t.name}</h3>
                 <p className="pricing-card__price">{t.price}<span className="pricing-card__unit">{t.unit}</span></p>
@@ -130,9 +130,8 @@ export default function PricingPage() {
 
       <section className="section section--tint" id="addons">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Add-ons</p>
-          <h2 className="statement statement--small" data-reveal style={{ textAlign: 'center', marginBottom: '2.5rem' }}>Just need one thing? Add it on its own.</h2>
-          <div className="addon-table" data-reveal>
+          <Chapter n={2} label="Add-ons" title="Just need one thing? Add it on its own." />
+          <div className="addon-table" data-stagger>
             {ADDONS.map((a) => (
               <a className="addon-row" href={a.href} key={a.name}>
                 <span className="addon-row__name">{a.name}</span>
@@ -146,10 +145,7 @@ export default function PricingPage() {
 
       <section className="faq section" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
-            Pricing, plainly explained.
-          </h2>
+          <Chapter n={3} label="Common questions" title="Pricing, plainly explained." />
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>Are these monthly plans, or one-time projects?</dt>

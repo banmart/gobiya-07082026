@@ -1,6 +1,7 @@
 import { buildMetadata } from '../../lib/meta';
 import HeroQuickForm from '../../components/HeroQuickForm';
 import TopicMarquee from '../../components/TopicMarquee';
+import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
   title: 'About — LA Marketing Firm Since 2010',
@@ -32,6 +33,7 @@ export default function AboutPage() {
       <section className="numbers section" id="timeline">
         <div className="container numbers__grid">
           <div className="numbers__intro">
+            <Chapter n={1} label="Since 2010" />
             <p className="numbers__lede" data-reveal>We&apos;ve been closely watching how search works — and helping businesses recover when a Google update changes the rules — since before &quot;internet marketing consulting&quot; was even a common phrase.</p>
             <a href="/ai-visibility" className="link-arrow" data-reveal>Our AI visibility approach<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
           </div>
@@ -63,7 +65,7 @@ export default function AboutPage() {
       {/* ══════════ FAQ ══════════ */}
       <section className="faq section" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
+          <Chapter n={2} label="Common questions" />
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
             About Gobiya, plainly explained.
           </h2>

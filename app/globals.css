@@ -3291,3 +3291,9 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 @media (min-width: 72rem) {
   .rail__track { grid-auto-columns: minmax(18rem, 30%); }
 }
+
+/* Chapter headings inside long-form body copy align with the prose, not
+   centred like the section-level statements they share a class with. */
+.article__body .chapter .statement,
+.article__body .chapter__eyebrow { text-align: left; justify-content: flex-start; margin-inline: 0; }
+.article__body .chapter { margin-top: clamp(2.5rem, 6vw, 4rem); }

@@ -4,24 +4,10 @@ import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
 import StoryMotif from './StoryMotif';
 import HorizontalRail from './sections/HorizontalRail';
+import Chapter from './sections/Chapter';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import { ServiceIcon } from './icons/HandDrawn';
 import { getStory } from '../lib/serviceStory';
-
-// Chapter heading. Numbering the sections is what turns a stack of blocks
-// into something that reads as one argument with an order to it.
-function Chapter({ n, label, title, light = false }) {
-  return (
-    <div className="chapter" data-chapter>
-      <p className={`chapter__eyebrow${light ? ' chapter__eyebrow--light' : ''}`}>
-        <span className="chapter__num">{String(n).padStart(2, '0')}</span>
-        <span className="chapter__rule" data-rule aria-hidden="true" />
-        {label}
-      </p>
-      {title && <h2 className="statement statement--small" data-split>{title}</h2>}
-    </div>
-  );
-}
 
 export default function FlatServiceTemplate({ service }) {
   const serviceName = service.title.split(' - ')[0];

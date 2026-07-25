@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { CLIENT_SEARCH_WINS } from '../lib/clientSearchWins';
 import CaseMediaVideo from './CaseMediaVideo';
+import Chapter from './sections/Chapter';
 
 export default function CaseStudyTemplate({ cs }) {
   const searchWins = CLIENT_SEARCH_WINS[cs.slug];
@@ -51,9 +52,9 @@ export default function CaseStudyTemplate({ cs }) {
 
         {cs.study?.metrics?.length > 0 && (
           <div className="container" style={{ marginTop: '2.5rem' }}>
-            <div className="search-wins__grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+            <div className="search-wins__grid" data-stagger style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
               {cs.study.metrics.map((m, idx) => (
-                <div className="search-wins__card" key={idx} data-reveal>
+                <div className="search-wins__card" key={idx}>
                   <span className="search-wins__label">Key Outcome</span>
                   <span className="search-wins__value">{m.value}</span>
                   <p className="search-wins__detail">{m.label}</p>
@@ -114,15 +115,31 @@ export default function CaseStudyTemplate({ cs }) {
       {/* ══════════ Body ══════════ */}
       <section className="section" id="body">
         <div className="container">
+          {/* Every case study already follows challenge -> approach -> results;
+              the headings carry it as "The challenge: ...". Splitting on the
+              colon turns that into a numbered chapter label plus a real
+              heading, so the arc is legible instead of implied. */}
           <div className="article__body">
-            {cs.study.body.map((block) => (
-              <div key={block.heading} data-reveal>
-                <h2>{block.heading}</h2>
-                {block.paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            ))}
+            {cs.study.body.map((block, bi) => {
+              const [label, ...rest] = block.heading.split(': ');
+              // "The challenge: a slow website..." leaves the remainder
+              // starting lower-case, which reads as a fragment once it's
+              // promoted to a heading in its own right.
+              const raw = rest.join(': ');
+              const title = raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : '';
+              return (
+                <div key={block.heading} data-reveal>
+                  {title ? (
+                    <Chapter n={bi + 1} label={label} title={title} />
+                  ) : (
+                    <h2>{block.heading}</h2>
+                  )}
+                  {block.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              );
+            })}
           </div>
 
           <div className="article__takeaways" data-reveal>
