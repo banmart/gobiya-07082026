@@ -1,5 +1,4 @@
 import Script from 'next/script';
-import { headers } from 'next/headers';
 import { Inter, Stack_Sans_Notch } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
@@ -9,6 +8,7 @@ import ConsentAnalytics from '../components/ConsentAnalytics';
 import BrandWatermark from '../components/BrandWatermark';
 import Motion from '../components/Motion';
 import AIChatBubble from '../components/AIChatBubble';
+import ChromeGate from '../components/ChromeGate';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -50,19 +50,20 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout({ children }) {
-  const headerList = await headers();
-  const minimalChrome = headerList.get('x-minimal-chrome') === '1';
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
       <body>
         <SiteSchema />
         <BrandWatermark />
-        {!minimalChrome && <Header />}
+        <ChromeGate>
+          <Header />
+        </ChromeGate>
         {children}
-        {!minimalChrome && <AIChatBubble />}
-        {!minimalChrome && <Footer />}
+        <ChromeGate>
+          <AIChatBubble />
+          <Footer />
+        </ChromeGate>
         <Motion />
         <Script src="/js/main.js" strategy="afterInteractive" />
 
