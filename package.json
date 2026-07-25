@@ -8,7 +8,17 @@
     "start": "next start",
     "lint": "next lint",
     "remotion:studio": "remotion studio remotion/index.js",
-    "remotion:render": "remotion render remotion/index.js"
+    "remotion:render": "remotion render remotion/index.js",
+    "ad:narration": "node scripts/generate-fb-ad-narration.mjs",
+    "ad:music": "node scripts/generate-fb-ad-music.mjs",
+    "ad:render": "remotion render remotion/index.js FacebookAd out/ads/gobiya-facebook-ad-4x5.mp4",
+    "ad:render:1x1": "remotion render remotion/index.js FacebookAdSquare out/ads/gobiya-facebook-ad-1x1.mp4",
+    "ad:render:9x16": "remotion render remotion/index.js FacebookAdVertical out/ads/gobiya-facebook-ad-9x16.mp4",
+    "ad:master": "node scripts/master-fb-ad.mjs",
+    "ad:build": "npm run ad:render && npm run ad:master",
+    "ad:build:1x1": "npm run ad:render:1x1 && node scripts/master-fb-ad.mjs out/ads/gobiya-facebook-ad-1x1.mp4",
+    "ad:build:9x16": "npm run ad:render:9x16 && node scripts/master-fb-ad.mjs out/ads/gobiya-facebook-ad-9x16.mp4",
+    "ad:build:all": "npm run ad:build && npm run ad:build:1x1 && npm run ad:build:9x16"
   },
   "keywords": [],
   "author": "",
