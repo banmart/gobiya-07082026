@@ -35,6 +35,33 @@ export default function InsightsPage() {
         </div>
       </section>
 
+      {/* ══════════ Full archive ══════════
+          InsightsGrid paginates client-side at 6 per page, so only the first 6
+          articles ever appear as links in the server-rendered HTML — the other
+          28 had no crawlable path from this hub at all. GSC confirmed the
+          damage: a cluster of /insights/* URLs sitting at "Discovered -
+          currently not indexed" with last_crawl_time null, i.e. found via the
+          sitemap but never considered worth fetching, which is what happens to
+          a page nothing links to. This list is plain server-rendered anchors
+          for every article, so the grid keeps its UX and the crawler gets a
+          complete path. */}
+      <section className="section section--tint" id="all-articles">
+        <div className="container container--narrow">
+          <p className="eyebrow"><span className="eyebrow__dot"></span>Full archive</p>
+          <h2 className="statement statement--small">All {INSIGHTS.length} articles</h2>
+          <ul className="archive-list">
+            {INSIGHTS.map((a) => (
+              <li key={a.slug} className="archive-list__item">
+                <a href={`/insights/${a.slug}`} className="archive-list__link">
+                  <span className="archive-list__title">{a.title}</span>
+                  <span className="archive-list__meta">{a.category}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ══════════ CTA ══════════ */}
       <section className="cta section section--tint" id="contact">
         <div className="container container--narrow">

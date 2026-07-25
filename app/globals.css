@@ -2963,3 +2963,30 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   .myth-progress__fill,
   .myth-card__stamp { transition: none; }
 }
+
+/* ── /insights full archive ──
+   Every article as a plain server-rendered link. The paginated grid above it
+   only ever renders 6, which left the rest with no crawlable path. */
+.archive-list { border-top: 1px solid var(--border); margin-top: 2.5rem; }
+.archive-list__item { border-bottom: 1px solid var(--border); }
+.archive-list__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  color: var(--darkest);
+  transition: color 0.3s var(--expo-out);
+}
+.archive-list__link:hover { color: var(--main); }
+.archive-list__title { font-size: 0.9375rem; line-height: 1.5; }
+.archive-list__meta {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hint);
+}
+@media (max-width: 34rem) {
+  .archive-list__link { flex-direction: column; gap: 0.3rem; }
+}
