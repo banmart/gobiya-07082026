@@ -37,73 +37,81 @@ const nextConfig = {
       { source: '/services/google-ads-ppc', destination: '/ppc-management-services', permanent: true },
       { source: '/services/seo-web-copywriting', destination: '/content-marketing-services', permanent: true },
 
-      // Outcomes and Industries hubs removed entirely (2026-07) -- no direct
-      // single-page equivalent, consolidates onto homepage.
-      { source: '/outcomes', destination: '/', permanent: true },
-      { source: '/outcomes/traffic', destination: '/', permanent: true },
-      { source: '/outcomes/rankings', destination: '/', permanent: true },
-      { source: '/outcomes/sales', destination: '/', permanent: true },
-      { source: '/outcomes/recovery', destination: '/', permanent: true },
-      { source: '/industries', destination: '/', permanent: true },
-      { source: '/industries/enterprise-b2b', destination: '/', permanent: true },
-      { source: '/industries/local-service', destination: '/', permanent: true },
-      { source: '/industries/healthcare', destination: '/', permanent: true },
-      { source: '/industries/professional-services', destination: '/', permanent: true },
+      // Outcomes and Industries hubs removed entirely (2026-07). These used to
+      // point at '/'. Retargeted 2026-07-25: Google generally treats a mass
+      // redirect of topically distinct pages onto the homepage as a soft 404
+      // and drops the signal instead of consolidating it, so each one now goes
+      // to the page that actually covers the same subject.
+      { source: '/outcomes', destination: '/services', permanent: true },
+      { source: '/outcomes/traffic', destination: '/seo-services', permanent: true },
+      { source: '/outcomes/rankings', destination: '/seo-services', permanent: true },
+      { source: '/outcomes/sales', destination: '/services/cro-ux', permanent: true },
+      { source: '/outcomes/recovery', destination: '/insights/why-did-my-website-traffic-drop', permanent: true },
+      { source: '/industries', destination: '/services', permanent: true },
+      { source: '/industries/enterprise-b2b', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service', destination: '/seo-services', permanent: true },
+      { source: '/industries/healthcare', destination: '/seo-services', permanent: true },
+      { source: '/industries/professional-services', destination: '/seo-services', permanent: true },
 
       // City-specific location pages (2026-07): the /industries/local-service/<city>-seo
       // pages were removed as a set (low traffic relative to maintenance cost of 18
       // near-duplicate city pages). Every old alias and every former city-page URL now
       // consolidates onto the single Local Service industry hub, which still covers the
       // same local-SEO service and area-served claims without the thin per-city split.
-      { source: '/glendale-seo', destination: '/', permanent: true },
-      { source: '/local-seo-glendale', destination: '/', permanent: true },
-      { source: '/locations/glendale', destination: '/', permanent: true },
-      { source: '/locations/glendale-seo', destination: '/', permanent: true },
-      { source: '/industries/local-service/glendale-seo', destination: '/', permanent: true },
-      { source: '/seo-company-encino', destination: '/', permanent: true },
-      { source: '/locations/encino', destination: '/', permanent: true },
-      { source: '/industries/local-service/encino-seo', destination: '/', permanent: true },
-      { source: '/locations/studio-city', destination: '/', permanent: true },
-      { source: '/industries/local-service/studio-city-seo', destination: '/', permanent: true },
-      { source: '/ai-seo-beverly-hills', destination: '/', permanent: true },
-      { source: '/locations/beverly-hills', destination: '/', permanent: true },
-      { source: '/industries/local-service/beverly-hills-seo', destination: '/', permanent: true },
-      { source: '/locations/woodland-hills', destination: '/', permanent: true },
-      { source: '/industries/local-service/woodland-hills-seo', destination: '/', permanent: true },
-      { source: '/locations/northridge', destination: '/', permanent: true },
-      { source: '/industries/local-service/northridge-seo', destination: '/', permanent: true },
-      { source: '/locations/sherman-oaks', destination: '/', permanent: true },
-      { source: '/industries/local-service/sherman-oaks-seo', destination: '/', permanent: true },
-      { source: '/locations/santa-monica', destination: '/', permanent: true },
-      { source: '/industries/local-service/santa-monica-seo', destination: '/', permanent: true },
-      { source: '/locations/long-beach-seo', destination: '/', permanent: true },
-      { source: '/industries/local-service/long-beach-seo', destination: '/', permanent: true },
-      { source: '/locations/anaheim-seo', destination: '/', permanent: true },
-      { source: '/industries/local-service/anaheim-seo', destination: '/', permanent: true },
-      { source: '/local-seo-company-burbank', destination: '/', permanent: true },
-      { source: '/locations/burbank', destination: '/', permanent: true },
-      { source: '/industries/local-service/burbank-seo', destination: '/', permanent: true },
-      { source: '/locations/costa-mesa-seo', destination: '/', permanent: true },
-      { source: '/industries/local-service/costa-mesa-seo', destination: '/', permanent: true },
-      { source: '/locations/culver-city', destination: '/', permanent: true },
-      { source: '/industries/local-service/culver-city-seo', destination: '/', permanent: true },
-      { source: '/locations/north-hollywood', destination: '/', permanent: true },
-      { source: '/industries/local-service/north-hollywood-seo', destination: '/', permanent: true },
-      { source: '/locations/silverlake', destination: '/', permanent: true },
-      { source: '/industries/local-service/silverlake-seo', destination: '/', permanent: true },
-      { source: '/locations/van-nuys', destination: '/', permanent: true },
-      { source: '/industries/local-service/van-nuys-seo', destination: '/', permanent: true },
-      { source: '/locations/ventura', destination: '/', permanent: true },
-      { source: '/industries/local-service/ventura-seo', destination: '/', permanent: true },
-      { source: '/ai-search-marketing-santa-clarita', destination: '/', permanent: true },
-      { source: '/industries/local-service/santa-clarita-seo', destination: '/', permanent: true },
+      // All of these used to land on '/'. Retargeted 2026-07-25 to the page
+      // that owns the same intent: local/city SEO pages -> /seo-services, and
+      // the two AI-framed ones -> /ai-visibility. A city page redirecting to
+      // the homepage passes essentially nothing; redirecting it to the service
+      // it was actually about at least keeps the topic aligned.
+      { source: '/glendale-seo', destination: '/seo-services', permanent: true },
+      { source: '/local-seo-glendale', destination: '/seo-services', permanent: true },
+      { source: '/locations/glendale', destination: '/seo-services', permanent: true },
+      { source: '/locations/glendale-seo', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/glendale-seo', destination: '/seo-services', permanent: true },
+      { source: '/seo-company-encino', destination: '/seo-services', permanent: true },
+      { source: '/locations/encino', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/encino-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/studio-city', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/studio-city-seo', destination: '/seo-services', permanent: true },
+      { source: '/ai-seo-beverly-hills', destination: '/ai-visibility', permanent: true },
+      { source: '/locations/beverly-hills', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/beverly-hills-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/woodland-hills', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/woodland-hills-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/northridge', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/northridge-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/sherman-oaks', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/sherman-oaks-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/santa-monica', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/santa-monica-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/long-beach-seo', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/long-beach-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/anaheim-seo', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/anaheim-seo', destination: '/seo-services', permanent: true },
+      { source: '/local-seo-company-burbank', destination: '/seo-services', permanent: true },
+      { source: '/locations/burbank', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/burbank-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/costa-mesa-seo', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/costa-mesa-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/culver-city', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/culver-city-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/north-hollywood', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/north-hollywood-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/silverlake', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/silverlake-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/van-nuys', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/van-nuys-seo', destination: '/seo-services', permanent: true },
+      { source: '/locations/ventura', destination: '/seo-services', permanent: true },
+      { source: '/industries/local-service/ventura-seo', destination: '/seo-services', permanent: true },
+      { source: '/ai-search-marketing-santa-clarita', destination: '/ai-visibility', permanent: true },
+      { source: '/industries/local-service/santa-clarita-seo', destination: '/seo-services', permanent: true },
 
-      // Regional/multi-city pages with no single matching city -> Local Service hub
-      { source: '/on-page-seo-los-angeles', destination: '/', permanent: true },
-      { source: '/los-angeles-seo-services', destination: '/', permanent: true },
-      { source: '/markets/southern-california', destination: '/', permanent: true },
-      { source: '/markets', destination: '/', permanent: true },
-      { source: '/services/google-business-profile-optimization', destination: '/', permanent: true },
+      // Regional/multi-city pages, also retargeted off '/'.
+      { source: '/on-page-seo-los-angeles', destination: '/seo-services', permanent: true },
+      { source: '/los-angeles-seo-services', destination: '/seo-services', permanent: true },
+      { source: '/markets/southern-california', destination: '/seo-services', permanent: true },
+      { source: '/markets', destination: '/seo-services', permanent: true },
+      { source: '/services/google-business-profile-optimization', destination: '/insights/google-business-profile-seo-checklist', permanent: true },
 
       // Old brand/about duplicate -> single canonical About page
       { source: '/company/about', destination: '/about', permanent: true },
@@ -133,15 +141,15 @@ const nextConfig = {
       // groupings, flattened under /services/*)
       { source: '/capabilities/authority-building', destination: '/services/authority-link-building', permanent: true },
       { source: '/capabilities/conversion-architecture', destination: '/services/cro-ux', permanent: true },
-      { source: '/capabilities/forensic-seo-penalty-recovery', destination: '/', permanent: true },
+      { source: '/capabilities/forensic-seo-penalty-recovery', destination: '/insights/algorithmic-update-recovery-entity-seo', permanent: true },
       { source: '/performance/technical-seo-audit-agency', destination: '/seo-services', permanent: true },
       { source: '/relations/authority-building-agency', destination: '/services/authority-link-building', permanent: true },
       { source: '/relations/google-shopping-ads-agency', destination: '/ppc-management-services', permanent: true },
 
       // Old "capabilities" and "creativity" hub pages have no direct new equivalent -> home
       // (/services now has its own built hub page, so no redirect needed there)
-      { source: '/capabilities', destination: '/', permanent: true },
-      { source: '/creativity', destination: '/', permanent: true },
+      { source: '/capabilities', destination: '/services', permanent: true },
+      { source: '/creativity', destination: '/services', permanent: true },
 
       // Old misc pages, no direct new equivalent -> closest live page
       { source: '/onboard', destination: '/contact', permanent: true },
@@ -151,14 +159,14 @@ const nextConfig = {
       { source: '/reviews', destination: '/work', permanent: true },
 
       // Old guides/* -> topically matching new page
-      { source: '/google-penalty-service', destination: '/', permanent: true },
-      { source: '/guides/google-penalty-recovery', destination: '/', permanent: true },
-      { source: '/guides/helpful-content-update-recovery', destination: '/', permanent: true },
+      { source: '/google-penalty-service', destination: '/insights/algorithmic-update-recovery-entity-seo', permanent: true },
+      { source: '/guides/google-penalty-recovery', destination: '/insights/algorithmic-update-recovery-entity-seo', permanent: true },
+      { source: '/guides/helpful-content-update-recovery', destination: '/insights/why-did-my-website-traffic-drop', permanent: true },
       { source: '/guides/topic-cluster-architecture', destination: '/content-marketing-services', permanent: true },
 
       // Old services/* pages with no direct new slug -> closest current service/outcome
       { source: '/services/on-page-seo', destination: '/seo-services', permanent: true },
-      { source: '/services/unnatural-links-penalty-recovery', destination: '/', permanent: true },
+      { source: '/services/unnatural-links-penalty-recovery', destination: '/insights/toxic-backlinks-disavow-guide', permanent: true },
 
       // Services consolidation (2026-07): three overlapping pages merged into
       // the survivor that owns the stronger commercial query.
