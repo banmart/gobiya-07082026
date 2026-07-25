@@ -4,9 +4,9 @@ import { MYTHS, TOPICS, TOTAL_QUESTIONS } from '../../lib/seoMyths';
 import GameShell from './GameShell';
 
 export const metadata = buildMetadata({
-  title: 'SEO Myth or Fact — A 2-Minute Game',
+  title: 'SEO Myth or Fact — 2-Minute Game',
   description:
-    'Twelve claims about SEO. Some are true, some are things people just repeat. Play the game, see which ones you called wrong, and get a short list of what to actually focus on.',
+    'Twelve SEO claims — some true, some just repeated. Call each one, then get a short list of what you should actually be focusing on. Takes two minutes.',
   path: '/seo-myths',
 });
 

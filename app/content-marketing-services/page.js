@@ -5,7 +5,7 @@ import { buildMetadata } from '../../lib/meta';
 const service = SERVICES_FLAT['content-marketing-services'];
 
 export const metadata = buildMetadata({
-  title: service.title,
+  title: 'Content Marketing That Gets Found and Read',
   description: service.metaDescription,
   path: '/content-marketing-services',
 });

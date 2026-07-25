@@ -5,8 +5,9 @@ import { buildMetadata } from '../../lib/meta';
 const service = SERVICES_FLAT['geo-services'];
 
 export const metadata = buildMetadata({
-  title: 'GEO Services — Get Found by ChatGPT & Google AI | Gobiya',
-  description: 'Gobiya writes content that gets your brand mentioned by ChatGPT, Perplexity, and Google\'s AI answers. Real research behind it, plus a free content check.',
+  title: 'GEO Services — Get Cited by ChatGPT & AI',
+  description:
+    'Get your brand named in ChatGPT, Perplexity, and Google AI answers. Content built to be quoted, not just crawled. Free AI visibility check.',
   path: '/geo-services',
   robots: {
     index: true,

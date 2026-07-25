@@ -2,7 +2,7 @@ import { buildMetadata } from '../../lib/meta';
 import CopyButton from '../../components/CopyButton';
 
 export const metadata = buildMetadata({
-  title: 'MCP Server for AI Agents | Gobiya',
+  title: 'MCP Server for AI Agents',
   description:
     "Gobiya's public MCP server — free SEO/domain lookup tools, lead-gen forms, and our full content library, callable by any Model Context Protocol client.",
   path: '/mcp',

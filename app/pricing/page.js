@@ -3,9 +3,11 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Pricing — Gobiya Marketing Packages',
+  // Leading with the entry price: a concrete number in the SERP title is one
+  // of the few honest CTR levers on a pricing page.
+  title: 'Pricing — Plans From $999/mo',
   description:
-    'Gobiya pricing, in plain English. Three simple packages — Findable, Cited, and Chosen — cover everything from showing up in Google to getting recommended by ChatGPT. See what each one includes.',
+    'Marketing pricing in plain English. Three packages from $999/mo — Findable, Cited, Chosen — covering Google rankings through AI recommendations.',
   path: '/pricing',
 });
 

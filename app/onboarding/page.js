@@ -5,8 +5,9 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Get Started — Los Angeles SEO & AI Visibility Agency',
-  description: 'Tell us about your business in five quick steps and Steve will follow up with what he sees in your search traffic — no generic audit template, no obligation.',
+  title: 'Get Started — Free SEO & AI Audit',
+  description:
+    'Five quick steps, then Steve follows up with what he sees in your search traffic. No generic audit template, no obligation.',
   path: '/onboarding',
 });
 

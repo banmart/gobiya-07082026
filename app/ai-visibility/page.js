@@ -5,7 +5,7 @@ import TopicMarquee from '../../components/TopicMarquee';
 import { PlatformIcon } from '../../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
-  title: 'AI Visibility — Get Recommended by ChatGPT & Google AI | Gobiya',
+  title: 'AI Visibility — Get Recommended by ChatGPT',
   description:
     'Gobiya helps your brand get recommended by ChatGPT, Perplexity, and Google\'s AI answers — not just ranked in a list of links.',
   path: '/ai-visibility',

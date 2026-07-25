@@ -4,7 +4,7 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Insights — SEO, AI Visibility & Search Marketing',
+  title: 'Insights — SEO & AI Visibility Guides',
   description:
     'Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing pricing from the Gobiya team.',
   path: '/insights',

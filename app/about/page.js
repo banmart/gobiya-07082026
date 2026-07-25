@@ -3,7 +3,7 @@ import HeroQuickForm from '../../components/HeroQuickForm';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'About Gobiya | Los Angeles SEO & Marketing Firm',
+  title: 'About — LA Marketing Firm Since 2010',
   description:
     'Gobiya is a Los Angeles internet marketing consulting firm founded in 2010 by Steve Martin — BBB A+ rated, Google Partner 2015-2019. Free SEO audit.',
   path: '/about',

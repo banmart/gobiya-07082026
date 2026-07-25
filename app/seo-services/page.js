@@ -5,7 +5,10 @@ import { buildMetadata } from '../../lib/meta';
 const service = SERVICES_FLAT['seo-services'];
 
 export const metadata = buildMetadata({
-  title: 'SEO Services That Get You Found on Google | Gobiya',
+  // No brand here — app/layout.js appends ' — Gobiya' via title.template.
+  // Including it produced "... | Gobiya — Gobiya" and pushed the title past
+  // the ~60 characters Google will render.
+  title: 'SEO Services That Get You Found on Google',
   description: 'Gobiya fixes the technical problems keeping Google and AI tools from finding and reading your site, so your business actually shows up. Free SEO check.',
   path: '/seo-services',
   robots: {

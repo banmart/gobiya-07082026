@@ -12,9 +12,16 @@ import HeroIntroVideo from '../components/HeroIntroVideo';
 import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
-  title: 'Gobiya - Be Seen First',
+  // Was 'Gobiya - Be Seen First'. That is a brand promise, not a title — it
+  // targets nothing but the brand name, which a domain with this much
+  // authority already wins by default. The brand still leads the H1 and the
+  // template appends ' — Gobiya' here anyway, so nothing is lost by spending
+  // the title on what people actually search for.
+  // Brand stated explicitly: title.template in app/layout.js does not apply
+  // to the root page, so nothing appends it here.
+  title: 'Los Angeles SEO & AI Visibility Agency — Gobiya',
   description:
-    'Gobiya helps businesses get found on Google, build real trust, and get recommended by AI tools like ChatGPT. Real client results, free audit.',
+    'Get found on Google and recommended by ChatGPT. SEO, AI visibility, content, and web design from one accountable Los Angeles team. Free audit.',
   path: '/',
 });
 

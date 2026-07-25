@@ -4,7 +4,7 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Work — Client Results',
+  title: 'Client Results & Case Studies',
   description:
     'Real client results from Gobiya: website rebuilds, traffic recovery, and getting found by AI tools, across dental, local service, and B2B businesses.',
   path: '/work',

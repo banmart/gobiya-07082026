@@ -4,8 +4,9 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Contact — Los Angeles SEO & AI Visibility Agency',
-  description: 'Reach Gobiya at hello@gobiya.com or 323-744-1338. 3580 Wilshire Blvd, Ste 132, Los Angeles, CA 90010.',
+  title: 'Contact — Los Angeles SEO & AI Agency',
+  description:
+    'Talk to Gobiya about SEO, AI visibility, or a new site. Call 323-744-1338 or email hello@gobiya.com — Wilshire Blvd, Los Angeles. Free audit, no contract.',
   path: '/contact',
 });
 

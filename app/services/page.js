@@ -5,9 +5,9 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'SEO Services & Digital Marketing Agency — Gobiya',
+  title: 'Services — SEO, Content, Ads & Web',
   description:
-    'Gobiya\'s services: SEO, content writing, digital PR and link building, getting found by AI tools, website testing, Google Ads, and web development — all run by one team.',
+    'SEO, content, link building, AI visibility, Google Ads, and web development — one accountable Los Angeles team, not a network of contractors.',
   path: '/services',
 });
 
