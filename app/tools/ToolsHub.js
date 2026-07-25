@@ -65,10 +65,18 @@ const TOOLS = [
     status: 'Active',
     category: 'Domain Research',
     href: '/tools/email-verification'
+  },
+  {
+    id: 'seo-myths',
+    title: 'SEO Myth or Fact',
+    description: 'A two-minute game. Call twelve common SEO claims as myth or fact, then get a short list of what you should actually be focusing on.',
+    status: 'Active',
+    category: 'Learn',
+    href: '/seo-myths'
   }
 ];
 
-const CATEGORIES = ['All', 'Domain Research', 'Network', 'Security'];
+const CATEGORIES = ['All', 'Domain Research', 'Network', 'Security', 'Learn'];
 
 export default function ToolsHub() {
   const [activeFilter, setActiveFilter] = useState('All');

@@ -22,6 +22,7 @@ export default function sitemap() {
     '/ppc-management-services',
     '/content-marketing-services',
     '/pricing',
+    '/seo-myths',
     '/work',
     '/privacy',
     '/terms',
