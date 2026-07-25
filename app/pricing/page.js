@@ -24,7 +24,7 @@ const TIERS = [
   },
   {
     name: 'Cited',
-    price: '$3,500–$8,500',
+    price: '$2,500–$5,500',
     unit: '/mo',
     featured: true,
     badge: 'Most Popular',
@@ -39,7 +39,7 @@ const TIERS = [
   },
   {
     name: 'Chosen',
-    price: '$8,500–$25,000+',
+    price: '$5,500–$10,000+',
     unit: '/mo',
     bestFor: "You're ready to run ads, fine-tune your website, and get every part of your marketing working toward one thing: more customers choosing you.",
     features: [
