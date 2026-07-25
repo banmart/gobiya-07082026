@@ -167,6 +167,23 @@ export default function Motion() {
         });
       });
 
+      // ── data panel rows ──
+      // Rows wipe in top-to-bottom so a table reads as something being filled
+      // in rather than a block that appeared. Header stays put.
+      document.querySelectorAll('[data-stagger-rows] tbody tr').length &&
+        document.querySelectorAll('[data-stagger-rows]').forEach((table) => {
+          const rows = table.querySelectorAll('tbody tr');
+          if (!rows.length) return;
+          gsap.from(rows, {
+            opacity: 0,
+            x: -14,
+            duration: 0.5,
+            ease: 'expo.out',
+            stagger: 0.045,
+            scrollTrigger: { trigger: table, start: 'top 85%', once: true },
+          });
+        });
+
       // ── story: process timeline spine ──
       // Scrubbed, not once-off: the connector fills to match how far through
       // the steps you've actually read.

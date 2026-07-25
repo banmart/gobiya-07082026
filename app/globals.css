@@ -2253,9 +2253,19 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(244, 247, 251, 0.38);
+  /* was 0.38 — about 3:1 on the navy band, under the 4.5:1 AA floor for
+     text this small. */
+  color: rgba(244, 247, 251, 0.72);
   max-width: 13rem;
   line-height: 1.5;
+}
+.seo-proof__note {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(244, 247, 251, 0.6);
+  max-width: 30rem;
+  text-align: center;
 }
 
 /* ── 6. Full-bleed carmine CTA ── */
@@ -3104,4 +3114,180 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
    timeline reads as broken rather than un-animated. */
 @media (prefers-reduced-motion: reduce) {
   .process__spine i { transform: scaleY(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Section patterns
+   Different content shapes get different presentation: tables
+   become framed data panels, lists become numbered cards, card
+   sets become horizontal rails. All mobile-first.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── data panel (tables) ── */
+.data-panel {
+  margin: clamp(2rem, 5vw, 3rem) 0;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+}
+.data-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--lightest);
+}
+.data-panel__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--darkest);
+}
+.data-panel__dot { width: 7px; height: 7px; background: var(--main); }
+.data-panel__hint {
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hint);
+}
+.data-panel__scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-panel__scroll:focus-visible { outline: 2px solid var(--main); outline-offset: -2px; }
+.data-panel__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 34rem; /* forces the scroll affordance rather than crushing cells */
+}
+.data-panel__table th,
+.data-panel__table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.6;
+}
+.data-panel__table thead th {
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hint);
+  font-weight: 600;
+  white-space: nowrap;
+}
+/* row label stays visible while scanning across on a phone */
+.data-panel__table tbody th {
+  position: sticky;
+  left: 0;
+  background: var(--bg);
+  font-weight: 600;
+  color: var(--darkest);
+  border-right: 1px solid var(--border);
+}
+.data-panel__table tbody tr:last-child th,
+.data-panel__table tbody tr:last-child td { border-bottom: 0; }
+.data-panel__cap {
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  color: var(--hint);
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 48rem) {
+  .data-panel__hint { display: none; }
+  .data-panel__table { min-width: 0; }
+  .data-panel__table tbody th { position: static; }
+}
+
+/* ── step list (article lists) ── */
+.step-list {
+  list-style: none;
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0;
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border-block: 1px solid var(--border);
+}
+.step-list__item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.15rem 0;
+  background: var(--bg);
+}
+.step-list__num {
+  flex: 0 0 auto;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  color: var(--main);
+  padding-top: 0.2rem;
+  min-width: 1.75rem;
+}
+.step-list__content { font-size: 0.9375rem; line-height: 1.75; }
+.step-list__label {
+  display: block;
+  font-weight: 600;
+  color: var(--darkest);
+  margin-bottom: 0.15rem;
+}
+.step-list__body { color: var(--hint); }
+
+/* ── horizontal rail ── */
+.rail { margin-top: 0.5rem; }
+.rail__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(15.5rem, 78%);
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+.rail__track::-webkit-scrollbar { display: none; }
+.rail__track:focus-visible { outline: 2px solid var(--main); outline-offset: 4px; }
+.rail__card {
+  scroll-snap-align: start;
+  border: 1px solid var(--border);
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  background: var(--bg);
+  height: 100%;
+}
+.rail__controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.rail__progress { flex: 1; height: 2px; background: var(--light); overflow: hidden; }
+.rail__progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--main);
+  transform-origin: left center;
+  transition: transform 0.25s var(--expo-out);
+}
+.rail__buttons { display: flex; gap: 0.5rem; }
+.rail__btn {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--darkest);
+  cursor: pointer;
+  transition: background 0.25s var(--expo-out), color 0.25s var(--expo-out);
+}
+.rail__btn:hover:not(:disabled) { background: var(--darkest); color: #fff; }
+.rail__btn:disabled { opacity: 0.3; cursor: default; }
+
+@media (min-width: 48rem) {
+  .rail__track { grid-auto-columns: minmax(17rem, 42%); }
+}
+@media (min-width: 72rem) {
+  .rail__track { grid-auto-columns: minmax(18rem, 30%); }
 }

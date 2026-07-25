@@ -3,6 +3,7 @@ import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
 import StoryMotif from './StoryMotif';
+import HorizontalRail from './sections/HorizontalRail';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import { ServiceIcon } from './icons/HandDrawn';
 import { getStory } from '../lib/serviceStory';
@@ -136,7 +137,9 @@ export default function FlatServiceTemplate({ service }) {
                 {service.datapoint.suffix && <em>{service.datapoint.suffix}</em>}
               </span>
               <span className="seo-proof__label">{service.datapoint.label}</span>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--hint)', marginTop: '0.5rem' }}>{service.datapoint.sourceNote}</p>
+              {/* was an inline color: var(--hint) — dark navy on the dark navy
+                  band, i.e. invisible. Uses a light token now. */}
+              <p className="seo-proof__note">{service.datapoint.sourceNote}</p>
             </a>
           </div>
         </div>
@@ -185,16 +188,20 @@ export default function FlatServiceTemplate({ service }) {
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           <Chapter n={3} label={story.chapters[2].label} title={`What ${serviceName.toLowerCase()} actually involves.`} />
         </div>
+        {/* A rail, not a grid: these are a set of equals, and eight stacked
+            cards bury the last four. One gesture holds the whole set, and
+            horizontal swiping is native on the phone where most of this
+            traffic lands. */}
         <div className="container">
-          <div className="capability-grid" data-stagger>
+          <HorizontalRail label={`${serviceName} capabilities`}>
             {service.capabilities.map((c) => (
-              <div className="capability-card" key={c.title}>
+              <article className="capability-card rail__card" key={c.title}>
                 <span className="capability-card__tag">{c.tag}</span>
                 <h3 className="capability-card__title">{c.title}</h3>
                 <p className="capability-card__desc" dangerouslySetInnerHTML={{ __html: c.desc }} />
-              </div>
+              </article>
             ))}
-          </div>
+          </HorizontalRail>
         </div>
       </section>
 

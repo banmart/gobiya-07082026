@@ -1,4 +1,6 @@
 import Breadcrumbs from './Breadcrumbs';
+import DataPanel from './sections/DataPanel';
+import StepList from './sections/StepList';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -84,38 +86,13 @@ export default function ArticleTemplate({ article }) {
                   if (typeof p === 'string') {
                     return <p key={i} dangerouslySetInnerHTML={{ __html: p }} />;
                   }
+                  // Lists and tables get their own presentation rather than
+                  // sitting in the prose flow — see components/sections/.
                   if (p.type === 'list') {
-                    return (
-                      <ul key={i}>
-                        {p.items.map((item, ii) => (
-                          <li key={ii} dangerouslySetInnerHTML={{ __html: item }} />
-                        ))}
-                      </ul>
-                    );
+                    return <StepList key={i} items={p.items} />;
                   }
                   if (p.type === 'table') {
-                    return (
-                      <div className="article__table-wrap" key={i}>
-                        <table className="article__table">
-                          <thead>
-                            <tr>
-                              {p.headers.map((h, hi) => (
-                                <th key={hi}>{h}</th>
-                              ))}
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {p.rows.map((row, ri) => (
-                              <tr key={ri}>
-                                {row.map((cell, ci) => (
-                                  <td key={ci} dangerouslySetInnerHTML={{ __html: cell }} />
-                                ))}
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    );
+                    return <DataPanel key={i} headers={p.headers} rows={p.rows} caption={p.caption} />;
                   }
                   if (p.type === 'image') {
                     return (
