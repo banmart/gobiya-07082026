@@ -2,11 +2,29 @@ import Image from 'next/image';
 import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
 import TopicMarquee from './TopicMarquee';
+import StoryMotif from './StoryMotif';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import { ServiceIcon } from './icons/HandDrawn';
+import { getStory } from '../lib/serviceStory';
+
+// Chapter heading. Numbering the sections is what turns a stack of blocks
+// into something that reads as one argument with an order to it.
+function Chapter({ n, label, title, light = false }) {
+  return (
+    <div className="chapter" data-chapter>
+      <p className={`chapter__eyebrow${light ? ' chapter__eyebrow--light' : ''}`}>
+        <span className="chapter__num">{String(n).padStart(2, '0')}</span>
+        <span className="chapter__rule" data-rule aria-hidden="true" />
+        {label}
+      </p>
+      {title && <h2 className="statement statement--small" data-split>{title}</h2>}
+    </div>
+  );
+}
 
 export default function FlatServiceTemplate({ service }) {
   const serviceName = service.title.split(' - ')[0];
+  const story = getStory(service.slug);
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -89,8 +107,27 @@ export default function FlatServiceTemplate({ service }) {
       </section>
       <TopicMarquee topics={[service.title.split(' - ')[0], ...service.capabilities.slice(0, 3).map(c => c.title), 'Enterprise SEO']} />
 
-      {/* ══════════ Real datapoint ══════════ */}
-      <section className="seo-proof">
+      {/* ══════════ 01 · The stakes ══════════
+          The tension the rest of the page resolves, paired with the topic's
+          signature figure. This is the beat the old template was missing —
+          it went straight from hero to a number with nothing at stake. */}
+      {story.stakes && (
+        <section className="section stakes" id="stakes">
+          <div className="container stakes__grid">
+            <div className="stakes__text">
+              <Chapter n={1} label={story.chapters[0].label} />
+              <p className="stakes__line" data-split>{story.stakes}</p>
+              <p className="stakes__sub" data-reveal>{service.problem.statement}</p>
+            </div>
+            <div className="stakes__figure" data-parallax="0.12">
+              <StoryMotif motif={story.motif} label={story.motifLabel} />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════ 02 · The evidence ══════════ */}
+      <section className="seo-proof" id="proof">
         <div className="container">
           <div className="seo-proof__grid" style={{ gridTemplateColumns: '1fr' }}>
             <a className="seo-proof__item" data-reveal href={service.datapoint.href} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -108,7 +145,7 @@ export default function FlatServiceTemplate({ service }) {
       {/* ══════════ Testimonial ══════════ */}
       <section className="testimonials section section--dark" id="testimonial" aria-label={`What ${service.testimonial.company} said`}>
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>In their own words</p>
+          <Chapter n={2} label={story.chapters[1].label} light />
           <div className="testimonial-rotator" data-reveal>
             <blockquote className="testimonial-rotator__quote">
               <p>{service.testimonial.quote}</p>
@@ -141,23 +178,17 @@ export default function FlatServiceTemplate({ service }) {
         </div>
       </section>
 
-      {/* ══════════ Problem ══════════ */}
-      <section className="about section section--tint" id="problem">
-        <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>{service.problem.eyebrow}</p>
-          <h2 className="statement statement--small" data-split>{service.problem.statement}</h2>
-        </div>
-      </section>
-
-      {/* ══════════ Capabilities ══════════ */}
+      {/* ══════════ 03 · The work ══════════
+          Cards stagger in as a group rather than each fading on its own —
+          reads as one answer with parts, not eight unrelated claims. */}
       <section className="section" id="included">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What&apos;s included</p>
+          <Chapter n={3} label={story.chapters[2].label} title={`What ${serviceName.toLowerCase()} actually involves.`} />
         </div>
         <div className="container">
-          <div className="capability-grid">
+          <div className="capability-grid" data-stagger>
             {service.capabilities.map((c) => (
-              <div className="capability-card" key={c.title} data-reveal>
+              <div className="capability-card" key={c.title}>
                 <span className="capability-card__tag">{c.tag}</span>
                 <h3 className="capability-card__title">{c.title}</h3>
                 <p className="capability-card__desc" dangerouslySetInnerHTML={{ __html: c.desc }} />
@@ -167,14 +198,16 @@ export default function FlatServiceTemplate({ service }) {
         </div>
       </section>
 
-      {/* ══════════ Process ══════════ */}
+      {/* ══════════ 04 · How it runs ══════════
+          The connector line draws with scroll position, so the timeline
+          builds as you read it instead of arriving whole. */}
       <section className="section section--tint" id="process">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How it runs</p>
-          <h2 className="statement statement--small" data-split>A defined process, not an open-ended retainer.</h2>
+          <Chapter n={4} label={story.chapters[3].label} title="A defined process, not an open-ended retainer." />
         </div>
         <div className="container container--narrow">
-          <ul className="process__list">
+          <ul className="process__list process__list--timeline" data-timeline>
+            <span className="process__spine" aria-hidden="true"><i data-timeline-fill /></span>
             {service.process.map((p) => (
               <li className="process__item" key={p.step} data-reveal>
                 <span className="process__step">{p.step}</span>
@@ -188,11 +221,10 @@ export default function FlatServiceTemplate({ service }) {
         </div>
       </section>
 
-      {/* ══════════ FAQ ══════════ */}
+      {/* ══════════ 05 · Straight answers ══════════ */}
       <section className="faq section" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>{service.title.split(' - ')[0]}, plainly explained.</h2>
+          <Chapter n={5} label={story.chapters[4].label} title={`${serviceName}, plainly explained.`} />
           <dl className="faq__list">
             {service.faqs.map((f) => (
               <div className="faq__item" key={f.q} data-reveal>

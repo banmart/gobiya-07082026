@@ -150,6 +150,109 @@ export default function Motion() {
         });
       });
 
+      // ── story: grouped card stagger ──
+      // One trigger for the whole grid instead of per-card [data-reveal], so a
+      // capability grid arrives as a single sweep rather than eight unrelated
+      // fades competing for attention.
+      document.querySelectorAll('[data-stagger]').forEach((grid) => {
+        const items = grid.children;
+        if (!items.length) return;
+        gsap.from(items, {
+          opacity: 0,
+          y: 34,
+          duration: 0.75,
+          ease: 'expo.out',
+          stagger: { each: 0.06, from: 'start' },
+          scrollTrigger: { trigger: grid, start: 'top 82%', once: true },
+        });
+      });
+
+      // ── story: process timeline spine ──
+      // Scrubbed, not once-off: the connector fills to match how far through
+      // the steps you've actually read.
+      document.querySelectorAll('[data-timeline]').forEach((list) => {
+        const fill = list.querySelector('[data-timeline-fill]');
+        if (!fill) return;
+        gsap.fromTo(
+          fill,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            transformOrigin: 'top center',
+            scrollTrigger: {
+              trigger: list,
+              start: 'top 70%',
+              end: 'bottom 75%',
+              scrub: 0.4,
+            },
+          }
+        );
+      });
+
+      // ── story: motif figures ──
+      // Each service page has its own figure; the parts assemble on entry and
+      // the accent element keeps a slow pulse so the page doesn't feel frozen.
+      document.querySelectorAll('[data-motif]').forEach((fig) => {
+        const rows = fig.querySelectorAll('[data-motif-row]');
+        if (rows.length) {
+          gsap.from(rows, {
+            opacity: 0,
+            scaleX: 0.4,
+            transformOrigin: 'left center',
+            duration: 0.7,
+            ease: 'expo.out',
+            stagger: 0.05,
+            scrollTrigger: { trigger: fig, start: 'top 85%', once: true },
+          });
+        }
+        const scan = fig.querySelector('[data-motif-scan]');
+        if (scan) {
+          gsap.fromTo(
+            scan,
+            { attr: { y1: 20, y2: 20 }, opacity: 0 },
+            {
+              attr: { y1: 180, y2: 180 },
+              opacity: 1,
+              duration: 2.4,
+              ease: 'none',
+              repeat: -1,
+              yoyo: true,
+              scrollTrigger: { trigger: fig, start: 'top 90%' },
+            }
+          );
+        }
+        const pulse = fig.querySelector('[data-motif-pulse]');
+        if (pulse) {
+          gsap.fromTo(
+            pulse,
+            { scale: 0.85, transformOrigin: 'center center' },
+            {
+              scale: 1,
+              duration: 1.6,
+              ease: 'sine.inOut',
+              repeat: -1,
+              yoyo: true,
+              scrollTrigger: { trigger: fig, start: 'top 90%' },
+            }
+          );
+        }
+      });
+
+      // ── story: light parallax ──
+      // Desktop only. On a phone the viewport is short enough that parallax
+      // mostly reads as drift, and it competes with momentum scrolling.
+      if (window.matchMedia('(min-width: 60rem)').matches) {
+        document.querySelectorAll('[data-parallax]').forEach((el) => {
+          const amount = parseFloat(el.dataset.parallax) || 0.1;
+          gsap.to(el, {
+            yPercent: -amount * 100,
+            ease: 'none',
+            scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+          });
+        });
+      }
+
       // ── clip-path curtain reveal & image sweep ──
       document.querySelectorAll('.img-sweep, [data-sweep], .case-study-media img, .capability-card img').forEach((img) => {
         gsap.fromTo(
