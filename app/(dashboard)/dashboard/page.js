@@ -14,7 +14,7 @@ export default async function DashboardPage() {
   return (
     <>
       <TopBar title="Dashboard" user={user} />
-      <div className="app__content">
+      <main className="app__content" id="top">
         <h2 className="app__welcome">
           Welcome back{businessName ? `, ${businessName}` : ''}
         </h2>
@@ -36,7 +36,7 @@ export default async function DashboardPage() {
             body="DNS, WHOIS, SSL, reputation, and the rest of the toolkit, with your own usage limits."
           />
         </div>
-      </div>
+      </main>
     </>
   );
 }

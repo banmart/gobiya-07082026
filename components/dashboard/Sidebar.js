@@ -7,6 +7,13 @@ import { LogoMark } from '../Logo';
 export default function Sidebar({ items, heading }) {
   const pathname = usePathname();
 
+  // Longest match wins. A plain startsWith would light up "Overview" as well
+  // as "Settings" on /dashboard/settings, because that path also starts with
+  // /dashboard/ — so the root entry has to lose to its own children.
+  const activeHref = items
+    .filter((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))
+    .sort((a, b) => b.href.length - a.href.length)[0]?.href;
+
   return (
     <aside className="app__sidebar">
       <a className="app__brand" href="/">
@@ -17,7 +24,7 @@ export default function Sidebar({ items, heading }) {
       <nav className="app__nav" aria-label={heading}>
         <p className="app__nav-heading">{heading}</p>
         {items.map((item) => {
-          const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const active = item.href === activeHref;
           return (
             <div key={item.href}>
               <a
