@@ -4,7 +4,6 @@ import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import { INSIGHTS } from '../lib/insights';
 import { SEARCH_WINS } from '../lib/searchWins';
 import { TESTIMONIALS } from '../lib/testimonials';
-import TopicMarquee from '../components/TopicMarquee';
 import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
 import ScrollStory from '../components/ScrollStory';
@@ -106,7 +105,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Los Angeles AI SEO", "Generative Engine Optimization", "ChatGPT Optimization", "Technical SEO", "Semantic Search"]} />
 
       {/* ══ 2.5 Recent search wins ══ */}
       <section className="section" id="search-wins" aria-label="Search Console performance across clients">

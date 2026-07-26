@@ -1,6 +1,5 @@
 import { buildMetadata } from '../../lib/meta';
 import HeroQuickForm from '../../components/HeroQuickForm';
-import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
@@ -27,7 +26,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Gobiya History", "Algorithm Recovery", "Los Angeles Agency", "Search First Consulting", "Since 2010"]} />
 
 
       {/* ══════════ Timeline ══════════ */}

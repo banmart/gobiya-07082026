@@ -1,6 +1,5 @@
 import { buildMetadata } from '../../lib/meta';
 import { CONTACT } from '../../lib/nav';
-import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
@@ -20,7 +19,6 @@ export default function PrivacyPage() {
           <p className="lede" data-reveal>Last updated July 10, 2026</p>
         </div>
       </section>
-      <TopicMarquee topics={["Data Protection", "Privacy Policy", "User Security", "Analytics Consent", "Compliance"]} />
 
 
       <section className="section" id="body">

@@ -1,6 +1,5 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { buildMetadata } from '../../lib/meta';
-import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
@@ -102,7 +101,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Los Angeles SEO", "GEO & AI Visibility", "Content Marketing", "Digital PR", "PPC", "Web Development"]} />
 
       <section className="section" id="tiers">
         <div className="container">

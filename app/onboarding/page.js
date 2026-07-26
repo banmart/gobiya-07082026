@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import Image from 'next/image';
 import OnboardingStepper from '../../components/OnboardingStepper';
 import { buildMetadata } from '../../lib/meta';
-import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
@@ -49,7 +48,6 @@ export default function OnboardingPage() {
           </ul>
         </div>
       </section>
-      <TopicMarquee topics={["Begin Onboarding", "Strategy Discovery", "Initial Audit", "Client Setup", "SEO Intake"]} />
 
 
       <section className="section section--tint stepper-section">

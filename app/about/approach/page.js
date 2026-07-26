@@ -1,7 +1,6 @@
 import HeroQuickForm from '../../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
-import TopicMarquee from '../../../components/TopicMarquee';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
@@ -31,7 +30,6 @@ export default function ApproachPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Data-Driven SEO", "Search Algorithms", "AI Analysis", "White Hat Techniques", "Sustainable Growth"]} />
 
 
 

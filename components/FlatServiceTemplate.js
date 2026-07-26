@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
-import TopicMarquee from './TopicMarquee';
 import StoryMotif from './StoryMotif';
 import HorizontalRail from './sections/HorizontalRail';
 import Chapter from './sections/Chapter';
@@ -87,11 +86,10 @@ export default function FlatServiceTemplate({ service }) {
             </div>
           </div>
           <div>
-            <HeroQuickForm />
+            <HeroQuickForm defaultService={service.title.split(' - ')[0]} />
           </div>
         </div>
       </section>
-      <TopicMarquee topics={[service.title.split(' - ')[0], ...service.capabilities.slice(0, 3).map(c => c.title), 'Enterprise SEO']} />
 
       {/* ══════════ 01 · The stakes ══════════
           The tension the rest of the page resolves, paired with the topic's

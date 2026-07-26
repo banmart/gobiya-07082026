@@ -1,7 +1,6 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
-import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
@@ -33,7 +32,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Schedule Consultation", "SEO Audit", "Speak With Experts", "Los Angeles Office", "Digital Growth"]} />
 
 
 
