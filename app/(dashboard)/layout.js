@@ -1,4 +1,7 @@
 import '../dashboard.css';
+// The settings form reuses the auth__field / auth__label / auth__input rules
+// defined in auth.css rather than duplicating them.
+import '../auth.css';
 import Sidebar from '../../components/dashboard/Sidebar';
 import { requireUser } from '../../lib/auth';
 

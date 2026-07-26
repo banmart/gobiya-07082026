@@ -1,4 +1,7 @@
 import '../dashboard.css';
+// Same reason as the dashboard layout: the new-client form reuses the
+// auth__field / auth__label / auth__input rules defined in auth.css.
+import '../auth.css';
 import Sidebar from '../../components/dashboard/Sidebar';
 import { requireAdmin } from '../../lib/auth';
 

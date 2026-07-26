@@ -17,17 +17,39 @@ export function NameForm({ userId, initialName }) {
     setBusy(true);
     setStatus('');
 
-    const supabase = createBrowserSupabase();
-    // RLS allows this row and this column only; role and client_id are pinned
-    // by the update policy's with check clause.
-    const { error } = await supabase
-      .from('profiles')
-      .update({ full_name: fullName.trim() || null })
-      .eq('id', userId);
+    // Same guard as the auth forms: a throw must not strand the button in its
+    // disabled state with nothing rendered to explain it.
+    try {
+      const supabase = createBrowserSupabase();
+      // RLS allows this row and this column only; role and client_id are pinned
+      // by the update policy's with check clause.
+      //
+      // .select('id').single() is not decoration. The real boundary is
+      // `id = auth.uid()` in the policy, so a wrong userId prop cannot write to
+      // someone else's row — but it would match zero rows and PostgREST would
+      // still report success, so the UI would claim "Saved." having written
+      // nothing. This turns that into a visible failure.
+      const { error } = await supabase
+        .from('profiles')
+        .update({ full_name: fullName.trim() || null })
+        .eq('id', userId)
+        .select('id')
+        .single();
 
-    setStatus(error ? 'That could not be saved.' : 'Saved.');
-    setBusy(false);
-    if (!error) router.refresh();
+      if (error) {
+        console.error('Name update failed:', error.message);
+        setStatus('That could not be saved.');
+        return;
+      }
+
+      setStatus('Saved.');
+      router.refresh();
+    } catch (err) {
+      console.error('Name update failed:', err);
+      setStatus('Something went wrong. Please try again.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
@@ -73,13 +95,28 @@ export function PasswordForm() {
     }
 
     setBusy(true);
-    const supabase = createBrowserSupabase();
-    const { error } = await supabase.auth.updateUser({ password });
-    setStatus(error ? error.message : 'Password updated.');
-    setBusy(false);
-    if (!error) {
+
+    try {
+      const supabase = createBrowserSupabase();
+      const { error } = await supabase.auth.updateUser({ password });
+
+      if (error) {
+        // Upstream wording is not ours to show — Supabase's own minimum can
+        // contradict the stricter rule enforced just above, which would read
+        // as the app disagreeing with itself.
+        console.error('Password update failed:', error.message);
+        setStatus('That password could not be saved. Please try a different one.');
+        return;
+      }
+
+      setStatus('Password updated.');
       setPassword('');
       setConfirm('');
+    } catch (err) {
+      console.error('Password update failed:', err);
+      setStatus('Something went wrong. Please try again.');
+    } finally {
+      setBusy(false);
     }
   }
 
