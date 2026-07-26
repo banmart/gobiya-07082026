@@ -217,7 +217,7 @@ export function siteUrl() {
 - [ ] **Step 8: Run the test to verify it passes**
 
 Run: `npm test -- tests/unit/supabase-env.test.js`
-Expected: PASS, 5 tests.
+Expected: PASS, 6 tests.
 
 - [ ] **Step 9: Create `lib/supabase/server.js`**
 
@@ -318,7 +318,7 @@ add `.env.local` to `.gitignore` before continuing. **Do not commit secrets.**
 - [ ] **Step 14: Run the full test suite**
 
 Run: `npm test`
-Expected: PASS, 5 tests.
+Expected: PASS, 6 tests.
 
 - [ ] **Step 15: Commit**
 
@@ -2352,6 +2352,18 @@ describe('validateClientInput', () => {
     expect(result.value.website).toBeNull();
   });
 
+  it('rejects a protocol-relative website', () => {
+    // https:// + //evil.com collapses back to https://evil.com in the parser,
+    // so the forced scheme would be an illusion.
+    const result = validateClientInput({
+      name: 'Acme',
+      contactEmail: 'a@b.com',
+      website: '//evil.com',
+    });
+    expect(result.ok).toBe(false);
+    expect(result.errors.website).toMatch(/full address/i);
+  });
+
   it('keeps an explicit https scheme', () => {
     const result = validateClientInput({
       name: 'Acme',
@@ -2394,6 +2406,11 @@ export function validateClientInput({ name, contactEmail, website }) {
   let normalizedWebsite = String(website ?? '').trim();
   if (!normalizedWebsite) {
     normalizedWebsite = null;
+  } else if (normalizedWebsite.startsWith('//')) {
+    // Protocol-relative. Prepending https: gives https:////evil.com, which the
+    // URL parser collapses straight back to https://evil.com — so forcing our
+    // own scheme buys nothing here. Reject it rather than appear to normalise.
+    errors.website = 'Enter the full address, starting with https://.';
   } else if (!/^https?:\/\//i.test(normalizedWebsite)) {
     normalizedWebsite = `https://${normalizedWebsite}`;
   }
@@ -2449,7 +2466,7 @@ export async function deleteClientRecord(id) {
 - [ ] **Step 4: Run the test to verify it passes**
 
 Run: `npm test -- tests/unit/client-validation.test.js`
-Expected: PASS, 5 tests.
+Expected: PASS, 6 tests.
 
 - [ ] **Step 5: Append table styles to `app/dashboard.css`**
 
@@ -3260,7 +3277,7 @@ export async function POST(request) {
 - [ ] **Step 11: Run the full test suite**
 
 Run: `npm test`
-Expected: PASS — 5 env + 7 guard + 10 safeNext + 5 validation + 4 email + 8 RLS = 39 tests.
+Expected: PASS — 5 env + 7 guard + 10 safeNext + 6 validation + 4 email + 8 RLS = 40 tests.
 
 - [ ] **Step 12: Verify the invite flow end to end**
 
@@ -3468,7 +3485,7 @@ password works.
 - [ ] **Step 4: Run the full suite and build**
 
 Run: `npm test && npm run build`
-Expected: 39 tests pass, build succeeds, marketing routes still static.
+Expected: 40 tests pass, build succeeds, marketing routes still static.
 
 - [ ] **Step 5: Add the environment variables to Vercel**
 
@@ -3493,7 +3510,7 @@ git commit -m "feat: add client settings page"
 
 Run through this before opening a pull request.
 
-- [ ] `npm test` — 39 tests pass, including all 8 RLS tests
+- [ ] `npm test` — 40 tests pass, including all 8 RLS tests
 - [ ] `npm run build` — succeeds; `/`, `/services`, `/pricing`, `/insights/[slug]` still render statically
 - [ ] Anonymous visit to `/dashboard` redirects to `/login?next=%2Fdashboard`
 - [ ] Anonymous visit to `/admin` redirects to `/login`
