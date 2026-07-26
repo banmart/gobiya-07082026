@@ -77,6 +77,16 @@ describe('requireUser', () => {
 });
 
 describe('requireAdmin', () => {
+  // Pinned at requireAdmin's own call site, not just requireUser's. The
+  // ordering is the property under test: an anonymous caller must be
+  // redirected, never dropped into the 404 branch meant for non-admins.
+  it('redirects to /login when anonymous', async () => {
+    getUser.mockResolvedValue({ data: { user: null }, error: null });
+    await expect(requireAdmin()).rejects.toThrow('NEXT_REDIRECT');
+    expect(redirect).toHaveBeenCalledWith('/login');
+    expect(notFound).not.toHaveBeenCalled();
+  });
+
   it('calls notFound for a signed-in client', async () => {
     getUser.mockResolvedValue({
       data: { user: { id: 'user-1', email: 'a@example.com' } },
