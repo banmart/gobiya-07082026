@@ -917,6 +917,16 @@ describe('requireUser', () => {
 });
 
 describe('requireAdmin', () => {
+  // Pinned at requireAdmin's own call site, not just requireUser's. The
+  // ordering is the property under test: an anonymous caller must be
+  // redirected, never dropped into the 404 branch meant for non-admins.
+  it('redirects to /login when anonymous', async () => {
+    getUser.mockResolvedValue({ data: { user: null }, error: null });
+    await expect(requireAdmin()).rejects.toThrow('NEXT_REDIRECT');
+    expect(redirect).toHaveBeenCalledWith('/login');
+    expect(notFound).not.toHaveBeenCalled();
+  });
+
   it('calls notFound for a signed-in client', async () => {
     getUser.mockResolvedValue({
       data: { user: { id: 'user-1', email: 'a@example.com' } },
@@ -965,11 +975,20 @@ export async function getSessionUser() {
   const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) return null;
 
-  const { data: profile } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from('profiles')
     .select('role, client_id, full_name, clients (id, name, website, status)')
     .eq('id', data.user.id)
     .maybeSingle();
+
+  // Both branches below deny access, but they are different failures and the
+  // logs should say which. Swallowing the error makes an RLS misconfiguration
+  // indistinguishable from a genuinely absent row — both just bounce the user
+  // to /login, which is miserable to diagnose in production.
+  if (profileError) {
+    console.error(`Profile lookup failed for ${data.user.id}: ${profileError.message}`);
+    return null;
+  }
 
   // No profile means the new-user trigger did not fire. Treat it as
   // unauthenticated rather than guessing at a role.
@@ -1004,7 +1023,7 @@ export async function requireAdmin() {
 - [ ] **Step 4: Run the test to verify it passes**
 
 Run: `npm test -- tests/unit/auth-guards.test.js`
-Expected: PASS, 6 tests.
+Expected: PASS, 7 tests.
 
 - [ ] **Step 5: Commit**
 
@@ -3037,7 +3056,7 @@ export async function POST(request) {
 - [ ] **Step 11: Run the full test suite**
 
 Run: `npm test`
-Expected: PASS — 5 env + 6 guard + 5 validation + 4 email + 8 RLS = 28 tests.
+Expected: PASS — 5 env + 7 guard + 5 validation + 4 email + 8 RLS = 29 tests.
 
 - [ ] **Step 12: Verify the invite flow end to end**
 
@@ -3245,7 +3264,7 @@ password works.
 - [ ] **Step 4: Run the full suite and build**
 
 Run: `npm test && npm run build`
-Expected: 28 tests pass, build succeeds, marketing routes still static.
+Expected: 29 tests pass, build succeeds, marketing routes still static.
 
 - [ ] **Step 5: Add the environment variables to Vercel**
 
@@ -3270,7 +3289,7 @@ git commit -m "feat: add client settings page"
 
 Run through this before opening a pull request.
 
-- [ ] `npm test` — 28 tests pass, including all 8 RLS tests
+- [ ] `npm test` — 29 tests pass, including all 8 RLS tests
 - [ ] `npm run build` — succeeds; `/`, `/services`, `/pricing`, `/insights/[slug]` still render statically
 - [ ] Anonymous visit to `/dashboard` redirects to `/login?next=%2Fdashboard`
 - [ ] Anonymous visit to `/admin` redirects to `/login`
