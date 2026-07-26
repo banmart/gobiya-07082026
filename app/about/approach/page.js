@@ -1,4 +1,5 @@
 import HeroQuickForm from '../../../components/HeroQuickForm';
+import TopicMarquee from '../../../components/TopicMarquee';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 import Breadcrumbs from '../../../components/Breadcrumbs';
@@ -30,6 +31,7 @@ export default function ApproachPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Foundation First", "Technical Audits", "Data Driven", "AI Analysis", "White Hat SEO"]} />
 
 
 

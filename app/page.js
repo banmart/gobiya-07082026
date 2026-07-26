@@ -7,6 +7,8 @@ import { TESTIMONIALS } from '../lib/testimonials';
 import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
 import ScrollStory from '../components/ScrollStory';
+import HeroQuickForm from '../components/HeroQuickForm';
+import TopicMarquee from '../components/TopicMarquee';
 import HeroIntroVideo from '../components/HeroIntroVideo';
 import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icons/HandDrawn';
 
@@ -105,6 +107,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Los Angeles SEO", "AI Visibility", "Technical Audit", "PPC & GEO", "Web Design"]} />
 
       {/* ══ 2.5 Recent search wins ══ */}
       <section className="section" id="search-wins" aria-label="Search Console performance across clients">

@@ -1,4 +1,5 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
+import TopicMarquee from '../../components/TopicMarquee';
 import Image from 'next/image';
 import { buildMetadata } from '../../lib/meta';
 import { PlatformIcon } from '../../components/icons/HandDrawn';
@@ -34,6 +35,7 @@ export default function AIVisibilityPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["AI Overviews", "ChatGPT Citations", "Perplexity Search", "Answer Engine SEO", "Generative Visibility"]} />
 
 
 

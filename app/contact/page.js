@@ -1,4 +1,5 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
+import TopicMarquee from '../../components/TopicMarquee';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 import Breadcrumbs from '../../components/Breadcrumbs';
@@ -32,6 +33,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Get In Touch", "Free SEO Check", "Strategy Call", "Los Angeles Team", "Direct Support"]} />
 
 
 

@@ -3,6 +3,7 @@ import { SERVICES } from '../../lib/services';
 import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
 import { buildMetadata } from '../../lib/meta';
 import Chapter from '../../components/sections/Chapter';
+import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
@@ -34,6 +35,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Los Angeles SEO", "Technical Audits", "AI Optimization", "Link Building", "Web Development"]} />
 
       <section className="section" id="flat-services">
         <div className="container">

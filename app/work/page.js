@@ -1,6 +1,7 @@
 import HeroQuickForm from '../../components/HeroQuickForm';
 import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
+import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
@@ -37,6 +38,7 @@ export default function WorkPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Client Results", "Case Studies", "Search Growth", "Proven Rankings", "Client Portfolio"]} />
 
 
 

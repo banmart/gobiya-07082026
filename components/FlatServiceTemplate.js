@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Breadcrumbs from './Breadcrumbs';
 import HeroQuickForm from './HeroQuickForm';
+import TopicMarquee from './TopicMarquee';
 import StoryMotif from './StoryMotif';
 import HorizontalRail from './sections/HorizontalRail';
 import Chapter from './sections/Chapter';
@@ -90,6 +91,7 @@ export default function FlatServiceTemplate({ service }) {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Technical SEO", "AI Visibility", "Digital PR", "Conversion Rate", "Local Search"]} />
 
       {/* ══════════ 01 · The stakes ══════════
           The tension the rest of the page resolves, paired with the topic's

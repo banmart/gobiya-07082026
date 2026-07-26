@@ -1,6 +1,7 @@
 import Breadcrumbs from './Breadcrumbs';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
 import HeroQuickForm from './HeroQuickForm';
+import TopicMarquee from './TopicMarquee';
 import StoryMotif from './StoryMotif';
 import HorizontalRail from './sections/HorizontalRail';
 import Chapter from './sections/Chapter';
@@ -32,6 +33,7 @@ export default function ServiceTemplate({ service }) {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Search Audit", "Content Strategy", "Link Authority", "Schema Markup", "Performance"]} />
 
 
       {/* ══════════ 01 · The stakes ══════════ */}

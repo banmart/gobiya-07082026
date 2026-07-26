@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CONTACT } from '../../../lib/nav';
 import { buildMetadata } from '../../../lib/meta';
+import TopicMarquee from '../../../components/TopicMarquee';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
@@ -28,6 +29,7 @@ export default function OnboardingThankYouPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Quick Intake", "Strategy Discovery", "Initial Audit", "Client Onboarding", "Custom Plan"]} />
 
     </main>
   );

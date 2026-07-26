@@ -1,4 +1,5 @@
 import HeroQuickForm from '../../../components/HeroQuickForm';
+import TopicMarquee from '../../../components/TopicMarquee';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 import Breadcrumbs from '../../../components/Breadcrumbs';
@@ -32,6 +33,7 @@ export default function SteveMartinPage() {
           </div>
         </div>
       </section>
+      <TopicMarquee topics={["Steve Martin", "SEO Founder", "Algorithm Recovery", "Search Strategy", "25 Years Experience"]} />
 
 
 
