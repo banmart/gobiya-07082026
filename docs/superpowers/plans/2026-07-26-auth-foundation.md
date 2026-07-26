@@ -589,12 +589,22 @@ async function createUser(admin, email, clientId) {
   if (error) throw new Error(`Could not create ${email}: ${error.message}`);
 
   if (clientId) {
+    // .select('id').single() is load-bearing, not decoration. A PostgREST
+    // update without it returns 204 and { error: null } even when zero rows
+    // matched, so a missing profile row — the trigger not installed — would
+    // pass silently and surface later as a confusing assertion failure.
     const { error: assignError } = await admin
       .from('profiles')
       .update({ client_id: clientId })
-      .eq('id', data.user.id);
+      .eq('id', data.user.id)
+      .select('id')
+      .single();
     if (assignError) {
-      throw new Error(`Could not assign tenancy for ${email}: ${assignError.message}`);
+      throw new Error(
+        `Could not assign tenancy for ${email}: ${assignError.message}. ` +
+          'Code PGRST116 means no profiles row exists for that user, which means ' +
+          'the handle_new_user trigger is not installed on this project.'
+      );
     }
   }
 
@@ -759,10 +769,11 @@ The seed depends on two separate things: `handle_new_user` creating the
 profile row, and the service-role update then setting `client_id` on it.
 
 Run: `npm run test:rls`
-The `refuses reassigning your own client_id` test asserts
-`client_id === clientA.id`. If it reports `null`, the trigger fired but the
-assignment did not. If `seedTenancy` throws "Could not assign tenancy", the
-profile row does not exist, which means the trigger is not installed.
+
+If `seedTenancy` throws "Could not assign tenancy" with code `PGRST116`, no
+profile row exists for the new user, which means the `handle_new_user` trigger
+is not installed — re-apply the Task 2 migration. Any other error from that
+call is a permissions or connection problem, not a missing trigger.
 
 - [ ] **Step 5: Commit**
 
@@ -2659,10 +2670,17 @@ export async function createClientAction(prevState, formData) {
   // the invite's user_metadata. Metadata is user-writable, and every RLS
   // policy keys off client_id, so it must never originate with the user.
   // The trigger has already created the profile row by this point.
+  //
+  // .select('id').single() is what makes the rollback below reachable. A
+  // PostgREST update without it returns 204 and { error: null } even when it
+  // matched zero rows, so a missing profile row would silently ship an invite
+  // to a login that belongs to no client.
   const { error: assignError } = await supabase
     .from('profiles')
     .update({ client_id: created.client.id })
-    .eq('id', data.user.id);
+    .eq('id', data.user.id)
+    .select('id')
+    .single();
 
   if (assignError) {
     // The login exists but belongs to no client, so it would sign in to an
