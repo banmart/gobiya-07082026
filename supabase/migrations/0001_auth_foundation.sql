@@ -71,10 +71,22 @@ as $$
 $$;
 
 -- ── New-user trigger ──────────────────────────────────────────
--- Reads client_id out of the invite's user_metadata. Note that role is NOT
--- read from metadata: user_metadata is writable by the user themselves via
--- auth.updateUser, so trusting it for role would be a privilege-escalation
--- path. Every new profile is a client; admins are promoted by SQL only.
+-- This function reads NOTHING that a user can write. raw_user_meta_data is
+-- writable by the user themselves via auth.updateUser, so neither role nor
+-- client_id is sourced from it:
+--
+--   role      — always 'client'. Admins are promoted by SQL only.
+--   client_id — left null. The admin server action assigns tenancy through
+--               the service role immediately after creating the user. If it
+--               were read from metadata here, anyone who could reach signUp
+--               could plant a victim's client_id and land inside their
+--               tenancy, since every RLS policy keys off that column.
+--   full_name — user-writable, and deliberately so. It is a display string
+--               that no policy consults.
+--
+-- Leaving client_id out also removes an unguarded ::uuid cast from GoTrue's
+-- insert transaction, where a malformed value would abort account creation
+-- with an opaque "Database error saving new user".
 
 create or replace function public.handle_new_user()
 returns trigger
@@ -83,10 +95,9 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, client_id, role, full_name)
+  insert into public.profiles (id, role, full_name)
   values (
     new.id,
-    nullif(new.raw_user_meta_data ->> 'client_id', '')::uuid,
     'client',
     nullif(new.raw_user_meta_data ->> 'full_name', '')
   )
