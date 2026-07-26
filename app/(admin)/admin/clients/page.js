@@ -1,6 +1,7 @@
 import TopBar from '../../../../components/dashboard/TopBar';
 import { requireAdmin } from '../../../../lib/auth';
 import { listClients } from '../../../../lib/clients';
+import ResendInviteButton from './ResendInviteButton';
 
 export const metadata = {
   title: 'Clients',
@@ -43,6 +44,7 @@ export default async function ClientsPage() {
                 <th scope="col">Website</th>
                 <th scope="col">Status</th>
                 <th scope="col">Added</th>
+                <th scope="col">Invite</th>
               </tr>
             </thead>
             <tbody>
@@ -63,6 +65,9 @@ export default async function ClientsPage() {
                     <span className={`status status--${client.status}`}>{client.status}</span>
                   </td>
                   <td>{formatDate(client.created_at)}</td>
+                  <td>
+                    <ResendInviteButton clientId={client.id} />
+                  </td>
                 </tr>
               ))}
             </tbody>
