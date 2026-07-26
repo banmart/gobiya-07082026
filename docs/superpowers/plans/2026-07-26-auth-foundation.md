@@ -403,10 +403,22 @@ as $$
 $$;
 
 -- ── New-user trigger ──────────────────────────────────────────
--- Reads client_id out of the invite's user_metadata. Note that role is NOT
--- read from metadata: user_metadata is writable by the user themselves via
--- auth.updateUser, so trusting it for role would be a privilege-escalation
--- path. Every new profile is a client; admins are promoted by SQL only.
+-- This function reads NOTHING that a user can write. raw_user_meta_data is
+-- writable by the user themselves via auth.updateUser, so neither role nor
+-- client_id is sourced from it:
+--
+--   role      — always 'client'. Admins are promoted by SQL only.
+--   client_id — left null. The admin server action assigns tenancy through
+--               the service role immediately after creating the user. If it
+--               were read from metadata here, anyone who could reach signUp
+--               could plant a victim's client_id and land inside their
+--               tenancy, since every RLS policy keys off that column.
+--   full_name — user-writable, and deliberately so. It is a display string
+--               that no policy consults.
+--
+-- Leaving client_id out also removes an unguarded ::uuid cast from GoTrue's
+-- insert transaction, where a malformed value would abort account creation
+-- with an opaque "Database error saving new user".
 
 create or replace function public.handle_new_user()
 returns trigger
@@ -415,10 +427,9 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, client_id, role, full_name)
+  insert into public.profiles (id, role, full_name)
   values (
     new.id,
-    nullif(new.raw_user_meta_data ->> 'client_id', '')::uuid,
     'client',
     nullif(new.raw_user_meta_data ->> 'full_name', '')
   )
@@ -566,14 +577,27 @@ export async function signInAs(email) {
   return supabase;
 }
 
+// Tenancy is assigned through the service role after the user exists, never
+// through user_metadata — the trigger deliberately ignores metadata, so this
+// mirrors exactly what the admin server action does in production.
 async function createUser(admin, email, clientId) {
   const { data, error } = await admin.auth.admin.createUser({
     email,
     password: PASSWORD,
     email_confirm: true,
-    user_metadata: clientId ? { client_id: clientId } : {},
   });
   if (error) throw new Error(`Could not create ${email}: ${error.message}`);
+
+  if (clientId) {
+    const { error: assignError } = await admin
+      .from('profiles')
+      .update({ client_id: clientId })
+      .eq('id', data.user.id);
+    if (assignError) {
+      throw new Error(`Could not assign tenancy for ${email}: ${assignError.message}`);
+    }
+  }
+
   return data.user;
 }
 
@@ -729,15 +753,16 @@ If `refuses self-promotion` fails, the `with check` clause on
 `supabase/migrations/0001_auth_foundation.sql`, re-apply it, and re-run. Do
 not proceed until it passes; every later task assumes this boundary holds.
 
-- [ ] **Step 4: Verify the trigger populated `client_id`**
+- [ ] **Step 4: Verify the trigger and the tenancy assignment both ran**
 
-The seed relies on `handle_new_user` reading `client_id` from user metadata.
-Confirm it worked:
+The seed depends on two separate things: `handle_new_user` creating the
+profile row, and the service-role update then setting `client_id` on it.
 
 Run: `npm run test:rls`
 The `refuses reassigning your own client_id` test asserts
-`client_id === clientA.id`, which is only true if the trigger fired. A `null`
-here means the trigger is not installed.
+`client_id === clientA.id`. If it reports `null`, the trigger fired but the
+assignment did not. If `seedTenancy` throws "Could not assign tenancy", the
+profile row does not exist, which means the trigger is not installed.
 
 - [ ] **Step 5: Commit**
 
@@ -2616,7 +2641,6 @@ export async function createClientAction(prevState, formData) {
   const { data, error } = await supabase.auth.admin.generateLink({
     type: 'invite',
     email: contactEmail,
-    options: { data: { client_id: created.client.id } },
   });
 
   if (error) {
@@ -2629,6 +2653,23 @@ export async function createClientAction(prevState, formData) {
         ? 'An account already exists for that email address.'
         : `Could not create the login: ${error.message}`,
     };
+  }
+
+  // Tenancy is assigned here, through the service role, rather than through
+  // the invite's user_metadata. Metadata is user-writable, and every RLS
+  // policy keys off client_id, so it must never originate with the user.
+  // The trigger has already created the profile row by this point.
+  const { error: assignError } = await supabase
+    .from('profiles')
+    .update({ client_id: created.client.id })
+    .eq('id', data.user.id);
+
+  if (assignError) {
+    // The login exists but belongs to no client, so it would sign in to an
+    // empty dashboard. Roll the whole thing back rather than leave that.
+    await supabase.auth.admin.deleteUser(data.user.id);
+    await deleteClientRecord(created.client.id);
+    return { error: `Could not assign the client: ${assignError.message}` };
   }
 
   const inviteLink =
@@ -2669,11 +2710,12 @@ export async function resendInviteAction(prevState, formData) {
   // 'invite' only works while the user has never signed in. Once they have,
   // Supabase rejects it as already registered, so fall back to 'recovery',
   // which reaches the same /set-password screen.
+  // No metadata is passed: the profile and its tenancy already exist from the
+  // original create, and metadata is not a trusted source for either.
   let type = 'invite';
   let { data, error } = await supabase.auth.admin.generateLink({
     type,
     email: client.contact_email,
-    options: { data: { client_id: client.id } },
   });
 
   if (error) {
