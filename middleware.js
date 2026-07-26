@@ -33,9 +33,21 @@ export async function middleware(request) {
 
   // Do not remove: this call is what refreshes an expiring token and writes
   // the rotated cookie onto the response.
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  //
+  // getUser() normally reports failures through `error` rather than throwing,
+  // and a null user already fails closed below. The try/catch is for the
+  // unexpected throw — a malformed cookie, a client-internal error — which in
+  // middleware becomes a 500 on every matched route, including /auth/*. That
+  // would lock a user out of the invite and password-reset links precisely
+  // when something is already wrong. Treat a throw as "no user": protected
+  // routes still redirect, and /auth/* stays reachable.
+  let user = null;
+  try {
+    const result = await supabase.auth.getUser();
+    user = result.data?.user ?? null;
+  } catch (err) {
+    console.error('Middleware session refresh failed:', err?.message ?? err);
+  }
 
   const { pathname } = request.nextUrl;
   const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/admin');
