@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:rls": "vitest run tests/rls",
     "remotion:studio": "remotion studio remotion/index.js",
     "remotion:render": "remotion render remotion/index.js",
     "ad:narration": "node scripts/generate-fb-ad-narration.mjs",
@@ -32,6 +35,8 @@
     "@remotion/google-fonts": "4.0.489",
     "@remotion/player": "4.0.489",
     "@remotion/transitions": "4.0.489",
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.8",
     "gsap": "^3.15.0",
     "mcp-handler": "^1.1.0",
     "next": "^16.2.10",
@@ -42,7 +47,9 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "dotenv": "^17.4.2",
     "shadcn": "^4.13.0",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "vitest": "^4.1.10"
   }
 }
