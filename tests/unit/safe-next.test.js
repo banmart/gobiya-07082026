@@ -26,6 +26,29 @@ describe('safeNextPath', () => {
     expect(safeNextPath('/dashboard\r\nSet-Cookie: x=1')).toBe('/dashboard');
   });
 
+  it('rejects a tab-smuggled protocol-relative URL', () => {
+    // The one that got through the first version. The URL parser strips tabs,
+    // so this resolves to //evil.com and leaves the origin. A request arrives
+    // as ?next=/%09/evil.com and searchParams decodes it to a real tab.
+    expect(safeNextPath('/\t/evil.com')).toBe('/dashboard');
+    expect(safeNextPath(decodeURIComponent('/%09/evil.com'))).toBe('/dashboard');
+  });
+
+  it('rejects other control characters and spaces', () => {
+    expect(safeNextPath('/ /evil.com')).toBe('/dashboard');
+    expect(safeNextPath('//evil.com')).toBe('/dashboard');
+    expect(safeNextPath('/ /evil.com')).toBe('/dashboard');
+  });
+
+  it('rejects anything that resolves off-origin, whatever the spelling', () => {
+    // The backstop, stated as a property rather than a list of tricks: if the
+    // URL parser takes it somewhere other than our own origin, reject it.
+    for (const attack of ['/\t\t//evil.com', '/\r//evil.com', '/\\\\evil.com']) {
+      const resolved = safeNextPath(attack);
+      expect(new URL(resolved, 'https://gobiya.invalid').origin).toBe('https://gobiya.invalid');
+    }
+  });
+
   it('falls back for empty, missing, or non-string input', () => {
     expect(safeNextPath('')).toBe('/dashboard');
     expect(safeNextPath(undefined)).toBe('/dashboard');

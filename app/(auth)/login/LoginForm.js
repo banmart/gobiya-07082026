@@ -17,23 +17,33 @@ export default function LoginForm({ next }) {
     setBusy(true);
     setError('');
 
-    const supabase = createBrowserSupabase();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+    // The try/finally is what keeps the form usable. Without it, anything that
+    // throws rather than returning an error — a network drop, a misconfigured
+    // client — leaves busy stuck true, so the button reads "Signing in…"
+    // forever with no message and no way back short of a reload.
+    try {
+      const supabase = createBrowserSupabase();
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
 
-    if (signInError) {
-      // Deliberately generic: distinguishing "no such account" from "wrong
-      // password" tells an attacker which emails are registered.
-      setError('That email and password combination did not work.');
+      if (signInError) {
+        // Deliberately generic: distinguishing "no such account" from "wrong
+        // password" tells an attacker which emails are registered.
+        setError('That email and password combination did not work.');
+        return;
+      }
+
+      // Re-validated rather than trusted. The page already sanitised it, but
+      // this component takes a prop, and a naive startsWith('/') check here
+      // would let "//evil.com" through as an off-site redirect.
+      // refresh() so the server layouts re-run and pick up the new session cookie.
+      router.replace(safeNextPath(next));
+      router.refresh();
+    } catch (err) {
+      console.error('Sign-in failed:', err);
+      setError('Something went wrong signing you in. Please try again.');
+    } finally {
       setBusy(false);
-      return;
     }
-
-    // Re-validated rather than trusted. The page already sanitised it, but
-    // this component takes a prop, and a naive startsWith('/') check here
-    // would let "//evil.com" through as an off-site redirect.
-    // refresh() so the server layouts re-run and pick up the new session cookie.
-    router.replace(safeNextPath(next));
-    router.refresh();
   }
 
   return (

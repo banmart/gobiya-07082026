@@ -27,17 +27,29 @@ export default function SetPasswordForm({ role }) {
     }
 
     setBusy(true);
-    const supabase = createBrowserSupabase();
-    const { error: updateError } = await supabase.auth.updateUser({ password });
 
-    if (updateError) {
-      setError(updateError.message);
+    // Same reasoning as LoginForm: a throw must not strand the button in its
+    // disabled "Saving…" state with nothing rendered to explain it.
+    try {
+      const supabase = createBrowserSupabase();
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+
+      if (updateError) {
+        // The user is already authenticated here, so there is no enumeration
+        // risk, but upstream wording is still not ours to show.
+        console.error('Password update failed:', updateError.message);
+        setError('That password could not be saved. Please try a different one.');
+        return;
+      }
+
+      router.replace(role === 'admin' ? '/admin' : '/dashboard');
+      router.refresh();
+    } catch (err) {
+      console.error('Password update failed:', err);
+      setError('Something went wrong saving your password. Please try again.');
+    } finally {
       setBusy(false);
-      return;
     }
-
-    router.replace(role === 'admin' ? '/admin' : '/dashboard');
-    router.refresh();
   }
 
   return (
