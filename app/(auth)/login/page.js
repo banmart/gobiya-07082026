@@ -4,13 +4,6 @@ import { safeNextPath } from '../../../lib/safeNext';
 import { redirect } from 'next/navigation';
 import LoginForm from './LoginForm';
 
-// Forced dynamic: this page checks the session on every request via
-// getSessionUser(), which reads cookies(). Without this, Next attempts to
-// prerender the page at build time and fails outright if Supabase env vars
-// are unset in that environment, instead of falling back to per-request
-// rendering.
-export const dynamic = 'force-dynamic';
-
 export const metadata = {
   title: 'Sign in',
   robots: { index: false, follow: false },

@@ -3,9 +3,6 @@ import { getSessionUser } from '../../../lib/auth';
 import { redirect } from 'next/navigation';
 import SetPasswordForm from './SetPasswordForm';
 
-// See app/(auth)/login/page.js for why this is forced dynamic.
-export const dynamic = 'force-dynamic';
-
 export const metadata = {
   title: 'Set your password',
   robots: { index: false, follow: false },
