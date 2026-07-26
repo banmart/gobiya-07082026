@@ -1,0 +1,153 @@
+/* App shell for /dashboard and /admin. Imported by both layouts. */
+
+.app {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  min-height: 100vh;
+  background: var(--lightest);
+}
+
+.app__sidebar {
+  background: var(--darkest);
+  color: var(--bg);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.app__brand-word {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  letter-spacing: 0.02em;
+}
+
+.app__nav { padding: 1.25rem 0.75rem; flex: 1; }
+
+.app__nav-heading {
+  padding: 0 0.75rem 0.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--medium);
+}
+
+.app__link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--light);
+  border-left: 2px solid transparent;
+  transition: color 0.15s var(--expo-out), border-color 0.15s var(--expo-out);
+}
+
+.app__link:hover { color: var(--bg); }
+
+.app__link--active {
+  color: var(--bg);
+  border-left-color: var(--main);
+}
+
+.app__sublink {
+  display: block;
+  padding: 0.3125rem 0.75rem 0.3125rem 1.5rem;
+  font-size: 0.875rem;
+  color: var(--dark);
+}
+
+.app__sublink:hover { color: var(--light); }
+
+.app__sidebar-foot {
+  padding: 1.25rem 1.5rem 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.app__signout {
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--light);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.app__signout:hover { color: var(--main); }
+
+.app__main { display: flex; flex-direction: column; min-width: 0; }
+
+.app__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.app__topbar-title {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  color: var(--darkest);
+}
+
+.app__topbar-user { font-size: 0.875rem; color: var(--hint); }
+
+.app__content { padding: 2rem; flex: 1; }
+
+.app__welcome {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
+  color: var(--darkest);
+  margin-bottom: 0.375rem;
+}
+
+.app__welcome-sub { color: var(--hint); margin-bottom: 2rem; }
+
+.app__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+
+.card__badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.1875rem 0.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hint);
+  border: 1px solid var(--border);
+}
+
+.card__title {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  color: var(--darkest);
+  margin-bottom: 0.375rem;
+}
+
+.card__body { font-size: 0.9375rem; color: var(--hint); }
+
+@media (max-width: 60rem) {
+  .app { grid-template-columns: 1fr; }
+  .app__sidebar { position: static; }
+  .app__content { padding: 1.25rem; }
+  .app__topbar { padding: 0.875rem 1.25rem; }
+}
