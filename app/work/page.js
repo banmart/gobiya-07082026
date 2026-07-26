@@ -38,7 +38,7 @@ export default function WorkPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Client Results", "Case Studies", "Search Growth", "Proven Rankings", "Client Portfolio"]} />
+      <TopicMarquee topics={["Search Console Evidence", "Verifiable Client Wins", "Traffic & Lead Growth", "E-Commerce & Local SEO", "Client Success Stories"]} />
 
 
 

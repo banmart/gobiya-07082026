@@ -33,7 +33,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Get In Touch", "Free SEO Check", "Strategy Call", "Los Angeles Team", "Direct Support"]} />
+      <TopicMarquee topics={["Direct Founder Contact", "Los Angeles HQ", "Schedule Consultation", "Free Technical Review", "1 Business Day Response"]} />
 
 
 

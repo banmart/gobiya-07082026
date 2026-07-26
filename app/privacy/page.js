@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           <p className="lede" data-reveal>Last updated July 10, 2026</p>
         </div>
       </section>
-      <TopicMarquee topics={["Data Privacy", "User Security", "Analytics Policy", "Client Confidentiality", "Compliance"]} />
+      <TopicMarquee topics={["Data Privacy", "User Confidentiality", "Analytics Consent Policy", "Information Security", "GDPR & CCPA Compliance"]} />
 
 
       <section className="section" id="body">

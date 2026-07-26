@@ -102,7 +102,7 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["SEO Packages", "AI Visibility", "Content Marketing", "PPC Management", "Web Development"]} />
+      <TopicMarquee topics={["Transparent Monthly Plans", "No Long-Term Contracts", "Full Audit Included", "Custom Enterprise Tier", "Measurable ROI"]} />
 
       <section className="section" id="tiers">
         <div className="container">

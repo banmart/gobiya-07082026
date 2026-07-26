@@ -91,7 +91,7 @@ export default function FlatServiceTemplate({ service }) {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Technical SEO", "AI Visibility", "Digital PR", "Conversion Rate", "Local Search"]} />
+      <TopicMarquee topics={service.capabilities ? service.capabilities.map(c => c.title) : ["Technical Infrastructure", "On-Page Architecture", "Local Pack Dominance", "Authority Acquisition"]} />
 
       {/* ══════════ 01 · The stakes ══════════
           The tension the rest of the page resolves, paired with the topic's

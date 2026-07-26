@@ -49,7 +49,7 @@ export default function OnboardingPage() {
           </ul>
         </div>
       </section>
-      <TopicMarquee topics={["Quick Intake", "Strategy Discovery", "Initial Audit", "Client Onboarding", "Custom Plan"]} />
+      <TopicMarquee topics={["5-Step Questionnaire", "Website Audit Intake", "Tailored Proposal", "Direct Founder Review", "Fast Turnaround"]} />
 
 
       <section className="section section--tint stepper-section">

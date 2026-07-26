@@ -35,7 +35,7 @@ export default function AIVisibilityPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["AI Overviews", "ChatGPT Citations", "Perplexity Search", "Answer Engine SEO", "Generative Visibility"]} />
+      <TopicMarquee topics={["Generative Engine Optimization", "ChatGPT Brand Citations", "Perplexity Indexing", "LLM Entity Knowledge Graph", "AI Overviews Presence"]} />
 
 
 

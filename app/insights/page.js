@@ -22,7 +22,7 @@ export default function InsightsPage() {
           <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, and AI visibility — written to actually answer the question, not just rank for it.</p>
         </div>
       </section>
-      <TopicMarquee topics={["SEO Guides", "Algorithm News", "AI Search Trends", "Search Insights", "Agency Perspectives"]} />
+      <TopicMarquee topics={["Algorithm Analysis", "Technical Breakdowns", "Search Industry Trends", "GEO Case Studies", "SEO Best Practices"]} />
 
 
       {/* ══════════ Article grid ══════════ */}

@@ -31,7 +31,7 @@ export default function ApproachPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Foundation First", "Technical Audits", "Data Driven", "AI Analysis", "White Hat SEO"]} />
+      <TopicMarquee topics={["Technical Foundation", "Schema & Entity Engineering", "Content Silos", "White-Hat Link Building", "Sustainable Ranking Growth"]} />
 
 
 

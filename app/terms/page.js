@@ -19,7 +19,7 @@ export default function TermsPage() {
           <p className="lede" data-reveal>Last updated July 10, 2026</p>
         </div>
       </section>
-      <TopicMarquee topics={["Terms of Service", "Legal Policies", "Client Agreement", "Service Terms", "Fair Use"]} />
+      <TopicMarquee topics={["Terms of Service", "Legal Agreement", "User Obligations", "Intellectual Property Rights", "Limitation of Liability"]} />
 
 
       <section className="section" id="body">

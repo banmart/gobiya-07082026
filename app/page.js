@@ -107,7 +107,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Los Angeles SEO", "AI Visibility", "Technical Audit", "PPC & GEO", "Web Design"]} />
+      <TopicMarquee topics={["Los Angeles SEO Agency", "ChatGPT & Perplexity Visibility", "Technical Search Audits", "PPC & CRO Strategy", "Proven Search Console Growth"]} />
 
       {/* ══ 2.5 Recent search wins ══ */}
       <section className="section" id="search-wins" aria-label="Search Console performance across clients">

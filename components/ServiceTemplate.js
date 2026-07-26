@@ -33,7 +33,7 @@ export default function ServiceTemplate({ service }) {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Search Audit", "Content Strategy", "Link Authority", "Schema Markup", "Performance"]} />
+      <TopicMarquee topics={service.capabilities ? service.capabilities.map(c => c.title) : ["Search Engineering", "Content Strategy", "Link Authority", "Schema Context"]} />
 
 
       {/* ══════════ 01 · The stakes ══════════ */}

@@ -29,7 +29,7 @@ export default function OnboardingThankYouPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Quick Intake", "Strategy Discovery", "Initial Audit", "Client Onboarding", "Custom Plan"]} />
+      <TopicMarquee topics={["Intake Received", "Personal Founder Audit", "1 Business Day Reply", "No Automated Sequences", "Direct Follow-Up"]} />
 
     </main>
   );

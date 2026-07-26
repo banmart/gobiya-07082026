@@ -33,7 +33,7 @@ export default function SteveMartinPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Steve Martin", "SEO Founder", "Algorithm Recovery", "Search Strategy", "25 Years Experience"]} />
+      <TopicMarquee topics={["25+ Years In Search", "Google Algorithm Recovery", "Founder & Principal", "Manual Penalty Specialist", "Los Angeles Search Native"]} />
 
 
 

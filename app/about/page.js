@@ -27,7 +27,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Gobiya Agency", "Established 2010", "Los Angeles SEO", "Google Partners", "BBB A+ Rated"]} />
+      <TopicMarquee topics={["Founded 2010", "Los Angeles SEO Team", "BBB A+ Rating", "Google Partner Veteran", "Accountable Growth"]} />
 
 
       {/* ══════════ Timeline ══════════ */}
