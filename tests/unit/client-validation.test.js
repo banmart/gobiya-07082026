@@ -36,6 +36,18 @@ describe('validateClientInput', () => {
     expect(result.value.website).toBeNull();
   });
 
+  it('rejects a protocol-relative website', () => {
+    // https:// + //evil.com collapses back to https://evil.com in the parser,
+    // so the forced scheme would be an illusion.
+    const result = validateClientInput({
+      name: 'Acme',
+      contactEmail: 'a@b.com',
+      website: '//evil.com',
+    });
+    expect(result.ok).toBe(false);
+    expect(result.errors.website).toMatch(/full address/i);
+  });
+
   it('keeps an explicit https scheme', () => {
     const result = validateClientInput({
       name: 'Acme',
