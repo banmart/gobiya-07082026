@@ -16,13 +16,12 @@ const nextConfig = {
       // known survivors (compton/seo, compton/webdesign) were 404ing, and the
       // pattern implies more cities than we can enumerate, so these are
       // matched by shape rather than listed one by one.
-      { source: '/california/:city/seo', destination: '/seo-services', permanent: true },
-      { source: '/california/:city/webdesign', destination: '/services/web-app-development', permanent: true },
+      { source: '/california/:city/seo', destination: '/seo-services-los-angeles', permanent: true },
+      { source: '/california/:city/webdesign', destination: '/web-development-services-los-angeles', permanent: true },
       { source: '/california/:path*', destination: '/services', permanent: true },
 
-      // Old services slug -> the page that replaced it (was a 404, and it
-      // ranks for web design queries).
-      { source: '/services/web-design-development', destination: '/services/web-app-development', permanent: true },
+      // Old services slug -> the page that replaced it
+      { source: '/services/web-design-development', destination: '/web-development-services-los-angeles', permanent: true },
 
       // /resources itself already redirected, but nested article URLs under it
       // did not — e.g. the algorithm-update recovery guide, which is indexed.
@@ -31,11 +30,21 @@ const nextConfig = {
       // Stray app route from the previous build.
       { source: '/user', destination: '/', permanent: true },
 
-      // Flat, keyword-first service pages (2026-07) replacing the 4 old /services/[slug] pages
-      { source: '/services/seo-discoverability', destination: '/seo-services', permanent: true },
-      { source: '/services/geo-ai-content-writing', destination: '/geo-services', permanent: true },
-      { source: '/services/google-ads-ppc', destination: '/ppc-management-services', permanent: true },
-      { source: '/services/seo-web-copywriting', destination: '/content-marketing-services', permanent: true },
+      // 301 redirects for previous service URLs to new Los Angeles targeted URLs
+      { source: '/seo-services', destination: '/seo-services-los-angeles', permanent: true },
+      { source: '/geo-services', destination: '/geo-services-los-angeles', permanent: true },
+      { source: '/ppc-management-services', destination: '/ppc-management-services-los-angeles', permanent: true },
+      { source: '/content-marketing-services', destination: '/content-marketing-services-los-angeles', permanent: true },
+      { source: '/services/web-app-development', destination: '/web-development-services-los-angeles', permanent: true },
+      { source: '/services/authority-link-building', destination: '/link-building-services-los-angeles', permanent: true },
+      { source: '/services/cro-ux', destination: '/cro-ux-services-los-angeles', permanent: true },
+      { source: '/services/ai-llm-consulting', destination: '/ai-consulting-services-los-angeles', permanent: true },
+
+      // Flat service page legacy redirects
+      { source: '/services/seo-discoverability', destination: '/seo-services-los-angeles', permanent: true },
+      { source: '/services/geo-ai-content-writing', destination: '/geo-services-los-angeles', permanent: true },
+      { source: '/services/google-ads-ppc', destination: '/ppc-management-services-los-angeles', permanent: true },
+      { source: '/services/seo-web-copywriting', destination: '/content-marketing-services-los-angeles', permanent: true },
 
       // Outcomes and Industries hubs removed entirely (2026-07). These used to
       // point at '/'. Retargeted 2026-07-25: Google generally treats a mass

@@ -20,9 +20,9 @@ STRICT RULES:
 3. ALWAYS suggest relevant internal pages when applicable to funnel users:
   - Onboarding / Free AI Audit / Quote & Estimate: [Get a Quote / AI Visibility Audit](/onboarding)
   - Contact Us: [Contact Us](/contact)
-  - Core SEO Services: [SEO & Discoverability](/seo-services)
-  - Web Development: [Web & App Development](/services/web-app-development)
-  - AI Consulting: [AI & LLM Consulting](/services/ai-llm-consulting)
+  - Core SEO Services: [SEO & Discoverability](/seo-services-los-angeles)
+  - Web Development: [Web & App Development](/web-development-services-los-angeles)
+  - AI Consulting: [AI & LLM Consulting](/ai-consulting-services-los-angeles)
   - Tools Hub (Domain, IP, SSL checks): [Free Tools Hub](/tools)
 4. Format links exactly like this: [Link Text](/path). Do not use full URLs.
 5. QUOTE / ESTIMATE / AUDIT LINKING RULE (CRITICAL):

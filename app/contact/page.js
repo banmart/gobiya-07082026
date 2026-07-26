@@ -4,9 +4,9 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 
 export const metadata = buildMetadata({
-  title: 'Contact — Los Angeles SEO & AI Agency',
+  title: 'Contact Gobiya | Los Angeles SEO Agency',
   description:
-    'Talk to Gobiya about SEO, AI visibility, or a new site. Call 323-744-1338 or email hello@gobiya.com — Wilshire Blvd, Los Angeles. Free audit, no contract.',
+    'Get in touch with Gobiya, your local Los Angeles SEO and AI search marketing team. Request a free site audit or consultation.',
   path: '/contact',
 });
 
@@ -21,7 +21,7 @@ export default function ContactPage() {
             
         
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Contact · Los Angeles SEO &amp; AI Visibility Agency</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Let's talk about what's actually happening in your search traffic.</h1>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Contact Our Los Angeles SEO Team Today</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Send us your website address and we&apos;ll tell you what we find — the technical problems, where you&apos;re missing out on AI recommendations, and where the fastest wins actually are. No generic template, no obligation. Prefer a form? <a href="/onboarding">Start with our five-step questionnaire</a> and Steve will follow up directly.</p>
         
           </div>

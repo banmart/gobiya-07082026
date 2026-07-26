@@ -5,9 +5,9 @@ import TopicMarquee from '../../components/TopicMarquee';
 import { PlatformIcon } from '../../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
-  title: 'AI Visibility — Get Recommended by ChatGPT',
+  title: 'Los Angeles AI Visibility & Search Services | Gobiya',
   description:
-    'Gobiya helps your brand get recommended by ChatGPT, Perplexity, and Google\'s AI answers — not just ranked in a list of links.',
+    'Get your brand cited in ChatGPT, Perplexity, and Google AI Overviews with our Los Angeles AI visibility and search optimization services.',
   path: '/ai-visibility',
 });
 
@@ -22,7 +22,7 @@ export default function AIVisibilityPage() {
             
         
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Visibility · Get Found by ChatGPT &amp; Google&apos;s AI</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>The biggest shift in how people find businesses since mobile search.</h1>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles AI Search Visibility &amp; Brand Optimization</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>More and more people now get their answer straight from AI tools — ChatGPT, Perplexity, Google&apos;s AI&nbsp;Overviews — before they ever click through to a website. If your site isn&apos;t set up so those tools can read, understand, and recommend it, you&apos;re invisible to a fast-growing part of search.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Check Your Brand&apos;s AI Visibility</a>

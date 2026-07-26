@@ -5,9 +5,9 @@ import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
-  title: 'Client Results & Case Studies',
+  title: 'Our Work | Los Angeles SEO Client Results & Case Studies',
   description:
-    'Real client results from Gobiya: website rebuilds, traffic recovery, and getting found by AI tools, across dental, local service, and B2B businesses.',
+    'See real case studies and search growth results from our Los Angeles SEO agency. Learn how we help California businesses grow online.',
   path: '/work',
 });
 
@@ -22,7 +22,7 @@ export default function WorkPage() {
             
         
           <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Selected work</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Real businesses. Measurable recovery and growth.</h1>
+          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles SEO Results &amp; Proven Client Success</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Start your own case study</a>

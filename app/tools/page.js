@@ -2,8 +2,8 @@ import { buildMetadata } from '../../lib/meta';
 import ToolsHub from './ToolsHub';
 
 export const metadata = buildMetadata({
-  title: 'Free SEO & Domain Tools',
-  description: 'Free tools from Gobiya to check a domain\'s DNS records, ownership, security certificate, and more. No signup required — try them now.',
+  title: 'Free Los Angeles SEO & Web Tools | Gobiya',
+  description: 'Free online SEO and domain tools for Los Angeles business owners. Check DNS, email setup, IP geolocation, and domain health.',
   path: '/tools',
 });
 

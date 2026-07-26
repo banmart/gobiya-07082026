@@ -2,13 +2,12 @@ import FlatServiceTemplate from '../../components/FlatServiceTemplate';
 import { SERVICES_FLAT } from '../../lib/servicesFlat';
 import { buildMetadata } from '../../lib/meta';
 
-const service = SERVICES_FLAT['geo-services'];
+const service = SERVICES_FLAT['seo-services-los-angeles'];
 
 export const metadata = buildMetadata({
-  title: 'GEO Services — Get Cited by ChatGPT & AI',
-  description:
-    'Get your brand named in ChatGPT, Perplexity, and Google AI answers. Content built to be quoted, not just crawled. Free AI visibility check.',
-  path: '/geo-services',
+  title: service.title,
+  description: service.metaDescription,
+  path: '/seo-services-los-angeles',
   robots: {
     index: true,
     follow: true,

@@ -82,8 +82,8 @@ export default function Home() {
           <div className="hero__row">
             <div className="hero__lead">
               <h1 className="hero__title" data-split>
-                Every search starts the race{' '}
-                <em className="hero__title-accent">to be seen <span className="hero__title-swash-wrap">first<Swash className="hero__title-swash" /></span>.</em>
+                Los Angeles SEO &amp; AI Search{' '}
+                <em className="hero__title-accent">That Gets You Found <span className="hero__title-swash-wrap">First<Swash className="hero__title-swash" /></span>.</em>
               </h1>
               <p className="hero__sub" data-reveal>Looking for an SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past. One team handles it all, so nothing falls through the cracks between vendors.</p>
               <div className="hero__ctas" data-reveal>

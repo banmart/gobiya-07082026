@@ -2,15 +2,12 @@ import FlatServiceTemplate from '../../components/FlatServiceTemplate';
 import { SERVICES_FLAT } from '../../lib/servicesFlat';
 import { buildMetadata } from '../../lib/meta';
 
-const service = SERVICES_FLAT['seo-services'];
+const service = SERVICES_FLAT['ppc-management-services-los-angeles'];
 
 export const metadata = buildMetadata({
-  // No brand here — app/layout.js appends ' — Gobiya' via title.template.
-  // Including it produced "... | Gobiya — Gobiya" and pushed the title past
-  // the ~60 characters Google will render.
-  title: 'SEO Services That Get You Found on Google',
-  description: 'Gobiya fixes the technical problems keeping Google and AI tools from finding and reading your site, so your business actually shows up. Free SEO check.',
-  path: '/seo-services',
+  title: service.title,
+  description: service.metaDescription,
+  path: '/ppc-management-services-los-angeles',
   robots: {
     index: true,
     follow: true,

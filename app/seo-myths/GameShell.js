@@ -20,7 +20,7 @@ export default function GameShell({ children }) {
       <section className="section section--tint myth-section">
         <div className="container container--narrow">
           <h1 className="myth-title">
-            SEO Myth or <em>Fact</em>
+            Los Angeles SEO: Myth or <em>Fact</em>
           </h1>
           <MythGame onFinish={onFinish} />
         </div>

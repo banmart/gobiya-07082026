@@ -4,9 +4,9 @@ import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
-  title: 'About — LA Marketing Firm Since 2010',
+  title: 'About Gobiya | Top Los Angeles SEO & Growth Agency',
   description:
-    'Gobiya is a Los Angeles internet marketing consulting firm founded in 2010 by Steve Martin — BBB A+ rated, Google Partner 2015-2019. Free SEO audit.',
+    'Learn about Gobiya, a premier Los Angeles SEO agency founded in 2010. We deliver transparent SEO, web design, and AI search services.',
   path: '/about',
 });
 
@@ -18,7 +18,7 @@ export default function AboutPage() {
         <div className="container seo-hero__grid">
           <div>
             <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About Gobiya · Los Angeles SEO Agency Since 2010</p>
-            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>Fourteen years recovering traffic that algorithm updates took away.</h1>
+            <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>Los Angeles SEO Experts Helping Local Businesses Succeed</h1>
             <p className="lede" data-reveal style={{ marginInline: 0 }}>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
           </div>
           <div>

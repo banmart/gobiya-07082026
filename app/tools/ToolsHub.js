@@ -90,7 +90,7 @@ export default function ToolsHub() {
       <section className="page-hero section">
         <div className="container container--narrow">
           <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tools</p>
-          <h1 className="statement" data-split>Free SEO & Domain Tools</h1>
+          <h1 className="statement" data-split>Free Online SEO &amp; Domain Tools for Los Angeles Businesses</h1>
           <p className="lede" data-reveal>Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
         </div>
       </section>

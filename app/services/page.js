@@ -6,9 +6,9 @@ import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 
 export const metadata = buildMetadata({
-  title: 'Services — SEO, Content, Ads & Web',
+  title: 'Los Angeles SEO & Digital Marketing Services | Gobiya',
   description:
-    'SEO, content, link building, AI visibility, Google Ads, and web development — one accountable Los Angeles team, not a network of contractors.',
+    'Explore Gobiya’s full suite of Los Angeles SEO services, web design, Google Ads, content marketing, and AI search solutions for LA businesses.',
   path: '/services',
 });
 
@@ -22,24 +22,19 @@ export default function ServicesPage() {
 
   return (
     <main id="top">
-
-      
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container seo-hero__grid">
           <div>
-            
-        
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our Services · SEO, AI Visibility, Ads &amp; Web Design</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Every piece of your marketing, working together.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Performance, creativity, and relationships — three parts of marketing that work best when one team runs all of them together, instead of three separate vendors pulling in different directions.</p>
-        
+            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our Services · Los Angeles SEO, AI Visibility, Ads &amp; Web Design</p>
+            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles SEO &amp; Digital Marketing Services</h1>
+            <p className="lede" style={{ marginInline: 0 }} data-reveal>Performance, content, and search strategy — marketing services for Los Angeles businesses built to work together under one accountable team, so your business gets found first.</p>
           </div>
           <div>
             <HeroQuickForm />
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Core Services", "Technical SEO", "AI Optimization", "Link Building", "Web Development"]} />
+      <TopicMarquee topics={["Los Angeles SEO", "Technical SEO", "AI Optimization", "Link Building", "Web Development"]} />
 
       <section className="section" id="flat-services">
         <div className="container">
@@ -63,7 +58,7 @@ export default function ServicesPage() {
             <Chapter n={pi + 2} label={pillar} />
             <div className="insights__grid" data-stagger>
               {items.map((s) => (
-                <a className="insights__card" href={`/services/${s.slug}`} key={s.slug}>
+                <a className="insights__card" href={`/${s.slug}`} key={s.slug}>
                   <span className="insights__card-cat">{s.pillar}</span>
                   <h2 className="insights__card-title">{s.title}</h2>
                   <p className="insights__card-dek">{s.metaDescription}</p>
@@ -79,16 +74,16 @@ export default function ServicesPage() {
         <div className="container container--narrow">
           <Chapter n={PILLARS.length + 2} label="Common questions" />
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
-            SEO and digital marketing, plainly explained.
+            Los Angeles SEO and digital marketing, plainly explained.
           </h2>
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
-              <dt>How do SEO services compare to content marketing?</dt>
-              <dd>SEO covers everything that affects whether your site can be found at all — the technical setup, your reputation online, and how your pages are built. Content marketing is the writing and publishing side. On their own, great content without SEO rarely gets found, and SEO without content leaves you with a clean site and nothing worth reading. We treat them as one job: every page is planned around what people are actually searching for, then written to be found and to turn visitors into customers. <a href="/content-marketing-services">See how our writing and search work fit together.</a></dd>
+              <dt>How do Los Angeles SEO services compare to content marketing?</dt>
+              <dd>SEO covers everything that affects whether your site can be found at all — the technical setup, your local reputation online, and how your pages are built. Content marketing is the writing and publishing side. On their own, great content without SEO rarely gets found, and SEO without content leaves you with a clean site and nothing worth reading. We treat them as one job: every page is planned around what people are actually searching for, then written to be found and to turn visitors into customers. <a href="/content-marketing-services-los-angeles">See how our writing and search work fit together.</a></dd>
             </div>
             <div className="faq__item" data-reveal>
               <dt>What is the difference between an SEO agency and a digital marketing agency?</dt>
-              <dd>An SEO agency focuses on getting you found in search — rankings, traffic, and the technical and content work behind both. A digital marketing agency usually covers more ground: paid ads, social media, email, and branding, on top of SEO. We sit in between: everything we do starts with search, then extends into content and paid ads as one connected plan instead of separate pieces. <a href="/ppc-management-services">See how our paid ads work fits in.</a></dd>
+              <dd>An SEO agency focuses on getting you found in search — rankings, traffic, and the technical and content work behind both. A digital marketing agency usually covers more ground: paid ads, social media, email, and branding, on top of SEO. We sit in between: everything we do starts with search, then extends into content and paid ads as one connected plan instead of separate pieces. <a href="/ppc-management-services-los-angeles">See how our paid ads work fits in.</a></dd>
             </div>
           </dl>
         </div>
