@@ -168,9 +168,16 @@ Expected: FAIL — cannot resolve `../../lib/supabase/env.js`.
 // Env access for every Supabase client in the app. Reading through these
 // helpers means a missing variable fails immediately with the variable's name,
 // instead of surfacing later as "Cannot read properties of undefined".
+//
+// Every read below is STATIC dot access — `process.env.NEXT_PUBLIC_FOO` — and
+// that is not a style choice. Next substitutes NEXT_PUBLIC_* values into the
+// client bundle by matching dot access only. A computed lookup like
+// `process.env[name]` survives into the browser bundle unsubstituted, where the
+// `process/browser` polyfill supplies an empty `env` object. The value is then
+// always undefined, so createBrowserSupabase() throws on every call in every
+// browser, no matter what the real credentials are.
 
-function required(name) {
-  const value = process.env[name];
+function requireValue(name, value) {
   if (!value) {
     throw new Error(
       `Missing required environment variable ${name}. Add it to .env.local and to the Vercel project settings.`
@@ -181,15 +188,21 @@ function required(name) {
 
 export function supabaseEnv() {
   return {
-    url: required('NEXT_PUBLIC_SUPABASE_URL'),
-    anonKey: required('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
+    url: requireValue('NEXT_PUBLIC_SUPABASE_URL', process.env.NEXT_PUBLIC_SUPABASE_URL),
+    anonKey: requireValue(
+      'NEXT_PUBLIC_SUPABASE_ANON_KEY',
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    ),
   };
 }
 
 export function supabaseServiceEnv() {
   return {
-    url: required('NEXT_PUBLIC_SUPABASE_URL'),
-    serviceRoleKey: required('SUPABASE_SERVICE_ROLE_KEY'),
+    url: requireValue('NEXT_PUBLIC_SUPABASE_URL', process.env.NEXT_PUBLIC_SUPABASE_URL),
+    serviceRoleKey: requireValue(
+      'SUPABASE_SERVICE_ROLE_KEY',
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    ),
   };
 }
 
@@ -1029,7 +1042,7 @@ export async function requireAdmin() {
 - [ ] **Step 4: Run the test to verify it passes**
 
 Run: `npm test -- tests/unit/auth-guards.test.js`
-Expected: PASS, 7 tests.
+Expected: PASS, 10 tests.
 
 - [ ] **Step 5: Commit**
 
@@ -1204,6 +1217,29 @@ describe('safeNextPath', () => {
     expect(safeNextPath('/dashboard\r\nSet-Cookie: x=1')).toBe('/dashboard');
   });
 
+  it('rejects a tab-smuggled protocol-relative URL', () => {
+    // The one that got through the first version. The URL parser strips tabs,
+    // so this resolves to //evil.com and leaves the origin. A request arrives
+    // as ?next=/%09/evil.com and searchParams decodes it to a real tab.
+    expect(safeNextPath('/\t/evil.com')).toBe('/dashboard');
+    expect(safeNextPath(decodeURIComponent('/%09/evil.com'))).toBe('/dashboard');
+  });
+
+  it('rejects other control characters and spaces', () => {
+    expect(safeNextPath('/ /evil.com')).toBe('/dashboard');
+    expect(safeNextPath('//evil.com')).toBe('/dashboard');
+    expect(safeNextPath('/ /evil.com')).toBe('/dashboard');
+  });
+
+  it('rejects anything that resolves off-origin, whatever the spelling', () => {
+    // The backstop, stated as a property rather than a list of tricks: if the
+    // URL parser takes it somewhere other than our own origin, reject it.
+    for (const attack of ['/\t\t//evil.com', '/\r//evil.com', '/\\\\evil.com']) {
+      const resolved = safeNextPath(attack);
+      expect(new URL(resolved, 'https://gobiya.invalid').origin).toBe('https://gobiya.invalid');
+    }
+  });
+
   it('falls back for empty, missing, or non-string input', () => {
     expect(safeNextPath('')).toBe('/dashboard');
     expect(safeNextPath(undefined)).toBe('/dashboard');
@@ -1239,8 +1275,21 @@ export function safeNextPath(value, fallback = '/dashboard') {
   if (!value.startsWith('/')) return fallback;
   // Protocol-relative, and the backslash spelling browsers normalise into it.
   if (value.startsWith('//') || value.startsWith('/\\')) return fallback;
-  // Header and URL injection.
-  if (/[\r\n]/.test(value)) return fallback;
+  // Any C0 control character or space. The URL parser strips tab, CR and LF
+  // outright, so "/<TAB>/evil.com" parses as "//evil.com" and leaves the
+  // origin — blocking only CR and LF is not enough.
+  if (/[ - ]/.test(value)) return fallback;
+
+  // Backstop. Rather than keep enumerating parser quirks, resolve the value
+  // the same way the browser will and insist it stayed on the origin. This is
+  // what makes the guard robust against the next trick nobody thought of.
+  try {
+    const probe = new URL(value, 'https://gobiya.invalid');
+    if (probe.origin !== 'https://gobiya.invalid') return fallback;
+  } catch {
+    return fallback;
+  }
+
   return value;
 }
 ```
@@ -1248,7 +1297,7 @@ export function safeNextPath(value, fallback = '/dashboard') {
 - [ ] **Step 0d: Run the test to verify it passes**
 
 Run: `npm test -- tests/unit/safe-next.test.js`
-Expected: PASS, 7 tests.
+Expected: PASS, 10 tests.
 
 - [ ] **Step 1: Hide the marketing chrome on app routes**
 
@@ -1440,7 +1489,12 @@ export default async function LoginPage({ searchParams }) {
   // component. /login is not a middleware-matched route, so this value can
   // come straight from an attacker-supplied link.
   const next = safeNextPath(params?.next);
-  const errorMessage = ERRORS[params?.error];
+  // Object.hasOwn, not a bare lookup: ?error=__proto__ would otherwise return
+  // Object.prototype, which is truthy and an object, and React throws
+  // "Objects are not valid as a React child" — a 500 on the sign-in page.
+  const errorMessage = Object.hasOwn(ERRORS, params?.error ?? '')
+    ? ERRORS[params.error]
+    : null;
 
   return (
     <div className="auth__card">
@@ -1485,23 +1539,33 @@ export default function LoginForm({ next }) {
     setBusy(true);
     setError('');
 
-    const supabase = createBrowserSupabase();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+    // The try/finally is what keeps the form usable. Without it, anything that
+    // throws rather than returning an error — a network drop, a misconfigured
+    // client — leaves busy stuck true, so the button reads "Signing in…"
+    // forever with no message and no way back short of a reload.
+    try {
+      const supabase = createBrowserSupabase();
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
 
-    if (signInError) {
-      // Deliberately generic: distinguishing "no such account" from "wrong
-      // password" tells an attacker which emails are registered.
-      setError('That email and password combination did not work.');
+      if (signInError) {
+        // Deliberately generic: distinguishing "no such account" from "wrong
+        // password" tells an attacker which emails are registered.
+        setError('That email and password combination did not work.');
+        return;
+      }
+
+      // Re-validated rather than trusted. The page already sanitised it, but
+      // this component takes a prop, and a naive startsWith('/') check here
+      // would let "//evil.com" through as an off-site redirect.
+      // refresh() so the server layouts re-run and pick up the new session cookie.
+      router.replace(safeNextPath(next));
+      router.refresh();
+    } catch (err) {
+      console.error('Sign-in failed:', err);
+      setError('Something went wrong signing you in. Please try again.');
+    } finally {
       setBusy(false);
-      return;
     }
-
-    // Re-validated rather than trusted. The page already sanitised it, but
-    // this component takes a prop, and a naive startsWith('/') check here
-    // would let "//evil.com" through as an off-site redirect.
-    // refresh() so the server layouts re-run and pick up the new session cookie.
-    router.replace(safeNextPath(next));
-    router.refresh();
   }
 
   return (
@@ -1569,12 +1633,27 @@ export async function GET(request) {
   const type = searchParams.get('type');
   const next = safeNextPath(searchParams.get('next'));
 
-  if (!tokenHash || !type) {
+  // Allowlisted rather than passed through. Supabase rejects unknown types
+  // server-side anyway, but an allowlist keeps an attacker from probing the
+  // OTP surface through our own route.
+  const ALLOWED_TYPES = ['invite', 'recovery', 'signup', 'email', 'magiclink', 'email_change'];
+
+  if (!tokenHash || !type || !ALLOWED_TYPES.includes(type)) {
     return NextResponse.redirect(`${origin}/login?error=invalid_link`);
   }
 
   const supabase = await createServerSupabase();
-  const { error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash });
+
+  // verifyOtp re-throws non-AuthError exceptions — a network failure here
+  // would be an unhandled 500 instead of the designed redirect, breaking the
+  // invite flow at the exact moment something is already wrong.
+  let error;
+  try {
+    ({ error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash }));
+  } catch (err) {
+    console.error('verifyOtp failed:', err);
+    return NextResponse.redirect(`${origin}/login?error=expired_link`);
+  }
 
   if (error) {
     return NextResponse.redirect(`${origin}/login?error=expired_link`);
@@ -1663,17 +1742,29 @@ export default function SetPasswordForm({ role }) {
     }
 
     setBusy(true);
-    const supabase = createBrowserSupabase();
-    const { error: updateError } = await supabase.auth.updateUser({ password });
 
-    if (updateError) {
-      setError(updateError.message);
+    // Same reasoning as LoginForm: a throw must not strand the button in its
+    // disabled "Saving…" state with nothing rendered to explain it.
+    try {
+      const supabase = createBrowserSupabase();
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+
+      if (updateError) {
+        // The user is already authenticated here, so there is no enumeration
+        // risk, but upstream wording is still not ours to show.
+        console.error('Password update failed:', updateError.message);
+        setError('That password could not be saved. Please try a different one.');
+        return;
+      }
+
+      router.replace(role === 'admin' ? '/admin' : '/dashboard');
+      router.refresh();
+    } catch (err) {
+      console.error('Password update failed:', err);
+      setError('Something went wrong saving your password. Please try again.');
+    } finally {
       setBusy(false);
-      return;
     }
-
-    router.replace(role === 'admin' ? '/admin' : '/dashboard');
-    router.refresh();
   }
 
   return (
@@ -3162,7 +3253,7 @@ export async function POST(request) {
 - [ ] **Step 11: Run the full test suite**
 
 Run: `npm test`
-Expected: PASS — 5 env + 7 guard + 7 safeNext + 5 validation + 4 email + 8 RLS = 36 tests.
+Expected: PASS — 5 env + 7 guard + 10 safeNext + 5 validation + 4 email + 8 RLS = 39 tests.
 
 - [ ] **Step 12: Verify the invite flow end to end**
 
@@ -3370,7 +3461,7 @@ password works.
 - [ ] **Step 4: Run the full suite and build**
 
 Run: `npm test && npm run build`
-Expected: 36 tests pass, build succeeds, marketing routes still static.
+Expected: 39 tests pass, build succeeds, marketing routes still static.
 
 - [ ] **Step 5: Add the environment variables to Vercel**
 
@@ -3395,7 +3486,7 @@ git commit -m "feat: add client settings page"
 
 Run through this before opening a pull request.
 
-- [ ] `npm test` — 36 tests pass, including all 8 RLS tests
+- [ ] `npm test` — 39 tests pass, including all 8 RLS tests
 - [ ] `npm run build` — succeeds; `/`, `/services`, `/pricing`, `/insights/[slug]` still render statically
 - [ ] Anonymous visit to `/dashboard` redirects to `/login?next=%2Fdashboard`
 - [ ] Anonymous visit to `/admin` redirects to `/login`
