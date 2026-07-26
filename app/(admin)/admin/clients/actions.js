@@ -31,67 +31,112 @@ export async function createClientAction(prevState, formData) {
   });
   if (!created.ok) return { error: created.error };
 
-  // generateLink creates the auth user and returns a one-time token without
-  // sending anything, so the email goes out through Resend instead of
-  // Supabase's SMTP.
   const supabase = createAdminSupabase();
-  const { data, error } = await supabase.auth.admin.generateLink({
-    type: 'invite',
-    email: contactEmail,
-  });
 
-  if (error) {
-    // Compensating delete: without this a failed invite leaves an orphan
-    // client row that blocks retrying the same email (unique index).
-    await deleteClientRecord(created.client.id);
-    const duplicate = /already been registered|already exists/i.test(error.message);
-    return {
-      error: duplicate
+  // Undoes a partial creation. Every failure path below exits through here,
+  // and it REPORTS whether it succeeded: a rollback that itself fails leaves
+  // exactly the state this branch exists to prevent, so it cannot be silent.
+  async function rollback(userId) {
+    const problems = [];
+
+    if (userId) {
+      const { error: userError } = await supabase.auth.admin.deleteUser(userId);
+      if (userError) problems.push(`auth user ${userId} (${userError.message})`);
+    }
+
+    const removed = await deleteClientRecord(created.client.id);
+    if (!removed.ok) problems.push(`client row ${created.client.id}`);
+
+    if (problems.length > 0) {
+      console.error(
+        `Rollback incomplete after failed client creation — manual cleanup required: ${problems.join(
+          '; '
+        )}`
+      );
+      return false;
+    }
+    return true;
+  }
+
+  const cleanupNote =
+    ' Some records could not be cleaned up automatically — check the Supabase dashboard before retrying.';
+
+  // Tracked outside the try so the catch can still undo a user that was
+  // created just before something threw.
+  let createdUserId = null;
+
+  try {
+    // generateLink creates the auth user and returns a one-time token without
+    // sending anything, so the email goes out through Resend instead of
+    // Supabase's SMTP.
+    const { data, error } = await supabase.auth.admin.generateLink({
+      type: 'invite',
+      email: contactEmail,
+    });
+
+    if (error) {
+      // Compensating delete: without this a failed invite leaves an orphan
+      // client row that blocks retrying the same email (unique index).
+      const cleaned = await rollback(null);
+      const duplicate = /already been registered|already exists/i.test(error.message);
+      const message = duplicate
         ? 'An account already exists for that email address.'
-        : `Could not create the login: ${error.message}`,
-    };
+        : `Could not create the login: ${error.message}`;
+      return { error: cleaned ? message : message + cleanupNote };
+    }
+
+    createdUserId = data.user.id;
+
+    // Tenancy is assigned here, through the service role, rather than through
+    // the invite's user_metadata. Metadata is user-writable, and every RLS
+    // policy keys off client_id, so it must never originate with the user.
+    // The trigger has already created the profile row by this point — it runs
+    // inside GoTrue's insert transaction, so this is not a race.
+    //
+    // .select('id').single() is what makes the rollback below reachable. A
+    // PostgREST update without it returns 204 and { error: null } even when it
+    // matched zero rows, so a missing profile row would silently ship an invite
+    // to a login that belongs to no client.
+    const { error: assignError } = await supabase
+      .from('profiles')
+      .update({ client_id: created.client.id })
+      .eq('id', data.user.id)
+      .select('id')
+      .single();
+
+    if (assignError) {
+      // The login exists but belongs to no client, so it would sign in to an
+      // empty dashboard. Roll the whole thing back rather than leave that.
+      const cleaned = await rollback(createdUserId);
+      const message = `Could not assign the client: ${assignError.message}`;
+      return { error: cleaned ? message : message + cleanupNote };
+    }
+
+    const inviteLink =
+      `${siteUrl()}/auth/callback` +
+      `?token_hash=${encodeURIComponent(data.properties.hashed_token)}` +
+      `&type=invite&next=${encodeURIComponent('/set-password')}`;
+
+    const sent = await sendInviteEmail({
+      to: contactEmail,
+      businessName: name,
+      actionLink: inviteLink,
+    });
+
+    revalidatePath('/admin/clients');
+
+    // The client and login exist either way, so the link is always returned for
+    // the admin to copy if the email did not go out.
+    return { ok: true, inviteLink, emailSent: sent.ok };
+  } catch (err) {
+    // The Supabase client reports most failures through `error`, but throws on
+    // some network faults. Without this, a throw would skip every compensating
+    // delete above and strand whatever had already been created.
+    console.error('Client creation failed:', err);
+    const cleaned = await rollback(createdUserId);
+    const message = 'Something went wrong creating the client. Please try again.';
+    return { error: cleaned ? message : message + cleanupNote };
   }
-
-  // Tenancy is assigned here, through the service role, rather than through
-  // the invite's user_metadata. Metadata is user-writable, and every RLS
-  // policy keys off client_id, so it must never originate with the user.
-  // The trigger has already created the profile row by this point.
-  //
-  // .select('id').single() is what makes the rollback below reachable. A
-  // PostgREST update without it returns 204 and { error: null } even when it
-  // matched zero rows, so a missing profile row would silently ship an invite
-  // to a login that belongs to no client.
-  const { error: assignError } = await supabase
-    .from('profiles')
-    .update({ client_id: created.client.id })
-    .eq('id', data.user.id)
-    .select('id')
-    .single();
-
-  if (assignError) {
-    // The login exists but belongs to no client, so it would sign in to an
-    // empty dashboard. Roll the whole thing back rather than leave that.
-    await supabase.auth.admin.deleteUser(data.user.id);
-    await deleteClientRecord(created.client.id);
-    return { error: `Could not assign the client: ${assignError.message}` };
-  }
-
-  const inviteLink =
-    `${siteUrl()}/auth/callback` +
-    `?token_hash=${encodeURIComponent(data.properties.hashed_token)}` +
-    `&type=invite&next=${encodeURIComponent('/set-password')}`;
-
-  const sent = await sendInviteEmail({
-    to: contactEmail,
-    businessName: name,
-    actionLink: inviteLink,
-  });
-
-  revalidatePath('/admin/clients');
-
-  // The client and login exist either way, so the link is always returned for
-  // the admin to copy if the email did not go out.
-  return { ok: true, inviteLink, emailSent: sent.ok };
 }
 
 // Re-sends an invite for a client that already exists — the recovery path when
