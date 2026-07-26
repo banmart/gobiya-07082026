@@ -76,10 +76,9 @@ export default function FlatServiceTemplate({ service }) {
           <div>
             <Breadcrumbs items={[
               { label: 'Home', href: '/' },
-              { label: 'Consulting', href: '/services' },
-              { label: service.title.split(' - ')[0] },
+              { label: 'Services', href: '/services' },
+              { label: service.slug },
             ]} />
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>{service.eyebrow}</p>
             <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>{service.h1}</h1>
             <p className="lede" data-reveal style={{ marginInline: 0 }}>{service.intro}</p>
             <div className="hero__ctas" data-reveal style={{ justifyContent: 'flex-start' }}>
@@ -232,7 +231,6 @@ export default function FlatServiceTemplate({ service }) {
       {/* ══════════ Related ══════════ */}
       <section className="related section section--tint" id="related">
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Related consulting</p>
           <div className="related__grid">
             {CONSULTING_ITEMS
               .filter((s) => s.slug !== service.slug)
@@ -251,7 +249,6 @@ export default function FlatServiceTemplate({ service }) {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>{service.ctaTitle}</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>

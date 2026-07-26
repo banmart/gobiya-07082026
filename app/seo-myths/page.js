@@ -40,10 +40,6 @@ export default function SeoMythsPage() {
       <GameShell>
         <section className="section">
           <div className="container container--narrow">
-            <p className="eyebrow">
-              <span className="eyebrow__dot" />
-              The answer key
-            </p>
             <h2 className="statement statement--small">All {TOTAL_QUESTIONS} claims, settled.</h2>
             <p className="lede myth-key__lede">
               Every claim from the game, and what is actually true about each one.

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { CONTACT } from '../../../lib/nav';
 import { buildMetadata } from '../../../lib/meta';
 import TopicMarquee from '../../../components/TopicMarquee';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Thanks',
@@ -15,7 +16,7 @@ export default function OnboardingThankYouPage() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center"><span className="eyebrow__dot"></span>Thank you</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Onboarding', href: '/onboarding' }, { label: 'thank-you' }]} />
           <h1 className="statement">Got it — Steve will personally review this and reply within one business day.</h1>
           <p className="lede">
             We read every submission ourselves — no automated sequences, no generic templates. In the meantime,

@@ -47,9 +47,8 @@ export default function ArticleTemplate({ article }) {
           <Breadcrumbs items={[
             { label: 'Home', href: '/' },
             { label: 'Insights', href: '/insights' },
-            { label: article.title },
+            { label: article.slug },
           ]} />
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Insights · {article.category}</p>
           <h1 className="statement" data-split>{article.title}</h1>
           <p className="lede" data-reveal>{article.dek}</p>
           <p className="article__meta" data-reveal>
@@ -136,7 +135,6 @@ export default function ArticleTemplate({ article }) {
       {/* ══════════ FAQ ══════════ */}
       <section className="faq section section--tint" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>{article.title.split(':')[0]}, plainly explained.</h2>
           <dl className="faq__list">
             {article.faqs.map((f) => (
@@ -152,7 +150,6 @@ export default function ArticleTemplate({ article }) {
       {/* ══════════ Related + CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Related</p>
           <h2 className="cta__title" data-split>See how we approach {article.relatedLabel}.</h2>
           <div className="cta__actions" data-reveal>
             <a href={article.relatedHref} className="btn btn--solid btn--big">{article.relatedLabel}</a>

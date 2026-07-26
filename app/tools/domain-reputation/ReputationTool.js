@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export default function ReputationTool() {
   const [domain, setDomain] = useState('');
@@ -40,7 +41,7 @@ export default function ReputationTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Domain Reputation Check' }]} />
           <h1 className="statement" data-split>Domain Reputation & Threat Check</h1>
           <p className="lede" data-reveal>Check any domain's trust score and history to spot malware, phishing flags, or possible search engine penalties.</p>
         </div>

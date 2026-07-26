@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export default function EmailTool() {
   const [email, setEmail] = useState('');
@@ -34,7 +35,7 @@ export default function EmailTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Email Verification' }]} />
           <h1 className="statement" data-split>Email Verification Tool</h1>
           <p className="lede" data-reveal>Check whether an email address is real and can actually receive mail, to help protect your sender reputation.</p>
         </div>

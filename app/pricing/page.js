@@ -2,6 +2,7 @@ import HeroQuickForm from '../../components/HeroQuickForm';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Los Angeles SEO Services Pricing & Packages | Gobiya',
@@ -92,7 +93,7 @@ export default function PricingPage() {
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container seo-hero__grid">
           <div>
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Pricing · Los Angeles SEO Services</p>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'pricing' }]} />
             <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Clear Pricing for Los Angeles SEO Services</h1>
             <p className="lede" style={{ marginInline: 0 }} data-reveal>We offer three simple plans that cover everything a Los Angeles business needs to be found, trusted, and chosen online — showing up in Google, getting recommended by AI tools like ChatGPT, running ads, and building a site people actually want to use.</p>
           </div>
@@ -157,7 +158,6 @@ export default function PricingPage() {
 
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Need a custom scope?</p>
           <h2 className="cta__title" data-split>Tell us about your goals — we&apos;ll recommend the right scope.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Get a free proposal</a>

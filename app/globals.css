@@ -110,14 +110,18 @@ em { font-style: italic; }
   padding-bottom: clamp(3rem, 7vw, 5rem);
   text-align: center;
 }
+.page-hero .statement,
+.page-hero h1 {
+  margin-bottom: 0;
+}
 .page-hero .lede {
   max-width: 42rem;
-  margin: 1.75rem auto 0;
+  margin: clamp(1.25rem, 2.5vw, 1.75rem) auto 0;
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   line-height: 1.6;
   color: var(--hint);
 }
-.page-hero .hero__ctas { justify-content: center; margin-top: 2.25rem; }
+.page-hero .hero__ctas { justify-content: center; margin-top: clamp(1.75rem, 3.5vw, 2.5rem); }
 .hero-trust {
   display: flex;
   flex-wrap: wrap;
@@ -2015,8 +2019,10 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .btn--ghost-light { border-color: rgba(244, 247, 251, 0.5); color: #f4f7fb; }
 
 /* ═══════════ breadcrumbs ═══════════ */
-.crumbs { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.crumbs { margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem); }
 .crumbs__list { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; letter-spacing: 0.04em; color: var(--hint); }
+.container--narrow .crumbs__list,
+.page-hero:not(.page-hero--left) .crumbs__list { justify-content: center; }
 .crumbs__item + .crumbs__item::before { content: '/'; margin-right: 0.5rem; opacity: 0.5; }
 .crumbs__item a:hover { color: var(--main); }
 .crumbs__item [aria-current] { color: var(--darkest); }

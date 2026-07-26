@@ -2,6 +2,7 @@ import HeroQuickForm from '../../components/HeroQuickForm';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Contact Gobiya | Los Angeles SEO Agency',
@@ -20,10 +21,12 @@ export default function ContactPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Contact · Los Angeles SEO &amp; AI Visibility Agency</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Contact Our Los Angeles SEO Team Today</h1>
+          <div>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'contact' }]} />
+            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Contact Our Los Angeles SEO Team Today</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Send us your website address and we&apos;ll tell you what we find — the technical problems, where you&apos;re missing out on AI recommendations, and where the fastest wins actually are. No generic template, no obligation. Prefer a form? <a href="/onboarding">Start with our five-step questionnaire</a> and Steve will follow up directly.</p>
         
+          </div>
           </div>
           <div>
             <HeroQuickForm />
@@ -37,7 +40,6 @@ export default function ContactPage() {
       <section className="contact section section--tint" id="contact-details">
         <div className="container contact__grid">
           <div className="contact__col">
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Direct</p>
             <ul className="contact__list">
               <li data-reveal>
                 <span className="contact__label">Email</span>
@@ -54,7 +56,6 @@ export default function ContactPage() {
             </ul>
           </div>
           <div className="contact__col">
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Elsewhere</p>
             <ul className="contact__list">
               <li data-reveal>
                 <span className="contact__label">LinkedIn</span>
@@ -79,7 +80,6 @@ export default function ContactPage() {
 
       <section className="faq section" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Before you reach out</p>
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
             A few things people usually ask first.
           </h2>
@@ -102,7 +102,6 @@ export default function ContactPage() {
 
       <section className="cta section" id="get-in-touch">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Ready when you are</p>
           <h2 className="cta__title" data-split>Email or call — Steve reads and answers both himself.</h2>
           <div className="cta__actions" data-reveal>
             <a href={`mailto:${CONTACT.email}`} className="btn btn--solid btn--big">{CONTACT.email}</a>

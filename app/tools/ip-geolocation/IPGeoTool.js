@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export default function IPGeoTool() {
   const [ip, setIp] = useState('');
@@ -34,7 +35,7 @@ export default function IPGeoTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'IP Geolocation' }]} />
           <h1 className="statement" data-split>IP Geolocation Lookup</h1>
           <p className="lede" data-reveal>Find out roughly where any IP address is located and which internet provider it belongs to.</p>
         </div>

@@ -1,6 +1,7 @@
 import { buildMetadata } from '../../lib/meta';
 import { CONTACT } from '../../lib/nav';
 import TopicMarquee from '../../components/TopicMarquee';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Terms of Use',
@@ -13,7 +14,7 @@ export default function TermsPage() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Legal</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'terms' }]} />
           <h1 className="statement">Terms of Use</h1>
           <p className="lede" data-reveal>Last updated July 10, 2026</p>
         </div>

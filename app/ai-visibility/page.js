@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 import { PlatformIcon } from '../../components/icons/HandDrawn';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Los Angeles AI Visibility & Search Services | Gobiya',
@@ -19,16 +20,15 @@ export default function AIVisibilityPage() {
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container seo-hero__grid">
           <div>
-            
-        
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>AI Visibility · Get Found by ChatGPT &amp; Google&apos;s AI</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles AI Search Visibility &amp; Brand Optimization</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>More and more people now get their answer straight from AI tools — ChatGPT, Perplexity, Google&apos;s AI&nbsp;Overviews — before they ever click through to a website. If your site isn&apos;t set up so those tools can read, understand, and recommend it, you&apos;re invisible to a fast-growing part of search.</p>
-          <div className="hero__ctas" data-reveal>
-            <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Check Your Brand&apos;s AI Visibility</a>
-            <a href="#how" className="btn btn--ghost">How it works</a>
+            <div>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'ai-visibility' }]} />
+            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles AI Search Visibility &amp; Brand Optimization</h1>
+            <p className="lede" style={{ marginInline: 0 }} data-reveal>More and more people now get their answer straight from AI tools — ChatGPT, Perplexity, Google&apos;s AI&nbsp;Overviews — before they ever click through to a website. If your site isn&apos;t set up so those tools can read, understand, and recommend it, you&apos;re invisible to a fast-growing part of search.</p>
+            <div className="hero__ctas" data-reveal>
+              <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Check Your Brand&apos;s AI Visibility</a>
+              <a href="#how" className="btn btn--ghost">How it works</a>
+            </div>
           </div>
-        
           </div>
           <div>
             <HeroQuickForm />
@@ -42,15 +42,13 @@ export default function AIVisibilityPage() {
       {/* ══════════ What GEO means ══════════ */}
       <section className="about section section--tint" id="what-is-geo">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What this actually means</p>
           <h2 className="statement" data-split>Getting your business built so an AI tool trusts it enough to recommend it.</h2>
         </div>
       </section>
 
       {/* ══════════ Where buyers ask now (dark) ══════════ */}
-      <section className="offices section section--dark" id="platforms">
+      <section className="section section--dark" id="platforms">
         <div className="container">
-          <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where we make sure you show up</p>
           <h2 className="offices__title" data-split>Every major AI tool reads your site a little differently. We make sure you show up well in all of them.</h2>
           <ul className="offices__list">
             <li className="offices__row offices__row--3col" data-reveal>
@@ -85,7 +83,6 @@ export default function AIVisibilityPage() {
       {/* ══════════ How we build it ══════════ */}
       <section className="solutions section section--tint" id="how">
         <div className="container container--narrow solutions__head">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we build it</p>
           <h2 className="statement statement--small" data-split>Four steps, always in this order — skip one and the rest doesn&apos;t hold up.</h2>
         </div>
 
@@ -192,10 +189,9 @@ export default function AIVisibilityPage() {
       </section>
 
       {/* ══════════ FAQ ══════════ */}
-      <section className="faq section" id="faq">
+      <section className="section" id="what">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>AI visibility, plainly explained.</h2>
+          <h2 className="statement statement--small" data-split>Optimizing for search engine results is no longer enough.</h2>
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>Is this different from SEO, or the same thing?</dt>
@@ -228,8 +224,7 @@ export default function AIVisibilityPage() {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-split>Find out what AI is already saying about you.</h2>
+          <h2 className="cta__title" data-split>Be the brand AI recommends.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>

@@ -4,6 +4,7 @@ import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Los Angeles SEO & Digital Marketing Services | Gobiya',
@@ -25,7 +26,7 @@ export default function ServicesPage() {
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container seo-hero__grid">
           <div>
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our Services · Los Angeles SEO, AI Visibility, Ads &amp; Web Design</p>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'services' }]} />
             <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles SEO &amp; Digital Marketing Services</h1>
             <p className="lede" style={{ marginInline: 0 }} data-reveal>Performance, content, and search strategy — marketing services for Los Angeles businesses built to work together under one accountable team, so your business gets found first.</p>
           </div>
@@ -91,7 +92,6 @@ export default function ServicesPage() {
 
       <section className="cta section section--tint" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>Not sure which service you need?</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>

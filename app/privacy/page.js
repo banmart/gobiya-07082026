@@ -1,6 +1,7 @@
 import { buildMetadata } from '../../lib/meta';
 import { CONTACT } from '../../lib/nav';
 import TopicMarquee from '../../components/TopicMarquee';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Privacy Policy',
@@ -14,7 +15,7 @@ export default function PrivacyPage() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Legal</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'privacy' }]} />
           <h1 className="statement">Privacy Policy</h1>
           <p className="lede" data-reveal>Last updated July 10, 2026</p>
         </div>

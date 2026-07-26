@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export default function DomainLookupTool() {
   const [domain, setDomain] = useState('');
@@ -36,7 +37,7 @@ export default function DomainLookupTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Domain WHOIS Lookup' }]} />
           <h1 className="statement" data-split>WHOIS Domain Lookup</h1>
           <p className="lede" data-reveal>Look up any domain to instantly see if it's available, who registered it, when, and which servers manage it.</p>
         </div>
@@ -84,9 +85,9 @@ export default function DomainLookupTool() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Registration Results for: {data.domainName || domain}</h3>
                 {isAvailable ? (
-                  <span className="eyebrow" style={{ color: 'var(--main)' }}>Domain Available</span>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--main)' }}>Domain Available</span>
                 ) : (
-                  <span className="eyebrow" style={{ color: 'var(--dark)' }}>Domain Registered</span>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--dark)' }}>Domain Registered</span>
                 )}
               </div>
 

@@ -149,9 +149,6 @@ export default function ScrollStory() {
   return (
     <section className="scroll-story section" id="work-story" ref={sectionRef}>
       <div className="container">
-        <p className="eyebrow scroll-story__eyebrow" data-reveal>
-          <span className="eyebrow__dot"></span>Selected work, in motion
-        </p>
         <h2 className="statement statement--small scroll-story__heading" data-split style={{ textAlign: 'left' }}>
           Five real builds. Five real results.
         </h2>

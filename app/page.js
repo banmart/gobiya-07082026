@@ -77,22 +77,19 @@ export default function Home() {
 
       {/* ══ 1. Hero ══ */}
       <section className="hero" id="hero">
-        <div className="container">
-          <p className="eyebrow hero__eyebrow" data-reveal><span className="eyebrow__dot"></span>Expert SEO Services Company · LA · Glendale · Koreatown</p>
-          <div className="hero__row">
-            <div className="hero__lead">
-              <h1 className="hero__title" data-split>
-                Los Angeles SEO &amp; AI Search{' '}
-                <em className="hero__title-accent">That Gets You Found <span className="hero__title-swash-wrap">First<Swash className="hero__title-swash" /></span>.</em>
-              </h1>
-              <p className="hero__sub" data-reveal>Looking for an SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past. One team handles it all, so nothing falls through the cracks between vendors.</p>
-              <div className="hero__ctas" data-reveal>
-                <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
-                <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
-              </div>
+        <div className="container seo-hero__grid">
+          <div>
+            <h1 className="hero__title" data-split>
+              Los Angeles SEO &amp; AI Search{' '}
+              <em className="hero__title-accent">That Gets You Found <span className="hero__title-swash-wrap">First<Swash className="hero__title-swash" /></span>.</em>
+            </h1>
+            <p className="hero__sub" data-reveal>Looking for an SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past. One team handles it all, so nothing falls through the cracks between vendors.</p>
+            <div className="hero__ctas" data-reveal>
+              <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
+              <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
             </div>
-            <HeroIntroVideo />
           </div>
+          <HeroIntroVideo />
         </div>
         <div className="hero__scrub" data-scrub-video>
           <div className="hero__media">
@@ -112,10 +109,9 @@ export default function Home() {
       <TopicMarquee topics={["Los Angeles AI SEO", "Generative Engine Optimization", "ChatGPT Optimization", "Technical SEO", "Semantic Search"]} />
 
       {/* ══ 2.5 Recent search wins ══ */}
-      <section className="section" id="search-wins" aria-label="Aggregated Search Console performance">
+      <section className="section" id="search-wins" aria-label="Search Console performance across clients">
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>What&apos;s moving in search right now</p>
-          <p className="search-wins__note" data-reveal>{SEARCH_WINS.note}</p>
+          <p className="search-wins__note" data-reveal>Real Search Console data from active Gobiya clients across Los Angeles and Southern California.</p>
           <div className="search-wins__grid">
             {SEARCH_WINS.cards.map((c) => (
               <div className="search-wins__card" key={c.id} data-reveal>
@@ -136,9 +132,8 @@ export default function Home() {
       <ScrollStory />
 
       {/* ══ 3. Services grid ══ */}
-      <section className="section section--tint" id="services">
+      <section className="section" id="services">
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Consulting</p>
           <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>Everything your business needs to get found — all from one team.</h2>
           <div className="svc-grid">
             {services.map((s) => (
@@ -155,9 +150,8 @@ export default function Home() {
       </section>
 
       {/* ══ 4. AI Visibility feature ══ */}
-      <section className="offices section section--dark" id="ai-visibility-teaser">
+      <section className="geo-section section section--dark" id="geo">
         <div className="container">
-          <p className="eyebrow eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Where buyers ask first, now</p>
           <h2 className="offices__title" data-split>Search didn&apos;t disappear. It moved into a conversation.</h2>
           <p className="offices__intro" data-reveal>We&apos;re not just chasing a higher spot on a Google results page. Most people trust the first answer they get and stop looking — so our job is making sure that answer is you, wherever the question gets asked.</p>
           <ul className="offices__list">
@@ -222,10 +216,9 @@ export default function Home() {
       </section>
 
       {/* ══ 5. Four pillars ══ */}
-      <section className="pillars section">
-        <div className="container">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>What we build</p>
-          <h2 className="statement statement--small" data-split>Make you the answer, not just a result.</h2>
+      <section className="section" id="capabilities">
+        <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
+          <h2 className="statement statement--small" data-split>Four things we build for every engagement.</h2>
           <div className="pillars__grid">
             {PILLARS.map((p) => (
               <div className="pillar" key={p.title} data-reveal>
@@ -242,9 +235,8 @@ export default function Home() {
       </section>
 
       {/* ══ 6. Insights ══ */}
-      <section className="section section--tint" id="insights-teaser">
+      <section className="section section--tint" id="insights">
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Latest insights</p>
           <div className="insights__grid">
             {latest.map((a) => (
               <a className="insights__card" href={`/insights/${a.slug}`} key={a.slug} data-reveal>
@@ -261,7 +253,6 @@ export default function Home() {
       {/* ══ 7. Client logo strip ══ */}
       <section className="logo-strip section" aria-label="Selected clients">
         <div className="container container--narrow portfolio__head">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Who we&apos;ve built for</p>
         </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">
@@ -275,9 +266,8 @@ export default function Home() {
       </section>
 
       {/* ══ 7.5 Testimonials ══ */}
-      <section className="testimonials section section--dark" id="testimonials" aria-label="What clients say">
+      <section className="testimonials section section--dark" id="testimonials">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>In their own words</p>
           <h2 className="statement statement--small" data-split style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
             {TESTIMONIALS.length} owners, {TESTIMONIALS.length} different problems, one accountable team.
           </h2>
@@ -286,12 +276,9 @@ export default function Home() {
       </section>
 
       {/* ══ 8. FAQ ══ */}
-      <section className="faq section" id="faq">
+      <section className="faq section section--tint" id="faq">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Common questions</p>
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
-            The future of search, plainly explained.
-          </h2>
+          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>Common questions about our Los Angeles SEO services, plainly explained.</h2>
           <dl className="faq__list">
             <div className="faq__item" data-reveal>
               <dt>What&apos;s changing about search right now?</dt>
@@ -316,8 +303,7 @@ export default function Home() {
       {/* ══ 9. CTA ══ */}
       <section className="cta section section--dark" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
-          <h2 className="cta__title" data-split>Be the answer AI gives — not the link it skips.</h2>
+          <h2 className="cta__title" data-split>Ready to see what&apos;s holding your search traffic back?</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--ghost-light btn--big">323-744-1338</a>

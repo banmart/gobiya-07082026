@@ -2,6 +2,7 @@ import { buildMetadata } from '../../lib/meta';
 import HeroQuickForm from '../../components/HeroQuickForm';
 import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'About Gobiya | Top Los Angeles SEO & Growth Agency',
@@ -17,7 +18,7 @@ export default function AboutPage() {
       <section className="page-hero page-hero--left section">
         <div className="container seo-hero__grid">
           <div>
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>About Gobiya · Los Angeles SEO Agency Since 2010</p>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'about' }]} />
             <h1 className="statement" data-split style={{ textAlign: 'left', marginInline: 0 }}>Los Angeles SEO Experts Helping Local Businesses Succeed</h1>
             <p className="lede" data-reveal style={{ marginInline: 0 }}>Gobiya is a Los Angeles internet marketing consulting firm, founded in 2010 by Steve Martin and incorporated as an LLC in 2012. BBB A+ rated. Certified Google Partner, 2015–2019.</p>
           </div>
@@ -93,7 +94,6 @@ export default function AboutPage() {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>Fourteen years of algorithm recovery, ready to look at your traffic.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>

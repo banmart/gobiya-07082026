@@ -2,6 +2,7 @@ import HeroQuickForm from '../../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 import TopicMarquee from '../../../components/TopicMarquee';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Steve Martin | Los Angeles SEO Expert & Founder',
@@ -20,10 +21,12 @@ export default function SteveMartinPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Steve Martin · Los Angeles SEO Expert</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Twenty-five years of watching search change, and adapting every time.</h1>
+          <div>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'steve-martin' }]} />
+            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Twenty-five years of watching search change, and adapting every time.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Founder and Principal of Gobiya. A career spent in web development and search, close enough to the ground to have tracked and adapted to every major shift in how Google ranks pages.</p>
         
+          </div>
           </div>
           <div>
             <HeroQuickForm />
@@ -41,7 +44,6 @@ export default function SteveMartinPage() {
             <Image src="/assets/img/steve-portrait.webp" alt="Steve Martin, founder of Gobiya" fill sizes="(max-width: 768px) 90vw, 42vw" priority />
           </div>
           <div className="founder__text">
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Founder &amp; Principal</p>
             <h2 className="founder__name" data-reveal>Steve Martin</h2>
             <p className="founder__role" data-reveal>Gobiya, Los Angeles</p>
             <p className="founder__bio" data-reveal>Steve grew up in Glendale, CA, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
@@ -53,7 +55,6 @@ export default function SteveMartinPage() {
       {/* ══════════ Philosophy ══════════ */}
       <section className="about section" id="philosophy">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>On algorithm recovery</p>
           <h2 className="statement statement--small" data-split>“Every update since Panda has punished the same thing, in a different disguise: sites that were built for search engines instead of the people using them.”</h2>
         </div>
       </section>
@@ -61,7 +62,6 @@ export default function SteveMartinPage() {
       {/* ══════════ Specialties ══════════ */}
       <section className="section section--tint" id="specialties">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Where Steve focuses</p>
         </div>
         <div className="container">
           <div className="capability-grid">
@@ -132,7 +132,6 @@ export default function SteveMartinPage() {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>Work directly with the person who does the work.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>

@@ -10,6 +10,7 @@
 
 import { useCallback, useState } from 'react';
 import MythGame from './MythGame';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export default function GameShell({ children }) {
   const [unlocked, setUnlocked] = useState(false);
@@ -19,6 +20,7 @@ export default function GameShell({ children }) {
     <>
       <section className="section section--tint myth-section">
         <div className="container container--narrow">
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'seo-myths' }]} />
           <h1 className="myth-title">
             Los Angeles SEO: Myth or <em>Fact</em>
           </h1>

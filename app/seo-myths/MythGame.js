@@ -296,7 +296,6 @@ export default function MythGame({ onFinish }) {
             onPointerUp={endDrag}
             onPointerCancel={endDrag}
           >
-            <span className="myth-card__eyebrow">Myth or fact?</span>
             <p className="myth-card__claim">&ldquo;{current.claim}&rdquo;</p>
             <span
               className={`myth-card__stamp myth-card__stamp--myth${leaning === 'myth' ? ' is-on' : ''}`}

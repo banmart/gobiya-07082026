@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const TOOLS = [
   {
@@ -89,7 +91,7 @@ export default function ToolsHub() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tools</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'tools' }]} />
           <h1 className="statement" data-split>Free Online SEO &amp; Domain Tools for Los Angeles Businesses</h1>
           <p className="lede" data-reveal>Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
         </div>
@@ -165,7 +167,6 @@ export default function ToolsHub() {
       {/* Conversion Bridge */}
       <section className="section section--dark" style={{ padding: '4rem 0' }}>
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
-          <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>Want more?</p>
           <h2 className="statement" data-split style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Want a full check of your whole site, not just one piece?</h2>
           <p className="lede" data-reveal style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our team checks your whole site — how well it loads, whether Google and AI tools can read it, and where you&apos;re missing out.</p>
           <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Get a free full site check</a>

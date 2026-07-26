@@ -1,5 +1,6 @@
 import { buildMetadata } from '../../lib/meta';
 import CopyButton from '../../components/CopyButton';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'MCP Server for AI Agents',
@@ -41,7 +42,7 @@ export default function McpPage() {
 
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>For AI Agents &amp; Developers</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'mcp' }]} />
           <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>A search agency your own AI agent can talk to.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Gobiya runs a public MCP (Model Context Protocol) server — free domain and security lookup tools, a way to reach us directly, and our full library of SEO/GEO content, all callable by any MCP client. Not a page about AI visibility. An actual endpoint an AI agent can use.</p>
         </div>
@@ -49,7 +50,6 @@ export default function McpPage() {
 
       <section className="section section--tint" id="connect">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Connect</p>
           <h2 className="statement statement--small" data-split>One URL, no API key required.</h2>
           <p className="lede" data-reveal>Streamable HTTP transport, live at:</p>
           <div className="code-block">
@@ -71,7 +71,6 @@ export default function McpPage() {
 
       <section className="section" id="tools">
         <div className="container">
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Tools</p>
           <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>9 callable actions — 7 free lookups, 2 ways to reach us.</h2>
           <div className="svc-grid">
             {TOOLS.map((t) => (
@@ -87,7 +86,6 @@ export default function McpPage() {
 
       <section className="section section--tint" id="resources">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Resources</p>
           <h2 className="statement statement--small" data-split>Browse our content directly, not just links to it.</h2>
           <p className="lede" data-reveal>Every <a href="/insights">insights article</a>, <a href="/work">client case study</a>, and <a href="/services">consulting service page</a> on this site is also exposed as a readable MCP resource — <code>gobiya://insights/{'{slug}'}</code>, <code>gobiya://work/{'{slug}'}</code>, and <code>gobiya://services/{'{slug}'}</code> — so an agent can read the actual content, not just crawl the HTML.</p>
         </div>
@@ -95,7 +93,6 @@ export default function McpPage() {
 
       <section className="section" id="also">
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Not an MCP client?</p>
           <p className="lede" data-reveal>Plain-text crawlers and AI systems that don&apos;t speak MCP can still read <a href="/llms.txt">/llms.txt</a> for a lighter-weight summary of this site.</p>
         </div>
       </section>

@@ -2,6 +2,7 @@ import HeroQuickForm from '../../../components/HeroQuickForm';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 import TopicMarquee from '../../../components/TopicMarquee';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Our SEO Process | How Gobiya Works With Clients',
@@ -18,12 +19,12 @@ export default function ApproachPage() {
       <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
         <div className="container seo-hero__grid">
           <div>
-            
-        
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Our SEO Process &amp; Methodology</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Foundation first. Everything else compounds on top of it.</h1>
+            <div>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'approach' }]} />
+            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Foundation first. Everything else compounds on top of it.</h1>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>Most SEO problems aren&apos;t about strategy — they&apos;re about order. Content and links get built on top of a technical foundation that can&apos;t actually support them. We always work in the same order, for one reason: each step only works if the one before it is solid.</p>
         
+          </div>
           </div>
           <div>
             <HeroQuickForm />
@@ -37,7 +38,6 @@ export default function ApproachPage() {
       {/* ══════════ Principles ══════════ */}
       <section className="section" id="principles">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>How we work</p>
           <h2 className="statement statement--small" data-split>Four principles that shape every engagement.</h2>
         </div>
         <div className="container">
@@ -69,7 +69,6 @@ export default function ApproachPage() {
       {/* ══════════ Three pillars ══════════ */}
       <section className="solutions section section--tint" id="pillars">
         <div className="container container--narrow solutions__head">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>The three pillars</p>
           <h2 className="statement statement--small" data-split>Performance, Creativity, and Relations — three parts of your marketing that work together, not against each other.</h2>
         </div>
 
@@ -139,7 +138,6 @@ export default function ApproachPage() {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>See how this approach applies to your site.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>

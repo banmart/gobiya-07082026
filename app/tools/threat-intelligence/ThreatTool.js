@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export default function ThreatTool() {
   const [domain, setDomain] = useState('');
@@ -40,7 +41,7 @@ export default function ThreatTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Threat Intelligence' }]} />
           <h1 className="statement" data-split>Threat Intelligence Checker</h1>
           <p className="lede" data-reveal>Check any domain against known threat lists to spot malware, phishing, or other malicious activity.</p>
         </div>

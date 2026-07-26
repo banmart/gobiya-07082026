@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { CLIENT_SEARCH_WINS } from '../lib/clientSearchWins';
 import CaseMediaVideo from './CaseMediaVideo';
 import Chapter from './sections/Chapter';
+import Breadcrumbs from './Breadcrumbs';
 
 export default function CaseStudyTemplate({ cs }) {
   const searchWins = CLIENT_SEARCH_WINS[cs.slug];
@@ -28,12 +29,16 @@ export default function CaseStudyTemplate({ cs }) {
 
       <section className="page-hero section">
         <div className="container container--narrow">
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Work', href: '/work' },
+            { label: cs.slug },
+          ]} />
           {cs.media?.logo && (
             <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
               <img src={cs.media.logo} alt={`${cs.client} logo`} style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
             </div>
           )}
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Case study · {cs.tag}</p>
           <h1 className="statement" data-split>{`${cs.client}: ${cs.result}`}</h1>
           {cs.study?.dek && <p className="lede" data-reveal>{cs.study.dek}</p>}
           {cs.url && (
@@ -90,7 +95,6 @@ export default function CaseStudyTemplate({ cs }) {
       {searchWins && (
         <section className="section" id="search-wins" aria-label={`${cs.client} Search Console performance`}>
           <div className="container">
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>What&apos;s moving in search for {cs.client}</p>
             <p className="search-wins__note" data-reveal>{searchWins.note}</p>
             <div
               className="search-wins__grid"
@@ -157,7 +161,6 @@ export default function CaseStudyTemplate({ cs }) {
       {cs.media?.gallery?.length > 0 && (
         <section className="section case-gallery" id="gallery">
           <div className="container">
-            <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>On the job</p>
             <div className="case-gallery__grid">
               {cs.media.gallery.map((item, i) => (
                 <div className="case-gallery__card" key={i} data-reveal>
@@ -185,7 +188,6 @@ export default function CaseStudyTemplate({ cs }) {
       {cs.study.testimonial && (
         <section className="testimonials section section--dark" id="testimonial" aria-label={`What ${cs.client} said`}>
           <div className="container container--narrow">
-            <p className="eyebrow eyebrow--center eyebrow--light" data-reveal><span className="eyebrow__dot"></span>In their own words</p>
             <div className="testimonial-rotator" data-reveal>
               <blockquote className="testimonial-rotator__quote">
                 <p>{cs.study.testimonial.quote}</p>
@@ -222,7 +224,6 @@ export default function CaseStudyTemplate({ cs }) {
       {/* ══════════ Related pages ══════════ */}
       <section className="section section--tint" id="related">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Go deeper</p>
           <div className="hero__ctas" data-reveal>
             <a href={cs.serviceHref} className="btn btn--ghost">{cs.serviceLabel}</a>
           </div>
@@ -232,7 +233,6 @@ export default function CaseStudyTemplate({ cs }) {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>Your business could be the next case study.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Start onboarding</a>

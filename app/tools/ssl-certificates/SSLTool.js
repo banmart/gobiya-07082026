@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export default function SSLTool() {
   const [domain, setDomain] = useState('');
@@ -34,7 +35,7 @@ export default function SSLTool() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Free Tool</p>
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'SSL Certificate Lookup' }]} />
           <h1 className="statement" data-split>SSL Certificate Checker</h1>
           <p className="lede" data-reveal>Check whether a website's security certificate is valid, see which other domains it covers, and verify who issued it.</p>
         </div>

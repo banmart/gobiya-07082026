@@ -3,6 +3,7 @@ import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Our Work | Los Angeles SEO Client Results & Case Studies',
@@ -21,8 +22,10 @@ export default function WorkPage() {
           <div>
             
         
-          <p className="eyebrow" data-reveal><span className="eyebrow__dot"></span>Selected work</p>
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles SEO Results &amp; Proven Client Success</h1>
+          <div>
+            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'work' }]} />
+            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles SEO Results &amp; Proven Client Success</h1>
+          </div>
           <p className="lede" style={{ marginInline: 0 }} data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
           <div className="hero__ctas" data-reveal>
             <a href="/onboarding" className="btn btn--solid">Start your own case study</a>
@@ -96,7 +99,6 @@ export default function WorkPage() {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <p className="eyebrow eyebrow--center" data-reveal><span className="eyebrow__dot"></span>Start a conversation</p>
           <h2 className="cta__title" data-split>Become the next result on this page.</h2>
           <div className="cta__actions" data-reveal>
             <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>
