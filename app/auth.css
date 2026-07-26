@@ -1,0 +1,98 @@
+/* Sign-in screens. Imported once by app/(auth)/layout.js. */
+
+.auth {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+  background: var(--lightest);
+}
+
+.auth__card {
+  width: min(100%, 26rem);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+}
+
+.auth__mark { margin-bottom: 1.75rem; }
+
+.auth__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--darkest);
+  margin-bottom: 0.5rem;
+}
+
+.auth__intro {
+  font-size: 0.9375rem;
+  color: var(--hint);
+  margin-bottom: 1.75rem;
+}
+
+.auth__field { margin-bottom: 1.25rem; }
+
+.auth__label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hint);
+  margin-bottom: 0.4rem;
+}
+
+.auth__input {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  font: inherit;
+  color: var(--darkest);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 0;
+}
+
+.auth__input:focus-visible {
+  outline: 2px solid var(--main);
+  outline-offset: 1px;
+}
+
+.auth__submit {
+  width: 100%;
+  padding: 0.8125rem 1rem;
+  font: inherit;
+  font-weight: 500;
+  color: #fff;
+  background: var(--darkest);
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s var(--expo-out);
+}
+
+.auth__submit:hover:not(:disabled) { background: var(--main); }
+.auth__submit:disabled { opacity: 0.6; cursor: default; }
+
+.auth__error {
+  padding: 0.75rem 0.875rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--main);
+  border: 1px solid var(--main);
+}
+
+.auth__note {
+  padding: 0.75rem 0.875rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--darkest);
+  border: 1px solid var(--border);
+  background: var(--lightest);
+}
+
+.auth__foot {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--hint);
+}
+
+.auth__foot a { color: var(--main); text-decoration: underline; }

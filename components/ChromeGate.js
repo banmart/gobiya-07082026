@@ -1,7 +1,7 @@
 'use client';
 
-// Hides the site chrome on /lp, which is a standalone paid-traffic landing
-// page with its own header and no footer.
+// Hides the site chrome on /lp and on every signed-in app route
+// (/login, /auth/*, /dashboard/*, /admin/*), which have their own layouts.
 //
 // This replaces the previous middleware + headers() approach. That version
 // worked, but reading headers() in the root layout opted *every* route in the
@@ -26,7 +26,15 @@ import { usePathname } from 'next/navigation';
 
 export default function ChromeGate({ children }) {
   const pathname = usePathname();
-  const minimal = pathname === '/lp' || pathname.startsWith('/lp/');
+  const minimal =
+    pathname === '/lp' ||
+    pathname.startsWith('/lp/') ||
+    pathname === '/login' ||
+    pathname.startsWith('/auth/') ||
+    pathname.startsWith('/forgot') ||
+    pathname.startsWith('/set-password') ||
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/admin');
 
   if (minimal) return null;
   return <>{children}</>;
