@@ -2110,6 +2110,13 @@ import { LogoMark } from '../Logo';
 export default function Sidebar({ items, heading }) {
   const pathname = usePathname();
 
+  // Longest match wins. A plain startsWith would light up "Overview" as well
+  // as "Settings" on /dashboard/settings, because that path also starts with
+  // /dashboard/ — so the root entry has to lose to its own children.
+  const activeHref = items
+    .filter((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))
+    .sort((a, b) => b.href.length - a.href.length)[0]?.href;
+
   return (
     <aside className="app__sidebar">
       <a className="app__brand" href="/">
@@ -2120,7 +2127,7 @@ export default function Sidebar({ items, heading }) {
       <nav className="app__nav" aria-label={heading}>
         <p className="app__nav-heading">{heading}</p>
         {items.map((item) => {
-          const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const active = item.href === activeHref;
           return (
             <div key={item.href}>
               <a
@@ -2240,7 +2247,7 @@ export default async function DashboardPage() {
   return (
     <>
       <TopBar title="Dashboard" user={user} />
-      <div className="app__content">
+      <main className="app__content" id="top">
         <h2 className="app__welcome">
           Welcome back{businessName ? `, ${businessName}` : ''}
         </h2>
@@ -2262,7 +2269,7 @@ export default async function DashboardPage() {
             body="DNS, WHOIS, SSL, reputation, and the rest of the toolkit, with your own usage limits."
           />
         </div>
-      </div>
+      </main>
     </>
   );
 }
@@ -2571,7 +2578,7 @@ export default async function AdminPage() {
   return (
     <>
       <TopBar title="Admin" user={user} />
-      <div className="app__content">
+      <main className="app__content" id="top">
         <h2 className="app__welcome">Overview</h2>
         <p className="app__welcome-sub">Gobiya internal console.</p>
 
@@ -2592,7 +2599,7 @@ export default async function AdminPage() {
             body="Google review volume and response rate across every client."
           />
         </div>
-      </div>
+      </main>
     </>
   );
 }
@@ -2627,7 +2634,7 @@ export default async function ClientsPage() {
   return (
     <>
       <TopBar title="Clients" user={user} />
-      <div className="app__content">
+      <main className="app__content" id="top">
         <div className="app__actions">
           <p className="app__welcome-sub" style={{ marginBottom: 0 }}>
             {clients.length} {clients.length === 1 ? 'account' : 'accounts'}
@@ -2673,7 +2680,7 @@ export default async function ClientsPage() {
             </tbody>
           </table>
         )}
-      </div>
+      </main>
     </>
   );
 }
@@ -3138,7 +3145,7 @@ export default async function NewClientPage() {
   return (
     <>
       <TopBar title="New client" user={user} />
-      <div className="app__content">
+      <main className="app__content" id="top">
         <h2 className="app__welcome">Create a client</h2>
         <p className="app__welcome-sub">
           They&rsquo;ll get an email inviting them to set a password.
@@ -3146,7 +3153,7 @@ export default async function NewClientPage() {
         <div style={{ maxWidth: '32rem' }}>
           <NewClientForm />
         </div>
-      </div>
+      </main>
     </>
   );
 }
@@ -3434,7 +3441,7 @@ export default async function SettingsPage() {
   return (
     <>
       <TopBar title="Settings" user={user} />
-      <div className="app__content">
+      <main className="app__content" id="top">
         <h2 className="app__welcome">Settings</h2>
         <p className="app__welcome-sub">
           Signed in as {user.email}
@@ -3445,7 +3452,7 @@ export default async function SettingsPage() {
           <NameForm userId={user.id} initialName={user.fullName} />
           <PasswordForm />
         </div>
-      </div>
+      </main>
     </>
   );
 }
