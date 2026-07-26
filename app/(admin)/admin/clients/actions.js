@@ -36,16 +36,28 @@ export async function createClientAction(prevState, formData) {
   // Undoes a partial creation. Every failure path below exits through here,
   // and it REPORTS whether it succeeded: a rollback that itself fails leaves
   // exactly the state this branch exists to prevent, so it cannot be silent.
+  // This function must never throw. It is called from inside the catch block
+  // below, where nothing else would catch it — a second fault there would
+  // escape as an unhandled rejection, losing both the log and the message the
+  // admin needs.
   async function rollback(userId) {
     const problems = [];
 
     if (userId) {
-      const { error: userError } = await supabase.auth.admin.deleteUser(userId);
-      if (userError) problems.push(`auth user ${userId} (${userError.message})`);
+      try {
+        const { error: userError } = await supabase.auth.admin.deleteUser(userId);
+        if (userError) problems.push(`auth user ${userId} (${userError.message})`);
+      } catch (err) {
+        problems.push(`auth user ${userId} (${err?.message ?? err})`);
+      }
     }
 
-    const removed = await deleteClientRecord(created.client.id);
-    if (!removed.ok) problems.push(`client row ${created.client.id}`);
+    try {
+      const removed = await deleteClientRecord(created.client.id);
+      if (!removed.ok) problems.push(`client row ${created.client.id}`);
+    } catch (err) {
+      problems.push(`client row ${created.client.id} (${err?.message ?? err})`);
+    }
 
     if (problems.length > 0) {
       console.error(
