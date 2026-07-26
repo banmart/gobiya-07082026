@@ -1080,9 +1080,21 @@ export async function middleware(request) {
 
   // Do not remove: this call is what refreshes an expiring token and writes
   // the rotated cookie onto the response.
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  //
+  // getUser() normally reports failures through `error` rather than throwing,
+  // and a null user already fails closed below. The try/catch is for the
+  // unexpected throw — a malformed cookie, a client-internal error — which in
+  // middleware becomes a 500 on every matched route, including /auth/*. That
+  // would lock a user out of the invite and password-reset links precisely
+  // when something is already wrong. Treat a throw as "no user": protected
+  // routes still redirect, and /auth/* stays reachable.
+  let user = null;
+  try {
+    const result = await supabase.auth.getUser();
+    user = result.data?.user ?? null;
+  } catch (err) {
+    console.error('Middleware session refresh failed:', err?.message ?? err);
+  }
 
   const { pathname } = request.nextUrl;
   const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/admin');
@@ -1136,6 +1148,8 @@ git commit -m "feat: refresh sessions and guard app routes in middleware"
 ## Task 6: Auth pages and routes
 
 **Files:**
+- Create: `lib/safeNext.js`
+- Create: `tests/unit/safe-next.test.js`
 - Create: `app/auth.css`
 - Create: `app/(auth)/layout.js`
 - Create: `app/(auth)/login/page.js`
@@ -1152,6 +1166,83 @@ git commit -m "feat: refresh sessions and guard app routes in middleware"
 **Interfaces:**
 - Consumes: `createBrowserSupabase()`, `createServerSupabase()`.
 - Produces: working `/login`, `/auth/callback?token_hash=…&type=…&next=…`, and a POST-only `/auth/signout`.
+
+- [ ] **Step 0a: Write the failing test — `tests/unit/safe-next.test.js`**
+
+```js
+import { describe, it, expect } from 'vitest';
+import { safeNextPath } from '../../lib/safeNext.js';
+
+describe('safeNextPath', () => {
+  it('keeps an ordinary relative path', () => {
+    expect(safeNextPath('/dashboard/settings')).toBe('/dashboard/settings');
+  });
+
+  it('rejects a protocol-relative URL', () => {
+    // The dangerous one: this passes a naive startsWith('/') check, but a
+    // browser reads it as https://evil.com.
+    expect(safeNextPath('//evil.com')).toBe('/dashboard');
+  });
+
+  it('rejects a backslash-prefixed URL', () => {
+    // Browsers normalise the backslash to a slash, making this equivalent
+    // to the protocol-relative case above.
+    expect(safeNextPath('/\\evil.com')).toBe('/dashboard');
+  });
+
+  it('rejects an absolute URL', () => {
+    expect(safeNextPath('https://evil.com')).toBe('/dashboard');
+  });
+
+  it('rejects a value containing CR or LF', () => {
+    expect(safeNextPath('/dashboard\r\nSet-Cookie: x=1')).toBe('/dashboard');
+  });
+
+  it('falls back for empty, missing, or non-string input', () => {
+    expect(safeNextPath('')).toBe('/dashboard');
+    expect(safeNextPath(undefined)).toBe('/dashboard');
+    expect(safeNextPath(['/dashboard'])).toBe('/dashboard');
+  });
+
+  it('honours a custom fallback', () => {
+    expect(safeNextPath('https://evil.com', '/admin')).toBe('/admin');
+  });
+});
+```
+
+- [ ] **Step 0b: Run the test to verify it fails**
+
+Run: `npm test -- tests/unit/safe-next.test.js`
+Expected: FAIL — cannot resolve `../../lib/safeNext.js`.
+
+- [ ] **Step 0c: Create `lib/safeNext.js`**
+
+```js
+// Guards the ?next= parameter against open redirects.
+//
+// middleware.js can only ever produce a /dashboard or /admin path here, but
+// nothing stops someone sending a victim to /login?next=//evil.com directly —
+// /login is not a matched route, so the middleware never sees it. Validation
+// therefore has to happen where the value is consumed.
+//
+// The subtle case is "//evil.com": it passes a naive startsWith('/') check
+// while browsers treat it as a protocol-relative URL and navigate off-site.
+export function safeNextPath(value, fallback = '/dashboard') {
+  if (typeof value !== 'string' || value === '') return fallback;
+  // Absolute URLs, and anything relative to the current directory.
+  if (!value.startsWith('/')) return fallback;
+  // Protocol-relative, and the backslash spelling browsers normalise into it.
+  if (value.startsWith('//') || value.startsWith('/\\')) return fallback;
+  // Header and URL injection.
+  if (/[\r\n]/.test(value)) return fallback;
+  return value;
+}
+```
+
+- [ ] **Step 0d: Run the test to verify it passes**
+
+Run: `npm test -- tests/unit/safe-next.test.js`
+Expected: PASS, 7 tests.
 
 - [ ] **Step 1: Hide the marketing chrome on app routes**
 
@@ -1317,6 +1408,7 @@ export default function AuthLayout({ children }) {
 ```js
 import { LogoMark } from '../../../components/Logo';
 import { getSessionUser } from '../../../lib/auth';
+import { safeNextPath } from '../../../lib/safeNext';
 import { redirect } from 'next/navigation';
 import LoginForm from './LoginForm';
 
@@ -1338,7 +1430,10 @@ export default async function LoginPage({ searchParams }) {
   if (user) redirect(user.role === 'admin' ? '/admin' : '/dashboard');
 
   const params = await searchParams;
-  const next = typeof params?.next === 'string' ? params.next : '/dashboard';
+  // Sanitised here, on the server, before it is ever handed to the client
+  // component. /login is not a middleware-matched route, so this value can
+  // come straight from an attacker-supplied link.
+  const next = safeNextPath(params?.next);
   const errorMessage = ERRORS[params?.error];
 
   return (
@@ -1370,6 +1465,7 @@ export default async function LoginPage({ searchParams }) {
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createBrowserSupabase } from '../../../lib/supabase/client';
+import { safeNextPath } from '../../../lib/safeNext';
 
 export default function LoginForm({ next }) {
   const router = useRouter();
@@ -1394,8 +1490,11 @@ export default function LoginForm({ next }) {
       return;
     }
 
+    // Re-validated rather than trusted. The page already sanitised it, but
+    // this component takes a prop, and a naive startsWith('/') check here
+    // would let "//evil.com" through as an off-site redirect.
     // refresh() so the server layouts re-run and pick up the new session cookie.
-    router.replace(next.startsWith('/') ? next : '/dashboard');
+    router.replace(safeNextPath(next));
     router.refresh();
   }
 
@@ -1452,6 +1551,7 @@ export default function LoginForm({ next }) {
 ```js
 import { NextResponse } from 'next/server';
 import { createServerSupabase } from '../../../lib/supabase/server';
+import { safeNextPath } from '../../../lib/safeNext';
 
 // Invite and password-reset links land here. We email links built around a
 // token_hash rather than using Supabase's own delivery, so this route verifies
@@ -1461,7 +1561,7 @@ export async function GET(request) {
   const { searchParams, origin } = new URL(request.url);
   const tokenHash = searchParams.get('token_hash');
   const type = searchParams.get('type');
-  const next = searchParams.get('next') || '/dashboard';
+  const next = safeNextPath(searchParams.get('next'));
 
   if (!tokenHash || !type) {
     return NextResponse.redirect(`${origin}/login?error=invalid_link`);
@@ -1474,7 +1574,7 @@ export async function GET(request) {
     return NextResponse.redirect(`${origin}/login?error=expired_link`);
   }
 
-  return NextResponse.redirect(`${origin}${next.startsWith('/') ? next : '/dashboard'}`);
+  return NextResponse.redirect(`${origin}${next}`);
 }
 ```
 
@@ -3056,7 +3156,7 @@ export async function POST(request) {
 - [ ] **Step 11: Run the full test suite**
 
 Run: `npm test`
-Expected: PASS — 5 env + 7 guard + 5 validation + 4 email + 8 RLS = 29 tests.
+Expected: PASS — 5 env + 7 guard + 7 safeNext + 5 validation + 4 email + 8 RLS = 36 tests.
 
 - [ ] **Step 12: Verify the invite flow end to end**
 
@@ -3264,7 +3364,7 @@ password works.
 - [ ] **Step 4: Run the full suite and build**
 
 Run: `npm test && npm run build`
-Expected: 29 tests pass, build succeeds, marketing routes still static.
+Expected: 36 tests pass, build succeeds, marketing routes still static.
 
 - [ ] **Step 5: Add the environment variables to Vercel**
 
@@ -3289,7 +3389,7 @@ git commit -m "feat: add client settings page"
 
 Run through this before opening a pull request.
 
-- [ ] `npm test` — 29 tests pass, including all 8 RLS tests
+- [ ] `npm test` — 36 tests pass, including all 8 RLS tests
 - [ ] `npm run build` — succeeds; `/`, `/services`, `/pricing`, `/insights/[slug]` still render statically
 - [ ] Anonymous visit to `/dashboard` redirects to `/login?next=%2Fdashboard`
 - [ ] Anonymous visit to `/admin` redirects to `/login`
