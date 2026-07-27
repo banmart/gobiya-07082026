@@ -123,22 +123,24 @@
   const burger = document.getElementById("burger");
   const menu = document.getElementById("menu");
   let menuOpen = false;
-  menu.querySelectorAll(".menu__links a").forEach((a, i) => a.style.setProperty("--i", i));
-  function toggleMenu(force) {
-    menuOpen = typeof force === "boolean" ? force : !menuOpen;
-    burger.classList.toggle("is-open", menuOpen);
-    burger.setAttribute("aria-expanded", String(menuOpen));
-    menu.classList.toggle("is-open", menuOpen);
-    menu.setAttribute("aria-hidden", String(!menuOpen));
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+  if (menu && burger) {
+    menu.querySelectorAll(".menu__links a").forEach((a, i) => a.style.setProperty("--i", i));
+    function toggleMenu(force) {
+      menuOpen = typeof force === "boolean" ? force : !menuOpen;
+      burger.classList.toggle("is-open", menuOpen);
+      burger.setAttribute("aria-expanded", String(menuOpen));
+      menu.classList.toggle("is-open", menuOpen);
+      menu.setAttribute("aria-hidden", String(!menuOpen));
+      document.body.style.overflow = menuOpen ? "hidden" : "";
+    }
+    burger.addEventListener("click", () => toggleMenu());
+    menu.querySelectorAll("a[href^='#']").forEach((a) =>
+      a.addEventListener("click", () => toggleMenu(false))
+    );
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuOpen) toggleMenu(false);
+    });
   }
-  burger.addEventListener("click", () => toggleMenu());
-  menu.querySelectorAll("a[href^='#']").forEach((a) =>
-    a.addEventListener("click", () => toggleMenu(false))
-  );
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menuOpen) toggleMenu(false);
-  });
 
   /* ── office clocks ── */
   const clocks = document.querySelectorAll(".offices__time[data-tz]");
