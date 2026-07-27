@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
   // the title on what people actually search for.
   // Brand stated explicitly: title.template in app/layout.js does not apply
   // to the root page, so nothing appends it here.
-  title: 'Los Angeles SEO & AI Visibility Agency — Gobiya',
+  title: 'Gobiya SEO Consultants Los Angeles',
   description:
     'Get found on Google and recommended by ChatGPT. SEO, AI visibility, content, and web design from one accountable Los Angeles team. Free audit.',
   path: '/',
@@ -81,10 +81,9 @@ export default function Home() {
         <div className="container seo-hero__grid">
           <div>
             <h1 className="hero__title" data-split>
-              Los Angeles SEO &amp; AI Search{' '}
-              <em className="hero__title-accent">That Gets You Found <span className="hero__title-swash-wrap">First<Swash className="hero__title-swash" /></span>.</em>
+              Web AI &amp; <em className="hero__title-accent">SEO Experts<span className="hero__title-swash-wrap"><Swash className="hero__title-swash" /></span></em>
             </h1>
-            <p className="hero__sub" data-reveal>Looking for an &apos;affordable&apos; SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past. One team handles it all, so nothing falls through the cracks between vendors.</p>
+            <p className="hero__sub" data-reveal>We&apos;re an independent Web AI &amp; SEO consulting firm specializing in the optimization and rankings of small and medium-sized businesses.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
