@@ -66,7 +66,12 @@ export default function Header() {
           </nav>
 
           <div className="nav__right">
-            <a href="/onboarding" className="btn btn--pill nav__cta">Schedule a Consultation</a>
+            <a href="/login" className="nav__user-btn" aria-label="Account Login" title="Account Login">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </a>
             <button className="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
               <span></span><span></span>
             </button>

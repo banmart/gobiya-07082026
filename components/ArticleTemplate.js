@@ -2,7 +2,6 @@ import Breadcrumbs from './Breadcrumbs';
 import DataPanel from './sections/DataPanel';
 import StepList from './sections/StepList';
 import ReadingProgress from './sections/ReadingProgress';
-import PinnedSections from './PinnedSections';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -158,8 +157,6 @@ export default function ArticleTemplate({ article }) {
           </div>
         </div>
       </section>
-
-      <PinnedSections />
     </main>
   );
 }

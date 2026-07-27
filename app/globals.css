@@ -467,6 +467,23 @@ a.contact__value:hover { color: var(--main); }
   background: #1E3A8A;
   color: #FFFFFF;
 }
+.nav__user-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  background: #0B1E36;
+  color: #FFFFFF;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.nav__user-btn:hover {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
 .nav__logo {
   display: flex;
   align-items: baseline;
@@ -4815,6 +4832,224 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   line-height: 1.7;
   color: #475569;
 }
+
+/* ══════════ Accessibility Visual Controls Widget ══════════ */
+.a11y-widget {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 998;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.a11y-widget__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: #0B1E36;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.a11y-widget__trigger:hover {
+  background: #1E3A8A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.a11y-widget__trigger.is-active {
+  background: #1E3A8A;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.a11y-panel {
+  position: absolute;
+  bottom: 3.25rem;
+  left: 0;
+  width: 20rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border-strong, #CBD5E1);
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 32px rgba(11, 30, 54, 0.18);
+  overflow: hidden;
+  animation: a11yFadeIn 0.2s ease-out;
+}
+
+@keyframes a11yFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.a11y-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background: #0B1E36;
+  color: #FFFFFF;
+}
+
+.a11y-panel__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+.a11y-panel__close {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.a11y-panel__close:hover { opacity: 1; }
+
+.a11y-panel__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.a11y-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.a11y-group__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+}
+
+.a11y-btn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.a11y-option-btn {
+  padding: 0.4rem 0.5rem;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0B1E36;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.a11y-option-btn:hover {
+  background: #E2E8F0;
+}
+
+.a11y-option-btn.is-active {
+  background: #0B1E36;
+  color: #FFFFFF;
+  border-color: #0B1E36;
+}
+
+.a11y-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0B1E36;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.a11y-toggle-btn:hover {
+  background: #F1F5F9;
+}
+
+.a11y-toggle-btn.is-active {
+  background: #EFF6FF;
+  border-color: #3B82F6;
+  color: #1E40AF;
+}
+
+.a11y-toggle-btn__status {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  background: #CBD5E1;
+  color: #334155;
+}
+
+.a11y-toggle-btn.is-active .a11y-toggle-btn__status {
+  background: #3B82F6;
+  color: #FFFFFF;
+}
+
+.a11y-panel__footer {
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #E2E8F0;
+  text-align: center;
+}
+
+.a11y-reset-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748B;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.a11y-reset-btn:hover { color: #0B1E36; }
+
+/* ── Global A11y Modifier Classes ── */
+html.a11y-text-large { font-size: 115%; }
+html.a11y-text-xlarge { font-size: 130%; }
+
+html.a11y-high-contrast {
+  filter: contrast(125%);
+}
+html.a11y-high-contrast body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.a11y-highlight-links a {
+  background-color: #FFDE59 !important;
+  color: #000000 !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+  padding-inline: 2px !important;
+}
+
+html.a11y-grayscale {
+  filter: grayscale(100%);
+}
+
 
 
 

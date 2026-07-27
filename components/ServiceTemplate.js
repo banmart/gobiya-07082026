@@ -1,5 +1,4 @@
 import Breadcrumbs from './Breadcrumbs';
-import PinnedSections from './PinnedSections';
 
 const CLEAN_SERVICE_NAMES = {
   'seo-services-los-angeles': 'Local & Technical SEO',
@@ -95,8 +94,6 @@ export default function ServiceTemplate({ service }) {
           </a>
         </div>
       </section>
-      
-      <PinnedSections />
     </main>
   );
 }

@@ -9,6 +9,7 @@ import BrandWatermark from '../components/BrandWatermark';
 import Motion from '../components/Motion';
 import AIChatBubble from '../components/AIChatBubble';
 import ChromeGate from '../components/ChromeGate';
+import AccessibilityControls from '../components/AccessibilityControls';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -64,6 +65,7 @@ export default function RootLayout({ children }) {
         <Motion />
         <Script src="/js/main.js" strategy="afterInteractive" />
         <ConsentAnalytics />
+        <AccessibilityControls />
       </body>
     </html>
   );

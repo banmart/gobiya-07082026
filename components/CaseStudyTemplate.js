@@ -3,7 +3,6 @@ import { CLIENT_SEARCH_WINS } from '../lib/clientSearchWins';
 import CaseMediaVideo from './CaseMediaVideo';
 import Chapter from './sections/Chapter';
 import Breadcrumbs from './Breadcrumbs';
-import PinnedSections from './PinnedSections';
 
 export default function CaseStudyTemplate({ cs }) {
   const searchWins = CLIENT_SEARCH_WINS[cs.slug];
@@ -243,8 +242,6 @@ export default function CaseStudyTemplate({ cs }) {
           </div>
         </div>
       </section>
-
-      <PinnedSections />
     </main>
   );
 }

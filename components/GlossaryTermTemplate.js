@@ -1,6 +1,5 @@
 import Breadcrumbs from './Breadcrumbs';
 import { getGlossaryTerm } from '../lib/glossary';
-import PinnedSections from './PinnedSections';
 
 export default function GlossaryTermTemplate({ entry }) {
   const relatedTerms = (entry.relatedSlugs || [])
@@ -99,7 +98,6 @@ export default function GlossaryTermTemplate({ entry }) {
           </div>
         </div>
       </section>
-      <PinnedSections />
     </main>
   );
 }
