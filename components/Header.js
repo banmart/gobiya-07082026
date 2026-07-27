@@ -33,8 +33,11 @@ export default function Header() {
         {/* Top Navy Announcement Bar */}
         <div className="mw-topbar">
           <div className="container mw-topbar__inner">
-            <span className="mw-topbar__text">
+            <span className="mw-topbar__text mw-topbar__text--desktop">
               Search &amp; AI Visibility – They say ranking a business is an art – we&apos;ve turned it into a science
+            </span>
+            <span className="mw-topbar__text mw-topbar__text--mobile">
+              Search &amp; AI Visibility Specialists
             </span>
             <a href="/onboarding" className="mw-topbar__btn">
               Schedule a Consultation

@@ -3698,6 +3698,28 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   font-weight: 400;
   color: #E2E8F0;
 }
+.mw-topbar__text--desktop {
+  display: inline;
+}
+.mw-topbar__text--mobile {
+  display: none;
+}
+@media (max-width: 48rem) {
+  .mw-topbar__text--desktop {
+    display: none;
+  }
+  .mw-topbar__text--mobile {
+    display: inline;
+    font-size: 0.8125rem;
+  }
+  .mw-topbar__inner {
+    gap: 0.5rem;
+  }
+  .mw-topbar__btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
 
 .mw-topbar__btn {
   background: #F5B83D;
