@@ -28,12 +28,31 @@ export default function FlatServiceTemplate({ service }) {
     },
   };
 
+  const faqSchema = service.faqs?.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a.replace(/<[^>]+>/g, ''),
+      },
+    })),
+  } : null;
+
   return (
     <main id="top">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* ══ 1. Clean Breadcrumb Bar ══ */}
       <Breadcrumbs items={[
