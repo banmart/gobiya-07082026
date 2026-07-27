@@ -5077,6 +5077,74 @@ html.a11y-grayscale {
   filter: grayscale(100%);
 }
 
+/* ═══════════ Professional Subtle Fade-In Animations ═══════════ */
+@keyframes mwFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mwFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Page Heroes & Banner Intros */
+.mw-subhero__title,
+.hero__title,
+.subhero__title {
+  animation: mwFadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mw-subhero__dek,
+.hero__dek,
+.subhero__dek {
+  animation: mwFadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+/* Cards & Bento Grid Items */
+.bento-card,
+.mw-card,
+.card,
+.pillar-card {
+  animation: mwFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Staggered Card Entrance Delays */
+.bento-card:nth-child(1), .mw-card:nth-child(1), .pillar-card:nth-child(1) { animation-delay: 0.05s; }
+.bento-card:nth-child(2), .mw-card:nth-child(2), .pillar-card:nth-child(2) { animation-delay: 0.12s; }
+.bento-card:nth-child(3), .mw-card:nth-child(3), .pillar-card:nth-child(3) { animation-delay: 0.19s; }
+.bento-card:nth-child(4), .mw-card:nth-child(4), .pillar-card:nth-child(4) { animation-delay: 0.26s; }
+.bento-card:nth-child(5), .mw-card:nth-child(5), .pillar-card:nth-child(5) { animation-delay: 0.33s; }
+.bento-card:nth-child(6), .mw-card:nth-child(6), .pillar-card:nth-child(6) { animation-delay: 0.40s; }
+
+/* Accessibility: Respect Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mw-subhero__title,
+  .hero__title,
+  .subhero__title,
+  .mw-subhero__dek,
+  .hero__dek,
+  .subhero__dek,
+  .bento-card,
+  .mw-card,
+  .card,
+  .pillar-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 
 
 
