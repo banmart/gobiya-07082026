@@ -1,54 +1,36 @@
 import { INSIGHTS } from '../../lib/insights';
-import InsightsGrid from '../../components/InsightsGrid';
 import { buildMetadata } from '../../lib/meta';
-import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
-  title: 'Insights — SEO & AI Visibility Guides',
+  title: 'Insights — Search & AI Visibility Guides',
   description:
-    'Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing pricing from the Gobiya team.',
+    'Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy from the Gobiya team.',
   path: '/insights',
 });
 
 export default function InsightsPage() {
   return (
     <main id="top">
+      {/* ══ 1. Breadcrumbs ══ */}
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'insights' }]} />
-          <h1 className="statement" data-split>Search marketing, explained plainly.</h1>
-          <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, and AI visibility — written to actually answer the question, not just rank for it.</p>
-        </div>
-      </section>
-      <TopicMarquee topics={["Algorithm Analysis", "Technical Breakdowns", "Search Industry Trends", "GEO Case Studies", "SEO Best Practices"]} />
-
-
-      {/* ══════════ Article grid ══════════ */}
-      <section className="section" id="articles">
+      {/* ══ 2. Subhero Dark Banner (Matching /seo-services-los-angeles) ══ */}
+      <section className="mw-subhero">
         <div className="container">
-          <InsightsGrid
-            articles={INSIGHTS.map((a, i) => ({ a, i }))
-              .sort((x, y) => new Date(y.a.date) - new Date(x.a.date) || y.i - x.i)
-              .map(({ a }) => a)}
-          />
+          <h1 className="mw-subhero__title">Insights &amp; Search Guides</h1>
+          <p className="mw-subhero__dek">
+            Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written to actually answer the question, not just rank for it.
+          </p>
         </div>
       </section>
 
-      {/* ══════════ Full archive ══════════
-          InsightsGrid paginates client-side at 6 per page, so only the first 6
-          articles ever appear as links in the server-rendered HTML — the other
-          28 had no crawlable path from this hub at all. GSC confirmed the
-          damage: a cluster of /insights/* URLs sitting at "Discovered -
-          currently not indexed" with last_crawl_time null, i.e. found via the
-          sitemap but never considered worth fetching, which is what happens to
-          a page nothing links to. This list is plain server-rendered anchors
-          for every article, so the grid keeps its UX and the crawler gets a
-          complete path. */}
-      <section className="section section--tint" id="all-articles">
+      {/* ══ 3. All Articles Archive List ══ */}
+      <section className="section" id="all-articles" style={{ paddingBlock: 'clamp(3.5rem, 6vw, 5rem)', background: '#FFFFFF' }}>
         <div className="container container--narrow">
-          <h2 className="statement statement--small">All {INSIGHTS.length} articles</h2>
+          <h2 style={{ fontFamily: "'PT Serif', Georgia, serif", fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: '#0B1E36', marginBottom: '2rem' }}>
+            All {INSIGHTS.length} Articles
+          </h2>
           <ul className="archive-list">
             {INSIGHTS.map((a) => (
               <li key={a.slug} className="archive-list__item">
@@ -62,17 +44,17 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* ══════════ CTA ══════════ */}
-      <section className="cta section section--tint" id="contact">
-        <div className="container container--narrow">
-          <h2 className="cta__title" data-split>Have a question this didn&apos;t answer?</h2>
-          <div className="cta__actions" data-reveal>
-            <a href="/free-site-scan" className="btn btn--solid btn--big">Schedule a Consultation</a>
-            <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
-          </div>
+      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">
+            Have a question these guides didn&apos;t answer?
+          </h2>
+          <a href="/free-site-scan" className="mw-navy-banner__btn">
+            Schedule a Consultation
+          </a>
         </div>
       </section>
-
     </main>
   );
 }
