@@ -3044,6 +3044,191 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .glossary-related h3 { font-family: var(--font-heading); font-weight: 400; font-size: 1.2rem; margin-bottom: 1rem; }
 .glossary-related__list { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
 
+/* ─── Subhero eyebrow modifier (category badge in dark banner) ─── */
+.mw-subhero__eyebrow {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 0.75rem;
+}
+
+/* ═══════════ Glossary Bento Grid ═══════════ */
+.gls-body { background: #F8F9FC; }
+
+.gls-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1.25rem;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Card base */
+.gls-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Short answer — spans full width */
+.gls-card--answer {
+  grid-column: 1 / -1;
+  border-left: 4px solid #C9A84C;
+  background: #FFFBF0;
+}
+
+/* Body — spans both columns */
+.gls-card--body {
+  grid-column: 1 / -1;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+/* Related terms — left column */
+.gls-card--related {
+  grid-column: 1 / 2;
+}
+
+/* CTA card — right column */
+.gls-card--cta {
+  grid-column: 2 / 3;
+  background: #0B1E36;
+  border-color: #0B1E36;
+  color: #CBD5E1;
+}
+
+/* Back link — full width strip */
+.gls-card--back {
+  grid-column: 1 / -1;
+  background: transparent;
+  border: none;
+  border-top: 1px solid #E2E8F0;
+  border-radius: 0;
+  padding-block: 1.25rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Card internals */
+.gls-card__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9B7B1F;
+  margin-bottom: 1rem;
+}
+
+.gls-card__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #C9A84C;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.gls-card__answer {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 1.6;
+  color: #0B1E36;
+  margin: 0;
+}
+
+.gls-card__label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 1rem;
+}
+
+.gls-card--cta .gls-card__label { color: #94A3B8; }
+
+.gls-card__cta-text {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* Related term links */
+.gls-related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.gls-related-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  color: #0B1E36;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.gls-related-link:hover {
+  border-color: #C9A84C;
+  background: #FFFBF0;
+  color: #0B1E36;
+}
+
+/* Back link */
+.gls-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #64748B;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+.gls-back-link:hover { color: #0B1E36; }
+
+.gls-card__count {
+  font-size: 0.8125rem;
+  color: #94A3B8;
+  margin: 0;
+}
+
+/* Mobile: single column */
+@media (max-width: 48rem) {
+  .gls-bento { grid-template-columns: 1fr; }
+  .gls-card--answer,
+  .gls-card--body,
+  .gls-card--related,
+  .gls-card--cta,
+  .gls-card--back { grid-column: 1 / -1; }
+  .gls-card--back { flex-direction: column; align-items: flex-start; }
+}
+
 /* ═══════════════════════════════════════════════════════════
    Service page story layer
    Numbered chapters, a stakes beat with a per-topic figure, and

@@ -33,13 +33,17 @@ export default function GlossaryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(DEFINED_TERM_SET_SCHEMA) }}
       />
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'glossary' }]} />
-          <h1 className="statement" data-split>The terms behind AI search, websites, SEO, and PPC — explained plainly.</h1>
-          <p className="lede" data-reveal>{GLOSSARY.length} terms, in plain English, covering everything from Core Web Vitals to Generative Engine Optimization to Quality Score. No jargon left unexplained.</p>
+      {/* ══ 1. Breadcrumb Bar ══ */}
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Glossary' }]} />
+
+      {/* ══ 2. Dark Subhero ══ */}
+      <section className="mw-subhero">
+        <div className="container">
+          <h1 className="mw-subhero__title">AI Search, SEO, Websites &amp; PPC — Explained Plainly</h1>
+          <p className="mw-subhero__dek">{GLOSSARY.length} terms covering everything from Core Web Vitals to Generative Engine Optimization to Quality Score. No jargon left unexplained.</p>
         </div>
       </section>
+
       <TopicMarquee topics={["AI & GEO Terms", "Website & Technical Terms", "SEO Terms", "PPC & Google Ads Terms"]} />
 
       <section className="section" id="terms">
