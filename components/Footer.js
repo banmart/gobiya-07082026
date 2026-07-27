@@ -1,39 +1,89 @@
-import { LogoMark } from './Logo';
-import { SECONDARY_NAV, CONTACT } from '../lib/nav';
 import CookiePreferencesLink from './CookiePreferencesLink';
+import { CONTACT } from '../lib/nav';
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__mark" aria-hidden="true"><LogoMark size={520} light /></div>
+    <footer className="mw-footer">
       <div className="container">
-        <div className="footer__grid">
-          <div className="footer__col footer__col--brand">
-            <a className="nav__logo footer__logo" href="#top">
-              <LogoMark className="nav__logo-mark" size={30} light />
-              <span className="nav__logo-word">Gobiya</span>
-            </a>
-            <p>Internet marketing consulting, technical SEO, and B2B pipeline engineering for growth-stage and enterprise companies — Los Angeles, founded in 2010.</p>
-          </div>
-          {SECONDARY_NAV.map((group) => (
-            <div className="footer__col" key={group.heading}>
-              <p className="footer__heading">{group.heading}</p>
-              {group.items.map((item) => (
-                <a href={item.href} key={item.href}>{item.label}</a>
-              ))}
+        <div className="mw-footer__grid">
+          <div>
+            <h4 className="mw-footer__col-title">Consulting</h4>
+            <div className="mw-footer__links">
+              <a href="/about">Why Us</a>
+              <a href="/about/steve-martin">Meet Your Team</a>
+              <a href="/contact#faq">FAQs</a>
+              <a href="/about/approach">Our Process</a>
+              <a href="/work">Client Stories</a>
+              <a href="/services">Industry Experience</a>
+              <a href="/work">Closed Transactions</a>
+              <a href="/onboarding">Free Site Scan</a>
             </div>
-          ))}
-          <div className="footer__col">
-            <p className="footer__heading">Contact</p>
-            <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
-            <a href="/contact">{CONTACT.address1}, {CONTACT.address2}</a>
+          </div>
+
+          <div>
+            <h4 className="mw-footer__col-title">Services</h4>
+            <div className="mw-footer__links">
+              <a href="/seo-services-los-angeles">Local &amp; Technical SEO</a>
+              <a href="/geo-services-los-angeles">AI &amp; GEO Search</a>
+              <a href="/content-marketing-services-los-angeles">Content Strategy</a>
+              <a href="/link-building-services-los-angeles">Authority Link Building</a>
+              <a href="/ppc-management-services-los-angeles">PPC Management</a>
+              <a href="/cro-ux-services-los-angeles">CRO &amp; Web UX</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mw-footer__col-title">Industries</h4>
+            <div className="mw-footer__links">
+              <a href="/services">Legal &amp; Professional Services</a>
+              <a href="/work/smile-center-dentistry">Healthcare &amp; Dental</a>
+              <a href="/work/remodelmepros">Home &amp; Building Services</a>
+              <a href="/services">B2B &amp; E-Commerce</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mw-footer__col-title">Resources</h4>
+            <div className="mw-footer__links">
+              <a href="/insights">Knowledge Base</a>
+              <a href="/seo-myths">SEO Myths Game</a>
+              <a href="/ai-visibility">AI Visibility Guide</a>
+              <a href="/insights">Gobiya Insights</a>
+              <a href="/tools">Free Tools Hub</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mw-footer__col-title">About</h4>
+            <div className="mw-footer__links">
+              <a href="/about">What We Do</a>
+              <a href="/about/approach">Confidentiality &amp; Security</a>
+              <a href="/contact">Contact Us</a>
+              <a href="/mcp">AI MCP API</a>
+              <a href="/about/steve-martin">Leadership</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mw-footer__col-title">Contact</h4>
+            <div className="mw-footer__links">
+              <span>Gobiya LLC</span>
+              <span>{CONTACT.address1}</span>
+              <span>{CONTACT.address2}</span>
+              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+              <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+            </div>
           </div>
         </div>
-        <div className="footer__wordmark" aria-hidden="true"><span>GOBIYA</span></div>
-        <div className="footer__legal">
-          <span>© 2026 Gobiya LLC. Founded 2010. BBB A+ Rated.</span>
-          <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <CookiePreferencesLink /></span>
+
+        <div className="mw-footer__bottom">
+          <div className="mw-footer__legal-links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms &amp; Conditions</a>
+            <a href="/terms#disclaimer">Standard Disclaimer</a>
+            <CookiePreferencesLink />
+          </div>
+          <div>Copyright © 2026 Gobiya LLC. All Rights Reserved.</div>
         </div>
       </div>
     </footer>

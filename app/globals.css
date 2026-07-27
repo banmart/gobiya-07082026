@@ -3880,3 +3880,402 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   background: #1E3A8A;
 }
 
+/* ═══════════ Real Client Stories ═══════════ */
+.mw-stories {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  background: #FFFFFF;
+}
+
+.mw-stories__heading {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  color: #8B263E;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.mw-stories__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+.mw-story-card {
+  position: relative;
+  min-height: 22rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.mw-story-card__content {
+  background: #FFFFFF;
+  padding: 2rem;
+  max-width: 26rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+.mw-story-card__meta {
+  font-size: 0.8125rem;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+.mw-story-card__meta strong {
+  color: #0B1E36;
+}
+
+.mw-story-card__desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 1.5rem;
+}
+
+.mw-story-card__btn {
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+
+.mw-story-card__btn:hover {
+  background: #1E3A8A;
+}
+
+/* ═══════════ Featured Book / Guide Section ═══════════ */
+.mw-book {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  background: #FAFAFA;
+}
+
+.mw-book__grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+@media (max-width: 48rem) {
+  .mw-book__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.mw-book__cover {
+  width: 17rem;
+  height: 24rem;
+  background: #0B1E36;
+  border-radius: 3px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.mw-book__cover-border {
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.mw-book__cover-top {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #CBD5E1;
+}
+
+.mw-book__cover-title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+
+.mw-book__cover-tag {
+  background: #8B263E;
+  margin-inline: -1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
+
+.mw-book__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  color: #0B1E36;
+  margin-bottom: 0.75rem;
+}
+
+.mw-book__subtitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 1.25rem;
+}
+
+.mw-book__desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 1.5rem;
+}
+
+.mw-book__author {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 2rem;
+  font-size: 0.9375rem;
+  color: #475569;
+}
+
+.mw-book__author-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mw-book__author strong {
+  color: #0B1E36;
+}
+
+.mw-book__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.mw-book__btn-solid {
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.mw-book__btn-solid:hover {
+  background: #1E3A8A;
+}
+
+/* ═══════════ Schedule Consultation Section ═══════════ */
+.mw-consultation {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  background: #FAFAFA;
+}
+
+.mw-consultation__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+@media (max-width: 48rem) {
+  .mw-consultation__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mw-consultation__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #0B1E36;
+  margin-bottom: 0.75rem;
+}
+
+.mw-consultation__sub {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 1.25rem;
+}
+
+.mw-consultation__dek {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.mw-consultation__btn {
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background 0.2s ease;
+}
+
+.mw-consultation__btn:hover {
+  background: #1E3A8A;
+}
+
+/* Mockup Phone & Interactive Calendar */
+.mw-calendar-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  margin-inline: auto;
+  background: #FFFFFF;
+  border: 10px solid #1E293B;
+  border-radius: 36px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  overflow: hidden;
+  padding: 1.5rem 1.25rem;
+}
+
+.mw-calendar__header {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 1.25rem;
+}
+
+.mw-calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+.mw-calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #334155;
+}
+
+.mw-calendar__day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.mw-calendar__day--muted {
+  color: #CBD5E1;
+}
+
+.mw-calendar__day--selected {
+  background: #8B263E;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* ═══════════ Morgan & Westfield White Footer ═══════════ */
+.mw-footer {
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  padding-bottom: 2rem;
+  color: #475569;
+}
+
+.mw-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: 3.5rem;
+}
+
+.mw-footer__col-title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 1.25rem;
+}
+
+.mw-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.mw-footer__links a {
+  font-size: 0.875rem;
+  color: #475569;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mw-footer__links a:hover {
+  color: #8B263E;
+}
+
+.mw-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid #F1F5F9;
+  font-size: 0.8125rem;
+  color: #64748B;
+}
+
+.mw-footer__legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.mw-footer__legal-links a {
+  color: #64748B;
+  text-decoration: none;
+}
+
+.mw-footer__legal-links a:hover {
+  color: #0B1E36;
+}
+
+

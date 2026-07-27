@@ -21,19 +21,7 @@ export default function Home() {
   return (
     <main id="top">
 
-      {/* ══ 1. Top Announcement Bar ══ */}
-      <div className="mw-topbar">
-        <div className="container mw-topbar__inner">
-          <span className="mw-topbar__text">
-            Search &amp; AI Visibility – They say ranking a business is an art – we&apos;ve turned it into a science
-          </span>
-          <a href="/onboarding" className="mw-topbar__btn">
-            Schedule a Consultation
-          </a>
-        </div>
-      </div>
-
-      {/* ══ 2. Hero with Floating White Card ══ */}
+      {/* ══ 1. Hero directly below menubar ══ */}
       <section
         className="mw-hero"
         style={{ backgroundImage: `url('/assets/img/office-collage-montage.webp')` }}
@@ -52,7 +40,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 3. Trust Bar / Client Logo Strip ══ */}
+      {/* ══ 2. Trust Bar / Client Logo Strip ══ */}
       <section className="mw-trust">
         <div className="container">
           <h2 className="mw-trust__heading">
@@ -77,7 +65,7 @@ export default function Home() {
       {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />
 
-      {/* ══ 4. "Digital Growth is Complicated – We Make it Simple" ══ */}
+      {/* ══ 3. "Digital Growth is Complicated – We Make it Simple" ══ */}
       <section className="mw-simple">
         <div className="container">
           <h2 className="mw-simple__heading">
@@ -110,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 5. By the Numbers Banner ══ */}
+      {/* ══ 4. By the Numbers Banner ══ */}
       <section className="mw-stats">
         <div className="container">
           <div className="mw-stats__grid">
@@ -134,7 +122,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 6. Meet Your Point Person ══ */}
+      {/* ══ 5. Meet Your Point Person ══ */}
       <section className="mw-person">
         <div className="container">
           <h2 className="mw-person__heading">Meet Your Point Person</h2>
@@ -164,7 +152,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 7. Full-Width Navy Banner ══ */}
+      {/* ══ 6. Full-Width Navy Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">
@@ -176,7 +164,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 8. The 4-Step Method Section ══ */}
+      {/* ══ 7. The 4-Step Method Section ══ */}
       <section className="mw-steps" id="process">
         <div className="container">
           <p className="mw-steps__sub">Our Proven Approach</p>
@@ -216,6 +204,174 @@ export default function Home() {
             <a href="/about/approach" className="mw-steps__btn">
               View Our Proprietary Process for Business Growth
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 8. Real Stories from Real Clients ══ */}
+      <section className="mw-stories">
+        <div className="container">
+          <h2 className="mw-stories__heading">Real Stories from Real Clients</h2>
+
+          <div className="mw-stories__list">
+            <div
+              className="mw-story-card"
+              style={{ backgroundImage: `url('/assets/img/smilecenter.webp')` }}
+            >
+              <div className="mw-story-card__content">
+                <div className="mw-story-card__meta">
+                  Industry: <strong>Healthcare &amp; Dental</strong> Region: <strong>Los Angeles</strong>
+                </div>
+                <p className="mw-story-card__desc">
+                  In 2012, an aggressive search algorithm update dropped their local rankings overnight. Partnering with Gobiya allowed them to restructure their web architecture and recover 340% organic patient lead volume.
+                </p>
+                <a href="/work/smile-center-dentistry" className="mw-story-card__btn">
+                  View Case Study
+                </a>
+              </div>
+            </div>
+
+            <div
+              className="mw-story-card"
+              style={{ backgroundImage: `url('/assets/img/remodelmepros.webp')` }}
+            >
+              <div className="mw-story-card__content">
+                <div className="mw-story-card__meta">
+                  Industry: <strong>Home Services</strong> Region: <strong>Southern California</strong>
+                </div>
+                <p className="mw-story-card__desc">
+                  Unexpected search shifts happen during scaling. For RemodelMe Pros, Gobiya implemented custom technical schema and secured top AI recommendations on ChatGPT within 90 days.
+                </p>
+                <a href="/work/remodelmepros" className="mw-story-card__btn">
+                  View Case Study
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 9. Navy Full-Width Banner ("Scaling Your Business is a Big Deal") ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">
+            Scaling Your Business is a Big Deal
+          </h2>
+          <p style={{ maxWidth: '44rem', marginInline: 'auto', marginBottom: '2rem', color: '#CBD5E1', fontSize: '1.0625rem', lineHeight: '1.65' }}>
+            After investing your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees, the moment has finally come for you to start a new chapter in your digital growth.
+          </p>
+          <a href="/about/approach" className="mw-navy-banner__btn">
+            View Our Process
+          </a>
+        </div>
+      </section>
+
+      {/* ══ 10. Featured Guide Resource ("The Art of AI Search & SEO") ══ */}
+      <section className="mw-book">
+        <div className="container">
+          <div className="mw-book__grid">
+            <div className="mw-book__cover">
+              <div className="mw-book__cover-border" />
+              <div className="mw-book__cover-top">Gobiya Technical Series</div>
+              <div className="mw-book__cover-title">THE ART OF AI SEARCH</div>
+              <div className="mw-book__cover-tag">The Complete Guide to Search &amp; AI Visibility</div>
+            </div>
+
+            <div>
+              <h2 className="mw-book__title">The Art of AI Search</h2>
+              <p className="mw-book__subtitle">
+                The Complete Guide to Search &amp; AI Visibility for Small &amp; Medium Businesses
+              </p>
+              <p className="mw-book__desc">
+                Less than 10% of businesses actually capture top ChatGPT and Google recommendations. So what does this mean for you? Think about it – with a significant amount of your future lead volume tied to digital discovery, mastering your AI visibility is one of the most critical decisions you&apos;ll make.
+              </p>
+
+              <div className="mw-book__author">
+                <Image
+                  src="/assets/img/steve-martin-headshot.webp"
+                  alt="Steve Martin"
+                  width={40}
+                  height={40}
+                  className="mw-book__author-img"
+                />
+                <span>Written by <strong>Steve Martin</strong>, Founder of Gobiya</span>
+              </div>
+
+              <div className="mw-book__actions">
+                <a href="/ai-visibility" className="mw-book__btn-solid">
+                  Download Free Guide (PDF)
+                </a>
+                <a href="/insights" className="mw-hero__btn">
+                  Read Insights
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 11. Schedule a Free Consultation Calendar Section ══ */}
+      <section className="mw-consultation">
+        <div className="container">
+          <div className="mw-consultation__grid">
+            <div>
+              <h2 className="mw-consultation__title">Schedule a Free Consultation</h2>
+              <p className="mw-consultation__sub">Growing your business is a big deal</p>
+              <p className="mw-consultation__dek">
+                You&apos;ve invested your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees. The moment has finally come for you to start a new chapter in your digital growth. Explore your options now.
+              </p>
+              <a href="/onboarding" className="mw-consultation__btn">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Schedule Your Consultation
+              </a>
+            </div>
+
+            <div>
+              <div className="mw-calendar-mockup">
+                <div className="mw-calendar__header">Select a Date &amp; Time</div>
+                <div className="mw-calendar__weekdays">
+                  <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div className="mw-calendar__days">
+                  <span className="mw-calendar__day mw-calendar__day--muted">26</span>
+                  <span className="mw-calendar__day mw-calendar__day--muted">27</span>
+                  <span className="mw-calendar__day mw-calendar__day--muted">28</span>
+                  <span className="mw-calendar__day mw-calendar__day--muted">29</span>
+                  <span className="mw-calendar__day mw-calendar__day--muted">30</span>
+                  <span className="mw-calendar__day mw-calendar__day--muted">31</span>
+                  <span className="mw-calendar__day">01</span>
+
+                  <span className="mw-calendar__day">02</span>
+                  <span className="mw-calendar__day">03</span>
+                  <span className="mw-calendar__day">04</span>
+                  <span className="mw-calendar__day">05</span>
+                  <span className="mw-calendar__day">06</span>
+                  <span className="mw-calendar__day mw-calendar__day--selected">07</span>
+                  <span className="mw-calendar__day">08</span>
+
+                  <span className="mw-calendar__day">09</span>
+                  <span className="mw-calendar__day">10</span>
+                  <span className="mw-calendar__day">11</span>
+                  <span className="mw-calendar__day">12</span>
+                  <span className="mw-calendar__day">13</span>
+                  <span className="mw-calendar__day">14</span>
+                  <span className="mw-calendar__day">15</span>
+
+                  <span className="mw-calendar__day">16</span>
+                  <span className="mw-calendar__day">17</span>
+                  <span className="mw-calendar__day">18</span>
+                  <span className="mw-calendar__day">19</span>
+                  <span className="mw-calendar__day">20</span>
+                  <span className="mw-calendar__day">21</span>
+                  <span className="mw-calendar__day">22</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
