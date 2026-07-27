@@ -1,6 +1,6 @@
 import CookiePreferencesLink from './CookiePreferencesLink';
 import { CONTACT } from '../lib/nav';
-import { markInner, BRAND_GOLD } from '../lib/brand';
+import { markInner, BRAND_NAVY } from '../lib/brand';
 
 export default function Footer() {
   return (
@@ -97,7 +97,7 @@ export default function Footer() {
         height="180"
         fill="none"
         aria-hidden="true"
-        dangerouslySetInnerHTML={{ __html: markInner(BRAND_GOLD) }}
+        dangerouslySetInnerHTML={{ __html: markInner('#F5B83D') }}
       />
     </footer>
   );
