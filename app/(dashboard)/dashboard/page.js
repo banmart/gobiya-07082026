@@ -10,6 +10,10 @@ export const metadata = {
 
 export default async function DashboardPage() {
   const user = await requireUser();
+  if (user.role === 'admin' && !user.clientId) {
+    const { redirect } = await import('next/navigation');
+    redirect('/admin');
+  }
   const businessName = user.client?.name || 'Your Business';
   const website = user.client?.website;
 

@@ -25,22 +25,35 @@ export default function LoginForm({ next }) {
         return;
       }
 
-      // Query user role to determine default destination if next is not explicitly provided
+      // Determine target destination path
       let targetPath = '/dashboard';
       if (next) {
         targetPath = safeNextPath(next);
       } else {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('role')
-          .eq('id', data.user.id)
-          .maybeSingle();
+        try {
+          // Race profile lookup with a 1-second timeout so login NEVER gets stuck
+          const profilePromise = supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', data.user.id)
+            .maybeSingle();
 
-        targetPath = profile?.role === 'admin' ? '/admin' : '/dashboard';
+          const timeoutPromise = new Promise((resolve) =>
+            setTimeout(() => resolve({ data: null }), 1000)
+          );
+
+          const res = await Promise.race([profilePromise, timeoutPromise]);
+          const profile = res?.data;
+
+          if (profile?.role === 'admin') {
+            targetPath = '/admin';
+          }
+        } catch (pErr) {
+          console.warn('Profile fetch warning on sign-in:', pErr);
+        }
       }
 
-      // Hard navigation ensures browser cookies set by @supabase/ssr are fully flushed
-      // and attached to the HTTP request headers for middleware.js and server components.
+      // Hard navigation flushes @supabase/ssr cookies to HTTP headers
       window.location.href = targetPath;
     } catch (err) {
       console.error('Sign-in failed:', err);
