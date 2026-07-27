@@ -71,7 +71,7 @@ export default function ServicesPage() {
           <h2 className="mw-navy-banner__title">
             Not sure which service your business needs?
           </h2>
-          <a href="/onboarding" className="mw-navy-banner__btn">
+          <a href="/free-site-scan" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

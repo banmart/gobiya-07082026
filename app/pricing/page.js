@@ -123,7 +123,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
                 <div className="pricing-card__cta">
-                  <a href={`/onboarding?tier=${t.name.toLowerCase()}`} className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
+                  <a href={`/free-site-scan?tier=${t.name.toLowerCase()}`} className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
                     Get started with {t.name}
                   </a>
                 </div>
@@ -160,7 +160,7 @@ export default function PricingPage() {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Tell us about your goals — we&apos;ll recommend the right scope.</h2>
           <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Get a free proposal</a>
+            <a href="/free-site-scan" className="btn btn--solid btn--big">Get a free proposal</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
         </div>

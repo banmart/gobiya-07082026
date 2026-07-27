@@ -35,7 +35,7 @@ const CONTACT_TOPICS = [
     id: 'free-scan',
     title: 'Schedule a Strategic Intake Consultation',
     desc: 'Send us your website address and we will tell you what we find — technical code errors, missing AI citations, and fast wins.',
-    href: '/onboarding',
+    href: '/free-site-scan',
     cta: 'Schedule Your Consultation',
   },
 ];
@@ -102,7 +102,7 @@ export default function ContactPage() {
           <h2 className="mw-navy-banner__title">
             Prefer a 5-step structured questionnaire?
           </h2>
-          <a href="/onboarding" className="mw-navy-banner__btn">
+          <a href="/free-site-scan" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

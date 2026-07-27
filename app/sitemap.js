@@ -12,7 +12,7 @@ export default function sitemap() {
     '/about/steve-martin',
     '/ai-visibility',
     '/contact',
-    '/onboarding',
+    '/free-site-scan',
     '/insights',
     '/services',
     '/seo-services-los-angeles',

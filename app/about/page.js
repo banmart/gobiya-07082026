@@ -98,7 +98,7 @@ export default function AboutPage() {
           <h2 className="mw-navy-banner__title">
             Ready to work directly with the team doing the work?
           </h2>
-          <a href="/onboarding" className="mw-navy-banner__btn">
+          <a href="/free-site-scan" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

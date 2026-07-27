@@ -16,6 +16,10 @@ const nextConfig = {
       // known survivors (compton/seo, compton/webdesign) were 404ing, and the
       // pattern implies more cities than we can enumerate, so these are
       // matched by shape rather than listed one by one.
+      // Onboarding -> Free Site Scan 301 Redirects
+      { source: '/onboarding', destination: '/free-site-scan', permanent: true },
+      { source: '/onboarding/:path*', destination: '/free-site-scan/:path*', permanent: true },
+
       { source: '/california/:city/seo', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/california/:city/webdesign', destination: '/web-development-services-los-angeles', permanent: true },
       { source: '/california/:path*', destination: '/services', permanent: true },

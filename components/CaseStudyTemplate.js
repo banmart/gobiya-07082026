@@ -237,7 +237,7 @@ export default function CaseStudyTemplate({ cs }) {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Your business could be the next case study.</h2>
           <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Start onboarding</a>
+            <a href="/free-site-scan" className="btn btn--solid btn--big">Start onboarding</a>
             <a href="/work" className="btn btn--ghost btn--big">More client work</a>
           </div>
         </div>

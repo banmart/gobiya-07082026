@@ -6,10 +6,10 @@ import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
-  title: 'Get Started — Free SEO & AI Scan',
+  title: 'Free Full Site Scan & AI Visibility Audit',
   description:
     'Five quick steps, then Steve follows up with what he sees in your search traffic. No generic scan template, no obligation.',
-  path: '/onboarding',
+  path: '/free-site-scan',
 });
 
 // Real, verifiable facts only (no follower counts / fabricated numbers) —

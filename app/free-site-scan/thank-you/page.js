@@ -6,9 +6,9 @@ import Breadcrumbs from '../../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Thanks',
-  description: 'Your onboarding submission was received.',
+  description: 'Your free site scan submission was received.',
   robots: { index: false, follow: true },
-  path: '/onboarding/thank-you',
+  path: '/free-site-scan/thank-you',
 });
 
 export default function OnboardingThankYouPage() {
@@ -16,7 +16,7 @@ export default function OnboardingThankYouPage() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Onboarding', href: '/onboarding' }, { label: 'thank-you' }]} />
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Site Scan', href: '/free-site-scan' }, { label: 'Thank You' }]} />
           <h1 className="statement">Got it — Steve will personally review this and reply within one business day.</h1>
           <p className="lede">
             We read every submission ourselves — no automated sequences, no generic templates. In the meantime,

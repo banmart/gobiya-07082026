@@ -144,7 +144,7 @@ export default function OnboardingStepper() {
         throw new Error(payload.error || 'Something went wrong.');
       }
       setStatus('success');
-      router.push('/onboarding/thank-you');
+      router.push('/free-site-scan/thank-you');
     } catch (err) {
       setStatus('error');
       setError(err.message || 'Something went wrong. Please try again.');

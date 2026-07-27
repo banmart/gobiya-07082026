@@ -56,7 +56,7 @@ export default function GlossaryPage() {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Don&apos;t see a term you&apos;re looking for?</h2>
           <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Schedule a Consultation</a>
+            <a href="/free-site-scan" className="btn btn--solid btn--big">Schedule a Consultation</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
         </div>

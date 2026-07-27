@@ -52,7 +52,7 @@ export default function Header() {
             <span className="mw-topbar__text mw-topbar__text--mobile">
               Search &amp; AI Visibility Specialists
             </span>
-            <a href="/onboarding" className="mw-topbar__btn">
+            <a href="/free-site-scan" className="mw-topbar__btn">
               Schedule a Consultation
             </a>
           </div>

@@ -44,7 +44,7 @@ export default function HeroIntroVideo() {
 
   return (
     <div className="hero__video" data-reveal>
-      <a href="/onboarding" className="hero__video-link" aria-label="Watch the intro and get your free AI visibility audit">
+      <a href="/free-site-scan" className="hero__video-link" aria-label="Watch the intro and get your free AI visibility audit">
         <video
           ref={videoRef}
           muted

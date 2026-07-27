@@ -169,7 +169,7 @@ export default function ToolsHub() {
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
           <h2 className="statement" data-split style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Want a full check of your whole site, not just one piece?</h2>
           <p className="lede" data-reveal style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our team checks your whole site — how well it loads, whether Google and AI tools can read it, and where you&apos;re missing out.</p>
-          <a href="/onboarding?goal=ai-visibility" className="btn btn--solid">Get a free full site check</a>
+          <a href="/free-site-scan?goal=ai-visibility" className="btn btn--solid">Get a free full site check</a>
         </div>
       </section>
     </main>

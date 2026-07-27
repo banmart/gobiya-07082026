@@ -170,7 +170,7 @@ export default function Home() {
           <h2 className="mw-navy-banner__title">
             Go with a team of experts whose only specialty is growing your business
           </h2>
-          <a href="/onboarding" className="mw-navy-banner__btn">
+          <a href="/free-site-scan" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>
@@ -321,7 +321,7 @@ export default function Home() {
               <p className="mw-consultation__dek">
                 You&apos;ve invested your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees. The moment has finally come for you to start a new chapter in your digital growth. Explore your options now.
               </p>
-              <a href="/onboarding" className="mw-consultation__btn">
+              <a href="/free-site-scan" className="mw-consultation__btn">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                   <line x1="16" y1="2" x2="16" y2="6" />

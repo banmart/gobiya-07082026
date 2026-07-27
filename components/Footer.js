@@ -17,7 +17,7 @@ export default function Footer() {
               <a href="/work">Client Stories</a>
               <a href="/services">Industry Experience</a>
               <a href="/work">Closed Transactions</a>
-              <a href="/onboarding">Free Site Scan</a>
+              <a href="/free-site-scan">Free Site Scan</a>
             </div>
           </div>
 

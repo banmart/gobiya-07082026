@@ -71,13 +71,13 @@ export default function AIVisibilityPage() {
             {AI_TOPICS.map((topic) => (
               <div key={topic.id} id={topic.id} className="mw-cluster-block">
                 <h2 className="mw-cluster-block__title">
-                  <a href="/onboarding">{topic.title}</a>
+                  <a href="/free-site-scan">{topic.title}</a>
                 </h2>
                 <p className="mw-cluster-block__desc">
                   {topic.desc}
                 </p>
                 <div style={{ marginTop: '1rem' }}>
-                  <a href="/onboarding" className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
+                  <a href="/free-site-scan" className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
                     Learn More &rarr;
                   </a>
                 </div>
@@ -93,7 +93,7 @@ export default function AIVisibilityPage() {
           <h2 className="mw-navy-banner__title">
             Want to see how ChatGPT currently describes your business?
           </h2>
-          <a href="/onboarding" className="mw-navy-banner__btn">
+          <a href="/free-site-scan" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>
