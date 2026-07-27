@@ -1,5 +1,6 @@
 import CookiePreferencesLink from './CookiePreferencesLink';
 import { CONTACT } from '../lib/nav';
+import { markInner, BRAND_GOLD } from '../lib/brand';
 
 export default function Footer() {
   return (
@@ -87,6 +88,17 @@ export default function Footer() {
           <div>Copyright © 2026 Gobiya LLC. All Rights Reserved.</div>
         </div>
       </div>
+
+      {/* Bottom Right Footer Brand Watermark Logo */}
+      <svg
+        className="mw-footer__watermark"
+        viewBox="0 0 48 48"
+        width="180"
+        height="180"
+        fill="none"
+        aria-hidden="true"
+        dangerouslySetInnerHTML={{ __html: markInner(BRAND_GOLD) }}
+      />
     </footer>
   );
 }

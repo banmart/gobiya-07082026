@@ -1361,7 +1361,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   right: clamp(-7.6rem, -8.6vw, -3.2rem);
   width: clamp(30.8rem, 58.8vw, 61.6rem);
   height: clamp(30.8rem, 58.8vw, 61.6rem);
-  opacity: 0.18;
+  opacity: 0.35;
   pointer-events: none;
   z-index: 15;
 }
@@ -1370,7 +1370,19 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 
 /* ═══════════ footer background mark ═══════════ */
-.footer { position: relative; }
+.mw-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.mw-footer__watermark {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 1;
+}
 .footer__mark {
   position: absolute;
   top: clamp(-7.6rem, -9.7vw, -4.3rem);
