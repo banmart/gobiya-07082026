@@ -7,11 +7,19 @@ import { TESTIMONIALS } from '../lib/testimonials';
 import CountdownBadge from '../components/CountdownBadge';
 import TestimonialRotator from '../components/TestimonialRotator';
 import ScrollStory from '../components/ScrollStory';
+import HeroQuickForm from '../components/HeroQuickForm';
 import TopicMarquee from '../components/TopicMarquee';
 import HeroIntroVideo from '../components/HeroIntroVideo';
 import { ServiceIcon, PlatformIcon, CircleMark, Swash } from '../components/icons/HandDrawn';
 
 export const metadata = buildMetadata({
+  // Was 'Gobiya - Be Seen First'. That is a brand promise, not a title — it
+  // targets nothing but the brand name, which a domain with this much
+  // authority already wins by default. The brand still leads the H1 and the
+  // template appends ' — Gobiya' here anyway, so nothing is lost by spending
+  // the title on what people actually search for.
+  // Brand stated explicitly: title.template in app/layout.js does not apply
+  // to the root page, so nothing appends it here.
   title: 'Los Angeles SEO & AI Visibility Agency — Gobiya',
   description:
     'Get found on Google and recommended by ChatGPT. SEO, AI visibility, content, and web design from one accountable Los Angeles team. Free audit.',
@@ -67,19 +75,16 @@ export default function Home() {
 
   return (
     <main id="top">
-      {/* ══ 1. Hero Section ══ */}
+
+      {/* ══ 1. Hero ══ */}
       <section className="hero" id="hero">
         <div className="container seo-hero__grid">
           <div>
             <h1 className="hero__title" data-split>
               Los Angeles SEO &amp; AI Search{' '}
-              <em className="hero__title-accent">
-                That Gets You Found <span className="hero__title-swash-wrap">First<Swash className="hero__title-swash" /></span>.
-              </em>
+              <em className="hero__title-accent">That Gets You Found <span className="hero__title-swash-wrap">First<Swash className="hero__title-swash" /></span>.</em>
             </h1>
-            <p className="hero__sub" data-reveal>
-              Looking for an SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past.
-            </p>
+            <p className="hero__sub" data-reveal>Looking for an SEO company near you? Gobiya is a local team based in Los Angeles that helps businesses get found — not just on Google, but everywhere people ask questions today, including ChatGPT and Perplexity. Our goal is simple: when someone asks about your business, you should be the answer they get, not a link they scroll past. One team handles it all, so nothing falls through the cracks between vendors.</p>
             <div className="hero__ctas" data-reveal>
               <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
@@ -97,181 +102,14 @@ export default function Home() {
               playsInline
               preload="auto"
               poster="/assets/videos/gobiyaRace-scrub-poster.jpg"
-              aria-label="Race video illustrating every search as a race to be seen first"
+              aria-label="Race video that advances frame by frame as you scroll, illustrating every search as a race to be seen first"
             />
           </div>
         </div>
       </section>
-
       <TopicMarquee topics={["Los Angeles SEO Agency", "ChatGPT & Perplexity Visibility", "Technical Search Audits", "PPC & CRO Strategy", "Proven Search Console Growth"]} />
 
-      {/* ══ 2. "Digital Growth is Complicated – We Make It Simple" (Morgan & Westfield Adaptation) ══ */}
-      <section className="mw-simple" id="simplicity">
-        <div className="container">
-          <div className="mw-simple__header" data-reveal>
-            <h2 className="mw-simple__title">
-              Digital Growth is Complicated &ndash; <em>We Make it Simple</em>
-            </h2>
-            <p className="mw-simple__intro">
-              We have invested over a decade honing the <strong>Gobiya 4-Step Method</strong> for organic search dominance, AI visibility, and CRM lead capture. This documented framework has been refined across hundreds of campaigns to minimize risk, maximize lead volume, and eliminate wasted spend.
-            </p>
-          </div>
-
-          <div className="mw-simple__grid">
-            <div className="mw-simple__card" data-reveal>
-              <div className="mw-simple__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <h3 className="mw-simple__card-title">A Tailored Approach</h3>
-              <p className="mw-simple__card-desc">
-                There&apos;s only one business in the world like yours. We customize our SEO, technical web architecture, and AI strategy around your specific industry, audience, and lead targets.
-              </p>
-            </div>
-
-            <div className="mw-simple__card" data-reveal>
-              <div className="mw-simple__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 11l3 3L22 4" />
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                </svg>
-              </div>
-              <h3 className="mw-simple__card-title">No Lock-in Contracts</h3>
-              <p className="mw-simple__card-desc">
-                Grow now or scale at your pace. Unlike traditional agencies that trap clients in multi-year retainers, Gobiya relies on continuous performance and transparent deliverables to earn your trust.
-              </p>
-            </div>
-
-            <div className="mw-simple__card" data-reveal>
-              <div className="mw-simple__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-              </div>
-              <h3 className="mw-simple__card-title">Full Transparency &amp; Security</h3>
-              <p className="mw-simple__card-desc">
-                Confidentiality and data integrity are paramount. We provide direct live dashboard tracking, real-time Search Console data, and dedicated CRM lead visibility every step of the way.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 3. Institutional Numbers Counter Grid ══ */}
-      <section className="mw-numbers" id="numbers">
-        <div className="container">
-          <div className="mw-numbers__grid" data-reveal>
-            <div className="mw-numbers__item">
-              <span className="mw-numbers__val">15+</span>
-              <span className="mw-numbers__label">Years Experience</span>
-            </div>
-            <div className="mw-numbers__item">
-              <span className="mw-numbers__val">500+</span>
-              <span className="mw-numbers__label">SEO &amp; AI Audits</span>
-            </div>
-            <div className="mw-numbers__item">
-              <span className="mw-numbers__val">Top 1%</span>
-              <span className="mw-numbers__label">AI Search Visibility</span>
-            </div>
-            <div className="mw-numbers__item">
-              <span className="mw-numbers__val">1 Goal</span>
-              <span className="mw-numbers__label">Scale Your Lead Pipeline</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 4. Meet Your Point Person (Founder Card) ══ */}
-      <section className="mw-person" id="point-person">
-        <div className="container">
-          <div className="mw-person__card" data-reveal>
-            <Image
-              src="/assets/img/office-collage-montage.webp"
-              alt="Steve Martin - Founder & Strategy Lead"
-              width={144}
-              height={144}
-              className="mw-person__avatar"
-            />
-            <div>
-              <div className="mw-person__meta">
-                <span className="mw-person__badge">Meet Your Dedicated Lead</span>
-                <h3 className="mw-person__name">Steve Martin</h3>
-                <span className="mw-person__role">Founder &amp; Head of Strategy</span>
-              </div>
-              <p className="mw-person__bio">
-                Steve has led digital strategy and search engine optimization for over 15 years, helping hundreds of businesses in Los Angeles and across California capture top Google rankings and AI recommendations. When you partner with Gobiya, you work directly with experienced strategists who understand the exact mechanics of technical search, Next.js web performance, and automated lead generation.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 5. The Gobiya 4-Step Method ══ */}
-      <section className="mw-method" id="our-method">
-        <div className="container">
-          <div className="mw-method__header" data-reveal>
-            <p style={{ fontSize: '0.875rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00b4d8', marginBottom: '0.5rem' }}>
-              Our Proven Approach
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', color: 'var(--darkest)', fontWeight: '400' }}>
-              The Gobiya 4-Step Method
-            </h2>
-            <p style={{ fontSize: '1.0625rem', color: 'var(--hint)', marginTop: '0.75rem' }}>
-              We&apos;ve perfected the process of growing search traffic and converting visitors into loyal clients:
-            </p>
-          </div>
-
-          <div className="mw-method__grid">
-            <div className="mw-method__step" data-reveal>
-              <span className="mw-method__step-num">Step 1: Assess</span>
-              <h3 className="mw-method__step-title">AI &amp; Search Audit</h3>
-              <p className="mw-method__step-desc">
-                We audit your technical website performance, schema structured data, and AI visibility across ChatGPT and Google Overviews.
-              </p>
-            </div>
-
-            <div className="mw-method__step" data-reveal>
-              <span className="mw-method__step-num">Step 2: Prepare</span>
-              <h3 className="mw-method__step-title">Next.js &amp; CRM Engine</h3>
-              <p className="mw-method__step-desc">
-                We package your digital presence into a blazingly fast Next.js website with built-in CRM lead tracking and schema optimization.
-              </p>
-            </div>
-
-            <div className="mw-method__step" data-reveal>
-              <span className="mw-method__step-num">Step 3: Market</span>
-              <h3 className="mw-method__step-title">Local Organic &amp; Video</h3>
-              <p className="mw-method__step-desc">
-                We execute targeted local organic search optimization alongside high-converting YouTube AI video pre-roll ad campaigns.
-              </p>
-            </div>
-
-            <div className="mw-method__step" data-reveal>
-              <span className="mw-method__step-num">Step 4: Scale</span>
-              <h3 className="mw-method__step-title">Drips &amp; Lead Conversion</h3>
-              <p className="mw-method__step-desc">
-                We stay with you to automate email drip sequences, manage Google reviews, and optimize visitor-to-customer conversion rates.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 6. High-Impact Institutional CTA Banner ══ */}
-      <section className="mw-cta" id="banner-cta">
-        <div className="container">
-          <div className="mw-cta__content" data-reveal>
-            <h2 className="mw-cta__title">
-              Go with a team of experts whose only specialty is <strong>growing your business</strong>.
-            </h2>
-            <a href="/onboarding" className="btn btn--solid mw-cta__btn">Get Started Today</a>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 7. Search Console Wins ══ */}
+      {/* ══ 2.5 Recent search wins ══ */}
       <section className="section" id="search-wins" aria-label="Search Console performance across clients">
         <div className="container">
           <p className="search-wins__note" data-reveal>Real Search Console data from active Gobiya clients across Los Angeles and Southern California.</p>
@@ -291,10 +129,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 8. Scroll Story Pinned Reel ══ */}
+      {/* ══ 2.6 Scroll story: pinned client reel ══ */}
       <ScrollStory />
 
-      {/* ══ 9. Services Grid ══ */}
+      {/* ══ 3. Services grid ══ */}
       <section className="section" id="services">
         <div className="container">
           <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>Everything your business needs to get found — all from one team.</h2>
@@ -312,7 +150,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 10. AI Visibility Feature ══ */}
+      {/* ══ 4. AI Visibility feature ══ */}
       <section className="geo-section section section--dark" id="geo">
         <div className="container">
           <h2 className="offices__title" data-split>Search didn&apos;t disappear. It moved into a conversation.</h2>
@@ -338,7 +176,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 11. Special Offer ══ */}
+      {/* ══ 4.5 Offer ══ */}
       <section className="section offer-section" id="special-offer">
         <div className="container">
           <div className="offer-card" data-reveal>
@@ -378,7 +216,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 12. Four Pillars ══ */}
+      {/* ══ 5. Four pillars ══ */}
       <section className="section" id="capabilities">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           <h2 className="statement statement--small" data-split>Four things we build for every engagement.</h2>
@@ -397,7 +235,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 13. Insights ══ */}
+      {/* ══ 6. Insights ══ */}
       <section className="section section--tint" id="insights">
         <div className="container">
           <div className="insights__grid">
@@ -413,8 +251,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 14. Client Logo Strip ══ */}
+      {/* ══ 7. Client logo strip ══ */}
       <section className="logo-strip section" aria-label="Selected clients">
+        <div className="container container--narrow portfolio__head">
+        </div>
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">
             {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((l, i) => (
@@ -426,7 +266,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 15. Testimonials ══ */}
+      {/* ══ 7.5 Testimonials ══ */}
       <section className="testimonials section section--dark" id="testimonials">
         <div className="container container--narrow">
           <h2 className="statement statement--small" data-split style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
@@ -436,7 +276,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 16. FAQ ══ */}
+      {/* ══ 8. FAQ ══ */}
       <section className="faq section section--tint" id="faq">
         <div className="container container--narrow">
           <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>Common questions about our Los Angeles SEO services, plainly explained.</h2>
@@ -451,17 +291,17 @@ export default function Home() {
             </div>
             <div className="faq__item" data-reveal>
               <dt>What does an SEO company actually do, day to day?</dt>
-              <dd>Less blog writing than most people expect. We usually start by checking whether Google — and AI tools — can even read your site properly. From there, we clean up what&apos;s broken, write content people are genuinely searching for, and help other trusted websites mention and link to you. One team handles all of it, instead of passing pieces between different vendors.</dd>
+              <dd>Less blog writing than most people expect. We usually start by checking whether Google — and AI tools — can even read your site properly. From there, we clean up what&apos;s broken, write content people are genuinely searching for, and help other trusted websites mention and link to you. One team handles all of it, instead of passing pieces between different vendors. See how the <a href="/about/approach">full process</a> works from start to finish.</dd>
             </div>
             <div className="faq__item" data-reveal>
               <dt>How do I choose a local SEO company instead of a big national chain?</dt>
-              <dd>With a local team, you&apos;re usually talking directly to the person doing the actual work, not an account manager passing along updates from someone overseas. Ask who really works on your account, whether they can show you real, verified results — not just numbers they typed up themselves — and whether they think about AI tools, not just Google.</dd>
+              <dd>With a local team, you&apos;re usually talking directly to the person doing the actual work, not an account manager passing along updates from someone overseas. Ask who really works on your account, whether they can show you real, verified results — not just numbers they typed up themselves — and whether they think about AI tools, not just Google. <a href="/work">Our case studies</a> show real results our clients have confirmed.</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      {/* ══ 17. Final CTA ══ */}
+      {/* ══ 9. CTA ══ */}
       <section className="cta section section--dark" id="contact">
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Ready to see what&apos;s holding your search traffic back?</h2>
@@ -471,6 +311,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </main>
   );
 }
