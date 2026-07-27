@@ -7,7 +7,7 @@
 
   /* ── mark fonts/content ready (drives hero media fade-in) ── */
   function finishLoading() {
-    document.body.classList.add("is-loaded");
+    if (document.body) document.body.classList.add("is-loaded");
   }
   if (prefersReduced) {
     finishLoading();
@@ -23,9 +23,11 @@
   let ticking = false;
   function onScroll() {
     const y = window.scrollY;
-    nav.classList.toggle("is-scrolled", y > 24);
-    if (y > lastY && y > 320 && !menuOpen) nav.classList.add("is-hidden");
-    else nav.classList.remove("is-hidden");
+    if (nav) {
+      nav.classList.toggle("is-scrolled", y > 24);
+      if (y > lastY && y > 320 && !menuOpen) nav.classList.add("is-hidden");
+      else nav.classList.remove("is-hidden");
+    }
     lastY = y;
     updateParallax();
     updateScrub();
@@ -45,17 +47,16 @@
   /* ── hero parallax (object-position, so it never fights the zoom transition) ── */
   const parallaxEls = document.querySelectorAll("[data-parallax] img, [data-parallax] video");
   function updateParallax() {
-    if (prefersReduced) return;
+    if (prefersReduced || !parallaxEls.length) return;
     parallaxEls.forEach((img) => {
+      if (!img || !img.parentElement) return;
       const rect = img.parentElement.getBoundingClientRect();
-      // 0 when container top hits viewport top, 1 when it's a full viewport below
       const progress = Math.max(-1, Math.min(1, rect.top / window.innerHeight));
       img.style.objectPosition = `50% ${50 - progress * 18}%`;
     });
   }
 
-  /* ── scroll-scrubbed hero video: pins in place and plays frame-by-frame
-     as the user scrolls, then releases and the page continues normally ── */
+  /* ── scroll-scrubbed hero video ── */
   const scrubWrap = document.querySelector("[data-scrub-video]");
   const scrubMedia = scrubWrap ? scrubWrap.querySelector(".hero__media") : null;
   const scrubVideo = scrubMedia ? scrubMedia.querySelector("video") : null;
@@ -64,10 +65,8 @@
 
   function sizeScrub() {
     if (!scrubWrap || !scrubMedia) return;
-    scrubNavH = nav.offsetHeight;
+    scrubNavH = nav ? nav.offsetHeight : 0;
     scrubMedia.style.top = `${scrubNavH}px`;
-    // ~2.5 viewports of scroll to scrub the full clip — enough range for
-    // frame-by-frame control without making the page too long.
     const range = window.innerHeight * 2.5;
     scrubWrap.style.height = `${scrubMedia.offsetHeight + range}px`;
   }
@@ -88,18 +87,7 @@
   }
 
   if (scrubWrap && scrubMedia && scrubVideo) {
-    if (prefersReduced) {
-      // Leave it as a plain autoplay/loop background video — no pin, no
-      // scroll-jacking, matches the rest of the site's reduced-motion story.
-    } else {
-      // Size synchronously, immediately — not gated behind the video's
-      // loadedmetadata event. Waiting on that used to grow this wrapper by
-      // ~2250px well after first paint (CSS below already reserves roughly
-      // this much space so the real shift is only a few px), which shifted
-      // every section below it — including ScrollStory's GSAP ScrollTrigger
-      // pin, which caches its trigger offsets once and doesn't know to
-      // recompute for a plain style.height mutation. That stale offset is
-      // what made the client-reel pin feel mistimed against this video.
+    if (!prefersReduced) {
       scrubVideo.pause();
       scrubActive = true;
       sizeScrub();
@@ -131,7 +119,7 @@
       burger.setAttribute("aria-expanded", String(menuOpen));
       menu.classList.toggle("is-open", menuOpen);
       menu.setAttribute("aria-hidden", String(!menuOpen));
-      document.body.style.overflow = menuOpen ? "hidden" : "";
+      if (document.body) document.body.style.overflow = menuOpen ? "hidden" : "";
     }
     burger.addEventListener("click", () => toggleMenu());
     menu.querySelectorAll("a[href^='#']").forEach((a) =>
@@ -147,6 +135,7 @@
   function tick() {
     const now = new Date();
     clocks.forEach((el) => {
+      if (!el || !el.dataset?.tz) return;
       el.textContent = new Intl.DateTimeFormat("en-US", {
         hour: "2-digit",
         minute: "2-digit",
