@@ -642,10 +642,10 @@ a.contact__value:hover { color: var(--main); }
   flex-wrap: wrap;
 }
 .hero__sub {
-  max-width: 38rem;
+  max-width: 42rem;
   margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
-  line-height: 1.6;
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  line-height: 1.55;
   color: var(--hint);
 }
 .hero__ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; }
