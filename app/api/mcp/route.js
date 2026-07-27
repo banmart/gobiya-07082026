@@ -146,8 +146,8 @@ const handler = createMcpHandler(
     server.registerTool(
       'request_seo_audit',
       {
-        title: 'Request an SEO/AI-Visibility Audit',
-        description: 'Submit a request for a free SEO and AI-visibility audit on behalf of a business owner.',
+        title: 'Request an SEO/AI-Visibility Scan',
+        description: 'Submit a request for a free SEO and AI-visibility scan on behalf of a business owner.',
         inputSchema: {
           name: z.string().min(1),
           email: z.string().min(1),
@@ -166,7 +166,7 @@ const handler = createMcpHandler(
         if (!checkRateLimit(getCallerIp(extra), 'mcp-onboarding', 5, 24)) return rateLimitedError('request_seo_audit');
         const result = await sendOnboardingEmail(args);
         if (!result.ok) return { isError: true, content: [{ type: 'text', text: result.error }] };
-        return { content: [{ type: 'text', text: 'Audit request sent to Gobiya. Someone will follow up by email.' }] };
+        return { content: [{ type: 'text', text: 'Scan request sent to Gobiya. Someone will follow up by email.' }] };
       }
     );
 

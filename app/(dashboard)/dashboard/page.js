@@ -63,7 +63,7 @@ export default async function DashboardPage() {
             <h2 className="card__stat-number card__stat-number--green">{auditScore}/100</h2>
             <p className="card__body">Website readability & search optimization</p>
             <a href="/dashboard/audit" className="card__link">
-              Run new audit &rarr;
+              Run new scan &rarr;
             </a>
           </article>
 
@@ -128,7 +128,7 @@ export default async function DashboardPage() {
 
           <div className="dashboard__panel">
             <div className="panel__header">
-              <h3 className="panel__title">Website Audit & AI Visibility</h3>
+              <h3 className="panel__title">Website Scan &amp; AI Visibility</h3>
               <a href="/dashboard/audit" className="btn-app btn-app--quiet">
                 Scan Site
               </a>

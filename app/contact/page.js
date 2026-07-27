@@ -7,7 +7,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 export const metadata = buildMetadata({
   title: 'Contact Gobiya | Los Angeles SEO Agency',
   description:
-    'Get in touch with Gobiya, your local Los Angeles SEO and AI search marketing team. Request a free site audit or consultation.',
+    'Get in touch with Gobiya, your local Los Angeles SEO and AI search marketing team. Request a free site scan or consultation.',
   path: '/contact',
 });
 
@@ -93,7 +93,7 @@ export default function ContactPage() {
               <dd>Steve reads and answers messages himself, usually within one business day. There&apos;s no ticketing queue or account-manager relay in between.</dd>
             </div>
             <div className="faq__item" data-reveal>
-              <dt>Is the initial audit actually free, or is that a sales pitch?</dt>
+              <dt>Is the initial scan actually free, or is that a sales pitch?</dt>
               <dd dangerouslySetInnerHTML={{ __html: 'It&apos;s a real look at your site&apos;s technical health and AI visibility, not a scripted pitch deck. Prefer a structured version of that same conversation? <a href="/onboarding">Start the five-step questionnaire</a> instead.' }} />
             </div>
           </dl>

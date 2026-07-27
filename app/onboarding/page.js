@@ -6,9 +6,9 @@ import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
-  title: 'Get Started — Free SEO & AI Audit',
+  title: 'Get Started — Free SEO & AI Scan',
   description:
-    'Five quick steps, then Steve follows up with what he sees in your search traffic. No generic audit template, no obligation.',
+    'Five quick steps, then Steve follows up with what he sees in your search traffic. No generic scan template, no obligation.',
   path: '/onboarding',
 });
 
@@ -49,7 +49,7 @@ export default function OnboardingPage() {
           </ul>
         </div>
       </section>
-      <TopicMarquee topics={["5-Step Questionnaire", "Website Audit Intake", "Tailored Proposal", "Direct Founder Review", "Fast Turnaround"]} />
+      <TopicMarquee topics={["5-Step Questionnaire", "Website Scan Intake", "Tailored Proposal", "Direct Founder Review", "Fast Turnaround"]} />
 
 
       <section className="section section--tint stepper-section">

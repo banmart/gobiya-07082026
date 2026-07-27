@@ -12,7 +12,7 @@ export default function AuditToolForm({ defaultUrl }) {
     if (!url.trim()) return;
     setLoading(true);
 
-    // Simulate real-time website audit scanning
+    // Simulate real-time website scan
     setTimeout(() => {
       setResult({
         domain: url.replace(/^https?:\/\//i, '').split('/')[0],
@@ -52,7 +52,7 @@ export default function AuditToolForm({ defaultUrl }) {
           />
         </div>
         <button type="submit" className="btn-app" disabled={loading}>
-          {loading ? 'Scanning Website…' : 'Run Audit'}
+          {loading ? 'Scanning Website…' : 'Run Scan'}
         </button>
       </form>
 
@@ -61,7 +61,7 @@ export default function AuditToolForm({ defaultUrl }) {
           <div className="audit__score-box">
             <div className="audit__score-circle">{result.score}</div>
             <div>
-              <h3 className="audit__score-title">Audit Report for {result.domain}</h3>
+              <h3 className="audit__score-title">Scan Report for {result.domain}</h3>
               <p className="text-muted">Generated at {result.scannedAt}</p>
             </div>
           </div>

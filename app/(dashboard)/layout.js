@@ -13,7 +13,7 @@ const NAV = [
   { label: 'Overview', href: '/dashboard' },
   { label: 'Leads Prospector', href: '/dashboard/prospector' },
   { label: 'Google Reviews', href: '/dashboard/reviews' },
-  { label: 'AI Website Audit', href: '/dashboard/audit' },
+  { label: 'AI Website Scan', href: '/dashboard/audit' },
   { label: 'Research Tools', href: '/dashboard/tools' },
   { label: 'Settings', href: '/dashboard/settings' },
 ];

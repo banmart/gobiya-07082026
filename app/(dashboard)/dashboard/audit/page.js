@@ -3,7 +3,7 @@ import { requireUser } from '../../../../lib/auth';
 import AuditToolForm from './AuditToolForm';
 
 export const metadata = {
-  title: 'AI Website Audit',
+  title: 'AI Website Scan',
   robots: { index: false, follow: false },
 };
 
@@ -13,11 +13,11 @@ export default async function AuditPage() {
 
   return (
     <>
-      <TopBar title="AI Website Audit" user={user} />
+      <TopBar title="AI Website Scan" user={user} />
       <main className="app__content" id="top">
         <div className="app__actions">
           <div>
-            <h2 className="app__welcome">AI Website Audit Tool</h2>
+            <h2 className="app__welcome">AI Website Scan Tool</h2>
             <p className="app__welcome-sub">
               Evaluate your site accessibility, schema markup, and AI Overview indexing.
             </p>

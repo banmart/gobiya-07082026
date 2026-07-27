@@ -85,7 +85,7 @@ export default function Home() {
             </h1>
             <p className="hero__sub" data-reveal>We&apos;re an independent Web AI &amp; SEO consulting firm specializing in the optimization and rankings of small and medium-sized businesses.</p>
             <div className="hero__ctas" data-reveal>
-              <a href="/onboarding" className="btn btn--solid">Get an AI visibility audit</a>
+              <a href="/onboarding" className="btn btn--solid">Get an AI visibility scan</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
             </div>
           </div>
@@ -101,12 +101,12 @@ export default function Home() {
               playsInline
               preload="auto"
               poster="/assets/videos/gobiyaRace-scrub-poster.jpg"
-              aria-label="Race video that advances frame by frame as you scroll, illustrating every search as a race to be seen first"
+              aria-label="Race video illustrating every search as a race to be seen first"
             />
           </div>
         </div>
       </section>
-      <TopicMarquee topics={["Los Angeles SEO Agency", "ChatGPT & Perplexity Visibility", "Technical Search Audits", "PPC & CRO Strategy", "Proven Search Console Growth"]} />
+      <TopicMarquee topics={["Los Angeles SEO Agency", "ChatGPT & Perplexity Visibility", "Technical Search Reviews", "PPC & CRO Strategy", "Proven Search Console Growth"]} />
 
       {/* ══ 2.5 Recent search wins ══ */}
       <section className="section" id="search-wins" aria-label="Search Console performance across clients">
