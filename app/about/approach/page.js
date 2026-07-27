@@ -1,4 +1,3 @@
-import HeroQuickForm from '../../../components/HeroQuickForm';
 import TopicMarquee from '../../../components/TopicMarquee';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
@@ -15,22 +14,23 @@ export default function ApproachPage() {
   return (
     <main id="top">
 
-      
-      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
-        <div className="container seo-hero__grid">
-          <div>
-            <div>
-            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'approach' }]} />
-            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Foundation first. Everything else compounds on top of it.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Most SEO problems aren&apos;t about strategy — they&apos;re about order. Content and links get built on top of a technical foundation that can&apos;t actually support them. We always work in the same order, for one reason: each step only works if the one before it is solid.</p>
-        
-          </div>
-          </div>
-          <div>
-            <HeroQuickForm />
-          </div>
+      {/* ══ 1. Clean Breadcrumb Bar ══ */}
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about' },
+        { label: 'Our Approach' },
+      ]} />
+
+      {/* ══ 2. Subhero Dark Banner ══ */}
+      <section className="mw-subhero">
+        <div className="container">
+          <h1 className="mw-subhero__title">Foundation First — Everything Else Compounds on Top</h1>
+          <p className="mw-subhero__dek">
+            Most SEO problems aren&apos;t about strategy — they&apos;re about order. Content and links get built on top of a technical foundation that can&apos;t actually support them. We always work in the same sequence, for one reason: each step only works if the one before it is solid.
+          </p>
         </div>
       </section>
+
       <TopicMarquee topics={["Technical Foundation", "Schema & Entity Engineering", "Content Silos", "White-Hat Link Building", "Sustainable Ranking Growth"]} />
 
 

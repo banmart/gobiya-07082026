@@ -1,8 +1,6 @@
-import HeroQuickForm from '../../components/HeroQuickForm';
-import TopicMarquee from '../../components/TopicMarquee';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
-import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Contact Gobiya | Los Angeles SEO Agency',
@@ -11,105 +9,104 @@ export const metadata = buildMetadata({
   path: '/contact',
 });
 
+const CONTACT_TOPICS = [
+  {
+    id: 'direct-email',
+    title: 'Direct Email & Founder Contact',
+    desc: `Reach Steve Martin directly at ${CONTACT.email}. Every message is read and answered personally within 1 business day.`,
+    href: `mailto:${CONTACT.email}`,
+    cta: `Send Email: ${CONTACT.email}`,
+  },
+  {
+    id: 'direct-phone',
+    title: 'Direct Phone & Consultation',
+    desc: `Call us directly at ${CONTACT.phone} to discuss your site traffic, search issues, or upcoming website launch.`,
+    href: CONTACT.phoneHref,
+    cta: `Call Now: ${CONTACT.phone}`,
+  },
+  {
+    id: 'office-address',
+    title: 'Los Angeles Headquarters',
+    desc: `${CONTACT.address1}, ${CONTACT.address2}. Located in Los Angeles, California.`,
+    href: '#office-address',
+    cta: 'View Location',
+  },
+  {
+    id: 'free-scan',
+    title: 'Schedule a Strategic Intake Consultation',
+    desc: 'Send us your website address and we will tell you what we find — technical code errors, missing AI citations, and fast wins.',
+    href: '/onboarding',
+    cta: 'Schedule Your Consultation',
+  },
+];
+
 export default function ContactPage() {
   return (
     <main id="top">
+      {/* ══ 1. Breadcrumbs ══ */}
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
 
-      
-      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
-        <div className="container seo-hero__grid">
-          <div>
-            
-        
-          <div>
-            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'contact' }]} />
-            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Contact Our Los Angeles SEO Team Today</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Send us your website address and we&apos;ll tell you what we find — the technical problems, where you&apos;re missing out on AI recommendations, and where the fastest wins actually are. No generic template, no obligation. Prefer a form? <a href="/onboarding">Start with our five-step questionnaire</a> and Steve will follow up directly.</p>
-        
-          </div>
-          </div>
-          <div>
-            <HeroQuickForm />
-          </div>
-        </div>
-      </section>
-      <TopicMarquee topics={["Direct Founder Contact", "Los Angeles HQ", "Schedule Consultation", "Free Technical Review", "1 Business Day Response"]} />
-
-
-
-      <section className="contact section section--tint" id="contact-details">
-        <div className="container contact__grid">
-          <div className="contact__col">
-            <ul className="contact__list">
-              <li data-reveal>
-                <span className="contact__label">Email</span>
-                <a href={`mailto:${CONTACT.email}`} className="contact__value">{CONTACT.email}</a>
-              </li>
-              <li data-reveal>
-                <span className="contact__label">Phone</span>
-                <a href={CONTACT.phoneHref} className="contact__value">{CONTACT.phone}</a>
-              </li>
-              <li data-reveal>
-                <span className="contact__label">Office</span>
-                <span className="contact__value">{CONTACT.address1}<br />{CONTACT.address2}</span>
-              </li>
-            </ul>
-          </div>
-          <div className="contact__col">
-            <ul className="contact__list">
-              <li data-reveal>
-                <span className="contact__label">LinkedIn</span>
-                <a href={CONTACT.linkedin} className="contact__value" target="_blank" rel="noopener noreferrer">Steve Martin</a>
-              </li>
-              <li data-reveal>
-                <span className="contact__label">X (Twitter)</span>
-                <a href={CONTACT.twitter} className="contact__value" target="_blank" rel="noopener noreferrer">@SteveMarti66556</a>
-              </li>
-              <li data-reveal>
-                <span className="contact__label">Facebook</span>
-                <a href={CONTACT.facebook} className="contact__value" target="_blank" rel="noopener noreferrer">Gobiya</a>
-              </li>
-              <li data-reveal>
-                <span className="contact__label">Yelp</span>
-                <a href={CONTACT.yelp} className="contact__value" target="_blank" rel="noopener noreferrer">Gobiya — Los Angeles</a>
-              </li>
-            </ul>
-          </div>
+      {/* ══ 2. Subhero Dark Banner ══ */}
+      <section className="mw-subhero">
+        <div className="container">
+          <h1 className="mw-subhero__title">Contact Our Los Angeles Team</h1>
+          <p className="mw-subhero__dek">
+            Direct founder contact. No ticketing queue or account-manager relay in between — Steve reads and answers every message himself.
+          </p>
         </div>
       </section>
 
-      <section className="faq section" id="faq">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>
-            A few things people usually ask first.
+      {/* ══ 3. Hierarchical Pillar Grid ══ */}
+      <div className="container">
+        <div className="mw-pillar-grid">
+          {/* Left Sidebar */}
+          <aside className="mw-sidebar">
+            <div className="mw-sidebar__header">Contact Topics</div>
+            <nav className="mw-sidebar__nav">
+              {CONTACT_TOPICS.map((topic, idx) => (
+                <a
+                  key={topic.id}
+                  href={`#${topic.id}`}
+                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+                >
+                  {topic.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+
+          {/* Right Content Area */}
+          <div className="mw-cluster-list">
+            {CONTACT_TOPICS.map((topic) => (
+              <div key={topic.id} id={topic.id} className="mw-cluster-block">
+                <h2 className="mw-cluster-block__title">
+                  <a href={topic.href}>{topic.title}</a>
+                </h2>
+                <p className="mw-cluster-block__desc">
+                  {topic.desc}
+                </p>
+                <div style={{ marginTop: '1rem' }}>
+                  <a href={topic.href} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
+                    {topic.cta} &rarr;
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">
+            Prefer a 5-step structured questionnaire?
           </h2>
-          <dl className="faq__list">
-            <div className="faq__item" data-reveal>
-              <dt>What should I include when I reach out?</dt>
-              <dd>Your website address, at minimum — that&apos;s enough for us to take a first look at how well Google and AI tools can read your site before we talk. If you already know the problem (a traffic drop, a rebuild gone wrong, an ad account burning through budget), mention it — it saves a round of back-and-forth.</dd>
-            </div>
-            <div className="faq__item" data-reveal>
-              <dt>How fast will I hear back?</dt>
-              <dd>Steve reads and answers messages himself, usually within one business day. There&apos;s no ticketing queue or account-manager relay in between.</dd>
-            </div>
-            <div className="faq__item" data-reveal>
-              <dt>Is the initial scan actually free, or is that a sales pitch?</dt>
-              <dd dangerouslySetInnerHTML={{ __html: 'It&apos;s a real look at your site&apos;s technical health and AI visibility, not a scripted pitch deck. Prefer a structured version of that same conversation? <a href="/onboarding">Start the five-step questionnaire</a> instead.' }} />
-            </div>
-          </dl>
+          <a href="/onboarding" className="mw-navy-banner__btn">
+            Schedule a Consultation
+          </a>
         </div>
       </section>
-
-      <section className="cta section" id="get-in-touch">
-        <div className="container container--narrow">
-          <h2 className="cta__title" data-split>Email or call — Steve reads and answers both himself.</h2>
-          <div className="cta__actions" data-reveal>
-            <a href={`mailto:${CONTACT.email}`} className="btn btn--solid btn--big">{CONTACT.email}</a>
-            <a href={CONTACT.phoneHref} className="btn btn--ghost btn--big">{CONTACT.phone}</a>
-          </div>
-        </div>
-      </section>
-
     </main>
   );
 }

@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="mw-footer__links">
               <a href="/services">Legal &amp; Professional Services</a>
               <a href="/work/smile-center-dentistry">Healthcare &amp; Dental</a>
-              <a href="/work/remodelmepros">Home &amp; Building Services</a>
+              <a href="/work/remodel-me-pros">Home &amp; Building Services</a>
               <a href="/services">B2B &amp; E-Commerce</a>
             </div>
           </div>

@@ -1,7 +1,3 @@
-
-// Visible breadcrumb trail + BreadcrumbList structured data.
-// items: [{ label, href }] — the current page is the last item (no href).
-
 const BASE_URL = 'https://www.gobiya.com';
 
 export default function Breadcrumbs({ items }) {
@@ -15,16 +11,28 @@ export default function Breadcrumbs({ items }) {
       ...(item.href ? { item: `${BASE_URL}${item.href}` } : {}),
     })),
   };
+
   return (
-    <nav className="crumbs" aria-label="Breadcrumb">
+    <nav className="mw-breadcrumbs-bar" aria-label="Breadcrumb">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ol className="crumbs__list">
-        {items.map((item) => (
-          <li key={item.label} className="crumbs__item">
-            {item.href ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
-          </li>
-        ))}
-      </ol>
+      <div className="container">
+        <ol className="mw-breadcrumbs__list">
+          {items.map((item, idx) => (
+            <li key={item.label} className="mw-breadcrumbs__item">
+              {idx > 0 && <span className="mw-breadcrumbs__sep">&gt;</span>}
+              {item.href ? (
+                <a href={item.href} className="mw-breadcrumbs__link">
+                  {item.label}
+                </a>
+              ) : (
+                <span className="mw-breadcrumbs__current" aria-current="page">
+                  {item.label}
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
     </nav>
   );
 }

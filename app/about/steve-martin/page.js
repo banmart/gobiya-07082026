@@ -1,8 +1,6 @@
-import HeroQuickForm from '../../../components/HeroQuickForm';
-import TopicMarquee from '../../../components/TopicMarquee';
 import Image from 'next/image';
-import { buildMetadata } from '../../../lib/meta';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
   title: 'Steve Martin | Los Angeles SEO Expert & Founder',
@@ -11,135 +9,123 @@ export const metadata = buildMetadata({
   path: '/about/steve-martin',
 });
 
+const STEVE_TOPICS = [
+  {
+    id: 'biography',
+    title: 'Biography & Founder Background',
+    desc: 'Steve grew up in Glendale, CA, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after over a decade spent in web development and search engineering.',
+  },
+  {
+    id: 'philosophy',
+    title: 'Search Philosophy',
+    desc: '“Every update since Panda has punished the same thing, in a different disguise: sites that were built for search engines instead of the people using them.”',
+  },
+  {
+    id: 'specialties',
+    title: 'Core Specializations',
+    desc: 'Technical SEO & SSR rendering, Google manual penalty & algorithm recovery, Core Web Vitals performance tuning, and Generative Engine Optimization (GEO) for ChatGPT and Perplexity.',
+  },
+  {
+    id: 'timeline',
+    title: 'Career Timeline (1996 – Present)',
+    desc: 'Over 25 years of tracking search shifts: Glendale College (1996), AT&T WorldNet & Webcastr (1996-2010), Gobiya Founded (2010), LLC Incorporated (2012), Google Partner Certification (2015-19), AI Search Visibility (2024-Present).',
+  },
+];
+
 export default function SteveMartinPage() {
   return (
     <main id="top">
+      {/* ══ 1. Clean Breadcrumb Bar ══ */}
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about' },
+        { label: 'Steve Martin' },
+      ]} />
 
-      
-      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
-        <div className="container seo-hero__grid">
-          <div>
-            
-        
-          <div>
-            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'steve-martin' }]} />
-            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Twenty-five years of watching search change, and adapting every time.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Founder and Principal of Gobiya. A career spent in web development and search, close enough to the ground to have tracked and adapted to every major shift in how Google ranks pages.</p>
-        
-          </div>
-          </div>
-          <div>
-            <HeroQuickForm />
-          </div>
-        </div>
-      </section>
-      <TopicMarquee topics={["25+ Years In Search", "Google Algorithm Recovery", "Founder & Principal", "Manual Penalty Specialist", "Los Angeles Search Native"]} />
-
-
-
-      {/* ══════════ Founder ══════════ */}
-      <section className="founder section section--tint" id="founder">
-        <div className="container founder__grid">
-          <div className="founder__portrait" data-reveal>
-            <Image src="/assets/img/steve-portrait.webp" alt="Steve Martin, founder of Gobiya" fill sizes="(max-width: 768px) 90vw, 42vw" priority />
-          </div>
-          <div className="founder__text">
-            <h2 className="founder__name" data-reveal>Steve Martin</h2>
-            <p className="founder__role" data-reveal>Gobiya, Los Angeles</p>
-            <p className="founder__bio" data-reveal>Steve grew up in Glendale, CA, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after more than a decade already spent in web development and search, including time at AT&amp;T WorldNet and Webcastr.com. Gobiya was incorporated as an LLC in 2012 and earned Google Partner certification from 2015 through 2019. Steve works directly with clients rather than handing engagements off to an account team.</p>
-            <a href="/contact" className="link-arrow" data-reveal>Talk to Steve<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════ Philosophy ══════════ */}
-      <section className="about section" id="philosophy">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small" data-split>“Every update since Panda has punished the same thing, in a different disguise: sites that were built for search engines instead of the people using them.”</h2>
-        </div>
-      </section>
-
-      {/* ══════════ Specialties ══════════ */}
-      <section className="section section--tint" id="specialties">
-        <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-        </div>
+      {/* ══ 2. Subhero Dark Banner ══ */}
+      <section className="mw-subhero">
         <div className="container">
-          <div className="capability-grid">
-            <div className="capability-card" data-reveal>
-              <span className="capability-card__tag">Diagnosis</span>
-              <h3 className="capability-card__title">Algorithm & penalty recovery</h3>
-              <p className="capability-card__desc">After years of watching Google&apos;s major updates happen in real time, Steve can spot a new one quickly — and knows which fixes actually help, versus which just look like busywork.</p>
-            </div>
-            <div className="capability-card" data-reveal>
-              <span className="capability-card__tag">Engineering</span>
-              <h3 className="capability-card__title">Technical SEO & development</h3>
-              <p className="capability-card__desc">Because Steve has hands-on experience building websites, his technical advice comes from someone who has actually built and launched the fix himself — not just pointed it out in a report.</p>
-            </div>
-            <div className="capability-card" data-reveal>
-              <span className="capability-card__tag">Frontier</span>
-              <h3 className="capability-card__title">Getting found by AI tools</h3>
-              <p className="capability-card__desc">The same close attention that tracked Google&apos;s biggest updates over the years is now focused on how tools like ChatGPT, Perplexity, and Google&apos;s AI answers decide what to recommend.</p>
-            </div>
-            <div className="capability-card" data-reveal>
-              <span className="capability-card__tag">Access</span>
-              <h3 className="capability-card__title">Direct client access</h3>
-              <p className="capability-card__desc">Every project is run by Steve personally — no account manager standing between strategy and the actual work, and no handoff to a junior team halfway through.</p>
-            </div>
-          </div>
+          <h1 className="mw-subhero__title">Steve Martin — Founder &amp; Head of Strategy</h1>
+          <p className="mw-subhero__dek">
+            Twenty-five years of watching search change and adapting every time. A career spent in web development and search engineering, close enough to the ground to track every major Google shift.
+          </p>
         </div>
       </section>
 
-      {/* ══════════ Timeline ══════════ */}
-      <section className="numbers section" id="timeline">
-        <div className="container numbers__grid">
-          <div className="numbers__intro">
-            <p className="numbers__lede" data-reveal>A career spent adjusting to search, not fighting it.</p>
-            <a href="/about" className="link-arrow" data-reveal>The Gobiya story<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+      {/* ══ 3. Pillar Hierarchical Grid (Left Sidebar + Right Column) ══ */}
+      <div className="container">
+        <div className="mw-pillar-grid">
+          {/* Left Sidebar Index */}
+          <aside className="mw-sidebar">
+            <div className="mw-sidebar__header">Steve Martin</div>
+            <nav className="mw-sidebar__nav">
+              {STEVE_TOPICS.map((t, idx) => (
+                <a
+                  key={t.id}
+                  href={`#${t.id}`}
+                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+                >
+                  {t.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+
+          {/* Right Content Area */}
+          <div className="mw-cluster-list">
+            {/* Bio Card Header */}
+            <div id="biography" className="mw-cluster-block" style={{ background: '#FFFFFF', padding: '1.75rem', border: '1px solid #E2E8F0', borderRadius: '4px' }}>
+              <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+                <Image
+                  src="/assets/img/sm.jpg"
+                  alt="Steve Martin"
+                  width={100}
+                  height={100}
+                  style={{ borderRadius: '4px', objectFit: 'cover' }}
+                />
+                <div>
+                  <h2 style={{ fontFamily: 'PT Serif, Georgia, serif', fontSize: '1.5rem', color: '#0B1E36', margin: 0 }}>
+                    Steve Martin
+                  </h2>
+                  <p style={{ fontSize: '0.9375rem', color: '#8B263E', fontWeight: '600', margin: '0.25rem 0 0 0' }}>
+                    Founder &amp; Principal Search Strategist
+                  </p>
+                  <p style={{ fontSize: '0.875rem', color: '#64748B', margin: '0.25rem 0 0 0' }}>
+                    Gobiya LLC · Los Angeles, California
+                  </p>
+                </div>
+              </div>
+              <p className="mw-cluster-block__desc">
+                {STEVE_TOPICS[0].desc} Steve works directly with every client rather than handing engagements off to an account manager or junior team.
+              </p>
+            </div>
+
+            {/* Sub-Clusters */}
+            {STEVE_TOPICS.slice(1).map((t) => (
+              <div key={t.id} id={t.id} className="mw-cluster-block">
+                <h2 className="mw-cluster-block__title">
+                  <a href="/about/approach">{t.title}</a>
+                </h2>
+                <p className="mw-cluster-block__desc">
+                  {t.desc}
+                </p>
+              </div>
+            ))}
           </div>
-          <ul className="numbers__list">
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Studies web design at Glendale College, growing up in Glendale, CA</span>
-              <span className="numbers__value">1996</span>
-            </li>
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Digital marketing and engineering roles, including AT&amp;T WorldNet and Webcastr.com</span>
-              <span className="numbers__value">1996–2010</span>
-            </li>
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Founds Gobiya in Los Angeles</span>
-              <span className="numbers__value">2010</span>
-            </li>
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Begins tracking every major Google algorithm shift, starting with Panda</span>
-              <span className="numbers__value">2011</span>
-            </li>
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Gobiya LLC incorporated</span>
-              <span className="numbers__value">2012</span>
-            </li>
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">Certified Google Partner</span>
-              <span className="numbers__value">2015–19</span>
-            </li>
-            <li className="numbers__item" data-reveal>
-              <span className="numbers__label">AI visibility and GEO added as a core specialization</span>
-              <span className="numbers__value">Now</span>
-            </li>
-          </ul>
+        </div>
+      </div>
+
+      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">
+            Work directly with the person doing the work
+          </h2>
+          <a href="/onboarding" className="mw-navy-banner__btn">
+            Schedule a Consultation
+          </a>
         </div>
       </section>
-
-      {/* ══════════ CTA ══════════ */}
-      <section className="cta section" id="contact">
-        <div className="container container--narrow">
-          <h2 className="cta__title" data-split>Work directly with the person who does the work.</h2>
-          <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Schedule a Consultation</a>
-            <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
-          </div>
-        </div>
-      </section>
-
     </main>
   );
 }

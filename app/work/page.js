@@ -1,9 +1,6 @@
-import HeroQuickForm from '../../components/HeroQuickForm';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
-import TopicMarquee from '../../components/TopicMarquee';
-import Chapter from '../../components/sections/Chapter';
-import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
   title: 'Our Work | Los Angeles SEO Client Results & Case Studies',
@@ -15,98 +12,82 @@ export const metadata = buildMetadata({
 export default function WorkPage() {
   return (
     <main id="top">
+      {/* ══ 1. Clean Breadcrumb Bar ══ */}
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work' }]} />
 
-      
-      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
-        <div className="container seo-hero__grid">
-          <div>
-            
-        
-          <div>
-            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'work' }]} />
-            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Los Angeles SEO Results &amp; Proven Client Success</h1>
-          </div>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>A sample of engagements across local service, healthcare, and B2B clients — each one measured against the same standard: traffic, rankings, and sales that actually moved.</p>
-          <div className="hero__ctas" data-reveal>
-            <a href="/onboarding" className="btn btn--solid">Start your own case study</a>
-            <a href="#cases" className="btn btn--ghost">See the work</a>
-          </div>
-        
-          </div>
-          <div>
-            <HeroQuickForm />
-          </div>
+      {/* ══ 2. Subhero Dark Banner ══ */}
+      <section className="mw-subhero">
+        <div className="container">
+          <h1 className="mw-subhero__title">Client Case Studies &amp; Search Wins</h1>
+          <p className="mw-subhero__dek">
+            A sample of engagements across local service, healthcare, property management, and B2B clients — each one measured against the same standard: verified organic traffic, rankings, and lead growth.
+          </p>
         </div>
       </section>
-      <TopicMarquee topics={["Search Console Evidence", "Verifiable Client Wins", "Traffic & Lead Growth", "E-Commerce & Local SEO", "Client Success Stories"]} />
 
+      {/* ══ 3. Pillar Hierarchical Grid (Left Sidebar + Right Column) ══ */}
+      <div className="container">
+        <div className="mw-pillar-grid">
+          {/* Left Sidebar Index */}
+          <aside className="mw-sidebar">
+            <div className="mw-sidebar__header">Case Study Index</div>
+            <nav className="mw-sidebar__nav">
+              {CASE_STUDIES.map((c, idx) => (
+                <a
+                  key={c.client}
+                  href={`#case-${idx}`}
+                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+                >
+                  {c.client}
+                </a>
+              ))}
+            </nav>
+          </aside>
 
-
-      {/* ══════════ Case studies ══════════ */}
-      <section className="section" id="cases">
-        <div className="container">
-          <Chapter n={1} label="Selected engagements" title="Every one measured against the same standard: traffic, rankings, and sales that actually moved." />
-          <div className="capability-grid" data-stagger>
-            {CASE_STUDIES.map((c) => (
-              <div className="capability-card" key={c.client}>
-                {c.media?.logo && (
-                  <div style={{ marginBottom: '1.25rem', height: '40px', display: 'flex', alignItems: 'center' }}>
-                    <img src={c.media.logo} alt={`${c.client} logo`} style={{ maxHeight: '100%', maxWidth: '140px', objectFit: 'contain' }} />
-                  </div>
-                )}
-                <a href={c.industryHref} className="capability-card__tag">{c.tag}</a>
-                <h3 className="capability-card__title">{c.study ? <a href={`/work/${c.slug}`}>{c.client}</a> : c.client}</h3>
-                <p className="capability-card__desc" style={{ color: 'var(--dark)', fontWeight: 550, marginBottom: '0.6rem' }}>{c.result}</p>
-                <p className="capability-card__desc">{c.desc}</p>
-                {c.study ? (
-                  <a href={`/work/${c.slug}`} className="link-arrow" style={{ marginTop: '1.25rem' }}>Read the case study<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
-                ) : (
-                  <a href={c.outcomeHref} className="link-arrow" style={{ marginTop: '1.25rem' }}>See {c.tag}<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
-                )}
+          {/* Right Content Area (Case Study Sub-Clusters) */}
+          <div className="mw-cluster-list">
+            {CASE_STUDIES.map((c, idx) => (
+              <div key={c.client} id={`case-${idx}`} className="mw-cluster-block">
+                <div style={{ fontSize: '0.8125rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#8B263E', marginBottom: '0.35rem' }}>
+                  {c.tag}
+                </div>
+                <h2 className="mw-cluster-block__title">
+                  {c.study ? <a href={`/work/${c.slug}`}>{c.client}</a> : c.client}
+                </h2>
+                <p className="mw-cluster-block__desc" style={{ color: '#0B1E36', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  {c.result}
+                </p>
+                <p className="mw-cluster-block__desc">
+                  {c.desc}
+                </p>
+                <div style={{ marginTop: '1rem' }}>
+                  {c.study ? (
+                    <a href={`/work/${c.slug}`} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
+                      Read Case Study &rarr;
+                    </a>
+                  ) : (
+                    <a href={c.outcomeHref} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
+                      See {c.tag} &rarr;
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ══════════ Client sectors marquee ══════════ */}
-      <section className="portfolio section section--tint" id="clients">
-        <div className="container container--narrow portfolio__head">
-          <Chapter n={2} label="Who we've built for" title="Local service businesses and B2B companies, built to show up in Google and get recommended by AI." />
-        </div>
-        <div className="marquee" aria-hidden="true">
-          <div className="marquee__track">
-            <span className="marquee__item">SmileCenter.com</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">American Livescan</span><i>✳</i>
-            <span className="marquee__item">Safety-Centric.com</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">QuickPassAiD.Com</span><i>✳</i>
-            <span className="marquee__item">The ARK</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">RemodelMePros.com</span><i>✳</i>
-          </div>
-        </div>
-        <div className="marquee marquee--reverse" aria-hidden="true">
-          <div className="marquee__track">
-            <span className="marquee__item marquee__item--serif">The Healing Metta</span><i>✳</i>
-            <span className="marquee__item">Trusted Home Contractors</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">TotalCapitalInc.Com</span><i>✳</i>
-            <span className="marquee__item">Tidder</span><i>✳</i>
-            <span className="marquee__item marquee__item--serif">QuickPassAiD.Com</span><i>✳</i>
-            <span className="marquee__item">American Livescan</span><i>✳</i>
-          </div>
+      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">
+            Become the next verified result on this page
+          </h2>
+          <a href="/onboarding" className="mw-navy-banner__btn">
+            Schedule a Consultation
+          </a>
         </div>
       </section>
-
-      {/* ══════════ CTA ══════════ */}
-      <section className="cta section" id="contact">
-        <div className="container container--narrow">
-          <h2 className="cta__title" data-split>Become the next result on this page.</h2>
-          <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Schedule a Consultation</a>
-            <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
-          </div>
-        </div>
-      </section>
-
     </main>
   );
 }
