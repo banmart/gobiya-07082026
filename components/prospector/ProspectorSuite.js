@@ -270,7 +270,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     }
   }
 
-  const promptPreviewText = `"MANDATORY: EVERY RETURNED LEAD MUST HAVE A DIRECT BUSINESS EMAIL ADDRESS. Search the live web for ${limit} active businesses in ${location || '[Location]'}${keyword ? ` matching "${keyword}"` : ''}. Extract authentic direct email addresses (contact@, sales@, info@, owner email), contact names, phone numbers, and websites for Q3 Growth Bundle cold email drip outreach."`;
+  const promptPreviewText = `"MANDATORY: EVERY RETURNED LEAD MUST HAVE A DIRECT BUSINESS EMAIL ADDRESS. Search the live web for ${limit} active businesses in ${location || '[Location]'}${keyword ? ` matching "${keyword}"` : ''}. Extract authentic direct email addresses (contact@, sales@, info@, owner email), contact names, and phone numbers."`;
 
   // Pagination calculation
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
