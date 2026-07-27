@@ -9,8 +9,6 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [limit, setLimit] = useState(10);
-  const [apiKey, setApiKey] = useState('');
-  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
   const [scouting, setScouting] = useState(false);
   const [scoutResults, setScoutResults] = useState(null);
   const [scoutSource, setScoutSource] = useState('');
@@ -112,7 +110,6 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
           industry: keyword.trim(),
           location: location.trim() || 'Los Angeles, CA',
           limit,
-          apiKey: apiKey.trim() || undefined,
         }),
       });
 
@@ -377,20 +374,6 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                   max="50"
                   value={limit}
                   onChange={(e) => setLimit(parseInt(e.target.value, 10) || 10)}
-                />
-              </div>
-
-              <div className="auth__field">
-                <label className="auth__label" htmlFor="perplexity-key">
-                  PERPLEXITY API KEY {process.env.PERPLEXITY_API_KEY ? '(Pre-configured via env)' : '(Required for live web search)'}
-                </label>
-                <input
-                  id="perplexity-key"
-                  className="auth__input"
-                  type="password"
-                  placeholder="pplx-..."
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
                 />
               </div>
 
