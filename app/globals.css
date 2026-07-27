@@ -4776,8 +4776,13 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   border: 1px solid #E2E8F0;
   border-radius: 2px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  position: sticky;
-  top: calc(var(--nav-h) + 1.5rem);
+  position: relative;
+}
+@media (min-width: 64rem) {
+  .mw-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 1.5rem);
+  }
 }
 
 .mw-sidebar__header {
