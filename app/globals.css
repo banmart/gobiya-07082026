@@ -3442,3 +3442,441 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 @media (prefers-reduced-motion: reduce) {
   .article__toc a { transition: none; }
 }
+
+/* ═══════════ Morgan & Westfield Exact Homepage Layout & Design System ═══════════ */
+
+/* Top Navy Announcement Bar */
+.mw-topbar {
+  background: #0B1E36;
+  color: #FFFFFF;
+  padding-block: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.mw-topbar__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mw-topbar__text {
+  font-weight: 400;
+  color: #E2E8F0;
+}
+
+.mw-topbar__btn {
+  background: #F5B83D;
+  color: #0B1E36;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.mw-topbar__btn:hover {
+  background: #e5a72b;
+  transform: translateY(-1px);
+}
+
+/* Hero with Floating White Card */
+.mw-hero {
+  position: relative;
+  min-height: 520px;
+  background-size: cover;
+  background-position: center right;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.mw-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11,30,54,0.3) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+}
+
+.mw-hero__card {
+  position: relative;
+  z-index: 2;
+  background: #FFFFFF;
+  padding: clamp(2.5rem, 5vw, 3.5rem);
+  max-width: 31rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+.mw-hero__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #0B1E36;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.mw-hero__excerpt {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.mw-hero__btn {
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mw-hero__btn:hover {
+  background: #1E3A8A;
+  transform: translateY(-1px);
+}
+
+/* Trust Bar / Logos Section */
+.mw-trust {
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.mw-trust__heading {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(1.75rem, 3vw, 2.375rem);
+  font-weight: 400;
+  color: #0B1E36;
+  margin-bottom: 2.5rem;
+}
+
+.mw-trust__logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.mw-trust__logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.mw-trust__logo-item:hover {
+  opacity: 1;
+}
+
+.mw-navy-divider {
+  height: 6px;
+  background: #0B1E36;
+  width: 100%;
+}
+
+/* Simple / Differentiation Section */
+.mw-simple {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  background: #FAFAFA;
+}
+
+.mw-simple__heading {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  color: #0B1E36;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.mw-simple__heading em {
+  font-style: normal;
+  color: #8B263E;
+}
+
+.mw-simple__intro {
+  max-width: 52rem;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+}
+
+.mw-simple__intro em {
+  font-style: italic;
+}
+
+.mw-simple__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.mw-simple__col-title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 1rem;
+}
+
+.mw-simple__col-desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #475569;
+}
+
+/* By the Numbers Stats Bar */
+.mw-stats {
+  background: #0B1E36;
+  color: #FFFFFF;
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+}
+
+.mw-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.mw-stats__num {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.mw-stats__num small {
+  font-size: 1.25rem;
+  font-weight: 400;
+
+}
+
+.mw-stats__label {
+  font-size: 0.875rem;
+  color: #CBD5E1;
+  font-weight: 400;
+}
+
+/* Meet Your Point Person */
+.mw-person {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.mw-person__heading {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  color: #8B263E;
+  margin-bottom: 3rem;
+}
+
+.mw-person__card {
+  max-width: 50rem;
+  margin-inline: auto;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 40rem) {
+  .mw-person__card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .mw-person__avatar {
+    margin-inline: auto;
+  }
+}
+
+.mw-person__avatar {
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mw-person__name {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8B263E;
+  margin-bottom: 0.25rem;
+}
+
+.mw-person__role {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 1.25rem;
+}
+
+.mw-person__bio {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.mw-person__bio em {
+  font-style: italic;
+}
+
+.mw-person__btn-wrap {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.mw-person__btn {
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+
+.mw-person__btn:hover {
+  background: #1E3A8A;
+}
+
+/* Full Width Navy Banner */
+.mw-navy-banner {
+  background: #0B1E36;
+  color: #FFFFFF;
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.mw-navy-banner__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 1.75rem;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.mw-navy-banner__btn {
+  background: #F5B83D;
+  color: #0B1E36;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.875rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+
+.mw-navy-banner__btn:hover {
+  background: #e5a72b;
+}
+
+/* 4-Step Chevron Process Section */
+.mw-steps {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  background: #FAFAFA;
+}
+
+.mw-steps__sub {
+  font-size: 1.0625rem;
+  color: #64748B;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.mw-steps__heading {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  color: #8B263E;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.mw-steps__dek {
+  font-size: 1.0625rem;
+  color: #475569;
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+}
+
+.mw-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.mw-step-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chevron Header */
+.mw-step-card__header {
+  position: relative;
+  background: #CBD5E1;
+  color: #0B1E36;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 2px;
+  clip-path: polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%);
+  margin-bottom: 1.25rem;
+}
+
+.mw-step-card:nth-child(2) .mw-step-card__header { background: #CBD5E1; }
+.mw-step-card:nth-child(3) .mw-step-card__header { background: #94A3B8; color: #0B1E36; }
+.mw-step-card:nth-child(4) .mw-step-card__header { background: #64748B; color: #FFFFFF; }
+
+.mw-step-card__desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.mw-steps__btn-wrap {
+  text-align: center;
+}
+
+.mw-steps__btn {
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+
+.mw-steps__btn:hover {
+  background: #1E3A8A;
+}
+
