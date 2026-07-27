@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>The Art of AI Search — Gobiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1E36;
+    --carmine: #8B263E;
+    --gold: #F5B83D;
+    --paper: #FAFAFA;
+    --ink: #1B2733;
+    --hint: rgba(11, 30, 54, 0.72);
+    --border: rgba(11, 30, 54, 0.14);
+    --font-serif: 'PT Serif', Georgia, serif;
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 10.6pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.8in 0.85in 0.65in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; margin: 0; color: var(--navy); }
+  p { margin: 0 0 0.7em; }
+  a { color: var(--carmine); }
+
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--carmine);
+    margin-bottom: 0.5em;
+  }
+
+  .rule-gold { height: 3px; width: 48px; background: var(--gold); border: none; margin: 0.9em 0 1.1em; }
+
+  .footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.6pt;
+    color: var(--hint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 0.16in;
+  }
+  .footer__brand { display: flex; align-items: center; gap: 6px; }
+  .footer__logo { width: 12px; height: 12px; flex: none; }
+
+  .checklist { list-style: none; margin: 0; padding: 0; }
+  .checklist li {
+    display: flex;
+    gap: 0.6em;
+    align-items: flex-start;
+    margin-bottom: 0.65em;
+    font-size: 10pt;
+  }
+  .checklist .box {
+    flex: none;
+    width: 13px;
+    height: 13px;
+    margin-top: 2px;
+    border: 1.5px solid var(--navy);
+    border-radius: 2px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.2pt; margin: 0.6em 0 1em; }
+  th, td { text-align: left; padding: 0.5em 0.6em; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-family: var(--font-sans); font-weight: 600; color: var(--navy); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1.5px solid var(--navy); }
+
+  .stat-line { font-family: var(--font-serif); font-size: 15pt; color: var(--carmine); font-weight: 700; }
+
+  .content-title { font-size: 21pt; margin-bottom: 0.15em; }
+  .content-sub { font-size: 10pt; color: var(--hint); margin-bottom: 1.1em; font-style: italic; }
+
+  .platform-name { font-size: 19pt; margin-bottom: 0.05em; }
+  .platform-meta { display:flex; gap: 1.6em; margin: 0.7em 0 1em; }
+  .platform-meta div { font-size: 8.5pt; color: var(--hint); text-transform: uppercase; letter-spacing: 0.04em; }
+  .platform-meta strong { display:block; font-family: var(--font-serif); font-size: 15pt; color: var(--navy); text-transform: none; letter-spacing: 0; margin-top: 2px; }
+
+  .two-col { display: flex; gap: 1.2in; flex: 1; }
+  .two-col > div { flex: 1; }
+
+  .pillar-num { font-family: var(--font-serif); font-size: 46pt; color: var(--gold); line-height: 1; margin-bottom: 0.05em; }
+
+  .phase-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 7.8pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3em 0.7em;
+    margin-bottom: 0.8em;
+  }
+
+  .takeaway-list li { margin-bottom: 0.9em; font-size: 10.5pt; }
+  .takeaway-list { list-style: none; padding: 0; margin: 0; counter-reset: t; }
+  .takeaway-list li { counter-increment: t; padding-left: 1.6em; position: relative; }
+  .takeaway-list li::before {
+    content: counter(t);
+    position: absolute; left: 0; top: 0;
+    font-family: var(--font-serif); color: var(--carmine); font-weight: 700; font-size: 11pt;
+  }
+
+  /* ---- Cover ---- */
+  .cover {
+    background: var(--navy);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+  .cover__mark { margin-bottom: 1.4in; }
+  .cover__kicker { font-family: var(--font-sans); font-size: 10pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6em; }
+  .cover__title { font-family: var(--font-serif); font-size: 46pt; line-height: 1.05; margin-bottom: 0.35em; color: #fff; }
+  .cover__tag { font-size: 12.5pt; color: rgba(255,255,255,0.78); max-width: 5in; margin: 0 auto 1.6in; line-height: 1.5; }
+  .cover__author { font-size: 9.5pt; color: rgba(255,255,255,0.6); letter-spacing: 0.03em; }
+  .cover__author strong { color: #fff; }
+
+  /* ---- TOC ---- */
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55em 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11pt;
+  }
+  .toc-list .num { font-family: var(--font-serif); color: var(--carmine); font-size: 10.5pt; }
+  .toc-list .pg { font-family: var(--font-serif); color: var(--hint); }
+
+  /* ---- About / CTA ---- */
+  .cta-page { background: var(--navy); color: #fff; justify-content: center; }
+  .cta-page h1 { color: #fff; }
+  .cta-page .rule-gold { background: var(--gold); }
+  .cta-page a { color: var(--gold); }
+  .cta-contact { margin-top: 1.4em; font-size: 11.5pt; }
+  .cta-contact strong { display:block; font-family: var(--font-serif); font-size: 16pt; margin-bottom: 0.2em; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<section class="page cover">
+  <div class="cover__mark">
+    <svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="8" width="7" height="15" fill="#F5B83D"/>
+      <rect x="8" y="8" width="15" height="7" fill="#F5B83D"/>
+      <rect x="33" y="25" width="7" height="15" fill="#F5B83D"/>
+      <rect x="25" y="33" width="15" height="7" fill="#F5B83D"/>
+      <path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+  <div class="cover__kicker">Gobiya Technical Series</div>
+  <h1 class="cover__title">The Art of<br>AI Search</h1>
+  <p class="cover__tag">The complete guide to search &amp; AI visibility for small and medium businesses</p>
+  <div class="cover__author">Written by <strong>Steve Martin</strong>, Founder of Gobiya</div>
+</section>
+
+<!-- PAGE 2 — TOC -->
+<section class="page">
+  <div class="kicker">Contents</div>
+  <h1 class="content-title">Table of Contents</h1>
+  <hr class="rule-gold">
+  <ul class="toc-list">
+    <li><span><span class="num">01</span>&nbsp;&nbsp;Why AI Search Changes Everything</span><span class="pg">3</span></li>
+    <li><span><span class="num">02</span>&nbsp;&nbsp;How Every Major AI Platform Reads You</span><span class="pg">5</span></li>
+    <li><span><span class="num">03</span>&nbsp;&nbsp;The Four-Pillar Framework</span><span class="pg">11</span></li>
+    <li><span><span class="num">04</span>&nbsp;&nbsp;Your Self-Audit Checklist</span><span class="pg">16</span></li>
+    <li><span><span class="num">05</span>&nbsp;&nbsp;The 90-Day Action Plan</span><span class="pg">18</span></li>
+    <li><span><span class="num">06</span>&nbsp;&nbsp;Key Takeaways</span><span class="pg">21</span></li>
+    <li><span><span class="num">07</span>&nbsp;&nbsp;About Gobiya</span><span class="pg">22</span></li>
+  </ul>
+</section>
+
+<!-- PAGE 3 — INTRO -->
+<section class="page">
+  <div class="kicker">Chapter 01</div>
+  <h1 class="content-title">Why AI Search Changes Everything</h1>
+  <hr class="rule-gold">
+  <p>More and more people now get their answer straight from an AI tool — ChatGPT, Perplexity, Google's AI Overviews — before they ever click through to a website. They ask a real question, in plain language, and they get a real answer back, often with two or three sources named alongside it.</p>
+  <p>That's a different game than the one most businesses have been playing. For twenty-five years, "showing up online" meant ranking in the top few blue links on a search results page. Now, a growing share of buyers never see that page of links at all. They see a single written answer, and either your business is named inside it, or it isn't.</p>
+  <p class="stat-line">Less than 10% of businesses actually capture top ChatGPT and Google recommendations.</p>
+  <p>Think about what that means. If a meaningful share of your future leads is going to come from someone asking an AI assistant "who should I hire for this," then mastering how those tools decide who to recommend is one of the most important decisions your business will make this year.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>3</span>
+  </div>
+</section>
+
+<!-- PAGE 4 — INTRO CONT'D -->
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">The Good News: This Is Learnable</h2>
+  <hr class="rule-gold">
+  <p>None of this is luck, and none of it requires a total rebuild of your website. AI tools decide who to recommend using signals that are consistent, checkable, and — most importantly — fixable. The businesses winning AI citations today aren't necessarily the biggest names in their industry. They're the ones whose sites are easy for a machine to read, whose facts are clearly stated, and whose trustworthiness is easy to verify.</p>
+  <p>This guide walks through exactly what that looks like in practice. We'll cover:</p>
+  <ul class="takeaway-list">
+    <li>How the five major AI platforms — Google AI Overviews, ChatGPT, Perplexity, Gemini, and Claude — each decide what to cite, and why they don't all behave the same way.</li>
+    <li>The four-pillar framework we use with every Gobiya client: Technical Foundation, Entity &amp; Structured Data, Citable Content, and Trust &amp; Authority.</li>
+    <li>A self-audit checklist you can run against your own site today, with no tools required beyond your browser.</li>
+    <li>A realistic 90-day plan for closing the gap, phase by phase.</li>
+  </ul>
+  <p>Read it in order the first time through — each pillar builds on the one before it. Then keep it on hand as a working checklist as you make changes.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>4</span>
+  </div>
+</section>
+
+<!-- PAGE 5 — PLATFORMS OVERVIEW -->
+<section class="page">
+  <div class="kicker">Chapter 02</div>
+  <h1 class="content-title">How Every Major AI Platform Reads You</h1>
+  <hr class="rule-gold">
+  <p>Every AI tool a customer might ask reads your site a little differently — and rewards a different set of signals. Understanding those differences is what separates a real AI-visibility strategy from guesswork.</p>
+  <p>Most of these platforms work the same basic way: they don't crawl the entire web fresh for every question. Instead, they search an index of pages for the passages that best match the question, hand a handful of those passages to the model, and ask it to write an answer, with sources attached. To be one of those sources, your page has to clear three checkpoints:</p>
+  <ul class="takeaway-list">
+    <li><strong>Retrieval —</strong> your page has to actually be crawled and indexed in the first place. A page that only renders after JavaScript runs can look empty to a bot that doesn't wait around.</li>
+    <li><strong>Extraction —</strong> the model has to be able to pull out a clear, self-contained answer. Long, indirect writing gets skipped in favor of a competitor's plainer paragraph.</li>
+    <li><strong>Attribution —</strong> the model decides whether it's confident enough in your page to actually name you as the source, rather than paraphrasing without credit.</li>
+  </ul>
+  <p>The next five pages break down how Google AI Overviews, ChatGPT, Perplexity, Gemini, and Claude each handle that pipeline differently.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>5</span>
+  </div>
+</section>
+
+<!-- PAGE 6 — GOOGLE AI OVERVIEWS -->
+<section class="page">
+  <div class="kicker">Platform 01 of 05</div>
+  <h1 class="platform-name">Google AI Overviews</h1>
+  <div class="platform-meta">
+    <div>Sources from<strong>Search Index + Knowledge Graph</strong></div>
+    <div>Avg. citations<strong>4.1 / query</strong></div>
+  </div>
+  <p>Google AI Overviews shows a summarized answer right above the regular results, pulled from a small handful of pages. It's live for the vast majority of informational and comparison searches today.</p>
+  <p><strong>What earns a citation here:</strong> Google AI Overviews leans heavily on pages that already rank well in Google's normal organic results. If your page isn't in the top 10 for the underlying question, it's unlikely to be pulled into the Overview either. On top of that, clean schema markup and a Google Business Profile that matches your website both make Google more confident recommending you.</p>
+  <p>In practice, this means AI Overviews visibility isn't really a separate project from good SEO — it's downstream of it. Fix your rankings, and you improve your odds here at the same time.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>6</span>
+  </div>
+</section>
+
+<!-- PAGE 7 — CHATGPT -->
+<section class="page">
+  <div class="kicker">Platform 02 of 05</div>
+  <h1 class="platform-name">ChatGPT</h1>
+  <div class="platform-meta">
+    <div>Sources from<strong>Bing Index + Live Web</strong></div>
+    <div>Avg. citations<strong>3.2 / query</strong></div>
+  </div>
+  <p>ChatGPT looks up real websites whenever someone asks it for a recommendation, comparison, or "best of" list — it isn't relying purely on what it learned during training.</p>
+  <p><strong>What earns a citation here:</strong> ChatGPT names fewer sources per answer than some of its competitors, which makes each one more valuable. It leans on domains with an established, recognizable reputation, and on writing that states a clear conclusion instead of hedging. Original data — a real number you measured yourself, not one you're repeating from somewhere else — carries a lot of weight.</p>
+  <p>If ChatGPT is a major channel for your industry's buyers, prioritize a small number of excellent, authoritative pages over a large number of thin ones.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>7</span>
+  </div>
+</section>
+
+<!-- PAGE 8 — PERPLEXITY -->
+<section class="page">
+  <div class="kicker">Platform 03 of 05</div>
+  <h1 class="platform-name">Perplexity</h1>
+  <div class="platform-meta">
+    <div>Sources from<strong>Multi-Engine + Live Web</strong></div>
+    <div>Avg. citations<strong>8.4 / query</strong></div>
+  </div>
+  <p>Perplexity is built entirely around quoting its sources. Every answer comes back footnoted, and it cites more than twice as many sources per question as ChatGPT does.</p>
+  <p><strong>What earns a citation here:</strong> because Perplexity names so many sources, it's also more willing to cite a smaller or newer site than Google or ChatGPT would, as long as the page gives a dense, specific, well-organized answer. Fresh content and a clear question-and-answer structure both perform noticeably well.</p>
+  <p>For smaller and mid-sized businesses, Perplexity is often the easiest of the five platforms to earn a citation on — you don't need decades of domain authority, you need a page that answers the question better than the ten other pages it's considering.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>8</span>
+  </div>
+</section>
+
+<!-- PAGE 9 — GEMINI -->
+<section class="page">
+  <div class="kicker">Platform 04 of 05</div>
+  <h1 class="platform-name">Google Gemini</h1>
+  <div class="platform-meta">
+    <div>Powers<strong>Google AI Mode &amp; Overviews</strong></div>
+    <div>Status<strong>Live</strong></div>
+  </div>
+  <p>Gemini is Google's own model, and it powers both the standalone Gemini app and Google's AI Mode search experience. It leans heavily on businesses Google already recognizes.</p>
+  <p><strong>What earns a citation here:</strong> the same signals that help you inside Google's own Knowledge Graph — a complete, accurate Google Business Profile, consistent business details across the web, and clear entity signals on your site — carry directly over to Gemini. If Google already understands who you are and what you do, Gemini tends to trust that understanding too.</p>
+  <p>This is the platform where getting your basic business facts consistent everywhere pays off the fastest.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>9</span>
+  </div>
+</section>
+
+<!-- PAGE 10 — CLAUDE -->
+<section class="page">
+  <div class="kicker">Platform 05 of 05</div>
+  <h1 class="platform-name">Claude</h1>
+  <div class="platform-meta">
+    <div>Common use<strong>Research &amp; Recommendations</strong></div>
+    <div>Status<strong>Growing</strong></div>
+  </div>
+  <p>Claude is increasingly used for research and business recommendations, and its use of real, live web sources has been growing steadily.</p>
+  <p><strong>What earns a citation here:</strong> Claude tends to favor the same fundamentals that make a page trustworthy to a careful human researcher — clear writing, verifiable facts, transparent sourcing, and a page that doesn't overstate its claims. There's no shortcut that works here and nowhere else; a page built around the four-pillar framework in this guide is well-positioned for Claude by default.</p>
+  <p>Expect Claude's share of AI-driven research traffic to keep growing — the fundamentals you build now will carry forward as it does.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>10</span>
+  </div>
+</section>
+
+<!-- PAGE 11 — FRAMEWORK INTRO -->
+<section class="page">
+  <div class="kicker">Chapter 03</div>
+  <h1 class="content-title">The Four-Pillar Framework</h1>
+  <hr class="rule-gold">
+  <p>Every AI platform in the last chapter behaves a little differently, but underneath, they all reward the same four things. This is the exact framework Gobiya uses on every client engagement, in this order — skip one, and the rest doesn't hold up.</p>
+  <ul class="takeaway-list">
+    <li><strong>Technical Foundation —</strong> if an AI tool can't even load your page properly, nothing else matters.</li>
+    <li><strong>Entity &amp; Structured Data —</strong> clear, behind-the-scenes details tell AI tools exactly what your business is.</li>
+    <li><strong>Citable Content —</strong> AI tools quote clear, direct answers, not typical marketing copy.</li>
+    <li><strong>Trust &amp; Authority —</strong> AI tools trust sources the rest of the web already trusts.</li>
+  </ul>
+  <p>The order matters because each pillar depends on the one before it. There's no point writing beautifully citable content if AI crawlers can't reach the page in the first place, and no point earning links to a page whose facts are still murky. Work through them in sequence.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>11</span>
+  </div>
+</section>
+
+<!-- PAGE 12 — PILLAR 01 -->
+<section class="page">
+  <div class="pillar-num">01</div>
+  <h1 class="content-title">Technical Foundation</h1>
+  <hr class="rule-gold">
+  <p>If an AI tool can't even load your page properly, nothing else on this list matters. This pillar fixes the basic technical problems — like pages that load up blank — before touching anything else.</p>
+  <p><strong>What this covers:</strong></p>
+  <ul class="takeaway-list">
+    <li>Pages Google and AI tools can actually read — content in the real HTML, not only after JavaScript runs.</li>
+    <li>Making sure AI crawlers are allowed in. Robots.txt rules that block GPTBot, PerplexityBot, ClaudeBot, or OAI-SearchBot remove you from AI search entirely, whether you meant to or not.</li>
+    <li>Faster loading speed, especially on mobile — slow pages get skipped by both human visitors and bots working within a time budget.</li>
+  </ul>
+  <p>This is the pillar with the clearest pass/fail answer: either a bot can read your page today, or it can't. Chapter 4 gives you a five-minute way to check.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>12</span>
+  </div>
+</section>
+
+<!-- PAGE 13 — PILLAR 02 -->
+<section class="page">
+  <div class="pillar-num">02</div>
+  <h1 class="content-title">Entity &amp; Structured Data</h1>
+  <hr class="rule-gold">
+  <p>Clear, behind-the-scenes details tell AI tools exactly what your business is, so they can confidently connect you to the right information instead of guessing.</p>
+  <p><strong>What this covers:</strong></p>
+  <ul class="takeaway-list">
+    <li>Clear business details behind the scenes — structured data (JSON-LD) that spells out your name, address, phone, services, and hours in a format machines parse reliably.</li>
+    <li>Getting recognized as one trusted business — the same name, address, and phone number, spelled the same way, on your website, your Google Business Profile, and every directory that lists you.</li>
+    <li>A homepage that a stranger — human or machine — could read once and know exactly what you do and who you serve.</li>
+  </ul>
+  <p>AI tools are far more willing to recommend a business they can describe with confidence. Ambiguity is the enemy here — inconsistent details across the web read as a red flag, even when nothing is technically wrong.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>13</span>
+  </div>
+</section>
+
+<!-- PAGE 14 — PILLAR 03 -->
+<section class="page">
+  <div class="pillar-num">03</div>
+  <h1 class="content-title">Citable Content</h1>
+  <hr class="rule-gold">
+  <p>AI tools quote clear, direct answers — not typical marketing copy. This pillar is about writing pages built around the exact questions your customers actually ask an AI assistant.</p>
+  <p><strong>What this covers:</strong></p>
+  <ul class="takeaway-list">
+    <li>Content AI tools actually want to quote — a direct, two-or-three-sentence answer right at the top of each section, before the supporting detail.</li>
+    <li>FAQ and comparison pages phrased as real questions ("How much does X cost in Los Angeles?") instead of generic headers ("Pricing Overview").</li>
+    <li>At least one original number or data point per page — something you measured yourself, not something repeated from somewhere else. AI tools consistently favor original data over generic advice.</li>
+  </ul>
+  <p>The test to apply while writing: if someone only read the first two sentences under your heading, would they already have their answer? If not, move the answer up.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>14</span>
+  </div>
+</section>
+
+<!-- PAGE 15 — PILLAR 04 -->
+<section class="page">
+  <div class="pillar-num">04</div>
+  <h1 class="content-title">Trust &amp; Authority</h1>
+  <hr class="rule-gold">
+  <p>AI tools trust sources that the rest of the web already trusts. Real links from other sites, and consistent business listings, are what earn that trust in the first place.</p>
+  <p><strong>What this covers:</strong></p>
+  <ul class="takeaway-list">
+    <li>Real links from other websites — not purchased directory placements, but genuine references from sites in your industry or community.</li>
+    <li>Media coverage and consistent listings that reinforce the same identity every other pillar has already established.</li>
+    <li>Reviews that are recent, plentiful, and consistent across every platform your customers check.</li>
+  </ul>
+  <p>This pillar takes the longest to build, and that's normal — trust is earned slowly everywhere, not just online. It's also why it comes last: there's little point earning authority for a page whose facts and content aren't solid yet.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>15</span>
+  </div>
+</section>
+
+<!-- PAGE 16 — CHECKLIST 1 -->
+<section class="page">
+  <div class="kicker">Chapter 04</div>
+  <h1 class="content-title">Your Self-Audit Checklist</h1>
+  <div class="content-sub">Part 1 of 2 — Technical Foundation &amp; Entity Data. No special tools required, just your browser.</div>
+  <hr class="rule-gold">
+  <p><strong>Technical Foundation</strong></p>
+  <ul class="checklist">
+    <li><span class="box"></span>Search "site:yourdomain.com" in Google — do your key pages actually show up in the results?</li>
+    <li><span class="box"></span>Open your robots.txt file directly in a browser — confirm GPTBot, PerplexityBot, ClaudeBot, and OAI-SearchBot are not blocked unless you intend to opt out.</li>
+    <li><span class="box"></span>View your homepage's page source (not the rendered page) — is your main content visible as real text, or is the source mostly empty tags waiting on JavaScript?</li>
+    <li><span class="box"></span>Test your top 5 pages on a slow mobile connection — do they load in a reasonable time?</li>
+  </ul>
+  <p><strong>Entity &amp; Structured Data</strong></p>
+  <ul class="checklist">
+    <li><span class="box"></span>Does your homepage carry Organization or LocalBusiness JSON-LD schema with your correct name, address, and phone?</li>
+    <li><span class="box"></span>Pull up your Google Business Profile next to your website — do the category, services, and hours actually match?</li>
+    <li><span class="box"></span>Search your business name plus your city — is your name, address, and phone number spelled identically everywhere it appears?</li>
+    <li><span class="box"></span>Would someone reading only your homepage, with no other context, know exactly what you do and who you serve?</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>16</span>
+  </div>
+</section>
+
+<!-- PAGE 17 — CHECKLIST 2 -->
+<section class="page">
+  <div class="content-sub">Part 2 of 2 — Citable Content &amp; Trust and Authority.</div>
+  <hr class="rule-gold">
+  <p><strong>Citable Content</strong></p>
+  <ul class="checklist">
+    <li><span class="box"></span>Pick your five most important pages — does each one answer its main question within the first two or three sentences?</li>
+    <li><span class="box"></span>Do you have an FAQ section phrased as the exact questions your customers would type into ChatGPT?</li>
+    <li><span class="box"></span>Have you published at least one original stat, survey result, or data point that a competitor couldn't simply copy?</li>
+    <li><span class="box"></span>Are your section headings written as real questions, rather than generic labels like "Overview" or "Benefits"?</li>
+  </ul>
+  <p><strong>Trust &amp; Authority</strong></p>
+  <ul class="checklist">
+    <li><span class="box"></span>Do genuine, independent websites in your industry or community link to you — not just paid directory listings?</li>
+    <li><span class="box"></span>Are your reviews recent (within the last few months) across every platform your customers actually use?</li>
+    <li><span class="box"></span>Has your business been mentioned in local press, an industry roundup, or a partner's site in the last year?</li>
+    <li><span class="box"></span>Have you refreshed your key stats, pages, and schema within the last 90 days?</li>
+  </ul>
+  <p style="margin-top:0.8em;">Any unchecked box is your starting point. The 90-day plan on the next page turns this checklist into a sequence.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>17</span>
+  </div>
+</section>
+
+<!-- PAGE 18 — 90-DAY PLAN 1 -->
+<section class="page">
+  <div class="kicker">Chapter 05</div>
+  <h1 class="content-title">The 90-Day Action Plan</h1>
+  <div class="content-sub">A realistic, phased rollout of the four-pillar framework.</div>
+  <hr class="rule-gold">
+  <div class="phase-tag">Days 1–30</div>
+  <h2 style="font-size:15pt; margin-bottom:0.4em;">Fix the Technical Foundation</h2>
+  <ul class="takeaway-list">
+    <li>Run the technical checks from Chapter 4 across your full site, not just the homepage.</li>
+    <li>Fix any robots.txt rules blocking AI crawlers, unless you're intentionally opting out.</li>
+    <li>Resolve pages that only render after JavaScript runs — server-rendered HTML should carry your core content.</li>
+    <li>Fix the Core Web Vitals issues that are also slowing down AI crawlers working within a time budget.</li>
+  </ul>
+  <p style="margin-top:0.6em;">By day 30, an AI crawler should be able to reach and read every page you actually care about.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>18</span>
+  </div>
+</section>
+
+<!-- PAGE 19 — 90-DAY PLAN 2 -->
+<section class="page">
+  <div class="phase-tag">Days 31–60</div>
+  <h2 style="font-size:15pt; margin-bottom:0.4em;">Build Entity Data &amp; Citable Content</h2>
+  <ul class="takeaway-list">
+    <li>Add or repair Organization, LocalBusiness, Article, and FAQPage schema across your top 20 revenue-driving pages.</li>
+    <li>Align every online listing — your Google Business Profile, directories, and social profiles — to the exact same name, address, and phone number.</li>
+    <li>Rewrite those same top 20 pages so each opens with a direct, two-to-three-sentence answer to its main question.</li>
+    <li>Add one real, original data point or statistic to each of those pages.</li>
+  </ul>
+  <p style="margin-top:0.6em;">By day 60, your most important pages should be both machine-readable and genuinely quotable.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>19</span>
+  </div>
+</section>
+
+<!-- PAGE 20 — 90-DAY PLAN 3 -->
+<section class="page">
+  <div class="phase-tag">Days 61–90</div>
+  <h2 style="font-size:15pt; margin-bottom:0.4em;">Earn Trust &amp; Authority</h2>
+  <ul class="takeaway-list">
+    <li>Start a light outreach effort toward genuine links and press mentions in your industry or community.</li>
+    <li>Keep collecting and responding to reviews across every platform your customers actually use.</li>
+    <li>Re-run your baseline AI-visibility check — ask ChatGPT, Perplexity, and Gemini the same buyer questions you started with, and compare the results.</li>
+    <li>Set a recurring 90-day reminder to refresh your stats, schema, and page content going forward.</li>
+  </ul>
+  <p style="margin-top:0.6em;">By day 90, you're not just more visible to AI tools today — you have a repeatable cadence for staying that way.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>20</span>
+  </div>
+</section>
+
+<!-- PAGE 21 — KEY TAKEAWAYS -->
+<section class="page">
+  <div class="kicker">Chapter 06</div>
+  <h1 class="content-title">Key Takeaways</h1>
+  <hr class="rule-gold">
+  <ul class="takeaway-list">
+    <li>AI tools now answer a growing share of buyer questions directly, without a click-through — and fewer than 10% of businesses currently capture the top recommendations.</li>
+    <li>Every major AI platform works from the same basic pipeline — retrieval, extraction, attribution — but weighs the signals differently, so a real strategy has to account for all five.</li>
+    <li>The four pillars build on each other in order: Technical Foundation, Entity &amp; Structured Data, Citable Content, then Trust &amp; Authority. Skipping one weakens the rest.</li>
+    <li>Original data and direct, upfront answers consistently outperform generic marketing copy in every platform we've covered.</li>
+    <li>This isn't a one-time project. The businesses that stay visible are the ones that keep their facts, schema, and content refreshed on a regular cadence.</li>
+    <li>You can run the self-audit in Chapter 4 today, for free, with nothing more than your own browser.</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · The Art of AI Search</span>
+    <span>21</span>
+  </div>
+</section>
+
+<!-- PAGE 22 — ABOUT / CTA -->
+<section class="page cta-page">
+  <div class="kicker" style="color:var(--gold);">About Gobiya</div>
+  <h1 style="font-size:24pt;">Be the Brand AI Recommends</h1>
+  <hr class="rule-gold">
+  <p style="color:rgba(255,255,255,0.82); max-width:5in;">Gobiya helps small and medium businesses get found, cited, and chosen — by search engines and by the AI tools a growing share of your customers ask first. We build the technical foundation, entity data, citable content, and trust signals covered in this guide, so you don't have to figure it out alone.</p>
+  <div class="cta-contact">
+    <strong>Ready to see where you stand?</strong>
+    Schedule a free consultation and we'll run your baseline AI-visibility check together.<br><br>
+    <a href="tel:+13237441338">323-744-1338</a> &nbsp;·&nbsp; <a href="https://gobiya.com">gobiya.com</a>
+  </div>
+  <div class="footer" style="border-top-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.55);">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#F5B83D"/><rect x="8" y="8" width="15" height="7" fill="#F5B83D"/><rect x="33" y="25" width="7" height="15" fill="#F5B83D"/><rect x="25" y="33" width="15" height="7" fill="#F5B83D"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/></svg>Gobiya · The Art of AI Search</span>
+    <span>22</span>
+  </div>
+</section>
+
+</body>
+</html>

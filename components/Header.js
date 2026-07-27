@@ -1,10 +1,25 @@
+'use client';
+
+import { useState } from 'react';
 import { LogoMark } from './Logo';
-import { NAV_ITEMS, SECONDARY_NAV, CONTACT } from '../lib/nav';
+import { MEGA_NAV, CONTACT } from '../lib/nav';
 
 export default function Header() {
+  const [activeMenuIndex, setActiveMenuIndex] = useState(null);
+
+  const handleMouseEnter = (idx) => {
+    setActiveMenuIndex(idx);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveMenuIndex(null);
+  };
+
+  const currentMega = activeMenuIndex !== null ? MEGA_NAV[activeMenuIndex] : null;
+
   return (
     <>
-      <header className="nav" id="nav">
+      <header className="nav" id="nav" onMouseLeave={handleMouseLeave}>
         {/* Top Navy Announcement Bar */}
         <div className="mw-topbar">
           <div className="container mw-topbar__inner">
@@ -22,13 +37,24 @@ export default function Header() {
             <LogoMark className="nav__logo-mark" size={30} />
             <span className="nav__logo-word">Gobiya</span>
           </a>
+
           <nav className="nav__links" aria-label="Primary">
-            {NAV_ITEMS.map((item) => (
-              <div className="nav__item" key={item.label}>
-                <a href={item.href} className="nav__link">{item.label}</a>
+            {MEGA_NAV.map((item, idx) => (
+              <div
+                className="nav__item"
+                key={item.label}
+                onMouseEnter={() => handleMouseEnter(idx)}
+              >
+                <a
+                  href={item.href}
+                  className={`nav__link ${activeMenuIndex === idx ? 'is-active' : ''}`}
+                >
+                  {item.label}
+                </a>
               </div>
             ))}
           </nav>
+
           <div className="nav__right">
             <a href="/onboarding" className="btn btn--pill nav__cta">Schedule a Consultation</a>
             <button className="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
@@ -36,24 +62,60 @@ export default function Header() {
             </button>
           </div>
         </div>
+
+        {/* Mega-Dropdown Panel */}
+        {currentMega && (
+          <div
+            className="mw-megamenu"
+            onMouseEnter={() => setActiveMenuIndex(activeMenuIndex)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="container">
+              <div className="mw-megamenu__grid">
+                {currentMega.columns.map((col, cIdx) => (
+                  <div key={cIdx} className="mw-megamenu__col">
+                    <div className="mw-megamenu__col-header">
+                      <span className="mw-megamenu__col-icon">
+                        {col.icon === 'user' && (
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        )}
+                        {col.icon === 'clipboard' && (
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                        )}
+                        {col.icon === 'briefcase' && (
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        )}
+                      </span>
+                      <span>{col.heading}</span>
+                    </div>
+
+                    <div className="mw-megamenu__items">
+                      {col.items.map((sub, sIdx) => (
+                        <a href={sub.href} key={sIdx} className="mw-megamenu__item">
+                          <div className="mw-megamenu__item-title">
+                            <span>{sub.title}</span>
+                            {sub.badge && (
+                              <span className="mw-megamenu__badge">{sub.badge}</span>
+                            )}
+                          </div>
+                          <p className="mw-megamenu__item-desc">{sub.desc}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Mobile overlay menu */}
       <div className="menu" id="menu" aria-hidden="true">
         <nav className="menu__links" aria-label="Mobile">
-          {NAV_ITEMS.map((item, i) => (
+          {MEGA_NAV.map((item, i) => (
             <div className="menu__block" key={item.label} style={{ '--i': i }}>
               <a href={item.href}>{item.label}</a>
-            </div>
-          ))}
-          {SECONDARY_NAV.map((group, gi) => (
-            <div className="menu__block menu__block--more" key={group.heading} style={{ '--i': NAV_ITEMS.length + gi }}>
-              <span className="menu__more-heading">{group.heading}</span>
-              <div className="menu__sublinks">
-                {group.items.map((sub) => (
-                  <a key={sub.href} href={sub.href}>{sub.label}</a>
-                ))}
-              </div>
             </div>
           ))}
         </nav>

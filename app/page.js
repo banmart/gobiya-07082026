@@ -243,7 +243,7 @@ export default function Home() {
                     — {item.name ? `${item.name}, ` : ''}{item.company}
                   </div>
                   <a href={item.href} className="mw-story-card__btn">
-                    Listen To Story
+                    Read More
                   </a>
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function Home() {
               </div>
 
               <div className="mw-book__actions">
-                <a href="/ai-visibility" className="mw-book__btn-solid">
+                <a href="/downloads/the-art-of-ai-search.pdf" className="mw-book__btn-solid" download>
                   Download Free Guide (PDF)
                 </a>
                 <a href="/insights" className="mw-hero__btn">

@@ -21,7 +21,8 @@
     "ad:build": "npm run ad:render && npm run ad:master",
     "ad:build:1x1": "npm run ad:render:1x1 && node scripts/master-fb-ad.mjs out/ads/gobiya-facebook-ad-1x1.mp4",
     "ad:build:9x16": "npm run ad:render:9x16 && node scripts/master-fb-ad.mjs out/ads/gobiya-facebook-ad-9x16.mp4",
-    "ad:build:all": "npm run ad:build && npm run ad:build:1x1 && npm run ad:build:9x16"
+    "ad:build:all": "npm run ad:build && npm run ad:build:1x1 && npm run ad:build:9x16",
+    "guide:pdf": "node scripts/generate-ai-search-pdf.mjs"
   },
   "keywords": [],
   "author": "",

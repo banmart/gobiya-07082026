@@ -46,9 +46,9 @@ export default function Footer() {
             <h4 className="mw-footer__col-title">Resources</h4>
             <div className="mw-footer__links">
               <a href="/insights">Knowledge Base</a>
+              <a href="/glossary">Glossary</a>
               <a href="/seo-myths">SEO Myths Game</a>
               <a href="/ai-visibility">AI Visibility Guide</a>
-              <a href="/insights">Gobiya Insights</a>
               <a href="/tools">Free Tools Hub</a>
             </div>
           </div>
