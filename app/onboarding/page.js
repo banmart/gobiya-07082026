@@ -28,9 +28,6 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/remodelmepros.webp', alt: 'RemodelMePros.com' },
   { src: '/assets/img/safetycentric-logo.png', alt: 'Safety-Centric.com' },
   { src: '/assets/img/dgplumbing-logo.webp', alt: 'DGPlumbingandRooter.com' },
-  { src: '/assets/img/mtw-logo-mark-nFG9LpnH.webp', alt: 'MyTrustWills.Com' },
-  { src: '/assets/img/quickpass-logo.webp', alt: 'QuickPassAiD.Com' },
-  { src: '/assets/img/trusted-logo.webp', alt: 'Trusted Home Contractors' },
 ];
 
 export default function OnboardingPage() {
@@ -55,7 +52,6 @@ export default function OnboardingPage() {
 
       <TopicMarquee topics={["5-Step Questionnaire", "Website Scan Intake", "Tailored Proposal", "Direct Founder Review", "Fast Turnaround"]} />
 
-
       <section className="section section--tint stepper-section">
         <div className="container container--narrow">
           <Suspense fallback={<div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>Loading form...</div>}>
@@ -64,20 +60,29 @@ export default function OnboardingPage() {
         </div>
       </section>
 
-      {/* ══ Client logo marquee, directly above the global footer ══ */}
-      <section className="logo-strip section" aria-label="Selected clients">
-        <div className="container container--narrow portfolio__head">
-        </div>
-        <div className="marquee" aria-hidden="true">
-          <div className="marquee__track">
-            {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((l, i) => (
-              <span className="logo-strip__item" key={i}>
-                <Image src={l.src} alt={i < CLIENT_LOGOS.length ? l.alt : ''} width={220} height={80} loading="lazy" />
-              </span>
+      {/* ══ Client Logo Trust Bar ══ */}
+      <section className="mw-trust">
+        <div className="container">
+          <h2 className="mw-trust__heading">
+            The SEO Firm Trusted by Hundreds of Entrepreneurs
+          </h2>
+          <div className="mw-trust__logos">
+            {CLIENT_LOGOS.map((logo, idx) => (
+              <div key={idx} className="mw-trust__logo-item">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={180}
+                  height={65}
+                  style={{ objectFit: 'contain', maxHeight: '55px', width: 'auto' }}
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </div>
       </section>
+      <div className="mw-navy-divider" />
 
     </main>
   );
