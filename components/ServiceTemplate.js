@@ -55,7 +55,7 @@ export default function ServiceTemplate({ service }) {
             {service.capabilities?.map((c, idx) => (
               <div key={idx} id={`capability-${idx}`} className="mw-cluster-block">
                 <h2 className="mw-cluster-block__title">
-                  <a href="/onboarding">{c.title}</a>
+                  <a href={c.href ?? '/glossary'}>{c.title}</a>
                 </h2>
                 <p className="mw-cluster-block__desc">
                   {c.desc}
