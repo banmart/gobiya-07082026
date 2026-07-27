@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { createBrowserSupabase } from '../../../lib/supabase/client';
 import { safeNextPath } from '../../../lib/safeNext';
 
 export default function LoginForm({ next }) {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -17,31 +15,36 @@ export default function LoginForm({ next }) {
     setBusy(true);
     setError('');
 
-    // The try/finally is what keeps the form usable. Without it, anything that
-    // throws rather than returning an error — a network drop, a misconfigured
-    // client — leaves busy stuck true, so the button reads "Signing in…"
-    // forever with no message and no way back short of a reload.
     try {
       const supabase = createBrowserSupabase();
-      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
 
-      if (signInError) {
-        // Deliberately generic: distinguishing "no such account" from "wrong
-        // password" tells an attacker which emails are registered.
+      if (signInError || !data?.user) {
         setError('That email and password combination did not work.');
+        setBusy(false);
         return;
       }
 
-      // Re-validated rather than trusted. The page already sanitised it, but
-      // this component takes a prop, and a naive startsWith('/') check here
-      // would let "//evil.com" through as an off-site redirect.
-      // refresh() so the server layouts re-run and pick up the new session cookie.
-      router.replace(safeNextPath(next));
-      router.refresh();
+      // Query user role to determine default destination if next is not explicitly provided
+      let targetPath = '/dashboard';
+      if (next) {
+        targetPath = safeNextPath(next);
+      } else {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .maybeSingle();
+
+        targetPath = profile?.role === 'admin' ? '/admin' : '/dashboard';
+      }
+
+      // Hard navigation ensures browser cookies set by @supabase/ssr are fully flushed
+      // and attached to the HTTP request headers for middleware.js and server components.
+      window.location.href = targetPath;
     } catch (err) {
       console.error('Sign-in failed:', err);
       setError('Something went wrong signing you in. Please try again.');
-    } finally {
       setBusy(false);
     }
   }

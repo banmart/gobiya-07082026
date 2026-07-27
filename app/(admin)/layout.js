@@ -12,6 +12,8 @@ export const metadata = {
 const NAV = [
   { label: 'Overview', href: '/admin' },
   { label: 'Clients', href: '/admin/clients' },
+  { label: 'Leads & Enquiries', href: '/admin/leads' },
+  { label: 'Leads Prospector', href: '/admin/prospector' },
 ];
 
 export default async function AdminLayout({ children }) {

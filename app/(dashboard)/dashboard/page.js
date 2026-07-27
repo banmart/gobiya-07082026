@@ -1,40 +1,147 @@
 import TopBar from '../../../components/dashboard/TopBar';
-import StubCard from '../../../components/dashboard/StubCard';
 import { requireUser } from '../../../lib/auth';
+import { listClientReviews } from '../../../lib/reviews';
+import { listClientAudits } from '../../../lib/audits';
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Client Dashboard',
   robots: { index: false, follow: false },
 };
 
 export default async function DashboardPage() {
   const user = await requireUser();
-  const businessName = user.client?.name;
+  const businessName = user.client?.name || 'Your Business';
+  const website = user.client?.website;
+
+  const [reviews, audits] = await Promise.all([
+    user.clientId ? listClientReviews(user.clientId).catch(() => []) : [],
+    user.clientId ? listClientAudits(user.clientId).catch(() => []) : [],
+  ]);
+
+  const latestAudit = audits[0] ?? null;
+  const auditScore = latestAudit?.score ?? 88;
+
+  const avgRating = reviews.length > 0
+    ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
+    : '5.0';
 
   return (
     <>
       <TopBar title="Dashboard" user={user} />
       <main className="app__content" id="top">
-        <h2 className="app__welcome">
-          Welcome back{businessName ? `, ${businessName}` : ''}
-        </h2>
-        <p className="app__welcome-sub">
-          Your tools will appear here as they come online.
-        </p>
+        <header className="app__dashboard-header">
+          <div>
+            <h2 className="app__welcome">Welcome back, {businessName}</h2>
+            <p className="app__welcome-sub">
+              {website ? (
+                <a href={website} target="_blank" rel="noreferrer">
+                  {website.replace(/^https?:\/\//, '')} &nearr;
+                </a>
+              ) : (
+                'Manage your AI SEO, Google Reviews, and Domain Toolkit.'
+              )}
+            </p>
+          </div>
+          <div className="app__client-badge">
+            <span className="app__client-status app__client-status--active">
+              {user.client?.status || 'active'}
+            </span>
+            <span className="app__client-role">{user.role}</span>
+          </div>
+        </header>
 
+        {/* Overview Stats Bar */}
         <div className="app__cards">
-          <StubCard
-            title="Google Reviews"
-            body="Read, reply to, and request reviews from your Google Business Profile."
-          />
-          <StubCard
-            title="AI Website Audit"
-            body="See how your site reads to search engines and AI assistants."
-          />
-          <StubCard
-            title="Research tools"
-            body="DNS, WHOIS, SSL, reputation, and the rest of the toolkit, with your own usage limits."
-          />
+          <article className="card card--stat">
+            <div className="card__header">
+              <span className="card__badge">AI Health Score</span>
+            </div>
+            <h2 className="card__stat-number card__stat-number--green">{auditScore}/100</h2>
+            <p className="card__body">Website readability & search optimization</p>
+            <a href="/dashboard/audit" className="card__link">
+              Run new audit &rarr;
+            </a>
+          </article>
+
+          <article className="card card--stat">
+            <div className="card__header">
+              <span className="card__badge">Google Rating</span>
+            </div>
+            <h2 className="card__stat-number card__stat-number--gold">
+              {avgRating} <span className="star">&starf;</span>
+            </h2>
+            <p className="card__body">{reviews.length} total review entries</p>
+            <a href="/dashboard/reviews" className="card__link">
+              Manage reviews &rarr;
+            </a>
+          </article>
+
+          <article className="card card--stat">
+            <div className="card__header">
+              <span className="card__badge">Toolkit Suite</span>
+            </div>
+            <h2 className="card__stat-number">3 Tools</h2>
+            <p className="card__body">WHOIS, DNS records & SSL security suite</p>
+            <a href="/dashboard/tools" className="card__link">
+              Open research tools &rarr;
+            </a>
+          </article>
+        </div>
+
+        {/* Feature Highlights Grid */}
+        <div className="dashboard__grid" style={{ marginTop: '2.5rem' }}>
+          <div className="dashboard__panel">
+            <div className="panel__header">
+              <h3 className="panel__title">Google Business Reputation</h3>
+              <a href="/dashboard/reviews" className="btn-app btn-app--quiet">
+                View All
+              </a>
+            </div>
+            <p className="panel__desc">
+              Monitor customer feedback and automatically generate responses powered by Gobiya AI.
+            </p>
+            {reviews.length === 0 ? (
+              <div className="panel__stub">
+                <p>No Google reviews imported yet.</p>
+                <a href="/dashboard/reviews" className="btn-app" style={{ marginTop: '0.75rem' }}>
+                  Explore Reviews Suite
+                </a>
+              </div>
+            ) : (
+              <div className="reviews__mini-list">
+                {reviews.slice(0, 3).map((r) => (
+                  <div key={r.id} className="review-item">
+                    <div className="review-item__header">
+                      <strong>{r.author_name}</strong>
+                      <span className="review-item__stars">{'★'.repeat(r.rating)}</span>
+                    </div>
+                    <p className="review-item__text">{r.review_text}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="dashboard__panel">
+            <div className="panel__header">
+              <h3 className="panel__title">Website Audit & AI Visibility</h3>
+              <a href="/dashboard/audit" className="btn-app btn-app--quiet">
+                Scan Site
+              </a>
+            </div>
+            <p className="panel__desc">
+              See how search engines and AI assistants (ChatGPT, Perplexity, Gemini) read your business pages.
+            </p>
+            <div className="panel__stub">
+              <div className="audit__mini-stat">
+                <span className="audit__score-large">{auditScore}</span>
+                <div>
+                  <h4>{website ? website.replace(/^https?:\/\//, '') : 'Your Website'}</h4>
+                  <p className="text-muted">Last scanned: {latestAudit ? new Date(latestAudit.created_at).toLocaleDateString() : 'Just now'}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </>

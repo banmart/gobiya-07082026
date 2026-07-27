@@ -25,7 +25,7 @@ export default async function LoginPage({ searchParams }) {
   // Sanitised here, on the server, before it is ever handed to the client
   // component. /login is not a middleware-matched route, so this value can
   // come straight from an attacker-supplied link.
-  const next = safeNextPath(params?.next);
+  const next = params?.next ? safeNextPath(params.next) : null;
   // Object.hasOwn, not a bare lookup: ?error=__proto__ would otherwise return
   // Object.prototype, which is truthy and an object, and React throws
   // "Objects are not valid as a React child" — a 500 on the sign-in page.
