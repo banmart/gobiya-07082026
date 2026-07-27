@@ -3,9 +3,9 @@ import Breadcrumbs from '../../../components/Breadcrumbs';
 import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Steve Martin | Los Angeles SEO Expert & Founder',
+  title: 'Steve Martin | Los Angeles SEO & Web Design Expert',
   description:
-    'Steve Martin is the founder of Gobiya, a Los Angeles SEO expert with 25+ years in web development and search. Talk to Steve about your site.',
+    'Steve Martin is the founder of Gobiya, a Los Angeles search and web design expert with hands-on web design experience since 1996. Talk to Steve about your site.',
   path: '/about/steve-martin',
 });
 
@@ -13,22 +13,22 @@ const STEVE_TOPICS = [
   {
     id: 'biography',
     title: 'Biography & Founder Background',
-    desc: 'Steve grew up in Glendale, CA, and got his start in 1996 studying web design at Glendale College — early enough to have built for the web before Google existed. He founded Gobiya in 2010 after over a decade spent in web development and search engineering.',
+    desc: 'Steve grew up in Glendale, CA, and got his start in 1996 with web design — building websites before Google even existed. He founded Gobiya in 2010 after over a decade of web design, web development, and search engineering experience.',
   },
   {
     id: 'philosophy',
-    title: 'Search Philosophy',
+    title: 'Search & Design Philosophy',
     desc: '“Every update since Panda has punished the same thing, in a different disguise: sites that were built for search engines instead of the people using them.”',
   },
   {
     id: 'specialties',
     title: 'Core Specializations',
-    desc: 'Technical SEO & SSR rendering, Google manual penalty & algorithm recovery, Core Web Vitals performance tuning, and Generative Engine Optimization (GEO) for ChatGPT and Perplexity.',
+    desc: 'Web design & UI architecture, Technical SEO & SSR rendering, Google manual penalty & algorithm recovery, Core Web Vitals performance tuning, and Generative Engine Optimization (GEO) for ChatGPT and Perplexity.',
   },
   {
     id: 'timeline',
     title: 'Career Timeline (1996 – Present)',
-    desc: 'Over 25 years of tracking search shifts: Glendale College (1996), AT&T WorldNet & Webcastr (1996-2010), Gobiya Founded (2010), LLC Incorporated (2012), Google Partner Certification (2015-19), AI Search Visibility (2024-Present).',
+    desc: 'Web design experience since 1996: Glendale College (1996), AT&T WorldNet & Webcastr (1996-2010), Gobiya Founded (2010), LLC Incorporated (2012), Google Partner Certification (2015-19), AI Search & Web Design (2024-Present).',
   },
 ];
 
@@ -47,7 +47,7 @@ export default function SteveMartinPage() {
         <div className="container">
           <h1 className="mw-subhero__title">Steve Martin — Founder &amp; Head of Strategy</h1>
           <p className="mw-subhero__dek">
-            Twenty-five years of watching search change and adapting every time. A career spent in web development and search engineering, close enough to the ground to track every major Google shift.
+            Hands-on web design experience since 1996. Over 30 years of watching search and the web evolve, adapting every time. A career spent in web design, development, and search engineering.
           </p>
         </div>
       </section>

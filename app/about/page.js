@@ -170,7 +170,7 @@ export default function AboutPage() {
                 <strong style={{ color: '#0B1E36' }}>Founder and President:</strong> Founded Gobiya in 2010, focusing on technical SEO, organic search strategy, and AI visibility for middle-market and local businesses.
               </div>
               <div>
-                <strong style={{ color: '#0B1E36' }}>15+ Years of Search &amp; Marketing Experience:</strong> Over 15 years of experience facilitating search strategy, content authority, and digital lead growth across North America.
+                <strong style={{ color: '#0B1E36' }}>Web Design Experience Since 1996:</strong> Over 30 years of hands-on web design, development, technical search strategy, and digital lead growth experience since 1996.
               </div>
               <div>
                 <strong style={{ color: '#0B1E36' }}>300+ Campaigns:</strong> Successfully participated in or managed search strategies for over 300 privately held companies representing B2B, healthcare, legal, home services, and e-commerce.
