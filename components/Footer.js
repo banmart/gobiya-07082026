@@ -50,6 +50,7 @@ export default function Footer() {
               <a href="/seo-myths">SEO Myths Game</a>
               <a href="/ai-visibility">AI Visibility Guide</a>
               <a href="/tools">Free Tools Hub</a>
+              <a href="/stuff">Video Stuff</a>
             </div>
           </div>
 

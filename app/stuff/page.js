@@ -1,0 +1,162 @@
+import fs from 'fs';
+import path from 'path';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import BentoVideoCard from '../../components/BentoVideoCard';
+import { buildMetadata } from '../../lib/meta';
+
+export const dynamic = 'force-dynamic';
+
+export const metadata = buildMetadata({
+  title: 'Stuff — Bento Video Archive & WebM Library',
+  description:
+    'Bento and masonry-style visual showcase of WebM video assets with adaptive aspect ratios (9:16, 1:1, 4:3, 16:9).',
+  path: '/stuff',
+});
+
+function formatTitleFromFilename(filename) {
+  const nameWithoutExt = filename.replace(/\.webm$/i, '');
+  const spaced = nameWithoutExt
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[-_]+/g, ' ')
+    .trim();
+  return spaced
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+function formatBytes(bytes) {
+  if (!bytes || bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+}
+
+export default async function StuffPage() {
+  const targetDirs = [
+    { dirPath: path.join(/*turbopackIgnore: true*/ process.cwd(), 'public/assets/videos'), urlPrefix: '/assets/videos/' },
+    { dirPath: path.join(/*turbopackIgnore: true*/ process.cwd(), 'public/videos'), urlPrefix: '/videos/' },
+  ];
+
+  let videoList = [];
+
+  for (const target of targetDirs) {
+    try {
+      if (fs.existsSync(target.dirPath)) {
+        const files = fs.readdirSync(target.dirPath);
+        files
+          .filter((file) => file.toLowerCase().endsWith('.webm'))
+          .forEach((file) => {
+            const filePath = path.join(target.dirPath, file);
+            let stat = null;
+            try {
+              stat = fs.statSync(filePath);
+            } catch (e) {}
+
+            videoList.push({
+              filename: file,
+              title: formatTitleFromFilename(file),
+              url: `${target.urlPrefix}${encodeURIComponent(file)}`,
+              size: stat ? formatBytes(stat.size) : 'WebM',
+              mtimeMs: stat ? stat.mtimeMs : 0,
+              mtime: stat ? new Date(stat.mtime).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : null,
+            });
+          });
+      }
+    } catch (error) {
+      console.error(`Error scanning ${target.dirPath}:`, error);
+    }
+  }
+
+  // Sort latest first
+  videoList.sort((a, b) => b.mtimeMs - a.mtimeMs);
+
+  return (
+    <main id="top">
+      {/* ══ 1. Clean Breadcrumbs ══ */}
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Resources', href: '/insights' },
+          { label: 'Stuff' },
+        ]}
+      />
+
+      {/* ══ 2. Dark Subhero Banner ══ */}
+      <section className="mw-subhero">
+        <div className="container">
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(245, 184, 61, 0.15)', color: '#F5B83D', padding: '0.25rem 0.75rem', borderRadius: '1rem', fontSize: '0.8125rem', fontWeight: '700', marginBottom: '1rem' }}>
+            <span>📼 Bento Video Archive</span>
+          </div>
+          <h1 className="mw-subhero__title">Media Vault &amp; WebM Archive</h1>
+          <p className="mw-subhero__dek">
+            Masonry &amp; Bento layout of WebM video assets with adaptive aspect ratios (9:16, 1:1, 4:3, 16:9).
+          </p>
+        </div>
+      </section>
+
+      {/* ══ 3. Bento & Masonry Grid ══ */}
+      <section className="section" style={{ background: 'var(--paper)', minHeight: '60vh', paddingBlock: 'clamp(3rem, 5vw, 5rem)' }}>
+        <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <h2 className="statement statement--small" style={{ margin: 0 }}>
+                {videoList.length === 1 ? '1 Video Asset' : `${videoList.length} Video Assets`}
+              </h2>
+              <p style={{ color: 'var(--hint)', fontSize: '0.9375rem', marginTop: '0.25rem' }}>
+                Auto-detects 9:16 vertical, 1:1 square, 4:3 standard, and 16:9 widescreen formats.
+              </p>
+            </div>
+          </div>
+
+          {videoList.length === 0 ? (
+            <div style={{ background: '#FFFFFF', border: '2px dashed var(--border-strong)', borderRadius: '1rem', padding: '4rem 2rem', textAlign: 'center', maxWidth: '36rem', marginInline: 'auto' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎬</div>
+              <h3 style={{ fontSize: '1.25rem', color: '#0B1E36', marginBottom: '0.5rem' }}>No WebM videos found</h3>
+              <p style={{ color: 'var(--hint)', fontSize: '0.9375rem', lineHeight: '1.6' }}>
+                Add any <code>.webm</code> video file into <code>public/assets/videos/</code> and refresh to see it featured in this Bento grid.
+              </p>
+            </div>
+          ) : (
+            <div
+              className="bento-video-grid"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                gap: '1.5rem',
+              }}
+            >
+              {videoList.map((video, idx) => {
+                const isFeatured = idx === 0 || idx === 5;
+                return (
+                  <BentoVideoCard
+                    key={`${video.url}-${idx}`}
+                    video={video}
+                    isFeatured={isFeatured}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Embedded Bento Mobile & Desktop Responsiveness CSS */}
+      <style>{`
+        @media (max-width: 768px) {
+          .bento-card--featured, .bento-card--vertical {
+            grid-column: span 1 !important;
+            grid-row: span 1 !important;
+          }
+        }
+        .bento-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(11, 30, 54, 0.12) !important;
+          border-color: #0B1E36 !important;
+        }
+      `}</style>
+    </main>
+  );
+}
