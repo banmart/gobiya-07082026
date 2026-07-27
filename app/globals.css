@@ -543,15 +543,15 @@ a.contact__value:hover { color: var(--main); }
 .menu {
   position: fixed;
   inset: 0;
-  z-index: 40;
-  background: var(--overlay);
+  z-index: 9999;
+  background: #0B1E36;
   color: #f4f7fb;
   display: flex;
   flex-direction: column;
-  padding: calc(var(--nav-h) + 1.5rem) var(--gutter) 2rem;
+  padding: 1.5rem var(--gutter) 2.5rem;
   overflow-y: auto;
   clip-path: inset(0 0 100% 0);
-  transition: clip-path 0.7s var(--expo-in-out);
+  transition: clip-path 0.5s var(--expo-in-out);
   visibility: hidden;
 }
 .menu.is-open { clip-path: inset(0 0 0 0); visibility: visible; }

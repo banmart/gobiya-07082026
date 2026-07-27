@@ -6,6 +6,8 @@ import { MEGA_NAV, CONTACT } from '../lib/nav';
 
 export default function Header() {
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMouseEnter = (idx) => {
     setActiveMenuIndex(idx);
@@ -15,7 +17,6 @@ export default function Header() {
     setActiveMenuIndex(null);
   };
 
-  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 24);
@@ -24,6 +25,18 @@ export default function Header() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   const currentMega = activeMenuIndex !== null ? MEGA_NAV[activeMenuIndex] : null;
 
@@ -75,8 +88,15 @@ export default function Header() {
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </a>
-            <button className="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
-              <span></span><span></span>
+            <button
+              className={`nav__burger ${isMenuOpen ? 'is-open' : ''}`}
+              id="burger"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <span></span>
+              <span></span>
             </button>
           </div>
         </div>
@@ -129,15 +149,32 @@ export default function Header() {
       </header>
 
       {/* Mobile overlay menu */}
-      <div className="menu" id="menu" aria-hidden="true">
+      <div className={`menu ${isMenuOpen ? 'is-open' : ''}`} id="menu" aria-hidden={!isMenuOpen}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+          <a className="nav__logo" href="/" onClick={() => setIsMenuOpen(false)}>
+            <LogoMark className="nav__logo-mark" size={30} />
+            <span className="nav__logo-word" style={{ color: '#FFFFFF' }}>Gobiya</span>
+          </a>
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(false)}
+            style={{ background: 'transparent', border: 'none', color: '#FFFFFF', fontSize: '1.75rem', cursor: 'pointer', padding: '0.5rem' }}
+            aria-label="Close menu"
+          >
+            &times;
+          </button>
+        </div>
+
         <nav className="menu__links" aria-label="Mobile">
           {MEGA_NAV.map((item, i) => (
             <div className="menu__block" key={item.label} style={{ '--i': i }}>
-              <a href={item.href}>{item.label}</a>
+              <a href={item.href} onClick={() => setIsMenuOpen(false)}>
+                {item.label}
+              </a>
             </div>
           ))}
         </nav>
-        <div className="menu__foot">
+        <div className="menu__foot" style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
           <span>Los Angeles · {CONTACT.address2}</span>
           <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
         </div>

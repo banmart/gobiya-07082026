@@ -2,12 +2,44 @@
 
 import { useState } from 'react';
 
+function detectAspectFromFilename(name) {
+  if (!name) return null;
+  const str = name.toLowerCase();
+
+  // 9:16 vertical patterns (e.g. "9x16", "9-x-16", "9-16", "9_16", "9 16")
+  if (/9\s*[xX-]\s*16/.test(str) || /9\s+16/.test(str) || /9_16/.test(str)) {
+    return { ratio: '9/16', label: '9:16', isVertical: true };
+  }
+  // 16:9 widescreen patterns (e.g. "16x9", "16-x-9", "16-9", "16_9", "16 9")
+  if (/16\s*[xX-]\s*9/.test(str) || /16\s+9/.test(str) || /16_9/.test(str)) {
+    return { ratio: '16/9', label: '16:9', isVertical: false };
+  }
+  // 4:3 standard patterns (e.g. "4x3", "4-x-3", "4-3", "4_3", "4 3")
+  if (/4\s*[xX-]\s*3/.test(str) || /4\s+3/.test(str) || /4_3/.test(str)) {
+    return { ratio: '4/3', label: '4:3', isVertical: false };
+  }
+  // 1:1 square patterns (e.g. "1x1", "1-x-1", "1-1", "1_1", "1 1")
+  if (/1\s*[xX-]\s*1/.test(str) || /1\s+1/.test(str) || /1_1/.test(str)) {
+    return { ratio: '1/1', label: '1:1', isVertical: false };
+  }
+
+  return null;
+}
+
 export default function BentoVideoCard({ video, isFeatured }) {
-  const [aspectRatio, setAspectRatio] = useState(isFeatured ? '16/9' : '16/10');
-  const [aspectLabel, setAspectLabel] = useState(null);
-  const [isVertical, setIsVertical] = useState(false);
+  // Check if title or filename explicitly declares aspect ratio
+  const explicitAspect = detectAspectFromFilename(video.filename) || detectAspectFromFilename(video.title);
+
+  const [aspectRatio, setAspectRatio] = useState(
+    explicitAspect ? explicitAspect.ratio : isFeatured ? '16/9' : '16/10'
+  );
+  const [aspectLabel, setAspectLabel] = useState(explicitAspect ? explicitAspect.label : null);
+  const [isVertical, setIsVertical] = useState(explicitAspect ? explicitAspect.isVertical : false);
 
   const handleLoadedMetadata = (e) => {
+    // If aspect ratio was explicitly declared in title/filename, respect it
+    if (explicitAspect) return;
+
     const videoEl = e.target;
     const width = videoEl.videoWidth;
     const height = videoEl.videoHeight;
@@ -55,7 +87,7 @@ export default function BentoVideoCard({ video, isFeatured }) {
         gridRow: isVertical ? 'span 2' : 'span 1',
       }}
     >
-      {/* Video Container (Auto-adapts to 9:16, 1:1, 4:3, or 16:9) */}
+      {/* Video Container (Auto-adapts to 9:16, 1:1, 4:3, or 16:9 from Title or Metadata) */}
       <div
         style={{
           background: '#0B1E36',
@@ -77,7 +109,7 @@ export default function BentoVideoCard({ video, isFeatured }) {
         </video>
       </div>
 
-      {/* Bento Title & Metadata (Folder path removed) */}
+      {/* Bento Title & Metadata */}
       <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', background: '#FFFFFF' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem' }}>
           <h3 style={{ fontSize: isFeatured ? '1.25rem' : '1.0625rem', fontWeight: '700', color: '#0B1E36', margin: 0, lineHeight: '1.35' }}>

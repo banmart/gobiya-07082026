@@ -94,9 +94,9 @@ export default function AccessibilityControls() {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="currentColor" />
-          <path d="M12 2a10 10 0 0 1 0 20" fill="none" strokeWidth="2" />
+          <circle cx="12" cy="4" r="2" />
+          <path d="M19 13v-2a2 2 0 0 0-2-2h-3V5a1 1 0 0 0-1-1h-3a1 1 0 0 0-1 1v6a2 2 0 0 0 2 2h3v5a2 2 0 0 0 2 2h2" />
+          <circle cx="9" cy="18" r="4" />
         </svg>
         <span className="a11y-widget__trigger-label">Accessibility</span>
       </button>

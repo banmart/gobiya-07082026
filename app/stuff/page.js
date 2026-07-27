@@ -7,9 +7,9 @@ import { buildMetadata } from '../../lib/meta';
 export const dynamic = 'force-dynamic';
 
 export const metadata = buildMetadata({
-  title: 'Stuff — Bento Video Archive & WebM Library',
+  title: 'AI Video Marketing & Scroll-Stopping Video Production | Gobiya',
   description:
-    'Bento and masonry-style visual showcase of WebM video assets with adaptive aspect ratios (9:16, 1:1, 4:3, 16:9).',
+    'We use AI to create viral, scroll-stopping video ads and brand commercials that are affordable, fast to produce, and SEO-optimized for maximum search and social ROI.',
   path: '/stuff',
 });
 
@@ -80,33 +80,35 @@ export default async function StuffPage() {
         items={[
           { label: 'Home', href: '/' },
           { label: 'Resources', href: '/insights' },
-          { label: 'Stuff' },
+          { label: 'Video Showcase' },
         ]}
       />
 
-      {/* ══ 2. Dark Subhero Banner ══ */}
+      {/* ══ 2. Pitch & High-Impact Subhero Banner ══ */}
       <section className="mw-subhero">
         <div className="container">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(245, 184, 61, 0.15)', color: '#F5B83D', padding: '0.25rem 0.75rem', borderRadius: '1rem', fontSize: '0.8125rem', fontWeight: '700', marginBottom: '1rem' }}>
-            <span>📼 Bento Video Archive</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(245, 184, 61, 0.15)', color: '#F5B83D', padding: '0.35rem 0.85rem', borderRadius: '1rem', fontSize: '0.8125rem', fontWeight: '700', marginBottom: '1.25rem' }}>
+            <span>⚡ AI Video Creative Studio</span>
           </div>
-          <h1 className="mw-subhero__title">Media Vault &amp; WebM Archive</h1>
-          <p className="mw-subhero__dek">
-            Masonry &amp; Bento layout of WebM video assets with adaptive aspect ratios (9:16, 1:1, 4:3, 16:9).
+          <h1 className="mw-subhero__title" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: '1.2' }}>
+            We Use AI to Create Viral, Scroll-Stopping Videos That Are Surprisingly Affordable
+          </h1>
+          <p className="mw-subhero__dek" style={{ fontSize: '1.125rem', maxWidth: '48rem', lineHeight: '1.6' }}>
+            Stop burning budget on slow camera crews. We combine generative AI workflows with SEO-backed metadata to produce high-converting commercial ads, social reels, and web background videos delivered in days.
           </p>
         </div>
       </section>
 
-      {/* ══ 3. Bento & Masonry Grid ══ */}
+      {/* ══ 3. Bento & Masonry Portfolio Showcase ══ */}
       <section className="section" style={{ background: 'var(--paper)', minHeight: '60vh', paddingBlock: 'clamp(3rem, 5vw, 5rem)' }}>
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <h2 className="statement statement--small" style={{ margin: 0 }}>
-                {videoList.length === 1 ? '1 Video Asset' : `${videoList.length} Video Assets`}
+                {videoList.length === 1 ? '1 Video Creative' : `${videoList.length} Video Creatives`} Featured
               </h2>
               <p style={{ color: 'var(--hint)', fontSize: '0.9375rem', marginTop: '0.25rem' }}>
-                Auto-detects 9:16 vertical, 1:1 square, 4:3 standard, and 16:9 widescreen formats.
+                Bento-grid showcase with auto-adaptive aspect ratios (9:16 reels, 16:9 commercials, 4:3 ads, 1:1 promo cards).
               </p>
             </div>
           </div>
@@ -114,9 +116,9 @@ export default async function StuffPage() {
           {videoList.length === 0 ? (
             <div style={{ background: '#FFFFFF', border: '2px dashed var(--border-strong)', borderRadius: '1rem', padding: '4rem 2rem', textAlign: 'center', maxWidth: '36rem', marginInline: 'auto' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎬</div>
-              <h3 style={{ fontSize: '1.25rem', color: '#0B1E36', marginBottom: '0.5rem' }}>No WebM videos found</h3>
+              <h3 style={{ fontSize: '1.25rem', color: '#0B1E36', marginBottom: '0.5rem' }}>No video creatives published yet</h3>
               <p style={{ color: 'var(--hint)', fontSize: '0.9375rem', lineHeight: '1.6' }}>
-                Add any <code>.webm</code> video file into <code>public/assets/videos/</code> and refresh to see it featured in this Bento grid.
+                Add any <code>.webm</code> video asset to <code>public/assets/videos/</code> to showcase it in this high-converting video gallery.
               </p>
             </div>
           ) : (
@@ -125,6 +127,7 @@ export default async function StuffPage() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                gridAutoFlow: 'dense',
                 gap: '1.5rem',
               }}
             >
@@ -140,6 +143,20 @@ export default async function StuffPage() {
               })}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ══ 4. Bottom Sales CTA Banner ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">
+            Ready for scroll-stopping AI video ads that actually bring in real leads?
+          </h2>
+          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="/onboarding" className="mw-navy-banner__btn">
+              Schedule a Video Strategy Session
+            </a>
+          </div>
         </div>
       </section>
 
