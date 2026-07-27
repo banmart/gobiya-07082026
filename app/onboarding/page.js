@@ -37,18 +37,22 @@ export default function OnboardingPage() {
   return (
     <main id="top">
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'onboarding' }]} />
-          <h1 className="statement" data-split>A few questions, then we'll take it from here.</h1>
-          <p className="lede" data-reveal>Five short steps. Steve reads every submission himself and replies within one business day with what he actually sees — not a template.</p>
-          <ul className="hero-trust" data-reveal>
+      {/* ══ 1. Breadcrumb Bar ══ */}
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Schedule a Consultation' }]} />
+
+      {/* ══ 2. Dark Subhero ══ */}
+      <section className="mw-subhero">
+        <div className="container">
+          <h1 className="mw-subhero__title">A few questions, then we&apos;ll take it from here.</h1>
+          <p className="mw-subhero__dek">Five short steps. Steve reads every submission himself and replies within one business day with what he actually sees — not a template.</p>
+          <ul className="mw-subhero__trust">
             {TRUST_STATS.map((stat) => (
               <li key={stat}>{stat}</li>
             ))}
           </ul>
         </div>
       </section>
+
       <TopicMarquee topics={["5-Step Questionnaire", "Website Scan Intake", "Tailored Proposal", "Direct Founder Review", "Fast Turnaround"]} />
 
 

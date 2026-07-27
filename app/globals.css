@@ -4680,6 +4680,35 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   margin: 0;
 }
 
+.mw-subhero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.mw-subhero__trust li {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mw-subhero__trust li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C9A84C;
+  flex-shrink: 0;
+}
+
 /* ═══════════ Pillar Grid (Sidebar + Sub-Clusters) ═══════════ */
 .mw-pillar-grid {
   display: grid;
