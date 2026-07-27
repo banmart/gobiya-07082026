@@ -35,7 +35,7 @@ export default function GlossaryTermTemplate({ entry }) {
       </section>
 
       {/* ══ 3. Bento Grid Body ══ */}
-      <section className="section gls-body" id="body">
+      <section className="section gls-body" id="gls-content">
         <div className="container">
           <div className="gls-bento">
 
