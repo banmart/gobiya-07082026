@@ -129,7 +129,7 @@ export default function Home() {
 
           <div className="mw-person__card">
             <Image
-              src="/assets/img/steve-martin-headshot.webp"
+              src="/assets/img/sm.jpg"
               alt="Steve Martin"
               width={120}
               height={120}
@@ -288,7 +288,7 @@ export default function Home() {
 
               <div className="mw-book__author">
                 <Image
-                  src="/assets/img/steve-martin-headshot.webp"
+                  src="/assets/img/sm.jpg"
                   alt="Steve Martin"
                   width={40}
                   height={40}
