@@ -16,7 +16,7 @@ const ABOUT_TOPICS = [
   },
   {
     title: 'Our 4-Step Process',
-    href: '/about/approach',
+    href: '/#process',
     desc: 'We have spent over a decade perfecting our documented framework: Assess, Prepare, Market, and Scale. Minimize risk and maximize price.',
   },
   {

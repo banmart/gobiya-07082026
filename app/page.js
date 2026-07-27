@@ -3,9 +3,9 @@ import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 
 export const metadata = buildMetadata({
-  title: 'Gobiya SEO Consultants Los Angeles',
+  title: 'Gobiya — Los Angeles SEO Consultants & AI Search Optimization',
   description:
-    'We are an independent Web AI & SEO consulting firm specializing in the optimization and rankings of small and medium-sized businesses.',
+    'Independent Web AI & SEO consulting firm in Los Angeles specializing in technical SEO, search engine ranking, and Generative Engine Optimization (GEO).',
   path: '/',
 });
 
@@ -213,7 +213,7 @@ export default function Home() {
           </div>
 
           <div className="mw-steps__btn-wrap">
-            <a href="/about/approach" className="mw-steps__btn">
+            <a href="/#process" className="mw-steps__btn">
               View Our Proprietary Process for Business Growth
             </a>
           </div>
@@ -261,7 +261,7 @@ export default function Home() {
           <p style={{ maxWidth: '44rem', marginInline: 'auto', marginBottom: '2rem', color: '#CBD5E1', fontSize: '1.0625rem', lineHeight: '1.65' }}>
             After investing your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees, the moment has finally come for you to start a new chapter in your digital growth.
           </p>
-          <a href="/about/approach" className="mw-navy-banner__btn">
+          <a href="/#process" className="mw-navy-banner__btn">
             View Our Process
           </a>
         </div>

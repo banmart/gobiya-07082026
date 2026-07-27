@@ -12,7 +12,7 @@ export default function Footer() {
               <a href="/about">Why Us</a>
               <a href="/about/steve-martin">Meet Your Team</a>
               <a href="/contact#faq">FAQs</a>
-              <a href="/about/approach">Our Process</a>
+              <a href="/#process">Our Process</a>
               <a href="/work">Client Stories</a>
               <a href="/services">Industry Experience</a>
               <a href="/work">Closed Transactions</a>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LogoMark } from './Logo';
 import { MEGA_NAV, CONTACT } from '../lib/nav';
 
@@ -15,11 +15,21 @@ export default function Header() {
     setActiveMenuIndex(null);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const currentMega = activeMenuIndex !== null ? MEGA_NAV[activeMenuIndex] : null;
 
   return (
     <>
-      <header className="nav" id="nav" onMouseLeave={handleMouseLeave}>
+      <header className={`nav ${isScrolled ? 'is-scrolled' : ''}`} id="nav" onMouseLeave={handleMouseLeave}>
         {/* Top Navy Announcement Bar */}
         <div className="mw-topbar">
           <div className="container mw-topbar__inner">

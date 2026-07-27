@@ -104,7 +104,7 @@ export default function SteveMartinPage() {
             {STEVE_TOPICS.slice(1).map((t) => (
               <div key={t.id} id={t.id} className="mw-cluster-block">
                 <h2 className="mw-cluster-block__title">
-                  <a href="/about/approach">{t.title}</a>
+                  <a href="/#process">{t.title}</a>
                 </h2>
                 <p className="mw-cluster-block__desc">
                   {t.desc}
