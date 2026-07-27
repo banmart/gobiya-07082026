@@ -10,6 +10,7 @@ import Motion from '../components/Motion';
 import AIChatBubble from '../components/AIChatBubble';
 import ChromeGate from '../components/ChromeGate';
 import AccessibilityControls from '../components/AccessibilityControls';
+import ScrollAnimate from '../components/ScrollAnimate';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
         <Script src="/js/main.js" strategy="afterInteractive" />
         <ConsentAnalytics />
         <AccessibilityControls />
+        <ScrollAnimate />
       </body>
     </html>
   );
