@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
+import { TESTIMONIALS } from '../lib/testimonials';
 
 export const metadata = buildMetadata({
   title: 'Gobiya SEO Consultants Los Angeles',
@@ -15,6 +16,17 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/remodelmepros.webp', alt: 'RemodelMePros.com' },
   { src: '/assets/img/safetycentric-logo.png', alt: 'Safety-Centric.com' },
   { src: '/assets/img/dgplumbing-logo.webp', alt: 'DGPlumbingandRooter.com' },
+];
+
+const STORY_IMAGES = [
+  '/assets/img/smilecenter.webp',
+  '/assets/img/americanlivescan.webp',
+  '/assets/img/access-control-lady.webp',
+  '/assets/img/remodelmepros.webp',
+  '/assets/img/totalcapital.webp',
+  '/assets/img/hallway-code-review.webp',
+  '/assets/img/open-office-desks.webp',
+  '/assets/img/office-lounge-meeting.webp',
 ];
 
 export default function Home() {
@@ -214,39 +226,28 @@ export default function Home() {
           <h2 className="mw-stories__heading">Real Stories from Real Clients</h2>
 
           <div className="mw-stories__list">
-            <div
-              className="mw-story-card"
-              style={{ backgroundImage: `url('/assets/img/smilecenter.webp')` }}
-            >
-              <div className="mw-story-card__content">
-                <div className="mw-story-card__meta">
-                  Industry: <strong>Healthcare &amp; Dental</strong> Region: <strong>Los Angeles</strong>
+            {TESTIMONIALS.slice(0, 6).map((item, idx) => (
+              <div
+                key={idx}
+                className="mw-story-card"
+                style={{ backgroundImage: `url('${STORY_IMAGES[idx % STORY_IMAGES.length]}')` }}
+              >
+                <div className="mw-story-card__content">
+                  <div className="mw-story-card__meta">
+                    Industry: <strong>{item.role}</strong> Region: <strong>Southern California</strong>
+                  </div>
+                  <p className="mw-story-card__desc">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                  <div style={{ marginBottom: '1rem', fontSize: '0.875rem', color: '#0B1E36', fontWeight: '700' }}>
+                    — {item.name ? `${item.name}, ` : ''}{item.company}
+                  </div>
+                  <a href={item.href} className="mw-story-card__btn">
+                    Listen To Story
+                  </a>
                 </div>
-                <p className="mw-story-card__desc">
-                  In 2012, an aggressive search algorithm update dropped their local rankings overnight. Partnering with Gobiya allowed them to restructure their web architecture and recover 340% organic patient lead volume.
-                </p>
-                <a href="/work/smile-center-dentistry" className="mw-story-card__btn">
-                  View Case Study
-                </a>
               </div>
-            </div>
-
-            <div
-              className="mw-story-card"
-              style={{ backgroundImage: `url('/assets/img/remodelmepros.webp')` }}
-            >
-              <div className="mw-story-card__content">
-                <div className="mw-story-card__meta">
-                  Industry: <strong>Home Services</strong> Region: <strong>Southern California</strong>
-                </div>
-                <p className="mw-story-card__desc">
-                  Unexpected search shifts happen during scaling. For RemodelMe Pros, Gobiya implemented custom technical schema and secured top AI recommendations on ChatGPT within 90 days.
-                </p>
-                <a href="/work/remodelmepros" className="mw-story-card__btn">
-                  View Case Study
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
