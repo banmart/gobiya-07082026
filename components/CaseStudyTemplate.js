@@ -27,37 +27,39 @@ export default function CaseStudyTemplate({ cs }) {
     <main id="top" className="case-study">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[
-            { label: 'Home', href: '/' },
-            { label: 'Work', href: '/work' },
-            { label: cs.slug },
-          ]} />
+      {/* ══ 1. Breadcrumb Bar ══ */}
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Work', href: '/work' },
+        { label: cs.client },
+      ]} />
+
+      {/* ══ 2. Dark Subhero ══ */}
+      <section className="mw-subhero">
+        <div className="container">
           {cs.media?.logo && (
-            <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
-              <img src={cs.media.logo} alt={`${cs.client} logo`} style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
-            </div>
+            <img
+              src={cs.media.logo}
+              alt={`${cs.client} logo`}
+              style={{ height: '40px', width: 'auto', objectFit: 'contain', marginBottom: '1.25rem', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+            />
           )}
-          <h1 className="statement" data-split>{`${cs.client}: ${cs.result}`}</h1>
-          {cs.study?.dek && <p className="lede" data-reveal>{cs.study.dek}</p>}
+          <h1 className="mw-subhero__title">{`${cs.client}: ${cs.result}`}</h1>
+          {cs.study?.dek && <p className="mw-subhero__dek">{cs.study.dek}</p>}
           {cs.url && (
-            <div data-reveal style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center' }}>
-              <a href={cs.url} target="_blank" rel="noopener noreferrer" className="link-arrow">
-                Visit {cs.client}
-                <svg viewBox="0 0 16 16" width="14" height="14" style={{ marginLeft: '0.5rem' }}><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-              </a>
-            </div>
+            <a href={cs.url} target="_blank" rel="noopener noreferrer" className="mw-subhero__link" style={{ marginTop: '1.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#C9A84C', fontSize: '0.9rem', fontWeight: 600 }}>
+              Visit {cs.client}
+              <svg viewBox="0 0 16 16" width="13" height="13"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+            </a>
           )}
         </div>
+      </section>
 
-        <div className="article__answer" data-reveal>
-          <p>{cs.study.answer}</p>
-        </div>
-
-        {cs.study?.metrics?.length > 0 && (
-          <div className="container" style={{ marginTop: '2.5rem' }}>
-            <div className="search-wins__grid" data-stagger style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+      {/* ══ Key Outcome Metrics ══ */}
+      {cs.study?.metrics?.length > 0 && (
+        <div style={{ background: '#F8F9FC', borderBottom: '1px solid #E2E8F0' }}>
+          <div className="container">
+            <div className="search-wins__grid" data-stagger style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', paddingBlock: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               {cs.study.metrics.map((m, idx) => (
                 <div className="search-wins__card" key={idx}>
                   <span className="search-wins__label">Key Outcome</span>
@@ -67,10 +69,10 @@ export default function CaseStudyTemplate({ cs }) {
               ))}
             </div>
           </div>
-        )}
-      </section>
+        </div>
+      )}
 
-      {/* ══════════ Product screencast ══════════ */}
+      {/* ══ Product screencast / commercial video ══ */}
       {cs.media?.video && (
         <section className="section case-media" id="media">
           <div className="container">
