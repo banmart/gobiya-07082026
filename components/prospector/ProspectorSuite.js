@@ -270,7 +270,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     }
   }
 
-  const promptPreviewText = `"Search the live web and find ${limit} real, active businesses currently operating in ${location || '[Location]'}${keyword ? ` matching keyword/industry "${keyword}"` : ''}. Extract authentic contact details, email addresses, phone numbers, and websites for Q3 Growth Bundle cold outreach."`;
+  const promptPreviewText = `"MANDATORY: EVERY RETURNED LEAD MUST HAVE A DIRECT BUSINESS EMAIL ADDRESS. Search the live web for ${limit} active businesses in ${location || '[Location]'}${keyword ? ` matching "${keyword}"` : ''}. Extract authentic direct email addresses (contact@, sales@, info@, owner email), contact names, phone numbers, and websites for Q3 Growth Bundle cold email drip outreach."`;
 
   // Pagination calculation
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
