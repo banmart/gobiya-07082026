@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import { Inter, Stack_Sans_Notch } from 'next/font/google';
+import { Inter, PT_Serif } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -16,13 +16,10 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Every CSS rule that sets --font-heading uses it at weight 400 — the other
-// five requested weights (200/300/500/600/700) were dead downloads sitting
-// in the render-blocking CSS and the critical font-loading chain.
-const stackSansNotch = Stack_Sans_Notch({
+const ptSerif = PT_Serif({
   subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-stack-sans-notch',
+  weight: ['400', '700'],
+  variable: '--font-pt-serif',
   display: 'swap',
 });
 
@@ -52,7 +49,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${stackSansNotch.variable}`}>
+    <html lang="en" className={`${inter.variable} ${ptSerif.variable}`}>
       <body>
         <SiteSchema />
         <BrandWatermark />
@@ -66,10 +63,6 @@ export default function RootLayout({ children }) {
         </ChromeGate>
         <Motion />
         <Script src="/js/main.js" strategy="afterInteractive" />
-
-        {/* GA4 + Clarity only load after explicit consent — see
-            components/ConsentAnalytics.js. Nothing analytics-related
-            touches the network on a first visit. */}
         <ConsentAnalytics />
       </body>
     </html>
