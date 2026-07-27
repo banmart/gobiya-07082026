@@ -11,24 +11,29 @@ export async function POST(request) {
       return NextResponse.json({ ok: false, error: 'No prospects provided to save.' }, { status: 400 });
     }
 
-    // 1. Save prospects to database
+    // 1. Save and deduplicate prospects by email address
     const saveRes = await saveProspects(prospects, clientId || null);
     if (!saveRes.ok) {
       return NextResponse.json(saveRes, { status: 500 });
     }
 
-    // 2. Automatically enroll all saved prospects into the main cold email drip sequence (seq-prospector-drip)
+    // 2. Automatically enroll all unique prospects into the main cold email drip sequence (seq-prospector-drip)
     let enrolledCount = 0;
     if (Array.isArray(saveRes.prospectIds) && saveRes.prospectIds.length > 0) {
       const enrollRes = await enrollProspectsInSequence('seq-prospector-drip', saveRes.prospectIds);
       enrolledCount = enrollRes.count || saveRes.prospectIds.length;
     }
 
+    const message = saveRes.count > 0
+      ? `Successfully saved ${saveRes.count} new unique prospects and enrolled ${enrolledCount} in the Q3 Growth Bundle email drip campaign!`
+      : `Enrolled ${enrolledCount} prospects into the Q3 Growth Bundle email drip campaign (all emails already existed in database without duplicates).`;
+
     return NextResponse.json({
       ok: true,
-      savedCount: saveRes.count || prospects.length,
+      newlySavedCount: saveRes.count,
+      totalCount: saveRes.totalAssociatedCount,
       enrolledCount,
-      message: `Successfully saved ${saveRes.count} real prospects to database and automatically enrolled them in the Q3 Growth Bundle email drip campaign!`,
+      message,
     });
   } catch (err) {
     console.error('Save prospects API error:', err);
