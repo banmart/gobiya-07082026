@@ -1356,12 +1356,12 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
    has none, so this decorative mark can never compete with real content
    for Largest Contentful Paint the way the old webp version once did. */
 .brand-watermark {
-  position: fixed;
+  position: absolute;
   top: clamp(-7.6rem, -9.7vw, -4.3rem);
   right: clamp(-7.6rem, -8.6vw, -3.2rem);
   width: clamp(30.8rem, 58.8vw, 61.6rem);
   height: clamp(30.8rem, 58.8vw, 61.6rem);
-  opacity: 0.15;
+  opacity: 0.18;
   pointer-events: none;
   z-index: 15;
 }
