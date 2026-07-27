@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { processDripQueue, sendTestDripEmail } from '../../../../../lib/drip';
+import { processDripQueue, sendTestDripEmail } from '@/lib/drip';
 
 export async function POST(request) {
   try {

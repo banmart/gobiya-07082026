@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { runPerplexityScout, saveProspects } from '../../../../lib/prospector';
+import { runPerplexityScout, saveProspects } from '@/lib/prospector';
 
 export async function POST(request) {
   try {

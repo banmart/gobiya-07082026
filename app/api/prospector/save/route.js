@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { saveProspects } from '../../../../lib/prospector';
-import { enrollProspectsInSequence } from '../../../../lib/drip';
+import { saveProspects } from '@/lib/prospector';
+import { enrollProspectsInSequence } from '@/lib/drip';
 
 export async function POST(request) {
   try {
@@ -16,10 +16,9 @@ export async function POST(request) {
       return NextResponse.json(saveRes, { status: 500 });
     }
 
-    // Auto-enroll new prospects into the main cold email drip sequence (seq-prospector-drip)
     try {
       const prospectEmails = prospects.map((p) => p.email).filter(Boolean);
-      const { createAdminSupabase } = await import('../../../../lib/supabase/admin.js');
+      const { createAdminSupabase } = await import('@/lib/supabase/admin.js');
       const admin = createAdminSupabase();
       const { data: dbRows } = await admin.from('prospects').select('id').in('email', prospectEmails);
 
