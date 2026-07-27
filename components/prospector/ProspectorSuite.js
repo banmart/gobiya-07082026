@@ -13,14 +13,18 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const [showApiKeyInput, setShowApiKeyInput] = useState(false);
   const [scouting, setScouting] = useState(false);
   const [scoutResults, setScoutResults] = useState(null);
+  const [scoutSource, setScoutSource] = useState('');
+  const [savingProspects, setSavingProspects] = useState(false);
+  const [scoutErrorMessage, setScoutErrorMessage] = useState('');
 
-  // Database state
+  // Database & Pagination state
   const [prospects, setProspects] = useState(initialProspects);
   const [total, setTotal] = useState(totalCount);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(25);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Status');
   const [categoryFilter, setCategoryFilter] = useState('All Categories');
-  const [pageSize, setPageSize] = useState(25);
   const [loadingDb, setLoadingDb] = useState(false);
 
   // Campaign Drip state
@@ -36,15 +40,17 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const [csvContent, setCsvContent] = useState('');
   const [importingCsv, setImportingCsv] = useState(false);
 
-  // Fetch prospects from database when filters change
+  // Fetch prospects from database when filters or pagination change
   async function fetchProspects() {
     setLoadingDb(true);
     try {
+      const offset = (page - 1) * pageSize;
       const params = new URLSearchParams({
         search,
         status: statusFilter,
         category: categoryFilter,
         limit: pageSize.toString(),
+        offset: offset.toString(),
       });
       const res = await fetch(`/api/prospector/database?${params.toString()}`);
       if (res.ok) {
@@ -63,17 +69,39 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     if (activeTab === 'database') {
       fetchProspects();
     }
-  }, [search, statusFilter, categoryFilter, pageSize, activeTab]);
+  }, [search, statusFilter, categoryFilter, page, pageSize, activeTab]);
+
+  // Reset page to 1 when filters change
+  function handleSearchChange(e) {
+    setSearch(e.target.value);
+    setPage(1);
+  }
+
+  function handleStatusChange(e) {
+    setStatusFilter(e.target.value);
+    setPage(1);
+  }
+
+  function handleCategoryChange(e) {
+    setCategoryFilter(e.target.value);
+    setPage(1);
+  }
+
+  function handlePageSizeChange(e) {
+    setPageSize(parseInt(e.target.value, 10));
+    setPage(1);
+  }
 
   // Handle Perplexity AI Scout launch
   async function handleLaunchScout(e) {
     e.preventDefault();
     if (!keyword.trim() && !location.trim()) {
-      alert('Please enter an industry or keyword and location to search.');
+      alert('Please enter an industry or keyword and location to search live web prospects.');
       return;
     }
     setScouting(true);
     setScoutResults(null);
+    setScoutErrorMessage('');
 
     try {
       const res = await fetch('/api/prospector/scout', {
@@ -84,44 +112,52 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
           industry: keyword.trim(),
           location: location.trim() || 'Los Angeles, CA',
           limit,
-          apiKey,
+          apiKey: apiKey.trim() || undefined,
         }),
       });
 
       const json = await res.json();
-      if (json.ok) {
-        setScoutResults(json.prospects || []);
+      if (json.ok && Array.isArray(json.prospects)) {
+        setScoutResults(json.prospects);
+        setScoutSource(json.source || 'perplexity_ai_live');
       } else {
-        alert(`Scout failed: ${json.error || 'Unknown error'}`);
+        setScoutErrorMessage(json.error || 'Live search failed. Please check your Perplexity API key.');
       }
     } catch (err) {
       console.error('Scout launch failed:', err);
-      alert('Failed to execute AI search. Please check your network and API key.');
+      setScoutErrorMessage('Failed to execute live AI search. Please check network connection and API key.');
     } finally {
       setScouting(false);
     }
   }
 
-  // Save scouted prospects to DB & enroll in drip campaign
+  // Save scouted prospects to DB & automatically enroll in drip campaign
   async function handleSaveScoutProspects() {
     if (!scoutResults || scoutResults.length === 0) return;
+    setSavingProspects(true);
+
     try {
       const res = await fetch('/api/prospector/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prospects: scoutResults }),
       });
+
       const json = await res.json();
       if (json.ok) {
-        alert(`Successfully saved ${json.savedCount || scoutResults.length} verified prospects to database and enrolled in cold email drip campaign!`);
+        alert(json.message || `Successfully saved ${json.savedCount} verified prospects and enrolled ${json.enrolledCount} in the Q3 Growth Bundle email drip campaign!`);
         setScoutResults(null);
         setActiveTab('database');
+        setPage(1);
         fetchProspects();
       } else {
-        alert(`Save failed: ${json.error}`);
+        alert(`Save & Enroll failed: ${json.error || 'Server error'}`);
       }
     } catch (err) {
-      alert('Failed to save prospects.');
+      console.error('Save prospects error:', err);
+      alert('Failed to save and enroll prospects.');
+    } finally {
+      setSavingProspects(false);
     }
   }
 
@@ -166,9 +202,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
 
       const json = await res.json();
       if (json.ok) {
-        alert(`Successfully imported ${json.savedCount || prospectsList.length} prospects!`);
+        alert(json.message || `Successfully imported ${json.savedCount} prospects and enrolled them into the email drip campaign!`);
         setCsvContent('');
         setActiveTab('database');
+        setPage(1);
         fetchProspects();
       } else {
         alert(`Import failed: ${json.error}`);
@@ -194,7 +231,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
 
       const json = await res.json();
       if (json.ok) {
-        setDripMessage(`Processed! ${json.processed || 0} drip emails dispatched to active prospects pitching the Q3 Growth Bundle Offer.`);
+        setDripMessage(`Processed! ${json.processed || 0} cold drip emails dispatched to active prospects pitching the Q3 Growth Bundle Offer.`);
       } else {
         setDripMessage(`Drip processing notice: ${json.error || 'Failed'}`);
       }
@@ -236,7 +273,12 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     }
   }
 
-  const promptPreviewText = `"Find ${limit} real, active businesses currently operating in ${location || '[Location]'}${keyword ? ` matching keyword/industry "${keyword}"` : ''}. Focus on businesses likely needing modern web development (Next.js/React starting at $2,500), built-in CRM lead management, and local YouTube AI video pre-roll ad campaigns."`;
+  const promptPreviewText = `"Search the live web and find ${limit} real, active businesses currently operating in ${location || '[Location]'}${keyword ? ` matching keyword/industry "${keyword}"` : ''}. Extract authentic contact details, email addresses, phone numbers, and websites for Q3 Growth Bundle cold outreach."`;
+
+  // Pagination calculation
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const startIdx = total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const endIdx = Math.min(total, page * pageSize);
 
   return (
     <div className="prospector">
@@ -305,9 +347,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                   id="scout-keyword"
                   className="auth__input"
                   type="text"
-                  placeholder="What Industry or Keyword? (e.g. Restaurants, Auto Dealerships, Security Systems)"
+                  placeholder="What Industry or Keyword? (e.g. Medical Spas, Auto Dealerships, Plumbers)"
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
+                  required
                 />
               </div>
 
@@ -320,6 +363,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                   placeholder="Where? (e.g. Los Angeles, CA or Encino, CA)"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
+                  required
                 />
               </div>
 
@@ -336,28 +380,18 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 />
               </div>
 
-              {showApiKeyInput && (
-                <div className="auth__field">
-                  <label className="auth__label" htmlFor="perplexity-key">PERPLEXITY API KEY (Optional)</label>
-                  <input
-                    id="perplexity-key"
-                    className="auth__input"
-                    type="password"
-                    placeholder="pplx-..."
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                  />
-                </div>
-              )}
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                <button
-                  type="button"
-                  onClick={() => setShowApiKeyInput(!showApiKeyInput)}
-                  style={{ background: 'none', border: 'none', color: '#00b4d8', fontSize: '0.8125rem', cursor: 'pointer', textDecoration: 'underline' }}
-                >
-                  {showApiKeyInput ? 'Hide API Key Settings' : '🔑 Configure Perplexity API Key'}
-                </button>
+              <div className="auth__field">
+                <label className="auth__label" htmlFor="perplexity-key">
+                  PERPLEXITY API KEY {process.env.PERPLEXITY_API_KEY ? '(Pre-configured via env)' : '(Required for live web search)'}
+                </label>
+                <input
+                  id="perplexity-key"
+                  className="auth__input"
+                  type="password"
+                  placeholder="pplx-..."
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                />
               </div>
 
               <button className="btn-teal-lg" type="submit" disabled={scouting}>
@@ -365,10 +399,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                {scouting ? 'Crawling Web with Perplexity AI…' : 'Launch AI Scout'}
+                {scouting ? 'Searching Live Web via Perplexity AI…' : 'Launch AI Scout'}
               </button>
 
-              <div className="scout__subnote">POWERED BY PERPLEXITY AI &amp; SEARCH GROUNDING</div>
+              <div className="scout__subnote">100% REAL LIVE DATA &amp; PERPLEXITY AI SEARCH GROUNDING</div>
             </form>
           </div>
 
@@ -378,19 +412,34 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
               {promptPreviewText}
             </div>
             <p className="prompt-help">
-              This search will crawl the live web to find real, verified businesses. It filters for public contact data allowed for business outreach.
+              This search will crawl the live web using Perplexity AI to find real, verified businesses operating in your target area. Discovered leads are automatically enrolled in your cold email drip campaign.
             </p>
           </div>
+        </div>
+      )}
+
+      {/* Scout Error Display */}
+      {scoutErrorMessage && (
+        <div className="drip-alert-box" style={{ background: 'rgba(239, 68, 68, 0.1)', borderColor: 'rgba(239, 68, 68, 0.3)', color: '#dc2626', marginTop: '1.5rem' }}>
+          ⚠️ <strong>Search Notice:</strong> {scoutErrorMessage}
         </div>
       )}
 
       {/* Scout Results Display */}
       {scoutResults && (
         <div className="scout-results" style={{ marginTop: '2rem' }}>
-          <div className="app__actions">
-            <h3>Discovered Business Leads ({scoutResults.length})</h3>
-            <button onClick={handleSaveScoutProspects} className="btn-teal-lg" style={{ width: 'auto' }}>
-              Save All &amp; Enroll in Drip Campaign
+          <div className="app__actions" style={{ marginBottom: '1rem' }}>
+            <div>
+              <h3>Real Discovered Businesses ({scoutResults.length})</h3>
+              <p className="text-muted text-sm">Source: {scoutSource}</p>
+            </div>
+            <button
+              onClick={handleSaveScoutProspects}
+              className="btn-teal-lg"
+              style={{ width: 'auto' }}
+              disabled={savingProspects}
+            >
+              {savingProspects ? 'Saving & Enrolling in Drip…' : 'Save All & Enroll in Drip Campaign'}
             </button>
           </div>
 
@@ -398,10 +447,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Contact</th>
-                <th>Contact Data</th>
+                <th>Contact Person</th>
+                <th>Direct Email &amp; Phone</th>
                 <th>Industry / Keyword</th>
-                <th>Notes</th>
+                <th>Location / Notes</th>
               </tr>
             </thead>
             <tbody>
@@ -411,8 +460,8 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                     <strong>{item.company}</strong>
                     {item.website && (
                       <div>
-                        <a href={item.website} target="_blank" rel="noreferrer" className="text-muted text-sm">
-                          {item.website.replace(/^https?:\/\//, '')}
+                        <a href={item.website.startsWith('http') ? item.website : `https://${item.website}`} target="_blank" rel="noreferrer" className="text-muted text-sm">
+                          🌐 {item.website.replace(/^https?:\/\//, '')}
                         </a>
                       </div>
                     )}
@@ -423,9 +472,9 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                     {item.phone && <div>📞 {item.phone}</div>}
                   </td>
                   <td>
-                    <span className="tag tag--contact">{item.industry || 'General'}</span>
+                    <span className="tag tag--contact">{item.industry || keyword || 'General'}</span>
                   </td>
-                  <td className="text-sm">{item.notes || 'Ready for outreach'}</td>
+                  <td className="text-sm">{item.notes || item.location || 'Verified active business'}</td>
                 </tr>
               ))}
             </tbody>
@@ -437,13 +486,13 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
       {activeTab === 'import' && (
         <div className="prospector__card" style={{ maxWidth: '42rem' }}>
           <h3 className="prospector__card-title">Bulk CSV Prospect Import</h3>
-          <p className="panel__desc">
-            Paste or upload CSV rows of leads to automatically verify and enroll into the Q3 Growth Bundle email drip campaign.
+          <p className="panel__desc" style={{ marginBottom: '1rem' }}>
+            Paste CSV rows of business leads to import and automatically enroll into the Q3 Growth Bundle cold email drip campaign.
           </p>
 
           <form onSubmit={handleCsvImport}>
             <div className="auth__field">
-              <label className="auth__label" htmlFor="csv-input">CSV DATA (Format: Company, Contact, Email, Phone, Website)</label>
+              <label className="auth__label" htmlFor="csv-input">CSV DATA (Format: Company, Contact Name, email@domain.com, Phone, Website)</label>
               <textarea
                 id="csv-input"
                 className="auth__input"
@@ -456,13 +505,13 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
             </div>
 
             <button type="submit" className="btn-teal-lg" disabled={importingCsv}>
-              {importingCsv ? 'Processing Import…' : 'Import Prospects & Enroll'}
+              {importingCsv ? 'Processing Import…' : 'Import Prospects & Auto-Enroll in Drip'}
             </button>
           </form>
         </div>
       )}
 
-      {/* ── TAB 3: DATABASE (VERIFIED PROSPECTS) ── */}
+      {/* ── TAB 3: DATABASE (VERIFIED PROSPECTS & PAGINATION) ── */}
       {activeTab === 'database' && (
         <div className="prospector__database">
           <div className="database__toolbar">
@@ -476,13 +525,13 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 <input
                   type="text"
                   className="db-search-input"
-                  placeholder="Search name, email, keyword..."
+                  placeholder="Search company, contact, email, keyword..."
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={handleSearchChange}
                 />
               </div>
 
-              <select className="db-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+              <select className="db-select" value={statusFilter} onChange={handleStatusChange}>
                 <option value="All Status">All Status</option>
                 <option value="NEW">NEW</option>
                 <option value="QUEUED">QUEUED</option>
@@ -490,15 +539,17 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 <option value="CONVERTED">CONVERTED</option>
               </select>
 
-              <select className="db-select" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+              <select className="db-select" value={categoryFilter} onChange={handleCategoryChange}>
                 <option value="All Categories">All Categories</option>
+                <option value="Spa">Medical Spas</option>
                 <option value="Auto">Auto Dealerships</option>
                 <option value="Restaurant">Restaurants</option>
-                <option value="Service">Services</option>
-                <option value="Security">Security</option>
+                <option value="Plumber">Plumbers / Services</option>
+                <option value="Security">Security Systems</option>
               </select>
 
-              <select className="db-select" value={pageSize} onChange={(e) => setPageSize(parseInt(e.target.value, 10))}>
+              <select className="db-select" value={pageSize} onChange={handlePageSizeChange}>
+                <option value={10}>10 per page</option>
                 <option value={25}>25 per page</option>
                 <option value={50}>50 per page</option>
                 <option value={100}>100 per page</option>
@@ -524,7 +575,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
               {prospects.length === 0 ? (
                 <tr>
                   <td colSpan="5" className="table__empty">
-                    No verified prospects found. Launch an AI Search to populate prospects.
+                    No prospects match your search criteria. Launch an AI Search to find real business leads.
                   </td>
                 </tr>
               ) : (
@@ -568,6 +619,35 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
               )}
             </tbody>
           </table>
+
+          {/* Interactive Pagination Controls */}
+          <div className="db-pagination" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+            <div className="text-muted text-sm">
+              Showing <strong>{startIdx}</strong> to <strong>{endIdx}</strong> of <strong>{total}</strong> prospects
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
+              <button
+                className="btn-db-refresh"
+                onClick={() => setPage(page - 1)}
+                disabled={page <= 1 || loadingDb}
+              >
+                &larr; Previous
+              </button>
+
+              <span className="text-sm" style={{ padding: '0 0.5rem', fontWeight: 600 }}>
+                Page {page} of {totalPages}
+              </span>
+
+              <button
+                className="btn-db-refresh"
+                onClick={() => setPage(page + 1)}
+                disabled={page >= totalPages || loadingDb}
+              >
+                Next &rarr;
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -584,7 +664,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
               <button onClick={handleProcessDrip} className="btn-process-drip" disabled={processingDrip}>
                 ► {processingDrip ? 'Dispatching Email Drips…' : 'Process Drip Now'}
               </button>
-              <button className="btn-db-refresh" onClick={() => alert('Sequences updated.')}>
+              <button className="btn-db-refresh" onClick={() => alert('Sequences refreshed.')}>
                 ↻
               </button>
             </div>
@@ -599,7 +679,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
           <div className="app__actions" style={{ marginTop: '1.5rem' }}>
             <h3 className="database__title">Active Sequences ({sequences.length})</h3>
             <button className="btn-app btn-app--quiet" onClick={() => setTestModalOpen(true)}>
-              + New Sequence / Test Email
+              + Send Test Drip Email
             </button>
           </div>
 

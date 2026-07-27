@@ -8,29 +8,28 @@ export async function POST(request) {
     const { prospects, clientId } = body;
 
     if (!Array.isArray(prospects) || prospects.length === 0) {
-      return NextResponse.json({ ok: false, error: 'No prospects provided.' }, { status: 400 });
+      return NextResponse.json({ ok: false, error: 'No prospects provided to save.' }, { status: 400 });
     }
 
+    // 1. Save prospects to database
     const saveRes = await saveProspects(prospects, clientId || null);
     if (!saveRes.ok) {
       return NextResponse.json(saveRes, { status: 500 });
     }
 
-    try {
-      const prospectEmails = prospects.map((p) => p.email).filter(Boolean);
-      const { createAdminSupabase } = await import('@/lib/supabase/admin.js');
-      const admin = createAdminSupabase();
-      const { data: dbRows } = await admin.from('prospects').select('id').in('email', prospectEmails);
-
-      if (dbRows && dbRows.length > 0) {
-        const pIds = dbRows.map((r) => r.id);
-        await enrollProspectsInSequence('seq-prospector-drip', pIds);
-      }
-    } catch (enrollErr) {
-      console.warn('Auto enrollment warning:', enrollErr);
+    // 2. Automatically enroll all saved prospects into the main cold email drip sequence (seq-prospector-drip)
+    let enrolledCount = 0;
+    if (Array.isArray(saveRes.prospectIds) && saveRes.prospectIds.length > 0) {
+      const enrollRes = await enrollProspectsInSequence('seq-prospector-drip', saveRes.prospectIds);
+      enrolledCount = enrollRes.count || saveRes.prospectIds.length;
     }
 
-    return NextResponse.json({ ok: true, savedCount: saveRes.count || prospects.length });
+    return NextResponse.json({
+      ok: true,
+      savedCount: saveRes.count || prospects.length,
+      enrolledCount,
+      message: `Successfully saved ${saveRes.count} real prospects to database and automatically enrolled them in the Q3 Growth Bundle email drip campaign!`,
+    });
   } catch (err) {
     console.error('Save prospects API error:', err);
     return NextResponse.json({ ok: false, error: err.message }, { status: 500 });
