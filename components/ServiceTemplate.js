@@ -132,7 +132,7 @@ export default function ServiceTemplate({ service }) {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>{service.ctaTitle}</h2>
           <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>
+            <a href="/onboarding" className="btn btn--solid btn--big">Schedule a Consultation</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
         </div>

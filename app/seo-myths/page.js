@@ -78,7 +78,7 @@ export default function SeoMythsPage() {
             </p>
             <div className="hero__ctas">
               <Link href="/contact" className="btn btn--solid btn--big">
-                Get a free AI visibility audit
+                Schedule a Consultation
               </Link>
               <Link href="/pricing" className="btn btn--ghost btn--big">
                 See pricing

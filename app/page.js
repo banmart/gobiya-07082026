@@ -85,7 +85,7 @@ export default function Home() {
             </h1>
             <p className="hero__sub" data-reveal>We&apos;re an independent Web AI &amp; SEO consulting firm specializing in the optimization and rankings of small and medium-sized businesses.</p>
             <div className="hero__ctas" data-reveal>
-              <a href="/onboarding" className="btn btn--solid">Get an AI visibility scan</a>
+              <a href="/onboarding" className="btn btn--solid">Schedule a Consultation</a>
               <a href="/ai-visibility" className="btn btn--ghost">How AI visibility works</a>
             </div>
           </div>
@@ -305,7 +305,7 @@ export default function Home() {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Ready to see what&apos;s holding your search traffic back?</h2>
           <div className="cta__actions" data-reveal>
-            <a href="/onboarding" className="btn btn--solid btn--big">Book a strategy call</a>
+            <a href="/onboarding" className="btn btn--solid btn--big">Schedule a Consultation</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--ghost-light btn--big">323-744-1338</a>
           </div>
         </div>

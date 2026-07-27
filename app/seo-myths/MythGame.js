@@ -236,7 +236,7 @@ export default function MythGame({ onFinish }) {
           </p>
           <div className="myth-results__actions">
             <Link href="/contact" className="btn btn--solid btn--big">
-              Get a free AI visibility audit
+              Schedule a Consultation
             </Link>
             <button type="button" className="btn btn--ghost btn--big" onClick={restart}>
               Play again

@@ -11,7 +11,7 @@ export default function Header() {
             <div className="topbar__links">
               <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
               <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-              <a href="/onboarding" className="topbar__cta">Get an AI visibility audit</a>
+              <a href="/onboarding" className="topbar__cta">Schedule a Consultation</a>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function Header() {
             ))}
           </nav>
           <div className="nav__right">
-            <a href="/onboarding" className="btn btn--pill nav__cta">Book a strategy call</a>
+            <a href="/onboarding" className="btn btn--pill nav__cta">Schedule a Consultation</a>
             <button className="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
               <span></span><span></span>
             </button>
