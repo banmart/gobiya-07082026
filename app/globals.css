@@ -1361,9 +1361,9 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   right: clamp(-7.6rem, -8.6vw, -3.2rem);
   width: clamp(30.8rem, 58.8vw, 61.6rem);
   height: clamp(30.8rem, 58.8vw, 61.6rem);
-  opacity: 0.05;
+  opacity: 0.15;
   pointer-events: none;
-  z-index: -1;
+  z-index: 15;
 }
 @media (max-width: 48rem) {
   .brand-watermark { width: clamp(22.4rem, 84vw, 36.4rem); height: clamp(22.4rem, 84vw, 36.4rem); }
