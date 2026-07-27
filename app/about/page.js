@@ -16,13 +16,15 @@ const BOOKS = [
     tag: 'REVENUE & GROWTH',
     bg: '#0B1E36',
     border: '#F5B83D',
+    pdf: '/downloads/acquired-guide-to-scaling.pdf',
   },
   {
-    title: 'THE ART OF THE EXIT',
-    subtitle: 'The Complete Guide to AI Search Dominance',
+    title: 'THE ART OF AI SEARCH',
+    subtitle: 'The Complete Guide to Search & AI Visibility',
     tag: 'AI VISIBILITY',
     bg: '#8B263E',
     border: '#FFFFFF',
+    pdf: '/downloads/the-art-of-ai-search.pdf',
   },
   {
     title: 'THE EXIT STRATEGY HANDBOOK',
@@ -30,6 +32,7 @@ const BOOKS = [
     tag: 'TECHNICAL FRAMEWORK',
     bg: '#1E293B',
     border: '#F5B83D',
+    pdf: '/downloads/technical-seo-architecture.pdf',
   },
   {
     title: 'CLOSING THE DEAL',
@@ -37,6 +40,7 @@ const BOOKS = [
     tag: 'CRO & LEAD GEN',
     bg: '#0F172A',
     border: '#E2E8F0',
+    pdf: '/downloads/closing-the-deal-cro.pdf',
   },
   {
     title: "A BEGINNER'S GUIDE TO AI SEARCH",
@@ -44,6 +48,7 @@ const BOOKS = [
     tag: 'SEO MANUAL',
     bg: '#1E3A8A',
     border: '#93C5FD',
+    pdf: '/downloads/beginners-guide-to-ai-search.pdf',
   },
 ];
 
@@ -181,11 +186,14 @@ export default function AboutPage() {
             {/* Book Covers Row */}
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginTop: '2.5rem' }}>
               {BOOKS.map((b, bIdx) => (
-                <div
+                <a
                   key={bIdx}
+                  href={b.pdf}
+                  download
+                  title={`Download ${b.title} Guide (PDF)`}
                   style={{
-                    width: '130px',
-                    height: '175px',
+                    width: '135px',
+                    height: '185px',
                     background: b.bg,
                     color: '#FFFFFF',
                     border: `1px solid ${b.border}`,
@@ -196,6 +204,9 @@ export default function AboutPage() {
                     justifyContent: 'space-between',
                     textAlign: 'center',
                     boxShadow: '0 6px 14px rgba(0,0,0,0.12)',
+                    textDecoration: 'none',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    cursor: 'pointer',
                   }}
                 >
                   <div style={{ fontSize: '0.625rem', fontWeight: '700', letterSpacing: '0.05em', color: b.border }}>
@@ -207,7 +218,10 @@ export default function AboutPage() {
                   <div style={{ fontSize: '0.625rem', opacity: 0.8, lineHeight: '1.2' }}>
                     {b.subtitle}
                   </div>
-                </div>
+                  <div style={{ fontSize: '0.5625rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: b.border, borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '0.25rem' }}>
+                    Download PDF ↓
+                  </div>
+                </a>
               ))}
             </div>
           </div>
