@@ -9,6 +9,11 @@ export const metadata = buildMetadata({
   path: '/insights',
 });
 
+// The array is in the order articles were written, which is close to but not
+// actually date order — so a new entry appended to the end rendered last.
+// Sorting here keeps the archive newest-first no matter where an entry lands.
+const ARCHIVE = [...INSIGHTS].sort((a, b) => b.date.localeCompare(a.date));
+
 export default function InsightsPage() {
   return (
     <main id="top">
@@ -29,10 +34,10 @@ export default function InsightsPage() {
       <section className="section" id="all-articles" style={{ paddingBlock: 'clamp(3.5rem, 6vw, 5rem)', background: '#FFFFFF' }}>
         <div className="container container--narrow">
           <h2 style={{ fontFamily: "'PT Serif', Georgia, serif", fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: '#0B1E36', marginBottom: '2rem' }}>
-            All {INSIGHTS.length} Articles
+            All {ARCHIVE.length} Articles
           </h2>
           <ul className="archive-list">
-            {INSIGHTS.map((a) => (
+            {ARCHIVE.map((a) => (
               <li key={a.slug} className="archive-list__item">
                 <a href={`/insights/${a.slug}`} className="archive-list__link">
                   <span className="archive-list__title">{a.title}</span>
