@@ -2382,125 +2382,213 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   .seo-process__row { grid-template-columns: 1fr; gap: 0.6rem; }
 }
 
-/* ═══════════ offer section ═══════════ */
-.offer-section {
-  padding-top: clamp(3rem, 6vw, 5rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
-}
-.offer-card {
-  position: relative;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  background: var(--darkest);
-  color: #fff;
-  padding: clamp(2.5rem, 6vw, 4rem);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  box-shadow: 0 24px 48px -12px rgba(11, 31, 58, 0.4);
-}
-.offer-card__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.15;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-.offer-card__content { position: relative; z-index: 2; }
+/* ═══════════ /lp landing page ═══════════
+   Rebuilt onto the mw-* system so the offer page matches the rest of the site
+   and renders inside the global header/footer. The old .offer-card treatment
+   (rounded 1.5rem card, rotating price pill, collage background) predated that
+   system and was the only thing on the site using it.
+
+   .offer-card__badge is kept because components/CountdownBadge.js renders it. */
 .offer-card__badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 1rem;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 2rem;
+  border: 1px solid rgba(245, 184, 61, 0.45);
+  border-radius: 2px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  color: #F5B83D;
+  margin-bottom: 1.25rem;
   backdrop-filter: blur(8px);
 }
-.offer-card__title {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  line-height: 1.1;
-  margin-bottom: 1.25rem;
-  text-wrap: balance;
+
+.lp-hero { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
+
+.lp-hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
 }
-.offer-card__title span { color: var(--main); }
-.offer-card__price-pill {
-  display: inline-block;
-  background: var(--main);
-  color: #fff;
-  padding: 0.85rem 1.75rem;
-  border-radius: 2rem;
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 8px 24px rgba(200, 16, 46, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transform: rotate(-2deg);
-  transform-origin: center;
+
+@media (max-width: 56rem) {
+  .lp-hero__grid { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .offer-card__price-pill { animation: price-pill-wiggle 5s ease-in-out infinite; }
+
+.lp-hero__price {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border: 1px solid rgba(245, 184, 61, 0.5);
+  border-radius: 2px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #CBD5E1;
 }
-@keyframes price-pill-wiggle {
-  0%, 100% { transform: rotate(-2deg); }
-  2% { transform: rotate(9deg); }
-  4% { transform: rotate(-11deg); }
-  6% { transform: rotate(7deg); }
-  8% { transform: rotate(-7deg); }
-  10% { transform: rotate(4deg); }
-  12% { transform: rotate(-2deg); }
+
+.lp-hero__price strong {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F5B83D;
 }
-.offer-card__price-pill strong {
-  font-size: 1.35em;
-  font-weight: 800;
-  vertical-align: middle;
+
+.lp-hero__points {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.lp-hero__points li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #E2E8F0;
+}
+
+.lp-hero__points li span:first-child {
+  color: #F5B83D;
+  font-size: 0.75rem;
   line-height: 1;
+  flex: none;
 }
-.price-mark { position: relative; display: inline-block; }
-.price-mark__circle {
-  position: absolute;
-  left: -14%;
-  right: -14%;
-  top: -32%;
-  bottom: -38%;
-  width: 128%;
-  height: auto;
-  color: #fff;
-  opacity: 0.85;
-  pointer-events: none;
+
+.lp-hero__form { position: relative; }
+
+@media (min-width: 56.0625rem) {
+  /* Keep the form in view while the left column scrolls past it. */
+  .lp-hero__form { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
 }
-.offer-card__desc {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+
+.lp-banner__dek {
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+  color: #CBD5E1;
+  font-size: 1.0625rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 2rem;
-  max-width: 32rem;
 }
-.offer-card__visual {
-  position: relative;
-  z-index: 2;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+.lp-banner__dek a { color: #F5B83D; }
+
+.lp-fine {
+  max-width: 46rem;
+  margin: 2.5rem auto 0;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
 }
-@media (max-width: 900px) {
-  .offer-card {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-  }
-  .offer-card__desc { margin-inline: auto; }
+
+/* ── /lp offer form ──
+   Was styled entirely with inline style objects, including a #e41613 red
+   button that appears nowhere else on the site and 6-8px radii against the
+   system's 2px. Moved to classes and onto the real palette. */
+.lp-form {
+  background: #FFFFFF;
+  border: 1px solid var(--light);
+  border-radius: 3px;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28);
+  text-align: left;
 }
+
+.lp-form__title {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--darkest);
+  margin: 0 0 0.4rem;
+}
+
+.lp-form__sub {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0 0 1.5rem;
+}
+
+.lp-form__form { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.lp-form__honeypot { display: none; }
+
+.lp-form__label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #475569;
+  margin-bottom: 0.4rem;
+}
+
+.lp-form__req { color: var(--main); }
+
+.lp-form__input {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  background: var(--lightest);
+  border: 1px solid var(--light);
+  border-radius: 2px;
+  color: var(--darkest);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.2s var(--expo-out), box-shadow 0.2s var(--expo-out);
+}
+
+.lp-form__input:focus-visible {
+  border-color: var(--main);
+  box-shadow: 0 0 0 3px rgba(139, 38, 62, 0.14);
+}
+
+.lp-form__input--area { resize: vertical; min-height: 4.5rem; }
+
+.lp-form__error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--main);
+  font-weight: 600;
+}
+
+.lp-form__submit {
+  margin-top: 0.25rem;
+  background: var(--main);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s var(--expo-out), opacity 0.2s var(--expo-out);
+}
+
+.lp-form__submit:hover:not(:disabled) { background: #6E1E32; }
+.lp-form__submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.lp-form__legal {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--dark);
+  text-align: center;
+}
+
+.lp-form__legal a { color: #475569; text-decoration: underline; }
+
 
 /* ═══════════ scroll story (pinned client reel) ═══════════ */
 .scroll-story { padding-block: clamp(2.5rem, 5vw, 4rem); }
@@ -4069,6 +4157,11 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   padding-block: clamp(4rem, 7vw, 6rem);
   background: #FAFAFA;
 }
+
+/* .mw-simple and .mw-steps share the same #FAFAFA. Elsewhere they're always
+   separated by a navy band, so it never shows; placed back to back they read as
+   one undifferentiated slab. This flips the second one to white. */
+.mw-steps--plain { background: #FFFFFF; }
 
 .mw-steps__sub {
   font-size: 1.0625rem;

@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import { LogoMark } from '../../components/Logo';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 import CountdownBadge from '../../components/CountdownBadge';
@@ -12,57 +10,124 @@ export const metadata = buildMetadata({
   robots: { index: false, follow: true },
 });
 
+const INCLUDED = [
+  {
+    title: 'A Custom Next.js Build',
+    desc: 'Not a template and not a page builder. A server-rendered site whose content is in the HTML, so search engines and AI crawlers can actually read it — the foundation everything else depends on.',
+  },
+  {
+    title: 'An Integrated CRM',
+    desc: 'Every enquiry lands somewhere you can see it, assign it, and follow up on it. Forms and calls are tracked as conversions from day one, so you know which pages produce leads rather than visits.',
+  },
+  {
+    title: 'A YouTube Pre-Roll Campaign',
+    desc: 'An AI-produced video ad running as pre-roll, so the site has traffic pointed at it the week it launches instead of waiting on organic to compound.',
+  },
+];
+
+const STEPS = [
+  { n: 'Step 1: Scope', d: 'A short call to establish what you sell, who buys it, and which pages the business actually needs. You get a fixed quote before anything starts.' },
+  { n: 'Step 2: Build', d: 'We design and build the site, wire up the CRM, and set conversion tracking so the reporting is honest from the first day it is live.' },
+  { n: 'Step 3: Launch', d: 'The site ships, the pre-roll campaign goes live, and traffic starts arriving while the organic foundation begins to compound underneath it.' },
+  { n: 'Step 4: Measure', d: 'You see qualified leads by landing page, not vanity sessions. We tune what is working and cut what is not.' },
+];
+
 export default async function LpPage({ searchParams }) {
   const params = await searchParams;
   const ref = params.ref || params.utm_source || 'direct';
 
   return (
     <main id="top">
-      <header style={{ padding: '1.5rem clamp(1.5rem, 5vw, 3rem)' }}>
-        <a href="/" aria-label="Gobiya — home" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit' }}>
-          <LogoMark size={30} />
-          <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem' }}>Gobiya</span>
-        </a>
-      </header>
-
-      <section className="section offer-section" id="lp-offer">
+      {/* ══ 1. Offer hero — navy subhero with the form alongside ══ */}
+      <section className="mw-subhero lp-hero">
         <div className="container">
-          <div className="offer-card" data-reveal>
-            <Image
-              src="/assets/img/office-collage-montage.webp"
-              alt="Office background collage"
-              fill
-              className="offer-card__bg"
-              style={{ objectFit: 'cover' }}
-              aria-hidden="true"
-            />
-            <div className="offer-card__content">
+          <div className="lp-hero__grid">
+            <div>
               <CountdownBadge targetDate="2026-09-30T23:59:59" />
-              <h1 className="offer-card__title">
-                The Q3 <span>Growth Bundle</span> Offer
+              <h1 className="mw-subhero__title">
+                The Q3 Growth Bundle
               </h1>
-              <div className="offer-card__price-pill">
-                Custom Web Dev Starting at <strong>$2,500</strong>
+              <p className="mw-subhero__dek">
+                Turn a new website into a lead generation machine. For a limited time, every custom
+                Next.js or React build includes a fully integrated CRM to manage your leads, plus a
+                professional YouTube AI video pre-roll campaign to drive traffic from day one.
+              </p>
+
+              <div className="lp-hero__price">
+                Custom web development starting at <strong>$2,500</strong>
               </div>
-              <p className="offer-card__desc">
-                Turn your new website into a complete lead generation machine. For a limited time (ends Sept 30th), every custom Next.js or React build includes a fully integrated CRM to manage your leads, plus a professional YouTube AI video pre-roll ad campaign to drive traffic from day one.
-              </p>
-              <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', maxWidth: '32rem', lineHeight: '1.5' }}>
-                Starting price shown; final price depends on project scope. Includes one custom Next.js/React build, one integrated CRM setup, and one YouTube AI video pre-roll ad campaign. Offer valid through September 30, 2026 and cannot be combined with other offers.
-              </p>
+
+              <ul className="lp-hero__points">
+                {INCLUDED.map((item) => (
+                  <li key={item.title}>
+                    <span aria-hidden="true">■</span>
+                    <span>{item.title}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="offer-card__visual">
+
+            <div className="lp-hero__form" id="claim">
               <LpOfferForm source={ref} />
             </div>
           </div>
         </div>
       </section>
 
-      <footer style={{ padding: '2rem clamp(1.5rem, 5vw, 3rem)', textAlign: 'center', fontSize: '0.8125rem', color: '#6b7280' }}>
-        <p>
-          &copy; {new Date().getFullYear()} Gobiya &middot; <a href="/privacy" style={{ color: 'inherit' }}>Privacy</a> &middot; <a href="/terms" style={{ color: 'inherit' }}>Terms</a> &middot; <a href={CONTACT.phoneHref} style={{ color: 'inherit' }}>{CONTACT.phone}</a>
-        </p>
-      </footer>
+      {/* ══ 2. What's included ══ */}
+      <section className="mw-simple" id="whats-included">
+        <div className="container">
+          <h2 className="mw-simple__heading">What&apos;s <em>Included</em></h2>
+          <p className="mw-simple__intro">
+            Three things that normally get quoted separately, bundled into one fixed-scope engagement —
+            the site, the system that captures leads from it, and the traffic to prove it works.
+          </p>
+          <div className="mw-simple__grid">
+            {INCLUDED.map((item) => (
+              <div key={item.title}>
+                <h3 className="mw-simple__col-title">{item.title}</h3>
+                <p className="mw-simple__col-desc">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 3. How it works ══ */}
+      <section className="mw-steps mw-steps--plain" id="process">
+        <div className="container">
+          <p className="mw-steps__sub">How the Bundle Runs</p>
+          <h2 className="mw-steps__heading">From Scope to Measurable Leads</h2>
+          <p className="mw-steps__dek">
+            No long-term contract and no retainer attached to the build. Here is the whole sequence:
+          </p>
+          <div className="mw-steps__grid">
+            {STEPS.map((s) => (
+              <div className="mw-step-card" key={s.n}>
+                <div className="mw-step-card__header">{s.n}</div>
+                <p className="mw-step-card__desc">{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 4. Closing CTA ══ */}
+      <section className="mw-navy-banner">
+        <div className="container">
+          <h2 className="mw-navy-banner__title">Claim the Bundle Before September 30</h2>
+          <p className="lp-banner__dek">
+            Tell us what you need and Steve will reply within one business day — or call{' '}
+            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a> and skip the form entirely.
+          </p>
+          <a href="#claim" className="mw-navy-banner__btn">Claim the Q3 Growth Bundle</a>
+          <p className="lp-fine">
+            Starting price shown; final price depends on project scope. Includes one custom Next.js/React
+            build, one integrated CRM setup, and one YouTube AI video pre-roll ad campaign. Offer valid
+            through September 30, 2026 and cannot be combined with other offers.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
