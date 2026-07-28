@@ -5249,3 +5249,6 @@ html.a11y-grayscale {
 
 
 
+
+/* Hero supports a solid primary CTA next to the outline secondary. */
+.mw-hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }

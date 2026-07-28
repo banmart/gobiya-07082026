@@ -41,13 +41,20 @@ export default function Home() {
         <div className="mw-hero__overlay" />
         <div className="container">
           <div className="mw-hero__card">
-            <h1 className="mw-hero__title">Web AI &amp; SEO Experts</h1>
+            <h1 className="mw-hero__title">
+              Search and AI visibility, run by the person you actually hired.
+            </h1>
             <p className="mw-hero__excerpt">
-              We&apos;re an independent Web AI &amp; SEO consulting firm specializing in the optimization and rankings of small and medium-sized businesses.
+              Gobiya is an independent Los Angeles consultancy. Steve Martin has optimized small and mid-sized businesses for Google, ChatGPT and Perplexity since 2010 — and leads every account himself. No account managers. No long-term contracts.
             </p>
-            <a href="#process" className="mw-hero__btn">
-              View Our Process
-            </a>
+            <div className="mw-hero__actions">
+              <a href="/free-site-scan" className="mw-book__btn-solid">
+                Get Your Free Site Scan
+              </a>
+              <a href="#process" className="mw-hero__btn">
+                View Our Process
+              </a>
+            </div>
           </div>
         </div>
       </section>
