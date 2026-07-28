@@ -39,3 +39,39 @@ describe('service schema', () => {
     expect(tpl).toContain("name: 'California'");
   });
 });
+
+describe('flat service template renders its authored content', () => {
+  const tpl = readFileSync(path.resolve(process.cwd(), 'components/FlatServiceTemplate.js'), 'utf8');
+
+  it('renders the datapoint with its source note', () => {
+    expect(tpl).toContain('service.datapoint');
+    expect(tpl).toContain('sourceNote');
+  });
+
+  it('renders the testimonial', () => {
+    expect(tpl).toContain('service.testimonial');
+  });
+
+  it('renders the problem statement', () => {
+    expect(tpl).toContain('service.problem');
+  });
+
+  it('renders the process steps', () => {
+    expect(tpl).toContain('service.process');
+  });
+
+  it('prefers the authored CTA title when present', () => {
+    expect(tpl).toContain('service.ctaTitle');
+  });
+});
+
+describe('service data still carries the fields the template needs', () => {
+  it('gives every flat service page a datapoint, testimonial, problem and process', () => {
+    for (const [slug, s] of Object.entries(SERVICES_FLAT)) {
+      expect(s.datapoint, slug).toBeTruthy();
+      expect(s.testimonial, slug).toBeTruthy();
+      expect(s.problem, slug).toBeTruthy();
+      expect(Array.isArray(s.process), slug).toBe(true);
+    }
+  });
+});

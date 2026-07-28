@@ -5249,3 +5249,27 @@ html.a11y-grayscale {
 
 
 
+
+/* ═══════════ Flat service page: proof, process, testimonial ═══════════ */
+.mw-svc-proof { padding-block: clamp(2.5rem, 5vw, 4rem); background: #FAFAFA; }
+.mw-svc-proof__grid { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px) { .mw-svc-proof__grid { grid-template-columns: 1.6fr 1fr; } }
+.mw-svc-proof__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; color: #8C1D2F; font-weight: 700; margin-bottom: 0.5rem; }
+.mw-svc-proof__statement { font-family: 'PT Serif', Georgia, serif; font-size: clamp(1.125rem, 2vw, 1.4rem); line-height: 1.5; color: #0B1E36; }
+.mw-svc-proof__stat { text-align: center; }
+.mw-svc-proof__num { font-family: 'PT Serif', Georgia, serif; font-size: clamp(2.5rem, 6vw, 3.75rem); color: #0B1E36; line-height: 1; }
+.mw-svc-proof__label { margin-top: 0.5rem; font-size: 0.875rem; color: #475569; }
+.mw-svc-proof__source { margin-top: 0.75rem; font-size: 0.75rem; color: #64748B; }
+
+.mw-svc-process { padding-block: clamp(3rem, 6vw, 4.5rem); }
+.mw-svc-process__heading { font-family: 'PT Serif', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2rem); color: #0B1E36; text-align: center; margin-bottom: 2rem; }
+.mw-svc-process__grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.mw-svc-process__num { font-family: 'PT Serif', Georgia, serif; font-size: 1.5rem; color: #8C1D2F; }
+.mw-svc-process__title { font-size: 1rem; font-weight: 700; color: #0B1E36; margin-block: 0.35rem 0.5rem; }
+.mw-svc-process__desc { font-size: 0.9375rem; line-height: 1.6; color: #475569; }
+
+.mw-svc-quote { padding-block: clamp(3rem, 6vw, 4.5rem); background: #FAFAFA; }
+.mw-svc-quote__text { max-width: 46rem; margin-inline: auto; font-family: 'PT Serif', Georgia, serif; font-size: clamp(1.0625rem, 2vw, 1.3rem); line-height: 1.6; color: #0B1E36; }
+.mw-svc-quote__who { display: flex; gap: 0.75rem; align-items: center; justify-content: center; margin-top: 1.5rem; font-size: 0.875rem; color: #475569; }
+.mw-svc-quote__avatar { border-radius: 50%; object-fit: cover; }
+.mw-svc-quote__link { display: block; text-align: center; margin-top: 1.25rem; font-weight: 700; color: #8C1D2F; }

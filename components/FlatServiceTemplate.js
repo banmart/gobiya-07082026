@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Breadcrumbs from './Breadcrumbs';
 
 const CLEAN_SERVICE_NAMES = {
@@ -72,6 +73,42 @@ export default function FlatServiceTemplate({ service }) {
         </div>
       </section>
 
+      {/* ══ Problem statement + headline metric ══
+          Both come straight from lib/servicesFlat.js. Each is guarded so a page
+          without the field renders nothing rather than an empty shell. */}
+      {(service.problem || service.datapoint) && (
+        <section className="mw-svc-proof">
+          <div className="container">
+            <div className="mw-svc-proof__grid">
+              {service.problem && (
+                <div>
+                  <p className="mw-svc-proof__eyebrow">{service.problem.eyebrow}</p>
+                  <p className="mw-svc-proof__statement">{service.problem.statement}</p>
+                </div>
+              )}
+              {service.datapoint && (
+                <div className="mw-svc-proof__stat">
+                  <div className="mw-svc-proof__num">
+                    {service.datapoint.value.toFixed(service.datapoint.decimals ?? 0)}
+                    {service.datapoint.suffix || ''}
+                  </div>
+                  <div className="mw-svc-proof__label">{service.datapoint.label}</div>
+                  {service.datapoint.sourceNote && (
+                    <p className="mw-svc-proof__source">
+                      {service.datapoint.href ? (
+                        <a href={service.datapoint.href}>{service.datapoint.sourceNote}</a>
+                      ) : (
+                        service.datapoint.sourceNote
+                      )}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ══ 3. Pillar Hierarchical Grid (Left Sidebar + Right Column) ══ */}
       <div className="container">
         <div className="mw-pillar-grid">
@@ -124,11 +161,63 @@ export default function FlatServiceTemplate({ service }) {
         </div>
       </div>
 
+      {/* ══ How the work runs ══ */}
+      {service.process?.length > 0 && (
+        <section className="mw-svc-process">
+          <div className="container">
+            <h2 className="mw-svc-process__heading">How the work runs</h2>
+            <div className="mw-svc-process__grid">
+              {service.process.map((p) => (
+                <div key={p.step} className="mw-svc-process__step">
+                  <div className="mw-svc-process__num">{p.step}</div>
+                  <h3 className="mw-svc-process__title">{p.title}</h3>
+                  <p className="mw-svc-process__desc">{p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══ Client proof ══ */}
+      {service.testimonial && (
+        <section className="mw-svc-quote">
+          <div className="container">
+            <blockquote className="mw-svc-quote__text">
+              &ldquo;{service.testimonial.quote}&rdquo;
+            </blockquote>
+            <div className="mw-svc-quote__who">
+              {service.testimonial.photo && (
+                <Image
+                  src={service.testimonial.photo}
+                  alt={service.testimonial.name || service.testimonial.company}
+                  width={48}
+                  height={48}
+                  className="mw-svc-quote__avatar"
+                />
+              )}
+              <div>
+                <strong>
+                  {service.testimonial.name ? `${service.testimonial.name}, ` : ''}
+                  {service.testimonial.company}
+                </strong>
+                {service.testimonial.role && <div>{service.testimonial.role}</div>}
+              </div>
+            </div>
+            {service.testimonial.href && (
+              <a href={service.testimonial.href} className="mw-svc-quote__link">
+                Read the case study
+              </a>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ══ 4. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">
-            Ready to scale your business with {displayTitle}?
+            {service.ctaTitle || `Ready to scale your business with ${displayTitle}?`}
           </h2>
           <a href="/free-site-scan" className="mw-navy-banner__btn">
             Schedule a Consultation
