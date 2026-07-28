@@ -5182,37 +5182,25 @@ html.a11y-grayscale {
   filter: grayscale(100%);
 }
 
-/* ═══════════ Scroll-Triggered Professional Entrance Animations ═══════════ */
-.bento-card,
-.mw-card,
-.card,
-.pillar-card,
-.section-header,
-.statement,
-.mw-subhero__title,
-.mw-subhero__dek,
-.hero__title,
-.hero__dek,
-.reveal,
-.mw-navy-banner {
+/* ═══════════ Scroll-Triggered Professional Entrance Animations ═══════════
+   Additive by design: the hidden state lives on .will-reveal, which only
+   components/ScrollAnimate.js ever applies, and only to elements that are
+   below the fold at setup time. Nothing is hidden by default.
+
+   This used to hide the target elements in base CSS and rely on JS adding
+   .is-visible to bring them back. That made whole sections — .mw-navy-banner
+   most visibly — render as blank gaps whenever the observer never ran: with
+   JavaScript disabled, in print and screenshot paths, and for any renderer
+   that does not scroll. Content must never depend on JS to be visible; the
+   animation degrades to "no animation", never to "no content". */
+.will-reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.bento-card.is-visible,
-.mw-card.is-visible,
-.card.is-visible,
-.pillar-card.is-visible,
-.section-header.is-visible,
-.statement.is-visible,
-.mw-subhero__title.is-visible,
-.mw-subhero__dek.is-visible,
-.hero__title.is-visible,
-.hero__dek.is-visible,
-.reveal.is-visible,
-.mw-navy-banner.is-visible {
+.will-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -5226,18 +5214,7 @@ html.a11y-grayscale {
 
 /* Accessibility: Respect Prefers Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .bento-card,
-  .mw-card,
-  .card,
-  .pillar-card,
-  .section-header,
-  .statement,
-  .mw-subhero__title,
-  .mw-subhero__dek,
-  .hero__title,
-  .hero__dek,
-  .reveal,
-  .mw-navy-banner {
+  .will-reveal {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
