@@ -130,29 +130,29 @@ export default function Home() {
       <section className="mw-simple">
         <div className="container">
           <h2 className="mw-simple__heading">
-            Digital Growth is Complicated – <em>We Make it Simple</em>
+            You&apos;ve probably been burned by an SEO agency before
           </h2>
           <p className="mw-simple__intro">
-            We have invested over a decade honing the <em>Gobiya 4-Step Method</em> for scaling search visibility. This documented framework has been refined over hundreds of successful campaigns and provides you with proven steps to minimize risk and maximize qualified leads.
+            Most owners we talk to have already paid someone for a year of reports they couldn&apos;t read and rankings that never turned into phone calls. Here&apos;s how we&apos;re set up differently.
           </p>
 
           <div className="mw-simple__grid">
             <div>
-              <h3 className="mw-simple__col-title">A Tailored Approach</h3>
+              <h3 className="mw-simple__col-title">You work with the person doing the work</h3>
               <p className="mw-simple__col-desc">
-                There&apos;s only one business in the world like yours – work with a team that gives you individual attention. We customize our process based on your needs and the size, industry, and type of business.
+                There are no account managers here. Steve runs your account, does the analysis, and answers your email himself. That&apos;s also the honest limit on how many clients we take at once.
               </p>
             </div>
             <div>
-              <h3 className="mw-simple__col-title">No Long-Term Contracts</h3>
+              <h3 className="mw-simple__col-title">Leave whenever you want</h3>
               <p className="mw-simple__col-desc">
-                Grow now or scale later – unlike traditional SEO agencies, Gobiya requires no long-term commitments. We&apos;re here to earn your business every single month through clear, measurable results.
+                No long-term contracts and no cancellation penalty. We re-earn the work every month, which is the only real guarantee anyone in this business can honestly offer you.
               </p>
             </div>
             <div>
-              <h3 className="mw-simple__col-title">Full Transparency &amp; Security</h3>
+              <h3 className="mw-simple__col-title">Numbers you can check yourself</h3>
               <p className="mw-simple__col-desc">
-                Transparency and account safety are paramount to a successful partnership. We strategically track and report your site performance in real-time, giving you full control as your lead volume expands.
+                You keep direct access to your own Search Console and analytics — not a slide deck we assembled for you. If a month was flat, you&apos;ll see it before we tell you.
               </p>
             </div>
           </div>
