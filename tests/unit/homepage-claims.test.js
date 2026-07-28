@@ -29,3 +29,14 @@ describe('homepage claims', () => {
     expect(source).toContain('href="/free-site-scan"');
   });
 });
+
+describe('homepage FAQ', () => {
+  it('renders FAQPage schema', () => {
+    expect(source).toContain("'@type': 'FAQPage'");
+  });
+
+  it('renders answers as static markup, not an accordion', () => {
+    expect(source).toContain('HOMEPAGE_FAQ.map');
+    expect(source).not.toContain('useState');
+  });
+});

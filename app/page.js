@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
+import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 export const metadata = buildMetadata({
   title: 'Gobiya — Los Angeles SEO Consultants & AI Search Optimization',
@@ -38,9 +39,26 @@ const STORY_IMAGES = [
 const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
 const STAT_IDS = ['ai-citations', 'impressions', 'position'];
 
+// Same array drives the visible markup and this schema, so the answer a person
+// reads is byte-for-byte the answer an AI tool ingests. Matches the pattern in
+// app/seo-myths/page.js.
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: HOMEPAGE_FAQ.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
 export default function Home() {
   return (
     <main id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+      />
 
       {/* ══ 1. Hero directly below menubar ══ */}
       <section
@@ -338,7 +356,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 11. Schedule a Free Consultation Calendar Section ══ */}
+      {/* ══ 11. FAQ ══
+          Static dl markup with no accordion JavaScript: every answer stays in the
+          HTML for crawlers and for anyone browsing without JS, which is the whole
+          point of pairing it with the FAQPage schema above. */}
+      <section className="mw-faq">
+        <div className="container">
+          <h2 className="mw-steps__heading">Questions we get asked</h2>
+          <dl className="faq__list">
+            {HOMEPAGE_FAQ.map((item) => (
+              <div className="faq__item" key={item.q}>
+                <dt>{item.q}</dt>
+                <dd>{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ══ 12. Schedule a Free Consultation Calendar Section ══ */}
       <section className="mw-consultation">
         <div className="container">
           <div className="mw-consultation__grid">

@@ -5258,3 +5258,8 @@ html.a11y-grayscale {
 .mw-stats__detail { margin-top: 0.4rem; font-size: 0.8125rem; line-height: 1.5; color: #CBD5E1; }
 .mw-stats__window { display: block; opacity: 0.75; }
 .mw-stats__note { margin-top: 2rem; text-align: center; font-size: 0.75rem; color: #94A3B8; }
+
+/* Homepage FAQ reuses the existing .faq__list/.faq__item styling; it only needs
+   section spacing and a readable measure. */
+.mw-faq { padding: 4rem 0; }
+.mw-faq .faq__list { max-width: 48rem; margin-inline: auto; }
