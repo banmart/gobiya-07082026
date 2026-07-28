@@ -72,7 +72,7 @@ export default function Home() {
       <section className="mw-trust">
         <div className="container">
           <h2 className="mw-trust__heading">
-            The SEO Firm Trusted by Hundreds of Entrepreneurs
+            Southern California businesses we&apos;ve run search for since 2010
           </h2>
           <div className="mw-trust__logos">
             {CLIENT_LOGOS.map((logo, idx) => (
@@ -93,7 +93,40 @@ export default function Home() {
       {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />
 
-      {/* ══ 3. "Digital Growth is Complicated – We Make it Simple" ══ */}
+      {/* ══ 3. Meet Your Point Person ══
+          Sits ahead of the methodology on purpose: the named practitioner is the
+          differentiator no competing agency can copy, so it should land before
+          any process explanation. */}
+      <section className="mw-person">
+        <div className="container">
+          <h2 className="mw-person__heading">Meet Your Point Person</h2>
+
+          <div className="mw-person__card">
+            <Image
+              src="/assets/img/sm.jpg"
+              alt="Steve Martin"
+              width={120}
+              height={120}
+              className="mw-person__avatar"
+            />
+            <div>
+              <h3 className="mw-person__name">Steve Martin</h3>
+              <p className="mw-person__role">Founder and Head of Search Strategy</p>
+              <p className="mw-person__bio">
+                Steve founded Gobiya in 2010 and is an active practitioner in technical search engine optimization, content strategy, and AI search systems. He has over 15 years of experience helping small and medium-sized businesses dominate Google, ChatGPT, and Perplexity search results. Steve manages sell-side search strategies and leads every client account directly.
+              </p>
+            </div>
+          </div>
+
+          <div className="mw-person__btn-wrap">
+            <a href="/about/steve-martin" className="mw-person__btn">
+              See Our Full Team
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 4. The burned-buyer objection ══ */}
       <section className="mw-simple">
         <div className="container">
           <h2 className="mw-simple__heading">
@@ -126,7 +159,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 4. By the Numbers Banner ══ */}
+      {/* ══ 5. By the Numbers Banner ══ */}
       <section className="mw-stats">
         <div className="container">
           <div className="mw-stats__grid">
@@ -155,36 +188,6 @@ export default function Home() {
           <p className="mw-stats__note">
             Live numbers across every site we run search for, from Google Search Console and AI assistant grounding data. Last updated {SEARCH_WINS.asOf}.
           </p>
-        </div>
-      </section>
-
-      {/* ══ 5. Meet Your Point Person ══ */}
-      <section className="mw-person">
-        <div className="container">
-          <h2 className="mw-person__heading">Meet Your Point Person</h2>
-
-          <div className="mw-person__card">
-            <Image
-              src="/assets/img/sm.jpg"
-              alt="Steve Martin"
-              width={120}
-              height={120}
-              className="mw-person__avatar"
-            />
-            <div>
-              <h3 className="mw-person__name">Steve Martin</h3>
-              <p className="mw-person__role">Founder and Head of Search Strategy</p>
-              <p className="mw-person__bio">
-                Steve founded Gobiya in 2010 and is an active practitioner in technical search engine optimization, content strategy, and AI search systems. He has over 15 years of experience helping small and medium-sized businesses dominate Google, ChatGPT, and Perplexity search results. Steve manages sell-side search strategies and leads every client account directly.
-              </p>
-            </div>
-          </div>
-
-          <div className="mw-person__btn-wrap">
-            <a href="/about/steve-martin" className="mw-person__btn">
-              See Our Full Team
-            </a>
-          </div>
         </div>
       </section>
 
