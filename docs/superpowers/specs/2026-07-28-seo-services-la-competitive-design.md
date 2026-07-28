@@ -13,7 +13,7 @@ Live competitor pulls (2026-07-28), live Google Search Console via the `seo-goog
 | Thrive Agency (top organic) | ~4,000 | none | +664% traffic, +800% leads, 1,000+ reviews, 95% retention, Inc 5000 ×7 | address + phone | thin — climate, Hollywood |
 | Los Angeles SEO Inc | — | none | 500+ sites, 98% satisfaction, 13+ yrs | address + phone | "Los Angeles SEO®" trademark |
 | Bliss Drive | — | none | #1 Yelp/Google, since 2007, 30-day guarantee | address + phone | 15+ named locations |
-| **Gobiya today** | ~1,230 | **10 questions** | 113% GSC-verified + linked case study | **none** | **none** |
+| **Gobiya today** | ~1,230 | **10 questions** | 113% mentioned in prose only — no testimonial, no case-study link rendered (see §4) | **none** | **none** |
 
 Coalition Technologies returns HTTP 403 to fetching; excluded rather than guessed at. Website Depot and Ignite Visibility returned a malformed image response and a 404 respectively.
 
@@ -84,7 +84,25 @@ areaServed: { '@type': 'Country', name: 'United States' }
 
 Every one of the four flat service pages is a `-los-angeles` page, and `components/SiteSchema.js:35` already declares `City: Los Angeles` / `State: California` for the organization. The service schema contradicts it. Replace with an array of `City: Los Angeles` and `State: California` to match.
 
-### 4. Capabilities: 4 → 9
+### 4. Render the content that already exists
+
+`FlatServiceTemplate` renders only `intro`, `capabilities` and `faqs`. Five authored fields are present in `lib/servicesFlat.js` for all four service pages and never reach the page — roughly 219 words on this one:
+
+| Field | Content sitting unused |
+|---|---|
+| `datapoint` | 113% impressions lift, `sourceNote` crediting Search Console, `href` to `/work/safetycentric` |
+| `testimonial` | Pete Urueta quote, role, company, photo, link to the case study |
+| `problem` | The "a site can look finished and still be invisible" framing |
+| `process` | Four steps: technical audit → fix the foundation → structured data → verify & monitor |
+| `ctaTitle` | Custom closing CTA heading, currently overridden by a generic one |
+
+The `113%` visible on the live page today comes from the `intro` prose only. There is no rendered testimonial, no photo, and no link to the case study that substantiates the number.
+
+This is the highest-value content change in the spec and requires no new writing. It is real client proof, already reviewed, and it closes three competitor gaps at once: every competitor shows testimonials, a "how it works" process, and headline metrics. Render all five fields, each guarded so a page lacking a field renders nothing rather than breaking.
+
+Because the fields exist on all four service pages with the same shape, the change benefits `/geo-services-los-angeles`, `/ppc-management-services-los-angeles` and `/content-marketing-services-los-angeles` at the same time — ~210 words each.
+
+### 5. Capabilities: 4 → 9
 
 Keep all four existing entries (server-side rendering, algorithm & penalty recovery, structured data, Core Web Vitals) — they are the differentiated technical angle and no competitor matches their specificity.
 
@@ -102,13 +120,13 @@ There is no `/glossary/on-page-seo` entry, which is why on-page SEO points at in
 
 Voice: plain 9th-grade language, brand-first, natural keywords, consistent with the existing four entries. No guarantees, no invented metrics.
 
-### 5. Service-area section
+### 6. Service-area section
 
 Add a `serviceAreas` field naming the 18 suburbs the redirects already cover: Glendale, Studio City, Beverly Hills, Encino, Woodland Hills, Northridge, Sherman Oaks, Santa Monica, Long Beach, Anaheim, Burbank, Costa Mesa, Culver City, North Hollywood, Silverlake, Van Nuys, Ventura, Santa Clarita.
 
 **Render as plain text, not links.** Every one of those URLs now 308s to this page; linking them would re-fragment exactly what the redirect consolidation just fixed.
 
-### 6. Surface the NAP
+### 7. Surface the NAP
 
 The values live in `CONTACT` in `lib/nav.js` (already consumed by `components/SiteSchema.js`):
 
@@ -121,7 +139,7 @@ address2: 'Los Angeles, CA 90010',
 
 Surface address and phone visibly on the page by importing `CONTACT`, never by retyping the values, so there is one source of truth. The phone must use `phoneHref` so it is tappable on mobile. All three competitors show address and phone; this page shows neither.
 
-### 7. Three added FAQs
+### 8. Three added FAQs
 
 Appended to the existing ten, same `{ q, a }` shape, each 40–70 words, targeting observed query patterns:
 
@@ -145,5 +163,7 @@ Existing FAQ pricing answers quote $1,500–$5,000/mo and $2,000–$7,500/mo. Th
 3. Rendered `<title>` including the `— Gobiya` suffix is ≤ 60 characters.
 4. Rendered `Service` schema `areaServed` names Los Angeles, not the United States.
 5. The page renders 9 capabilities, 13 FAQs, the service-area list, and a visible phone number.
-6. `FAQPage` JSON-LD still validates and contains 13 questions.
-7. `npm run build` succeeds and `npm test` passes.
+6. The page renders the datapoint (113% with its Search Console source note), the Pete Urueta testimonial, the problem statement, and all four process steps, each linking where the data provides an `href`.
+7. `FAQPage` JSON-LD still validates and contains 13 questions.
+8. The other three flat service pages render their own testimonial, datapoint, problem and process without layout breakage.
+9. `npm run build` succeeds and `npm test` passes.
