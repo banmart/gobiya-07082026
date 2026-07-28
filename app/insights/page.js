@@ -1,6 +1,7 @@
 import { INSIGHTS } from '../../lib/insights';
 import { buildMetadata } from '../../lib/meta';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import InsightsArchive from '../../components/InsightsArchive';
 
 export const metadata = buildMetadata({
   title: 'Insights — Search & AI Visibility Guides',
@@ -33,19 +34,7 @@ export default function InsightsPage() {
       {/* ══ 3. All Articles Archive List ══ */}
       <section className="section" id="all-articles" style={{ paddingBlock: 'clamp(3.5rem, 6vw, 5rem)', background: '#FFFFFF' }}>
         <div className="container container--narrow">
-          <h2 style={{ fontFamily: "'PT Serif', Georgia, serif", fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: '#0B1E36', marginBottom: '2rem' }}>
-            All {ARCHIVE.length} Articles
-          </h2>
-          <ul className="archive-list">
-            {ARCHIVE.map((a) => (
-              <li key={a.slug} className="archive-list__item">
-                <a href={`/insights/${a.slug}`} className="archive-list__link">
-                  <span className="archive-list__title">{a.title}</span>
-                  <span className="archive-list__meta">{a.category}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <InsightsArchive articles={ARCHIVE} />
         </div>
       </section>
 
