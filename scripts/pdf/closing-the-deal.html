@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Closing the Deal — Gobiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1E36;
+    --carmine: #8B263E;
+    --gold: #F5B83D;
+    --paper: #FAFAFA;
+    --ink: #1B2733;
+    --hint: rgba(11, 30, 54, 0.72);
+    --border: rgba(11, 30, 54, 0.14);
+    --font-serif: 'PT Serif', Georgia, serif;
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 10.6pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.8in 0.85in 0.65in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; margin: 0; color: var(--navy); }
+  p { margin: 0 0 0.7em; }
+  a { color: var(--carmine); }
+
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--carmine);
+    margin-bottom: 0.5em;
+  }
+
+  .rule-gold { height: 3px; width: 48px; background: var(--gold); border: none; margin: 0.9em 0 1.1em; }
+
+  .footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.6pt;
+    color: var(--hint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 0.16in;
+  }
+  .footer__brand { display: flex; align-items: center; gap: 6px; }
+  .footer__logo { width: 12px; height: 12px; flex: none; }
+
+  .checklist { list-style: none; margin: 0; padding: 0; }
+  .checklist li {
+    display: flex;
+    gap: 0.6em;
+    align-items: flex-start;
+    margin-bottom: 0.65em;
+    font-size: 10pt;
+  }
+  .checklist .box {
+    flex: none;
+    width: 13px;
+    height: 13px;
+    margin-top: 2px;
+    border: 1.5px solid var(--navy);
+    border-radius: 2px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.2pt; margin: 0.6em 0 1em; }
+  th, td { text-align: left; padding: 0.5em 0.6em; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-family: var(--font-sans); font-weight: 600; color: var(--navy); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1.5px solid var(--navy); }
+
+  .stat-line { font-family: var(--font-serif); font-size: 15pt; color: var(--carmine); font-weight: 700; }
+
+  .content-title { font-size: 21pt; margin-bottom: 0.15em; }
+  .content-sub { font-size: 10pt; color: var(--hint); margin-bottom: 1.1em; font-style: italic; }
+
+  .platform-name { font-size: 19pt; margin-bottom: 0.05em; }
+  .platform-meta { display:flex; gap: 1.6em; margin: 0.7em 0 1em; }
+  .platform-meta div { font-size: 8.5pt; color: var(--hint); text-transform: uppercase; letter-spacing: 0.04em; }
+  .platform-meta strong { display:block; font-family: var(--font-serif); font-size: 15pt; color: var(--navy); text-transform: none; letter-spacing: 0; margin-top: 2px; }
+
+  .two-col { display: flex; gap: 1.2in; flex: 1; }
+  .two-col > div { flex: 1; }
+
+  .pillar-num { font-family: var(--font-serif); font-size: 46pt; color: var(--gold); line-height: 1; margin-bottom: 0.05em; }
+
+  .phase-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 7.8pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3em 0.7em;
+    margin-bottom: 0.8em;
+  }
+
+  .takeaway-list li { margin-bottom: 0.9em; font-size: 10.5pt; }
+  .takeaway-list { list-style: none; padding: 0; margin: 0; counter-reset: t; }
+  .takeaway-list li { counter-increment: t; padding-left: 1.6em; position: relative; }
+  .takeaway-list li::before {
+    content: counter(t);
+    position: absolute; left: 0; top: 0;
+    font-family: var(--font-serif); color: var(--carmine); font-weight: 700; font-size: 11pt;
+  }
+
+  /* ---- Cover ---- */
+  .cover {
+    background: var(--navy);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+  .cover__mark { margin-bottom: 1.4in; }
+  .cover__kicker { font-family: var(--font-sans); font-size: 10pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6em; }
+  .cover__title { font-family: var(--font-serif); font-size: 46pt; line-height: 1.05; margin-bottom: 0.35em; color: #fff; }
+  .cover__tag { font-size: 12.5pt; color: rgba(255,255,255,0.78); max-width: 5in; margin: 0 auto 1.6in; line-height: 1.5; }
+  .cover__author { font-size: 9.5pt; color: rgba(255,255,255,0.6); letter-spacing: 0.03em; }
+  .cover__author strong { color: #fff; }
+
+  /* ---- TOC ---- */
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55em 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11pt;
+  }
+  .toc-list .num { font-family: var(--font-serif); color: var(--carmine); font-size: 10.5pt; }
+  .toc-list .pg { font-family: var(--font-serif); color: var(--hint); }
+
+  /* ---- About / CTA ---- */
+  .cta-page { background: var(--navy); color: #fff; justify-content: center; }
+  .cta-page h1 { color: #fff; }
+  .cta-page .rule-gold { background: var(--gold); }
+  .cta-page a { color: var(--gold); }
+  .cta-contact { margin-top: 1.4em; font-size: 11.5pt; }
+  .cta-contact strong { display:block; font-family: var(--font-serif); font-size: 16pt; margin-bottom: 0.2em; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="cover__mark"><svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="8" width="7" height="15" fill="#F5B83D"/>
+      <rect x="8" y="8" width="15" height="7" fill="#F5B83D"/>
+      <rect x="33" y="25" width="7" height="15" fill="#F5B83D"/>
+      <rect x="25" y="33" width="15" height="7" fill="#F5B83D"/>
+      <path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/>
+    </svg></div>
+  <div class="cover__kicker">Gobiya Technical Series</div>
+  <h1 class="cover__title">Closing<br>the Deal</h1>
+  <p class="cover__tag">Turning search traffic into booked revenue, one friction point at a time</p>
+  <div class="cover__author">Written by <strong>Steve Martin</strong>, Founder of Gobiya</div>
+</section>
+
+<section class="page">
+  <div class="kicker">Contents</div>
+  <h1 class="content-title">Table of Contents</h1>
+  <hr class="rule-gold">
+  <ul class="toc-list">
+    <li><span><span class="num">01</span>&nbsp;&nbsp;Traffic Was Never the Goal</span><span class="pg">3</span></li>
+    <li><span><span class="num">02</span>&nbsp;&nbsp;Reading Search Intent</span><span class="pg">5</span></li>
+    <li><span><span class="num">03</span>&nbsp;&nbsp;The Anatomy of a Page That Converts</span><span class="pg">8</span></li>
+    <li><span><span class="num">04</span>&nbsp;&nbsp;Forms, Calls, and Friction</span><span class="pg">11</span></li>
+    <li><span><span class="num">05</span>&nbsp;&nbsp;Trust Signals That Do the Work</span><span class="pg">14</span></li>
+    <li><span><span class="num">06</span>&nbsp;&nbsp;Measuring the Right Things</span><span class="pg">16</span></li>
+    <li><span><span class="num">07</span>&nbsp;&nbsp;The Conversion Audit</span><span class="pg">18</span></li>
+    <li><span><span class="num">08</span>&nbsp;&nbsp;Key Takeaways</span><span class="pg">20</span></li>
+    <li><span><span class="num">09</span>&nbsp;&nbsp;About Gobiya</span><span class="pg">21</span></li>
+  </ul>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 01</div>
+  <h1 class="content-title">Traffic Was Never the Goal</h1>
+  <hr class="rule-gold">
+  <p>Plenty of businesses have doubled their organic traffic and seen no change in revenue at all. It is one of the most demoralizing outcomes in marketing, and it is almost always caused by the same thing: the work optimized for visits instead of for customers.</p>
+  <p>Traffic is a means. The goal is a booked job, a signed contract, a scheduled call. Every chapter here is about the distance between those two things.</p>
+  <p class="stat-line">Doubling traffic to a page that converts nobody doubles nothing.</p>
+  <p>The encouraging part is that conversion work is fast. Where search improvements take months to compound, removing friction from a form or making a phone number tappable can change results within days. If your site already has visitors, this is the highest-return work available to you.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>3</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Where Deals Actually Leak</h2>
+  <hr class="rule-gold">
+  <p>Across the sites we audit, the same five leaks account for most of the lost revenue — and none of them require a redesign to fix.</p>
+  <ul class="takeaway-list">
+    <li><strong>Intent mismatch.</strong> The page ranks for a question it does not really answer, so the visitor leaves within seconds.</li>
+    <li><strong>A buried offer.</strong> The visitor is ready, and cannot quickly work out what to do next or what it will cost.</li>
+    <li><strong>Form friction.</strong> Eleven fields, three of which feel intrusive, for what should be a simple enquiry.</li>
+    <li><strong>Missing trust.</strong> No licences, no real names, no reviews, nothing that says a competent human is behind the site.</li>
+    <li><strong>Mobile neglect.</strong> The page works on a laptop and fights the visitor on a phone, which is where most of them are.</li>
+  </ul>
+  <p>Work through them in that order. Intent problems cap everything below them — perfecting a form on a page that attracts the wrong visitor improves nothing.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>4</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 02</div>
+  <h1 class="content-title">Reading Search Intent</h1>
+  <hr class="rule-gold">
+  <p>Intent is what the person actually wants when they type the words. Two searches that look similar can want entirely different things, and a page that answers the wrong one will never convert however good it is.</p>
+  <table>
+    <thead><tr><th>Intent</th><th>The Search Looks Like</th><th>What the Page Must Do</th></tr></thead>
+    <tbody>
+      <tr><td>Informational</td><td>"why is my drain slow"</td><td>Answer plainly, build trust, offer help</td></tr>
+      <tr><td>Comparison</td><td>"best plumber in glendale"</td><td>Show proof, reviews, differences</td></tr>
+      <tr><td>Transactional</td><td>"emergency plumber near me"</td><td>Phone number, hours, book now</td></tr>
+      <tr><td>Navigational</td><td>"gobiya pricing"</td><td>Take them straight there</td></tr>
+    </tbody>
+  </table>
+  <p>The most common and costly mistake is treating an informational search as a transactional one. Someone diagnosing a problem is not ready to buy, and a page that opens with a hard sell loses them immediately.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>5</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">How to Tell What a Page Should Be</h2>
+  <hr class="rule-gold">
+  <p>You do not have to guess. Search the term yourself and look at what already ranks — those results reflect what the search engine has learned that searchers want.</p>
+  <ul class="takeaway-list">
+    <li><strong>If the results are mostly guides and articles,</strong> the intent is informational. A sales page will not rank there, however well written.</li>
+    <li><strong>If the results are mostly lists and comparisons,</strong> the searcher is evaluating options. Give them a real comparison, including where you are not the right fit.</li>
+    <li><strong>If the results are mostly service and product pages,</strong> the searcher is ready. Make the next step obvious and immediate.</li>
+    <li><strong>If the results are mixed,</strong> the intent is split. Build the page for the dominant type and serve the other with a clear link.</li>
+  </ul>
+  <p>This five-minute check prevents the most expensive error in content: writing a genuinely good page of entirely the wrong kind.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>6</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Matching the Offer to the Stage</h2>
+  <hr class="rule-gold">
+  <p>A visitor who is still diagnosing a problem will not book a consultation. But they will take something smaller, and that smaller step is how you stay in the conversation.</p>
+  <table>
+    <thead><tr><th>Visitor Stage</th><th>Wrong Ask</th><th>Right Ask</th></tr></thead>
+    <tbody>
+      <tr><td>Just researching</td><td>Book a paid consultation</td><td>Read the guide, get the checklist</td></tr>
+      <tr><td>Comparing options</td><td>Sign the contract</td><td>See pricing, view case studies</td></tr>
+      <tr><td>Ready to act</td><td>Download a PDF</td><td>Call now, book a time</td></tr>
+    </tbody>
+  </table>
+  <p>Each page should carry one primary action matched to its stage, plus at most one secondary option. Pages offering five equally weighted choices reliably produce fewer conversions than pages offering one clear one.</p>
+  <p>When in doubt, ask what the visitor is realistically willing to do in the next sixty seconds, and ask for exactly that.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>7</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 03</div>
+  <h1 class="content-title">The Anatomy of a Page That Converts</h1>
+  <hr class="rule-gold">
+  <p>High-converting pages are not clever. They are clear, and they are clear in a specific order.</p>
+  <ul class="takeaway-list">
+    <li><strong>Say what this is, immediately.</strong> The visitor should know within five seconds what you do, who it is for, and where you do it.</li>
+    <li><strong>Answer the question they arrived with,</strong> in the first paragraph, before any company background.</li>
+    <li><strong>Show proof.</strong> Reviews, results, credentials, named people — evidence that you have done this before.</li>
+    <li><strong>Handle the obvious objection.</strong> Price, timeline, disruption, risk. The one they are already thinking about.</li>
+    <li><strong>Make the next step obvious,</strong> and repeat it where a reader would naturally be ready to take it.</li>
+  </ul>
+  <p>Notice what is absent: company history, mission statements, and stock photography. None of them move a decision, and all of them push the useful content further down the page.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>8</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">The First Screen</h2>
+  <hr class="rule-gold">
+  <p>Most visitors decide whether to stay before scrolling. That first screen has to carry four things, and on a phone it has very little room to do it.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span>A headline naming what you do and, for local businesses, where</span></li>
+    <li><span class="box"></span><span>One line of supporting detail that answers "is this for me?"</span></li>
+    <li><span class="box"></span><span>A visible, tappable primary action</span></li>
+    <li><span class="box"></span><span>One immediate trust signal — a rating, a licence, years in business</span></li>
+  </ul>
+  <p>The most common failure here is a large hero image with a vague slogan across it. It looks designed and communicates nothing. A visitor who cannot tell what you do will not scroll to find out.</p>
+  <p>Test it honestly: open your page on a phone, and without scrolling, ask whether a stranger could say what you sell and where you operate.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>9</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Writing That Converts</h2>
+  <hr class="rule-gold">
+  <p>The way you write changes the result as much as the layout does.</p>
+  <ul class="takeaway-list">
+    <li><strong>Lead with the answer.</strong> Do not build up to it. Buyers skim, and so do the AI tools that increasingly summarize your page for them.</li>
+    <li><strong>Write to one person.</strong> "You" and "your" outperform "our clients" and "businesses like yours" consistently.</li>
+    <li><strong>Be specific.</strong> "Most jobs completed in one visit" beats "fast, reliable service" because it can be checked and remembered.</li>
+    <li><strong>Name the price, or the range, or why you cannot.</strong> Silence on price is read as expensive, and it is the single most common reason a visitor leaves for a competitor.</li>
+    <li><strong>Cut every sentence that would survive being deleted.</strong> Most first drafts lose a third with no loss of meaning.</li>
+  </ul>
+  <p>Plain writing converts better and is easier for AI tools to quote — the same clarity serves both audiences.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>10</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 04</div>
+  <h1 class="content-title">Forms, Calls, and Friction</h1>
+  <hr class="rule-gold">
+  <p>Every field you add costs you completions. Sometimes the trade is worth it. Usually nobody has checked.</p>
+  <p>The honest question for each field is: will we genuinely refuse to follow up without this? If a salesperson would happily call a lead missing that detail, the field should not be there.</p>
+  <table>
+    <thead><tr><th>Field</th><th>Keep It?</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Name</td><td>Yes</td><td>Needed to reply at all</td></tr>
+      <tr><td>Phone or email</td><td>One of them</td><td>Asking for both reduces completion</td></tr>
+      <tr><td>What do you need?</td><td>Yes</td><td>Lets you qualify and route</td></tr>
+      <tr><td>Company size</td><td>Rarely</td><td>Ask on the call instead</td></tr>
+      <tr><td>Budget</td><td>No</td><td>Scares off good leads, invites bad answers</td></tr>
+      <tr><td>How did you hear about us?</td><td>No</td><td>Your analytics already knows</td></tr>
+    </tbody>
+  </table>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>11</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">The Phone Still Wins</h2>
+  <hr class="rule-gold">
+  <p>For most local and service businesses, the phone converts better than any form on the site — and it is routinely treated as an afterthought.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span>The number appears in the header on every page</span></li>
+    <li><span class="box"></span><span>On mobile it is a tappable link, not plain text or an image</span></li>
+    <li><span class="box"></span><span>Your opening hours are stated near it, so nobody wonders</span></li>
+    <li><span class="box"></span><span>Somebody actually answers during those hours</span></li>
+    <li><span class="box"></span><span>Calls are tracked as conversions in your analytics</span></li>
+    <li><span class="box"></span><span>If you cannot answer, a callback promise with a real timeframe is offered</span></li>
+  </ul>
+  <p>That last point matters more than it looks. A missed call with no acknowledgement is a lost customer, and they rarely try twice. A visible "we return every call within an hour" recovers a meaningful share of them.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>12</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Removing Friction You Cannot See</h2>
+  <hr class="rule-gold">
+  <p>Some friction is invisible from a desk. These are the ones we find most often, and each is quick to fix.</p>
+  <ul class="takeaway-list">
+    <li><strong>A form that fails silently.</strong> Submissions go nowhere, or into a spam folder nobody checks. Test yours today, from a phone, using an outside email address.</li>
+    <li><strong>No confirmation after submitting.</strong> The visitor cannot tell whether it worked, so they either leave or submit again.</li>
+    <li><strong>Required fields that are not marked</strong> until an error appears on submission.</li>
+    <li><strong>A slow page on mobile data.</strong> Visitors leave before the form ever renders.</li>
+    <li><strong>Chat widgets covering the call button</strong> on small screens — a common and expensive overlap.</li>
+  </ul>
+  <p>Fill in your own form once a month from a phone, on mobile data, as if you were a customer. It is the cheapest diagnostic in this book and it catches most of these.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>13</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 05</div>
+  <h1 class="content-title">Trust Signals That Do the Work</h1>
+  <hr class="rule-gold">
+  <p>Visitors arriving from search have no relationship with you. Trust has to be established on the page, quickly, using evidence rather than adjectives.</p>
+  <table>
+    <thead><tr><th>Signal</th><th>Weak Version</th><th>Strong Version</th></tr></thead>
+    <tbody>
+      <tr><td>Reviews</td><td>"Our clients love us"</td><td>Real rating, real count, real names</td></tr>
+      <tr><td>Experience</td><td>"Industry leaders"</td><td>"Serving Glendale since 2010"</td></tr>
+      <tr><td>Credentials</td><td>"Fully qualified"</td><td>Named licence and number</td></tr>
+      <tr><td>Team</td><td>Stock photography</td><td>Real photographs and real names</td></tr>
+      <tr><td>Results</td><td>"Proven results"</td><td>A specific outcome for a named client</td></tr>
+    </tbody>
+  </table>
+  <p>The pattern is consistent: anything checkable builds trust, anything unverifiable is discounted. Buyers have learned to skip past claims that could be written by anyone.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>14</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Reviews as Infrastructure</h2>
+  <hr class="rule-gold">
+  <p>Reviews now serve three jobs at once: they persuade the visitor, they feed local search rankings, and they are one of the strongest signals AI tools use when deciding which business to recommend.</p>
+  <p>That makes review generation infrastructure rather than a nice-to-have. It should be a routine, not a campaign.</p>
+  <ul class="takeaway-list">
+    <li><strong>Ask every satisfied customer, at the moment they are satisfied.</strong> A week later the goodwill has faded.</li>
+    <li><strong>Make it one tap.</strong> A direct link, sent by text, outperforms every other method by a wide margin.</li>
+    <li><strong>Respond to all of them,</strong> including the critical ones. How you handle a complaint is read closely by people deciding whether to call.</li>
+    <li><strong>Aim for steady, not sudden.</strong> A trickle every week reads as genuine. Thirty in one afternoon reads as bought.</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>15</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 06</div>
+  <h1 class="content-title">Measuring the Right Things</h1>
+  <hr class="rule-gold">
+  <p>You cannot improve conversion without measuring it, and most sites measure it badly — usually by counting the wrong event or by reacting to samples far too small to mean anything.</p>
+  <p>Set up these four, in order, before optimizing anything:</p>
+  <ul class="takeaway-list">
+    <li><strong>Form submissions</strong> recorded as a conversion, verified end to end by submitting one yourself.</li>
+    <li><strong>Phone calls</strong> tracked as conversions, including taps on mobile.</li>
+    <li><strong>Lead quality,</strong> marked somewhere — even a spreadsheet. Volume without quality misleads.</li>
+    <li><strong>Landing page,</strong> so you know which pages produce leads rather than merely visits.</li>
+  </ul>
+  <p>Without the third, you can double your leads and halve your revenue while every dashboard shows improvement.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>16</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Testing Without Fooling Yourself</h2>
+  <hr class="rule-gold">
+  <p>Most small-business conversion testing produces confident conclusions from meaningless data. Two rules prevent it.</p>
+  <p><strong>Change one thing at a time.</strong> If you rewrite the headline, shorten the form, and move the button in one release, you learn nothing about which of them mattered.</p>
+  <p><strong>Wait for enough data.</strong> A page with forty visitors a month cannot tell you anything reliable in a week. If your volumes are low, prefer changes that are obviously correct — a tappable phone number, a shorter form — over tests you cannot resolve.</p>
+  <p class="stat-line">Below a few hundred conversions, trust judgement over tests.</p>
+  <p>The fixes in this book are the obviously-correct kind. Make those first, then test refinements once you have the volume to read the result.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>17</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 07</div>
+  <h1 class="content-title">The Conversion Audit</h1>
+  <hr class="rule-gold">
+  <p>Run this on your top three landing pages. Use a phone, on mobile data.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span>Within five seconds, is it clear what you do and where you do it?</span></li>
+    <li><span class="box"></span><span>Is the question the visitor searched for answered in the first paragraph?</span></li>
+    <li><span class="box"></span><span>Is there one obvious primary action, visible without scrolling?</span></li>
+    <li><span class="box"></span><span>Is the phone number tappable and present in the header?</span></li>
+    <li><span class="box"></span><span>Does the form ask for four fields or fewer?</span></li>
+    <li><span class="box"></span><span>Is there a real review, rating, or named credential on the page?</span></li>
+    <li><span class="box"></span><span>Is price, or a price range, addressed somewhere?</span></li>
+    <li><span class="box"></span><span>Does submitting the form produce a visible confirmation?</span></li>
+    <li><span class="box"></span><span>Does the submission actually arrive in an inbox somebody reads?</span></li>
+    <li><span class="box"></span><span>Does anything overlap or cover the call button on a small screen?</span></li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>18</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">What to Fix First</h2>
+  <hr class="rule-gold">
+  <p>If you found several problems, this is the order that returns the most for the least effort.</p>
+  <table>
+    <thead><tr><th>Priority</th><th>Fix</th><th>Typical Effort</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Broken form or untracked calls</td><td>An hour</td></tr>
+      <tr><td>2</td><td>Tappable phone number in header</td><td>An hour</td></tr>
+      <tr><td>3</td><td>Cut form fields to four or fewer</td><td>An hour</td></tr>
+      <tr><td>4</td><td>Rewrite the first screen for clarity</td><td>Half a day</td></tr>
+      <tr><td>5</td><td>Add real reviews and credentials</td><td>A few days</td></tr>
+      <tr><td>6</td><td>Address price honestly</td><td>Half a day</td></tr>
+    </tbody>
+  </table>
+  <p>The first three are usually a single afternoon, and between them they recover more revenue than most redesigns. Start there before commissioning anything larger.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>19</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 08</div>
+  <h1 class="content-title">Key Takeaways</h1>
+  <hr class="rule-gold">
+  <ul class="takeaway-list">
+    <li>Traffic is a means, not the goal. Doubling visits to a page that converts nobody doubles nothing.</li>
+    <li>Match the page to the intent behind the search. A good page of the wrong type is the most expensive content mistake there is.</li>
+    <li>Answer the visitor's question in the first paragraph. Company background belongs further down, if at all.</li>
+    <li>Every form field costs completions. Keep the ones you would genuinely refuse to follow up without.</li>
+    <li>For most service businesses the phone outperforms every form — make it tappable, staffed, and tracked.</li>
+    <li>Trust comes from checkable evidence. Named people, real licences, real reviews, specific outcomes.</li>
+    <li>Fix the obviously-correct things first. Save testing for when you have the volume to read a result.</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Closing the Deal</span>
+    <span>20</span>
+  </div>
+</section>
+
+<section class="page cta-page">
+  <div class="kicker" style="color:var(--gold);">About Gobiya</div>
+  <h1 style="font-size:24pt;">Turn Visits Into Revenue</h1>
+  <hr class="rule-gold">
+  <p style="color:rgba(255,255,255,0.82); max-width:5in;">Gobiya works on both halves of the problem — earning the right visitors from search, then removing the friction between their arrival and a booked job. If your traffic is healthy and your pipeline is not, that gap is usually fixable in weeks rather than quarters.</p>
+  <div class="cta-contact">
+    <strong>Ready to see where you stand?</strong>
+    Schedule a free consultation and we'll walk through your baseline together.<br><br>
+    <a href="tel:+13237441338">323-744-1338</a> &nbsp;·&nbsp; <a href="https://gobiya.com">gobiya.com</a>
+  </div>
+  <div class="footer" style="border-top-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.55);">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#F5B83D"/><rect x="8" y="8" width="15" height="7" fill="#F5B83D"/><rect x="33" y="25" width="7" height="15" fill="#F5B83D"/><rect x="25" y="33" width="15" height="7" fill="#F5B83D"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/></svg>Gobiya · Closing the Deal</span>
+    <span>21</span>
+  </div>
+</section>
+
+</body>
+</html>

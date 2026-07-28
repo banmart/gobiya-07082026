@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Acquired — Gobiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1E36;
+    --carmine: #8B263E;
+    --gold: #F5B83D;
+    --paper: #FAFAFA;
+    --ink: #1B2733;
+    --hint: rgba(11, 30, 54, 0.72);
+    --border: rgba(11, 30, 54, 0.14);
+    --font-serif: 'PT Serif', Georgia, serif;
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 10.6pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.8in 0.85in 0.65in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; margin: 0; color: var(--navy); }
+  p { margin: 0 0 0.7em; }
+  a { color: var(--carmine); }
+
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--carmine);
+    margin-bottom: 0.5em;
+  }
+
+  .rule-gold { height: 3px; width: 48px; background: var(--gold); border: none; margin: 0.9em 0 1.1em; }
+
+  .footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.6pt;
+    color: var(--hint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 0.16in;
+  }
+  .footer__brand { display: flex; align-items: center; gap: 6px; }
+  .footer__logo { width: 12px; height: 12px; flex: none; }
+
+  .checklist { list-style: none; margin: 0; padding: 0; }
+  .checklist li {
+    display: flex;
+    gap: 0.6em;
+    align-items: flex-start;
+    margin-bottom: 0.65em;
+    font-size: 10pt;
+  }
+  .checklist .box {
+    flex: none;
+    width: 13px;
+    height: 13px;
+    margin-top: 2px;
+    border: 1.5px solid var(--navy);
+    border-radius: 2px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.2pt; margin: 0.6em 0 1em; }
+  th, td { text-align: left; padding: 0.5em 0.6em; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-family: var(--font-sans); font-weight: 600; color: var(--navy); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1.5px solid var(--navy); }
+
+  .stat-line { font-family: var(--font-serif); font-size: 15pt; color: var(--carmine); font-weight: 700; }
+
+  .content-title { font-size: 21pt; margin-bottom: 0.15em; }
+  .content-sub { font-size: 10pt; color: var(--hint); margin-bottom: 1.1em; font-style: italic; }
+
+  .platform-name { font-size: 19pt; margin-bottom: 0.05em; }
+  .platform-meta { display:flex; gap: 1.6em; margin: 0.7em 0 1em; }
+  .platform-meta div { font-size: 8.5pt; color: var(--hint); text-transform: uppercase; letter-spacing: 0.04em; }
+  .platform-meta strong { display:block; font-family: var(--font-serif); font-size: 15pt; color: var(--navy); text-transform: none; letter-spacing: 0; margin-top: 2px; }
+
+  .two-col { display: flex; gap: 1.2in; flex: 1; }
+  .two-col > div { flex: 1; }
+
+  .pillar-num { font-family: var(--font-serif); font-size: 46pt; color: var(--gold); line-height: 1; margin-bottom: 0.05em; }
+
+  .phase-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 7.8pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3em 0.7em;
+    margin-bottom: 0.8em;
+  }
+
+  .takeaway-list li { margin-bottom: 0.9em; font-size: 10.5pt; }
+  .takeaway-list { list-style: none; padding: 0; margin: 0; counter-reset: t; }
+  .takeaway-list li { counter-increment: t; padding-left: 1.6em; position: relative; }
+  .takeaway-list li::before {
+    content: counter(t);
+    position: absolute; left: 0; top: 0;
+    font-family: var(--font-serif); color: var(--carmine); font-weight: 700; font-size: 11pt;
+  }
+
+  /* ---- Cover ---- */
+  .cover {
+    background: var(--navy);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+  .cover__mark { margin-bottom: 1.4in; }
+  .cover__kicker { font-family: var(--font-sans); font-size: 10pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6em; }
+  .cover__title { font-family: var(--font-serif); font-size: 46pt; line-height: 1.05; margin-bottom: 0.35em; color: #fff; }
+  .cover__tag { font-size: 12.5pt; color: rgba(255,255,255,0.78); max-width: 5in; margin: 0 auto 1.6in; line-height: 1.5; }
+  .cover__author { font-size: 9.5pt; color: rgba(255,255,255,0.6); letter-spacing: 0.03em; }
+  .cover__author strong { color: #fff; }
+
+  /* ---- TOC ---- */
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55em 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11pt;
+  }
+  .toc-list .num { font-family: var(--font-serif); color: var(--carmine); font-size: 10.5pt; }
+  .toc-list .pg { font-family: var(--font-serif); color: var(--hint); }
+
+  /* ---- About / CTA ---- */
+  .cta-page { background: var(--navy); color: #fff; justify-content: center; }
+  .cta-page h1 { color: #fff; }
+  .cta-page .rule-gold { background: var(--gold); }
+  .cta-page a { color: var(--gold); }
+  .cta-contact { margin-top: 1.4em; font-size: 11.5pt; }
+  .cta-contact strong { display:block; font-family: var(--font-serif); font-size: 16pt; margin-bottom: 0.2em; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="cover__mark"><svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="8" width="7" height="15" fill="#F5B83D"/>
+      <rect x="8" y="8" width="15" height="7" fill="#F5B83D"/>
+      <rect x="33" y="25" width="7" height="15" fill="#F5B83D"/>
+      <rect x="25" y="33" width="15" height="7" fill="#F5B83D"/>
+      <path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/>
+    </svg></div>
+  <div class="cover__kicker">Gobiya Technical Series</div>
+  <h1 class="cover__title">Acquired</h1>
+  <p class="cover__tag">The art of scaling a business to $100M on demand you actually own</p>
+  <div class="cover__author">Written by <strong>Steve Martin</strong>, Founder of Gobiya</div>
+</section>
+
+<section class="page">
+  <div class="kicker">Contents</div>
+  <h1 class="content-title">Table of Contents</h1>
+  <hr class="rule-gold">
+  <ul class="toc-list">
+    <li><span><span class="num">01</span>&nbsp;&nbsp;The Only Channel You Actually Own</span><span class="pg">3</span></li>
+    <li><span><span class="num">02</span>&nbsp;&nbsp;The Math of Compounding Demand</span><span class="pg">5</span></li>
+    <li><span><span class="num">03</span>&nbsp;&nbsp;The Five Stages of Search-Led Growth</span><span class="pg">8</span></li>
+    <li><span><span class="num">04</span>&nbsp;&nbsp;What to Measure at Each Stage</span><span class="pg">13</span></li>
+    <li><span><span class="num">05</span>&nbsp;&nbsp;The Growth Self-Audit</span><span class="pg">15</span></li>
+    <li><span><span class="num">06</span>&nbsp;&nbsp;Your First 90 Days</span><span class="pg">17</span></li>
+    <li><span><span class="num">07</span>&nbsp;&nbsp;Key Takeaways</span><span class="pg">20</span></li>
+    <li><span><span class="num">08</span>&nbsp;&nbsp;About Gobiya</span><span class="pg">21</span></li>
+  </ul>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 01</div>
+  <h1 class="content-title">The Only Channel You Actually Own</h1>
+  <hr class="rule-gold">
+  <p>Most businesses that reach real scale don't get there on paid ads alone. Ads work — right up until you stop paying, at which point the leads stop the same day. You are renting demand, and the rent goes up every year.</p>
+  <p>Organic search is different in one specific way: the asset is yours. A page that answers a real buyer question keeps answering it next month, next quarter, and next year, without a media budget behind it. That is the difference between renting demand and owning it.</p>
+  <p class="stat-line">Paid traffic stops the day you stop paying. Organic traffic compounds.</p>
+  <p>This guide is about building that owned demand deliberately, in stages, with a way to tell whether it's working at each step. It is not a promise that search replaces every other channel. It's a case that search should be the channel you build underneath the others, because it's the one that keeps working when budgets tighten.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>3</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Why Most Growth Plans Stall</h2>
+  <hr class="rule-gold">
+  <p>Growth plans usually fail for one of four reasons, and none of them are about effort.</p>
+  <ul class="takeaway-list">
+    <li><strong>No owned demand.</strong> Everything runs through paid channels, so growth is capped by the ad budget and margin gets squeezed as costs rise.</li>
+    <li><strong>Traffic without intent.</strong> The site attracts readers who were never going to buy, and the team celebrates a number that does not convert.</li>
+    <li><strong>A leaky site.</strong> Real buyers arrive and leave, because the page they landed on never asked them to do anything.</li>
+    <li><strong>No measurement.</strong> Nobody can say which half of the work produced the pipeline, so the next budget cycle cuts the wrong half.</li>
+  </ul>
+  <p>Each stage in this guide is built to close one of those gaps in order. Skipping ahead is the most common mistake — content built on a site that cannot be crawled produces nothing, and conversion work on a page nobody visits improves a rate that applies to no one.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>4</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 02</div>
+  <h1 class="content-title">The Math of Compounding Demand</h1>
+  <hr class="rule-gold">
+  <p>The reason search-led growth feels slow at first and fast later is that it compounds. Each page you publish can rank for far more than the one question you wrote it for, and each page that earns trust makes the next one easier to rank.</p>
+  <p>Consider the difference in shape between the two models:</p>
+  <table>
+    <thead><tr><th></th><th>Paid Acquisition</th><th>Search-Led Growth</th></tr></thead>
+    <tbody>
+      <tr><td>Month 1</td><td>Leads arrive immediately</td><td>Little to no traffic</td></tr>
+      <tr><td>Month 6</td><td>Same leads, higher cost per lead</td><td>Early pages start ranking</td></tr>
+      <tr><td>Month 18</td><td>Costs keep climbing</td><td>Compounding, largely fixed cost</td></tr>
+      <tr><td>If you stop</td><td>Leads stop that day</td><td>Pages keep producing for months</td></tr>
+    </tbody>
+  </table>
+  <p>Neither column is wrong. The mistake is running only the first one for years and never building the second, so the business never develops demand it owns.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>5</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Why the Curve Bends Upward</h2>
+  <hr class="rule-gold">
+  <p>Three effects stack on top of each other, and together they explain the shape of the curve.</p>
+  <ul class="takeaway-list">
+    <li><strong>Coverage.</strong> A well-written page ranks for dozens of related searches, not just the one in the heading. Ten good pages can cover hundreds of real queries.</li>
+    <li><strong>Authority.</strong> As more sites reference yours, search engines and AI tools grow more confident recommending you. That confidence lifts every page at once, including the ones you published a year ago.</li>
+    <li><strong>Reuse.</strong> The research behind one strong page feeds the next. Your tenth page takes noticeably less effort than your first.</li>
+  </ul>
+  <p>The practical consequence: the first ninety days will look disappointing next to a paid campaign, and the eighteenth month will not be close. Judge the work on leading indicators early — pages indexed, queries earning impressions, rankings improving — rather than on revenue in month two.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>6</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">The Cost of Waiting</h2>
+  <hr class="rule-gold">
+  <p>Because the returns compound, timing matters more than in channels with a linear payoff. A page published today has a year of compounding ahead of it. The same page published next summer does not.</p>
+  <p>This is also the honest argument against waiting for a website redesign before starting. Redesigns slip. Meanwhile the questions your buyers are asking are being answered by a competitor, and the competitor is accumulating the authority that makes their next page rank faster than yours.</p>
+  <p class="stat-line">The best time to start was a year ago. The second best time is before your next redesign, not after it.</p>
+  <p>If your site has real technical problems, fix those first — Chapter 3 covers how to tell. But "our site is a little dated" is not a reason to delay publishing the pages your buyers are searching for.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>7</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 03</div>
+  <h1 class="content-title">The Five Stages of Search-Led Growth</h1>
+  <hr class="rule-gold">
+  <p>Every business we've scaled through search moves through the same five stages, in the same order. The order matters: each stage assumes the one before it is done.</p>
+  <table>
+    <thead><tr><th>Stage</th><th>The Question It Answers</th><th>Typical Duration</th></tr></thead>
+    <tbody>
+      <tr><td>1. Foundation</td><td>Can machines read and index the site at all?</td><td>2–4 weeks</td></tr>
+      <tr><td>2. Coverage</td><td>Do we have a page for every real buyer question?</td><td>2–4 months</td></tr>
+      <tr><td>3. Authority</td><td>Does anyone credible vouch for us?</td><td>Ongoing</td></tr>
+      <tr><td>4. Conversion</td><td>Do visitors actually become leads?</td><td>4–6 weeks</td></tr>
+      <tr><td>5. Compounding</td><td>Can we repeat this predictably?</td><td>Ongoing</td></tr>
+    </tbody>
+  </table>
+  <p>The next four pages take each stage in turn: what it means, what "done" looks like, and the failure mode that sends teams back a step.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>8</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Stage 01</div>
+  <h1 class="platform-name">Foundation</h1>
+  <hr class="rule-gold">
+  <p>Before anything else, machines have to be able to reach your pages, read them, and understand what your business is. This stage is unglamorous and completely non-negotiable.</p>
+  <p><strong>What done looks like:</strong> every page you care about is indexed, loads quickly on a phone, renders its main content without waiting on JavaScript, and carries structured data describing your business, services, and location.</p>
+  <p><strong>The failure mode:</strong> publishing months of content onto a site that search engines cannot properly crawl. The work is real, the results are zero, and the team concludes that "SEO doesn't work for us."</p>
+  <p>The cheapest way to avoid that outcome is to confirm indexation before you invest in content — not after.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Stage 02</div>
+  <h1 class="platform-name">Coverage</h1>
+  <hr class="rule-gold">
+  <p>Coverage means having a genuinely useful page for each meaningful question your buyers ask, in the words they actually use.</p>
+  <p>Start by writing down every question a prospect asks on a sales call. That list is your content plan, and it beats any keyword tool, because it comes from people who were actually considering buying.</p>
+  <p><strong>What done looks like:</strong> a page for each core service, each location you serve, and each recurring buyer question — with each page answering its question directly, in the opening paragraph, before any preamble.</p>
+  <p><strong>The failure mode:</strong> publishing high volumes of generic blog posts that rank for readers who will never buy. Ten pages aimed at buyers outperform a hundred aimed at nobody in particular.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>10</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Stage 03</div>
+  <h1 class="platform-name">Authority</h1>
+  <hr class="rule-gold">
+  <p>Authority is the answer to a simple question a search engine or AI tool is always asking: does anyone credible vouch for this business?</p>
+  <p>It accumulates through references you mostly cannot buy — other sites linking to yours because you published something worth citing, real reviews from real customers, an accurate and consistent business listing, and named authors with verifiable credentials.</p>
+  <p><strong>What done looks like:</strong> your business name, address, and phone number match everywhere they appear online; reviews arrive steadily rather than in suspicious bursts; and at least a few respected industry sites reference your work.</p>
+  <p><strong>The failure mode:</strong> buying links or reviews. Both are detectable, both get penalized, and recovering costs far more than the shortcut saved.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>11</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Stage 04 &amp; 05</div>
+  <h1 class="platform-name">Conversion, Then Compounding</h1>
+  <hr class="rule-gold">
+  <p><strong>Conversion</strong> is where traffic turns into pipeline. A page that ranks first and converts nobody is a vanity asset. The fixes are usually unglamorous: state the offer plainly, put the phone number where a thumb can reach it, cut form fields to the ones you truly need, and answer the objection the buyer is already having.</p>
+  <p><strong>Compounding</strong> is the stage most businesses never reach, because it requires treating search as an operating rhythm rather than a project. It means a standing cadence: publish, measure, refresh what's slipping, and expand what's working.</p>
+  <p class="stat-line">The businesses that win aren't the ones that start. They're the ones that don't stop at month four.</p>
+  <p>Stage 5 has no end date. That is the point.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>12</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 04</div>
+  <h1 class="content-title">What to Measure at Each Stage</h1>
+  <hr class="rule-gold">
+  <p>The fastest way to lose faith in search is to measure the wrong thing at the wrong time. Revenue is the right final metric and a terrible early one — it lags the work by months.</p>
+  <table>
+    <thead><tr><th>Stage</th><th>Watch This</th><th>Ignore This For Now</th></tr></thead>
+    <tbody>
+      <tr><td>Foundation</td><td>Pages indexed, crawl errors, mobile speed</td><td>Traffic, rankings</td></tr>
+      <tr><td>Coverage</td><td>Queries earning impressions, pages published</td><td>Conversion rate</td></tr>
+      <tr><td>Authority</td><td>Referring domains, review velocity</td><td>Day-to-day ranking wobble</td></tr>
+      <tr><td>Conversion</td><td>Calls, forms, qualified leads</td><td>Raw sessions</td></tr>
+      <tr><td>Compounding</td><td>Pipeline from organic, cost per lead</td><td>Vanity traffic totals</td></tr>
+    </tbody>
+  </table>
+  <p>Match your metric to your stage and the work stays honest. Mismatch them and you will cut a program two months before it was going to pay off.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>13</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">The One Number That Matters Most</h2>
+  <hr class="rule-gold">
+  <p>If you track only one thing, track <strong>qualified leads from organic search per month</strong>. Not sessions. Not rankings. Not impressions.</p>
+  <p>Sessions can double while revenue stays flat, if the extra visitors were never buyers. Rankings can improve on terms nobody searches. Qualified leads is the only number that connects the work to the business.</p>
+  <p>To track it properly you need three things in place before you start: analytics that records form submissions and phone calls as conversions, a way to mark which leads were genuinely qualified, and the discipline to look at a rolling three-month average rather than reacting to a single bad week.</p>
+  <p>Search results move around week to week for reasons that have nothing to do with your site. Three-month averages tell you the truth; weekly snapshots mostly tell you about noise.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>14</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 05</div>
+  <h1 class="content-title">The Growth Self-Audit</h1>
+  <hr class="rule-gold">
+  <p>Run this against your own business today. Everything here is checkable in an afternoon, with no specialist tools.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span>Search Google for <em>site:yourdomain.com</em> — does the count roughly match the number of pages you expect?</span></li>
+    <li><span class="box"></span><span>Open your site on a phone over mobile data. Does the main content appear in under three seconds?</span></li>
+    <li><span class="box"></span><span>Do you have a dedicated page for each core service, rather than one page listing all of them?</span></li>
+    <li><span class="box"></span><span>Do you have a page for each city or region you actually serve?</span></li>
+    <li><span class="box"></span><span>Write down the last ten questions a prospect asked on a sales call. Do you have a page answering each?</span></li>
+    <li><span class="box"></span><span>Does your business name, address, and phone number match exactly across your site, Google Business Profile, and major directories?</span></li>
+    <li><span class="box"></span><span>Is your phone number tappable on mobile, and visible without scrolling?</span></li>
+    <li><span class="box"></span><span>Does your main contact form ask for more than four fields?</span></li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>15</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Reading Your Results</h2>
+  <hr class="rule-gold">
+  <p>Count the boxes you could not check honestly.</p>
+  <table>
+    <thead><tr><th>Unchecked</th><th>What It Means</th><th>Where to Start</th></tr></thead>
+    <tbody>
+      <tr><td>0–1</td><td>Strong foundation</td><td>Move to coverage and authority</td></tr>
+      <tr><td>2–3</td><td>Normal for a growing business</td><td>Fix these before publishing more</td></tr>
+      <tr><td>4–5</td><td>Real leaks</td><td>Stop new content; repair first</td></tr>
+      <tr><td>6+</td><td>Foundation problem</td><td>Full technical and structural review</td></tr>
+    </tbody>
+  </table>
+  <p>The most common pattern we see: a business with strong service pages, no location pages, an unreadable mobile experience, and an eleven-field contact form. That business does not need more content. It needs the four fixes it already knows about.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>16</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 06</div>
+  <h1 class="content-title">Your First 90 Days</h1>
+  <hr class="rule-gold">
+  <div class="phase-tag">Days 1–30 · Foundation</div>
+  <p>Confirm every important page is indexed. Fix mobile speed on your top five pages. Add or correct structured data for your business, services, and locations. Claim and complete your Google Business Profile, and make sure the details match your site exactly.</p>
+  <p>Do not publish new content this month. If the foundation is broken, new pages inherit the same problem.</p>
+  <div class="phase-tag" style="margin-top:1em;">Days 31–60 · Coverage</div>
+  <p>Write the sales-call question list. Build one page per core service and one per region you serve. Answer each page's core question in its opening paragraph, before any background.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>17</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Days 61–90 · Authority &amp; Conversion</div>
+  <hr class="rule-gold">
+  <p>Audit your business listings for consistency and fix every mismatch. Set up a simple, repeatable process for asking satisfied customers to leave a review — steady beats sudden. Publish one piece of genuinely original material: your own data, your own case study, something a competitor cannot copy.</p>
+  <p>Then close the leaks. Cut your contact form to the fields you truly need. Make the phone number tappable and visible without scrolling. Add the two or three trust signals a buyer looks for in your industry — licenses, insurance, years in business, named team members.</p>
+  <p><strong>At day 90, expect:</strong> a fully indexed site, meaningful page coverage, a cleaner conversion path, and early ranking movement. Expect leads to lag another 60 to 90 days behind that.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>18</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">What Happens After Day 90</h2>
+  <hr class="rule-gold">
+  <p>The plan above gets you to a working foundation. What turns that into scale is rhythm.</p>
+  <ul class="takeaway-list">
+    <li><strong>Monthly:</strong> publish against the buyer-question list. Two strong pages beat eight weak ones.</li>
+    <li><strong>Quarterly:</strong> refresh your highest-value pages. Search results shift, and a page that ranked in January can slip by June without anyone noticing.</li>
+    <li><strong>Quarterly:</strong> re-run the self-audit in Chapter 5. Sites drift — redesigns break schema, plugins slow pages down, staff change the phone number in one place and not another.</li>
+    <li><strong>Continuously:</strong> keep asking for reviews and keep earning references. Authority is the slowest signal to build and the fastest to erode.</li>
+  </ul>
+  <p>None of this is complicated. It is just consistent, and consistency is the part most businesses cannot sustain without someone owning it.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>19</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 07</div>
+  <h1 class="content-title">Key Takeaways</h1>
+  <hr class="rule-gold">
+  <ul class="takeaway-list">
+    <li>Paid demand is rented and stops the day you stop paying. Organic demand is owned and compounds. Build the second underneath the first.</li>
+    <li>The five stages run in order — Foundation, Coverage, Authority, Conversion, Compounding — and skipping one wastes the work of the others.</li>
+    <li>Match your metric to your stage. Judging month two on revenue is the most reliable way to kill a program that was about to work.</li>
+    <li>If you track one number, track qualified leads from organic search, on a rolling three-month average.</li>
+    <li>Ten pages written for buyers will out-earn a hundred written for traffic.</li>
+    <li>The businesses that scale are not the ones that start. They are the ones still publishing at month twelve.</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · Acquired</span>
+    <span>20</span>
+  </div>
+</section>
+
+<section class="page cta-page">
+  <div class="kicker" style="color:var(--gold);">About Gobiya</div>
+  <h1 style="font-size:24pt;">Build Demand You Own</h1>
+  <hr class="rule-gold">
+  <p style="color:rgba(255,255,255,0.82); max-width:5in;">Gobiya helps small and medium businesses turn organic search into a predictable source of pipeline — the foundation, the coverage, the authority, and the conversion path covered in this guide. We have been doing it from Los Angeles since 2010.</p>
+  <div class="cta-contact">
+    <strong>Ready to see where you stand?</strong>
+    Schedule a free consultation and we'll walk through your baseline together.<br><br>
+    <a href="tel:+13237441338">323-744-1338</a> &nbsp;·&nbsp; <a href="https://gobiya.com">gobiya.com</a>
+  </div>
+  <div class="footer" style="border-top-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.55);">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#F5B83D"/><rect x="8" y="8" width="15" height="7" fill="#F5B83D"/><rect x="33" y="25" width="7" height="15" fill="#F5B83D"/><rect x="25" y="33" width="15" height="7" fill="#F5B83D"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/></svg>Gobiya · Acquired</span>
+    <span>21</span>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>A Beginner's Guide to AI Search — Gobiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1E36;
+    --carmine: #8B263E;
+    --gold: #F5B83D;
+    --paper: #FAFAFA;
+    --ink: #1B2733;
+    --hint: rgba(11, 30, 54, 0.72);
+    --border: rgba(11, 30, 54, 0.14);
+    --font-serif: 'PT Serif', Georgia, serif;
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 10.6pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.8in 0.85in 0.65in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; margin: 0; color: var(--navy); }
+  p { margin: 0 0 0.7em; }
+  a { color: var(--carmine); }
+
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--carmine);
+    margin-bottom: 0.5em;
+  }
+
+  .rule-gold { height: 3px; width: 48px; background: var(--gold); border: none; margin: 0.9em 0 1.1em; }
+
+  .footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.6pt;
+    color: var(--hint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 0.16in;
+  }
+  .footer__brand { display: flex; align-items: center; gap: 6px; }
+  .footer__logo { width: 12px; height: 12px; flex: none; }
+
+  .checklist { list-style: none; margin: 0; padding: 0; }
+  .checklist li {
+    display: flex;
+    gap: 0.6em;
+    align-items: flex-start;
+    margin-bottom: 0.65em;
+    font-size: 10pt;
+  }
+  .checklist .box {
+    flex: none;
+    width: 13px;
+    height: 13px;
+    margin-top: 2px;
+    border: 1.5px solid var(--navy);
+    border-radius: 2px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.2pt; margin: 0.6em 0 1em; }
+  th, td { text-align: left; padding: 0.5em 0.6em; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-family: var(--font-sans); font-weight: 600; color: var(--navy); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1.5px solid var(--navy); }
+
+  .stat-line { font-family: var(--font-serif); font-size: 15pt; color: var(--carmine); font-weight: 700; }
+
+  .content-title { font-size: 21pt; margin-bottom: 0.15em; }
+  .content-sub { font-size: 10pt; color: var(--hint); margin-bottom: 1.1em; font-style: italic; }
+
+  .platform-name { font-size: 19pt; margin-bottom: 0.05em; }
+  .platform-meta { display:flex; gap: 1.6em; margin: 0.7em 0 1em; }
+  .platform-meta div { font-size: 8.5pt; color: var(--hint); text-transform: uppercase; letter-spacing: 0.04em; }
+  .platform-meta strong { display:block; font-family: var(--font-serif); font-size: 15pt; color: var(--navy); text-transform: none; letter-spacing: 0; margin-top: 2px; }
+
+  .two-col { display: flex; gap: 1.2in; flex: 1; }
+  .two-col > div { flex: 1; }
+
+  .pillar-num { font-family: var(--font-serif); font-size: 46pt; color: var(--gold); line-height: 1; margin-bottom: 0.05em; }
+
+  .phase-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 7.8pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3em 0.7em;
+    margin-bottom: 0.8em;
+  }
+
+  .takeaway-list li { margin-bottom: 0.9em; font-size: 10.5pt; }
+  .takeaway-list { list-style: none; padding: 0; margin: 0; counter-reset: t; }
+  .takeaway-list li { counter-increment: t; padding-left: 1.6em; position: relative; }
+  .takeaway-list li::before {
+    content: counter(t);
+    position: absolute; left: 0; top: 0;
+    font-family: var(--font-serif); color: var(--carmine); font-weight: 700; font-size: 11pt;
+  }
+
+  /* ---- Cover ---- */
+  .cover {
+    background: var(--navy);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+  .cover__mark { margin-bottom: 1.4in; }
+  .cover__kicker { font-family: var(--font-sans); font-size: 10pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6em; }
+  .cover__title { font-family: var(--font-serif); font-size: 46pt; line-height: 1.05; margin-bottom: 0.35em; color: #fff; }
+  .cover__tag { font-size: 12.5pt; color: rgba(255,255,255,0.78); max-width: 5in; margin: 0 auto 1.6in; line-height: 1.5; }
+  .cover__author { font-size: 9.5pt; color: rgba(255,255,255,0.6); letter-spacing: 0.03em; }
+  .cover__author strong { color: #fff; }
+
+  /* ---- TOC ---- */
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55em 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11pt;
+  }
+  .toc-list .num { font-family: var(--font-serif); color: var(--carmine); font-size: 10.5pt; }
+  .toc-list .pg { font-family: var(--font-serif); color: var(--hint); }
+
+  /* ---- About / CTA ---- */
+  .cta-page { background: var(--navy); color: #fff; justify-content: center; }
+  .cta-page h1 { color: #fff; }
+  .cta-page .rule-gold { background: var(--gold); }
+  .cta-page a { color: var(--gold); }
+  .cta-contact { margin-top: 1.4em; font-size: 11.5pt; }
+  .cta-contact strong { display:block; font-family: var(--font-serif); font-size: 16pt; margin-bottom: 0.2em; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="cover__mark"><svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="8" width="7" height="15" fill="#F5B83D"/>
+      <rect x="8" y="8" width="15" height="7" fill="#F5B83D"/>
+      <rect x="33" y="25" width="7" height="15" fill="#F5B83D"/>
+      <rect x="25" y="33" width="15" height="7" fill="#F5B83D"/>
+      <path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/>
+    </svg></div>
+  <div class="cover__kicker">Gobiya Technical Series</div>
+  <h1 class="cover__title">A Beginner's<br>Guide to<br>AI Search</h1>
+  <p class="cover__tag">Plain-English answers to what changed, what matters, and what to do first</p>
+  <div class="cover__author">Written by <strong>Steve Martin</strong>, Founder of Gobiya</div>
+</section>
+
+<section class="page">
+  <div class="kicker">Contents</div>
+  <h1 class="content-title">Table of Contents</h1>
+  <hr class="rule-gold">
+  <ul class="toc-list">
+    <li><span><span class="num">01</span>&nbsp;&nbsp;What Actually Changed</span><span class="pg">3</span></li>
+    <li><span><span class="num">02</span>&nbsp;&nbsp;The Vocabulary, Decoded</span><span class="pg">5</span></li>
+    <li><span><span class="num">03</span>&nbsp;&nbsp;How AI Decides Who to Name</span><span class="pg">8</span></li>
+    <li><span><span class="num">04</span>&nbsp;&nbsp;The Five Fixes That Matter Most</span><span class="pg">11</span></li>
+    <li><span><span class="num">05</span>&nbsp;&nbsp;What You Can Safely Ignore</span><span class="pg">16</span></li>
+    <li><span><span class="num">06</span>&nbsp;&nbsp;Your First 30 Days</span><span class="pg">18</span></li>
+    <li><span><span class="num">07</span>&nbsp;&nbsp;Key Takeaways</span><span class="pg">20</span></li>
+    <li><span><span class="num">08</span>&nbsp;&nbsp;About Gobiya</span><span class="pg">21</span></li>
+  </ul>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 01</div>
+  <h1 class="content-title">What Actually Changed</h1>
+  <hr class="rule-gold">
+  <p>For twenty-five years, searching meant typing a few words and getting a list of links. You picked one, and the business behind it got a visitor.</p>
+  <p>Now a growing share of people ask a full question in plain language and get a written answer back — often with two or three businesses named inside it. They may never see a list of links at all.</p>
+  <p class="stat-line">Either your business is named in that answer, or it isn't. There is no page two.</p>
+  <p>That is the whole change, and it is worth being precise about what it does and does not mean. It does not mean websites stopped mattering — AI tools build those answers by reading websites. It does mean the way you get chosen has shifted, from ranking on a list to being the source an answer is built from.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>3</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">The Good News First</h2>
+  <hr class="rule-gold">
+  <p>If you have been putting this off because it sounds like a whole new discipline, here is the reassuring part: most of what earns AI citations is what already earned good rankings.</p>
+  <ul class="takeaway-list">
+    <li><strong>A site machines can read.</strong> Same requirement as always, now with less tolerance for pages that only work after JavaScript runs.</li>
+    <li><strong>Clear, direct answers.</strong> Always good for readers. Now essential, because a model has to be able to lift a self-contained answer from your page.</li>
+    <li><strong>Verifiable facts about your business.</strong> Consistent name, address, hours, credentials. Already important for local search.</li>
+    <li><strong>Genuine trust signals.</strong> Real reviews, real authors, real references from other sites.</li>
+  </ul>
+  <p>There is no separate AI strategy that ignores these. What changes is emphasis: clarity and verifiability now matter more than they did, and clever keyword tactics matter less.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>4</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 02</div>
+  <h1 class="content-title">The Vocabulary, Decoded</h1>
+  <hr class="rule-gold">
+  <p>The industry has generated an unhelpful number of acronyms for closely related ideas. Here is what each actually means, so you can follow a conversation without pretending.</p>
+  <table>
+    <thead><tr><th>Term</th><th>Stands For</th><th>What It Actually Means</th></tr></thead>
+    <tbody>
+      <tr><td>SEO</td><td>Search Engine Optimization</td><td>Getting found in traditional search results</td></tr>
+      <tr><td>GEO</td><td>Generative Engine Optimization</td><td>Getting cited inside AI-written answers</td></tr>
+      <tr><td>AEO</td><td>Answer Engine Optimization</td><td>Much the same as GEO, different vendor</td></tr>
+      <tr><td>AIO</td><td>AI Overviews</td><td>Google's AI answer above the normal results</td></tr>
+      <tr><td>LLMO</td><td>Large Language Model Optimization</td><td>Again largely the same idea</td></tr>
+    </tbody>
+  </table>
+  <p>If it seems as though several of those describe the same work, that is because they largely do. Different agencies coined different labels for overlapping practice. Do not let the vocabulary convince you there are five separate projects to buy.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>5</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Who Are the Players?</h2>
+  <hr class="rule-gold">
+  <p>Five tools account for most AI answers your customers will see, and they do not behave identically.</p>
+  <table>
+    <thead><tr><th>Tool</th><th>Where It Gets Information</th><th>Worth Knowing</th></tr></thead>
+    <tbody>
+      <tr><td>Google AI Overviews</td><td>Google index and Knowledge Graph</td><td>Favours pages already ranking well</td></tr>
+      <tr><td>ChatGPT</td><td>Bing index plus live web</td><td>Names fewer sources, so each matters more</td></tr>
+      <tr><td>Perplexity</td><td>Its own live crawl</td><td>Cites generously, updates quickly</td></tr>
+      <tr><td>Gemini</td><td>Google index</td><td>Leans on structured data and profiles</td></tr>
+      <tr><td>Claude</td><td>Live web search</td><td>Prefers clear, well-organized sources</td></tr>
+    </tbody>
+  </table>
+  <p>You do not need a separate plan for each. Work that makes your site clear and verifiable helps with all of them, because they are solving fundamentally the same problem.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>6</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">A Word About "AI Visibility" Claims</h2>
+  <hr class="rule-gold">
+  <p>You will be sold tools and reports promising a precise measurement of your AI visibility. Be a careful buyer, because parts of this genuinely cannot be measured yet.</p>
+  <ul class="takeaway-list">
+    <li><strong>Countable:</strong> visits arriving from an AI tool. These carry a referrer, and your analytics can count them exactly.</li>
+    <li><strong>Sampleable:</strong> how often an AI names you. Real, but measured by asking the same questions repeatedly and recording results — a survey, not a census.</li>
+    <li><strong>Not measurable:</strong> total times your brand appeared in an AI answer across all platforms. Nobody reports this. Any figure is modeled.</li>
+  </ul>
+  <p>A tool that distinguishes clearly between those three is worth paying for. One that presents a single confident number for all of them is selling certainty it does not have.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>7</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 03</div>
+  <h1 class="content-title">How AI Decides Who to Name</h1>
+  <hr class="rule-gold">
+  <p>These tools do not read the whole internet for every question. They search an index for passages that match, hand a few of them to the model, and ask it to write an answer with sources attached.</p>
+  <p>To be one of those sources, your page has to clear three gates in order.</p>
+  <ul class="takeaway-list">
+    <li><strong>Retrieval —</strong> your page has to be crawled and indexed at all. A page that only appears after JavaScript runs can look blank to the bot.</li>
+    <li><strong>Extraction —</strong> the model has to find a clear, self-contained answer it can lift. Long wind-ups get skipped for a competitor's plainer paragraph.</li>
+    <li><strong>Attribution —</strong> the model decides whether it trusts your page enough to name you, rather than absorbing the fact without credit.</li>
+  </ul>
+  <p>Most businesses that struggle here fail at the first or second gate, not the third. That is encouraging, because those two are the most fixable.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>8</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">What Makes a Passage Quotable</h2>
+  <hr class="rule-gold">
+  <p>The single highest-return habit in AI search: answer the question in the first two sentences under the heading, in a way that would still make sense quoted on its own.</p>
+  <p>Compare these two openings for a page about response times.</p>
+  <table>
+    <thead><tr><th>Hard to quote</th><th>Easy to quote</th></tr></thead>
+    <tbody>
+      <tr><td>For over two decades our dedicated team has been proud to serve the greater Los Angeles area with a commitment to excellence…</td><td>Most emergency calls in Glendale are answered within 90 minutes. Standard appointments are usually available within two days.</td></tr>
+    </tbody>
+  </table>
+  <p>The second can be lifted directly into an answer and still make sense. The first cannot be lifted at all, because it says nothing specific. Both are on real websites today; only one gets cited.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>9</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Why Trust Decides the Tie</h2>
+  <hr class="rule-gold">
+  <p>When several pages answer a question equally well, the tie is broken on trust — and trust is assembled from things a machine can check.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span>Your business name, address, and phone number match everywhere they appear</span></li>
+    <li><span class="box"></span><span>Real people are named as authors, with real credentials</span></li>
+    <li><span class="box"></span><span>Reviews are genuine, recent, and arriving steadily</span></li>
+    <li><span class="box"></span><span>Other credible sites reference yours</span></li>
+    <li><span class="box"></span><span>Facts on your site do not contradict each other page to page</span></li>
+    <li><span class="box"></span><span>Claims are specific enough to be verified</span></li>
+  </ul>
+  <p>None of that is exotic. It is the same evidence a careful human buyer looks for — which is unsurprising, since these tools are trained on how humans judge credibility.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>10</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 04</div>
+  <h1 class="content-title">The Five Fixes That Matter Most</h1>
+  <hr class="rule-gold">
+  <p>If you do nothing else from this guide, do these five, in this order. They account for most of the available improvement for a typical small or medium business.</p>
+  <ul class="takeaway-list">
+    <li><strong>Make sure your content is in the raw HTML.</strong></li>
+    <li><strong>Answer questions directly, at the top.</strong></li>
+    <li><strong>Add structured data describing your business.</strong></li>
+    <li><strong>Make your facts consistent everywhere.</strong></li>
+    <li><strong>Publish something only you could publish.</strong></li>
+  </ul>
+  <p>The next four pages take each in turn: how to check it, and what good looks like.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>11</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Fix 01</div>
+  <h1 class="platform-name">Content in the Raw HTML</h1>
+  <hr class="rule-gold">
+  <p>Several AI crawlers do not run JavaScript. If your text is assembled in the browser after the page loads, those crawlers see an empty page — even though it looks perfect to you.</p>
+  <p><strong>How to check, in thirty seconds:</strong> open your page, right-click, choose "View Page Source", and use Ctrl-F to search that raw source for a sentence from your main content.</p>
+  <p><strong>If it is there:</strong> you are fine. Move on to the next fix.</p>
+  <p><strong>If it is not:</strong> this is your highest priority, ahead of everything else in this book. Nothing else you do matters if the content is invisible. Ask whoever maintains your site about server-side rendering or static generation.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>12</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Fix 02</div>
+  <h1 class="platform-name">Answer Directly, at the Top</h1>
+  <hr class="rule-gold">
+  <p>Under each heading, answer that heading's question in the first two sentences. Then elaborate. This one habit does more for AI citation than any technical change.</p>
+  <p><strong>What to do:</strong> take your ten most important pages. For each, read the first paragraph and ask whether it answers the question the page is about. Most will not — they will open with company background.</p>
+  <p><strong>Rewrite them so the answer comes first.</strong> The background can stay, further down, where it belongs.</p>
+  <p>A useful test: if someone read only your opening paragraph, would they have their answer? If yes, an AI tool can quote it. If no, it will quote whoever did this properly.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>13</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Fix 03</div>
+  <h1 class="platform-name">Structured Data</h1>
+  <hr class="rule-gold">
+  <p>Structured data is a small block of machine-readable facts in your page's code, stating plainly what the page is: this is a business, here is the address, these are the hours, this person wrote this.</p>
+  <p>Visitors never see it. Machines rely on it heavily, because it removes guesswork.</p>
+  <p><strong>Where to start,</strong> in order of return:</p>
+  <ul class="takeaway-list">
+    <li><strong>Organization</strong> on your home page — who you are.</li>
+    <li><strong>LocalBusiness</strong> on location pages — address, hours, area served.</li>
+    <li><strong>Service</strong> on service pages — what you actually do.</li>
+    <li><strong>FAQPage</strong> anywhere you have real questions and answers.</li>
+  </ul>
+  <p>One rule above all: it must match what is visible on the page. Mismatches get the markup ignored, or worse.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>14</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Fixes 04 &amp; 05</div>
+  <h1 class="platform-name">Consistency, Then Originality</h1>
+  <hr class="rule-gold">
+  <p><strong>Consistency.</strong> Your business name, address, and phone number must match exactly across your website, Google Business Profile, and every directory listing you have. "Suite 200" in one place and "Ste 200" in another reads as two different businesses to a machine, and inconsistency directly reduces confidence in naming you.</p>
+  <p>Spend an afternoon finding every listing and making them identical. It is dull and it is one of the highest-return hours available to you.</p>
+  <p><strong>Originality.</strong> Publish at least one thing a competitor cannot copy: your own data, your own case study with real numbers, your own analysis of something you actually measured.</p>
+  <p class="stat-line">AI tools cite original sources. Everything else is a summary of someone else's work.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>15</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 05</div>
+  <h1 class="content-title">What You Can Safely Ignore</h1>
+  <hr class="rule-gold">
+  <p>A lot of advice in this space is noise, and some of it is actively expensive. These are the ones we are asked about most.</p>
+  <ul class="takeaway-list">
+    <li><strong>Keyword density.</strong> Writing naturally about a subject covers the words you need. Deliberately repeating a phrase reads badly to humans and buys nothing with machines.</li>
+    <li><strong>Publishing volume for its own sake.</strong> Ten pages aimed at real buyer questions outperform a hundred written to hit a quota.</li>
+    <li><strong>Chasing a perfect speed score.</strong> Get your main content loading quickly on a phone; the last few points rarely change what anyone experiences.</li>
+    <li><strong>Special "AI-only" files sold as a shortcut.</strong> Some are harmless and mildly useful. None substitute for the five fixes in Chapter 4.</li>
+    <li><strong>Any tool promising guaranteed AI rankings.</strong> Nobody can guarantee this. The answer is generated fresh each time.</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>16</span>
+  </div>
+</section>
+
+<section class="page">
+  <h2 class="content-title" style="font-size:17pt;">Questions Worth Asking a Vendor</h2>
+  <hr class="rule-gold">
+  <p>If you are considering hiring help, these five questions separate a serious partner from a confident one.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span>"Which of the numbers in your report are counted, and which are estimated?"</span></li>
+    <li><span class="box"></span><span>"Can you show me a page you fixed, and what specifically changed?"</span></li>
+    <li><span class="box"></span><span>"How will we know in 90 days whether this is working?"</span></li>
+    <li><span class="box"></span><span>"What would you tell me not to bother with?"</span></li>
+    <li><span class="box"></span><span>"Who actually does the work, and can I speak with them?"</span></li>
+  </ul>
+  <p>The fourth question is the most revealing. Anyone who says everything matters equally either has not done this often, or is selling by the hour.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>17</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 06</div>
+  <h1 class="content-title">Your First 30 Days</h1>
+  <hr class="rule-gold">
+  <div class="phase-tag">Week 1 · Find Out Where You Stand</div>
+  <p>Run the raw-HTML check on your three most important pages. Search your business name in ChatGPT and in Google, and write down what comes back. Search <em>site:yourdomain.com</em> and see whether the page count looks right. You are not fixing anything yet — you are establishing a baseline you can compare against later.</p>
+  <div class="phase-tag" style="margin-top:1em;">Week 2 · Fix the Foundation</div>
+  <p>If the raw-HTML check failed, this is the whole week's work and it is worth it. If it passed, spend the time on structured data for your home page, service pages, and location pages instead.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>18</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="phase-tag">Week 3 · Rewrite the Openings</div>
+  <hr class="rule-gold">
+  <p>Take your ten most important pages and rewrite the first paragraph of each so it answers the page's question directly. Keep the company background — move it down. This is the highest-return writing work available to you, and it typically takes a single focused day.</p>
+  <div class="phase-tag" style="margin-top:1em;">Week 4 · Consistency and Proof</div>
+  <p>Find every listing of your business online and make the details identical. Then set up a simple, repeatable way to ask satisfied customers for a review.</p>
+  <p><strong>At 30 days you will have:</strong> content machines can read, pages that answer directly, structured data describing your business, consistent facts everywhere, and a review habit. That is the foundation. Expect visible change over the following two to three months, not immediately.</p>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>19</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Chapter 07</div>
+  <h1 class="content-title">Key Takeaways</h1>
+  <hr class="rule-gold">
+  <ul class="takeaway-list">
+    <li>People increasingly get an answer instead of a list of links. Either you are named in it or you are not.</li>
+    <li>Most of what earns AI citations is what already earned good rankings — with more weight on clarity and verifiability.</li>
+    <li>GEO, AEO, AIO and LLMO largely describe the same work. Do not buy four projects.</li>
+    <li>Check that your content exists in the raw HTML. If it does not, nothing else matters until it does.</li>
+    <li>Answer the question in the first two sentences under each heading. It is the single highest-return habit.</li>
+    <li>Make your business facts identical everywhere, and publish at least one thing only you could publish.</li>
+    <li>Be skeptical of any single confident number for AI visibility. Ask which parts are counted and which are modeled.</li>
+  </ul>
+  <div class="footer">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#0B1E36"/><rect x="8" y="8" width="15" height="7" fill="#0B1E36"/><rect x="33" y="25" width="7" height="15" fill="#0B1E36"/><rect x="25" y="33" width="15" height="7" fill="#0B1E36"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#8B263E"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>20</span>
+  </div>
+</section>
+
+<section class="page cta-page">
+  <div class="kicker" style="color:var(--gold);">About Gobiya</div>
+  <h1 style="font-size:24pt;">Start Where It Counts</h1>
+  <hr class="rule-gold">
+  <p style="color:rgba(255,255,255,0.82); max-width:5in;">Gobiya helps small and medium businesses get found, cited, and chosen — by search engines and by the AI tools a growing share of customers ask first. If you want a second opinion on where your site actually stands, that is where every engagement starts.</p>
+  <div class="cta-contact">
+    <strong>Ready to see where you stand?</strong>
+    Schedule a free consultation and we'll walk through your baseline together.<br><br>
+    <a href="tel:+13237441338">323-744-1338</a> &nbsp;·&nbsp; <a href="https://gobiya.com">gobiya.com</a>
+  </div>
+  <div class="footer" style="border-top-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.55);">
+    <span class="footer__brand"><svg class="footer__logo" viewBox="0 0 48 48"><rect x="8" y="8" width="7" height="15" fill="#F5B83D"/><rect x="8" y="8" width="15" height="7" fill="#F5B83D"/><rect x="33" y="25" width="7" height="15" fill="#F5B83D"/><rect x="25" y="33" width="15" height="7" fill="#F5B83D"/><path d="M24,17 L25.8,22.2 L31,24 L25.8,25.8 L24,31 L22.2,25.8 L17,24 L22.2,22.2 Z" fill="#ffffff"/></svg>Gobiya · A Beginner's Guide to AI Search</span>
+    <span>21</span>
+  </div>
+</section>
+
+</body>
+</html>
