@@ -5250,8 +5250,16 @@ html.a11y-grayscale {
 
 
 
-/* Hero supports a solid primary CTA next to the outline secondary. */
+/* Hero pairs a solid primary CTA with a ghost secondary. Without the modifier
+   both buttons would be solid navy — .mw-hero__btn and .mw-book__btn-solid
+   resolve to the same appearance — and the hierarchy would read as a mistake. */
 .mw-hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.mw-hero__btn--ghost {
+  background: transparent;
+  color: #0B1E36;
+  box-shadow: inset 0 0 0 1px #0B1E36;
+}
+.mw-hero__btn--ghost:hover { background: #0B1E36; color: #FFFFFF; }
 
 /* Stats bar carries its own sourcing: each card names its comparison window and
    the section footnote carries the SEARCH_WINS as-of date. */

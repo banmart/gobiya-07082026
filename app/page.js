@@ -75,10 +75,10 @@ export default function Home() {
               Gobiya is an independent Los Angeles consultancy. Steve Martin has optimized small and mid-sized businesses for Google, ChatGPT and Perplexity since 2010 — and leads every account himself. No account managers. No long-term contracts.
             </p>
             <div className="mw-hero__actions">
-              <a href="/free-site-scan" className="mw-book__btn-solid">
+              <a href="/free-site-scan" className="mw-hero__btn">
                 Get Your Free Site Scan
               </a>
-              <a href="#process" className="mw-hero__btn">
+              <a href="#process" className="mw-hero__btn mw-hero__btn--ghost">
                 View Our Process
               </a>
             </div>
@@ -330,6 +330,12 @@ export default function Home() {
               </p>
               <p className="mw-book__desc">
                 Less than 10% of businesses actually capture top ChatGPT and Google recommendations. So what does this mean for you? Think about it – with a significant amount of your future lead volume tied to digital discovery, mastering your AI visibility is one of the most critical decisions you&apos;ll make.
+              </p>
+              <p className="mw-book__desc">
+                We run the same tools on ourselves. Gobiya publishes a{' '}
+                <a href="/mcp">public MCP server</a> that lets ChatGPT and Claude query us
+                directly, plus <a href="/tools">free tools</a> you can point at your own site
+                before you ever talk to us.
               </p>
 
               <div className="mw-book__author">
