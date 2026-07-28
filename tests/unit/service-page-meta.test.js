@@ -63,6 +63,18 @@ describe('flat service template renders its authored content', () => {
   it('prefers the authored CTA title when present', () => {
     expect(tpl).toContain('service.ctaTitle');
   });
+
+  it('uses the authored h1 rather than the short breadcrumb label', () => {
+    expect(tpl).toContain('service.h1 || displayTitle');
+  });
+});
+
+describe('service page headlines name their city', () => {
+  it('gives every flat service page an h1 containing Los Angeles', () => {
+    for (const [slug, s] of Object.entries(SERVICES_FLAT)) {
+      expect(s.h1, slug).toMatch(/Los Angeles/);
+    }
+  });
 });
 
 describe('service data still carries the fields the template needs', () => {

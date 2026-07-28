@@ -69,7 +69,11 @@ export default function FlatServiceTemplate({ service }) {
       {/* ══ 2. Subhero Dark Banner ══ */}
       <section className="mw-subhero">
         <div className="container">
-          <h1 className="mw-subhero__title">{displayTitle}</h1>
+          {/* The authored h1 carries the city ("Los Angeles SEO Services to Help
+              Your Business Get Found"); displayTitle is the short breadcrumb
+              label ("Local & Technical SEO") and drops it, which is the wrong
+              headline for a city-intent page. Fall back only if h1 is missing. */}
+          <h1 className="mw-subhero__title">{service.h1 || displayTitle}</h1>
           <p className="mw-subhero__dek">{service.intro}</p>
         </div>
       </section>
