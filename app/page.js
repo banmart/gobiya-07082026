@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
+import { SEARCH_WINS } from '../lib/searchWins';
+import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 export const metadata = buildMetadata({
   title: 'Gobiya — Los Angeles SEO Consultants & AI Search Optimization',
@@ -29,9 +31,34 @@ const STORY_IMAGES = [
   '/assets/img/office-lounge-meeting.webp',
 ];
 
+// The stats bar shows real Google Search Console and AI-grounding numbers from
+// lib/searchWins.js rather than hardcoded claims. Look cards up by id, never by
+// index — the weekly refresh job swaps which metrics are presentable (CTR
+// replaces clicks when clicks have no honest window, and so on), so positions
+// are not stable. A missing id renders nothing rather than crashing the page.
+const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
+const STAT_IDS = ['ai-citations', 'impressions', 'position'];
+
+// Same array drives the visible markup and this schema, so the answer a person
+// reads is byte-for-byte the answer an AI tool ingests. Matches the pattern in
+// app/seo-myths/page.js.
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: HOMEPAGE_FAQ.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
 export default function Home() {
   return (
     <main id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+      />
 
       {/* ══ 1. Hero directly below menubar ══ */}
       <section
@@ -41,13 +68,20 @@ export default function Home() {
         <div className="mw-hero__overlay" />
         <div className="container">
           <div className="mw-hero__card">
-            <h1 className="mw-hero__title">Web AI &amp; SEO Experts</h1>
+            <h1 className="mw-hero__title">
+              Search and AI visibility, run by the person you actually hired.
+            </h1>
             <p className="mw-hero__excerpt">
-              We&apos;re an independent Web AI &amp; SEO consulting firm specializing in the optimization and rankings of small and medium-sized businesses.
+              Gobiya is an independent Los Angeles consultancy. Steve Martin has optimized small and mid-sized businesses for Google, ChatGPT and Perplexity since 2010 — and leads every account himself. No account managers. No long-term contracts.
             </p>
-            <a href="#process" className="mw-hero__btn">
-              View Our Process
-            </a>
+            <div className="mw-hero__actions">
+              <a href="/free-site-scan" className="mw-hero__btn">
+                Get Your Free Site Scan
+              </a>
+              <a href="#process" className="mw-hero__btn mw-hero__btn--ghost">
+                View Our Process
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -56,7 +90,7 @@ export default function Home() {
       <section className="mw-trust">
         <div className="container">
           <h2 className="mw-trust__heading">
-            The SEO Firm Trusted by Hundreds of Entrepreneurs
+            Southern California businesses we&apos;ve run search for since 2010
           </h2>
           <div className="mw-trust__logos">
             {CLIENT_LOGOS.map((logo, idx) => (
@@ -77,64 +111,10 @@ export default function Home() {
       {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />
 
-      {/* ══ 3. "Digital Growth is Complicated – We Make it Simple" ══ */}
-      <section className="mw-simple">
-        <div className="container">
-          <h2 className="mw-simple__heading">
-            Digital Growth is Complicated – <em>We Make it Simple</em>
-          </h2>
-          <p className="mw-simple__intro">
-            We have invested over a decade honing the <em>Gobiya 4-Step Method</em> for scaling search visibility. This documented framework has been refined over hundreds of successful campaigns and provides you with proven steps to minimize risk and maximize qualified leads.
-          </p>
-
-          <div className="mw-simple__grid">
-            <div>
-              <h3 className="mw-simple__col-title">A Tailored Approach</h3>
-              <p className="mw-simple__col-desc">
-                There&apos;s only one business in the world like yours – work with a team that gives you individual attention. We customize our process based on your needs and the size, industry, and type of business.
-              </p>
-            </div>
-            <div>
-              <h3 className="mw-simple__col-title">No Long-Term Contracts</h3>
-              <p className="mw-simple__col-desc">
-                Grow now or scale later – unlike traditional SEO agencies, Gobiya requires no long-term commitments. We&apos;re here to earn your business every single month through clear, measurable results.
-              </p>
-            </div>
-            <div>
-              <h3 className="mw-simple__col-title">Full Transparency &amp; Security</h3>
-              <p className="mw-simple__col-desc">
-                Transparency and account safety are paramount to a successful partnership. We strategically track and report your site performance in real-time, giving you full control as your lead volume expands.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 4. By the Numbers Banner ══ */}
-      <section className="mw-stats">
-        <div className="container">
-          <div className="mw-stats__grid">
-            <div>
-              <div className="mw-stats__num">15+</div>
-              <div className="mw-stats__label">Years Experience</div>
-            </div>
-            <div>
-              <div className="mw-stats__num">500+</div>
-              <div className="mw-stats__label">SEO &amp; AI Scans</div>
-            </div>
-            <div>
-              <div className="mw-stats__num">Top 1%</div>
-              <div className="mw-stats__label">AI Search Visibility</div>
-            </div>
-            <div>
-              <div className="mw-stats__num">1</div>
-              <div className="mw-stats__label">Goal: Scale Your Business</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 5. Meet Your Point Person ══ */}
+      {/* ══ 3. Meet Your Point Person ══
+          Sits ahead of the methodology on purpose: the named practitioner is the
+          differentiator no competing agency can copy, so it should land before
+          any process explanation. */}
       <section className="mw-person">
         <div className="container">
           <h2 className="mw-person__heading">Meet Your Point Person</h2>
@@ -161,6 +141,71 @@ export default function Home() {
               See Our Full Team
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ══ 4. The burned-buyer objection ══ */}
+      <section className="mw-simple">
+        <div className="container">
+          <h2 className="mw-simple__heading">
+            You&apos;ve probably been burned by an SEO agency before
+          </h2>
+          <p className="mw-simple__intro">
+            Most owners we talk to have already paid someone for a year of reports they couldn&apos;t read and rankings that never turned into phone calls. Here&apos;s how we&apos;re set up differently.
+          </p>
+
+          <div className="mw-simple__grid">
+            <div>
+              <h3 className="mw-simple__col-title">You work with the person doing the work</h3>
+              <p className="mw-simple__col-desc">
+                There are no account managers here. Steve runs your account, does the analysis, and answers your email himself. That&apos;s also the honest limit on how many clients we take at once.
+              </p>
+            </div>
+            <div>
+              <h3 className="mw-simple__col-title">Leave whenever you want</h3>
+              <p className="mw-simple__col-desc">
+                No long-term contracts and no cancellation penalty. We re-earn the work every month, which is the only real guarantee anyone in this business can honestly offer you.
+              </p>
+            </div>
+            <div>
+              <h3 className="mw-simple__col-title">Numbers you can check yourself</h3>
+              <p className="mw-simple__col-desc">
+                You keep direct access to your own Search Console and analytics — not a slide deck we assembled for you. If a month was flat, you&apos;ll see it before we tell you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 5. By the Numbers Banner ══ */}
+      <section className="mw-stats">
+        <div className="container">
+          <div className="mw-stats__grid">
+            <div>
+              <div className="mw-stats__num">15+</div>
+              <div className="mw-stats__label">Years Experience</div>
+              <div className="mw-stats__detail">Optimizing search for small and mid-sized businesses since 2010.</div>
+            </div>
+            {STAT_IDS.map((id) => {
+              const card = winById(id);
+              if (!card) return null;
+              return (
+                <div key={id}>
+                  <div className="mw-stats__num">
+                    {card.display}
+                    {card.suffix || ''}
+                  </div>
+                  <div className="mw-stats__label">{card.label}</div>
+                  <div className="mw-stats__detail">
+                    {card.detail} <span className="mw-stats__window">{card.window}.</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="mw-stats__note">
+            Live numbers across every site we run search for, from Google Search Console and AI assistant grounding data. Last updated {SEARCH_WINS.asOf}.
+          </p>
         </div>
       </section>
 
@@ -286,6 +331,12 @@ export default function Home() {
               <p className="mw-book__desc">
                 Less than 10% of businesses actually capture top ChatGPT and Google recommendations. So what does this mean for you? Think about it – with a significant amount of your future lead volume tied to digital discovery, mastering your AI visibility is one of the most critical decisions you&apos;ll make.
               </p>
+              <p className="mw-book__desc">
+                We run the same tools on ourselves. Gobiya publishes a{' '}
+                <a href="/mcp">public MCP server</a> that lets ChatGPT and Claude query us
+                directly, plus <a href="/tools">free tools</a> you can point at your own site
+                before you ever talk to us.
+              </p>
 
               <div className="mw-book__author">
                 <Image
@@ -311,7 +362,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 11. Schedule a Free Consultation Calendar Section ══ */}
+      {/* ══ 11. FAQ ══
+          Static dl markup with no accordion JavaScript: every answer stays in the
+          HTML for crawlers and for anyone browsing without JS, which is the whole
+          point of pairing it with the FAQPage schema above. */}
+      <section className="mw-faq">
+        <div className="container">
+          <h2 className="mw-steps__heading">Questions we get asked</h2>
+          <dl className="faq__list">
+            {HOMEPAGE_FAQ.map((item) => (
+              <div className="faq__item" key={item.q}>
+                <dt>{item.q}</dt>
+                <dd>{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ══ 12. Schedule a Free Consultation Calendar Section ══ */}
       <section className="mw-consultation">
         <div className="container">
           <div className="mw-consultation__grid">
