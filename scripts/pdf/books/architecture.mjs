@@ -1,9 +1,9 @@
 import { page, cover, toc, cta, document_, numbered, table, checklist } from '../book-shell.mjs';
 
-const T = 'The Exit Strategy Handbook';
+const T = 'The Architecture Handbook';
 
 export const meta = {
-  slug: 'exit-strategy',
+  slug: 'architecture',
   out: 'technical-seo-architecture.pdf',
   title: T,
 };
@@ -13,8 +13,8 @@ export function build() {
 
   s.push(
     cover({
-      title: 'The Exit<br>Strategy<br>Handbook',
-      tagline: 'Technical SEO and search architecture for a business built to be worth buying',
+      title: 'The<br>Architecture<br>Handbook',
+      tagline: 'Technical SEO and search architecture — the foundation everything else is built on',
     })
   );
 
@@ -43,16 +43,16 @@ export function build() {
   );
 
   s.push(
-    page(T, 4, `  <h2 class="content-title" style="font-size:17pt;">Why This Belongs in an Exit Conversation</h2>
+    page(T, 4, `  <h2 class="content-title" style="font-size:17pt;">What Bad Architecture Actually Costs</h2>
   <hr class="rule-gold">
-  <p>If you ever intend to sell the business, technical search health stops being a marketing detail and becomes a due-diligence line item.</p>
-  <p>A buyer looking at an acquisition wants to know how much of your revenue depends on channels that will keep working after the deal closes. Traffic that arrives because you own well-built, well-ranked pages is a transferable asset. Traffic that arrives because you are spending on ads is a cost the buyer inherits.</p>
+  <p>Technical problems rarely announce themselves. Nothing breaks, no error appears, and the site looks fine to everyone who works on it. The cost shows up somewhere else entirely.</p>
 ${numbered([
-      '<strong>Owned demand raises the multiple.</strong> Predictable organic pipeline reads as durable revenue rather than rented attention.',
-      '<strong>Technical debt reads as risk.</strong> A site with indexation problems and no structured data suggests a rebuild is coming, and the buyer prices that in.',
-      '<strong>Concentration is a discount.</strong> If nearly all leads come from one paid platform, you are selling a business that depends on a vendor you do not control.',
+      '<strong>Content that never had a chance.</strong> Every page published onto a site machines cannot properly read is money spent on something nobody will find. The writing was fine. It was never the problem.',
+      '<strong>A ceiling nobody can explain.</strong> Rankings improve to a point and then stop, and no amount of additional content moves them, because the constraint was never content.',
+      '<strong>Silent decay.</strong> A redesign strips your structured data, a plugin update slows every page, a URL changes without a redirect. Each one costs you quietly for months before anyone notices.',
+      '<strong>Rework instead of progress.</strong> Teams end up rebuilding the same pages two and three times, because the foundation was never fixed and each attempt hits the same wall.',
     ])}
-  <p>Everything in this handbook improves your search performance today. It also happens to improve what the business is worth.</p>`)
+  <p>The pattern is consistent: architecture problems are cheap to prevent, moderate to fix, and expensive to ignore. Everything in this handbook is aimed at the first two.</p>`)
   );
 
   s.push(
@@ -291,9 +291,9 @@ ${numbered([
 
   s.push(
     cta(T, 21, {
-      heading: 'Build It to Be Worth Buying',
+      heading: 'Build on Solid Ground',
       blurb:
-        'Gobiya builds the technical foundation underneath durable organic growth — crawlability, rendering, structure, speed, and structured data. The result is a business whose demand transfers with it. We have been doing this from Los Angeles since 2010.',
+        'Gobiya builds the technical foundation underneath durable organic growth — crawlability, rendering, structure, speed, and structured data. It is the least visible part of the work and the part that decides how far everything else can go. We have been doing this from Los Angeles since 2010.',
     })
   );
 

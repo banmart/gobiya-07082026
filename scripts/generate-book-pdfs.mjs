@@ -16,7 +16,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import * as acquired from './pdf/books/acquired.mjs';
-import * as exitStrategy from './pdf/books/exit-strategy.mjs';
+import * as architecture from './pdf/books/architecture.mjs';
 import * as closingTheDeal from './pdf/books/closing-the-deal.mjs';
 import * as beginnersGuide from './pdf/books/beginners-guide.mjs';
 
@@ -24,7 +24,7 @@ const CHROME_PATH = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9334;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const BOOKS = [acquired, exitStrategy, closingTheDeal, beginnersGuide];
+const BOOKS = [acquired, architecture, closingTheDeal, beginnersGuide];
 
 async function waitForDebugger() {
   for (let i = 0; i < 50; i++) {

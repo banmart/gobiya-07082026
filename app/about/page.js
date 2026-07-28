@@ -27,7 +27,7 @@ const BOOKS = [
     pdf: '/downloads/the-art-of-ai-search.pdf',
   },
   {
-    title: 'THE EXIT STRATEGY HANDBOOK',
+    title: 'THE ARCHITECTURE HANDBOOK',
     subtitle: 'Technical SEO & Search Architecture',
     tag: 'TECHNICAL FRAMEWORK',
     bg: '#1E293B',
@@ -176,7 +176,7 @@ export default function AboutPage() {
                 <strong style={{ color: '#0B1E36' }}>300+ Campaigns:</strong> Successfully participated in or managed search strategies for over 300 privately held companies representing B2B, healthcare, legal, home services, and e-commerce.
               </div>
               <div>
-                <strong style={{ color: '#0B1E36' }}>Author of 5 Books on Search &amp; AI:</strong> <em>The Art of AI Search</em>, <em>The AI Visibility Handbook</em>, <em>The Exit Strategy Handbook</em>, <em>Closing the Deal</em>, and <em>A Beginner&apos;s Guide to AI Search</em>.
+                <strong style={{ color: '#0B1E36' }}>Author of 5 Books on Search &amp; AI:</strong> <em>The Art of AI Search</em>, <em>Acquired</em>, <em>The Architecture Handbook</em>, <em>Closing the Deal</em>, and <em>A Beginner&apos;s Guide to AI Search</em>.
               </div>
               <div>
                 <strong style={{ color: '#0B1E36' }}>Host of AI &amp; Search Podcast:</strong> Host of the #1 podcast on scaling business visibility with search and AI.
@@ -363,7 +363,7 @@ export default function AboutPage() {
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
               <span style={{ color: '#F5B83D', fontWeight: 'bold', fontSize: '1.2rem', lineHeight: 1 }}>■</span>
               <div>
-                <strong>Books</strong> — <em>The Art of AI Search</em>, <em>A Beginner&apos;s Guide to AI Search</em>, <em>The Exit Strategy Handbook</em>, <em>Closing the Deal</em>, and <em>Acquired</em> – written by Steve Martin, founder of Gobiya.
+                <strong>Books</strong> — <em>The Art of AI Search</em>, <em>A Beginner&apos;s Guide to AI Search</em>, <em>The Architecture Handbook</em>, <em>Closing the Deal</em>, and <em>Acquired</em> – written by Steve Martin, founder of Gobiya.
               </div>
             </div>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
