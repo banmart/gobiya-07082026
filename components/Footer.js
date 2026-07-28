@@ -49,7 +49,7 @@ export default function Footer() {
               <a href="/insights">Knowledge Base</a>
               <a href="/glossary">Glossary</a>
               <a href="/seo-myths">SEO Myths Game</a>
-              <a href="/ai-visibility">AI Visibility Guide</a>
+              <a href="/insights/what-is-generative-engine-optimization">AI Visibility Guide</a>
               <a href="/tools">Free Tools Hub</a>
               <a href="/stuff">Video Stuff</a>
             </div>

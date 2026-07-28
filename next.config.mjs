@@ -36,6 +36,7 @@ const nextConfig = {
 
       // 301 redirects for previous service URLs to new Los Angeles targeted URLs
       { source: '/seo-services', destination: '/seo-services-los-angeles', permanent: true },
+      { source: '/ai-visibility', destination: '/geo-services-los-angeles', permanent: true },
       { source: '/geo-services', destination: '/geo-services-los-angeles', permanent: true },
       { source: '/ppc-management-services', destination: '/ppc-management-services-los-angeles', permanent: true },
       { source: '/content-marketing-services', destination: '/content-marketing-services-los-angeles', permanent: true },
@@ -86,7 +87,7 @@ const nextConfig = {
       { source: '/industries/local-service/encino-seo', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/locations/studio-city', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/industries/local-service/studio-city-seo', destination: '/seo-services-los-angeles', permanent: true },
-      { source: '/ai-seo-beverly-hills', destination: '/ai-visibility', permanent: true },
+      { source: '/ai-seo-beverly-hills', destination: '/geo-services-los-angeles', permanent: true },
       { source: '/locations/beverly-hills', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/industries/local-service/beverly-hills-seo', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/locations/woodland-hills', destination: '/seo-services-los-angeles', permanent: true },
@@ -116,7 +117,7 @@ const nextConfig = {
       { source: '/industries/local-service/van-nuys-seo', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/locations/ventura', destination: '/seo-services-los-angeles', permanent: true },
       { source: '/industries/local-service/ventura-seo', destination: '/seo-services-los-angeles', permanent: true },
-      { source: '/ai-search-marketing-santa-clarita', destination: '/ai-visibility', permanent: true },
+      { source: '/ai-search-marketing-santa-clarita', destination: '/geo-services-los-angeles', permanent: true },
       { source: '/industries/local-service/santa-clarita-seo', destination: '/seo-services-los-angeles', permanent: true },
 
       // Regional/multi-city pages, also retargeted off '/'.

@@ -36,7 +36,7 @@ const TIERS = [
       { label: 'Content written so ChatGPT and Google’s AI answers actually quote your business', href: '/geo-services-los-angeles' },
       { label: 'Regular articles and guides that answer questions your customers are already asking', href: '/content-marketing-services-los-angeles' },
       { label: 'Getting other trusted websites and reporters to write about — and link to — your business', href: '/link-building-services-los-angeles' },
-      { label: 'A regular check on whether AI tools are actually mentioning your brand', href: '/ai-visibility' },
+      { label: 'A regular check on whether AI tools are actually mentioning your brand', href: '/geo-services-los-angeles' },
     ],
   },
   {

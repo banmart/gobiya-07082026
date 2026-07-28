@@ -10,7 +10,7 @@ export default function sitemap() {
     '/about',
     '/about/approach',
     '/about/steve-martin',
-    '/ai-visibility',
+    '/geo-services-los-angeles',
     '/contact',
     '/free-site-scan',
     '/insights',
