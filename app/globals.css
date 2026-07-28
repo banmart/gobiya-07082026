@@ -5273,3 +5273,7 @@ html.a11y-grayscale {
 .mw-svc-quote__who { display: flex; gap: 0.75rem; align-items: center; justify-content: center; margin-top: 1.5rem; font-size: 0.875rem; color: #475569; }
 .mw-svc-quote__avatar { border-radius: 50%; object-fit: cover; }
 .mw-svc-quote__link { display: block; text-align: center; margin-top: 1.25rem; font-weight: 700; color: #8C1D2F; }
+.mw-svc-areas { padding-block: clamp(2.5rem, 5vw, 3.5rem); text-align: center; }
+.mw-svc-areas__heading { font-family: 'PT Serif', Georgia, serif; font-size: clamp(1.25rem, 2.5vw, 1.6rem); color: #0B1E36; margin-bottom: 1rem; }
+.mw-svc-areas__list { max-width: 52rem; margin-inline: auto; font-size: 0.9375rem; line-height: 1.9; color: #475569; }
+.mw-svc-areas__nap { margin-top: 1.25rem; font-size: 0.875rem; color: #64748B; }

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Breadcrumbs from './Breadcrumbs';
+import { CONTACT } from '../lib/nav';
 
 const CLEAN_SERVICE_NAMES = {
   'seo-services-los-angeles': 'Local & Technical SEO',
@@ -209,6 +210,23 @@ export default function FlatServiceTemplate({ service }) {
                 Read the case study
               </a>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* ══ Where we work + how to reach us ══
+          Suburb names are plain text on purpose: every one of those legacy URLs
+          now 308s to this page, so linking them would re-fragment exactly what
+          the redirect consolidation fixed. */}
+      {service.serviceAreas?.length > 0 && (
+        <section className="mw-svc-areas">
+          <div className="container">
+            <h2 className="mw-svc-areas__heading">Where we work</h2>
+            <p className="mw-svc-areas__list">{service.serviceAreas.join(' · ')}</p>
+            <p className="mw-svc-areas__nap">
+              {CONTACT.address1}, {CONTACT.address2} ·{' '}
+              <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+            </p>
           </div>
         </section>
       )}
