@@ -22,10 +22,13 @@ export default function FlatServiceTemplate({ service }) {
     description: service.metaDescription || service.intro,
     url: `https://www.gobiya.com/${service.slug}`,
     provider: { '@id': 'https://www.gobiya.com/#organization' },
-    areaServed: {
-      '@type': 'Country',
-      name: 'United States',
-    },
+    // Every flat service page is a Los Angeles page, and SiteSchema already
+    // declares City: Los Angeles for the organization. Claiming the whole
+    // country here contradicted it.
+    areaServed: [
+      { '@type': 'City', name: 'Los Angeles' },
+      { '@type': 'State', name: 'California' },
+    ],
   };
 
   const faqSchema = service.faqs?.length > 0 ? {
