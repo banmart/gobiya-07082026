@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
+import { SEARCH_WINS } from '../lib/searchWins';
 
 export const metadata = buildMetadata({
   title: 'Gobiya — Los Angeles SEO Consultants & AI Search Optimization',
@@ -28,6 +29,14 @@ const STORY_IMAGES = [
   '/assets/img/open-office-desks.webp',
   '/assets/img/office-lounge-meeting.webp',
 ];
+
+// The stats bar shows real Google Search Console and AI-grounding numbers from
+// lib/searchWins.js rather than hardcoded claims. Look cards up by id, never by
+// index — the weekly refresh job swaps which metrics are presentable (CTR
+// replaces clicks when clicks have no honest window, and so on), so positions
+// are not stable. A missing id renders nothing rather than crashing the page.
+const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
+const STAT_IDS = ['ai-citations', 'impressions', 'position'];
 
 export default function Home() {
   return (
@@ -124,20 +133,28 @@ export default function Home() {
             <div>
               <div className="mw-stats__num">15+</div>
               <div className="mw-stats__label">Years Experience</div>
+              <div className="mw-stats__detail">Optimizing search for small and mid-sized businesses since 2010.</div>
             </div>
-            <div>
-              <div className="mw-stats__num">500+</div>
-              <div className="mw-stats__label">SEO &amp; AI Scans</div>
-            </div>
-            <div>
-              <div className="mw-stats__num">Top 1%</div>
-              <div className="mw-stats__label">AI Search Visibility</div>
-            </div>
-            <div>
-              <div className="mw-stats__num">1</div>
-              <div className="mw-stats__label">Goal: Scale Your Business</div>
-            </div>
+            {STAT_IDS.map((id) => {
+              const card = winById(id);
+              if (!card) return null;
+              return (
+                <div key={id}>
+                  <div className="mw-stats__num">
+                    {card.display}
+                    {card.suffix || ''}
+                  </div>
+                  <div className="mw-stats__label">{card.label}</div>
+                  <div className="mw-stats__detail">
+                    {card.detail} <span className="mw-stats__window">{card.window}.</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+          <p className="mw-stats__note">
+            Live numbers across every site we run search for, from Google Search Console and AI assistant grounding data. Last updated {SEARCH_WINS.asOf}.
+          </p>
         </div>
       </section>
 

@@ -5252,3 +5252,9 @@ html.a11y-grayscale {
 
 /* Hero supports a solid primary CTA next to the outline secondary. */
 .mw-hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+
+/* Stats bar carries its own sourcing: each card names its comparison window and
+   the section footnote carries the SEARCH_WINS as-of date. */
+.mw-stats__detail { margin-top: 0.4rem; font-size: 0.8125rem; line-height: 1.5; color: #CBD5E1; }
+.mw-stats__window { display: block; opacity: 0.75; }
+.mw-stats__note { margin-top: 2rem; text-align: center; font-size: 0.75rem; color: #94A3B8; }
