@@ -39,16 +39,37 @@ describe('seo-services-los-angeles content', () => {
   });
 });
 
-describe('service template surfaces contact details', () => {
-  const tpl = readFileSync(path.resolve(process.cwd(), 'components/FlatServiceTemplate.js'), 'utf8');
+// The left rail is section navigation, not a table of contents: it links the
+// sibling service pages so a visitor reading one service can reach the rest of
+// the offer. It previously listed only the current page's own capability
+// headings as #anchors, which dead-ended every service page in itself.
+describe('service sidebar is section navigation', () => {
+  const sidebar = readFileSync(path.resolve(process.cwd(), 'components/ServiceSidebar.js'), 'utf8');
 
-  it('imports CONTACT rather than hardcoding the phone number', () => {
-    expect(tpl).toContain("from '../lib/nav'");
-    expect(tpl).toContain('CONTACT.phoneHref');
-    expect(tpl).not.toContain('323-744-1338');
+  it('links the sibling service pages', () => {
+    expect(sidebar).toContain('SERVICE_LINKS');
   });
 
-  it('renders the service area list', () => {
-    expect(tpl).toContain('service.serviceAreas');
+  it('does not build the rail from the page’s own capability headings', () => {
+    expect(sidebar).not.toContain('capability-');
+    expect(sidebar).not.toContain('service.capabilities');
+  });
+
+  it('marks the current page active', () => {
+    expect(sidebar).toContain('is-active');
+    expect(sidebar).toContain('aria-current="page"');
+  });
+});
+
+describe('every service page is reachable from the services index', () => {
+  it('lists all eight services exactly once', async () => {
+    const { CONSULTING_ITEMS } = await import('../../lib/consultingIndex.js');
+    const { SERVICE_SLUGS } = await import('../../lib/serviceIndex.js');
+    expect(CONSULTING_ITEMS).toHaveLength(SERVICE_SLUGS.length);
+    const hrefs = CONSULTING_ITEMS.map((s) => s.href);
+    expect(new Set(hrefs).size, 'duplicate service links').toBe(hrefs.length);
+    for (const slug of SERVICE_SLUGS) {
+      expect(hrefs, slug).toContain(`/${slug}`);
+    }
   });
 });

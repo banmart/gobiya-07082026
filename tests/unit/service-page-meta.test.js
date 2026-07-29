@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { SERVICES_FLAT } from '../../lib/servicesFlat.js';
+import { SERVICE_SLUGS, getService } from '../../lib/serviceIndex.js';
 
 // buildMetadata in lib/meta.js appends ' — Gobiya' (9 chars) unless the title
 // already contains the brand. Titles must fit Google's ~60 char display budget
@@ -9,16 +10,17 @@ import { SERVICES_FLAT } from '../../lib/servicesFlat.js';
 const SUFFIX = ' — Gobiya';
 const rendered = (t) => (t.toLowerCase().includes('gobiya') ? t : t + SUFFIX);
 
-describe('flat service page metadata', () => {
+describe('service page metadata', () => {
   it('keeps every rendered title within 60 characters', () => {
-    for (const [slug, s] of Object.entries(SERVICES_FLAT)) {
-      expect(rendered(s.title).length, `${slug}: ${rendered(s.title)}`).toBeLessThanOrEqual(60);
+    for (const slug of SERVICE_SLUGS) {
+      const t = getService(slug).metaTitle;
+      expect(rendered(t).length, `${slug}: ${rendered(t)}`).toBeLessThanOrEqual(60);
     }
   });
 
   it('keeps every meta description within 155 characters', () => {
-    for (const [slug, s] of Object.entries(SERVICES_FLAT)) {
-      expect(s.metaDescription.length, slug).toBeLessThanOrEqual(155);
+    for (const slug of SERVICE_SLUGS) {
+      expect(getService(slug).metaDescription.length, slug).toBeLessThanOrEqual(155);
     }
   });
 
@@ -28,7 +30,7 @@ describe('flat service page metadata', () => {
 });
 
 describe('service schema', () => {
-  const tpl = readFileSync(path.resolve(process.cwd(), 'components/FlatServiceTemplate.js'), 'utf8');
+  const tpl = readFileSync(path.resolve(process.cwd(), 'components/ServiceTemplate.js'), 'utf8');
 
   it('does not claim the whole United States as the service area', () => {
     expect(tpl).not.toContain("name: 'United States'");
@@ -38,19 +40,18 @@ describe('service schema', () => {
     expect(tpl).toContain("name: 'Los Angeles'");
     expect(tpl).toContain("name: 'California'");
   });
+
+  // The old ServiceTemplate emitted no JSON-LD at all, so four of the eight
+  // service pages shipped with no structured data. One template means one
+  // place this can regress.
+  it('emits Service and FAQPage structured data', () => {
+    expect(tpl).toContain("'@type': 'Service'");
+    expect(tpl).toContain("'@type': 'FAQPage'");
+  });
 });
 
-describe('flat service template renders its authored content', () => {
-  const tpl = readFileSync(path.resolve(process.cwd(), 'components/FlatServiceTemplate.js'), 'utf8');
-
-  it('renders the datapoint with its source note', () => {
-    expect(tpl).toContain('service.datapoint');
-    expect(tpl).toContain('sourceNote');
-  });
-
-  it('renders the testimonial', () => {
-    expect(tpl).toContain('service.testimonial');
-  });
+describe('service template renders its authored content', () => {
+  const tpl = readFileSync(path.resolve(process.cwd(), 'components/ServiceTemplate.js'), 'utf8');
 
   it('renders the problem statement', () => {
     expect(tpl).toContain('service.problem');
@@ -60,30 +61,36 @@ describe('flat service template renders its authored content', () => {
     expect(tpl).toContain('service.process');
   });
 
+  it('renders the capability blocks', () => {
+    expect(tpl).toContain('service.capabilities');
+  });
+
   it('prefers the authored CTA title when present', () => {
     expect(tpl).toContain('service.ctaTitle');
   });
 
-  it('uses the authored h1 rather than the short breadcrumb label', () => {
-    expect(tpl).toContain('service.h1 || displayTitle');
+  it('uses the authored headline rather than the short rail label', () => {
+    expect(tpl).toContain('service.headline');
   });
 });
 
 describe('service page headlines name their city', () => {
-  it('gives every flat service page an h1 containing Los Angeles', () => {
-    for (const [slug, s] of Object.entries(SERVICES_FLAT)) {
-      expect(s.h1, slug).toMatch(/Los Angeles/);
+  it('gives every service page a headline containing Los Angeles', () => {
+    for (const slug of SERVICE_SLUGS) {
+      expect(getService(slug).headline, slug).toMatch(/Los Angeles/);
     }
   });
 });
 
-describe('service data still carries the fields the template needs', () => {
-  it('gives every flat service page a datapoint, testimonial, problem and process', () => {
-    for (const [slug, s] of Object.entries(SERVICES_FLAT)) {
-      expect(s.datapoint, slug).toBeTruthy();
-      expect(s.testimonial, slug).toBeTruthy();
+describe('service data carries the fields the template needs', () => {
+  it('gives all eight service pages a problem, process, faqs and CTA title', () => {
+    for (const slug of SERVICE_SLUGS) {
+      const s = getService(slug);
       expect(s.problem, slug).toBeTruthy();
       expect(Array.isArray(s.process), slug).toBe(true);
+      expect(s.process.length, slug).toBeGreaterThan(0);
+      expect(s.faqs.length, slug).toBeGreaterThan(0);
+      expect(s.ctaTitle, slug).toBeTruthy();
     }
   });
 });

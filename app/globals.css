@@ -4925,6 +4925,26 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   font-weight: 600;
 }
 
+/* Sub-links sit under the service you're currently reading — the section rail
+   expands only the active page, so these are in-page jumps while every other
+   link in the rail goes to a sibling page. */
+.mw-sidebar__link--sub {
+  padding-left: 2.25rem;
+  font-size: 0.875rem;
+  color: #64748B;
+  background: #FCFCFD;
+}
+
+.mw-sidebar__link--sub::before {
+  content: '';
+  display: inline-block;
+  width: 0.5rem;
+  height: 1px;
+  background: #CBD5E1;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
 .mw-cluster-list {
   display: flex;
   flex-direction: column;
@@ -4963,6 +4983,18 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   font-size: 1rem;
   line-height: 1.7;
   color: #475569;
+}
+
+/* The opening paragraph of a service page — the full authored intro, sitting
+   below the hero card, which only carries a short excerpt. */
+.mw-cluster-block__lede {
+  font-size: 1.0625rem;
+  color: #334155;
+}
+
+.mw-cluster-block__lede a {
+  color: #8B263E;
+  text-decoration: underline;
 }
 
 /* ══════════ Accessibility Visual Controls Widget ══════════ */

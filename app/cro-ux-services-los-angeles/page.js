@@ -1,11 +1,11 @@
 import ServiceTemplate from '../../components/ServiceTemplate';
-import { SERVICES } from '../../lib/services';
+import { getService } from '../../lib/serviceIndex';
 import { buildMetadata } from '../../lib/meta';
 
-const service = SERVICES['cro-ux-services-los-angeles'];
+const service = getService('cro-ux-services-los-angeles');
 
 export const metadata = buildMetadata({
-  title: service.metaTitle || service.title,
+  title: service.metaTitle,
   description: service.metaDescription,
   path: '/cro-ux-services-los-angeles',
 });
