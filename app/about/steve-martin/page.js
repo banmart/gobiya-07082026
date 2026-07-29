@@ -1,34 +1,30 @@
 import Image from 'next/image';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import CollapsibleSidebar from '../../../components/CollapsibleSidebar';
 import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Steve Martin | Los Angeles SEO & Web Design Expert',
+  title: 'Steve Martin — Founder & Head of Strategy | Gobiya',
   description:
-    'Steve Martin is the founder of Gobiya, a Los Angeles search and web design expert with hands-on web design experience since 1996. Talk to Steve about your site.',
+    'Meet Steve Martin, founder of Gobiya. Over 30 years of web design, technical development, and SEO experience in Los Angeles.',
   path: '/about/steve-martin',
 });
 
 const STEVE_TOPICS = [
   {
-    id: 'biography',
-    title: 'Biography & Founder Background',
-    desc: 'Steve grew up in Glendale, CA, and got his start in 1996 with web design — building websites before Google even existed. He founded Gobiya in 2010 after over a decade of web design, web development, and search engineering experience.',
+    id: 'background',
+    title: 'Background & 30-Year Web Career',
+    desc: 'Steve started building commercial websites in 1996, watching the internet evolve from early static HTML pages to modern AI-driven search engines. Over three decades, he has designed, developed, and managed hundreds of custom websites and search strategies.',
   },
   {
     id: 'philosophy',
-    title: 'Search & Design Philosophy',
-    desc: '“Every update since Panda has punished the same thing, in a different disguise: sites that were built for search engines instead of the people using them.”',
+    title: 'No-Nonsense Growth Philosophy',
+    desc: 'Marketing agencies often hide behind vanity metrics like impressions and click-through rates. Steve’s approach is straightforward: measure success by bottom-line business growth, phone calls, and revenue generated for clients.',
   },
   {
-    id: 'specialties',
-    title: 'Core Specializations',
-    desc: 'Web design & UI architecture, Technical SEO & SSR rendering, Google manual penalty & algorithm recovery, Core Web Vitals performance tuning, and Generative Engine Optimization (GEO) for ChatGPT and Perplexity.',
-  },
-  {
-    id: 'timeline',
-    title: 'Career Timeline (1996 – Present)',
-    desc: 'Web design experience since 1996: Glendale College (1996), AT&T WorldNet & Webcastr (1996-2010), Gobiya Founded (2010), LLC Incorporated (2012), Google Partner Certification (2015-19), AI Search & Web Design (2024-Present).',
+    id: 'direct-accountability',
+    title: 'Direct Client Communication',
+    desc: 'At Gobiya, clients speak directly to the person doing the work. There are no junior account managers or layers of relay communication between strategy and execution.',
   },
 ];
 
@@ -56,20 +52,17 @@ export default function SteveMartinPage() {
       <div className="container">
         <div className="mw-pillar-grid">
           {/* Left Sidebar Index */}
-          <aside className="mw-sidebar">
-            <div className="mw-sidebar__header">Steve Martin</div>
-            <nav className="mw-sidebar__nav">
-              {STEVE_TOPICS.map((t, idx) => (
-                <a
-                  key={t.id}
-                  href={`#${t.id}`}
-                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
-                >
-                  {t.title}
-                </a>
-              ))}
-            </nav>
-          </aside>
+          <CollapsibleSidebar headerText="Steve Martin">
+            {STEVE_TOPICS.map((t, idx) => (
+              <a
+                key={t.id}
+                href={`#${t.id}`}
+                className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+              >
+                {t.title}
+              </a>
+            ))}
+          </CollapsibleSidebar>
 
           {/* Right Content Area */}
           <div className="mw-cluster-list">

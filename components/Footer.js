@@ -24,12 +24,12 @@ export default function Footer() {
           <div>
             <h4 className="mw-footer__col-title">Services</h4>
             <div className="mw-footer__links">
-              <a href="/seo-services-los-angeles">Local &amp; Technical SEO</a>
+              <a href="/seo-services">Local &amp; Technical SEO</a>
               <a href="/geo-services-los-angeles">AI &amp; GEO Search</a>
-              <a href="/content-marketing-services-los-angeles">Content Strategy</a>
-              <a href="/link-building-services-los-angeles">Authority Link Building</a>
-              <a href="/ppc-management-services-los-angeles">PPC Management</a>
-              <a href="/cro-ux-services-los-angeles">CRO &amp; Web UX</a>
+              <a href="/content-marketing-strategies">Content Strategy</a>
+              <a href="/link-building-services">Authority Link Building</a>
+              <a href="/ppc-management-services">PPC Management</a>
+              <a href="/conversion-rate-optimization-cro">CRO &amp; Web UX</a>
             </div>
           </div>
 

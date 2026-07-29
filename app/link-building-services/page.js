@@ -2,12 +2,12 @@ import ServiceTemplate from '../../components/ServiceTemplate';
 import { getService } from '../../lib/serviceIndex';
 import { buildMetadata } from '../../lib/meta';
 
-const service = getService('cro-ux-services-los-angeles');
+const service = getService('link-building-services');
 
 export const metadata = buildMetadata({
   title: service.metaTitle,
   description: service.metaDescription,
-  path: '/cro-ux-services-los-angeles',
+  path: '/link-building-services',
 });
 
 export default function Page() {

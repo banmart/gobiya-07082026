@@ -1,4 +1,5 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
+import CollapsibleSidebar from '../../components/CollapsibleSidebar';
 import { CASE_STUDIES } from '../../lib/work';
 import { buildMetadata } from '../../lib/meta';
 
@@ -29,20 +30,17 @@ export default function WorkPage() {
       <div className="container">
         <div className="mw-pillar-grid">
           {/* Left Sidebar Index */}
-          <aside className="mw-sidebar">
-            <div className="mw-sidebar__header">Case Study Index</div>
-            <nav className="mw-sidebar__nav">
-              {CASE_STUDIES.map((c, idx) => (
-                <a
-                  key={c.client}
-                  href={`#case-${idx}`}
-                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
-                >
-                  {c.client}
-                </a>
-              ))}
-            </nav>
-          </aside>
+          <CollapsibleSidebar headerText="Case Study Index">
+            {CASE_STUDIES.map((c, idx) => (
+              <a
+                key={c.client}
+                href={`#case-${idx}`}
+                className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+              >
+                {c.client}
+              </a>
+            ))}
+          </CollapsibleSidebar>
 
           {/* Right Content Area (Case Study Sub-Clusters) */}
           <div className="mw-cluster-list">

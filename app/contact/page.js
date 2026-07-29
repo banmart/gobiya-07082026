@@ -1,4 +1,5 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
+import CollapsibleSidebar from '../../components/CollapsibleSidebar';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 
@@ -60,20 +61,17 @@ export default function ContactPage() {
       <div className="container">
         <div className="mw-pillar-grid">
           {/* Left Sidebar */}
-          <aside className="mw-sidebar">
-            <div className="mw-sidebar__header">Contact Topics</div>
-            <nav className="mw-sidebar__nav">
-              {CONTACT_TOPICS.map((topic, idx) => (
-                <a
-                  key={topic.id}
-                  href={`#${topic.id}`}
-                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
-                >
-                  {topic.title}
-                </a>
-              ))}
-            </nav>
-          </aside>
+          <CollapsibleSidebar headerText="Contact Topics">
+            {CONTACT_TOPICS.map((topic, idx) => (
+              <a
+                key={topic.id}
+                href={`#${topic.id}`}
+                className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+              >
+                {topic.title}
+              </a>
+            ))}
+          </CollapsibleSidebar>
 
           {/* Right Content Area */}
           <div className="mw-cluster-list">

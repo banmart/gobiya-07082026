@@ -1,11 +1,12 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
+import CollapsibleSidebar from '../../components/CollapsibleSidebar';
 import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO & Digital Marketing Services | Gobiya',
+  title: 'SEO & Growth Services for Business',
   description:
-    'Explore Gobiya’s full suite of Los Angeles SEO services, web design, Google Ads, content marketing, and AI search solutions for LA businesses.',
+    'Custom SEO, GEO content, Google Ads management, link building, and CRO services for Los Angeles businesses.',
   path: '/services',
 });
 
@@ -18,10 +19,13 @@ export default function ServicesPage() {
       {/* ══ 2. Subhero Dark Banner ══ */}
       <section className="mw-subhero">
         <div className="container">
-          <h1 className="mw-subhero__title">Services &amp; Digital Solutions</h1>
-          <p className="mw-subhero__dek">
-            Performance, content, and search strategy — marketing services for businesses built to work together under one accountable team, so your business gets found first.
-          </p>
+          <div className="mw-subhero__content">
+            <span className="mw-subhero__eyebrow">OUR CAPABILITIES</span>
+            <h1 className="mw-subhero__title">Services Index</h1>
+            <p className="mw-subhero__desc">
+              Every service we offer is built around one clear goal: helping your business get found, trusted, and chosen.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -29,20 +33,17 @@ export default function ServicesPage() {
       <div className="container">
         <div className="mw-pillar-grid">
           {/* Left Sidebar */}
-          <aside className="mw-sidebar">
-            <div className="mw-sidebar__header">Services Index</div>
-            <nav className="mw-sidebar__nav">
-              {CONSULTING_ITEMS.map((s, idx) => (
-                <a
-                  key={s.slug}
-                  href={`#${s.slug}`}
-                  className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
-                >
-                  {s.title}
-                </a>
-              ))}
-            </nav>
-          </aside>
+          <CollapsibleSidebar headerText="Services Index">
+            {CONSULTING_ITEMS.map((s, idx) => (
+              <a
+                key={s.slug}
+                href={`#${s.slug}`}
+                className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+              >
+                {s.title}
+              </a>
+            ))}
+          </CollapsibleSidebar>
 
           {/* Right Content Area (Sub-Clusters) */}
           <div className="mw-cluster-list">

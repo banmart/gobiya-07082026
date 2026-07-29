@@ -18,10 +18,10 @@ const TIERS = [
     unit: '/mo',
     bestFor: 'You want your business to actually show up when people search for you in Los Angeles.',
     features: [
-      { label: 'Fix technical problems keeping Google from finding your site', href: '/seo-services-los-angeles' },
-      { label: 'Clear, helpful writing for your homepage and service pages', href: '/content-marketing-services-los-angeles' },
-      { label: 'Make sure your name, address, and phone number match everywhere online', href: '/seo-services-los-angeles' },
-      { label: 'A simple monthly report showing what changed and why', href: '/seo-services-los-angeles' },
+      { label: 'Fix technical problems keeping Google from finding your site', href: '/seo-services' },
+      { label: 'Clear, helpful writing for your homepage and service pages', href: '/content-marketing-strategies' },
+      { label: 'Make sure your name, address, and phone number match everywhere online', href: '/seo-services' },
+      { label: 'A simple monthly report showing what changed and why', href: '/seo-services' },
     ],
   },
   {
@@ -34,8 +34,8 @@ const TIERS = [
     features: [
       { label: 'Everything in Findable, plus:' },
       { label: 'Content written so ChatGPT and Google’s AI answers actually quote your business', href: '/geo-services-los-angeles' },
-      { label: 'Regular articles and guides that answer questions your customers are already asking', href: '/content-marketing-services-los-angeles' },
-      { label: 'Getting other trusted websites and reporters to write about — and link to — your business', href: '/link-building-services-los-angeles' },
+      { label: 'Regular articles and guides that answer questions your customers are already asking', href: '/content-marketing-strategies' },
+      { label: 'Getting other trusted websites and reporters to write about — and link to — your business', href: '/link-building-services' },
       { label: 'A regular check on whether AI tools are actually mentioning your brand', href: '/geo-services-los-angeles' },
     ],
   },
@@ -46,8 +46,8 @@ const TIERS = [
     bestFor: "You're ready to run ads, fine-tune your website, and get every part of your marketing working toward one thing: more customers choosing you.",
     features: [
       { label: 'Everything in Cited, plus:' },
-      { label: 'Google Ads managed so you’re not paying for clicks that never turn into customers', href: '/ppc-management-services-los-angeles' },
-      { label: 'Ongoing tests and small changes to your site that turn more visitors into customers', href: '/cro-ux-services-los-angeles' },
+      { label: 'Google Ads managed so you’re not paying for clicks that never turn into customers', href: '/ppc-management-services' },
+      { label: 'Ongoing tests and small changes to your site that turn more visitors into customers', href: '/conversion-rate-optimization-cro' },
       { label: 'Straight answers on which AI tools are actually worth using for your business', href: '/ai-consulting-services-los-angeles' },
       { label: 'A dedicated person on our team who knows your account and answers fast' },
     ],
@@ -65,13 +65,13 @@ const ADDONS = [
     name: 'Getting Other Sites to Link to You',
     price: 'From $750/mo',
     note: 'add this to the Findable plan — it’s already included from Cited up',
-    href: '/link-building-services-los-angeles',
+    href: '/link-building-services',
   },
   {
     name: 'Website Testing & Fixes',
     price: 'From $1,200/mo',
     note: 'add this to Findable or Cited — it’s already included in Chosen',
-    href: '/cro-ux-services-los-angeles',
+    href: '/conversion-rate-optimization-cro',
   },
   {
     name: 'AI Strategy Advice',
@@ -83,7 +83,7 @@ const ADDONS = [
     name: 'Google Ads Management',
     price: 'From $1,000/mo + ad spend',
     note: 'add this to Findable or Cited — it’s already included in Chosen',
-    href: '/ppc-management-services-los-angeles',
+    href: '/ppc-management-services',
   },
 ];
 
