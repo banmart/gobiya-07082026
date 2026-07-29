@@ -5,9 +5,9 @@ import { SEARCH_WINS } from '../lib/searchWins';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 export const metadata = buildMetadata({
-  title: 'Gobiya — Los Angeles SEO Consultants & AI Search Optimization',
+  title: 'Los Angeles Internet Marketing & SEO | Gobiya SEO',
   description:
-    'Independent Web AI & SEO consulting firm in Los Angeles specializing in technical SEO, search engine ranking, and Generative Engine Optimization (GEO).',
+    'Get white-hat & affordable services from Gobiya Internet Marketing & SEO, a top ranking SEO expert in Los Angeles. We offer AI, GEO, SEO, PPC, Content Marketing, PR & more. Get a FREE Consultation Today!',
   path: '/',
 });
 
@@ -63,16 +63,30 @@ export default function Home() {
       {/* ══ 1. Hero directly below menubar ══ */}
       <section
         className="mw-hero"
-        style={{ backgroundImage: `url('/assets/img/office-collage-montage.webp')` }}
+        style={{ backgroundImage: `url('/img/Change_room_logo_right_people_202607291545.webp')` }}
       >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="mw-hero__bg-video"
+          poster="/img/Change_room_logo_right_people_202607291545.webp"
+        >
+          <source src="/img/Change_room_logo_right_people_202607291545.webm" type="video/webm" />
+        </video>
         <div className="mw-hero__overlay" />
         <div className="container">
           <div className="mw-hero__card">
+            <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
             <h1 className="mw-hero__title">
-              Search and AI visibility, run by the person you actually hired.
+              Experience Driven. Trusted by Many.
             </h1>
             <p className="mw-hero__excerpt">
-              Gobiya is an independent Los Angeles consultancy. Steve Martin has optimized small and mid-sized businesses for Google, ChatGPT and Perplexity since 2010 — and leads every account himself. No account managers. No long-term contracts.
+              Celebrating 16 Years of Local Service!
+            </p>
+            <p className="mw-hero__description">
+              When rankings drop, Call Gobiya to Help! Expert SEO, paid advertising, Onpage &amp; Content publishing services AI can rely on for citing your business above your competitors.
             </p>
             <div className="mw-hero__actions">
               <a href="/free-site-scan" className="mw-hero__btn">

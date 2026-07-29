@@ -3845,9 +3845,21 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   min-height: 520px;
   background-size: cover;
   background-position: center right;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   padding-block: clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+}
+
+.mw-hero__bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  z-index: 1;
 }
 
 .mw-hero__overlay {
@@ -3855,16 +3867,26 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   inset: 0;
   background: linear-gradient(90deg, rgba(11,30,54,0.3) 0%, rgba(255,255,255,0) 60%);
   pointer-events: none;
+  z-index: 2;
 }
 
 .mw-hero__card {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   background: #FFFFFF;
   padding: clamp(2.5rem, 5vw, 3.5rem);
-  max-width: 31rem;
+  max-width: 34rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
+}
+
+.mw-hero__eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8C1D2F;
+  margin-bottom: 0.75rem;
 }
 
 .mw-hero__title {
@@ -3873,11 +3895,19 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   font-weight: 400;
   color: #0B1E36;
   line-height: 1.15;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .mw-hero__excerpt {
   font-size: 1.125rem;
+  font-weight: 700;
+  color: #0B1E36;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.mw-hero__description {
+  font-size: 1rem;
   line-height: 1.6;
   color: #475569;
   margin-bottom: 2rem;
@@ -3898,6 +3928,56 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-hero__btn:hover {
   background: #1E3A8A;
   transform: translateY(-1px);
+}
+
+/* Mobile-only layout adjustment (< 768px): Hero visual top (16:9 ratio), card content below on solid white background */
+@media (max-width: 767px) {
+  .mw-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    padding-top: max(56.25vw, 220px);
+    padding-bottom: 2rem;
+    align-items: stretch;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+  }
+
+  .mw-hero__bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max(56.25vw, 220px);
+    object-fit: cover;
+    object-position: center right;
+  }
+
+  .mw-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max(56.25vw, 220px);
+    background: linear-gradient(180deg, rgba(11,30,54,0.15) 0%, rgba(11,30,54,0.4) 100%);
+  }
+
+  .mw-hero .container {
+    position: relative;
+    z-index: 3;
+    margin-top: 1.5rem;
+    background-color: #FFFFFF;
+  }
+
+  .mw-hero__card {
+    max-width: 100%;
+    padding: 0;
+    box-shadow: none;
+    background: #FFFFFF;
+  }
 }
 
 /* Trust Bar / Logos Section */
