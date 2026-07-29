@@ -46,12 +46,6 @@ export default function CaseStudyTemplate({ cs }) {
           )}
           <h1 className="mw-subhero__title">{`${cs.client}: ${cs.result}`}</h1>
           {cs.study?.dek && <p className="mw-subhero__dek">{cs.study.dek}</p>}
-          {cs.url && (
-            <a href={cs.url} target="_blank" rel="noopener noreferrer" className="mw-subhero__link" style={{ marginTop: '1.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#C9A84C', fontSize: '0.9rem', fontWeight: 600 }}>
-              Visit {cs.client}
-              <svg viewBox="0 0 16 16" width="13" height="13"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-            </a>
-          )}
         </div>
       </section>
 
