@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import TopicMarquee from '../components/TopicMarquee';
+import TestimonialStack from '../components/TestimonialStack';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
@@ -10,6 +12,21 @@ export const metadata = buildMetadata({
     'Get white-hat & affordable services from Gobiya Internet Marketing & SEO, a top ranking SEO expert in Los Angeles. We offer AI, GEO, SEO, PPC, Content Marketing, PR & more. Get a FREE Consultation Today!',
   path: '/',
 });
+
+const TEXT_LOGOS = [
+  'Google Partners',
+  'Yelp!',
+  'Clutch',
+  'ChatGPT',
+  'Claude',
+  'Perplexity',
+  'Facebook Partner',
+  'Instagram Partner',
+  'GitHub',
+  'Next.JS',
+  'React',
+  'Web 2',
+];
 
 const CLIENT_LOGOS = [
   { src: '/assets/img/americanlivescan.webp', alt: 'American Livescan' },
@@ -100,7 +117,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 2. Trust Bar / Client Logo Strip ══ */}
+      {/* ══ 2. Our Team Does it All For You ══ */}
+      <section className="mw-simple">
+        <div className="container">
+          <h2 className="mw-simple__heading">
+            Our Team Does it All For You
+          </h2>
+          <p className="mw-simple__intro">
+            Whether you have a drop in rankings, not found in AI, or not getting a return from ads, our experts have you covered the whole way.
+          </p>
+
+          <div className="mw-simple__grid">
+            <div className="mw-simple__card">
+              <div className="mw-simple__card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                  <polyline points="17 6 23 6 23 12" />
+                </svg>
+              </div>
+              <div className="mw-simple__card-tag">Ranking Drops &amp; Organic Search</div>
+              <h3 className="mw-simple__col-title">Technical &amp; On-Page SEO</h3>
+              <p className="mw-simple__col-desc">
+                Recover lost rankings and dominate organic search. We perform full technical repairs, schema optimization, and content publishing strategies that keep your business at the top of Google.
+              </p>
+              <ul className="mw-simple__card-features">
+                <li><span>✓</span> Technical Audits &amp; Indexing Repairs</li>
+                <li><span>✓</span> On-Page &amp; Schema Optimization</li>
+                <li><span>✓</span> Authority &amp; Rank Protection</li>
+              </ul>
+              <a href="/seo-services" className="mw-simple__card-link">
+                Explore SEO Services <span>→</span>
+              </a>
+            </div>
+
+            <div className="mw-simple__card">
+              <div className="mw-simple__card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+              </div>
+              <div className="mw-simple__card-tag">Not Found in AI</div>
+              <h3 className="mw-simple__col-title">AI &amp; GEO Search Optimization</h3>
+              <p className="mw-simple__col-desc">
+                Ensure your business is cited and recommended when customers search on ChatGPT, Perplexity, and Google AI Overviews. We build entity authority AI models rely on.
+              </p>
+              <ul className="mw-simple__card-features">
+                <li><span>✓</span> LLM Citation Engineering</li>
+                <li><span>✓</span> Knowledge Graph &amp; Entity Building</li>
+                <li><span>✓</span> AI Answer Engine Content</li>
+              </ul>
+              <a href="/geo-services-los-angeles" className="mw-simple__card-link">
+                Explore GEO Services <span>→</span>
+              </a>
+            </div>
+
+            <div className="mw-simple__card">
+              <div className="mw-simple__card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </div>
+              <div className="mw-simple__card-tag">Low Return on Ads</div>
+              <h3 className="mw-simple__col-title">PPC &amp; Paid Advertising</h3>
+              <p className="mw-simple__col-desc">
+                Stop wasting ad budget on empty clicks. We restructure your Google Ads and paid campaigns around actual lead cost and ROI, turning wasted spend into profitable revenue.
+              </p>
+              <ul className="mw-simple__card-features">
+                <li><span>✓</span> High-ROI Campaign Restructuring</li>
+                <li><span>✓</span> Negative Keyword &amp; Bid Control</li>
+                <li><span>✓</span> Conversion Rate Optimization</li>
+              </ul>
+              <a href="/ppc-management-services" className="mw-simple__card-link">
+                Explore PPC Services <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="mw-simple__footer">
+            <a href="/services" className="mw-simple__btn">
+              View All Services <span>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 3. Trust Bar / Client Logo Strip ══ */}
       <section className="mw-trust">
         <div className="container">
           <h2 className="mw-trust__heading">
@@ -125,70 +228,38 @@ export default function Home() {
       {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />
 
-      {/* ══ 3. Meet Your Point Person ══
-          Sits ahead of the methodology on purpose: the named practitioner is the
-          differentiator no competing agency can copy, so it should land before
-          any process explanation. */}
+      {/* ══ 4. Trusted Los Angeles SEOs ══ */}
       <section className="mw-person">
         <div className="container">
-          <h2 className="mw-person__heading">Meet Your Point Person</h2>
+          <h2 className="mw-person__heading">Trusted Los Angeles SEOs</h2>
 
           <div className="mw-person__card">
             <Image
               src="/assets/img/sm.jpg"
-              alt="Steve Martin"
+              alt="Steve Martin — Gobiya SEO"
               width={120}
               height={120}
               className="mw-person__avatar"
             />
             <div>
-              <h3 className="mw-person__name">Steve Martin</h3>
-              <p className="mw-person__role">Founder and Head of Search Strategy</p>
+              <h3 className="mw-person__name">Professional SEO Recovery &amp; Service Since 2010</h3>
               <p className="mw-person__bio">
-                Steve founded Gobiya in 2010 and is an active practitioner in technical search engine optimization, content strategy, and AI search systems. He has over 15 years of experience helping small and medium-sized businesses dominate Google, ChatGPT, and Perplexity search results. Steve manages sell-side search strategies and leads every client account directly.
+                For over 16 years, the Gobiya SEO team has been completely honest, affordable and reliable SEO services in Los Angeles and throughout the San Fernando Valley. For the time we&apos;ve been doing business, we are proud to have served the local area and community by recovering their websites and pay per click issues.
               </p>
             </div>
           </div>
 
           <div className="mw-person__btn-wrap">
-            <a href="/about/steve-martin" className="mw-person__btn">
-              See Our Full Team
+            <a href="/free-site-scan" className="mw-person__btn">
+              Get a FREE Website Scan Today!
             </a>
           </div>
         </div>
       </section>
 
-      {/* ══ 4. The burned-buyer objection ══ */}
-      <section className="mw-simple">
-        <div className="container">
-          <h2 className="mw-simple__heading">
-            You&apos;ve probably been burned by an SEO agency before
-          </h2>
-          <p className="mw-simple__intro">
-            Most owners we talk to have already paid someone for a year of reports they couldn&apos;t read and rankings that never turned into phone calls. Here&apos;s how we&apos;re set up differently.
-          </p>
-
-          <div className="mw-simple__grid">
-            <div>
-              <h3 className="mw-simple__col-title">You work with the person doing the work</h3>
-              <p className="mw-simple__col-desc">
-                There are no account managers here. Steve runs your account, does the analysis, and answers your email himself. That&apos;s also the honest limit on how many clients we take at once.
-              </p>
-            </div>
-            <div>
-              <h3 className="mw-simple__col-title">Leave whenever you want</h3>
-              <p className="mw-simple__col-desc">
-                No long-term contracts and no cancellation penalty. We re-earn the work every month, which is the only real guarantee anyone in this business can honestly offer you.
-              </p>
-            </div>
-            <div>
-              <h3 className="mw-simple__col-title">Numbers you can check yourself</h3>
-              <p className="mw-simple__col-desc">
-                You keep direct access to your own Search Console and analytics — not a slide deck we assembled for you. If a month was flat, you&apos;ll see it before we tell you.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* ══ Text Logo Marquee Section ══ */}
+      <section className="mw-text-marquee-section">
+        <TopicMarquee topics={TEXT_LOGOS} />
       </section>
 
       {/* ══ 5. By the Numbers Banner ══ */}
@@ -220,18 +291,6 @@ export default function Home() {
           <p className="mw-stats__note">
             Live numbers across every site we run search for, from Google Search Console and AI assistant grounding data. Last updated {SEARCH_WINS.asOf}.
           </p>
-        </div>
-      </section>
-
-      {/* ══ 6. Full-Width Navy Banner ══ */}
-      <section className="mw-navy-banner">
-        <div className="container">
-          <h2 className="mw-navy-banner__title">
-            Go with a team of experts whose only specialty is growing your business
-          </h2>
-          <a href="/free-site-scan" className="mw-navy-banner__btn">
-            Schedule a Consultation
-          </a>
         </div>
       </section>
 
@@ -279,183 +338,210 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 8. Real Stories from Real Clients ══ */}
-      <section className="mw-stories">
-        <div className="container">
-          <h2 className="mw-stories__heading">Real Stories from Real Clients</h2>
+      {/* ══ 8. Pinned Stacked Testimonials ══ */}
+      <TestimonialStack />
 
-          <div className="mw-stories__list">
-            {TESTIMONIALS.slice(0, 6).map((item, idx) => (
-              <div
-                key={idx}
-                className="mw-story-card"
-                style={{ backgroundImage: `url('${STORY_IMAGES[idx % STORY_IMAGES.length]}')` }}
-              >
-                <div className="mw-story-card__content">
-                  <div className="mw-story-card__meta">
-                    Industry: <strong>{item.role}</strong> Region: <strong>Southern California</strong>
-                  </div>
-                  <p className="mw-story-card__desc">
-                    &ldquo;{item.quote}&rdquo;
-                  </p>
-                  <div style={{ marginBottom: '1rem', fontSize: '0.875rem', color: '#0B1E36', fontWeight: '700' }}>
-                    — {item.name ? `${item.name}, ` : ''}{item.company}
-                  </div>
-                  <a href={item.href} className="mw-story-card__btn">
-                    Read More
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 9. Navy Full-Width Banner ("Scaling Your Business is a Big Deal") ══ */}
-      <section className="mw-navy-banner">
+      {/* ══ Excellence in Every Service ══ */}
+      <section className="mw-excellence">
         <div className="container">
-          <h2 className="mw-navy-banner__title">
-            Scaling Your Business is a Big Deal
+          <h2 className="mw-excellence__heading">
+            Excellence in Every Service
           </h2>
-          <p style={{ maxWidth: '44rem', marginInline: 'auto', marginBottom: '2rem', color: '#CBD5E1', fontSize: '1.0625rem', lineHeight: '1.65' }}>
-            After investing your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees, the moment has finally come for you to start a new chapter in your digital growth.
+          <p className="mw-excellence__intro">
+            From our clear communication to our premium output and quality, we always put your business first.
           </p>
-          <a href="/#process" className="mw-navy-banner__btn">
-            View Our Process
-          </a>
-        </div>
-      </section>
 
-      {/* ══ 10. Featured Guide Resource ("The Art of AI Search & SEO") ══ */}
-      <section className="mw-book">
-        <div className="container">
-          <div className="mw-book__grid">
-            <div className="mw-book__cover">
-              <div className="mw-book__cover-border" />
-              <div className="mw-book__cover-top">Gobiya Technical Series</div>
-              <div className="mw-book__cover-title">THE ART OF AI SEARCH</div>
-              <div className="mw-book__cover-tag">The Complete Guide to Search &amp; AI Visibility</div>
+          <div className="mw-excellence__grid">
+            <div className="mw-excellence__card">
+              <div className="mw-excellence__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <h3 className="mw-excellence__card-title">Communication You Can Count On</h3>
+              <p className="mw-excellence__card-desc">
+                Our expert SEO strategy team ensures clear, direct, and transparent communication every step of the way — with no account manager middlemen.
+              </p>
             </div>
 
-            <div>
-              <h2 className="mw-book__title">The Art of AI Search</h2>
-              <p className="mw-book__subtitle">
-                The Complete Guide to Search &amp; AI Visibility for Small &amp; Medium Businesses
-              </p>
-              <p className="mw-book__desc">
-                Less than 10% of businesses actually capture top ChatGPT and Google recommendations. So what does this mean for you? Think about it – with a significant amount of your future lead volume tied to digital discovery, mastering your AI visibility is one of the most critical decisions you&apos;ll make.
-              </p>
-              <p className="mw-book__desc">
-                We run the same tools on ourselves. Gobiya publishes a{' '}
-                <a href="/mcp">public MCP server</a> that lets ChatGPT and Claude query us
-                directly, plus <a href="/tools">free tools</a> you can point at your own site
-                before you ever talk to us.
-              </p>
-
-              <div className="mw-book__author">
-                <Image
-                  src="/assets/img/sm.jpg"
-                  alt="Steve Martin"
-                  width={40}
-                  height={40}
-                  className="mw-book__author-img"
-                />
-                <span>Written by <strong>Steve Martin</strong>, Founder of Gobiya</span>
+            <div className="mw-excellence__card">
+              <div className="mw-excellence__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <polyline points="9 12 11 14 15 10" />
+                </svg>
               </div>
-
-              <div className="mw-book__actions">
-                <a href="/downloads/the-art-of-ai-search.pdf" className="mw-book__btn-solid" download>
-                  Download Free Guide (PDF)
-                </a>
-                <a href="/insights" className="mw-hero__btn">
-                  Read Insights
-                </a>
-              </div>
+              <h3 className="mw-excellence__card-title">Transparency You Can Trust</h3>
+              <p className="mw-excellence__card-desc">
+                You’ll always know what to expect with our open, no-surprise pricing, month-to-month contracts, and free site scans.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ══ 11. FAQ ══
-          Static dl markup with no accordion JavaScript: every answer stays in the
-          HTML for crawlers and for anyone browsing without JS, which is the whole
-          point of pairing it with the FAQPage schema above. */}
-      <section className="mw-faq">
-        <div className="container">
-          <h2 className="mw-steps__heading">Questions we get asked</h2>
-          <dl className="faq__list">
-            {HOMEPAGE_FAQ.map((item) => (
-              <div className="faq__item" key={item.q}>
-                <dt>{item.q}</dt>
-                <dd>{item.a}</dd>
+            <div className="mw-excellence__card">
+              <div className="mw-excellence__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="7" />
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                </svg>
               </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* ══ 12. Schedule a Free Consultation Calendar Section ══ */}
-      <section className="mw-consultation">
-        <div className="container">
-          <div className="mw-consultation__grid">
-            <div>
-              <h2 className="mw-consultation__title">Schedule a Free Consultation</h2>
-              <p className="mw-consultation__sub">Growing your business is a big deal</p>
-              <p className="mw-consultation__dek">
-                You&apos;ve invested your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees. The moment has finally come for you to start a new chapter in your digital growth. Explore your options now.
+              <h3 className="mw-excellence__card-title">White-Hat Standards You Can Rely On</h3>
+              <p className="mw-excellence__card-desc">
+                Our team maintains strict search engine guidelines and white-hat SEO practices to protect your brand authority and search rankings.
               </p>
-              <a href="/free-site-scan" className="mw-consultation__btn">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            </div>
+
+            <div className="mw-excellence__card">
+              <div className="mw-excellence__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                   <line x1="16" y1="2" x2="16" y2="6" />
                   <line x1="8" y1="2" x2="8" y2="6" />
                   <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
-                Schedule Your Consultation
+              </div>
+              <h3 className="mw-excellence__card-title">Sixteen Years of Service Excellence</h3>
+              <p className="mw-excellence__card-desc">
+                Proudly serving Los Angeles and Southern California businesses since 2010 with the same commitment to quality, rankings, and care.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ Quality Services For Our Local Communities ══ */}
+      <section className="mw-local-areas">
+        <div className="container">
+          <h2 className="mw-local-areas__heading">
+            Quality Services For Our Local Communities
+          </h2>
+          <p className="mw-local-areas__intro">
+            From SEO recoveries to content and ppc services, we&apos;re committed to keeping business websites across LA running smoothly.
+          </p>
+
+          <div className="mw-local-areas__card">
+            <div className="mw-local-areas__columns">
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Burbank
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Echo Park
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Glendale
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Hollywood
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Los Feliz
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Pasadena
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Sherman Oaks
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Silver Lake
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Studio City
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> San Fernando Valley
+              </div>
+              <div className="mw-local-areas__item">
+                <span className="mw-local-areas__icon">📍</span> Greater Los Angeles Area
+              </div>
+              <div className="mw-local-areas__item mw-local-areas__item--highlight">
+                <span className="mw-local-areas__icon">✨</span> &amp; Beyond!
+              </div>
+            </div>
+          </div>
+
+          <div className="mw-local-areas__cta">
+            <p className="mw-local-areas__cta-text">
+              Call us today! <a href="tel:323-744-1338" className="mw-local-areas__phone">323-744-1338</a> or{' '}
+              <a href="/free-site-scan" className="mw-local-areas__btn">
+                Get a FREE Site Scan <span>→</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
+      <section className="mw-savings">
+        <div className="container">
+          <div className="mw-savings__box">
+            <div className="mw-savings__content">
+              <div className="mw-savings__ribbon" />
+              <h2 className="mw-savings__title">
+                AFFORDABLE SOLUTIONS,<br />EXCEPTIONAL SERVICE
+              </h2>
+              <h3 className="mw-savings__subtitle">Exclusive Gobiya Savings</h3>
+              <p className="mw-savings__desc">
+                Keep your website running smoothly and your wallet happy with our latest coupons and special offers.
+              </p>
+              <a href="/free-site-scan" className="mw-savings__btn">
+                SAVE MORE TODAY <span>--→</span>
               </a>
             </div>
 
-            <div>
-              <div className="mw-calendar-mockup">
-                <div className="mw-calendar__header">Select a Date &amp; Time</div>
-                <div className="mw-calendar__weekdays">
-                  <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-                </div>
-                <div className="mw-calendar__days">
-                  <span className="mw-calendar__day mw-calendar__day--muted">26</span>
-                  <span className="mw-calendar__day mw-calendar__day--muted">27</span>
-                  <span className="mw-calendar__day mw-calendar__day--muted">28</span>
-                  <span className="mw-calendar__day mw-calendar__day--muted">29</span>
-                  <span className="mw-calendar__day mw-calendar__day--muted">30</span>
-                  <span className="mw-calendar__day mw-calendar__day--muted">31</span>
-                  <span className="mw-calendar__day">01</span>
-
-                  <span className="mw-calendar__day">02</span>
-                  <span className="mw-calendar__day">03</span>
-                  <span className="mw-calendar__day">04</span>
-                  <span className="mw-calendar__day">05</span>
-                  <span className="mw-calendar__day">06</span>
-                  <span className="mw-calendar__day mw-calendar__day--selected">07</span>
-                  <span className="mw-calendar__day">08</span>
-
-                  <span className="mw-calendar__day">09</span>
-                  <span className="mw-calendar__day">10</span>
-                  <span className="mw-calendar__day">11</span>
-                  <span className="mw-calendar__day">12</span>
-                  <span className="mw-calendar__day">13</span>
-                  <span className="mw-calendar__day">14</span>
-                  <span className="mw-calendar__day">15</span>
-
-                  <span className="mw-calendar__day">16</span>
-                  <span className="mw-calendar__day">17</span>
-                  <span className="mw-calendar__day">18</span>
-                  <span className="mw-calendar__day">19</span>
-                  <span className="mw-calendar__day">20</span>
-                  <span className="mw-calendar__day">21</span>
-                  <span className="mw-calendar__day">22</span>
+            <div className="mw-savings__coupon">
+              <div className="mw-savings__coupon-inner">
+                <div className="mw-savings__coupon-badge">FREE</div>
+                <h4 className="mw-savings__coupon-offer">
+                  CRM with any new website build.
+                </h4>
+                <p className="mw-savings__coupon-validity">
+                  Valid Dec 31, 2026
+                </p>
+                <div className="mw-savings__coupon-actions">
+                  <a href="/contact" className="mw-savings__action-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    Text
+                  </a>
+                  <a href="/contact" className="mw-savings__action-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    Email
+                  </a>
+                  <a href="/free-site-scan" className="mw-savings__action-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download
+                  </a>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 9. Schedule a Free Consultation Calendar Section ══ */}
+
+      {/* ══ Consultation CTA Section ══ */}
+      <section className="mw-consultation">
+        <div className="container">
+          <div className="mw-consultation__content">
+            <p className="mw-consultation__sub">We&apos;re Here When You Need Us</p>
+            <h2 className="mw-consultation__title">
+              Don&apos;t Wait, Get More Sales Today!
+            </h2>
+            <p className="mw-consultation__dek">
+              Our expert team is ready to tackle your website, SEO, AI and PPC issues quickly. Call now and get reliable service you can trust.
+            </p>
+            <a href="/free-site-scan" className="mw-consultation__btn">
+              Get a FREE Site Scan <span>→</span>
+            </a>
           </div>
         </div>
       </section>
