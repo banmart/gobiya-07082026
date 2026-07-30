@@ -1,6 +1,7 @@
 import { INSIGHTS } from '../lib/insights';
 import { SERVICES } from '../lib/services';
 import { CASE_STUDIES } from '../lib/work';
+import { AREAS } from '../lib/areas';
 
 const BASE_URL = 'https://www.gobiya.com';
 
@@ -34,8 +35,16 @@ export default function sitemap() {
     '/tools/threat-intelligence',
     '/tools/website-categorization',
     '/mcp',
+    '/areas-we-serve',
   ].map((path) => ({
     url: `${BASE_URL}${path}`,
+  }));
+
+  // The nine city pages plus the hub were live but absent from the sitemap,
+  // which is how the hub above and this block both came to be missing. Driven
+  // off lib/areas.js so adding a city cannot leave the sitemap behind again.
+  const areaRoutes = AREAS.map((area) => ({
+    url: `${BASE_URL}/areas-we-serve/${area.slug}`,
   }));
 
   const serviceRoutes = Object.keys(SERVICES).map((slug) => ({
@@ -51,5 +60,5 @@ export default function sitemap() {
     url: `${BASE_URL}/work/${c.slug}`,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...insightRoutes, ...caseStudyRoutes];
+  return [...staticRoutes, ...areaRoutes, ...serviceRoutes, ...insightRoutes, ...caseStudyRoutes];
 }

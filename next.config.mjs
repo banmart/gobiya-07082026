@@ -238,6 +238,8 @@ const nextConfig = {
       { source: '/seo-echo-park', destination: '/areas-we-serve/echo-park', permanent: true },
       { source: '/seo-los-feliz', destination: '/areas-we-serve/los-feliz', permanent: true },
       { source: '/seo-sherman-oaks', destination: '/areas-we-serve/sherman-oaks', permanent: true },
+      { source: '/seo-glendale', destination: '/areas-we-serve/glendale', permanent: true },
+      { source: '/locations/glendale', destination: '/areas-we-serve/glendale', permanent: true },
       { source: '/areas-served', destination: '/areas-we-serve', permanent: true },
       { source: '/locations', destination: '/areas-we-serve', permanent: true },
     ];

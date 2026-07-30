@@ -1,5 +1,6 @@
 import Breadcrumbs from './Breadcrumbs';
 import ServiceSidebar from './ServiceSidebar';
+import SubHero from './SubHero';
 
 // The single service page layout. All eight service pages render through this
 // component in the same shape: subhero, section rail + content column, closing
@@ -62,104 +63,102 @@ export default function ServiceTemplate({ service }) {
       ]} />
 
       {/* ══ 2. Hero ══
-          Same pattern as the homepage: image, overlay, white card, headline,
-          short excerpt, primary + ghost CTA. The authored headline carries the
-          city ("Los Angeles SEO Services to Help Your Business Get Found");
-          displayTitle is the short rail label and drops it, which is the wrong
-          headline for a city-intent page. */}
-      <section
-        className="mw-hero"
-        style={hero?.image ? { backgroundImage: `url('${hero.image}')` } : undefined}
-      >
-        <div className="mw-hero__overlay" />
-        <div className="container">
-          <div className="mw-hero__card">
-            <h1 className="mw-hero__title">{service.headline}</h1>
-            {hero?.excerpt && <p className="mw-hero__excerpt">{hero.excerpt}</p>}
-            <div className="mw-hero__actions">
-              <a href={hero?.cta?.href || '/free-site-scan'} className="mw-hero__btn">
-                {hero?.cta?.text || 'Get Your Free Site Scan'}
-              </a>
-              {hero?.cta2 && (
-                <a href={hero.cta2.href} className="mw-hero__btn mw-hero__btn--ghost">
-                  {hero.cta2.text}
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+          The shared sub-page hero, which is the homepage hero markup: image,
+          overlay, white card, primary + ghost CTA, and on phones the media
+          lifted into a band above the stacked card. The authored headline
+          carries the city ("Los Angeles SEO Services…"); displayTitle is the
+          short rail label and drops it, so it runs as the eyebrow instead. The
+          hero excerpt is two sentences, which reads as a body paragraph rather
+          than a standfirst — hence `description`, not `excerpt`. */}
+      <SubHero
+        image={hero?.image}
+        eyebrow={displayTitle}
+        title={service.headline}
+        description={hero?.excerpt}
+        primary={{
+          text: hero?.cta?.text || 'Get Your Free Site Scan',
+          href: hero?.cta?.href || '/free-site-scan',
+        }}
+        secondary={hero?.cta2}
+      />
 
       {/* ══ 3. Section Rail + Content Column ══ */}
       <div className="container">
         <div className="mw-pillar-grid">
           <ServiceSidebar activeSlug={service.slug} />
 
-          <div className="mw-cluster-list">
+          {/* The section ids below are the jump targets ServiceSidebar lists —
+              #problem, #whats-included, #how-it-works, #faqs. Renaming one here
+              silently breaks a rail link, so they stay put. */}
+          <div className="mw-svc-body">
             {/* The full authored intro, which is too long for the hero card and
                 carries inline links the hero excerpt cannot. */}
             {service.standfirst && (
-              <div className="mw-cluster-block">
-                <div
-                  className="mw-cluster-block__desc mw-cluster-block__lede"
-                  dangerouslySetInnerHTML={{ __html: service.standfirst }}
-                />
-              </div>
+              <div
+                className="mw-svc-lede"
+                dangerouslySetInnerHTML={{ __html: service.standfirst }}
+              />
             )}
 
             {service.problem && (
-              <div id="problem" className="mw-cluster-block">
-                <h2 className="mw-cluster-block__title" style={{ textDecoration: 'none' }}>
-                  {service.problem.eyebrow}
-                </h2>
-                <p className="mw-cluster-block__desc">{service.problem.statement}</p>
-              </div>
+              <section id="problem" className="mw-svc-block mw-svc-block--problem">
+                <h2 className="mw-svc-block__title">{service.problem.eyebrow}</h2>
+                <p className="mw-svc-block__statement">{service.problem.statement}</p>
+              </section>
             )}
 
-            {service.capabilities?.map((c, idx) => (
-              <div
-                key={idx}
-                id={idx === 0 ? 'whats-included' : `capability-${idx}`}
-                className="mw-cluster-block"
-              >
-                <h2 className="mw-cluster-block__title">
-                  <a href={c.href ?? '/glossary'}>{c.title}</a>
-                </h2>
-                <p className="mw-cluster-block__desc">{c.desc}</p>
-              </div>
-            ))}
-
-            {service.process?.length > 0 && (
-              <div id="how-it-works" className="mw-cluster-block">
-                <h2 className="mw-cluster-block__title" style={{ textDecoration: 'none' }}>
-                  How the work runs
-                </h2>
-                <div className="mw-svc-process__grid" style={{ marginTop: '1.5rem' }}>
-                  {service.process.map((p) => (
-                    <div key={p.step}>
-                      <div className="mw-svc-process__num">{p.step}</div>
-                      <h3 className="mw-svc-process__title">{p.title}</h3>
-                      <p className="mw-svc-process__desc">{p.desc}</p>
-                    </div>
+            {/* Capabilities were eight to twelve stacked h2 blocks per page, which
+                read as an outline rather than an offer. Same copy, same links,
+                now one section of cards — the treatment the homepage and the city
+                pages already use — so the whole offer is scannable at once. */}
+            {service.capabilities?.length > 0 && (
+              <section id="whats-included" className="mw-svc-block">
+                <h2 className="mw-svc-block__title">What&apos;s included</h2>
+                <div className="mw-svc-cards">
+                  {service.capabilities.map((c, idx) => (
+                    <a key={idx} href={c.href ?? '/glossary'} className="mw-svc-card">
+                      {c.tag && <p className="mw-svc-card__tag">{c.tag}</p>}
+                      <h3 className="mw-svc-card__title">{c.title}</h3>
+                      <p className="mw-svc-card__desc">{c.desc}</p>
+                      <span className="mw-svc-card__link">
+                        Learn more <span aria-hidden="true">→</span>
+                      </span>
+                    </a>
                   ))}
                 </div>
-              </div>
+              </section>
+            )}
+
+            {service.process?.length > 0 && (
+              <section id="how-it-works" className="mw-svc-block">
+                <h2 className="mw-svc-block__title">How the work runs</h2>
+                <ol className="mw-svc-steps">
+                  {service.process.map((p) => (
+                    <li key={p.step} className="mw-svc-step">
+                      <span className="mw-svc-step__num">{p.step}</span>
+                      <h3 className="mw-svc-step__title">{p.title}</h3>
+                      <p className="mw-svc-step__desc">{p.desc}</p>
+                    </li>
+                  ))}
+                </ol>
+              </section>
             )}
 
             {service.faqs?.length > 0 && (
-              <div id="faqs" className="mw-cluster-block">
-                <h2 className="mw-cluster-block__title" style={{ textDecoration: 'none' }}>
-                  Frequently Asked Questions
-                </h2>
-                <dl className="faq__list" style={{ marginTop: '1.5rem' }}>
+              <section id="faqs" className="mw-svc-block">
+                <h2 className="mw-svc-block__title">Frequently asked questions</h2>
+                <dl className="mw-svc-faq">
                   {service.faqs.map((f, fIdx) => (
-                    <div key={fIdx} className="faq__item">
-                      <dt style={{ fontFamily: 'PT Serif, Georgia, serif', color: '#0B1E36', fontWeight: '700' }}>{f.q}</dt>
-                      <dd style={{ marginTop: '0.5rem', color: '#475569' }} dangerouslySetInnerHTML={{ __html: f.a }} />
+                    <div key={fIdx} className="mw-svc-faq__item">
+                      <dt className="mw-svc-faq__q">{f.q}</dt>
+                      <dd
+                        className="mw-svc-faq__a"
+                        dangerouslySetInnerHTML={{ __html: f.a }}
+                      />
                     </div>
                   ))}
                 </dl>
-              </div>
+              </section>
             )}
           </div>
         </div>

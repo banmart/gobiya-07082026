@@ -5,6 +5,7 @@ import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
+import { heroImage, HERO_VIDEO } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'Los Angeles Internet Marketing & SEO | Gobiya SEO',
@@ -77,10 +78,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
       />
 
-      {/* ══ 1. Hero directly below menubar ══ */}
+      {/* ══ 1. Hero directly below menubar ══
+          Position 0 on the site-wide hero rotation in lib/heroImages.js. It has
+          to stay 0: that slot is the one picture with a matching .webm, and the
+          still doubles as the video's poster. */}
       <section
         className="mw-hero"
-        style={{ backgroundImage: `url('/img/Change_scene_same_background_people_202607291544.webp')` }}
+        style={{ backgroundImage: `url('${heroImage(0)}')` }}
       >
         <video
           autoPlay
@@ -88,9 +92,9 @@ export default function Home() {
           muted
           playsInline
           className="mw-hero__bg-video"
-          poster="/img/Change_scene_same_background_people_202607291544.webp"
+          poster={heroImage(0)}
         >
-          <source src="/img/Change_scene_same_background_people_202607291544.webm" type="video/webm" />
+          <source src={HERO_VIDEO} type="video/webm" />
         </video>
         <div className="mw-hero__overlay" />
         <div className="container">
@@ -431,7 +435,9 @@ export default function Home() {
                 </a>
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Glendale
+                <a href="/areas-we-serve/glendale" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Glendale
+                </a>
               </div>
               <div className="mw-local-areas__item">
                 <a href="/areas-we-serve/hollywood" className="mw-local-areas__link">
