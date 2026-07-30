@@ -80,7 +80,7 @@ export default function Home() {
       {/* ══ 1. Hero directly below menubar ══ */}
       <section
         className="mw-hero"
-        style={{ backgroundImage: `url('/img/Change_room_logo_right_people_202607291545.webp')` }}
+        style={{ backgroundImage: `url('/img/Change_scene_same_background_people_202607291544.webp')` }}
       >
         <video
           autoPlay
@@ -88,9 +88,9 @@ export default function Home() {
           muted
           playsInline
           className="mw-hero__bg-video"
-          poster="/img/Change_room_logo_right_people_202607291545.webp"
+          poster="/img/Change_scene_same_background_people_202607291544.webp"
         >
-          <source src="/img/Change_room_logo_right_people_202607291545.webm" type="video/webm" />
+          <source src="/img/Change_scene_same_background_people_202607291544.webm" type="video/webm" />
         </video>
         <div className="mw-hero__overlay" />
         <div className="container">
@@ -421,31 +421,55 @@ export default function Home() {
           <div className="mw-local-areas__card">
             <div className="mw-local-areas__columns">
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Burbank
+                <a href="/areas-we-serve/burbank" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Burbank
+                </a>
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Echo Park
+                <a href="/areas-we-serve/echo-park" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Echo Park
+                </a>
               </div>
               <div className="mw-local-areas__item">
                 <span className="mw-local-areas__icon">📍</span> Glendale
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Hollywood
+                <a href="/areas-we-serve/hollywood" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Hollywood
+                </a>
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Los Feliz
+                <a href="/areas-we-serve/los-feliz" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Los Feliz
+                </a>
               </div>
               <div className="mw-local-areas__item">
                 <span className="mw-local-areas__icon">📍</span> Pasadena
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Sherman Oaks
+                <a href="/areas-we-serve/sherman-oaks" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Sherman Oaks
+                </a>
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Silver Lake
+                <a href="/areas-we-serve/silver-lake" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Silver Lake
+                </a>
               </div>
               <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Studio City
+                <a href="/areas-we-serve/studio-city" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Studio City
+                </a>
+              </div>
+              <div className="mw-local-areas__item">
+                <a href="/areas-we-serve/koreatown" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Koreatown
+                </a>
+              </div>
+              <div className="mw-local-areas__item">
+                <a href="/areas-we-serve/downtown" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">📍</span> Downtown LA
+                </a>
               </div>
               <div className="mw-local-areas__item">
                 <span className="mw-local-areas__icon">📍</span> San Fernando Valley
@@ -454,7 +478,9 @@ export default function Home() {
                 <span className="mw-local-areas__icon">📍</span> Greater Los Angeles Area
               </div>
               <div className="mw-local-areas__item mw-local-areas__item--highlight">
-                <span className="mw-local-areas__icon">✨</span> &amp; Beyond!
+                <a href="/areas-we-serve" className="mw-local-areas__link">
+                  <span className="mw-local-areas__icon">✨</span> &amp; Beyond!
+                </a>
               </div>
             </div>
           </div>

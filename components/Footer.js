@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import CookiePreferencesLink from './CookiePreferencesLink';
 import { CONTACT } from '../lib/nav';
 import { markInner, BRAND_NAVY } from '../lib/brand';
@@ -89,16 +90,16 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Right Footer Brand Watermark Logo */}
-      <svg
-        className="mw-footer__watermark"
-        viewBox="0 0 48 48"
-        width="180"
-        height="180"
-        fill="none"
-        aria-hidden="true"
-        dangerouslySetInnerHTML={{ __html: markInner('#F5B83D') }}
-      />
+      {/* Bottom Right Footer Large Brand Watermark Logo */}
+      <div className="mw-footer__watermark-wrap" aria-hidden="true">
+        <Image
+          src="/assets/img/logo-gobiya-red.webp"
+          alt=""
+          width={400}
+          height={200}
+          className="mw-footer__watermark-img"
+        />
+      </div>
     </footer>
   );
 }

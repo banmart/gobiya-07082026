@@ -218,6 +218,28 @@ const nextConfig = {
       // their original /insights/<slug> URL. They're now rebuilt as real articles at that exact
       // same slug in lib/insights.js, so the redirect entries are gone — the URL just serves the
       // real page again.
+      // ── Areas We Serve — redirect old /locations/* city slugs and
+      // bare city SEO slugs to the new /areas-we-serve/<city> canonical pages
+      { source: '/locations/burbank', destination: '/areas-we-serve/burbank', permanent: true },
+      { source: '/local-seo-company-burbank', destination: '/areas-we-serve/burbank', permanent: true },
+      { source: '/industries/local-service/burbank-seo', destination: '/areas-we-serve/burbank', permanent: true },
+      { source: '/locations/silverlake', destination: '/areas-we-serve/silver-lake', permanent: true },
+      { source: '/industries/local-service/silverlake-seo', destination: '/areas-we-serve/silver-lake', permanent: true },
+      { source: '/locations/studio-city', destination: '/areas-we-serve/studio-city', permanent: true },
+      { source: '/industries/local-service/studio-city-seo', destination: '/areas-we-serve/studio-city', permanent: true },
+      { source: '/locations/sherman-oaks', destination: '/areas-we-serve/sherman-oaks', permanent: true },
+      { source: '/industries/local-service/sherman-oaks-seo', destination: '/areas-we-serve/sherman-oaks', permanent: true },
+      { source: '/seo-silverlake', destination: '/areas-we-serve/silver-lake', permanent: true },
+      { source: '/seo-burbank', destination: '/areas-we-serve/burbank', permanent: true },
+      { source: '/seo-hollywood', destination: '/areas-we-serve/hollywood', permanent: true },
+      { source: '/seo-studio-city', destination: '/areas-we-serve/studio-city', permanent: true },
+      { source: '/seo-koreatown', destination: '/areas-we-serve/koreatown', permanent: true },
+      { source: '/seo-downtown-la', destination: '/areas-we-serve/downtown', permanent: true },
+      { source: '/seo-echo-park', destination: '/areas-we-serve/echo-park', permanent: true },
+      { source: '/seo-los-feliz', destination: '/areas-we-serve/los-feliz', permanent: true },
+      { source: '/seo-sherman-oaks', destination: '/areas-we-serve/sherman-oaks', permanent: true },
+      { source: '/areas-served', destination: '/areas-we-serve', permanent: true },
+      { source: '/locations', destination: '/areas-we-serve', permanent: true },
     ];
   },
 };
