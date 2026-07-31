@@ -77,7 +77,7 @@ export default function SteveMartinPage() {
                   style={{ borderRadius: '4px', objectFit: 'cover' }}
                 />
                 <div>
-                  <h2 style={{ fontFamily: 'PT Serif, Georgia, serif', fontSize: '1.5rem', color: '#0B1E36', margin: 0 }}>
+                  <h2 style={{ fontSize: '1.5rem', color: '#0B1E36', margin: 0 }}>
                     Steve Martin
                   </h2>
                   <p style={{ fontSize: '0.9375rem', color: '#8B263E', fontWeight: '600', margin: '0.25rem 0 0 0' }}>

@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import TopicMarquee from '../components/TopicMarquee';
 import TestimonialStack from '../components/TestimonialStack';
+import StepAccordion from '../components/StepAccordion';
+import PlatformStrip from '../components/PlatformStrip';
+import ExcellenceGrid from '../components/ExcellenceGrid';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
@@ -14,21 +16,6 @@ export const metadata = buildMetadata({
   path: '/',
 });
 
-const TEXT_LOGOS = [
-  'Google Partners',
-  'Yelp!',
-  'Clutch',
-  'ChatGPT',
-  'Claude',
-  'Perplexity',
-  'Facebook Partner',
-  'Instagram Partner',
-  'GitHub',
-  'Next.JS',
-  'React',
-  'Web 2',
-];
-
 const CLIENT_LOGOS = [
   { src: '/assets/img/americanlivescan.webp', alt: 'American Livescan' },
   { src: '/assets/img/smilecenter.webp', alt: 'SmileCenter.com' },
@@ -36,6 +23,19 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/remodelmepros.webp', alt: 'RemodelMePros.com' },
   { src: '/assets/img/safetycentric-logo.png', alt: 'Safety-Centric.com' },
   { src: '/assets/img/dgplumbing-logo.webp', alt: 'DGPlumbingandRooter.com' },
+];
+
+// The "Our Team Does it All For You" marquee. Titles match NAV_TITLES in
+// lib/serviceIndex.js so the card, the sidebar and the /services index all name
+// a service the same way. Order runs the funnel: rankings → AI → content →
+// authority → ads → conversion.
+const SIMPLE_SERVICES = [
+  { title: 'Technical & On-Page SEO', href: '/services/seo' },
+  { title: 'AI & GEO Search Optimization', href: '/services/geo' },
+  { title: 'Content Marketing & Strategy', href: '/services/content-marketing' },
+  { title: 'Digital PR & Link Building', href: '/services/link-building' },
+  { title: 'PPC & Paid Advertising', href: '/services/ppc' },
+  { title: 'CRO & Web UX', href: '/services/cro' },
 ];
 
 const STORY_IMAGES = [
@@ -121,7 +121,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 2. Our Team Does it All For You ══ */}
+      {/* ══ 2. Platform Strip ══ */}
+      <PlatformStrip />
+
+      {/* ══ 3. Our Team Does it All For You ══ */}
       <section className="mw-simple">
         <div className="container">
           <h2 className="mw-simple__heading">
@@ -130,75 +133,40 @@ export default function Home() {
           <p className="mw-simple__intro">
             Whether you have a drop in rankings, not found in AI, or not getting a return from ads, our experts have you covered the whole way.
           </p>
+        </div>
 
-          <div className="mw-simple__grid">
-            <div className="mw-simple__card">
-              <div className="mw-simple__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                  <polyline points="17 6 23 6 23 12" />
-                </svg>
-              </div>
-              <div className="mw-simple__card-tag">Ranking Drops &amp; Organic Search</div>
-              <h3 className="mw-simple__col-title">Technical &amp; On-Page SEO</h3>
-              <p className="mw-simple__col-desc">
-                Recover lost rankings and dominate organic search. We perform full technical repairs, schema optimization, and content publishing strategies that keep your business at the top of Google.
-              </p>
-              <ul className="mw-simple__card-features">
-                <li><span>✓</span> Technical Audits &amp; Indexing Repairs</li>
-                <li><span>✓</span> On-Page &amp; Schema Optimization</li>
-                <li><span>✓</span> Authority &amp; Rank Protection</li>
-              </ul>
-              <a href="/seo-services" className="mw-simple__card-link">
-                Explore SEO Services <span>→</span>
-              </a>
-            </div>
-
-            <div className="mw-simple__card">
-              <div className="mw-simple__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-                </svg>
-              </div>
-              <div className="mw-simple__card-tag">Not Found in AI</div>
-              <h3 className="mw-simple__col-title">AI &amp; GEO Search Optimization</h3>
-              <p className="mw-simple__col-desc">
-                Ensure your business is cited and recommended when customers search on ChatGPT, Perplexity, and Google AI Overviews. We build entity authority AI models rely on.
-              </p>
-              <ul className="mw-simple__card-features">
-                <li><span>✓</span> LLM Citation Engineering</li>
-                <li><span>✓</span> Knowledge Graph &amp; Entity Building</li>
-                <li><span>✓</span> AI Answer Engine Content</li>
-              </ul>
-              <a href="/geo-services-los-angeles" className="mw-simple__card-link">
-                Explore GEO Services <span>→</span>
-              </a>
-            </div>
-
-            <div className="mw-simple__card">
-              <div className="mw-simple__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <circle cx="12" cy="12" r="6" />
-                  <circle cx="12" cy="12" r="2" />
-                </svg>
-              </div>
-              <div className="mw-simple__card-tag">Low Return on Ads</div>
-              <h3 className="mw-simple__col-title">PPC &amp; Paid Advertising</h3>
-              <p className="mw-simple__col-desc">
-                Stop wasting ad budget on empty clicks. We restructure your Google Ads and paid campaigns around actual lead cost and ROI, turning wasted spend into profitable revenue.
-              </p>
-              <ul className="mw-simple__card-features">
-                <li><span>✓</span> High-ROI Campaign Restructuring</li>
-                <li><span>✓</span> Negative Keyword &amp; Bid Control</li>
-                <li><span>✓</span> Conversion Rate Optimization</li>
-              </ul>
-              <a href="/ppc-management-services" className="mw-simple__card-link">
-                Explore PPC Services <span>→</span>
-              </a>
-            </div>
+        {/* The track holds the service list twice and travels -50%, so the
+            second copy is exactly where the first started when the loop
+            restarts. Copy 1 is hidden from assistive tech and taken out of the
+            tab order — it is the same six links a second time. */}
+        <div className="mw-simple__marquee">
+          <div className="mw-simple__track">
+            {[0, 1].map((copy) =>
+              SIMPLE_SERVICES.map((service) => (
+                <div
+                  key={`${copy}-${service.href}`}
+                  className="mw-simple__card"
+                  aria-hidden={copy === 1 ? 'true' : undefined}
+                >
+                  <h3 className="mw-simple__col-title">{service.title}</h3>
+                  {/* The card itself is a plain div — this is the only link in
+                      it. Its ::after stretches over the whole card, so clicking
+                      anywhere still works without nesting or duplicating an
+                      anchor. */}
+                  <a
+                    href={service.href}
+                    className="mw-simple__card-link"
+                    tabIndex={copy === 1 ? -1 : undefined}
+                  >
+                    Learn More <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              ))
+            )}
           </div>
+        </div>
 
+        <div className="container">
           <div className="mw-simple__footer">
             <a href="/services" className="mw-simple__btn">
               View All Services <span>→</span>
@@ -207,7 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 3. Trust Bar / Client Logo Strip ══ */}
+      {/* ══ 4. Trust Bar / Client Logo Strip ══ */}
       <section className="mw-trust">
         <div className="container">
           <h2 className="mw-trust__heading">
@@ -232,19 +200,27 @@ export default function Home() {
       {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />
 
-      {/* ══ 4. Trusted Los Angeles SEOs ══ */}
+      {/* ══ 5. Trusted Los Angeles SEOs ══ */}
       <section className="mw-person">
         <div className="container">
           <h2 className="mw-person__heading">Trusted Los Angeles SEOs</h2>
 
           <div className="mw-person__card">
-            <Image
-              src="/assets/img/sm.jpg"
-              alt="Steve Martin — Gobiya SEO"
-              width={120}
-              height={120}
-              className="mw-person__avatar"
-            />
+            {/* Avatar and its caption share the grid's first column, so the
+                caption sits under the picture instead of becoming a third
+                column of its own. */}
+            <figure className="mw-person__figure">
+              <Image
+                src="/assets/img/sm.jpg"
+                alt="Steve Martin — Gobiya SEO"
+                width={120}
+                height={120}
+                className="mw-person__avatar"
+              />
+              <figcaption className="mw-person__caption">
+                Steve Martin — SEO Expert
+              </figcaption>
+            </figure>
             <div>
               <h3 className="mw-person__name">Professional SEO Recovery &amp; Service Since 2010</h3>
               <p className="mw-person__bio">
@@ -261,17 +237,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ Text Logo Marquee Section ══ */}
-      <section className="mw-text-marquee-section">
-        <TopicMarquee topics={TEXT_LOGOS} />
-      </section>
-
-      {/* ══ 5. By the Numbers Banner ══ */}
+      {/* ══ 6. By the Numbers Banner ══ */}
       <section className="mw-stats">
         <div className="container">
           <div className="mw-stats__grid">
             <div>
-              <div className="mw-stats__num">15+</div>
+              <div className="mw-stats__num">16</div>
               <div className="mw-stats__label">Years Experience</div>
               <div className="mw-stats__detail">Optimizing search for small and mid-sized businesses since 2010.</div>
             </div>
@@ -298,7 +269,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 7. The 4-Step Method Section ══ */}
+      {/* ══ 8. The 4-Step Method Section ══ */}
       <section className="mw-steps" id="process">
         <div className="container">
           <p className="mw-steps__sub">Our Proven Approach</p>
@@ -307,31 +278,19 @@ export default function Home() {
             We&apos;ve spent over a decade perfecting the process of scaling search and AI rankings. Here&apos;s the result:
           </p>
 
-          <div className="mw-steps__grid">
-            <div className="mw-step-card">
-              <div className="mw-step-card__header">Step 1: Assess</div>
-              <p className="mw-step-card__desc">
-                Our technical scan helps you determine if your site is findable by Google and AI tools, and what exact steps to take before launching your growth campaign.
-              </p>
-            </div>
-            <div className="mw-step-card">
-              <div className="mw-step-card__header">Step 2: Prepare</div>
-              <p className="mw-step-card__desc">
-                Once we begin, we clean up hidden code errors, optimize your site architecture, and package your company content for optimal presentation.
-              </p>
-            </div>
-            <div className="mw-step-card">
-              <div className="mw-step-card__header">Step 3: Market</div>
-              <p className="mw-step-card__desc">
-                We develop and execute a strategic search &amp; AI marketing campaign focused on placing your business directly in front of high-intent buyers.
-              </p>
-            </div>
-            <div className="mw-step-card">
-              <div className="mw-step-card__header">Step 4: Scale</div>
-              <p className="mw-step-card__desc">
-                We&apos;re with you every step of the way until your search leads clear, providing continuous optimization and guidance throughout the process.
-              </p>
-            </div>
+          <div className="mw-steps__grid mw-steps__grid--accordion">
+            <StepAccordion title="Step 1: Assess">
+              Our technical scan helps you determine if your site is findable by Google and AI tools, and what exact steps to take before launching your growth campaign.
+            </StepAccordion>
+            <StepAccordion title="Step 2: Prepare">
+              Once we begin, we clean up hidden code errors, optimize your site architecture, and package your company content for optimal presentation.
+            </StepAccordion>
+            <StepAccordion title="Step 3: Market">
+              We develop and execute a strategic search &amp; AI marketing campaign focused on placing your business directly in front of high-intent buyers.
+            </StepAccordion>
+            <StepAccordion title="Step 4: Scale">
+              We&apos;re with you every step of the way until your search leads clear, providing continuous optimization and guidance throughout the process.
+            </StepAccordion>
           </div>
 
           <div className="mw-steps__btn-wrap">
@@ -342,75 +301,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 8. Pinned Stacked Testimonials ══ */}
+      {/* ══ 9. Pinned Stacked Testimonials ══ */}
       <TestimonialStack />
 
       {/* ══ Excellence in Every Service ══ */}
-      <section className="mw-excellence">
-        <div className="container">
-          <h2 className="mw-excellence__heading">
-            Excellence in Every Service
-          </h2>
-          <p className="mw-excellence__intro">
-            From our clear communication to our premium output and quality, we always put your business first.
-          </p>
-
-          <div className="mw-excellence__grid">
-            <div className="mw-excellence__card">
-              <div className="mw-excellence__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-              </div>
-              <h3 className="mw-excellence__card-title">Communication You Can Count On</h3>
-              <p className="mw-excellence__card-desc">
-                Our expert SEO strategy team ensures clear, direct, and transparent communication every step of the way — with no account manager middlemen.
-              </p>
-            </div>
-
-            <div className="mw-excellence__card">
-              <div className="mw-excellence__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <polyline points="9 12 11 14 15 10" />
-                </svg>
-              </div>
-              <h3 className="mw-excellence__card-title">Transparency You Can Trust</h3>
-              <p className="mw-excellence__card-desc">
-                You’ll always know what to expect with our open, no-surprise pricing, month-to-month contracts, and free site scans.
-              </p>
-            </div>
-
-            <div className="mw-excellence__card">
-              <div className="mw-excellence__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="8" r="7" />
-                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                </svg>
-              </div>
-              <h3 className="mw-excellence__card-title">White-Hat Standards You Can Rely On</h3>
-              <p className="mw-excellence__card-desc">
-                Our team maintains strict search engine guidelines and white-hat SEO practices to protect your brand authority and search rankings.
-              </p>
-            </div>
-
-            <div className="mw-excellence__card">
-              <div className="mw-excellence__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-              </div>
-              <h3 className="mw-excellence__card-title">Sixteen Years of Service Excellence</h3>
-              <p className="mw-excellence__card-desc">
-                Proudly serving Los Angeles and Southern California businesses since 2010 with the same commitment to quality, rankings, and care.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ExcellenceGrid />
 
       {/* ══ Quality Services For Our Local Communities ══ */}
       <section className="mw-local-areas">
@@ -458,7 +353,7 @@ export default function Home() {
                 </a>
               </div>
               <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/silver-lake" className="mw-local-areas__link">
+                <a href="/areas-we-serve/silverlake" className="mw-local-areas__link">
                   <span className="mw-local-areas__icon">📍</span> Silver Lake
                 </a>
               </div>
@@ -509,14 +404,14 @@ export default function Home() {
             <div className="mw-savings__content">
               <div className="mw-savings__ribbon" />
               <h2 className="mw-savings__title">
-                AFFORDABLE SOLUTIONS,<br />EXCEPTIONAL SERVICE
+                Affordable Solutions, Exceptional Service
               </h2>
               <h3 className="mw-savings__subtitle">Exclusive Gobiya Savings</h3>
               <p className="mw-savings__desc">
                 Keep your website running smoothly and your wallet happy with our latest coupons and special offers.
               </p>
               <a href="/free-site-scan" className="mw-savings__btn">
-                SAVE MORE TODAY <span>--→</span>
+                Save More Today <span>→</span>
               </a>
             </div>
 
@@ -558,7 +453,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 9. Schedule a Free Consultation Calendar Section ══ */}
+      {/* ══ 10. Schedule a Free Consultation Calendar Section ══ */}
 
       {/* ══ Consultation CTA Section ══ */}
       <section className="mw-consultation">

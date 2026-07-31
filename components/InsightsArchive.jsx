@@ -19,7 +19,7 @@ export default function InsightsArchive({ articles }) {
 
   return (
     <>
-      <h2 style={{ fontFamily: "'PT Serif', Georgia, serif", fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: '#0B1E36', marginBottom: '1.5rem' }}>
+      <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: '#0B1E36', marginBottom: '1.5rem' }}>
         {active ? `${shown} ${shown === 1 ? 'Article' : 'Articles'} in ${active}` : `All ${articles.length} Articles`}
       </h2>
 

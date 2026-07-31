@@ -1,6 +1,7 @@
 import Breadcrumbs from './Breadcrumbs';
 import ServiceSidebar from './ServiceSidebar';
 import SubHero from './SubHero';
+import { servicePath } from '../lib/serviceIndex';
 
 // The single service page layout. All eight service pages render through this
 // component in the same shape: subhero, section rail + content column, closing
@@ -18,7 +19,7 @@ export default function ServiceTemplate({ service }) {
     name: displayTitle,
     serviceType: service.eyebrow || displayTitle,
     description: service.metaDescription || service.standfirst,
-    url: `https://www.gobiya.com/${service.slug}`,
+    url: `https://www.gobiya.com${servicePath(service.slug)}`,
     provider: { '@id': 'https://www.gobiya.com/#organization' },
     // Every service page is a Los Angeles page, and SiteSchema already declares
     // City: Los Angeles for the organization. Claiming the whole country here

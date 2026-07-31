@@ -21,7 +21,7 @@ export default function InsightsPage() {
       {/* ══ 1. Breadcrumbs ══ */}
       <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
 
-      {/* ══ 2. Subhero Dark Banner (Matching /seo-services-los-angeles) ══ */}
+      {/* ══ 2. Subhero Dark Banner (Matching /services/seo) ══ */}
       <section className="mw-subhero">
         <div className="container">
           <h1 className="mw-subhero__title">Insights &amp; Search Guides</h1>

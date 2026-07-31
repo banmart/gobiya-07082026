@@ -76,6 +76,49 @@ function citySchema(area) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
+// Renders one block of an authored `body` array from lib/areas.js. `cta` is the
+// repeated phone line, kept as a block type rather than prose so the number and
+// the contact link stay linked wherever it appears.
+function renderBlock(block, i) {
+  if (block.h2) return <h2 key={i} className="mw-area-body__heading">{block.h2}</h2>;
+  if (block.h3) return <h3 key={i} className="mw-area-body__services-heading">{block.h3}</h3>;
+  if (block.h4) return <h4 key={i} className="mw-area-body__minihead">{block.h4}</h4>;
+  if (block.excerpt) return <p key={i} className="mw-area-body__excerpt">{block.excerpt}</p>;
+  if (block.p) return <p key={i} className="mw-area-body__text">{block.p}</p>;
+  if (block.list) {
+    return (
+      <ul key={i} className="mw-area-body__list">
+        {block.list.map((item) => <li key={item}>{item}</li>)}
+      </ul>
+    );
+  }
+  if (block.button) {
+    return (
+      <p key={i} className="mw-area-body__btn-wrap">
+        <a href={block.button.href || '/free-site-scan'} className="mw-area-body__btn">
+          {block.button.text} <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    );
+  }
+  if (block.cta) {
+    // `cta: true` is the bold excerpt treatment on the main number; pass an
+    // object to change the lead-in, the number, or render it as body text.
+    const cfg = block.cta === true ? {} : block.cta;
+    const cls = cfg.style === 'text' ? 'mw-area-body__text' : 'mw-area-body__excerpt';
+    const phone = cfg.phone || '(323) 744-1338';
+    return (
+      <p key={i} className={`${cls} mw-area-body__cta-line`}>
+        {cfg.lead || 'Reach out to us at'}{' '}
+        <a href={`tel:+1${phone.replace(/\D/g, '')}`}>{phone}</a> or{' '}
+        <a href="/contact">contact us online</a>{' '}
+        {cfg.tail || 'for all your SEO needs.'}
+      </p>
+    );
+  }
+  return null;
+}
+
 export async function generateStaticParams() {
   return AREAS.map((area) => ({ city: area.slug }));
 }
@@ -84,9 +127,13 @@ export async function generateMetadata({ params }) {
   const { city } = await params;
   const area = AREAS.find((a) => a.slug === city);
   if (!area) return {};
+  // A city can override either field in lib/areas.js with authored copy;
+  // anything not overridden falls back to the generated pattern.
   return buildMetadata({
-    title: `${area.tagline} | Gobiya SEO`,
-    description: `${area.desc} Get a FREE site scan today — serving ${area.name} since 2010.`,
+    title: area.metaTitle || `${area.tagline} | Gobiya SEO`,
+    description:
+      area.metaDescription ||
+      `${area.desc} Get a FREE site scan today — serving ${area.name} since 2010.`,
     path: `/areas-we-serve/${area.slug}`,
   });
 }
@@ -115,10 +162,9 @@ export default async function AreaPage({ params }) {
           other sub page ══ */}
       <SubHero
         image={area.image}
-        eyebrow={`${area.region} · Serving ${area.name} Since 2010`}
-        title={area.tagline}
-        excerpt={area.excerpt}
-        description={area.desc}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -128,30 +174,36 @@ export default async function AreaPage({ params }) {
         <div className="container">
           <div className="mw-area-body__grid">
             <div className="mw-area-body__main">
-              <h2 className="mw-area-body__heading">
-                Serving {area.name} Businesses Since 2010
-              </h2>
+              {area.body ? (
+                area.body.map(renderBlock)
+              ) : (
+                <>
+                  <h2 className="mw-area-body__heading">
+                    Serving {area.name} Businesses Since 2010
+                  </h2>
 
-              <dl className="mw-area-meta">
-                <div className="mw-area-meta__item">
-                  <dt className="mw-area-meta__label">Region</dt>
-                  <dd className="mw-area-meta__value">{area.region}</dd>
-                </div>
-                <div className="mw-area-meta__item">
-                  <dt className="mw-area-meta__label">County</dt>
-                  <dd className="mw-area-meta__value">{area.county}</dd>
-                </div>
-                <div className="mw-area-meta__item">
-                  <dt className="mw-area-meta__label">Working here since</dt>
-                  <dd className="mw-area-meta__value">2010</dd>
-                </div>
-              </dl>
+                  <dl className="mw-area-meta">
+                    <div className="mw-area-meta__item">
+                      <dt className="mw-area-meta__label">Region</dt>
+                      <dd className="mw-area-meta__value">{area.region}</dd>
+                    </div>
+                    <div className="mw-area-meta__item">
+                      <dt className="mw-area-meta__label">County</dt>
+                      <dd className="mw-area-meta__value">{area.county}</dd>
+                    </div>
+                    <div className="mw-area-meta__item">
+                      <dt className="mw-area-meta__label">Working here since</dt>
+                      <dd className="mw-area-meta__value">2010</dd>
+                    </div>
+                  </dl>
 
-              <ul className="mw-area-points">
-                {area.details.map((point, i) => (
-                  <li key={i} className="mw-area-points__item">{point}</li>
-                ))}
-              </ul>
+                  <ul className="mw-area-points">
+                    {area.details.map((point, i) => (
+                      <li key={i} className="mw-area-points__item">{point}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
               <h3 className="mw-area-body__services-heading">
                 Our Services in {area.name}

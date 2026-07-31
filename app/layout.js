@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import { Inter, PT_Serif } from 'next/font/google';
+import { Inter, Mozilla_Headline } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -18,10 +18,12 @@ const inter = Inter({
   display: 'swap',
 });
 
-const ptSerif = PT_Serif({
+// Every heading on the site resolves to this through --font-heading in
+// globals.css. It is a variable font, so the whole 200–700 range ships in one
+// file and no per-weight list is needed.
+const mozillaHeadline = Mozilla_Headline({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-pt-serif',
+  variable: '--font-mozilla-headline',
   display: 'swap',
 });
 
@@ -51,7 +53,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${ptSerif.variable}`}>
+    <html lang="en" className={`${inter.variable} ${mozillaHeadline.variable}`}>
       <body>
         <SiteSchema />
         <BrandWatermark />

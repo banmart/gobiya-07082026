@@ -1,5 +1,5 @@
 import { INSIGHTS } from '../lib/insights';
-import { SERVICES } from '../lib/services';
+import { SERVICE_LINKS } from '../lib/serviceIndex';
 import { CASE_STUDIES } from '../lib/work';
 import { AREAS } from '../lib/areas';
 
@@ -11,15 +11,10 @@ export default function sitemap() {
     '/about',
     '/about/approach',
     '/about/steve-martin',
-    '/geo-services-los-angeles',
     '/contact',
     '/free-site-scan',
     '/insights',
     '/services',
-    '/seo-services',
-    '/geo-services-los-angeles',
-    '/ppc-management-services',
-    '/content-marketing-strategies',
     '/pricing',
     '/seo-myths',
     '/work',
@@ -47,8 +42,12 @@ export default function sitemap() {
     url: `${BASE_URL}/areas-we-serve/${area.slug}`,
   }));
 
-  const serviceRoutes = Object.keys(SERVICES).map((slug) => ({
-    url: `${BASE_URL}/${slug}`,
+  // Driven off SERVICE_LINKS, not lib/services.js: that file holds only four
+  // of the eight services (the rest live in servicesFlat.js), so keying the
+  // sitemap off it silently omitted half of them while four were hardcoded
+  // into the static list above — one of them twice.
+  const serviceRoutes = SERVICE_LINKS.map((s) => ({
+    url: `${BASE_URL}${s.href}`,
   }));
 
   const insightRoutes = INSIGHTS.map((insight) => ({

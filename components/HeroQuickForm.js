@@ -48,7 +48,7 @@ export default function HeroQuickForm() {
       margin: '0 auto',
       textAlign: 'left'
     }}>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#111827', fontFamily: 'var(--font-heading)' }}>Request a Consultation</h3>
+      <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#111827' }}>Request a Consultation</h3>
       <p style={{ fontSize: '0.8125rem', color: '#4b5563', marginBottom: '1.5rem', lineHeight: '1.4' }}>
         Serving <strong style={{color: '#111827', fontWeight: 600}}>Koreatown, Los Angeles, Hollywood, Beverly Hills, and Van Nuys.</strong>
       </p>
