@@ -1,5 +1,4 @@
 import CookiePreferencesLink from './CookiePreferencesLink';
-import { CONTACT } from '../lib/nav';
 import { markInner, BRAND_NAVY } from '../lib/brand';
 
 export default function Footer() {
@@ -7,20 +6,6 @@ export default function Footer() {
     <footer className="mw-footer">
       <div className="container">
         <div className="mw-footer__grid">
-          <div>
-            <h4 className="mw-footer__col-title">Consulting</h4>
-            <div className="mw-footer__links">
-              <a href="/about">Why Us</a>
-              <a href="/about/steve-martin">Meet Your Team</a>
-              <a href="/contact#faq">FAQs</a>
-              <a href="/#process">Our Process</a>
-              <a href="/work">Client Stories</a>
-              <a href="/services">Industry Experience</a>
-              <a href="/work">Closed Transactions</a>
-              <a href="/free-site-scan">Free Site Scan</a>
-            </div>
-          </div>
-
           <div>
             <h4 className="mw-footer__col-title">Services</h4>
             <div className="mw-footer__links">
@@ -56,6 +41,22 @@ export default function Footer() {
           </div>
 
           <div>
+            <h4 className="mw-footer__col-title">Areas We Serve</h4>
+            <div className="mw-footer__links">
+              <a href="/areas-we-serve/downtown">SEO in Downtown LA</a>
+              <a href="/areas-we-serve/koreatown">SEO in Koreatown</a>
+              <a href="/areas-we-serve/burbank">SEO in Burbank</a>
+              <a href="/areas-we-serve/glendale">SEO in Glendale</a>
+              <a href="/areas-we-serve/silverlake">SEO in Silverlake</a>
+              <a href="/areas-we-serve/echo-park">SEO in Echo Park</a>
+              <a href="/areas-we-serve/los-feliz">SEO in Los Feliz</a>
+              <a href="/areas-we-serve/hollywood">SEO in Hollywood</a>
+              <a href="/areas-we-serve/studio-city">SEO in Studio City</a>
+              <a href="/areas-we-serve/sherman-oaks">SEO in Sherman Oaks</a>
+            </div>
+          </div>
+
+          <div>
             <h4 className="mw-footer__col-title">About</h4>
             <div className="mw-footer__links">
               <a href="/about">What We Do</a>
@@ -63,22 +64,16 @@ export default function Footer() {
               <a href="/contact">Contact Us</a>
               <a href="/mcp">AI MCP API</a>
               <a href="/about/steve-martin">Leadership</a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="mw-footer__col-title">Contact</h4>
-            <div className="mw-footer__links">
-              <span>Gobiya LLC</span>
-              <span>{CONTACT.address1}</span>
-              <span>{CONTACT.address2}</span>
-              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-              <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+              <a href="/work">Client Stories</a>
+              <a href="/free-site-scan">Free Site Scan</a>
             </div>
           </div>
         </div>
 
         <div className="mw-footer__bottom">
+          <div className="mw-footer__bottom-cta">
+            <a href="/free-site-scan" className="mw-footer__cta-btn">Get a FREE site scan</a>
+          </div>
           <div className="mw-footer__legal-links">
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms &amp; Conditions</a>

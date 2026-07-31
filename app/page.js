@@ -3,6 +3,7 @@ import TestimonialStack from '../components/TestimonialStack';
 import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
+import AuroraCanvas from '../components/AuroraCanvas';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
@@ -379,6 +380,7 @@ export default function Home() {
 
       {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
       <section className="mw-savings">
+        <AuroraCanvas />
         <div className="container">
           <div className="mw-savings__box">
             <div className="mw-savings__content">
@@ -397,36 +399,13 @@ export default function Home() {
 
             <div className="mw-savings__coupon">
               <div className="mw-savings__coupon-inner">
-                <div className="mw-savings__coupon-badge">FREE</div>
+                <div className="mw-savings__coupon-badge">Special Offer</div>
                 <h4 className="mw-savings__coupon-offer">
-                  CRM with any new website build.
+                  CRM included with any new website build.
                 </h4>
                 <p className="mw-savings__coupon-validity">
                   Valid Dec 31, 2026
                 </p>
-                <div className="mw-savings__coupon-actions">
-                  <a href="/contact" className="mw-savings__action-link">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    Text
-                  </a>
-                  <a href="/contact" className="mw-savings__action-link">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                    Email
-                  </a>
-                  <a href="/free-site-scan" className="mw-savings__action-link">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="7 10 12 15 17 10" />
-                      <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    Download
-                  </a>
-                </div>
               </div>
             </div>
           </div>

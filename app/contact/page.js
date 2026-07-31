@@ -35,6 +35,13 @@ const CONTACT_TOPICS = [
     href: '/free-site-scan',
     cta: 'Schedule Your Consultation',
   },
+  {
+    id: 'office-address',
+    title: 'Office Address',
+    desc: `${CONTACT.address1}, ${CONTACT.address2}.`,
+    href: 'https://maps.google.com/?q=3580+Wilshire+Blvd,+Ste+132,+Los+Angeles,+CA+90010',
+    cta: 'Get Directions',
+  },
 ];
 
 export default function ContactPage() {
