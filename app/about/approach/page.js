@@ -2,6 +2,9 @@ import TopicMarquee from '../../../components/TopicMarquee';
 import Image from 'next/image';
 import { buildMetadata } from '../../../lib/meta';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import SubHero from '../../../components/SubHero';
+import ClientLogos from '../../../components/ClientLogos';
+import { heroImage } from '../../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'Our SEO Process | How Gobiya Works With Clients',
@@ -14,22 +17,20 @@ export default function ApproachPage() {
   return (
     <main id="top">
 
-      {/* ══ 1. Clean Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'About', href: '/about' },
-        { label: 'Our Approach' },
-      ]} />
-
-      {/* ══ 2. Subhero Dark Banner ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <h1 className="mw-subhero__title">Foundation First — Everything Else Compounds on Top</h1>
-          <p className="mw-subhero__dek">
-            Most SEO problems aren&apos;t about strategy — they&apos;re about order. Content and links get built on top of a technical foundation that can&apos;t actually support them. We always work in the same sequence, for one reason: each step only works if the one before it is solid.
-          </p>
-        </div>
-      </section>
+      {/* ══ 2. SubHero Banner ══ */}
+      <SubHero
+        image={heroImage(2)}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'About', href: '/about' },
+          { label: 'Our Approach' },
+        ]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       <TopicMarquee topics={["Technical Foundation", "Schema & Entity Engineering", "Content Silos", "White-Hat Link Building", "Sustainable Ranking Growth"]} />
 
@@ -134,6 +135,9 @@ export default function ApproachPage() {
           </article>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">

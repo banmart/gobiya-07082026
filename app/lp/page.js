@@ -2,6 +2,9 @@ import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 import CountdownBadge from '../../components/CountdownBadge';
 import LpOfferForm from '../../components/LpOfferForm';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'The Q3 Growth Bundle Offer',
@@ -38,41 +41,14 @@ export default async function LpPage({ searchParams }) {
 
   return (
     <main id="top">
-      {/* ══ 1. Offer hero — navy subhero with the form alongside ══ */}
-      <section className="mw-subhero lp-hero">
-        <div className="container">
-          <div className="lp-hero__grid">
-            <div>
-              <CountdownBadge targetDate="2026-09-30T23:59:59" />
-              <h1 className="mw-subhero__title">
-                The Q3 Growth Bundle
-              </h1>
-              <p className="mw-subhero__dek">
-                Turn a new website into a lead generation machine. For a limited time, every custom
-                Next.js or React build includes a fully integrated CRM to manage your leads, plus a
-                professional YouTube AI video pre-roll campaign to drive traffic from day one.
-              </p>
-
-              <div className="lp-hero__price">
-                Custom web development starting at <strong>$2,500</strong>
-              </div>
-
-              <ul className="lp-hero__points">
-                {INCLUDED.map((item) => (
-                  <li key={item.title}>
-                    <span aria-hidden="true">■</span>
-                    <span>{item.title}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="lp-hero__form" id="claim">
-              <LpOfferForm source={ref} />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubHero
+        image={heroImage(15)}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       {/* ══ 2. What's included ══ */}
       <section className="mw-simple" id="whats-included">
@@ -112,7 +88,10 @@ export default async function LpPage({ searchParams }) {
         </div>
       </section>
 
-      {/* ══ 4. Closing CTA ══ */}
+      {/* ══ 4. Client Logo Strip ══ */}
+      <ClientLogos />
+
+      {/* ══ 5. Closing CTA ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">Claim the Bundle Before September 30</h2>

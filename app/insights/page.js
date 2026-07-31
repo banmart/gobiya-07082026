@@ -1,6 +1,9 @@
 import { INSIGHTS } from '../../lib/insights';
 import { buildMetadata } from '../../lib/meta';
+import { heroImage } from '../../lib/heroImages';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
 import InsightsArchive from '../../components/InsightsArchive';
 
 export const metadata = buildMetadata({
@@ -18,16 +21,17 @@ const ARCHIVE = [...INSIGHTS].sort((a, b) => b.date.localeCompare(a.date));
 export default function InsightsPage() {
   return (
     <main id="top">
-      {/* ══ 1. Breadcrumbs ══ */}
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
+      {/* ══ 2. Hero — Image Background ONLY ══ */}
+      <SubHero
+        image={heroImage(8)}
+        imageOnly={true}
+      />
 
-      {/* ══ 2. Subhero Dark Banner (Matching /services/seo) ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <h1 className="mw-subhero__title">Insights &amp; Search Guides</h1>
-          <p className="mw-subhero__dek">
-            Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written to actually answer the question, not just rank for it.
-          </p>
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
+          <h1 className="statement" data-split>Insights &amp; Search Guides</h1>
+          <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written to actually answer the question, not just rank for it.</p>
         </div>
       </section>
 
@@ -38,7 +42,10 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      {/* ══ 4. Client Logo Strip ══ */}
+      <ClientLogos />
+
+      {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">

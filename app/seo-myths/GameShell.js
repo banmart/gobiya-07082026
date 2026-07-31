@@ -1,16 +1,11 @@
 'use client';
 
-// Holds the one piece of state the page and the game have to agree on: whether
-// the run is finished. Until it is, the page is nothing but the board.
-//
-// `children` is the answer key and the closing CTA, passed down already
-// rendered from the server component. That matters — they stay in the HTML at
-// first paint and are only hidden with CSS, so crawlers and no-JS visitors get
-// the full content while players still have to earn it.
-
 import { useCallback, useState } from 'react';
 import MythGame from './MythGame';
+import SubHero from '../../components/SubHero';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 
 export default function GameShell({ children }) {
   const [unlocked, setUnlocked] = useState(false);
@@ -18,15 +13,19 @@ export default function GameShell({ children }) {
 
   return (
     <>
+      <SubHero image={heroImage(4)} imageOnly={true} />
+
       <section className="section section--tint myth-section">
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'seo-myths' }]} />
+          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'seo-myths' }]} />
           <h1 className="myth-title">
             Los Angeles SEO: Myth or <em>Fact</em>
           </h1>
           <MythGame onFinish={onFinish} />
         </div>
       </section>
+
+      <ClientLogos />
 
       <div className={`myth-locked${unlocked ? ' is-open' : ''}`}>{children}</div>
     </>

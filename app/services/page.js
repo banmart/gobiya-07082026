@@ -1,6 +1,10 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import PlatformStrip from '../../components/PlatformStrip';
+import ClientLogos from '../../components/ClientLogos';
 import CollapsibleSidebar from '../../components/CollapsibleSidebar';
 import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
+import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -13,21 +17,19 @@ export const metadata = buildMetadata({
 export default function ServicesPage() {
   return (
     <main id="top">
-      {/* ══ 1. Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
+      {/* ══ 2. SubHero Banner ══ */}
+      <SubHero
+        image={heroImage(1)}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
-      {/* ══ 2. Subhero Dark Banner ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <div className="mw-subhero__content">
-            <span className="mw-subhero__eyebrow">OUR CAPABILITIES</span>
-            <h1 className="mw-subhero__title">Services Index</h1>
-            <p className="mw-subhero__desc">
-              Every service we offer is built around one clear goal: helping your business get found, trusted, and chosen.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ══ Platform Strip — directly under hero ══ */}
+      <PlatformStrip />
 
       {/* ══ 3. Hierarchical Pillar Grid (Sidebar + Sub-Clusters) ══ */}
       <div className="container">
@@ -66,7 +68,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">

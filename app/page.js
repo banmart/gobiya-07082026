@@ -175,27 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 4. Trust Bar / Client Logo Strip ══ */}
-      <section className="mw-trust">
-        <div className="container">
-          <h2 className="mw-trust__heading">
-            Southern California businesses we&apos;ve run search for since 2010
-          </h2>
-          <div className="mw-trust__logos">
-            {CLIENT_LOGOS.map((logo, idx) => (
-              <div key={idx} className="mw-trust__logo-item">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={180}
-                  height={65}
-                  style={{ objectFit: 'contain', maxHeight: '55px', width: 'auto' }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />

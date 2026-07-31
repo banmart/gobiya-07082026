@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import SubHero from '../../../components/SubHero';
+import { heroImage } from '../../../lib/heroImages';
 
 export default function EmailTool() {
   const [email, setEmail] = useState('');
@@ -33,7 +35,9 @@ export default function EmailTool() {
 
   return (
     <main id="top">
-      <section className="page-hero section">
+      <SubHero image={heroImage(5)} imageOnly={true} />
+
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Email Verification' }]} />
           <h1 className="statement" data-split>Email Verification Tool</h1>

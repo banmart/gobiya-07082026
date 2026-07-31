@@ -1,7 +1,10 @@
 import Breadcrumbs from './Breadcrumbs';
+import SubHero from './SubHero';
+import ClientLogos from './ClientLogos';
 import DataPanel from './sections/DataPanel';
 import StepList from './sections/StepList';
 import ReadingProgress from './sections/ReadingProgress';
+import { heroImage } from '../lib/heroImages';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -26,29 +29,45 @@ export default function ArticleTemplate({ article }) {
     mainEntityOfPage: `https://www.gobiya.com/insights/${article.slug}`,
   };
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: article.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  };
+  const faqSchema = article.faqs?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: article.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+        })),
+      }
+    : null;
 
   return (
     <main id="top">
       <ReadingProgress />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
-      <section className="page-hero section">
+      {/* ══ Hero — background image ONLY ══ */}
+      <SubHero
+        image={heroImage(article.title.length % 5 + 1)}
+        imageOnly={true}
+      />
+
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[
-            { label: 'Home', href: '/' },
-            { label: 'Insights', href: '/insights' },
-            { label: article.slug },
-          ]} />
+          <Breadcrumbs
+            inHero
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Insights', href: '/insights' },
+              { label: article.slug },
+            ]}
+          />
           <h1 className="statement" data-split>{article.title}</h1>
           <p className="lede" data-reveal>{article.dek}</p>
           <p className="article__meta" data-reveal>
@@ -59,17 +78,17 @@ export default function ArticleTemplate({ article }) {
             · {article.readTime}
           </p>
         </div>
+      </section>
 
-        {/* The `answer` field is the self-contained, quotable summary — the
-            one block on the page an AI assistant is most likely to lift. It
-            was rendering as an unlabelled paragraph; labelling it makes the
-            role obvious to a reader skimming and to anything parsing the page. */}
-        <div className="article__answer" data-reveal>
-          <span className="article__answer-tag">
-            <span className="article__answer-dot" aria-hidden="true" />
-            The short answer
-          </span>
-          <p dangerouslySetInnerHTML={{ __html: article.answer }} />
+      <section className="section" style={{ paddingTop: '2rem', paddingBottom: 0 }}>
+        <div className="container container--narrow">
+          <div className="article__answer" data-reveal>
+            <span className="article__answer-tag">
+              <span className="article__answer-dot" aria-hidden="true" />
+              The short answer
+            </span>
+            <p dangerouslySetInnerHTML={{ __html: article.answer }} />
+          </div>
         </div>
       </section>
 
@@ -146,6 +165,9 @@ export default function ArticleTemplate({ article }) {
           </dl>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       {/* ══════════ Related + CTA ══════════ */}
       <section className="cta section" id="contact">

@@ -1,34 +1,45 @@
 # Gobiya
 
-> Gobiya is a Los Angeles internet marketing consulting firm founded in 2010 by Steve Martin (Gobiya LLC since 2012). We recover organic traffic lost to Google algorithm updates and engineer the technical, content, and authority signals that get brands cited by ChatGPT, Perplexity, and Google AI Overviews. BBB A+ rated; Google Partner 2015–2019.
+> Gobiya is a Los Angeles search & digital marketing consulting firm founded in 2010 by Steve Martin (Gobiya LLC since 2012). We recover organic traffic lost to Google algorithm updates and engineer the technical, content, and authority signals that get brands cited by ChatGPT, Perplexity, Gemini, and Google AI Overviews. BBB A+ rated; Google Partner 2015–2019.
 
 Contact: hello@gobiya.com · +1-323-744-1338 · 3580 Wilshire Blvd, Ste 132, Los Angeles, CA 90010
 
 ## Services
 
-- [SEO & Discoverability](https://www.gobiya.com/seo-services): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
-- [GEO & AI Content Writing](https://www.gobiya.com/geo-services): Content engineered to be cited in AI-generated answers
-- [Digital PR & Link Building](https://www.gobiya.com/services/authority-link-building): Editorial link acquisition and entity alignment
-- [AI Visibility (GEO)](https://www.gobiya.com/ai-visibility): How we get brands cited by ChatGPT, Perplexity, and AI Overviews
-- [All services](https://www.gobiya.com/services): SEO, copywriting and content strategy, digital PR and link building, Google Ads and AI creative, CRO, web development, AI/LLM consulting
+- [Technical & On-Page SEO](https://www.gobiya.com/services/seo): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
+- [AI & GEO Search Optimization](https://www.gobiya.com/services/geo): Generative Engine Optimization engineered to be cited in AI-generated answers
+- [Content Marketing & Strategy](https://www.gobiya.com/services/content-marketing): Data-driven content, topic hubs, search-intent writing
+- [Digital PR & Link Building](https://www.gobiya.com/services/link-building): Editorial link acquisition, brand citations, and authority building
+- [PPC & Google Ads Management](https://www.gobiya.com/services/ppc): Google Ads, paid search management, and cost-per-lead optimization
+- [CRO & UX Analysis](https://www.gobiya.com/services/cro): Conversion rate optimization, A/B testing, and user experience friction reduction
+- [Web & App Development](https://www.gobiya.com/services/web-dev): Next.js/React websites built SEO-ready from day one
+- [AI & LLM Systems Consulting](https://www.gobiya.com/services/ai-consulting): Practical AI integration, llms.txt setup, and custom LLM workflows
+- [All Services](https://www.gobiya.com/services)
 
-## Guides
+## Areas We Serve
+
+- [Los Angeles Local SEO & AI Visibility](https://www.gobiya.com/areas-we-serve): Burbank, Glendale, Hollywood, Silver Lake, Studio City, Sherman Oaks, Koreatown, Echo Park, Los Feliz, Downtown LA, and Greater Los Angeles
+
+## Guides & Insights
 
 - [What Is Generative Engine Optimization (GEO)?](https://www.gobiya.com/insights/what-is-generative-engine-optimization): Complete guide to how AI engines crawl, extract, and cite content
 - [How to Get Cited by ChatGPT, Perplexity & AI Overviews](https://www.gobiya.com/insights/get-cited-by-chatgpt-perplexity-ai-overviews)
 - [SEO vs GEO](https://www.gobiya.com/insights/seo-vs-geo): How the two disciplines differ and overlap
 - [Why Did My Website Traffic Drop?](https://www.gobiya.com/insights/why-did-my-website-traffic-drop): Diagnosing algorithm updates, penalties, and technical regressions
-- [How Much Does SEO Cost?](https://www.gobiya.com/insights/how-much-does-seo-cost)
-- [All insights](https://www.gobiya.com/insights)
+- [All Insights](https://www.gobiya.com/insights)
+
+## Glossary & Tools
+
+- [Search & AI Glossary](https://www.gobiya.com/glossary): Plain-language definitions for 77+ SEO, GEO, PPC, and Web terms
+- [Free SEO & Security Tools](https://www.gobiya.com/tools): DNS lookup, WHOIS, SSL check, domain reputation, IP geo, threat intel
 
 ## Company
 
 - [About Gobiya](https://www.gobiya.com/about): Agency history, credentials, and approach
-- [Steve Martin, Founder](https://www.gobiya.com/about/steve-martin): 25+ years in web development and search
-- [Client work & results](https://www.gobiya.com/work)
+- [Steve Martin, Founder](https://www.gobiya.com/about/steve-martin): 25+ years in web development and search engineering
+- [Client Work & Case Studies](https://www.gobiya.com/work)
 
 ## MCP Server
 
-- [MCP server for AI agents](https://www.gobiya.com/mcp): Callable tools (domain/security lookups, contact forms) and readable resources (insights, case studies, services) via the Model Context Protocol at https://www.gobiya.com/api/mcp
+- [MCP Server for AI Agents](https://www.gobiya.com/mcp): Callable tools (domain/security lookups, contact forms) and readable resources (insights, case studies, services) via the Model Context Protocol at https://www.gobiya.com/api/mcp
 
-## Optional

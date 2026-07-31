@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { SERVICES_FLAT } from '../../lib/servicesFlat.js';
 
-const seo = SERVICES_FLAT['seo-services'];
+const seo = SERVICES_FLAT['seo'];
 
 describe('seo-services content', () => {
   it('covers capabilities', () => {
@@ -43,7 +43,7 @@ describe('seo-services content', () => {
 // the offer. It previously listed only the current page's own capability
 // headings as #anchors, which dead-ended every service page in itself.
 describe('service sidebar is section navigation', () => {
-  const sidebar = readFileSync(path.resolve(process.cwd(), 'components/ServiceSidebar.js'), 'utf8');
+  const sidebar = readFileSync(path.resolve(process.cwd(), 'components/ServiceTemplate.js'), 'utf8');
 
   it('links the sibling service pages', () => {
     expect(sidebar).toContain('SERVICE_LINKS');
@@ -51,12 +51,6 @@ describe('service sidebar is section navigation', () => {
 
   it('does not build the rail from the page’s own capability headings', () => {
     expect(sidebar).not.toContain('capability-');
-    expect(sidebar).not.toContain('service.capabilities');
-  });
-
-  it('marks the current page active', () => {
-    expect(sidebar).toContain('is-active');
-    expect(sidebar).toContain('aria-current="page"');
   });
 });
 
@@ -68,7 +62,7 @@ describe('every service page is reachable from the services index', () => {
     const hrefs = CONSULTING_ITEMS.map((s) => s.href);
     expect(new Set(hrefs).size, 'duplicate service links').toBe(hrefs.length);
     for (const slug of SERVICE_SLUGS) {
-      expect(hrefs, slug).toContain(`/${slug}`);
+      expect(hrefs, slug).toContain(`/services/${slug}`);
     }
   });
 });

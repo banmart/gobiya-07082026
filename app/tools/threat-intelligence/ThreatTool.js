@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import SubHero from '../../../components/SubHero';
+import { heroImage } from '../../../lib/heroImages';
 
 export default function ThreatTool() {
   const [domain, setDomain] = useState('');
@@ -39,11 +41,13 @@ export default function ThreatTool() {
 
   return (
     <main id="top">
-      <section className="page-hero section">
+      <SubHero image={heroImage(5)} imageOnly={true} />
+
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Threat Intelligence' }]} />
           <h1 className="statement" data-split>Threat Intelligence Checker</h1>
-          <p className="lede" data-reveal>Check any domain against known threat lists to spot malware, phishing, or other malicious activity.</p>
+          <p className="lede" data-reveal>Check an IP or domain against global security feeds to catch active threats, malware flags, and suspicious network activity.</p>
         </div>
       </section>
 

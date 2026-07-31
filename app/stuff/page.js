@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
 import BentoVideoCard from '../../components/BentoVideoCard';
+import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const dynamic = 'force-dynamic';
@@ -75,27 +78,24 @@ export default async function StuffPage() {
 
   return (
     <main id="top">
-      {/* ══ 1. Clean Breadcrumbs ══ */}
-      <Breadcrumbs
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'Resources', href: '/insights' },
-          { label: 'Video Showcase' },
-        ]}
+      {/* ══ 2. Hero — Image Background ONLY ══ */}
+      <SubHero
+        image={heroImage(17)}
+        imageOnly={true}
       />
 
-      {/* ══ 2. Pitch & High-Impact Subhero Banner ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(245, 184, 61, 0.15)', color: '#F5B83D', padding: '0.35rem 0.85rem', borderRadius: '1rem', fontSize: '0.8125rem', fontWeight: '700', marginBottom: '1.25rem' }}>
-            <span>⚡ AI Video Creative Studio</span>
-          </div>
-          <h1 className="mw-subhero__title" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: '1.2' }}>
-            We Use AI to Create Viral, Scroll-Stopping Videos That Are Surprisingly Affordable
-          </h1>
-          <p className="mw-subhero__dek" style={{ fontSize: '1.125rem', maxWidth: '48rem', lineHeight: '1.6' }}>
-            Stop burning budget on slow camera crews. We combine generative AI workflows with SEO-backed metadata to produce high-converting commercial ads, social reels, and web background videos delivered in days.
-          </p>
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs
+            inHero
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Resources', href: '/insights' },
+              { label: 'Video Showcase' },
+            ]}
+          />
+          <h1 className="statement" data-split>We Use AI to Create Viral, Scroll-Stopping Videos That Are Surprisingly Affordable</h1>
+          <p className="lede" data-reveal>Stop burning budget on slow camera crews. We combine generative AI workflows with SEO-backed metadata to produce high-converting commercial ads, social reels, and web background videos delivered in days.</p>
         </div>
       </section>
 
@@ -159,6 +159,9 @@ export default async function StuffPage() {
           </div>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       {/* Embedded Bento Mobile & Desktop Responsiveness CSS */}
       <style>{`

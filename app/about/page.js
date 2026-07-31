@@ -3,6 +3,7 @@ import SubHero from '../../components/SubHero';
 import PlatformStrip from '../../components/PlatformStrip';
 import ExcellenceGrid from '../../components/ExcellenceGrid';
 import TestimonialStack from '../../components/TestimonialStack';
+import ClientLogos from '../../components/ClientLogos';
 import { buildMetadata } from '../../lib/meta';
 import { heroImage } from '../../lib/heroImages';
 
@@ -16,20 +17,16 @@ export const metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <main id="top">
-      {/* ══ 1. Breadcrumbs ══ */}
-      <Breadcrumbs
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'About', href: '/about' },
-          { label: 'What We Do' },
-        ]}
-      />
-
       {/* ══ 2. Hero ══
           The shared SubHero, same as the service and city pages, on position 22
           of the rotation in lib/heroImages.js. */}
       <SubHero
         image={heroImage(22)}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'About', href: '/about' },
+          { label: 'What We Do' },
+        ]}
         eyebrow="Affordable Solutions, Exceptional Service"
         title="Exclusive Gobiya Savings"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
@@ -125,7 +122,10 @@ export default function AboutPage() {
       {/* ══ 8. Real Stories from Real Clients ══ */}
       <TestimonialStack />
 
-      {/* ══ 9. Schedule a Free Consultation ══
+      {/* Client Logo Strip */}
+      <ClientLogos />
+
+      {/* ══ 5. Schedule a Consultation CTA ══
           No calendar mockup here: .mw-phone-mockup has no CSS anywhere in the
           project, so it rendered as a run of unstyled digits at the foot of the
           page. .mw-consultation__content is the wrapper that is actually

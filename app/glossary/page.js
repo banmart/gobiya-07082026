@@ -2,20 +2,23 @@ import { GLOSSARY } from '../../lib/glossary';
 import GlossaryIndex from '../../components/GlossaryIndex';
 import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'AI, SEO, Websites & PPC Glossary — Gobiya',
+  title: 'SEO & AI Search Glossary | Plainly Defined',
   description:
-    'A plain-English glossary of AI search, website, SEO, and PPC terms — from Core Web Vitals to GEO to Quality Score, explained clearly.',
+    'Definitions for technical SEO, AI citations, GEO, web development, and Google Ads terms — plain English, written for site owners.',
   path: '/glossary',
 });
 
 const DEFINED_TERM_SET_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'DefinedTermSet',
-  name: 'Gobiya AI, Websites, SEO & PPC Glossary',
-  description: 'A plain-English glossary of AI search, website, SEO, and PPC terms.',
+  name: 'Gobiya Search Engine & Web Optimization Glossary',
+  description: 'Definitions of SEO, AI search (GEO), web development, and PPC terms.',
   url: 'https://www.gobiya.com/glossary',
   hasDefinedTerm: GLOSSARY.map((t) => ({
     '@type': 'DefinedTerm',
@@ -33,14 +36,17 @@ export default function GlossaryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(DEFINED_TERM_SET_SCHEMA) }}
       />
 
-      {/* ══ 1. Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Glossary' }]} />
+      {/* ══ 2. Hero — Image Background ONLY ══ */}
+      <SubHero
+        image={heroImage(6)}
+        imageOnly={true}
+      />
 
-      {/* ══ 2. Dark Subhero ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <h1 className="mw-subhero__title">AI Search, SEO, Websites &amp; PPC — Explained Plainly</h1>
-          <p className="mw-subhero__dek">{GLOSSARY.length} terms covering everything from Core Web Vitals to Generative Engine Optimization to Quality Score. No jargon left unexplained.</p>
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Glossary' }]} />
+          <h1 className="statement" data-split>AI Search, SEO, Websites &amp; PPC — Explained Plainly</h1>
+          <p className="lede" data-reveal>{`${GLOSSARY.length} terms covering everything from Core Web Vitals to Generative Engine Optimization to Quality Score. No jargon left unexplained.`}</p>
         </div>
       </section>
 
@@ -51,6 +57,9 @@ export default function GlossaryPage() {
           <GlossaryIndex terms={GLOSSARY} />
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       <section className="cta section section--tint" id="contact">
         <div className="container container--narrow">

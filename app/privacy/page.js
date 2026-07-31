@@ -2,6 +2,9 @@ import { buildMetadata } from '../../lib/meta';
 import { CONTACT } from '../../lib/nav';
 import TopicMarquee from '../../components/TopicMarquee';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'Privacy Policy',
@@ -13,13 +16,15 @@ export const metadata = buildMetadata({
 export default function PrivacyPage() {
   return (
     <main id="top">
-      <section className="page-hero section">
-        <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'privacy' }]} />
-          <h1 className="statement">Privacy Policy</h1>
-          <p className="lede" data-reveal>Last updated July 10, 2026</p>
-        </div>
-      </section>
+      <SubHero
+        image={heroImage(10)}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'privacy' }]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
       <TopicMarquee topics={["Data Privacy", "User Confidentiality", "Analytics Consent Policy", "Information Security", "GDPR & CCPA Compliance"]} />
 
 
@@ -57,6 +62,9 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
     </main>
   );
 }

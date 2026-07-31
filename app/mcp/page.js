@@ -1,6 +1,9 @@
 import { buildMetadata } from '../../lib/meta';
 import CopyButton from '../../components/CopyButton';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'MCP Server for AI Agents',
@@ -39,14 +42,15 @@ const CURL_SNIPPET = `curl -X POST ${MCP_URL} \\
 export default function McpPage() {
   return (
     <main id="top">
-
-      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
-        <div className="container">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'mcp' }]} />
-          <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>A search agency your own AI agent can talk to.</h1>
-          <p className="lede" style={{ marginInline: 0 }} data-reveal>Gobiya runs a public MCP (Model Context Protocol) server — free domain and security lookup tools, a way to reach us directly, and our full library of SEO/GEO content, all callable by any MCP client. Not a page about AI visibility. An actual endpoint an AI agent can use.</p>
-        </div>
-      </section>
+      <SubHero
+        image={heroImage(18)}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'mcp' }]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       <section className="section section--tint" id="connect">
         <div className="container container--narrow">
@@ -90,6 +94,9 @@ export default function McpPage() {
           <p className="lede" data-reveal>Every <a href="/insights">insights article</a>, <a href="/work">client case study</a>, and <a href="/services">consulting service page</a> on this site is also exposed as a readable MCP resource — <code>gobiya://insights/{'{slug}'}</code>, <code>gobiya://work/{'{slug}'}</code>, and <code>gobiya://services/{'{slug}'}</code> — so an agent can read the actual content, not just crawl the HTML.</p>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       <section className="section" id="also">
         <div className="container container--narrow" style={{ textAlign: 'center' }}>

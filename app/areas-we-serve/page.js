@@ -1,5 +1,7 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
 import SubHero from '../../components/SubHero';
+import PlatformStrip from '../../components/PlatformStrip';
+import ClientLogos from '../../components/ClientLogos';
 import { AREAS, AREA_SERVICES } from '../../lib/areas';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
@@ -13,23 +15,21 @@ export const metadata = buildMetadata({
 export default function AreasWeServePage() {
   return (
     <main id="top">
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'Areas We Serve' },
-      ]} />
-
-      {/* Position 9 on the site-wide rotation — the slot between the eight
-          service pages and the ten cities this page links out to, so the index
-          never repeats the hero of a card sitting directly below it. */}
       <SubHero
-        image={heroImage(9)}
-        eyebrow="Serving Los Angeles Since 2010"
-        title="Areas We Serve Across Los Angeles"
-        excerpt={`${AREAS.length} neighborhoods and cities. One local team.`}
-        description="From Burbank to Downtown LA, our team runs search, AI visibility, and paid ads for businesses across the city and the San Fernando Valley. Honest pricing, month-to-month, no long-term contracts."
+        image={heroImage(19)}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Areas We Serve' },
+        ]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
+
+      {/* ══ Platform Strip — directly under hero ══ */}
+      <PlatformStrip />
 
       {/* ══ City grid ══ */}
       <section className="mw-areas-index">

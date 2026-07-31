@@ -3,6 +3,9 @@ import { CLIENT_SEARCH_WINS } from '../lib/clientSearchWins';
 import CaseMediaVideo from './CaseMediaVideo';
 import Chapter from './sections/Chapter';
 import Breadcrumbs from './Breadcrumbs';
+import SubHero from './SubHero';
+import ClientLogos from './ClientLogos';
+import { heroImage } from '../lib/heroImages';
 
 export default function CaseStudyTemplate({ cs }) {
   const searchWins = CLIENT_SEARCH_WINS[cs.slug];
@@ -27,27 +30,21 @@ export default function CaseStudyTemplate({ cs }) {
     <main id="top" className="case-study">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      {/* ══ 1. Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'Work', href: '/work' },
-        { label: cs.client },
-      ]} />
-
-      {/* ══ 2. Dark Subhero ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          {cs.media?.logo && (
-            <img
-              src={cs.media.logo}
-              alt={`${cs.client} logo`}
-              style={{ height: '40px', width: 'auto', objectFit: 'contain', marginBottom: '1.25rem', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
-            />
-          )}
-          <h1 className="mw-subhero__title">{`${cs.client}: ${cs.result}`}</h1>
-          {cs.study?.dek && <p className="mw-subhero__dek">{cs.study.dek}</p>}
-        </div>
-      </section>
+      {/* ══ 2. SubHero Banner with Client Information & Logo ══ */}
+      <SubHero
+        image={heroImage(14)}
+        logo={cs.media?.logo ? { src: cs.media.logo, alt: `${cs.client} logo` } : undefined}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Work', href: '/work' },
+          { label: cs.client },
+        ]}
+        eyebrow={`${cs.client} · ${cs.tag}`}
+        title={`${cs.client}: ${cs.result}`}
+        excerpt={cs.study?.dek || cs.desc}
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       {/* ══ Key Outcome Metrics ══ */}
       {cs.study?.metrics?.length > 0 && (
@@ -225,6 +222,9 @@ export default function CaseStudyTemplate({ cs }) {
           </div>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">

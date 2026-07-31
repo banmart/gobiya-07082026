@@ -16,7 +16,7 @@ export default function OnboardingThankYouPage() {
     <main id="top">
       <section className="page-hero section">
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Site Scan', href: '/free-site-scan' }, { label: 'Thank You' }]} />
+          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Free Site Scan', href: '/free-site-scan' }, { label: 'Thank You' }]} />
           <h1 className="statement">Got it — Steve will personally review this and reply within one business day.</h1>
           <p className="lede">
             We read every submission ourselves — no automated sequences, no generic templates. In the meantime,

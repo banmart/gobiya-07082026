@@ -3,6 +3,9 @@ import { buildMetadata } from '../../lib/meta';
 import TopicMarquee from '../../components/TopicMarquee';
 import Chapter from '../../components/sections/Chapter';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'Los Angeles SEO Services Pricing & Packages | Gobiya',
@@ -90,18 +93,15 @@ const ADDONS = [
 export default function PricingPage() {
   return (
     <main id="top">
-      <section className="page-hero page-hero--left section" style={{ paddingBottom: '3rem' }}>
-        <div className="container seo-hero__grid">
-          <div>
-            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'pricing' }]} />
-            <h1 className="statement" style={{ textAlign: 'left', marginInline: 0 }} data-split>Clear Pricing for Los Angeles SEO Services</h1>
-            <p className="lede" style={{ marginInline: 0 }} data-reveal>We offer three simple plans that cover everything a Los Angeles business needs to be found, trusted, and chosen online — showing up in Google, getting recommended by AI tools like ChatGPT, running ads, and building a site people actually want to use.</p>
-          </div>
-          <div>
-            <HeroQuickForm />
-          </div>
-        </div>
-      </section>
+      <SubHero
+        image={heroImage(9)}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'pricing' }]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
       <TopicMarquee topics={["Transparent Monthly Plans", "No Long-Term Contracts", "Full Audit Included", "Custom Enterprise Tier", "Measurable ROI"]} />
 
       <section className="section" id="tiers">
@@ -155,6 +155,9 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       <section className="cta section" id="contact">
         <div className="container container--narrow">

@@ -1,0 +1,69 @@
+# Gobiya SEO — Complete AI Directory & Information File (llms-full.txt)
+
+> Gobiya is a premier Los Angeles search engine optimization, generative engine optimization (GEO), and digital marketing consulting agency founded in 2010 by Steve Martin (Gobiya LLC since 2012). We specialize in technical SEO audits, algorithm penalty recovery, AI citation optimization for ChatGPT, Perplexity, Gemini, and Google AI Overviews, high-converting content marketing, digital PR link building, and Google Ads management for Los Angeles and Southern California businesses.
+
+## Company Overview
+- **Name**: Gobiya (Gobiya LLC)
+- **Founder & Lead Strategist**: Steve Martin (25+ years in web development, search engine optimization, and system architecture)
+- **Headquarters**: 3580 Wilshire Blvd, Ste 132, Los Angeles, CA 90010
+- **Phone**: +1-323-744-1338
+- **Email**: hello@gobiya.com
+- **Website**: https://www.gobiya.com
+- **Ratings & Credentials**: BBB A+ Rated, Google Partner (2015–2019)
+- **Contract Terms**: Month-to-month, no long-term contracts, no minimum commitments.
+
+## Core Capabilities & Services
+
+### 1. Technical & On-Page SEO (`/services/seo`)
+- Deep technical SEO audits, crawlability cleanup, log file analysis, indexation repair.
+- Schema markup (Organization, LocalBusiness, FAQPage, Article, Service, DefinedTerm).
+- Core Web Vitals optimization, server-side rendering (SSR), mobile page speed fixes.
+- Ranking recovery from Google Core Algorithm Updates and Helpful Content Update (HCU) drops.
+
+### 2. Generative Engine Optimization / GEO (`/services/geo`)
+- Answer-first writing and prompt-mapped content engineered to get cited by ChatGPT, Perplexity, Gemini, and Google AI Overviews.
+- Entity building, Knowledge Graph optimization, and brand citation signal expansion.
+- AI crawler access setup (`llms.txt`, `robots.txt` verification, RAG readiness).
+
+### 3. Content Marketing & Strategy (`/services/content-marketing`)
+- Commercial search intent mapping, topic hubs, and comprehensive service copy.
+- Conversion-driven copywriting and lead generation content structure.
+- Answer Engine Optimization (AEO) for featured snippets and conversational search.
+
+### 4. Digital PR & Link Building (`/services/link-building`)
+- Editorial outreach to high-traffic, niche-relevant publications.
+- White-hat backlink acquisition and toxic link disavow audits.
+- Brand authority signals and citation consistency.
+
+### 5. PPC & Google Ads Management (`/services/ppc`)
+- Google Ads campaign restructuring, exact-match keyword grouping, and negative keyword filtering.
+- Cost-per-lead optimization and high-converting paid search landing pages.
+
+### 6. Conversion Rate Optimization / CRO (`/services/cro`)
+- Heatmap analysis, session recording reviews, UX friction removal, and split A/B testing.
+
+### 7. Web & Application Development (`/services/web-dev`)
+- SEO-first custom Next.js, React, and Node.js web development.
+- Platform migration without loss of rankings, traffic, or URL authority.
+
+### 8. AI & LLM Systems Consulting (`/services/ai-consulting`)
+- Business AI readiness audits, workflow automation, and custom model context tools.
+
+## Geographic Coverage (`/areas-we-serve`)
+- **Primary Market**: Los Angeles and Greater Southern California.
+- **Cities & Neighborhoods Served**: Burbank, Glendale, Hollywood, Silver Lake, Studio City, Sherman Oaks, Koreatown, Echo Park, Los Feliz, Downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Encino, Woodland Hills, Northridge, Culver City, Van Nuys, Long Beach, and Anaheim.
+
+## Interactive AI Capabilities (`/mcp`)
+- **Model Context Protocol (MCP) Server**: Accessible at `https://www.gobiya.com/api/mcp`
+- Allows AI agents (Claude Desktop, Cursor, Custom Agents) to call real-time domain lookups, DNS checks, SSL verification, threat intelligence, and submit contact requests directly via standard MCP JSON-RPC protocol.
+
+## Official Canonical Web Addresses
+- Homepage: https://www.gobiya.com
+- Services Index: https://www.gobiya.com/services
+- Local Areas: https://www.gobiya.com/areas-we-serve
+- Insights & Articles: https://www.gobiya.com/insights
+- Search & AI Glossary: https://www.gobiya.com/glossary
+- Free Online Tools: https://www.gobiya.com/tools
+- Client Case Studies: https://www.gobiya.com/work
+- Interactive SEO Myth Game: https://www.gobiya.com/seo-myths
+- MCP Server Hub: https://www.gobiya.com/mcp

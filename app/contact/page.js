@@ -1,41 +1,37 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
 import CollapsibleSidebar from '../../components/CollapsibleSidebar';
 import { CONTACT } from '../../lib/nav';
+import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Contact Gobiya | Los Angeles SEO Agency',
+  title: 'Contact Us | Los Angeles SEO Agency',
   description:
-    'Get in touch with Gobiya, your local Los Angeles SEO and AI search marketing team. Request a free site scan or consultation.',
+    'Contact Gobiya SEO in Los Angeles. Direct founder access, quick response within 1 business day, & clear advice. Call 323-744-1338.',
   path: '/contact',
 });
 
 const CONTACT_TOPICS = [
   {
-    id: 'direct-email',
-    title: 'Direct Email & Founder Contact',
-    desc: `Reach Steve Martin directly at ${CONTACT.email}. Every message is read and answered personally within 1 business day.`,
-    href: `mailto:${CONTACT.email}`,
-    cta: `Send Email: ${CONTACT.email}`,
+    id: 'free-scan',
+    title: 'Request a Free Website & SEO Scan',
+    desc: 'Get an expert audit of your website backend code, Google ranking health, and AI search visibility. We deliver actionable findings with no cost or obligation.',
+    href: '/free-site-scan',
+    cta: 'Start Your Free Scan',
   },
   {
     id: 'direct-phone',
-    title: 'Direct Phone & Consultation',
-    desc: `Call us directly at ${CONTACT.phone} to discuss your site traffic, search issues, or upcoming website launch.`,
+    title: 'Call Us Directly',
+    desc: `Prefer to speak with Steve immediately? Call ${CONTACT.phone} during Los Angeles business hours (9am - 6pm PST, Mon - Fri).`,
     href: CONTACT.phoneHref,
-    cta: `Call Now: ${CONTACT.phone}`,
+    cta: `Call ${CONTACT.phone}`,
   },
   {
-    id: 'office-address',
-    title: 'Los Angeles Headquarters',
-    desc: `${CONTACT.address1}, ${CONTACT.address2}. Located in Los Angeles, California.`,
-    href: '#office-address',
-    cta: 'View Location',
-  },
-  {
-    id: 'free-scan',
-    title: 'Schedule a Strategic Intake Consultation',
-    desc: 'Send us your website address and we will tell you what we find — technical code errors, missing AI citations, and fast wins.',
+    id: 'consultation',
+    title: 'Schedule a Consultation',
+    desc: 'Discuss your search engine optimization, content strategy, or PPC advertising goals directly with our lead strategist.',
     href: '/free-site-scan',
     cta: 'Schedule Your Consultation',
   },
@@ -44,18 +40,16 @@ const CONTACT_TOPICS = [
 export default function ContactPage() {
   return (
     <main id="top">
-      {/* ══ 1. Breadcrumbs ══ */}
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
-
-      {/* ══ 2. Subhero Dark Banner ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <h1 className="mw-subhero__title">Contact Our Los Angeles Team</h1>
-          <p className="mw-subhero__dek">
-            Direct founder contact. No ticketing queue or account-manager relay in between — Steve reads and answers every message himself.
-          </p>
-        </div>
-      </section>
+      {/* ══ 2. SubHero Banner ══ */}
+      <SubHero
+        image={heroImage(4)}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       {/* ══ 3. Hierarchical Pillar Grid ══ */}
       <div className="container">
@@ -94,7 +88,10 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      {/* ══ 4. Client Logo Strip ══ */}
+      <ClientLogos />
+
+      {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">

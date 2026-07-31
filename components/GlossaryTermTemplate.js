@@ -1,5 +1,8 @@
 import Breadcrumbs from './Breadcrumbs';
+import SubHero from './SubHero';
+import ClientLogos from './ClientLogos';
 import { getGlossaryTerm } from '../lib/glossary';
+import { heroImage } from '../lib/heroImages';
 
 export default function GlossaryTermTemplate({ entry }) {
   const relatedTerms = (entry.relatedSlugs || [])
@@ -19,18 +22,24 @@ export default function GlossaryTermTemplate({ entry }) {
     <main id="top">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(termSchema) }} />
 
-      {/* ══ 1. Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'Glossary', href: '/glossary' },
-        { label: entry.term },
-      ]} />
+      {/* ══ 2. Hero — Image Background ONLY ══ */}
+      <SubHero
+        image={heroImage(7)}
+        imageOnly={true}
+      />
 
-      {/* ══ 2. Dark Subhero Banner ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <span className="mw-subhero__eyebrow">{entry.category}</span>
-          <h1 className="mw-subhero__title">{entry.term}</h1>
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs
+            inHero
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Glossary', href: '/glossary' },
+              { label: entry.term },
+            ]}
+          />
+          <h1 className="statement" data-split>{entry.term}</h1>
+          <p className="lede" data-reveal>{entry.shortDefinition}</p>
         </div>
       </section>
 
@@ -98,6 +107,9 @@ export default function GlossaryTermTemplate({ entry }) {
           </div>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
     </main>
   );
 }

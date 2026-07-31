@@ -1,9 +1,13 @@
 import Breadcrumbs from '../../../components/Breadcrumbs';
 import SubHero from '../../../components/SubHero';
+import PlatformStrip from '../../../components/PlatformStrip';
 import { AREAS, AREA_SERVICES } from '../../../lib/areas';
 import { buildMetadata } from '../../../lib/meta';
+import { heroImage } from '../../../lib/heroImages';
 import { CONTACT } from '../../../lib/nav';
 import { notFound } from 'next/navigation';
+import { renderBlock } from '../../../components/ContentBlocks';
+import ClientLogos from '../../../components/ClientLogos';
 
 const BASE = 'https://www.gobiya.com';
 
@@ -76,49 +80,6 @@ function citySchema(area) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-// Renders one block of an authored `body` array from lib/areas.js. `cta` is the
-// repeated phone line, kept as a block type rather than prose so the number and
-// the contact link stay linked wherever it appears.
-function renderBlock(block, i) {
-  if (block.h2) return <h2 key={i} className="mw-area-body__heading">{block.h2}</h2>;
-  if (block.h3) return <h3 key={i} className="mw-area-body__services-heading">{block.h3}</h3>;
-  if (block.h4) return <h4 key={i} className="mw-area-body__minihead">{block.h4}</h4>;
-  if (block.excerpt) return <p key={i} className="mw-area-body__excerpt">{block.excerpt}</p>;
-  if (block.p) return <p key={i} className="mw-area-body__text">{block.p}</p>;
-  if (block.list) {
-    return (
-      <ul key={i} className="mw-area-body__list">
-        {block.list.map((item) => <li key={item}>{item}</li>)}
-      </ul>
-    );
-  }
-  if (block.button) {
-    return (
-      <p key={i} className="mw-area-body__btn-wrap">
-        <a href={block.button.href || '/free-site-scan'} className="mw-area-body__btn">
-          {block.button.text} <span aria-hidden="true">→</span>
-        </a>
-      </p>
-    );
-  }
-  if (block.cta) {
-    // `cta: true` is the bold excerpt treatment on the main number; pass an
-    // object to change the lead-in, the number, or render it as body text.
-    const cfg = block.cta === true ? {} : block.cta;
-    const cls = cfg.style === 'text' ? 'mw-area-body__text' : 'mw-area-body__excerpt';
-    const phone = cfg.phone || '(323) 744-1338';
-    return (
-      <p key={i} className={`${cls} mw-area-body__cta-line`}>
-        {cfg.lead || 'Reach out to us at'}{' '}
-        <a href={`tel:+1${phone.replace(/\D/g, '')}`}>{phone}</a> or{' '}
-        <a href="/contact">contact us online</a>{' '}
-        {cfg.tail || 'for all your SEO needs.'}
-      </p>
-    );
-  }
-  return null;
-}
-
 export async function generateStaticParams() {
   return AREAS.map((area) => ({ city: area.slug }));
 }
@@ -152,22 +113,23 @@ export default async function AreaPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(citySchema(area)) }}
       />
 
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'Areas We Serve', href: '/areas-we-serve' },
-        { label: area.name },
-      ]} />
-
-      {/* ══ Hero — same component, and so the same mobile stacking, as every
-          other sub page ══ */}
+      {/* ══ Hero — card contains city title, eyebrow, excerpt & CTAs ══ */}
       <SubHero
-        image={area.image}
+        image={area.image || heroImage(cityIdx + 1)}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Areas We Serve', href: '/areas-we-serve' },
+          { label: area.name },
+        ]}
         eyebrow="Affordable Solutions, Exceptional Service"
         title="Exclusive Gobiya Savings"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
+
+      {/* ══ Platform Strip — directly under hero ══ */}
+      <PlatformStrip />
 
       {/* ══ Body: content column + sticky CTA rail ══ */}
       <section className="mw-area-body">

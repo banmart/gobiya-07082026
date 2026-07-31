@@ -1,17 +1,24 @@
 import Breadcrumbs from './Breadcrumbs';
-import ServiceSidebar from './ServiceSidebar';
 import SubHero from './SubHero';
-import { servicePath } from '../lib/serviceIndex';
+import PlatformStrip from './PlatformStrip';
+import ClientLogos from './ClientLogos';
+import { renderBlock } from './ContentBlocks';
+import { servicePath, SERVICE_LINKS } from '../lib/serviceIndex';
+import { SERVICE_BODIES } from '../lib/serviceBodies';
+import { AREAS } from '../lib/areas';
+import { CONTACT } from '../lib/nav';
 
-// The single service page layout. All eight service pages render through this
-// component in the same shape: subhero, section rail + content column, closing
-// CTA. It replaces the old ServiceTemplate/FlatServiceTemplate split, where
-// half the pages silently dropped the problem statement, process steps and
-// authored CTA that were already written for them in lib/services.js.
+// The single service page layout, on the same frame as the city pages in
+// app/areas-we-serve/[city]: shared SubHero, then a content column of authored
+// blocks (service.problem, service.process, service.capabilities) beside a sticky CTA rail,
+// then the closing navy banner. The copy for each service lives in lib/serviceBodies.js
+// and renders through the same ContentBlocks renderer the city pages use.
 
 export default function ServiceTemplate({ service }) {
   const displayTitle = service.navTitle || service.title;
   const hero = service.hero;
+  const body = SERVICE_BODIES[service.slug];
+  const otherServices = SERVICE_LINKS.filter((s) => s.slug !== service.slug);
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -56,123 +63,112 @@ export default function ServiceTemplate({ service }) {
         />
       )}
 
-      {/* ══ 1. Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'Services', href: '/services' },
-        { label: displayTitle },
-      ]} />
-
-      {/* ══ 2. Hero ══
-          The shared sub-page hero, which is the homepage hero markup: image,
-          overlay, white card, primary + ghost CTA, and on phones the media
-          lifted into a band above the stacked card. The authored headline
-          carries the city ("Los Angeles SEO Services…"); displayTitle is the
-          short rail label and drops it, so it runs as the eyebrow instead. The
-          hero excerpt is two sentences, which reads as a body paragraph rather
-          than a standfirst — hence `description`, not `excerpt`. */}
+      {/* ══ 2. Hero ══ */}
       <SubHero
         image={hero?.image}
-        eyebrow={displayTitle}
-        title={service.headline}
-        description={hero?.excerpt}
-        primary={{
-          text: hero?.cta?.text || 'Get Your Free Site Scan',
-          href: hero?.cta?.href || '/free-site-scan',
-        }}
-        secondary={hero?.cta2}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: displayTitle },
+        ]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
-      {/* ══ 3. Section Rail + Content Column ══ */}
-      <div className="container">
-        <div className="mw-pillar-grid">
-          <ServiceSidebar activeSlug={service.slug} />
+      {/* ══ Platform Strip — directly under hero ══ */}
+      <PlatformStrip />
 
-          {/* The section ids below are the jump targets ServiceSidebar lists —
-              #problem, #whats-included, #how-it-works, #faqs. Renaming one here
-              silently breaks a rail link, so they stay put. */}
-          <div className="mw-svc-body">
-            {/* The full authored intro, which is too long for the hero card and
-                carries inline links the hero excerpt cannot. */}
-            {service.standfirst && (
-              <div
-                className="mw-svc-lede"
-                dangerouslySetInnerHTML={{ __html: service.standfirst }}
-              />
-            )}
+      {/* ══ 3. Body: content column + sticky CTA rail ══ */}
+      <section className="mw-area-body">
+        <div className="container">
+          <div className="mw-area-body__grid">
+            <div className="mw-area-body__main">
+              {body?.map(renderBlock)}
 
-            {service.problem && (
-              <section id="problem" className="mw-svc-block mw-svc-block--problem">
-                <h2 className="mw-svc-block__title">{service.problem.eyebrow}</h2>
-                <p className="mw-svc-block__statement">{service.problem.statement}</p>
-              </section>
-            )}
+              {service.faqs?.length > 0 && (
+                <>
+                  <h3 className="mw-area-body__services-heading">
+                    Frequently Asked Questions
+                  </h3>
+                  <dl className="mw-svc-faq">
+                    {service.faqs.map((f, fIdx) => (
+                      <div key={fIdx} className="mw-svc-faq__item">
+                        <dt className="mw-svc-faq__q">{f.q}</dt>
+                        <dd
+                          className="mw-svc-faq__a"
+                          dangerouslySetInnerHTML={{ __html: f.a }}
+                        />
+                      </div>
+                    ))}
+                  </dl>
+                </>
+              )}
 
-            {/* Capabilities were eight to twelve stacked h2 blocks per page, which
-                read as an outline rather than an offer. Same copy, same links,
-                now one section of cards — the treatment the homepage and the city
-                pages already use — so the whole offer is scannable at once. */}
-            {service.capabilities?.length > 0 && (
-              <section id="whats-included" className="mw-svc-block">
-                <h2 className="mw-svc-block__title">What&apos;s included</h2>
-                <div className="mw-svc-cards">
-                  {service.capabilities.map((c, idx) => (
-                    <a key={idx} href={c.href ?? '/glossary'} className="mw-svc-card">
-                      {c.tag && <p className="mw-svc-card__tag">{c.tag}</p>}
-                      <h3 className="mw-svc-card__title">{c.title}</h3>
-                      <p className="mw-svc-card__desc">{c.desc}</p>
-                      <span className="mw-svc-card__link">
-                        Learn more <span aria-hidden="true">→</span>
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            )}
+              <h3 className="mw-area-body__services-heading">Areas We Serve</h3>
+              <div className="mw-svc-cards mw-svc-cards--two">
+                {AREAS.slice(0, 4).map((a) => (
+                  <a key={a.slug} href={`/areas-we-serve/${a.slug}`} className="mw-svc-card">
+                    <p className="mw-svc-card__tag">{a.region}</p>
+                    <h4 className="mw-svc-card__title">{a.name}</h4>
+                    <p className="mw-svc-card__desc">{a.excerpt}</p>
+                    <span className="mw-svc-card__link">
+                      View area <span aria-hidden="true">→</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
 
-            {service.process?.length > 0 && (
-              <section id="how-it-works" className="mw-svc-block">
-                <h2 className="mw-svc-block__title">How the work runs</h2>
-                <ol className="mw-svc-steps">
-                  {service.process.map((p) => (
-                    <li key={p.step} className="mw-svc-step">
-                      <span className="mw-svc-step__num">{p.step}</span>
-                      <h3 className="mw-svc-step__title">{p.title}</h3>
-                      <p className="mw-svc-step__desc">{p.desc}</p>
+            <aside className="mw-area-body__sidebar">
+              <div className="mw-area-body__cta-card">
+                <p className="mw-area-body__cta-eyebrow">Free for Los Angeles Businesses</p>
+                <h3 className="mw-area-body__cta-title">Get Your Free Website &amp; SEO Scan</h3>
+                <p className="mw-area-body__cta-desc">
+                  We check your site for hidden errors, Google ranking problems, and AI search gaps, then send you the findings. No cost, no obligation.
+                </p>
+                <a href="/free-site-scan" className="mw-area-body__cta-btn">
+                  Start My Free Scan <span aria-hidden="true">→</span>
+                </a>
+                <p className="mw-area-body__cta-divider">or call us directly</p>
+                <a href={CONTACT.phoneHref} className="mw-area-body__cta-phone">
+                  {CONTACT.phone}
+                </a>
+              </div>
+
+              <div className="mw-area-body__other-areas">
+                <h4 className="mw-area-body__other-title">Other Services</h4>
+                <ul className="mw-area-body__other-list">
+                  {otherServices.map((s) => (
+                    <li key={s.slug}>
+                      <a href={s.href}>
+                        <span className="mw-area-body__other-city">{s.title}</span>
+                      </a>
                     </li>
                   ))}
-                </ol>
-              </section>
-            )}
-
-            {service.faqs?.length > 0 && (
-              <section id="faqs" className="mw-svc-block">
-                <h2 className="mw-svc-block__title">Frequently asked questions</h2>
-                <dl className="mw-svc-faq">
-                  {service.faqs.map((f, fIdx) => (
-                    <div key={fIdx} className="mw-svc-faq__item">
-                      <dt className="mw-svc-faq__q">{f.q}</dt>
-                      <dd
-                        className="mw-svc-faq__a"
-                        dangerouslySetInnerHTML={{ __html: f.a }}
-                      />
-                    </div>
-                  ))}
-                </dl>
-              </section>
-            )}
+                </ul>
+                <a href="/services" className="mw-area-body__other-all">
+                  All services <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </aside>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">
-            {service.ctaTitle || `Ready to scale your business with ${displayTitle}?`}
+            {service.ctaTitle || service.headline || `Ready to Grow Your Business with ${displayTitle}?`}
           </h2>
+          <p className="mw-navy-banner__dek">
+            SEO, AI search, and PPC for Los Angeles businesses since 2010. Month-to-month, no long-term contracts, no surprises.
+          </p>
           <a href={service.heroCtaHref || '/free-site-scan'} className="mw-navy-banner__btn">
-            {service.heroCtaText || 'Schedule a Consultation'}
+            {service.heroCtaText || 'Get Your Free Site Scan'}
           </a>
         </div>
       </section>

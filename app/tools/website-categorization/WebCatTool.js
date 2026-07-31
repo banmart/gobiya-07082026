@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import SubHero from '../../../components/SubHero';
+import { heroImage } from '../../../lib/heroImages';
 
 export default function WebCatTool() {
   const [domain, setDomain] = useState('');
@@ -39,11 +41,13 @@ export default function WebCatTool() {
 
   return (
     <main id="top">
-      <section className="page-hero section">
+      <SubHero image={heroImage(5)} imageOnly={true} />
+
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Website Categorization' }]} />
           <h1 className="statement" data-split>Website Categorization Tool</h1>
-          <p className="lede" data-reveal>Automatically sort any website into standard industry categories, using AI to read and understand its content.</p>
+          <p className="lede" data-reveal>See how security filters, ad networks, and AI content analyzers classify any domain.</p>
         </div>
       </section>
 

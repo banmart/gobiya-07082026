@@ -1,6 +1,9 @@
 import { CONTACT } from '../../../lib/nav';
 import { buildMetadata } from '../../../lib/meta';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import SubHero from '../../../components/SubHero';
+import ClientLogos from '../../../components/ClientLogos';
+import { heroImage } from '../../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'Thanks',
@@ -12,20 +15,15 @@ export const metadata = buildMetadata({
 export default function LpThankYouPage() {
   return (
     <main id="top">
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Thanks' }]} />
-
-      <section className="mw-subhero">
-        <div className="container">
-          <span className="mw-subhero__eyebrow">Request Received</span>
-          <h1 className="mw-subhero__title">Got it — we&apos;ll reply within one business day.</h1>
-          <p className="mw-subhero__dek">
-            Steve reviews every submission personally. No automated sequences, no generic templates.
-            If it&apos;s urgent, call{' '}
-            <a href={CONTACT.phoneHref} style={{ color: '#F5B83D' }}>{CONTACT.phone}</a> or email{' '}
-            <a href={`mailto:${CONTACT.email}`} style={{ color: '#F5B83D' }}>{CONTACT.email}</a>.
-          </p>
-        </div>
-      </section>
+      <SubHero
+        image={heroImage(16)}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Thanks' }]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       <section className="mw-simple">
         <div className="container">
@@ -59,6 +57,9 @@ export default function LpThankYouPage() {
           </div>
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       <section className="mw-navy-banner">
         <div className="container">

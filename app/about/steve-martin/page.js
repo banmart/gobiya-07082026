@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import SubHero from '../../../components/SubHero';
+import ClientLogos from '../../../components/ClientLogos';
 import CollapsibleSidebar from '../../../components/CollapsibleSidebar';
+import { heroImage } from '../../../lib/heroImages';
 import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -31,22 +34,20 @@ const STEVE_TOPICS = [
 export default function SteveMartinPage() {
   return (
     <main id="top">
-      {/* ══ 1. Clean Breadcrumb Bar ══ */}
-      <Breadcrumbs items={[
-        { label: 'Home', href: '/' },
-        { label: 'About', href: '/about' },
-        { label: 'Steve Martin' },
-      ]} />
-
-      {/* ══ 2. Subhero Dark Banner ══ */}
-      <section className="mw-subhero">
-        <div className="container">
-          <h1 className="mw-subhero__title">Steve Martin — Founder &amp; Head of Strategy</h1>
-          <p className="mw-subhero__dek">
-            Hands-on web design experience since 1996. Over 30 years of watching search and the web evolve, adapting every time. A career spent in web design, development, and search engineering.
-          </p>
-        </div>
-      </section>
+      {/* ══ 2. SubHero Banner ══ */}
+      <SubHero
+        image={heroImage(3)}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'About', href: '/about' },
+          { label: 'Steve Martin' },
+        ]}
+        eyebrow="Affordable Solutions, Exceptional Service"
+        title="Exclusive Gobiya Savings"
+        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+      />
 
       {/* ══ 3. Pillar Hierarchical Grid (Left Sidebar + Right Column) ══ */}
       <div className="container">
@@ -108,7 +109,10 @@ export default function SteveMartinPage() {
         </div>
       </div>
 
-      {/* ══ 4. Bottom Navy CTA Banner ══ */}
+      {/* ══ 4. Client Logo Strip ══ */}
+      <ClientLogos />
+
+      {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">

@@ -11,27 +11,74 @@
 // `eyebrow`, `excerpt` and `description` are all optional and render in the
 // homepage order: eyebrow, headline, bold standfirst, body paragraph, actions.
 
+import Breadcrumbs from './Breadcrumbs';
+
 export default function SubHero({
   image,
+  breadcrumbs,
   eyebrow,
   title,
   excerpt,
   description,
   primary,
   secondary,
+  noCard = false,
+  imageOnly = false,
+  logo,
 }) {
+  if (imageOnly) {
+    return (
+      <section
+        className="mw-hero mw-hero--sub mw-hero--image-only"
+        style={image ? { backgroundImage: `url('${image}')` } : undefined}
+      >
+        <div className="mw-hero__overlay" />
+      </section>
+    );
+  }
+
   return (
     <section
-      className="mw-hero mw-hero--sub"
+      className={`mw-hero mw-hero--sub ${noCard ? 'mw-hero--no-card' : ''}`.trim()}
       style={image ? { backgroundImage: `url('${image}')` } : undefined}
     >
       <div className="mw-hero__overlay" />
       <div className="container">
-        <div className="mw-hero__card">
-          {eyebrow && <div className="mw-hero__eyebrow">{eyebrow}</div>}
-          <h1 className="mw-hero__title">{title}</h1>
-          {excerpt && <p className="mw-hero__excerpt">{excerpt}</p>}
-          {description && <p className="mw-hero__description">{description}</p>}
+        <div className={noCard ? 'mw-hero__banner-plain' : 'mw-hero__card'}>
+          {logo && (
+            <div className="mw-hero__client-logo" style={{ marginBottom: '1rem' }}>
+              <img
+                src={typeof logo === 'string' ? logo : logo.src}
+                alt={typeof logo === 'string' ? '' : (logo.alt || '')}
+                style={{ maxHeight: '44px', maxWidth: '220px', objectFit: 'contain' }}
+              />
+            </div>
+          )}
+          {breadcrumbs && (
+            Array.isArray(breadcrumbs) ? (
+              <Breadcrumbs items={breadcrumbs} inHero light={noCard} />
+            ) : (
+              breadcrumbs
+            )
+          )}
+          {eyebrow && (
+            <div className={noCard ? 'mw-hero__eyebrow mw-hero__eyebrow--light' : 'mw-hero__eyebrow'}>
+              {eyebrow}
+            </div>
+          )}
+          <h1 className={noCard ? 'mw-hero__title mw-hero__title--light' : 'mw-hero__title'}>
+            {title}
+          </h1>
+          {excerpt && (
+            <p className={noCard ? 'mw-hero__excerpt mw-hero__excerpt--light' : 'mw-hero__excerpt'}>
+              {excerpt}
+            </p>
+          )}
+          {description && (
+            <p className={noCard ? 'mw-hero__description mw-hero__description--light' : 'mw-hero__description'}>
+              {description}
+            </p>
+          )}
           {primary && (
             <div className="mw-hero__actions">
               <a href={primary.href} className="mw-hero__btn">

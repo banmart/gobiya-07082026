@@ -2,6 +2,7 @@ import { INSIGHTS } from '../lib/insights';
 import { SERVICE_LINKS } from '../lib/serviceIndex';
 import { CASE_STUDIES } from '../lib/work';
 import { AREAS } from '../lib/areas';
+import { GLOSSARY } from '../lib/glossary';
 
 const BASE_URL = 'https://www.gobiya.com';
 
@@ -14,6 +15,7 @@ export default function sitemap() {
     '/contact',
     '/free-site-scan',
     '/insights',
+    '/glossary',
     '/services',
     '/pricing',
     '/seo-myths',
@@ -35,17 +37,10 @@ export default function sitemap() {
     url: `${BASE_URL}${path}`,
   }));
 
-  // The nine city pages plus the hub were live but absent from the sitemap,
-  // which is how the hub above and this block both came to be missing. Driven
-  // off lib/areas.js so adding a city cannot leave the sitemap behind again.
   const areaRoutes = AREAS.map((area) => ({
     url: `${BASE_URL}/areas-we-serve/${area.slug}`,
   }));
 
-  // Driven off SERVICE_LINKS, not lib/services.js: that file holds only four
-  // of the eight services (the rest live in servicesFlat.js), so keying the
-  // sitemap off it silently omitted half of them while four were hardcoded
-  // into the static list above — one of them twice.
   const serviceRoutes = SERVICE_LINKS.map((s) => ({
     url: `${BASE_URL}${s.href}`,
   }));
@@ -55,9 +50,20 @@ export default function sitemap() {
     lastModified: insight.date,
   }));
 
+  const glossaryRoutes = GLOSSARY.map((term) => ({
+    url: `${BASE_URL}/glossary/${term.slug}`,
+  }));
+
   const caseStudyRoutes = CASE_STUDIES.filter((c) => c.study).map((c) => ({
     url: `${BASE_URL}/work/${c.slug}`,
   }));
 
-  return [...staticRoutes, ...areaRoutes, ...serviceRoutes, ...insightRoutes, ...caseStudyRoutes];
+  return [
+    ...staticRoutes,
+    ...areaRoutes,
+    ...serviceRoutes,
+    ...insightRoutes,
+    ...glossaryRoutes,
+    ...caseStudyRoutes,
+  ];
 }

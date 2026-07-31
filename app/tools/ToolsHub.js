@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
+import ClientLogos from '../../components/ClientLogos';
+import { heroImage } from '../../lib/heroImages';
 
 const TOOLS = [
   {
@@ -89,9 +92,15 @@ export default function ToolsHub() {
 
   return (
     <main id="top">
-      <section className="page-hero section">
+      {/* ══ Hero — Image Background ONLY ══ */}
+      <SubHero
+        image={heroImage(5)}
+        imageOnly={true}
+      />
+
+      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'tools' }]} />
+          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
           <h1 className="statement" data-split>Free Online SEO &amp; Domain Tools for Los Angeles Businesses</h1>
           <p className="lede" data-reveal>Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
         </div>
@@ -163,6 +172,9 @@ export default function ToolsHub() {
 
         </div>
       </section>
+
+      {/* ══ Client Logo Strip ══ */}
+      <ClientLogos />
 
       {/* Conversion Bridge */}
       <section className="section section--dark" style={{ padding: '4rem 0' }}>
