@@ -3,7 +3,6 @@ import TestimonialStack from '../components/TestimonialStack';
 import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
-import AuroraCanvas from '../components/AuroraCanvas';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
@@ -380,7 +379,6 @@ export default function Home() {
 
       {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
       <section className="mw-savings">
-        <AuroraCanvas />
         <div className="container">
           <div className="mw-savings__box">
             <div className="mw-savings__content">

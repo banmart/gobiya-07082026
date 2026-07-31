@@ -4723,20 +4723,9 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 .mw-savings {
   padding-block: clamp(4.5rem, 8vw, 7rem);
-  background: #040A14;
+  background: #0B1E36;
   position: relative;
   overflow: hidden;
-}
-
-.mw-savings::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
-  opacity: 0.5;
-  z-index: 1;
 }
 
 .mw-savings__box {
