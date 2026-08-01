@@ -7631,3 +7631,286 @@ html.a11y-grayscale {
   font-size: 0.8125rem;
   color: #64748B;
 }
+
+/* ═══════════ Site scan report (/free-site-scan/report/[id]) ═══════════ */
+.scan-report {
+  padding-block: clamp(3rem, 7vw, 5rem);
+  background: #FFFFFF;
+}
+
+.scan-report__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 0.75rem;
+}
+
+.scan-report__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #0B1E36;
+  overflow-wrap: anywhere; /* URLs are unbreakable strings */
+  margin-bottom: 1rem;
+}
+
+.scan-report__dek {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 1rem;
+  max-width: 44rem;
+}
+
+/* ── progress ── */
+.scan-report__stages {
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.scan-report__stage {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: 0.9375rem;
+  color: #94A3B8;
+  transition: color 0.3s ease;
+}
+
+.scan-report__stage::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #CBD5E1;
+  transition: background 0.3s ease;
+}
+
+.scan-report__stage--active { color: #0B1E36; }
+.scan-report__stage--active::before { background: #C8102E; }
+
+/* ── score ── */
+.scan-report__score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin: 1.5rem 0 1.75rem;
+}
+
+.scan-report__score-num {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.scan-report__score-max {
+  font-size: 1.25rem;
+  color: #94A3B8;
+}
+
+.scan-report__score--good .scan-report__score-num { color: #15803D; }
+.scan-report__score--warn .scan-report__score-num { color: #B7791F; }
+.scan-report__score--bad  .scan-report__score-num { color: #C8102E; }
+
+.scan-report__summary {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #334155;
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
+}
+
+.scan-report__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-weight: 400;
+  color: #0B1E36;
+  margin-bottom: 1rem;
+}
+
+/* ── findings ── */
+.scan-report__findings {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Severity is carried by a text label as well as the colour bar — colour alone
+   would leave the priority invisible to anyone who cannot distinguish it. */
+.scan-report__finding {
+  border: 1px solid #E2E8F0;
+  border-left: 3px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  background: #FAFAFA;
+}
+
+.scan-report__finding--high { border-left-color: #C8102E; }
+.scan-report__finding--medium { border-left-color: #B7791F; }
+
+.scan-report__severity {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 0.4rem;
+}
+
+.scan-report__finding--high .scan-report__severity { color: #C8102E; }
+.scan-report__finding--medium .scan-report__severity { color: #B7791F; }
+
+.scan-report__finding-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #0B1E36;
+  margin-bottom: 0.5rem;
+}
+
+.scan-report__finding-why,
+.scan-report__finding-fix {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.scan-report__finding-why { margin-bottom: 0.5rem; }
+
+/* ── check list ── */
+.scan-report__checks {
+  display: grid;
+  gap: 0;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.scan-report__check {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 0.9375rem;
+}
+
+.scan-report__check:last-child { border-bottom: none; }
+
+.scan-report__check-label { color: #0B1E36; }
+
+.scan-report__check-detail {
+  color: #64748B;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.scan-report__check--pass .scan-report__check-label::before { content: '✓ '; color: #15803D; }
+.scan-report__check--warn .scan-report__check-label::before { content: '! '; color: #B7791F; }
+.scan-report__check--fail .scan-report__check-label::before { content: '✕ '; color: #C8102E; }
+.scan-report__check--unmeasured { opacity: 0.6; }
+.scan-report__check--unmeasured .scan-report__check-label::before { content: '– '; color: #94A3B8; }
+
+.scan-report__steps {
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+  margin-bottom: 2rem;
+}
+
+.scan-report__note {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #64748B;
+  padding-top: 1.5rem;
+  border-top: 1px solid #E2E8F0;
+}
+
+/* ── request a call ── */
+.scan-cta {
+  margin-top: 2.5rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #FAFAFA;
+}
+
+.scan-cta__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 400;
+  color: #0B1E36;
+  margin-bottom: 1.25rem;
+}
+
+.scan-cta__form { display: grid; gap: 0.5rem; }
+
+.scan-cta__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+  margin-top: 0.5rem;
+}
+
+.scan-cta__input {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: #0B1E36;
+  width: 100%;
+}
+
+.scan-cta__input:focus-visible {
+  outline: 2px solid #0B1E36;
+  outline-offset: 1px;
+}
+
+.scan-cta__input--area { resize: vertical; }
+
+.scan-cta__btn {
+  justify-self: start;
+  margin-top: 1rem;
+  background: #C8102E;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.8rem 1.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.scan-cta__btn:hover { background: #A70D26; }
+.scan-cta__btn:disabled { opacity: 0.6; cursor: default; }
+
+.scan-cta__done,
+.scan-cta__error,
+.scan-cta__alt {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.scan-cta__error { color: #C8102E; margin-top: 0.75rem; }
+.scan-cta__alt { margin-top: 1.25rem; color: #64748B; }
+
+.scan-cta__done a,
+.scan-cta__error a,
+.scan-cta__alt a { color: #C8102E; text-decoration: underline; }

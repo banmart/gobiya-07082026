@@ -144,7 +144,13 @@ export default function OnboardingStepper() {
         throw new Error(payload.error || 'Something went wrong.');
       }
       setStatus('success');
-      router.push('/free-site-scan/thank-you');
+      // A scan only exists when a website was given and accepted. Without one
+      // there is nothing to report on, so the original thank-you page stands.
+      router.push(
+        payload.auditId
+          ? `/free-site-scan/report/${payload.auditId}`
+          : '/free-site-scan/thank-you'
+      );
     } catch (err) {
       setStatus('error');
       setError(err.message || 'Something went wrong. Please try again.');
