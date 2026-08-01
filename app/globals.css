@@ -4721,6 +4721,30 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   height: 100%;
 }
 
+/* Iridescence (React Bits shader, brand-graded — see components/IridescenceCanvas.js).
+   The gradient below is not decoration: the canvas has no pixels until the
+   section scrolls within 200px of the viewport, and it never gets any at all
+   without WebGL, so this is what the section actually looks like in both
+   cases. It approximates the shader's navy → carmine → gold sweep. */
+.mw-iridescence {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 60% at 18% 16%, rgba(200, 16, 46, 0.30) 0%, rgba(200, 16, 46, 0) 55%),
+    radial-gradient(65% 55% at 84% 82%, rgba(245, 184, 61, 0.18) 0%, rgba(245, 184, 61, 0) 58%),
+    radial-gradient(120% 100% at 58% 34%, rgba(22, 56, 106, 0.90) 0%, rgba(22, 56, 106, 0) 72%),
+    #0E2445;
+}
+
+.mw-iridescence__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .mw-savings {
   padding-block: clamp(4.5rem, 8vw, 7rem);
   background: #0B1E36;
@@ -4728,61 +4752,21 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   overflow: hidden;
 }
 
-.mw-savings__box {
-  position: relative;
-  z-index: 2;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(6, 16, 30, 0.68);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 35px rgba(0, 240, 180, 0.08);
-  padding: clamp(2.5rem, 5vw, 4rem);
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  align-items: center;
-  border-radius: 12px;
-}
-
-@media (max-width: 900px) {
-  .mw-savings__box {
-    grid-template-columns: 1fr;
-    padding: clamp(2rem, 4vw, 3rem);
-  }
-}
-
-.mw-savings__ribbon {
-  width: 44px;
-  height: 6px;
-  background: linear-gradient(90deg, #00FF9D 0%, #00E5FF 50%, #6366F1 100%);
-  border-radius: 3px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 12px rgba(0, 255, 157, 0.6);
-}
-
 .mw-savings__title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
   font-weight: 400;
   color: #FFFFFF;
   line-height: 1.15;
   letter-spacing: -0.01em;
-  margin-bottom: 1rem;
-}
-
-.mw-savings__subtitle {
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #38BDF8;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .mw-savings__desc {
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+  line-height: 1.6;
   color: #E2E8F0;
-  max-width: 32rem;
-  margin-bottom: 2.25rem;
+  max-width: 44rem;
   font-weight: 400;
 }
 
@@ -4819,93 +4803,323 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   transform: translateX(4px);
 }
 
-/* Coupon Card - Liquified Glass Effect */
+/* ── Coupon card: liquid glass ──
+   Four layers, because one blurred panel reads as frosted plastic, not glass:
+   (1) a low-alpha tinted body that lets the iridescence through,
+   (2) a blur + saturate + brightness backdrop so what shows through is
+       refracted rather than merely dimmed,
+   (3) ::before — a diagonal specular sweep, the highlight a curved surface
+       throws, which is the cue that actually sells "liquid",
+   (4) ::after — a gradient-masked 1px rim, bright along the top-left edge and
+       falling to nothing at the bottom-right, so the edge catches light
+       directionally instead of glowing evenly all the way round. */
 .mw-savings__coupon {
-  background: rgba(10, 22, 40, 0.55);
-  border-radius: 16px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    0 0 40px rgba(0, 229, 255, 0.1);
   position: relative;
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  z-index: 2;
+  isolation: isolate;
+  border-radius: 24px;
+  padding: clamp(2.25rem, 4.5vw, 3.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  /* Carries more navy than a glass panel normally would. It's the only card in
+     the section now, so it spans the full container with a three-colour shader
+     running underneath it — at a lighter tint the copy would lose contrast
+     every time a yellow crest passed behind it. */
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(11, 30, 54, 0.34) 38%,
+      rgba(6, 16, 32, 0.58) 100%
+    );
+  backdrop-filter: blur(22px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(22px) saturate(180%) brightness(1.08);
+  box-shadow:
+    0 26px 55px -14px rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 0 26px rgba(255, 255, 255, 0.05);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.45s var(--expo-out),
+    box-shadow 0.45s var(--expo-out);
+}
+
+/* (3) Specular sweep. Sits above the backdrop, below the copy. */
+.mw-savings__coupon::before {
+  content: '';
+  position: absolute;
+  inset: -40% -10%;
+  z-index: -1;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 255, 255, 0.16) 46%,
+    rgba(255, 255, 255, 0.30) 50%,
+    rgba(255, 255, 255, 0.16) 54%,
+    rgba(255, 255, 255, 0) 66%
+  );
+  transform: translateX(-22%);
+  transition: transform 0.9s var(--expo-out);
+  pointer-events: none;
+}
+
+/* (4) Directional rim. mask-composite: xor punches the middle out of the
+   gradient fill, leaving only the 1px border ring painted. */
+.mw-savings__coupon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.62) 0%,
+    rgba(255, 255, 255, 0.10) 34%,
+    rgba(255, 255, 255, 0) 62%,
+    rgba(255, 255, 255, 0.16) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .mw-savings__coupon:hover {
-  transform: translateY(-3px);
-  border-color: rgba(0, 229, 255, 0.35);
-  box-shadow: 
-    0 30px 60px -12px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3),
-    0 0 50px rgba(0, 255, 157, 0.18);
+  transform: translateY(-4px);
+  box-shadow:
+    0 34px 70px -14px rgba(0, 0, 0, 0.70),
+    inset 0 1px 0 rgba(255, 255, 255, 0.46),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.10),
+    inset 0 0 30px rgba(255, 255, 255, 0.08);
 }
 
+/* The highlight travels across the surface on hover — the one thing that
+   distinguishes liquid glass from a static frosted panel. */
+.mw-savings__coupon:hover::before {
+  transform: translateX(22%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mw-savings__coupon,
+  .mw-savings__coupon::before {
+    transition: none;
+  }
+  .mw-savings__coupon:hover {
+    transform: none;
+  }
+  .mw-savings__coupon:hover::before {
+    transform: translateX(-22%);
+  }
+}
+
+/* Without backdrop-filter the card would be a near-transparent hole over a
+   moving shader, and the copy would be unreadable. Give it a solid body. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .mw-savings__coupon {
+    background: rgba(10, 22, 40, 0.88);
+  }
+}
+
+/* Ad layout: copy runs long on the left, the CTA gets its own column on the
+   right so the button lands at the optical centre of a full-width card rather
+   than trailing off the end of a very long measure. */
 .mw-savings__coupon-inner {
-  border: none;
-  background: transparent;
-  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+  align-items: center;
   text-align: left;
 }
 
+.mw-savings__coupon-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+@media (min-width: 861px) {
+  .mw-savings__coupon-cta {
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+    padding-left: clamp(1.75rem, 3.5vw, 3rem);
+  }
+}
+
+@media (max-width: 860px) {
+  .mw-savings__coupon-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .mw-savings__coupon-cta {
+    align-items: flex-start;
+  }
+}
+
+/* Badge row: the carmine eyebrow plus the value announcement beside it. Wraps
+   on narrow screens rather than shrinking, so neither pill ever truncates. */
+.mw-savings__coupon-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Carmine — the site's single accent (see lib/brand.js). Solid fill with white
+   copy rather than carmine text on a tint: #C8102E against this panel is about
+   2.9:1, which fails at this size, and white on carmine is 5.9:1. */
 .mw-savings__coupon-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8125rem;
-  font-weight: 500;
-  color: #00FF9D;
-  background: rgba(0, 255, 157, 0.1);
-  border: 1px solid rgba(0, 255, 157, 0.25);
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #C8102E;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   padding: 0.35rem 0.85rem;
   border-radius: 20px;
-  margin-bottom: 1.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(200, 16, 46, 0.42);
+}
+
+/* Gold outline rather than a second solid fill — two filled pills side by side
+   compete, and the carmine one is the eyebrow that should lead. */
+.mw-savings__coupon-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #F5B83D;
+  background: rgba(245, 184, 61, 0.12);
+  border: 1px solid rgba(245, 184, 61, 0.45);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
+/* Subheading under the offer. Gold so it separates from the white h2 above and
+   the grey excerpt below without needing more size to do it. */
 .mw-savings__coupon-offer {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   font-weight: 400;
-  color: #FFFFFF;
-  line-height: 1.4;
-  margin-bottom: 0.85rem;
+  color: #F5B83D;
+  line-height: 1.3;
+  margin-bottom: 0.9rem;
   letter-spacing: -0.01em;
+}
+
+/* ── Countdown ──
+   Spans the full card under the copy/CTA grid. Digits are monospace with
+   tabular figures so the clock doesn't jitter as the seconds roll — a
+   proportional face reflows the whole row every time a 1 turns into an 8. */
+.mw-countdown {
+  position: relative;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+}
+
+.mw-countdown__label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #CBD5E1;
+  margin-bottom: 0.9rem;
+}
+
+/* Spans the card and centres its contents. The cells share the row equally via
+   flex rather than a fixed min-width, so the clock reflows down to narrow
+   phones instead of relying on the clamp arithmetic happening to fit inside
+   whatever the card padding leaves. */
+.mw-countdown__clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.25rem, 1vw, 0.75rem);
+  width: 100%;
+}
+
+/* Flattens the wrapper so cells and separators are direct flex children of the
+   clock — otherwise the group holding a separator competes for width against
+   the one that doesn't, and the four cells come out uneven. */
+.mw-countdown__group {
+  display: contents;
+}
+
+.mw-countdown__cell {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  /* min-width:0 lets flex actually shrink these below content width; max-width
+     stops them sprawling into four huge boxes on a full-width card. */
+  min-width: 0;
+  max-width: 7rem;
+  padding: clamp(0.5rem, 1.2vw, 0.8rem) clamp(0.3rem, 1vw, 0.7rem);
+  border-radius: 12px;
+  /* Solid black rather than the card's translucent white — it reads as a
+     recessed LED display, and it's the one thing here that doesn't change
+     contrast as the shader moves behind the glass. */
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 18px rgba(0, 0, 0, 0.9);
+}
+
+/* Floor is set by the days cell, which runs to three digits — at anything
+   larger the widest cell overflows once the row is squeezed onto a 360px
+   screen. */
+.mw-countdown__num {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.15rem, 4vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.30);
+}
+
+.mw-countdown__unit {
+  font-size: clamp(0.5625rem, 1.3vw, 0.625rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #CBD5E1;
+}
+
+/* Nudged off centre so the colon sits on the digits rather than on the middle
+   of the cell, which the unit label below pulls downward. */
+.mw-countdown__sep {
+  flex: 0 0 auto;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(1rem, 2.6vw, 1.7rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.38);
+  transform: translateY(-0.28em);
 }
 
 .mw-savings__coupon-validity {
   font-size: 0.8125rem;
   font-weight: 400;
-  color: #94A3B8;
-  margin-bottom: 1.75rem;
-}
-
-.mw-savings__coupon-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding-top: 1.5rem;
-}
-
-.mw-savings__action-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #38BDF8;
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.mw-savings__action-link:hover {
-  color: #00FF9D;
-  transform: translateY(-1px);
+  color: #CBD5E1;
+  text-align: center;
 }
 
 /* Pinned Stacked Testimonials Section */

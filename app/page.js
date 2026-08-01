@@ -3,6 +3,7 @@ import TestimonialStack from '../components/TestimonialStack';
 import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
+import SavingsOffer from '../components/SavingsOffer';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
@@ -378,37 +379,7 @@ export default function Home() {
       </section>
 
       {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
-      <section className="mw-savings">
-        <div className="container">
-          <div className="mw-savings__box">
-            <div className="mw-savings__content">
-              <div className="mw-savings__ribbon" />
-              <h2 className="mw-savings__title">
-                Affordable Solutions, Exceptional Service
-              </h2>
-              <h3 className="mw-savings__subtitle">Exclusive Gobiya Savings</h3>
-              <p className="mw-savings__desc">
-                Keep your website running smoothly and your wallet happy with our latest coupons and special offers.
-              </p>
-              <a href="/free-site-scan" className="mw-savings__btn">
-                Save More Today <span>→</span>
-              </a>
-            </div>
-
-            <div className="mw-savings__coupon">
-              <div className="mw-savings__coupon-inner">
-                <div className="mw-savings__coupon-badge">Special Offer</div>
-                <h4 className="mw-savings__coupon-offer">
-                  CRM included with any new website build.
-                </h4>
-                <p className="mw-savings__coupon-validity">
-                  Valid Dec 31, 2026
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SavingsOffer />
 
       {/* ══ 10. Schedule a Free Consultation Calendar Section ══ */}
 

@@ -3,6 +3,7 @@ import SubHero from './SubHero';
 import PlatformStrip from './PlatformStrip';
 import ClientLogos from './ClientLogos';
 import { renderBlock } from './ContentBlocks';
+import SavingsOffer from './SavingsOffer';
 import { servicePath, SERVICE_LINKS } from '../lib/serviceIndex';
 import { SERVICE_BODIES } from '../lib/serviceBodies';
 import { AREAS } from '../lib/areas';
@@ -157,6 +158,9 @@ export default function ServiceTemplate({ service }) {
           </div>
         </div>
       </section>
+
+      {/* ══ 4. CRM offer — opt-in per service via `showOffer` in lib/services.js ══ */}
+      {service.showOffer && <SavingsOffer />}
 
       {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
