@@ -11,7 +11,7 @@ import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 import { heroImage, HERO_VIDEO } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO | Glendale & Encino | Gobiya SEO',
+  title: 'AI SEO Services Los Angeles | GEO | SEO Near Me',
   description:
     'Get white-hat & affordable services from Gobiya Internet Marketing & SEO, a top ranking SEO expert in Los Angeles. We offer AI, GEO, SEO, PPC, Content Marketing, PR & more. Get a FREE Consultation Today!',
   path: '/',
