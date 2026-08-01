@@ -9,22 +9,34 @@ export default function Footer() {
           <div>
             <h4 className="mw-footer__col-title">Services</h4>
             <div className="mw-footer__links">
+              <a href="/services">All Services</a>
               <a href="/services/seo">Local &amp; Technical SEO</a>
               <a href="/services/geo">AI &amp; GEO Search</a>
               <a href="/services/content-marketing">Content Strategy</a>
               <a href="/services/link-building">Authority Link Building</a>
               <a href="/services/ppc">PPC Management</a>
               <a href="/services/cro">CRO &amp; Web UX</a>
+              <a href="/services/web-dev">Web &amp; App Development</a>
+              <a href="/services/ai-consulting">AI &amp; LLM Consulting</a>
             </div>
           </div>
 
+          {/* Was "Industries", and four of its six links pointed back at
+              /services. It lists the case studies that actually exist now, and
+              matches the Work item in the header nav. */}
           <div>
-            <h4 className="mw-footer__col-title">Industries</h4>
+            <h4 className="mw-footer__col-title">Work</h4>
             <div className="mw-footer__links">
-              <a href="/services">Legal &amp; Professional Services</a>
-              <a href="/work/smile-center-dentistry">Healthcare &amp; Dental</a>
-              <a href="/work/remodel-me-pros">Home &amp; Building Services</a>
-              <a href="/services">B2B &amp; E-Commerce</a>
+              <a href="/work">All Case Studies</a>
+              <a href="/work/smile-center-dentistry">SmileCenter.com</a>
+              <a href="/work/american-livescan">American Livescan</a>
+              <a href="/work/safetycentric">Safety-Centric.com</a>
+              <a href="/work/quickpass-aid">QuickPassAiD.com</a>
+              <a href="/work/remodel-me-pros">RemodelMePros.com</a>
+              <a href="/work/the-healing-metta">The Healing Metta</a>
+              <a href="/work/total-capital">TotalCapitalInc.com</a>
+              <a href="/work/dg-plumbing">DG Plumbing &amp; Rooter</a>
+              <a href="/work/mtw">MyTrustWills.com</a>
             </div>
           </div>
 
@@ -35,8 +47,23 @@ export default function Footer() {
               <a href="/glossary">Glossary</a>
               <a href="/seo-myths">SEO Myths Game</a>
               <a href="/insights/what-is-generative-engine-optimization">AI Visibility Guide</a>
-              <a href="/tools">Free Tools Hub</a>
               <a href="/stuff">Video Stuff</a>
+              <a href="/mcp">AI MCP API</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mw-footer__col-title">Free Tools</h4>
+            <div className="mw-footer__links">
+              <a href="/tools">Free Tools Hub</a>
+              <a href="/tools/dns-lookup">DNS Lookup</a>
+              <a href="/tools/domain-lookup">Domain Lookup</a>
+              <a href="/tools/domain-reputation">Domain Reputation</a>
+              <a href="/tools/email-verification">Email Verification</a>
+              <a href="/tools/ip-geolocation">IP Geolocation</a>
+              <a href="/tools/ssl-certificates">SSL Certificates</a>
+              <a href="/tools/threat-intelligence">Threat Intelligence</a>
+              <a href="/tools/website-categorization">Website Categorization</a>
             </div>
           </div>
 
@@ -61,10 +88,9 @@ export default function Footer() {
             <div className="mw-footer__links">
               <a href="/about">What We Do</a>
               <a href="/about/approach">Confidentiality &amp; Security</a>
-              <a href="/contact">Contact Us</a>
-              <a href="/mcp">AI MCP API</a>
               <a href="/about/steve-martin">Leadership</a>
-              <a href="/work">Client Stories</a>
+              <a href="/contact">Contact Us</a>
+              <a href="/areas-we-serve">Areas We Serve</a>
               <a href="/free-site-scan">Free Site Scan</a>
             </div>
           </div>

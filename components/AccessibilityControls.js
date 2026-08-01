@@ -84,20 +84,11 @@ export default function AccessibilityControls() {
         title="Accessibility & Visual Controls"
         aria-expanded={isOpen}
       >
-        <svg
-          viewBox="0 0 24 24"
-          width="22"
-          height="22"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="4" r="2" />
-          <path d="M19 13v-2a2 2 0 0 0-2-2h-3V5a1 1 0 0 0-1-1h-3a1 1 0 0 0-1 1v6a2 2 0 0 0 2 2h3v5a2 2 0 0 0 2 2h2" />
-          <circle cx="9" cy="18" r="4" />
-        </svg>
+        {/* Text only, no icon. The wheelchair glyph that used to sit here reads
+            as "this is for wheelchair users" when the panel is really text
+            size, contrast and link highlighting — controls most people
+            adjusting them are not using a wheelchair for. The word does the
+            job without narrowing who thinks it is for them. */}
         <span className="a11y-widget__trigger-label">Accessibility</span>
       </button>
 

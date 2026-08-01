@@ -8,6 +8,14 @@ export default function Header() {
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Which mobile accordion section is expanded. One at a time — five sections
+  // open at once is a wall of links rather than a menu.
+  const [openSection, setOpenSection] = useState(null);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setOpenSection(null);
+  };
 
   const handleMouseEnter = (idx) => {
     setActiveMenuIndex(idx);
@@ -148,35 +156,80 @@ export default function Header() {
         )}
       </header>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile overlay menu.
+          Previously five flat links to the section hubs, which left every
+          service, tool and case study unreachable on a phone. It's an accordion
+          now so the mega-menu contents are actually available, with one section
+          open at a time to keep the panel scannable. */}
       <div className={`menu ${isMenuOpen ? 'is-open' : ''}`} id="menu" aria-hidden={!isMenuOpen}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-          <a className="nav__logo" href="/" onClick={() => setIsMenuOpen(false)}>
+        <div className="menu__head">
+          <a className="nav__logo" href="/" onClick={closeMenu}>
             <LogoMark className="nav__logo-mark" size={30} />
-            <span className="nav__logo-word" style={{ color: '#FFFFFF' }}>Gobiya</span>
+            <span className="nav__logo-word">Gobiya</span>
           </a>
-          <button
-            type="button"
-            onClick={() => setIsMenuOpen(false)}
-            style={{ background: 'transparent', border: 'none', color: '#FFFFFF', fontSize: '1.75rem', cursor: 'pointer', padding: '0.5rem' }}
-            aria-label="Close menu"
-          >
+          <button type="button" className="menu__close" onClick={closeMenu} aria-label="Close menu">
             &times;
           </button>
         </div>
 
         <nav className="menu__links" aria-label="Mobile">
-          {MEGA_NAV.map((item, i) => (
-            <div className="menu__block" key={item.label} style={{ '--i': i }}>
-              <a href={item.href} onClick={() => setIsMenuOpen(false)}>
-                {item.label}
-              </a>
-            </div>
-          ))}
+          {MEGA_NAV.map((item, i) => {
+            const isExpanded = openSection === item.label;
+            const panelId = `menu-section-${i}`;
+
+            return (
+              <div className={`menu__block ${isExpanded ? 'is-open' : ''}`} key={item.label} style={{ '--i': i }}>
+                <div className="menu__row">
+                  {/* Split control: the label navigates to the section hub, the
+                      chevron expands. One tappable element doing both is the
+                      usual mobile-nav trap — you can never reach the hub. */}
+                  <a className="menu__row-link" href={item.href} onClick={closeMenu}>
+                    {item.label}
+                  </a>
+                  <button
+                    type="button"
+                    className="menu__row-toggle"
+                    onClick={() => setOpenSection(isExpanded ? null : item.label)}
+                    aria-expanded={isExpanded}
+                    aria-controls={panelId}
+                    aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.label}`}
+                  >
+                    <span aria-hidden="true">⌄</span>
+                  </button>
+                </div>
+
+                {isExpanded && (
+                  <div className="menu__sub" id={panelId}>
+                    {item.columns.map((column) => (
+                      <div className="menu__sub-group" key={column.heading}>
+                        <p className="menu__sub-heading">{column.heading}</p>
+                        {column.items.map((sub) => (
+                          <a
+                            className="menu__sub-link"
+                            key={sub.href + sub.title}
+                            href={sub.href}
+                            onClick={closeMenu}
+                          >
+                            {sub.title}
+                            {sub.badge && <span className="menu__sub-badge">{sub.badge}</span>}
+                          </a>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
-        <div className="menu__foot" style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-          <span>Los Angeles · {CONTACT.address2}</span>
+
+        <div className="menu__foot">
+          <a className="menu__cta" href="/free-site-scan" onClick={closeMenu}>
+            Get a FREE site scan
+          </a>
+          <a className="menu__phone" href={CONTACT.phoneHref}>{CONTACT.phone}</a>
           <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+          <span>Los Angeles · {CONTACT.address2}</span>
         </div>
       </div>
     </>

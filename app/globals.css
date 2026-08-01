@@ -546,7 +546,11 @@ a.contact__value:hover { color: var(--main); }
 .nav__burger.is-open span:first-child { transform: translateY(3.75px) rotate(45deg); }
 .nav__burger.is-open span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
 
-/* mobile menu */
+/* mobile menu.
+   An accordion, not a list of section hubs: the panel now carries the whole
+   mega-nav, so a phone can reach every service, tool and case study. Sub-links
+   set their own type size because .menu__links a used to be display-scale for
+   every anchor in the panel, which is unreadable once nesting exists. */
 .menu {
   position: fixed;
   inset: 0;
@@ -555,84 +559,147 @@ a.contact__value:hover { color: var(--main); }
   color: #f4f7fb;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem var(--gutter) 2.5rem;
+  padding: 1.25rem var(--gutter) 2rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
   clip-path: inset(0 0 100% 0);
-  transition: clip-path 0.5s var(--expo-in-out);
+  transition: clip-path 0.45s var(--expo-in-out);
   visibility: hidden;
 }
 .menu.is-open { clip-path: inset(0 0 0 0); visibility: visible; }
-.menu__links { display: flex; flex-direction: column; gap: 1.5rem; flex: 1; }
-.menu__block { display: flex; flex-direction: column; gap: 0.6rem; }
-.menu__links a {
-  font-family: var(--font-heading);
-  font-size: clamp(1.9rem, 7vw, 3rem);
-  line-height: 1.2;
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  opacity: 0;
-  transform: translateY(1.5rem);
-  transition: opacity 0.6s var(--p2-out), transform 0.7s var(--expo-out), color 0.3s;
-  transition-delay: calc(0.15s + var(--i, 0) * 60ms);
-}
-.menu.is-open .menu__links a { opacity: 1; transform: none; }
-.menu__links a:hover { color: var(--main); }
-.menu__block--more {
-  padding-top: 1.5rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid var(--border-light);
-  opacity: 0;
-  transform: translateY(1.5rem);
-  transition: opacity 0.6s var(--p2-out), transform 0.7s var(--expo-out);
-  transition-delay: calc(0.15s + var(--i, 0) * 60ms);
-}
-.menu.is-open .menu__block--more { opacity: 1; transform: none; }
-.menu__more-heading {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(244, 247, 251, 0.45);
-  margin-bottom: 0.85rem;
-}
-.menu__links em {
-  font-family: var(--font-sans);
-  font-style: normal;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  color: var(--main);
-}
-.menu__sublinks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-left: 1.25rem;
-  border-left: 1px solid var(--border-light);
-}
-.menu__sublinks a {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: rgba(244, 247, 251, 0.7);
-  opacity: 1;
-  transform: none;
-  transition: color 0.25s;
-}
-.menu__sublinks a:hover { color: var(--main); }
-.menu__foot {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-light);
+
+.menu__head {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  font-size: 0.8125rem;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.menu__head .nav__logo-word { color: #FFFFFF; }
+.menu__close {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  /* 44px hit area — the old 0.5rem padding on a glyph was a ~28px target. */
+  padding: 0.35rem 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.menu__links { display: flex; flex-direction: column; flex: 1; }
+
+.menu__block {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.5s var(--p2-out), transform 0.6s var(--expo-out);
+  transition-delay: calc(0.1s + var(--i, 0) * 45ms);
+}
+.menu.is-open .menu__block { opacity: 1; transform: none; }
+
+.menu__row { display: flex; align-items: stretch; }
+
+.menu__row-link {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  line-height: 1.2;
+  color: #f4f7fb;
+  padding: 0.9rem 0;
+  transition: color 0.25s;
+}
+.menu__row-link:hover { color: var(--main); }
+
+.menu__row-toggle {
+  flex: 0 0 auto;
+  width: 52px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(244, 247, 251, 0.7);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.3s var(--expo-out), color 0.25s;
+}
+.menu__row-toggle:hover { color: var(--main); }
+.menu__block.is-open .menu__row-toggle { transform: rotate(180deg); color: var(--main); }
+
+.menu__sub {
+  display: grid;
+  gap: 1.25rem;
+  padding: 0.25rem 0 1.25rem;
+}
+
+.menu__sub-heading {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 251, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.menu__sub-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: rgba(244, 247, 251, 0.78);
+  padding: 0.55rem 0;
+  padding-left: 0.9rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  transition: color 0.25s, border-color 0.25s;
+}
+.menu__sub-link:hover { color: #FFFFFF; border-left-color: var(--main); }
+
+.menu__sub-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F5B83D;
+  border: 1px solid rgba(245, 184, 61, 0.4);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+}
+
+.menu__foot {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.875rem;
   color: rgba(244, 247, 251, 0.6);
 }
 .menu__foot a:hover { color: var(--main); }
+
+.menu__cta {
+  align-self: flex-start;
+  background: #C8102E;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 0.85rem 1.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+.menu__cta:hover { background: #A70D26; color: #FFFFFF; }
+
+.menu__phone { font-size: 1.05rem; font-weight: 600; color: #f4f7fb; }
+
+@media (prefers-reduced-motion: reduce) {
+  .menu, .menu__block, .menu__row-toggle { transition: none; }
+}
 
 /* ═══════════ hero ═══════════ */
 .hero {
