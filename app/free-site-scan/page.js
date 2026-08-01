@@ -1,11 +1,7 @@
 import { Suspense } from 'react';
-import Image from 'next/image';
 import OnboardingStepper from '../../components/OnboardingStepper';
-import TopicMarquee from '../../components/TopicMarquee';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import SubHero from '../../components/SubHero';
-import ClientLogos from '../../components/ClientLogos';
-import { heroImage } from '../../lib/heroImages';
+import TestimonialsCompact from '../../components/TestimonialsCompact';
+import PlatformStrip from '../../components/PlatformStrip';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -37,29 +33,22 @@ export default function OnboardingPage() {
   return (
     <main id="top">
 
-      {/* ══ 2. SubHero Banner ══ */}
-      <SubHero
-        image={heroImage(5)}
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Schedule a Consultation' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
-        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
-      />
-
-      <TopicMarquee topics={["5-Step Questionnaire", "Website Scan Intake", "Tailored Proposal", "Direct Founder Review", "Fast Turnaround"]} />
-
       <section className="section section--tint stepper-section">
         <div className="container container--narrow">
+          <h1 className="fss-heading">
+            Free Full Site Scan &amp; AI Visibility Audit
+          </h1>
           <Suspense fallback={<div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>Loading form...</div>}>
             <OnboardingStepper />
           </Suspense>
         </div>
       </section>
 
-      {/* ══ Client Logo Trust Bar ══ */}
-      <ClientLogos heading="The SEO Firm Trusted by Hundreds of Entrepreneurs" />
+      {/* ══ Platform Strip — the same global logo row that sits under the hero
+             site-wide, standing in for the client brand logos here ══ */}
+      <PlatformStrip />
+
+      <TestimonialsCompact />
       <div className="mw-navy-divider" />
 
     </main>

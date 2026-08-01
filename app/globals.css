@@ -7523,3 +7523,111 @@ html.a11y-grayscale {
   color: #0B1E36;
   transform: translateY(-1px);
 }
+
+/* ═══════════ /free-site-scan page heading ═══════════ */
+/* The page lost its SubHero, so this is the route's only h1. Sized off the
+   section headings rather than the old hero title — it sits directly above the
+   intake form, and hero-scale type there pushes the first field below the fold
+   on a laptop. */
+.fss-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #0B1E36;
+  text-align: center;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+/* ═══════════ Compact testimonials ═══════════ */
+/* Flat counterpart to the homepage TestimonialStack — see
+   components/TestimonialsCompact.js for why the scroll-pinned version doesn't
+   belong under a form. */
+.mw-tcompact {
+  padding-block: clamp(3rem, 6vw, 4.5rem);
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+}
+
+.mw-tcompact__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  color: #0B1E36;
+  text-align: center;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.mw-tcompact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  max-width: 68rem;
+  margin-inline: auto;
+}
+
+@media (max-width: 900px) {
+  .mw-tcompact__grid { grid-template-columns: 1fr; }
+}
+
+/* Column layout with the quote on flex:1 so the attribution pins to the bottom
+   of every card. The quotes are real client speech and run to very different
+   lengths, so without this the name lines wander up and down the row. */
+.mw-tcompact__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: #FAFAFA;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: clamp(1.25rem, 2.2vw, 1.75rem);
+}
+
+.mw-tcompact__quote {
+  flex: 1;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.mw-tcompact__person {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 1rem;
+}
+
+.mw-tcompact__avatar,
+.mw-tcompact__initials {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.mw-tcompact__avatar { object-fit: cover; }
+
+.mw-tcompact__initials {
+  display: grid;
+  place-items: center;
+  background: #0B1E36;
+  color: #FFFFFF;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.mw-tcompact__meta { min-width: 0; }
+
+.mw-tcompact__name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0B1E36;
+}
+
+.mw-tcompact__company {
+  font-size: 0.8125rem;
+  color: #64748B;
+}
