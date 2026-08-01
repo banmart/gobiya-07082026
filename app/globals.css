@@ -4561,9 +4561,43 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 /* Quality Services For Our Local Communities Section */
 .mw-local-areas {
+  position: relative;
   padding-block: clamp(4rem, 7vw, 6rem);
   background: #FFFFFF;
   border-top: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+
+/* ── LA map backdrop ──
+   The source is a full-colour Google Maps screenshot, so it can't just be
+   dropped in behind text. Two stacked background layers reduce it to a single
+   colour: the solid navy sits on top and `background-blend-mode: color` takes
+   hue and saturation from it while keeping luminosity from the map, which is a
+   duotone — every pixel ends up the same navy, varying only in lightness.
+
+   `mix-blend-mode: multiply` against the white section then lets the map's
+   light areas drop out to nothing instead of greying the section, and the
+   radial mask fades the whole thing off before it reaches any edge. */
+.mw-local-areas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#0B1E36, #0B1E36),
+    url('/assets/img/los-angeles-map.webp') center / cover no-repeat;
+  background-blend-mode: color;
+  mix-blend-mode: multiply;
+  opacity: 0.20;
+  -webkit-mask-image: radial-gradient(115% 100% at 50% 45%, #000 22%, transparent 76%);
+  mask-image: radial-gradient(115% 100% at 50% 45%, #000 22%, transparent 76%);
+  pointer-events: none;
+}
+
+/* Without a stacking context of its own the multiplied backdrop sits over the
+   copy rather than under it. */
+.mw-local-areas > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .mw-local-areas__heading {
