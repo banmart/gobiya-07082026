@@ -110,7 +110,7 @@ export default function Home() {
               <a href="/free-site-scan" className="mw-hero__btn">
                 Get Your Free Site Scan
               </a>
-              <a href="#process" className="mw-hero__btn mw-hero__btn--ghost">
+              <a href="/process" className="mw-hero__btn mw-hero__btn--ghost">
                 View Our Process
               </a>
             </div>
@@ -271,7 +271,7 @@ export default function Home() {
           </div>
 
           <div className="mw-steps__btn-wrap">
-            <a href="/#process" className="mw-steps__btn">
+            <a href="/process" className="mw-steps__btn">
               View Our Proprietary Process for Business Growth
             </a>
           </div>

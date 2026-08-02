@@ -32,6 +32,7 @@ export default function sitemap() {
     '/tools/threat-intelligence',
     '/tools/website-categorization',
     '/mcp',
+    '/process',
     '/areas-we-serve',
   ].map((path) => ({
     url: `${BASE_URL}${path}`,

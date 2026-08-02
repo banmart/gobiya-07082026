@@ -112,7 +112,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mw-steps__btn-wrap">
-            <a href="/#process" className="mw-steps__btn">
+            <a href="/process" className="mw-steps__btn">
               View our proprietary process for growing a business
             </a>
           </div>
