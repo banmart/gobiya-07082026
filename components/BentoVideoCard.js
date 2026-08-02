@@ -70,13 +70,13 @@ export default function BentoVideoCard({ video, isFeatured }) {
     <article
       className={`bento-card ${isVertical ? 'bento-card--vertical' : ''} ${isFeatured ? 'bento-card--featured' : ''}`}
       style={{
-        background: '#FFFFFF',
+        background: 'var(--surface-raised)',
         border: '1px solid var(--border)',
         borderRadius: '1rem',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 6px 20px rgba(11, 30, 54, 0.05)',
+        boxShadow: '0 6px 20px rgba(var(--shadow-rgb), 0.05)',
         transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
         gridColumn: isFeatured && !isVertical ? 'span 2' : 'span 1',
         gridRow: isVertical ? 'span 2' : 'span 1',
@@ -85,7 +85,7 @@ export default function BentoVideoCard({ video, isFeatured }) {
       {/* Video Player Frame */}
       <div
         style={{
-          background: '#0B1E36',
+          background: 'var(--surface-inverse)',
           aspectRatio: aspectRatio,
           width: '100%',
           position: 'relative',
@@ -105,8 +105,8 @@ export default function BentoVideoCard({ video, isFeatured }) {
       </div>
 
       {/* Clean Title Only */}
-      <div style={{ padding: '1rem 1.25rem', background: '#FFFFFF' }}>
-        <h3 style={{ fontSize: isFeatured ? '1.2rem' : '1.05rem', fontWeight: '700', color: '#0B1E36', margin: 0, lineHeight: '1.35' }}>
+      <div style={{ padding: '1rem 1.25rem', background: 'var(--surface-raised)' }}>
+        <h3 style={{ fontSize: isFeatured ? '1.2rem' : '1.05rem', fontWeight: '700', color: 'var(--text)', margin: 0, lineHeight: '1.35' }}>
           {video.title}
         </h3>
       </div>

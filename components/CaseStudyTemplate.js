@@ -48,7 +48,7 @@ export default function CaseStudyTemplate({ cs }) {
 
       {/* ══ Key Outcome Metrics ══ */}
       {cs.study?.metrics?.length > 0 && (
-        <div style={{ background: '#F8F9FC', borderBottom: '1px solid #E2E8F0' }}>
+        <div style={{ background: 'var(--surface-sunken)', borderBottom: '1px solid var(--rule)' }}>
           <div className="container">
             <div className="search-wins__grid" data-stagger style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', paddingBlock: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               {cs.study.metrics.map((m, idx) => (

@@ -114,9 +114,9 @@ export default async function StuffPage() {
           </div>
 
           {videoList.length === 0 ? (
-            <div style={{ background: '#FFFFFF', border: '2px dashed var(--border-strong)', borderRadius: '1rem', padding: '4rem 2rem', textAlign: 'center', maxWidth: '36rem', marginInline: 'auto' }}>
+            <div style={{ background: 'var(--surface-raised)', border: '2px dashed var(--border-strong)', borderRadius: '1rem', padding: '4rem 2rem', textAlign: 'center', maxWidth: '36rem', marginInline: 'auto' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎬</div>
-              <h3 style={{ fontSize: '1.25rem', color: '#0B1E36', marginBottom: '0.5rem' }}>No video creatives published yet</h3>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--text)', marginBottom: '0.5rem' }}>No video creatives published yet</h3>
               <p style={{ color: 'var(--hint)', fontSize: '0.9375rem', lineHeight: '1.6' }}>
                 Add any <code>.webm</code> video asset to <code>public/assets/videos/</code> to showcase it in this high-converting video gallery.
               </p>
@@ -173,8 +173,8 @@ export default async function StuffPage() {
         }
         .bento-card:hover {
           transform: translateY(-3px);
-          box-shadow: 0 12px 30px rgba(11, 30, 54, 0.12) !important;
-          border-color: #0B1E36 !important;
+          box-shadow: 0 12px 30px rgba(var(--shadow-rgb), 0.12) !important;
+          border-color: var(--border-contrast) !important;
         }
       `}</style>
     </main>

@@ -68,7 +68,7 @@ export default function SteveMartinPage() {
           {/* Right Content Area */}
           <div className="mw-cluster-list">
             {/* Bio Card Header */}
-            <div id="biography" className="mw-cluster-block" style={{ background: '#FFFFFF', padding: '1.75rem', border: '1px solid #E2E8F0', borderRadius: '4px' }}>
+            <div id="biography" className="mw-cluster-block" style={{ background: 'var(--surface-raised)', padding: '1.75rem', border: '1px solid var(--rule)', borderRadius: '4px' }}>
               <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
                 <Image
                   src="/assets/img/sm.jpg"
@@ -78,13 +78,13 @@ export default function SteveMartinPage() {
                   style={{ borderRadius: '4px', objectFit: 'cover' }}
                 />
                 <div>
-                  <h2 style={{ fontSize: '1.5rem', color: '#0B1E36', margin: 0 }}>
+                  <h2 style={{ fontSize: '1.5rem', color: 'var(--text)', margin: 0 }}>
                     Steve Martin
                   </h2>
-                  <p style={{ fontSize: '0.9375rem', color: '#8B263E', fontWeight: '600', margin: '0.25rem 0 0 0' }}>
+                  <p style={{ fontSize: '0.9375rem', color: 'var(--link)', fontWeight: '600', margin: '0.25rem 0 0 0' }}>
                     Founder &amp; Principal Search Strategist
                   </p>
-                  <p style={{ fontSize: '0.875rem', color: '#64748B', margin: '0.25rem 0 0 0' }}>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--ink-500)', margin: '0.25rem 0 0 0' }}>
                     Gobiya LLC · Los Angeles, California
                   </p>
                 </div>

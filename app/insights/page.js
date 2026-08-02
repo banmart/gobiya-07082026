@@ -36,7 +36,7 @@ export default function InsightsPage() {
       </section>
 
       {/* ══ 3. All Articles Archive List ══ */}
-      <section className="section" id="all-articles" style={{ paddingBlock: 'clamp(3.5rem, 6vw, 5rem)', background: '#FFFFFF' }}>
+      <section className="section" id="all-articles" style={{ paddingBlock: 'clamp(3.5rem, 6vw, 5rem)', background: 'var(--surface-raised)' }}>
         <div className="container container--narrow">
           <InsightsArchive articles={ARCHIVE} />
         </div>

@@ -205,19 +205,26 @@ export default function SiteScanReport({
 /* Request-a-time. Updates the existing lead rather than creating a second one —
  * this is one prospect who has now asked for a call, not two enquiries. */
 function ContactBlock({ id }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [preferredTime, setPreferredTime] = useState('');
   const [note, setNote] = useState('');
   const [state, setState] = useState('idle');
 
   async function submit(event) {
     event.preventDefault();
-    if (!preferredTime.trim()) return;
+    if (!email.trim() || !name.trim()) return;
     setState('sending');
     try {
-      const res = await fetch('/api/scan/request-time', {
+      const res = await fetch('/api/scan/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, preferredTime, note }),
+        body: JSON.stringify({
+          id,
+          name,
+          email,
+          notes: preferredTime ? `Preferred call time: ${preferredTime}\nNotes: ${note}` : note,
+        }),
       });
       setState(res.ok ? 'sent' : 'error');
     } catch {
@@ -231,13 +238,36 @@ function ContactBlock({ id }) {
 
       {state === 'sent' ? (
         <p className="scan-cta__done">
-          Got it. Steve will confirm a time by email. If it is urgent, call{' '}
+          Got it! Your report has been attached to your request. Steve will confirm a time by email. If it is urgent, call{' '}
           <a href="tel:+13237441338">323-744-1338</a>.
         </p>
       ) : (
         <form className="scan-cta__form" onSubmit={submit}>
+          <label className="scan-cta__label" htmlFor="leadName">
+            Your Name *
+          </label>
+          <input
+            id="leadName"
+            className="scan-cta__input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Jane Doe"
+            required
+          />
+          <label className="scan-cta__label" htmlFor="leadEmail">
+            Email Address *
+          </label>
+          <input
+            id="leadEmail"
+            type="email"
+            className="scan-cta__input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="jane@company.com"
+            required
+          />
           <label className="scan-cta__label" htmlFor="preferredTime">
-            When suits you for a call?
+            When suits you for a call? (optional)
           </label>
           <input
             id="preferredTime"
@@ -245,7 +275,6 @@ function ContactBlock({ id }) {
             value={preferredTime}
             onChange={(e) => setPreferredTime(e.target.value)}
             placeholder="e.g. Tuesday or Wednesday afternoon"
-            required
           />
           <label className="scan-cta__label" htmlFor="note">
             Anything specific you want covered? (optional)
@@ -258,7 +287,7 @@ function ContactBlock({ id }) {
             rows={3}
           />
           <button className="scan-cta__btn" type="submit" disabled={state === 'sending'}>
-            {state === 'sending' ? 'Sending…' : 'Request a call'}
+            {state === 'sending' ? 'Sending…' : 'Attach Report & Request Consultation'}
           </button>
           {state === 'error' && (
             <p className="scan-cta__error">

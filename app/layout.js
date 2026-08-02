@@ -51,9 +51,23 @@ export const metadata = {
   },
 };
 
+/**
+ * Resolves the theme before first paint.
+ *
+ * This has to be inline, synchronous, and in <head>: anything deferred — a
+ * component effect, a Script with any strategy — runs after the browser has
+ * already painted, so a dark-mode visitor gets a white flash on every
+ * navigation. Stored choice wins; absent one we follow the OS.
+ */
+const THEME_INIT = `(function(){try{var s=localStorage.getItem('gobiya-theme');var d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}})();`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mozillaHeadline.variable}`}>
+    <html lang="en" className={`${inter.variable} ${mozillaHeadline.variable}`} suppressHydrationWarning>
+      <head>
+        <meta name="color-scheme" content="light dark" />
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+      </head>
       <body>
         <SiteSchema />
         <BrandWatermark />

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { LogoMark } from './Logo';
+import ThemeToggle from './ThemeToggle';
 import { MEGA_NAV, CONTACT } from '../lib/nav';
 
 export default function Header() {
@@ -90,6 +91,7 @@ export default function Header() {
           </nav>
 
           <div className="nav__right">
+            <ThemeToggle />
             <a href="/login" className="nav__user-btn" aria-label="Account Login" title="Account Login">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
