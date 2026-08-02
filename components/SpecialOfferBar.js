@@ -2,48 +2,41 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { OFFER_ENDS } from './SavingsOffer';
 
 /**
- * SpecialOfferBar — Floating bottom offer bar for all pages (including homepage)
+ * SpecialOfferBar — Floating bottom offer bar
  *
  * Requirements fulfilled:
- * - Rendered on ALL pages including the homepage (`/`).
+ * - Syncs timer with sales section `OFFER_ENDS` countdown (`2026-12-31T23:59:59-08:00`).
+ * - Active on all pages including the homepage (`/`).
  * - Light and Dark theme support (`[data-theme]`).
  * - Uses `sm.webp` profile picture.
- * - Displays live countdown timer (`hh:mm:ss`), offer message, and action button.
  * - Auto-hides on scroll down, reappears on scroll up.
  * - Sets `--offer-bar-height` CSS variable dynamically so floating buttons (chat bubble & a11y)
  *   automatically adjust their bottom position without overlapping!
  */
+function getRemaining(targetStr) {
+  const target = new Date(targetStr).getTime();
+  const distance = Math.max(0, target - Date.now());
+  return {
+    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((distance % (1000 * 60)) / 1000),
+  };
+}
+
 export default function SpecialOfferBar() {
   const [isVisible, setIsVisible] = useState(true);
   const [dismissed, setDismissed] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 28, seconds: 45 });
+  const [timeLeft, setTimeLeft] = useState(null);
   const lastScrollY = useRef(0);
 
-  // Live ticking countdown timer
+  // Live ticking countdown timer synced with OFFER_ENDS
   useEffect(() => {
-    const STORAGE_KEY = 'gobiya_special_offer_end';
-    let endTime = localStorage.getItem(STORAGE_KEY);
-    
-    if (!endTime || isNaN(Number(endTime))) {
-      endTime = Date.now() + (14 * 3600 * 1000 + 28 * 60 * 1000 + 45 * 1000);
-      localStorage.setItem(STORAGE_KEY, endTime.toString());
-    } else {
-      let endNum = parseInt(endTime, 10);
-      if (endNum <= Date.now()) {
-        endNum = Date.now() + (14 * 3600 * 1000 + 28 * 60 * 1000 + 45 * 1000);
-        localStorage.setItem(STORAGE_KEY, endNum.toString());
-      }
-    }
-
     const updateTimer = () => {
-      const stored = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
-      const diff = Math.max(0, stored - Date.now());
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      setTimeLeft({ hours, minutes, seconds });
+      setTimeLeft(getRemaining(OFFER_ENDS));
     };
 
     updateTimer();
@@ -119,11 +112,23 @@ export default function SpecialOfferBar() {
           <div className="mw-offer-bar__timer" title="Special offer countdown">
             <span className="mw-offer-bar__timer-label">Ends in</span>
             <div className="mw-offer-bar__timer-box">
-              <span className="mw-offer-bar__unit">{pad(timeLeft.hours)}<small>h</small></span>
-              <span className="mw-offer-bar__colon">:</span>
-              <span className="mw-offer-bar__unit">{pad(timeLeft.minutes)}<small>m</small></span>
-              <span className="mw-offer-bar__colon">:</span>
-              <span className="mw-offer-bar__unit">{pad(timeLeft.seconds)}<small>s</small></span>
+              {timeLeft ? (
+                <>
+                  {timeLeft.days > 0 && (
+                    <>
+                      <span className="mw-offer-bar__unit">{timeLeft.days}<small>d</small></span>
+                      <span className="mw-offer-bar__colon">:</span>
+                    </>
+                  )}
+                  <span className="mw-offer-bar__unit">{pad(timeLeft.hours)}<small>h</small></span>
+                  <span className="mw-offer-bar__colon">:</span>
+                  <span className="mw-offer-bar__unit">{pad(timeLeft.minutes)}<small>m</small></span>
+                  <span className="mw-offer-bar__colon">:</span>
+                  <span className="mw-offer-bar__unit">{pad(timeLeft.seconds)}<small>s</small></span>
+                </>
+              ) : (
+                <span className="mw-offer-bar__unit">--h : --m : --s</span>
+              )}
             </div>
           </div>
 
