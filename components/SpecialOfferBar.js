@@ -100,7 +100,7 @@ export default function SpecialOfferBar() {
         <div className="mw-offer-bar__left">
           <div className="mw-offer-bar__avatar-wrapper">
             <Image
-              src="/assets/img/steve-portrait.webp"
+              src="/assets/img/sm.webp"
               alt="Steve Martin"
               width={44}
               height={44}
