@@ -84,7 +84,20 @@ export default function Header() {
                   href={item.href}
                   className={`nav__link ${activeMenuIndex === idx ? 'is-active' : ''}`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  <svg
+                    className={`nav__chevron ${activeMenuIndex === idx ? 'is-open' : ''}`}
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
                 </a>
               </div>
             ))}
@@ -111,7 +124,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Clean Overlay Dropdown Panel */}
+        {/* Horizontal Sub-Menu Overlay */}
         {currentMega && (
           <div
             className="nav-subrow"

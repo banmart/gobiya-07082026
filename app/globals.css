@@ -78,11 +78,11 @@
      tint over navy is just haze. */
   --shadow-rgb: 11, 30, 54;
 
-  /* type — Open Sans heading + Inter body.
+  /* type — Mozilla Headline heading + Inter body.
      --font-heading is the single source of truth for every heading and display
      element on the site. Nothing should name a heading face directly, in CSS
      or in a style prop: change this line and the whole site follows. */
-  --font-heading: var(--font-open-sans), "Open Sans", system-ui, sans-serif;
+  --font-heading: var(--font-mozilla-headline), "Mozilla Headline", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
   /* easing */
@@ -184,7 +184,11 @@ em { font-style: italic; }
    the heading face is never a per-page decision. */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 300;
+}
+
+h2 {
+  font-weight: 400;
+  color: var(--link); /* burgundy #8B263E */
 }
 
 /* ═══════════ shared atoms ═══════════ */
@@ -6185,7 +6189,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   display: none;
 }
 
-/* ═══════════ Horizontal Dropdown Overlay Panel ═══════════ */
+/* ═══════════ Horizontal Dropdown Overlay ═══════════ */
 .nav-subrow {
   position: absolute;
   top: 100%;
@@ -6195,8 +6199,8 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   background: var(--surface-inverse);
   color: var(--text-on-inverse);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   z-index: 99;
   animation: navSubrowFadeIn 0.15s ease-out;
 }
@@ -6213,21 +6217,34 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   flex-wrap: wrap;
   gap: 1.75rem;
   padding-block: 0.85rem;
-  white-space: nowrap;
 }
 
 .nav-subrow__item {
   display: inline-block;
   font-size: 0.9375rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color 0.15s ease, transform 0.15s ease;
   white-space: nowrap;
 }
 
 .nav-subrow__item:hover {
   color: #F5B83D;
+  transform: translateY(-1px);
+}
+
+.nav__chevron {
+  display: inline-block;
+  margin-left: 0.25rem;
+  transition: transform 0.2s ease;
+  opacity: 0.7;
+}
+
+.nav__link:hover .nav__chevron,
+.nav__link.is-active .nav__chevron {
+  transform: rotate(180deg);
+  opacity: 1;
 }
 
 .mw-megamenu {
