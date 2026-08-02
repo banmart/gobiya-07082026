@@ -115,7 +115,7 @@ export default function AIChatBubble() {
         aria-label="Toggle AI Chat"
         style={{
           position: 'fixed',
-          bottom: '2rem',
+          bottom: 'calc(2rem + var(--offer-bar-height, 0px))',
           right: '2rem',
           width: '60px',
           height: '60px',
@@ -129,7 +129,7 @@ export default function AIChatBubble() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          transition: 'transform 0.3s ease, background-color 0.3s ease',
+          transition: 'transform 0.3s ease, background-color 0.3s ease, bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
           transform: isOpen ? 'scale(0.9)' : 'scale(1)',
         }}
         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--surface-inverse)')}

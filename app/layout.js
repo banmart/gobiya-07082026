@@ -11,6 +11,7 @@ import AIChatBubble from '../components/AIChatBubble';
 import ChromeGate from '../components/ChromeGate';
 import AccessibilityControls from '../components/AccessibilityControls';
 import ScrollAnimate from '../components/ScrollAnimate';
+import SpecialOfferBar from '../components/SpecialOfferBar';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -76,6 +77,7 @@ export default function RootLayout({ children }) {
         {children}
         <ChromeGate>
           <AIChatBubble />
+          <SpecialOfferBar />
           <Footer />
         </ChromeGate>
         <Motion />
