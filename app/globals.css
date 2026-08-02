@@ -4324,8 +4324,18 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 
 /* ChatGPT Logo: default color in light mode, pure white in dark mode */
-[data-theme='dark'] .mw-platforms__logo--chatgpt {
-  filter: brightness(0) invert(1);
+.mw-platforms__logo--dark-only {
+  display: none !important;
+}
+.mw-platforms__logo--light-only {
+  display: block !important;
+}
+
+[data-theme='dark'] .mw-platforms__logo--dark-only {
+  display: block !important;
+}
+[data-theme='dark'] .mw-platforms__logo--light-only {
+  display: none !important;
 }
 
 /* Simple / Differentiation Section */

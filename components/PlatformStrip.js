@@ -32,13 +32,32 @@ export default function PlatformStrip() {
         <ul className="mw-platforms__logos">
           {PLATFORM_LOGOS.map((logo) => (
             <li key={logo.src} className="mw-platforms__logo-item">
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                className={`mw-platforms__logo${logo.wide ? ' mw-platforms__logo--wide' : ''}${logo.isChatGpt ? ' mw-platforms__logo--chatgpt' : ''}`}
-              />
+              {logo.isChatGpt ? (
+                <>
+                  <Image
+                    src="/assets/img/ChatGPT-Logo.png"
+                    alt="ChatGPT"
+                    width={164}
+                    height={92}
+                    className="mw-platforms__logo mw-platforms__logo--wide mw-platforms__logo--light-only"
+                  />
+                  <Image
+                    src="/assets/img/ChatGPT-Logo-white.png"
+                    alt="ChatGPT"
+                    width={164}
+                    height={92}
+                    className="mw-platforms__logo mw-platforms__logo--wide mw-platforms__logo--dark-only"
+                  />
+                </>
+              ) : (
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  className={`mw-platforms__logo${logo.wide ? ' mw-platforms__logo--wide' : ''}`}
+                />
+              )}
             </li>
           ))}
         </ul>
