@@ -148,6 +148,26 @@
   --shadow-rgb: 0, 0, 0;
 }
 
+/* Yellow buttons have black text globally in dark mode and light mode */
+.mw-topbar__btn,
+.mw-savings__btn,
+.mw-navy-banner__btn,
+.mw-area-cta__btn--primary,
+.btn--gold,
+.btn-gold,
+.btn--yellow,
+.btn-yellow,
+[data-theme='dark'] .mw-topbar__btn,
+[data-theme='dark'] .mw-savings__btn,
+[data-theme='dark'] .mw-navy-banner__btn,
+[data-theme='dark'] .mw-area-cta__btn--primary,
+[data-theme='dark'] .btn--gold,
+[data-theme='dark'] .btn-gold,
+[data-theme='dark'] .btn--yellow,
+[data-theme='dark'] .btn-yellow {
+  color: #000000 !important;
+}
+
 /* ── reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -4047,7 +4067,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 .mw-topbar__btn {
   background: #F5B83D;
-  color: var(--text);
+  color: #000000;
   font-weight: 700;
   font-size: 0.8125rem;
   padding: 0.5rem 1.25rem;
@@ -5056,7 +5076,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   align-items: center;
   gap: 0.5rem;
   background: #F5B83D;
-  color: var(--text);
+  color: #000000;
   font-size: 0.9375rem;
   font-weight: 700;
   padding: 0.875rem 2rem;
@@ -5568,7 +5588,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 .mw-navy-banner__btn {
   background: #F5B83D;
-  color: var(--text);
+  color: #000000;
   font-weight: 700;
   font-size: 0.9375rem;
   padding: 0.875rem 2rem;
@@ -7810,7 +7830,7 @@ html.a11y-grayscale {
 }
 .mw-area-cta__btn--primary {
   background: #F5B83D;
-  color: var(--text);
+  color: #000000;
 }
 .mw-area-cta__btn--primary:hover {
   background: #e5a72b;
