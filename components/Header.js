@@ -84,7 +84,20 @@ export default function Header() {
                   href={item.href}
                   className={`nav__link ${activeMenuIndex === idx ? 'is-active' : ''}`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  <svg
+                    className={`nav__chevron ${activeMenuIndex === idx ? 'is-open' : ''}`}
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
                 </a>
               </div>
             ))}
@@ -111,48 +124,20 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mega-Dropdown Panel */}
+        {/* Horizontal Sub-Menu Row */}
         {currentMega && (
           <div
-            className="mw-megamenu"
+            className="nav-subrow"
             onMouseEnter={() => setActiveMenuIndex(activeMenuIndex)}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="container">
-              <div className="mw-megamenu__grid">
-                {currentMega.columns.map((col, cIdx) => (
-                  <div key={cIdx} className="mw-megamenu__col">
-                    <div className="mw-megamenu__col-header">
-                      <span className="mw-megamenu__col-icon">
-                        {col.icon === 'user' && (
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        )}
-                        {col.icon === 'clipboard' && (
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-                        )}
-                        {col.icon === 'briefcase' && (
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                        )}
-                      </span>
-                      <span>{col.heading}</span>
-                    </div>
-
-                    <div className="mw-megamenu__items">
-                      {col.items.map((sub, sIdx) => (
-                        <a href={sub.href} key={sIdx} className="mw-megamenu__item">
-                          <div className="mw-megamenu__item-title">
-                            <span>{sub.title}</span>
-                            {sub.badge && (
-                              <span className="mw-megamenu__badge">{sub.badge}</span>
-                            )}
-                          </div>
-                          <p className="mw-megamenu__item-desc">{sub.desc}</p>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="container nav-subrow__inner">
+              {currentMega.columns.flatMap((col) => col.items).map((sub, sIdx) => (
+                <a href={sub.href} key={sIdx} className="nav-subrow__item">
+                  <span>{sub.title}</span>
+                  {sub.badge && <span className="nav-subrow__badge">{sub.badge}</span>}
+                </a>
+              ))}
             </div>
           </div>
         )}
