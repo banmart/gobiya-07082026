@@ -74,33 +74,38 @@ export default function Header() {
           </a>
 
           <nav className="nav__links" aria-label="Primary">
-            {MEGA_NAV.map((item, idx) => (
-              <div
-                className="nav__item"
-                key={item.label}
-                onMouseEnter={() => handleMouseEnter(idx)}
-              >
-                <a
-                  href={item.href}
-                  className={`nav__link ${activeMenuIndex === idx ? 'is-active' : ''}`}
+            {MEGA_NAV.map((item, idx) => {
+              const hasDropdown = item.columns && item.columns.length > 0;
+              return (
+                <div
+                  className="nav__item"
+                  key={item.label}
+                  onMouseEnter={() => (hasDropdown ? handleMouseEnter(idx) : handleMouseLeave())}
                 >
-                  <span>{item.label}</span>
-                  <svg
-                    className={`nav__chevron ${activeMenuIndex === idx ? 'is-open' : ''}`}
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <a
+                    href={item.href}
+                    className={`nav__link ${activeMenuIndex === idx ? 'is-active' : ''}`}
                   >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </a>
-              </div>
-            ))}
+                    <span>{item.label}</span>
+                    {hasDropdown && (
+                      <svg
+                        className={`nav__chevron ${activeMenuIndex === idx ? 'is-open' : ''}`}
+                        viewBox="0 0 24 24"
+                        width="12"
+                        height="12"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    )}
+                  </a>
+                </div>
+              );
+            })}
           </nav>
 
           <div className="nav__right">

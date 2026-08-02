@@ -110,11 +110,11 @@ export default function SpecialOfferBar() {
           </div>
           <div className="mw-offer-bar__text-group">
             <div className="mw-offer-bar__headline">
-              <span>Claim Your Free SEO &amp; AI Citation Audit</span>
-              <span className="mw-offer-bar__value-tag">$500 Value</span>
+              <span>FREE Native CRM Included with All New Website Builds</span>
+              <span className="mw-offer-bar__value-tag">$1,200 Value</span>
             </div>
             <p className="mw-offer-bar__subtext">
-              Steve Martin personally reviews your site. Limited spots available!
+              Steve Martin personally reviews your site. Claim before offer ends!
             </p>
           </div>
         </div>

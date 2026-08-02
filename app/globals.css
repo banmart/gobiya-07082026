@@ -6752,11 +6752,46 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   right: 0;
   width: 100%;
   z-index: 999;
-  background: var(--surface-inverse);
+  isolation: isolate;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(11, 30, 54, 0.95) 38%,
+    rgba(6, 16, 32, 0.98) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
   color: var(--text-on-inverse);
-  border-top: 2px solid #8B263E;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(245, 184, 61, 0.4);
+  box-shadow:
+    0 -12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Specular light sweep effect matching sales section */
+.mw-offer-bar::before {
+  content: '';
+  position: absolute;
+  inset: -40% -10%;
+  z-index: -1;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 255, 255, 0.14) 46%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.14) 54%,
+    rgba(255, 255, 255, 0) 66%
+  );
+  transform: translateX(-20%);
+  animation: mwOfferShine 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes mwOfferShine {
+  0% { transform: translateX(-100%); }
+  35%, 100% { transform: translateX(100%); }
 }
 
 .mw-offer-bar.is-hidden {
