@@ -4186,6 +4186,16 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   transform: translateY(-1px);
 }
 
+/* Red primary button color in dark mode */
+[data-theme='dark'] .mw-hero__btn:not(.mw-hero__btn--ghost) {
+  background: #8B263E;
+  color: #ffffff;
+}
+
+[data-theme='dark'] .mw-hero__btn:not(.mw-hero__btn--ghost):hover {
+  background: #a32d49;
+}
+
 /* Mobile-only layout adjustment (< 768px): Hero visual top (16:9 ratio), card content below on solid white background */
 @media (max-width: 767px) {
   .mw-hero {

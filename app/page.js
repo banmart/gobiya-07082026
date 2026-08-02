@@ -12,9 +12,9 @@ import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 import { heroImage, HERO_VIDEO, HERO_VIDEO_MP4 } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'AI SEO Services Los Angeles | GEO | SEO Near Me',
+  title: 'Ranking #1 on Google Made Affordable | Gobiya SEO',
   description:
-    'Get white-hat & affordable services from Gobiya Internet Marketing & SEO, a top ranking SEO expert in Los Angeles. We offer AI, GEO, SEO, PPC, Content Marketing, PR & more. Get a FREE Consultation Today!',
+    'For over 16 years, Gobiya has helped local and national businesses dominate search results without blowing their budgets. From technical SEO and AI visibility to high-converting content, see how we make ranking #1 on Google and getting cited by ChatGPT genuinely affordable. Get a FREE consultation today!',
   path: '/',
 });
 
@@ -98,7 +98,7 @@ export default function Home() {
           <div className="mw-hero__card">
             <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
             <h1 className="mw-hero__title">
-              Experience Driven. Trusted by Many.
+              Ranking on Google Made Affordable
             </h1>
             <p className="mw-hero__excerpt">
               Celebrating 16 Years of Local Service!
