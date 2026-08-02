@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import { Inter, Mozilla_Headline } from 'next/font/google';
+import { Inter, Open_Sans } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -18,12 +18,11 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Every heading on the site resolves to this through --font-heading in
-// globals.css. It is a variable font, so the whole 200–700 range ships in one
-// file and no per-weight list is needed.
-const mozillaHeadline = Mozilla_Headline({
+// Every heading on the site resolves to Open Sans Thin through --font-heading in globals.css.
+const openSans = Open_Sans({
   subsets: ['latin'],
-  variable: '--font-mozilla-headline',
+  weight: ['300', '400', '600', '700'],
+  variable: '--font-open-sans',
   display: 'swap',
 });
 
@@ -63,7 +62,7 @@ const THEME_INIT = `(function(){try{var s=localStorage.getItem('gobiya-theme');v
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mozillaHeadline.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${openSans.variable}`} suppressHydrationWarning>
       <head>
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />

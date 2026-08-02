@@ -78,11 +78,11 @@
      tint over navy is just haze. */
   --shadow-rgb: 11, 30, 54;
 
-  /* type — Mozilla Headline heading + Inter body.
+  /* type — Open Sans Thin heading + Inter body.
      --font-heading is the single source of truth for every heading and display
      element on the site. Nothing should name a heading face directly, in CSS
      or in a style prop: change this line and the whole site follows. */
-  --font-heading: var(--font-mozilla-headline), "Mozilla Headline", system-ui, sans-serif;
+  --font-heading: var(--font-open-sans), "Open Sans", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
   /* easing */
@@ -180,14 +180,26 @@ em { font-style: italic; }
 .section--dark { background: var(--overlay); color: var(--text-on-inverse-soft); }
 
 /* ═══════════ global headings ═══════════ */
-/* Catches every heading, including any page that ships an unclassed h1–h6, so
-   the heading face is never a per-page decision. */
-h1, h2, h3, h4, h5, h6 {
+/* Catches every heading globally (h1–h6, .statement, title & heading classes),
+   ensuring Open Sans Thin (300 weight) is applied globally across all pages. */
+h1, h2, h3, h4, h5, h6,
+.statement,
+.mw-hero__title,
+.page-hero h1,
+.section__heading,
+.mw-simple__heading,
+.mw-banner__title,
+.mw-book__title,
+.mw-svc-hero__title,
+.mw-svc-card__title,
+.mw-area-hero__title,
+.mw-about-hero__title,
+.mw-work-hero__title {
   font-family: var(--font-heading);
+  font-weight: 300;
 }
 
 h2 {
-  font-weight: 400;
   color: var(--link); /* burgundy #8B263E */
 }
 
