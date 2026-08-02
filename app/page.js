@@ -4,11 +4,12 @@ import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
 import SavingsOffer from '../components/SavingsOffer';
+import HomeHeroVideo from '../components/HomeHeroVideo';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
-import { heroImage, HERO_VIDEO } from '../lib/heroImages';
+import { heroImage, HERO_VIDEO, HERO_VIDEO_MP4 } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'AI SEO Services Los Angeles | GEO | SEO Near Me',
@@ -87,16 +88,11 @@ export default function Home() {
         className="mw-hero"
         style={{ backgroundImage: `url('${heroImage(0)}')` }}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="mw-hero__bg-video"
+        <HomeHeroVideo
+          webmSrc={HERO_VIDEO}
+          mp4Src={HERO_VIDEO_MP4}
           poster={heroImage(0)}
-        >
-          <source src={HERO_VIDEO} type="video/webm" />
-        </video>
+        />
         <div className="mw-hero__overlay" />
         <div className="container">
           <div className="mw-hero__card">
