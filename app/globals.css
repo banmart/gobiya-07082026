@@ -78,11 +78,11 @@
      tint over navy is just haze. */
   --shadow-rgb: 11, 30, 54;
 
-  /* type — Mozilla Headline heading + Inter body.
+  /* type — Open Sans heading + Inter body.
      --font-heading is the single source of truth for every heading and display
      element on the site. Nothing should name a heading face directly, in CSS
      or in a style prop: change this line and the whole site follows. */
-  --font-heading: var(--font-mozilla-headline), "Mozilla Headline", system-ui, sans-serif;
+  --font-heading: var(--font-open-sans), "Open Sans", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
   /* easing */
@@ -184,11 +184,7 @@ em { font-style: italic; }
    the heading face is never a per-page decision. */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-}
-
-h2 {
-  font-weight: 400;
-  color: var(--link); /* burgundy #8B263E */
+  font-weight: 300;
 }
 
 /* ═══════════ shared atoms ═══════════ */
@@ -6189,44 +6185,42 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   display: none;
 }
 
-/* ═══════════ Horizontal Dropdown Sub-Row ═══════════ */
+/* ═══════════ Horizontal Dropdown Overlay Panel ═══════════ */
 .nav-subrow {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   width: 100%;
   background: var(--surface-inverse);
   color: var(--text-on-inverse);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  z-index: 99;
   animation: navSubrowFadeIn 0.15s ease-out;
 }
 
 @keyframes navSubrowFadeIn {
-  from { opacity: 0; transform: translateY(-2px); }
+  from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .nav-subrow__inner {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 1.75rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding-block: 0.65rem;
+  padding-block: 0.85rem;
   white-space: nowrap;
 }
 
-.nav-subrow__inner::-webkit-scrollbar {
-  display: none;
-}
-
 .nav-subrow__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.88);
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   transition: color 0.15s ease;
   white-space: nowrap;
@@ -6234,30 +6228,6 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 .nav-subrow__item:hover {
   color: #F5B83D;
-}
-
-.nav-subrow__badge {
-  font-size: 0.625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #F5B83D;
-  border: 1px solid rgba(245, 184, 61, 0.5);
-  padding: 0.05rem 0.3rem;
-  border-radius: 2px;
-}
-
-.nav__chevron {
-  display: inline-block;
-  margin-left: 0.25rem;
-  transition: transform 0.2s ease;
-  opacity: 0.7;
-}
-
-.nav__link:hover .nav__chevron,
-.nav__link.is-active .nav__chevron {
-  transform: rotate(180deg);
-  opacity: 1;
 }
 
 .mw-megamenu {

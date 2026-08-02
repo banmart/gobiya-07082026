@@ -84,20 +84,7 @@ export default function Header() {
                   href={item.href}
                   className={`nav__link ${activeMenuIndex === idx ? 'is-active' : ''}`}
                 >
-                  <span>{item.label}</span>
-                  <svg
-                    className={`nav__chevron ${activeMenuIndex === idx ? 'is-open' : ''}`}
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
+                  {item.label}
                 </a>
               </div>
             ))}
@@ -124,7 +111,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Horizontal Sub-Menu Row */}
+        {/* Clean Overlay Dropdown Panel */}
         {currentMega && (
           <div
             className="nav-subrow"
@@ -134,8 +121,7 @@ export default function Header() {
             <div className="container nav-subrow__inner">
               {currentMega.columns.flatMap((col) => col.items).map((sub, sIdx) => (
                 <a href={sub.href} key={sIdx} className="nav-subrow__item">
-                  <span>{sub.title}</span>
-                  {sub.badge && <span className="nav-subrow__badge">{sub.badge}</span>}
+                  {sub.title}
                 </a>
               ))}
             </div>
