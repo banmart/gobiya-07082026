@@ -205,6 +205,20 @@ export default function FreeSiteScanApp() {
             {errorMsg && <p className="fss-error-text" role="alert">{errorMsg}</p>}
           </form>
 
+          <div className="fss-no-website-row">
+            <button
+              type="button"
+              className="fss-no-website-btn"
+              onClick={() => {
+                setPhase('no-website');
+                setLeadStatus('idle');
+                setLeadError('');
+              }}
+            >
+              Building a new business? <u>I don&apos;t have a website yet &rarr;</u>
+            </button>
+          </div>
+
           <div className="fss-trust-row">
             <span>✨ 100% Free &amp; Instant</span>
             <span>⚡ Real-Time Data (No Fabricated Metrics)</span>
@@ -307,6 +321,121 @@ export default function FreeSiteScanApp() {
           <button type="button" className="fss-retry-btn" onClick={() => setPhase('input')}>
             ← Try another URL
           </button>
+        </div>
+      )}
+
+      {/* ══ PHASE: NO WEBSITE YET (DIRECT CONSULTATION FORM) ══ */}
+      {phase === 'no-website' && (
+        <div className="fss-no-website-container">
+          <div className="fss-lead-card" id="no-website-form">
+            <div className="fss-lead-header">
+              <span className="fss-lead-badge">New Website &amp; SEO Strategy</span>
+              <h2 className="fss-lead-title">Planning a New Website Build?</h2>
+              <p className="fss-lead-subtitle">
+                Tell us about your project and business goals. Steve Martin will personally outline the ideal site structure, tech stack, and launch strategy built for Google and AI search from day one.
+              </p>
+            </div>
+
+            {leadStatus === 'success' ? (
+              <div className="fss-lead-success">
+                <div className="fss-success-icon">🚀</div>
+                <h3>Project Request Received!</h3>
+                <p>
+                  We have received your project details. Steve will review your requirements and reach out within 24 business hours to discuss your new website build.
+                </p>
+                <p className="fss-direct-contact">
+                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:hello@gobiya.com">hello@gobiya.com</a>.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleLeadSubmit} className="fss-lead-form" noValidate>
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="company_website"
+                  value={leadForm.company_website}
+                  onChange={(e) => setLeadForm({ ...leadForm, company_website: e.target.value })}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                <div className="fss-form-grid">
+                  <div className="fss-field">
+                    <label htmlFor="nw-name">Full Name *</label>
+                    <input
+                      id="nw-name"
+                      type="text"
+                      placeholder="Jane Doe"
+                      value={leadForm.name}
+                      onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div className="fss-field">
+                    <label htmlFor="nw-email">Email Address *</label>
+                    <input
+                      id="nw-email"
+                      type="email"
+                      placeholder="jane@company.com"
+                      value={leadForm.email}
+                      onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div className="fss-field">
+                    <label htmlFor="nw-phone">Phone Number (optional)</label>
+                    <input
+                      id="nw-phone"
+                      type="tel"
+                      placeholder="(323) 555-0199"
+                      value={leadForm.phone}
+                      onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="fss-field">
+                    <label htmlFor="nw-company">Business Name / Industry *</label>
+                    <input
+                      id="nw-company"
+                      type="text"
+                      placeholder="e.g., Dental Practice, Security, Plumbing"
+                      value={leadForm.company}
+                      onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="fss-field fss-field--full">
+                  <label htmlFor="nw-notes">What are your website goals or target launch timeline?</label>
+                  <textarea
+                    id="nw-notes"
+                    rows={3}
+                    placeholder="e.g., We need a brand new site with local SEO built in, aiming to launch next month..."
+                    value={leadForm.notes}
+                    onChange={(e) => setLeadForm({ ...leadForm, notes: e.target.value })}
+                  />
+                </div>
+
+                {leadError && <p className="fss-error-text" role="alert">{leadError}</p>}
+
+                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'}>
+                  {leadStatus === 'submitting' ? 'Submitting Request…' : 'Request New Website Consultation'}
+                </button>
+
+                <p className="fss-disclaimer">
+                  No pushy sales calls. Steve personally reviews every submission. By submitting, you agree to our <a href="/privacy">Privacy Policy</a>.
+                </p>
+              </form>
+            )}
+
+            <button type="button" className="fss-retry-btn" style={{ marginTop: '1.5rem' }} onClick={() => setPhase('input')}>
+              &larr; Back to free site scan
+            </button>
+          </div>
         </div>
       )}
 

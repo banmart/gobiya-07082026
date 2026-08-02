@@ -709,9 +709,18 @@ a.contact__value:hover { color: var(--link); }
 }
 .nav__burger span {
   display: block;
-  height: 1.5px;
-  background: var(--surface-inverse);
+  height: 2px;
+  border-radius: 1px;
+  background: var(--text);
   transition: transform 0.4s var(--expo-out), opacity 0.3s;
+}
+
+[data-theme='dark'] .nav__burger span {
+  background: #FFFFFF;
+}
+
+.nav__burger.is-open span {
+  background: #FFFFFF !important;
 }
 .nav__burger.is-open span:first-child { transform: translateY(3.75px) rotate(45deg); }
 .nav__burger.is-open span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
@@ -8806,6 +8815,39 @@ html.a11y-high-contrast .nav__theme-btn {
   flex-wrap: wrap;
   font-size: 0.8125rem;
   color: var(--hint);
+}
+
+.fss-no-website-row {
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.fss-no-website-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted, #64748B);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.fss-no-website-btn u {
+  color: var(--link, #8C1D2F);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.fss-no-website-btn:hover {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='dark'] .fss-no-website-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Live Scanning (Phase 2) */
