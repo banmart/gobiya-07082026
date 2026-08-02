@@ -19,7 +19,7 @@ const PLATFORM_LOGOS = [
   { src: '/assets/img/claude-icon-logo-1024x1024.png', alt: 'Claude', width: 92, height: 92 },
   // Alone among the six, this one ships on a padded 16:9 canvas — see the
   // --wide modifier in globals.css.
-  { src: '/assets/img/ChatGPT-Logo.png', alt: 'ChatGPT', width: 164, height: 92, wide: true },
+  { src: '/assets/img/ChatGPT-Logo.png', alt: 'ChatGPT', width: 164, height: 92, wide: true, isChatGpt: true },
 ];
 
 export default function PlatformStrip() {
@@ -37,7 +37,7 @@ export default function PlatformStrip() {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className={`mw-platforms__logo${logo.wide ? ' mw-platforms__logo--wide' : ''}`}
+                className={`mw-platforms__logo${logo.wide ? ' mw-platforms__logo--wide' : ''}${logo.isChatGpt ? ' mw-platforms__logo--chatgpt' : ''}`}
               />
             </li>
           ))}

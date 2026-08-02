@@ -4323,6 +4323,11 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   margin-inline: calc(var(--logo-h) * -0.476);
 }
 
+/* ChatGPT Logo: default color in light mode, pure white in dark mode */
+[data-theme='dark'] .mw-platforms__logo--chatgpt {
+  filter: brightness(0) invert(1);
+}
+
 /* Simple / Differentiation Section */
 .mw-simple {
   padding-block: clamp(4rem, 7vw, 6rem);
