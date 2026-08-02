@@ -1,29 +1,25 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 /**
- * SpecialOfferBar — Floating bottom offer bar for subpages
+ * SpecialOfferBar — Floating bottom offer bar for all pages (including homepage)
  *
  * Requirements fulfilled:
- * - Rendered on all pages EXCEPT the homepage (`/`).
- * - Features Steve Martin's profile picture (`/assets/img/steve-portrait.webp`).
- * - Displays a live countdown timer (`hh:mm:ss`), offer message, and action button.
+ * - Rendered on ALL pages including the homepage (`/`).
+ * - Light and Dark theme support (`[data-theme]`).
+ * - Uses `sm.webp` profile picture.
+ * - Displays live countdown timer (`hh:mm:ss`), offer message, and action button.
  * - Auto-hides on scroll down, reappears on scroll up.
  * - Sets `--offer-bar-height` CSS variable dynamically so floating buttons (chat bubble & a11y)
  *   automatically adjust their bottom position without overlapping!
  */
 export default function SpecialOfferBar() {
-  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [dismissed, setDismissed] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 28, seconds: 45 });
   const lastScrollY = useRef(0);
-
-  // Do not render on homepage
-  const isHomepage = pathname === '/';
 
   // Live ticking countdown timer
   useEffect(() => {
@@ -57,7 +53,7 @@ export default function SpecialOfferBar() {
 
   // Hide on scroll down, reveal on scroll up
   useEffect(() => {
-    if (isHomepage || dismissed) return;
+    if (dismissed) return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -71,11 +67,11 @@ export default function SpecialOfferBar() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomepage, dismissed]);
+  }, [dismissed]);
 
   // Adjust CSS variable for floating widgets (chat bubble & a11y controls)
   useEffect(() => {
-    if (isHomepage || dismissed || !isVisible) {
+    if (dismissed || !isVisible) {
       document.documentElement.style.setProperty('--offer-bar-height', '0px');
     } else {
       document.documentElement.style.setProperty('--offer-bar-height', '72px');
@@ -84,9 +80,9 @@ export default function SpecialOfferBar() {
     return () => {
       document.documentElement.style.setProperty('--offer-bar-height', '0px');
     };
-  }, [isHomepage, dismissed, isVisible]);
+  }, [dismissed, isVisible]);
 
-  if (isHomepage || dismissed) return null;
+  if (dismissed) return null;
 
   const pad = (num) => String(num).padStart(2, '0');
 
