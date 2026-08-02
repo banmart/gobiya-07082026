@@ -6,6 +6,7 @@ export default function Footer() {
     <footer className="mw-footer">
       <div className="container">
         <div className="mw-footer__grid">
+          {/* 1. Services Column */}
           <div>
             <h4 className="mw-footer__col-title">Services</h4>
             <div className="mw-footer__links">
@@ -21,25 +22,21 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Was "Industries", and four of its six links pointed back at
-              /services. It lists the case studies that actually exist now, and
-              matches the Work item in the header nav. */}
+          {/* 2. About Column (placed directly after Services) */}
           <div>
-            <h4 className="mw-footer__col-title">Work</h4>
+            <h4 className="mw-footer__col-title">About</h4>
             <div className="mw-footer__links">
-              <a href="/work">All Case Studies</a>
-              <a href="/work/smile-center-dentistry">SmileCenter.com</a>
-              <a href="/work/american-livescan">American Livescan</a>
-              <a href="/work/safetycentric">Safety-Centric.com</a>
-              <a href="/work/quickpass-aid">QuickPassAiD.com</a>
-              <a href="/work/remodel-me-pros">RemodelMePros.com</a>
-              <a href="/work/the-healing-metta">The Healing Metta</a>
-              <a href="/work/total-capital">TotalCapitalInc.com</a>
-              <a href="/work/dg-plumbing">DG Plumbing &amp; Rooter</a>
-              <a href="/work/mtw">MyTrustWills.com</a>
+              <a href="/about">What We Do</a>
+              <a href="/work">Work</a>
+              <a href="/about/approach">Confidentiality &amp; Security</a>
+              <a href="/about/steve-martin">Leadership</a>
+              <a href="/contact">Contact Us</a>
+              <a href="/areas-we-serve">Areas We Serve</a>
+              <a href="/free-site-scan">Free Site Scan</a>
             </div>
           </div>
 
+          {/* 3. Resources Column */}
           <div>
             <h4 className="mw-footer__col-title">Resources</h4>
             <div className="mw-footer__links">
@@ -52,6 +49,7 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* 4. Free Tools Column */}
           <div>
             <h4 className="mw-footer__col-title">Free Tools</h4>
             <div className="mw-footer__links">
@@ -67,6 +65,7 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* 5. Areas We Serve Column */}
           <div>
             <h4 className="mw-footer__col-title">Areas We Serve</h4>
             <div className="mw-footer__links">
@@ -80,18 +79,6 @@ export default function Footer() {
               <a href="/areas-we-serve/hollywood">SEO in Hollywood</a>
               <a href="/areas-we-serve/studio-city">SEO in Studio City</a>
               <a href="/areas-we-serve/sherman-oaks">SEO in Sherman Oaks</a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="mw-footer__col-title">About</h4>
-            <div className="mw-footer__links">
-              <a href="/about">What We Do</a>
-              <a href="/about/approach">Confidentiality &amp; Security</a>
-              <a href="/about/steve-martin">Leadership</a>
-              <a href="/contact">Contact Us</a>
-              <a href="/areas-we-serve">Areas We Serve</a>
-              <a href="/free-site-scan">Free Site Scan</a>
             </div>
           </div>
         </div>
@@ -110,12 +97,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom-right brand mark. The same hand-built geometry as the hero
-          watermark — corner brackets with the carmine sparkle centred — drawn
-          inline from lib/brand.js rather than pulled in as a raster file. Two
-          reasons: the old logo-gobiya-red.webp was the wordmark, not the mark,
-          and a loaded image resource is an LCP candidate where a painted SVG
-          element is not. */}
       <div className="mw-footer__watermark-wrap" aria-hidden="true">
         <svg
           className="mw-footer__watermark-img"
