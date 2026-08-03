@@ -9,7 +9,7 @@ import HomeHeroVideo from '../components/HomeHeroVideo';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
-import { HERO_VIDEO, HERO_VIDEO_MP4, HERO_VIDEO_POSTER } from '../lib/heroImages';
+import { HERO_VIDEO_MP4, HERO_VIDEO_MP4_SM, HERO_VIDEO_POSTER } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'AI SEO Los Angeles | SEO Agency | SEO Professional | Gobiya',
@@ -57,7 +57,7 @@ const STORY_IMAGES = [
 // replaces clicks when clicks have no honest window, and so on), so positions
 // are not stable. A missing id renders nothing rather than crashing the page.
 const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
-const STAT_IDS = ['ai-citations', 'impressions', 'position'];
+const STAT_IDS = ['ai-citations', 'impressions', 'clicks'];
 
 export default function Home() {
   return (
@@ -72,8 +72,8 @@ export default function Home() {
         style={{ backgroundImage: `url('${HERO_VIDEO_POSTER}')` }}
       >
         <HomeHeroVideo
-          webmSrc={HERO_VIDEO}
           mp4Src={HERO_VIDEO_MP4}
+          mp4SmSrc={HERO_VIDEO_MP4_SM}
           poster={HERO_VIDEO_POSTER}
         />
         <div className="mw-hero__overlay" />
@@ -289,6 +289,10 @@ export default function Home() {
             <a href="/free-site-scan" className="mw-consultation__btn">
               Get a FREE Site Scan <span>→</span>
             </a>
+            <div className="mw-cta-arrow-wrapper">
+              <img src="/assets/img/get-started-grey.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--light" />
+              <img src="/assets/img/get-started-arrow.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--dark" />
+            </div>
           </div>
         </div>
       </section>
