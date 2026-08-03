@@ -12,9 +12,9 @@ import { SEARCH_WINS } from '../lib/searchWins';
 import { heroImage, HERO_VIDEO, HERO_VIDEO_MP4 } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Ranking #1 on Google Made Affordable | Gobiya SEO',
+  title: 'AI SEO Beverly Hills | SEO Agency | SEO Professional | Gobiya',
   description:
-    'For over 16 years, Gobiya has helped local and national businesses dominate search results without blowing their budgets. From technical SEO and AI visibility to high-converting content, see how we make ranking #1 on Google and getting cited by ChatGPT genuinely affordable. Get a FREE consultation today!',
+    'AI SEO Beverly Hills businesses call direct: an SEO agency where an SEO professional does the work. Technical SEO, AI visibility and content that gets you cited.',
   path: '/',
 });
 
@@ -80,10 +80,10 @@ export default function Home() {
           <div className="mw-hero__card">
             <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
             <h1 className="mw-hero__title">
-              Ranking on Google Made Affordable
+              AI SEO Beverly Hills: An SEO Agency Led by an SEO Professional
             </h1>
             <p className="mw-hero__excerpt">
-              Celebrating 16 Years of Local Service!
+              AI SEO Beverly Hills businesses call direct — an SEO agency where an SEO professional does the work. Celebrating 16 Years of Local Service!
             </p>
             <p className="mw-hero__description">
               When rankings drop, Call Gobiya to Help! Expert SEO, paid advertising, Onpage &amp; Content publishing services AI can rely on for citing your business above your competitors.
