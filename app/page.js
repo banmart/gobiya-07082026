@@ -9,7 +9,7 @@ import HomeHeroVideo from '../components/HomeHeroVideo';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
-import { heroImage, HERO_VIDEO, HERO_VIDEO_MP4 } from '../lib/heroImages';
+import { HERO_VIDEO, HERO_VIDEO_MP4, HERO_VIDEO_POSTER } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'AI SEO Beverly Hills | SEO Agency | SEO Professional | Gobiya',
@@ -63,17 +63,18 @@ export default function Home() {
   return (
     <main id="top">
       {/* ══ 1. Hero directly below menubar ══
-          Position 0 on the site-wide hero rotation in lib/heroImages.js. It has
-          to stay 0: that slot is the one picture with a matching .webm, and the
-          still doubles as the video's poster. */}
+          The still here is frame 0 of the scrub video, not a slot on the hero
+          rotation. It has to be: the background shows through until the video
+          paints, and anything other than the video's own first frame reads as a
+          cut. See HERO_VIDEO_POSTER in lib/heroImages.js. */}
       <section
         className="mw-hero"
-        style={{ backgroundImage: `url('${heroImage(0)}')` }}
+        style={{ backgroundImage: `url('${HERO_VIDEO_POSTER}')` }}
       >
         <HomeHeroVideo
           webmSrc={HERO_VIDEO}
           mp4Src={HERO_VIDEO_MP4}
-          poster={heroImage(0)}
+          poster={HERO_VIDEO_POSTER}
         />
         <div className="mw-hero__overlay" />
         <div className="container">

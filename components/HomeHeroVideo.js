@@ -6,7 +6,8 @@ import { useEffect, useRef } from 'react';
  * HomeHeroVideo — Pinned scroll-to-play sequence
  *
  * Smoothness improvements:
- * 1. Video is re-encoded with -g 1 (keyframe every frame), so seeking is instant.
+ * 1. Video is encoded with a tight GOP (keyframe every 4 frames), so a seek
+ *    decodes 3 frames worst case rather than a long chain.
  * 2. Direct seek on scroll — no lerp jitter from rAF microstepping.
  * 3. Seeks are skipped while video.seeking === true (browser decoding in progress).
  * 4. Uses requestVideoFrameCallback (rVFC) where available for frame-accurate sync.
@@ -23,7 +24,15 @@ import { useEffect, useRef } from 'react';
  */
 
 const SCRUB_PX = 700;
-const ONE_FRAME = 1 / 24; // ~41ms at 24fps — ignore sub-frame deltas
+
+// Frame rate the hero clip is actually encoded at. This has to track the file:
+// set it higher than the real rate and the threshold below falls under one
+// frame, so scrolling issues seeks that decode a frame and put the same picture
+// back on screen. That wasted decoder time is what reads as stutter, which is
+// the exact opposite of what the throttle is for. Currently 12fps, 96 frames
+// over 8 seconds, which is ~7px of scroll per frame across SCRUB_PX.
+const SOURCE_FPS = 12;
+const ONE_FRAME = 1 / SOURCE_FPS; // ignore sub-frame deltas
 
 // Where in the pin the card fades, as a fraction of SCRUB_PX. The late start is
 // a beat to read the headline before anything moves; finishing at 0.55 leaves
