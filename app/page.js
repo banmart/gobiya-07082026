@@ -12,9 +12,9 @@ import { SEARCH_WINS } from '../lib/searchWins';
 import { HERO_VIDEO, HERO_VIDEO_MP4, HERO_VIDEO_POSTER } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'AI SEO Beverly Hills | SEO Agency | SEO Professional | Gobiya',
+  title: 'AI SEO Los Angeles | SEO Agency | SEO Professional | Gobiya',
   description:
-    'AI SEO Beverly Hills businesses call direct: an SEO agency where an SEO professional does the work. Technical SEO, AI visibility and content that gets you cited.',
+    'AI SEO Los Angeles businesses call direct: an SEO agency where an SEO professional does the work. Technical SEO, AI visibility and content that gets you cited.',
   path: '/',
 });
 
@@ -84,7 +84,7 @@ export default function Home() {
               An AI SEO Agency Led by an SEO Professional
             </h1>
             <p className="mw-hero__excerpt">
-              AI SEO Beverly Hills businesses call direct — an SEO agency where an SEO professional does the work. Celebrating 16 Years of Local Service!
+              AI SEO Los Angeles businesses call direct — an SEO agency where an SEO professional does the work. Celebrating 16 Years of Local Service!
             </p>
             <p className="mw-hero__description">
               When rankings drop, Call Gobiya to Help! Expert SEO, paid advertising, Onpage &amp; Content publishing services AI can rely on for citing your business above your competitors.
