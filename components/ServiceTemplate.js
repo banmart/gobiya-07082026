@@ -54,7 +54,12 @@ export default function ServiceTemplate({ service }) {
           { label: displayTitle },
         ]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        // The h1. Each service authors its own in servicesFlat.js / services.js
+        // and serviceIndex normalises the two shapes into `headline`, so this
+        // is the authored city-intent headline rather than one promo line
+        // repeated across all eight pages. The fallback only fires for a
+        // service with no authored h1 and no heroLines.
+        title={service.headline || 'Exclusive Gobiya Savings'}
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
