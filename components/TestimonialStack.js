@@ -117,8 +117,19 @@ export default function TestimonialStack() {
               </div>
               <div className="mw-stacked-card__content">
                 <div className="mw-stacked-card__meta">
-                  Industry: <strong>{item.role}</strong> &bull; Region: <strong>Southern California</strong>
+                  {item.role ? (
+                    <>
+                      Industry: <strong>{item.role}</strong> &bull; Region: <strong>Southern California</strong>
+                    </>
+                  ) : (
+                    <>
+                      Found on <strong>{item.source || 'Google'}</strong>
+                    </>
+                  )}
                 </div>
+                {item.headline && (
+                  <div className="mw-stacked-card__headline">{item.headline}</div>
+                )}
                 <blockquote className="mw-stacked-card__quote">
                   &ldquo;{item.quote}&rdquo;
                 </blockquote>
@@ -127,9 +138,11 @@ export default function TestimonialStack() {
                     — {item.name ? `${item.name}, ` : ''}{item.company}
                   </div>
                 </div>
-                <a href={item.href} className="mw-stacked-card__btn">
-                  Read Full Case Study <span>→</span>
-                </a>
+                {item.href && (
+                  <a href={item.href} className="mw-stacked-card__btn">
+                    Read Full Case Study <span>→</span>
+                  </a>
+                )}
               </div>
             </div>
           ))}

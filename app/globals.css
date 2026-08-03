@@ -5494,6 +5494,14 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   color: var(--text-on-inverse);
 }
 
+.mw-stacked-card__headline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  color: var(--text-on-inverse);
+  margin-bottom: 0.5rem;
+}
+
 .mw-stacked-card__quote {
   font-family: var(--font-heading);
   font-size: clamp(1.125rem, 2.2vw, 1.4rem);
