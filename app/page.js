@@ -80,7 +80,7 @@ export default function Home() {
           <div className="mw-hero__card">
             <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
             <h1 className="mw-hero__title">
-              AI SEO Beverly Hills: An SEO Agency Led by an SEO Professional
+              An AI SEO Agency Led by an SEO Professional
             </h1>
             <p className="mw-hero__excerpt">
               AI SEO Beverly Hills businesses call direct — an SEO agency where an SEO professional does the work. Celebrating 16 Years of Local Service!
