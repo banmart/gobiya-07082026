@@ -9411,3 +9411,25 @@ html.a11y-high-contrast .nav__theme-btn {
   .fss-check-detail { text-align: left; }
 }
 
+
+/* ══════════ CTA Arrow Images ══════════ */
+.mw-cta-arrow-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.mw-arrow-img {
+  max-width: 180px;
+  height: auto;
+}
+.mw-arrow-img--dark {
+  display: none;
+}
+[data-theme='dark'] .mw-arrow-img--light {
+  display: none;
+}
+[data-theme='dark'] .mw-arrow-img--dark {
+  display: block;
+}
+

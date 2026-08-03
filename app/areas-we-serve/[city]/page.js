@@ -280,6 +280,10 @@ export default async function AreaPage({ params }) {
               View All Services
             </a>
           </div>
+          <div className="mw-cta-arrow-wrapper">
+            <img src="/assets/img/get-started-grey.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--light" />
+            <img src="/assets/img/get-started-arrow.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--dark" />
+          </div>
         </div>
       </section>
     </main>

@@ -147,6 +147,10 @@ export default function AboutPage() {
               </svg>
               Schedule Your Consultation
             </a>
+            <div className="mw-cta-arrow-wrapper">
+              <img src="/assets/img/get-started-grey.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--light" />
+              <img src="/assets/img/get-started-arrow.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--dark" />
+            </div>
           </div>
         </div>
       </section>

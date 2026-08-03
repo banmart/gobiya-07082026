@@ -166,6 +166,10 @@ export default function PricingPage() {
             <a href="/free-site-scan" className="btn btn--solid btn--big">Get a free proposal</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
+          <div className="mw-cta-arrow-wrapper">
+            <img src="/assets/img/get-started-grey.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--light" />
+            <img src="/assets/img/get-started-arrow.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--dark" />
+          </div>
         </div>
       </section>
     </main>
