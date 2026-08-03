@@ -11,10 +11,31 @@ import { useEffect, useRef } from 'react';
  * 3. Seeks are skipped while video.seeking === true (browser decoding in progress).
  * 4. Uses requestVideoFrameCallback (rVFC) where available for frame-accurate sync.
  * 5. Throttled to only seek when target time has meaningfully changed (>1 frame).
+ *
+ * It also fades the hero card out as the pin scrubs, desktop only. That runs off
+ * the same `progress` value as the seek rather than its own scroll listener, so
+ * the card and the footage can never drift apart.
+ *
+ * Desktop only is a layout constraint, not a preference: under 768px globals.css
+ * restacks this hero so the video is a 16:9 band and the card sits underneath it
+ * on a solid background. There it is the page's opening copy block, not an
+ * overlay, and fading it would just delete the h1 on scroll.
  */
 
 const SCRUB_PX = 700;
 const ONE_FRAME = 1 / 24; // ~41ms at 24fps — ignore sub-frame deltas
+
+// Where in the pin the card fades, as a fraction of SCRUB_PX. The late start is
+// a beat to read the headline before anything moves; finishing at 0.55 leaves
+// the back half of the pin as clean footage.
+const CARD_FADE_START = 0.1;
+const CARD_FADE_END = 0.55;
+const CARD_FADE_LIFT = 24; // px of upward drift across the fade
+
+// Matches the `max-width: 767px` hero rewrite in globals.css. Reduced motion
+// opts out entirely and leaves the card alone.
+const CARD_FADE_QUERY =
+  '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
 
 export default function HomeHeroVideo({
   webmSrc = '/assets/videos/home-hero-background-video.webm',
@@ -52,6 +73,39 @@ export default function HomeHeroVideo({
     hero.style.top = `${getNavH()}px`;
     hero.style.zIndex = '10';
 
+    // --- Hero card fade (desktop only) ---
+    const card = hero.querySelector('.mw-hero__card');
+    const fadeQuery = window.matchMedia(CARD_FADE_QUERY);
+
+    const clearCardFade = () => {
+      if (!card) return;
+      card.style.opacity = '';
+      card.style.transform = '';
+      card.style.visibility = '';
+      card.style.pointerEvents = '';
+      card.style.willChange = '';
+    };
+
+    const applyCardFade = (progress) => {
+      if (!card) return;
+      if (!fadeQuery.matches) {
+        clearCardFade();
+        return;
+      }
+
+      const span = CARD_FADE_END - CARD_FADE_START;
+      const t = Math.min(Math.max((progress - CARD_FADE_START) / span, 0), 1);
+      const opacity = 1 - t;
+
+      card.style.willChange = 'opacity, transform';
+      card.style.opacity = String(opacity);
+      card.style.transform = `translate3d(0, ${-CARD_FADE_LIFT * t}px, 0)`;
+      // Once it is invisible, take it out of hit testing and the tab order
+      // rather than leaving two invisible CTA buttons over the video.
+      card.style.visibility = t === 1 ? 'hidden' : '';
+      card.style.pointerEvents = t === 1 ? 'none' : '';
+    };
+
     // --- Compute target time from scroll position ---
     const updateTarget = () => {
       const rect = container.getBoundingClientRect();
@@ -61,6 +115,10 @@ export default function HomeHeroVideo({
       if (video.duration && !isNaN(video.duration)) {
         targetTimeRef.current = progress * video.duration;
       }
+      // Deliberately outside the duration guard: the card should still fade if
+      // the video never loads a duration, so a stalled video does not leave the
+      // card frozen over the poster.
+      applyCardFade(progress);
     };
 
     // --- Perform seek: skip if already seeking or delta < 1 frame ---
@@ -96,6 +154,12 @@ export default function HomeHeroVideo({
       updateTarget();
     };
 
+    // Crossing 768px (or toggling reduced motion) re-runs the fade math, which
+    // clears the inline styles on the way down to mobile and reinstates them on
+    // the way back up.
+    const onFadeQueryChange = () => updateTarget();
+    fadeQuery.addEventListener('change', onFadeQueryChange);
+
     updateTarget();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });
@@ -121,6 +185,8 @@ export default function HomeHeroVideo({
       video.removeEventListener('seeked', onSeeked);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
+      fadeQuery.removeEventListener('change', onFadeQueryChange);
+      clearCardFade();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if ('cancelVideoFrameCallback' in video && rvcfRef.current) {
         video.cancelVideoFrameCallback(rvcfRef.current);
