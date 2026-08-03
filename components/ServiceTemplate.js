@@ -38,31 +38,12 @@ export default function ServiceTemplate({ service }) {
     ],
   };
 
-  const faqSchema = service.faqs?.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: service.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a.replace(/<[^>]+>/g, ''),
-      },
-    })),
-  } : null;
-
   return (
     <main id="top">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
 
       {/* ══ 2. Hero ══ */}
       <SubHero
@@ -88,25 +69,6 @@ export default function ServiceTemplate({ service }) {
           <div className="mw-area-body__grid">
             <div className="mw-area-body__main">
               {body?.map(renderBlock)}
-
-              {service.faqs?.length > 0 && (
-                <>
-                  <h3 className="mw-area-body__services-heading">
-                    Frequently Asked Questions
-                  </h3>
-                  <dl className="mw-svc-faq">
-                    {service.faqs.map((f, fIdx) => (
-                      <div key={fIdx} className="mw-svc-faq__item">
-                        <dt className="mw-svc-faq__q">{f.q}</dt>
-                        <dd
-                          className="mw-svc-faq__a"
-                          dangerouslySetInnerHTML={{ __html: f.a }}
-                        />
-                      </div>
-                    ))}
-                  </dl>
-                </>
-              )}
 
               <h3 className="mw-area-body__services-heading">Areas We Serve</h3>
               <div className="mw-svc-cards mw-svc-cards--two">

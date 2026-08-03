@@ -1608,6 +1608,52 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
    is defined over loaded image resources; a directly-painted SVG element
    has none, so this decorative mark can never compete with real content
    for Largest Contentful Paint the way the old webp version once did. */
+/* ═══════════ tool page body copy ═══════════
+   The explainer under a /tools form. `.statement` is a display face sized for
+   headlines and reads as shouting at subhead scale, so these are plain
+   left-aligned headings over normal paragraph text. */
+.tool-copy h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  margin-top: 2.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.tool-copy h2:first-child {
+  margin-top: 0;
+}
+
+.tool-copy p {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-600);
+  margin-bottom: 1.1rem;
+}
+
+.tool-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.tool-copy a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Clips the homepage mark to the page box. Without it the mark's negative
+   `right` offset extends the document and the homepage — and only the
+   homepage — scrolls sideways on a phone. */
+.brand-watermark-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 15;
+}
+
 .brand-watermark {
   position: absolute;
   top: clamp(-7.6rem, -9.7vw, -4.3rem);
@@ -5018,6 +5064,262 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 .mw-local-areas__btn:hover span {
   transform: translateX(4px);
+}
+
+/* ═══════════ /contact — form + office details ═══════════
+   Two columns on desktop: the message form carries the weight, the office
+   details sit beside it in a sunken rail. Below 900px the rail drops under the
+   form, so a visitor on a phone still meets the form first. */
+
+.mw-contact {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background: var(--surface);
+}
+
+.mw-contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .mw-contact__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── details rail ── */
+.mw-contact__details {
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.mw-contact__details-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.mw-contact__block {
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.mw-contact__block--last {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.mw-contact__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.mw-contact__value {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.mw-contact__value a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mw-contact__value a:hover {
+  text-decoration: underline;
+}
+
+.mw-contact__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.mw-contact__action:hover {
+  text-decoration: underline;
+}
+
+.mw-contact__social {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 0;
+  margin: 0;
+}
+
+.mw-contact__social a {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.mw-contact__social a:hover {
+  text-decoration: underline;
+}
+
+/* ── message form ── */
+.mw-cform {
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.mw-cform__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.mw-cform__dek {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-600);
+  margin-bottom: 1.75rem;
+  max-width: 40rem;
+}
+
+.mw-cform__dek a {
+  color: var(--link);
+  font-weight: 600;
+}
+
+.mw-cform__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mw-cform__honeypot {
+  display: none;
+}
+
+.mw-cform__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .mw-cform__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mw-cform__field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mw-cform__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
+}
+
+.mw-cform__req {
+  color: var(--main);
+}
+
+.mw-cform__input {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--text);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mw-cform__input:focus {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 3px rgba(var(--shadow-rgb), 0.08);
+}
+
+.mw-cform__textarea {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.6;
+}
+
+.mw-cform__error {
+  font-size: 0.875rem;
+  color: var(--main);
+}
+
+.mw-cform__error a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.mw-cform__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mw-cform__btn {
+  background: var(--main);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.875rem 1.75rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mw-cform__btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.mw-cform__btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.mw-cform__fine {
+  flex: 1 1 16rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.mw-cform__fine a {
+  color: var(--text);
+  text-decoration: underline;
 }
 
 /* Exclusive Gobiya Savings / Coupon Section with WebGL Aurora */

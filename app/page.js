@@ -3,12 +3,12 @@ import TestimonialStack from '../components/TestimonialStack';
 import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
+import LocalAreas from '../components/LocalAreas';
 import SavingsOffer from '../components/SavingsOffer';
 import HomeHeroVideo from '../components/HomeHeroVideo';
 import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
-import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 import { heroImage, HERO_VIDEO, HERO_VIDEO_MP4 } from '../lib/heroImages';
 
 export const metadata = buildMetadata({
@@ -59,27 +59,9 @@ const STORY_IMAGES = [
 const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
 const STAT_IDS = ['ai-citations', 'impressions', 'position'];
 
-// Same array drives the visible markup and this schema, so the answer a person
-// reads is byte-for-byte the answer an AI tool ingests. Matches the pattern in
-// app/seo-myths/page.js.
-const FAQ_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: HOMEPAGE_FAQ.map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
-  })),
-};
-
 export default function Home() {
   return (
     <main id="top">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
-      />
-
       {/* ══ 1. Hero directly below menubar ══
           Position 0 on the site-wide hero rotation in lib/heroImages.js. It has
           to stay 0: that slot is the one picture with a matching .webm, and the
@@ -285,94 +267,7 @@ export default function Home() {
       <ExcellenceGrid />
 
       {/* ══ Quality Services For Our Local Communities ══ */}
-      <section className="mw-local-areas">
-        <div className="container">
-          <h2 className="mw-local-areas__heading">
-            Quality Services For Our Local Communities
-          </h2>
-          <p className="mw-local-areas__intro">
-            From SEO recoveries to content and ppc services, we&apos;re committed to keeping business websites across LA running smoothly.
-          </p>
-
-          <div className="mw-local-areas__card">
-            <div className="mw-local-areas__columns">
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/burbank" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Burbank
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/echo-park" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Echo Park
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/glendale" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Glendale
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/hollywood" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Hollywood
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/los-feliz" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Los Feliz
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Pasadena
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/sherman-oaks" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Sherman Oaks
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/silverlake" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Silver Lake
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/studio-city" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Studio City
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/koreatown" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Koreatown
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <a href="/areas-we-serve/downtown" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">📍</span> Downtown LA
-                </a>
-              </div>
-              <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> San Fernando Valley
-              </div>
-              <div className="mw-local-areas__item">
-                <span className="mw-local-areas__icon">📍</span> Greater Los Angeles Area
-              </div>
-              <div className="mw-local-areas__item mw-local-areas__item--highlight">
-                <a href="/areas-we-serve" className="mw-local-areas__link">
-                  <span className="mw-local-areas__icon">✨</span> &amp; Beyond!
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mw-local-areas__cta">
-            <p className="mw-local-areas__cta-text">
-              Call us today! <a href="tel:323-744-1338" className="mw-local-areas__phone">323-744-1338</a> or{' '}
-              <a href="/free-site-scan" className="mw-local-areas__btn">
-                Get a FREE Site Scan <span>→</span>
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
+      <LocalAreas />
 
       {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
       <SavingsOffer />

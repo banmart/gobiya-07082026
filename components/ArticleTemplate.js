@@ -29,28 +29,10 @@ export default function ArticleTemplate({ article }) {
     mainEntityOfPage: `https://www.gobiya.com/insights/${article.slug}`,
   };
 
-  const faqSchema = article.faqs?.length
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: article.faqs.map((f) => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
-        })),
-      }
-    : null;
-
   return (
     <main id="top">
       <ReadingProgress />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
 
       {/* ══ Hero — background image ONLY ══ */}
       <SubHero
@@ -148,21 +130,6 @@ export default function ArticleTemplate({ article }) {
               ))}
             </ul>
           </div>
-        </div>
-      </section>
-
-      {/* ══════════ FAQ ══════════ */}
-      <section className="faq section section--tint" id="faq">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small" data-reveal style={{ marginBottom: '3rem' }}>{article.title.split(':')[0]}, plainly explained.</h2>
-          <dl className="faq__list">
-            {article.faqs.map((f) => (
-              <div className="faq__item" key={f.q} data-reveal>
-                <dt>{f.q}</dt>
-                <dd dangerouslySetInnerHTML={{ __html: f.a }} />
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 

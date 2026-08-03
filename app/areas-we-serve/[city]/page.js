@@ -96,6 +96,8 @@ export async function generateMetadata({ params }) {
       area.metaDescription ||
       `${area.desc} Get a FREE site scan today — serving ${area.name} since 2010.`,
     path: `/areas-we-serve/${area.slug}`,
+    // A city can ship its authored title verbatim, with no ' — Gobiya' tail.
+    brandSuffix: area.brandSuffix !== false,
   });
 }
 
@@ -113,7 +115,9 @@ export default async function AreaPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(citySchema(area)) }}
       />
 
-      {/* ══ Hero — card contains city title, eyebrow, excerpt & CTAs ══ */}
+      {/* ══ Hero — card contains city title, eyebrow, excerpt & CTAs ══
+          h1, heroEyebrow and heroExcerpt are optional per-city overrides in
+          lib/areas.js; a city that sets none keeps the shared savings hero. */}
       <SubHero
         image={area.image || heroImage(cityIdx + 1)}
         breadcrumbs={[
@@ -121,9 +125,12 @@ export default async function AreaPage({ params }) {
           { label: 'Areas We Serve', href: '/areas-we-serve' },
           { label: area.name },
         ]}
-        eyebrow="Affordable Solutions, Exceptional Service"
-        title={`Exclusive Gobiya Savings in ${area.name}`}
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        eyebrow={area.heroEyebrow || 'Affordable Solutions, Exceptional Service'}
+        title={area.h1 || `Exclusive Gobiya Savings in ${area.name}`}
+        excerpt={
+          area.heroExcerpt ||
+          'Keep your website running smoothly and your ROI increase with our latest savings and special offers.'
+        }
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

@@ -1,7 +1,7 @@
-import Breadcrumbs from '../../components/Breadcrumbs';
 import SubHero from '../../components/SubHero';
 import ClientLogos from '../../components/ClientLogos';
-import CollapsibleSidebar from '../../components/CollapsibleSidebar';
+import ContactForm from '../../components/ContactForm';
+import LocalAreas from '../../components/LocalAreas';
 import { CONTACT } from '../../lib/nav';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
@@ -13,92 +13,107 @@ export const metadata = buildMetadata({
   path: '/contact',
 });
 
-const CONTACT_TOPICS = [
-  {
-    id: 'free-scan',
-    title: 'Request a Free Website & SEO Scan',
-    desc: 'Get an expert audit of your website backend code, Google ranking health, and AI search visibility. We deliver actionable findings with no cost or obligation.',
-    href: '/free-site-scan',
-    cta: 'Start Your Free Scan',
-  },
-  {
-    id: 'direct-phone',
-    title: 'Call Us Directly',
-    desc: `Prefer to speak with Steve immediately? Call ${CONTACT.phone} during Los Angeles business hours (9am - 6pm PST, Mon - Fri).`,
-    href: CONTACT.phoneHref,
-    cta: `Call ${CONTACT.phone}`,
-  },
-  {
-    id: 'consultation',
-    title: 'Schedule a Consultation',
-    desc: 'Discuss your search engine optimization, content strategy, or PPC advertising goals directly with our lead strategist.',
-    href: '/free-site-scan',
-    cta: 'Schedule Your Consultation',
-  },
-  {
-    id: 'office-address',
-    title: 'Office Address',
-    desc: `${CONTACT.address1}, ${CONTACT.address2}.`,
-    href: 'https://maps.google.com/?q=3580+Wilshire+Blvd,+Ste+132,+Los+Angeles,+CA+90010',
-    cta: 'Get Directions',
-  },
-];
+const DIRECTIONS_URL =
+  'https://maps.google.com/?q=3580+Wilshire+Blvd,+Ste+132,+Los+Angeles,+CA+90010';
 
 export default function ContactPage() {
   return (
     <main id="top">
-      {/* ══ 2. SubHero Banner ══ */}
       <SubHero
         image={heroImage(4)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
-        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        eyebrow="We'd Like to Hear From You"
+        title="Contact Gobiya"
+        excerpt="Call, email, or send us a note below. You'll talk to the person who does the work — not a call center."
+        primary={{ text: `Call ${CONTACT.phone}`, href: CONTACT.phoneHref }}
+        secondary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
       />
 
-      {/* ══ 3. Hierarchical Pillar Grid ══ */}
-      <div className="container">
-        <div className="mw-pillar-grid">
-          {/* Left Sidebar */}
-          <CollapsibleSidebar headerText="Contact Topics">
-            {CONTACT_TOPICS.map((topic, idx) => (
-              <a
-                key={topic.id}
-                href={`#${topic.id}`}
-                className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
-              >
-                {topic.title}
-              </a>
-            ))}
-          </CollapsibleSidebar>
+      {/* ══ Form + office details ══ */}
+      <section className="mw-contact">
+        <div className="container">
+          <div className="mw-contact__grid">
+            <ContactForm />
 
-          {/* Right Content Area */}
-          <div className="mw-cluster-list">
-            {CONTACT_TOPICS.map((topic) => (
-              <div key={topic.id} id={topic.id} className="mw-cluster-block">
-                <h2 className="mw-cluster-block__title">
-                  <a href={topic.href}>{topic.title}</a>
-                </h2>
-                <p className="mw-cluster-block__desc">
-                  {topic.desc}
+            <aside className="mw-contact__details">
+              <h2 className="mw-contact__details-title">Our office</h2>
+
+              <div className="mw-contact__block">
+                <h3 className="mw-contact__label">Address</h3>
+                <p className="mw-contact__value">
+                  {CONTACT.address1}
+                  <br />
+                  {CONTACT.address2}
                 </p>
-                <div style={{ marginTop: '1rem' }}>
-                  <a href={topic.href} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
-                    {topic.cta} &rarr;
-                  </a>
-                </div>
+                <a className="mw-contact__action" href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">
+                  Get Directions <span aria-hidden="true">→</span>
+                </a>
               </div>
-            ))}
+
+              <div className="mw-contact__block">
+                <h3 className="mw-contact__label">Phone</h3>
+                <p className="mw-contact__value">
+                  <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+                </p>
+              </div>
+
+              <div className="mw-contact__block">
+                <h3 className="mw-contact__label">Email</h3>
+                <p className="mw-contact__value">
+                  <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                </p>
+              </div>
+
+              <div className="mw-contact__block">
+                <h3 className="mw-contact__label">Hours</h3>
+                <p className="mw-contact__value">
+                  Monday &ndash; Friday, 9am &ndash; 6pm PST
+                  <br />
+                  Saturday &amp; Sunday, by appointment
+                </p>
+              </div>
+
+              <div className="mw-contact__block">
+                <h3 className="mw-contact__label">Service area</h3>
+                <p className="mw-contact__value">
+                  Los Angeles, the San Fernando Valley, and the wider Southern California
+                  region &mdash; plus remote clients nationwide.
+                </p>
+                <a className="mw-contact__action" href="/areas-we-serve">
+                  See Areas We Serve <span aria-hidden="true">→</span>
+                </a>
+              </div>
+
+              <div className="mw-contact__block mw-contact__block--last">
+                <h3 className="mw-contact__label">Elsewhere</h3>
+                <ul className="mw-contact__social">
+                  <li>
+                    <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  </li>
+                  <li>
+                    <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+                  </li>
+                  <li>
+                    <a href={CONTACT.twitter} target="_blank" rel="noopener noreferrer">X</a>
+                  </li>
+                  <li>
+                    <a href={CONTACT.yelp} target="_blank" rel="noopener noreferrer">Yelp</a>
+                  </li>
+                </ul>
+              </div>
+            </aside>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ══ 4. Client Logo Strip ══ */}
+      {/* ══ LA map band — same section the homepage runs ══ */}
+      <LocalAreas
+        heading="Where We Work"
+        intro="We're based in Koreatown and work with businesses right across Los Angeles. Pick your neighborhood to see what we do there."
+      />
+
       <ClientLogos />
 
-      {/* ══ 5. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">
