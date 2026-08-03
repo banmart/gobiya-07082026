@@ -165,7 +165,8 @@ export default function Header() {
 
         <nav className="menu__links" aria-label="Mobile">
           {MEGA_NAV.map((item, i) => {
-            const isExpanded = openSection === item.label;
+            const hasDropdown = item.columns && item.columns.length > 0;
+            const isExpanded = hasDropdown && openSection === item.label;
             const panelId = `menu-section-${i}`;
 
             return (
@@ -177,16 +178,20 @@ export default function Header() {
                   <a className="menu__row-link" href={item.href} onClick={closeMenu}>
                     {item.label}
                   </a>
-                  <button
-                    type="button"
-                    className="menu__row-toggle"
-                    onClick={() => setOpenSection(isExpanded ? null : item.label)}
-                    aria-expanded={isExpanded}
-                    aria-controls={panelId}
-                    aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.label}`}
-                  >
-                    <span aria-hidden="true">⌄</span>
-                  </button>
+                  {/* Only sections with a mega-menu get a chevron — the flat
+                      links have nothing to expand. */}
+                  {hasDropdown && (
+                    <button
+                      type="button"
+                      className="menu__row-toggle"
+                      onClick={() => setOpenSection(isExpanded ? null : item.label)}
+                      aria-expanded={isExpanded}
+                      aria-controls={panelId}
+                      aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.label}`}
+                    >
+                      <span aria-hidden="true">⌄</span>
+                    </button>
+                  )}
                 </div>
 
                 {isExpanded && (
