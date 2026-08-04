@@ -40,7 +40,7 @@ export default function IPGeoTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'IP Geolocation' }]} />
-          <h1 className="statement" data-split>IP Geolocation and Free GEO IP Lookup</h1>
+          <h1 className="statement" data-split>See Exactly Where an IP Address Sits on the Map</h1>
           <p className="lede" data-reveal>Run a GEO IP lookup on any address and find out roughly where it is located and which internet provider it belongs to. IP geolocation free, with no signup.</p>
         </div>
       </section>

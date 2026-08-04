@@ -101,7 +101,7 @@ export default function ToolsHub() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
-          <h1 className="statement" data-split>Free Online SEO &amp; Domain Tools for Los Angeles Businesses</h1>
+          <h1 className="statement" data-split>Answers About Your Site in Seconds, Free</h1>
           <p className="lede" data-reveal>Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
         </div>
       </section>

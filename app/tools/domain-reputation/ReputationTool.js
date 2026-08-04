@@ -46,7 +46,7 @@ export default function ReputationTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Domain Reputation Check' }]} />
-          <h1 className="statement" data-split>Domain Reputation &amp; Threat Check</h1>
+          <h1 className="statement" data-split>Know a Domain Is Safe Before You Trust It</h1>
           <p className="lede" data-reveal>Instantly check any domain for spam flags, malware warnings, and email blacklist reports across security blocklists.</p>
         </div>
       </section>

@@ -40,7 +40,7 @@ export default function SSLTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'SSL Certificate Lookup' }]} />
-          <h1 className="statement" data-split>SSL Certificate Checker</h1>
+          <h1 className="statement" data-split>Know Your Padlock Will Still Be There Tomorrow</h1>
           <p className="lede" data-reveal>Check whether a website&apos;s security certificate is valid, see which other domains it covers, and verify who issued it.</p>
         </div>
       </section>

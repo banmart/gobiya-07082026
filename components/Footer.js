@@ -17,7 +17,6 @@ export default function Footer() {
               <a href="/services/link-building">Link Building</a>
               <a href="/services/ppc">PPC</a>
               <a href="/services/cro">CRO</a>
-              <a href="/services/web-ux">Web UX</a>
               <a href="/services/web-dev">Web Dev</a>
               <a href="/services/ai-consulting">AI Consulting</a>
             </div>

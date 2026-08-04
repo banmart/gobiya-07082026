@@ -26,7 +26,7 @@ export default function ApproachPage() {
           { label: 'Our Approach' },
         ]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="An SEO Process That Takes the Guesswork Out of Rankings"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

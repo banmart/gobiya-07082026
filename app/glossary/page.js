@@ -45,7 +45,7 @@ export default function GlossaryPage() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Glossary' }]} />
-          <h1 className="statement" data-split>AI Search, SEO, Websites &amp; PPC — Explained Plainly</h1>
+          <h1 className="statement" data-split>Every Term You’ll Hear From an SEO, Finally in Plain English</h1>
           <p className="lede" data-reveal>{`${GLOSSARY.length} terms covering everything from Core Web Vitals to Generative Engine Optimization to Quality Score. No jargon left unexplained.`}</p>
         </div>
       </section>

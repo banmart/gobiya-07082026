@@ -21,7 +21,7 @@ export default function WorkPage() {
         image={heroImage(13)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Work' }]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="See What Getting Found Actually Looks Like"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

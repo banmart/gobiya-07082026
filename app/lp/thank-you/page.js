@@ -19,7 +19,7 @@ export default function LpThankYouPage() {
         image={heroImage(16)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Thanks' }]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="You’re In. Your Growth Plan Is on Its Way."
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

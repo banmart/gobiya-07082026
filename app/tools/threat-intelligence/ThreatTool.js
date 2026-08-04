@@ -46,7 +46,7 @@ export default function ThreatTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Threat Intelligence' }]} />
-          <h1 className="statement" data-split>Threat Intelligence Checker</h1>
+          <h1 className="statement" data-split>Spot a Threat Before It Reaches Your Business</h1>
           <p className="lede" data-reveal>Check an IP or domain against global security feeds to catch active threats, malware flags, and suspicious network activity.</p>
         </div>
       </section>

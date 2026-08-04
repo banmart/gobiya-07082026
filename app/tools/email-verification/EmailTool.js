@@ -40,7 +40,7 @@ export default function EmailTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Email Verification' }]} />
-          <h1 className="statement" data-split>Email Verification Tool</h1>
+          <h1 className="statement" data-split>Know an Address Is Real Before You Hit Send</h1>
           <p className="lede" data-reveal>Check whether an email address is real and can actually receive mail, to help protect your sender reputation.</p>
         </div>
       </section>

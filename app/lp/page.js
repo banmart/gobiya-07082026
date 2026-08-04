@@ -44,7 +44,7 @@ export default async function LpPage({ searchParams }) {
       <SubHero
         image={heroImage(15)}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="Everything You Need to Grow, Bundled Into One Quarter"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

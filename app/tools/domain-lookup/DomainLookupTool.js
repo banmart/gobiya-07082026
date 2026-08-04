@@ -42,7 +42,7 @@ export default function DomainLookupTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Domain WHOIS Lookup' }]} />
-          <h1 className="statement" data-split>WHOIS Domain Lookup</h1>
+          <h1 className="statement" data-split>Know Who Owns a Domain Before You Make an Offer</h1>
           <p className="lede" data-reveal>Look up any domain to instantly see if it&apos;s available, who registered it, when, and which servers manage it.</p>
         </div>
       </section>

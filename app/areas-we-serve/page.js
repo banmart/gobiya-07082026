@@ -22,7 +22,7 @@ export default function AreasWeServePage() {
           { label: 'Areas We Serve' },
         ]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="Wherever You Are in Los Angeles, Be the First Result"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

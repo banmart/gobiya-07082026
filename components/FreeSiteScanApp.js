@@ -182,7 +182,7 @@ export default function FreeSiteScanApp() {
       {phase === 'input' && (
         <div className="fss-hero-box">
           <div className="fss-badge">Real-Time Domain &amp; AI Audit</div>
-          <h1 className="fss-hero-title">Free Site Scan &amp; AI Visibility Audit</h1>
+          <h1 className="fss-hero-title">Find Out Why You’re Not Being Found, Free</h1>
           <p className="fss-hero-subtitle">
             Enter your domain to instantly scan your website for Core Web Vitals, on-page SEO, security, and AI search readiness (ChatGPT, Perplexity &amp; Google Overviews).
           </p>

@@ -94,7 +94,7 @@ export default async function StuffPage() {
               { label: 'Video Showcase' },
             ]}
           />
-          <h1 className="statement" data-split>We Use AI to Create Viral, Scroll-Stopping Videos That Are Surprisingly Affordable</h1>
+          <h1 className="statement" data-split>Scroll-Stopping Video Without the Agency Price Tag</h1>
           <p className="lede" data-reveal>Stop burning budget on slow camera crews. We combine generative AI workflows with SEO-backed metadata to produce high-converting commercial ads, social reels, and web background videos delivered in days.</p>
         </div>
       </section>

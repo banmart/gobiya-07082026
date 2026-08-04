@@ -23,7 +23,7 @@ export default function ContactPage() {
         image={heroImage(4)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
         eyebrow="We'd Like to Hear From You"
-        title="Contact Gobiya"
+        title="One Call, and the Person Who Does the Work Picks Up"
         excerpt="Call, email, or send us a note below. You'll talk to the person who does the work — not a call center."
         primary={{ text: `Call ${CONTACT.phone}`, href: CONTACT.phoneHref }}
         secondary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}

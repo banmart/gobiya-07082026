@@ -87,7 +87,7 @@ export default function ProcessPage() {
           { label: 'Our Process' },
         ]}
         eyebrow="Our Proven Growth Framework"
-        title="Our Proprietary Process for Business Growth"
+        title="The Process That Turns Search Into Steady, Compounding Growth"
         excerpt="We've spent over 16 years refining a structured 4-step framework that turns technical search engineering and AI optimization into reliable, compounding business growth."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

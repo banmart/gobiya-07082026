@@ -46,7 +46,7 @@ export default function WebCatTool() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Website Categorization' }]} />
-          <h1 className="statement" data-split>Website Categorization Tool</h1>
+          <h1 className="statement" data-split>See How the Rest of the Web Classifies Your Site</h1>
           <p className="lede" data-reveal>See how security filters, ad networks, and AI content analyzers classify any domain.</p>
         </div>
       </section>

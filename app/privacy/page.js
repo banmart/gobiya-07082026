@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         image={heroImage(10)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'privacy' }]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="Your Data Stays Yours"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

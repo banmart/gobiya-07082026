@@ -28,7 +28,7 @@ export default function AboutPage() {
           { label: 'What We Do' },
         ]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Exclusive Gobiya Savings"
+        title="16 Years of Getting Los Angeles Businesses Found"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Meet Steve Martin', href: '/about/steve-martin' }}

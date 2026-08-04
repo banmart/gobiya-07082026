@@ -30,7 +30,7 @@ export default function InsightsPage() {
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
           <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
-          <h1 className="statement" data-split>Insights &amp; Search Guides</h1>
+          <h1 className="statement" data-split>Everything We Know About Getting Found, Written Down</h1>
           <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written to actually answer the question, not just rank for it.</p>
         </div>
       </section>
