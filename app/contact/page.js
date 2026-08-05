@@ -1,7 +1,5 @@
 import SubHero from '../../components/SubHero';
-import ClientLogos from '../../components/ClientLogos';
 import ContactForm from '../../components/ContactForm';
-import LocalAreas from '../../components/LocalAreas';
 import { CONTACT } from '../../lib/nav';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
@@ -106,13 +104,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ══ LA map band — same section the homepage runs ══ */}
-      <LocalAreas
-        heading="Where We Work"
-        intro="We're based in Koreatown and work with businesses right across Los Angeles. Pick your neighborhood to see what we do there."
-      />
 
-      <ClientLogos />
 
       <section className="mw-navy-banner">
         <div className="container">
