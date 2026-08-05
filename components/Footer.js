@@ -65,22 +65,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 5. Areas We Serve Column */}
-          <div>
-            <h4 className="mw-footer__col-title">Areas We Serve</h4>
-            <div className="mw-footer__links">
-              <a href="/areas-we-serve/downtown">SEO in Downtown LA</a>
-              <a href="/areas-we-serve/koreatown">SEO in Koreatown</a>
-              <a href="/areas-we-serve/burbank">SEO in Burbank</a>
-              <a href="/areas-we-serve/glendale">SEO in Glendale</a>
-              <a href="/areas-we-serve/silverlake">SEO in Silverlake</a>
-              <a href="/areas-we-serve/echo-park">SEO in Echo Park</a>
-              <a href="/areas-we-serve/los-feliz">SEO in Los Feliz</a>
-              <a href="/areas-we-serve/hollywood">SEO in Hollywood</a>
-              <a href="/areas-we-serve/studio-city">SEO in Studio City</a>
-              <a href="/areas-we-serve/sherman-oaks">SEO in Sherman Oaks</a>
-            </div>
-          </div>
         </div>
 
         <div className="mw-footer__bottom">

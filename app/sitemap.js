@@ -1,7 +1,6 @@
 import { INSIGHTS } from '../lib/insights';
 import { SERVICE_LINKS } from '../lib/serviceIndex';
 import { CASE_STUDIES } from '../lib/work';
-import { AREAS } from '../lib/areas';
 import { GLOSSARY } from '../lib/glossary';
 
 const BASE_URL = 'https://www.gobiya.com';
@@ -38,10 +37,6 @@ export default function sitemap() {
     url: `${BASE_URL}${path}`,
   }));
 
-  const areaRoutes = AREAS.map((area) => ({
-    url: `${BASE_URL}/areas-we-serve/${area.slug}`,
-  }));
-
   const serviceRoutes = SERVICE_LINKS.map((s) => ({
     url: `${BASE_URL}${s.href}`,
   }));
@@ -61,7 +56,6 @@ export default function sitemap() {
 
   return [
     ...staticRoutes,
-    ...areaRoutes,
     ...serviceRoutes,
     ...insightRoutes,
     ...glossaryRoutes,

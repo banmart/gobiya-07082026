@@ -20,8 +20,15 @@ const nextConfig = {
       { source: '/web-development-services-los-angeles', destination: '/services/web-dev', permanent: true },
       { source: '/ai-consulting-services-los-angeles', destination: '/services/ai-consulting', permanent: true },
 
-      // Silver Lake city page moved from the hyphenated slug (2026-07-31).
-      { source: '/areas-we-serve/silver-lake', destination: '/areas-we-serve/silverlake', permanent: true },
+      // ── Areas We Serve sub-pages → index (2026-08-05) ──
+      // The individual /areas-we-serve/[city] pages are being retired in favour
+      // of the single /areas-we-serve listing page, which covers all locations
+      // honestly with one authoritative areaServed schema block. Every city slug
+      // 301s to the index so existing inbound links and any indexed city URLs
+      // consolidate their signal there rather than stranding on a dead page.
+      // The silver-lake → silverlake hop is absorbed into this wildcard, since
+      // both now land on /areas-we-serve.
+      { source: '/areas-we-serve/:city', destination: '/areas-we-serve', permanent: true },
 
       // ── Legacy URLs still in Google's index that were returning 404 ──
       // Found 2026-07-25 by checking what actually surfaces for gobiya.com in
@@ -228,26 +235,29 @@ const nextConfig = {
       // real page again.
       // ── Areas We Serve — redirect old /locations/* city slugs and
       // bare city SEO slugs to the new /areas-we-serve/<city> canonical pages
-      { source: '/locations/burbank', destination: '/areas-we-serve/burbank', permanent: true },
-      { source: '/local-seo-company-burbank', destination: '/areas-we-serve/burbank', permanent: true },
-      { source: '/industries/local-service/burbank-seo', destination: '/areas-we-serve/burbank', permanent: true },
-      { source: '/locations/silverlake', destination: '/areas-we-serve/silverlake', permanent: true },
-      { source: '/industries/local-service/silverlake-seo', destination: '/areas-we-serve/silverlake', permanent: true },
-      { source: '/locations/studio-city', destination: '/areas-we-serve/studio-city', permanent: true },
-      { source: '/industries/local-service/studio-city-seo', destination: '/areas-we-serve/studio-city', permanent: true },
-      { source: '/locations/sherman-oaks', destination: '/areas-we-serve/sherman-oaks', permanent: true },
-      { source: '/industries/local-service/sherman-oaks-seo', destination: '/areas-we-serve/sherman-oaks', permanent: true },
-      { source: '/seo-silverlake', destination: '/areas-we-serve/silverlake', permanent: true },
-      { source: '/seo-burbank', destination: '/areas-we-serve/burbank', permanent: true },
-      { source: '/seo-hollywood', destination: '/areas-we-serve/hollywood', permanent: true },
-      { source: '/seo-studio-city', destination: '/areas-we-serve/studio-city', permanent: true },
-      { source: '/seo-koreatown', destination: '/areas-we-serve/koreatown', permanent: true },
-      { source: '/seo-downtown-la', destination: '/areas-we-serve/downtown', permanent: true },
-      { source: '/seo-echo-park', destination: '/areas-we-serve/echo-park', permanent: true },
-      { source: '/seo-los-feliz', destination: '/areas-we-serve/los-feliz', permanent: true },
-      { source: '/seo-sherman-oaks', destination: '/areas-we-serve/sherman-oaks', permanent: true },
-      { source: '/seo-glendale', destination: '/areas-we-serve/glendale', permanent: true },
-      { source: '/locations/glendale', destination: '/areas-we-serve/glendale', permanent: true },
+      // Old bare city-SEO slugs and /locations/* → now all go to /areas-we-serve
+      // (the /areas-we-serve/:city wildcard above already catches any direct hit
+      //  on the old city sub-page; these cover the legacy flat & /locations paths)
+      { source: '/locations/burbank', destination: '/areas-we-serve', permanent: true },
+      { source: '/local-seo-company-burbank', destination: '/areas-we-serve', permanent: true },
+      { source: '/industries/local-service/burbank-seo', destination: '/areas-we-serve', permanent: true },
+      { source: '/locations/silverlake', destination: '/areas-we-serve', permanent: true },
+      { source: '/industries/local-service/silverlake-seo', destination: '/areas-we-serve', permanent: true },
+      { source: '/locations/studio-city', destination: '/areas-we-serve', permanent: true },
+      { source: '/industries/local-service/studio-city-seo', destination: '/areas-we-serve', permanent: true },
+      { source: '/locations/sherman-oaks', destination: '/areas-we-serve', permanent: true },
+      { source: '/industries/local-service/sherman-oaks-seo', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-silverlake', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-burbank', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-hollywood', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-studio-city', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-koreatown', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-downtown-la', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-echo-park', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-los-feliz', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-sherman-oaks', destination: '/areas-we-serve', permanent: true },
+      { source: '/seo-glendale', destination: '/areas-we-serve', permanent: true },
+      { source: '/locations/glendale', destination: '/areas-we-serve', permanent: true },
       { source: '/areas-served', destination: '/areas-we-serve', permanent: true },
       { source: '/locations', destination: '/areas-we-serve', permanent: true },
     ];

@@ -3,7 +3,6 @@ import TestimonialStack from '../components/TestimonialStack';
 import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
-import LocalAreas from '../components/LocalAreas';
 import SavingsOffer from '../components/SavingsOffer';
 import HomeHeroVideo from '../components/HomeHeroVideo';
 import { buildMetadata } from '../lib/meta';
@@ -266,9 +265,6 @@ export default function Home() {
 
       {/* ══ Excellence in Every Service ══ */}
       <ExcellenceGrid />
-
-      {/* ══ Quality Services For Our Local Communities ══ */}
-      <LocalAreas />
 
       {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
       <SavingsOffer />

@@ -8368,7 +8368,54 @@ html.a11y-grayscale {
   transform: translateX(4px);
 }
 
-/* Areas index: the four services, on white so it separates from the grid above */
+/* ─── Coverage grid: two county columns, no linked city cards ─── */
+.mw-areas-coverage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2.5rem clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.mw-areas-coverage__county-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-contrast);
+}
+.mw-areas-coverage__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.35rem 1.25rem;
+}
+.mw-areas-coverage__item {
+  font-size: 0.9375rem;
+  color: var(--ink-600);
+  line-height: 1.55;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+.mw-areas-coverage__pin {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+.mw-areas-index__note {
+  font-size: 0.9375rem;
+  color: var(--ink-600);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.mw-areas-index__note a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+
 .mw-area-services {
   padding-block: clamp(3.5rem, 6vw, 5rem);
   background: var(--surface);
