@@ -9,11 +9,12 @@ import { buildMetadata } from '../lib/meta';
 import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
 import { HERO_VIDEO_MP4, HERO_VIDEO_MP4_SM, HERO_VIDEO_POSTER } from '../lib/heroImages';
+import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 export const metadata = buildMetadata({
-  title: 'AI SEO Los Angeles | SEO Agency | SEO Professional | Gobiya',
+  title: 'Los Angeles SEO Company | #1 AI Search & Web Design',
   description:
-    'AI SEO Los Angeles businesses call direct: an SEO agency where an SEO professional does the work. Technical SEO, AI visibility and content that gets you cited.',
+    'Premier Los Angeles SEO company and web design agency. Proven AI search visibility, technical SEO audits, and custom web builds that drive revenue.',
   path: '/',
 });
 
@@ -26,10 +27,6 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/dgplumbing-logo.webp', alt: 'DGPlumbingandRooter.com' },
 ];
 
-// The "Our Team Does it All For You" marquee. Titles match NAV_TITLES in
-// lib/serviceIndex.js so the card, the sidebar and the /services index all name
-// a service the same way. Order runs the funnel: rankings → AI → content →
-// authority → ads → conversion.
 const SIMPLE_SERVICES = [
   { title: 'Technical & On-Page SEO', href: '/services/seo' },
   { title: 'AI & GEO Search Optimization', href: '/services/geo' },
@@ -39,33 +36,31 @@ const SIMPLE_SERVICES = [
   { title: 'CRO & Web UX', href: '/services/cro' },
 ];
 
-const STORY_IMAGES = [
-  '/assets/img/smilecenter.webp',
-  '/assets/img/americanlivescan.webp',
-  '/assets/img/access-control-lady.webp',
-  '/assets/img/remodelmepros.webp',
-  '/assets/img/totalcapital.webp',
-  '/assets/img/hallway-code-review.webp',
-  '/assets/img/open-office-desks.webp',
-  '/assets/img/office-lounge-meeting.webp',
-];
-
-// The stats bar shows real Google Search Console and AI-grounding numbers from
-// lib/searchWins.js rather than hardcoded claims. Look cards up by id, never by
-// index — the weekly refresh job swaps which metrics are presentable (CTR
-// replaces clicks when clicks have no honest window, and so on), so positions
-// are not stable. A missing id renders nothing rather than crashing the page.
 const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
 const STAT_IDS = ['ai-citations', 'impressions', 'clicks'];
 
 export default function Home() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOMEPAGE_FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <main id="top">
-      {/* ══ 1. Hero directly below menubar ══
-          The still here is frame 0 of the scrub video, not a slot on the hero
-          rotation. It has to be: the background shows through until the video
-          paints, and anything other than the video's own first frame reads as a
-          cut. See HERO_VIDEO_POSTER in lib/heroImages.js. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      {/* ══ 1. Hero ══ */}
       <section
         className="mw-hero"
         style={{ backgroundImage: `url('${HERO_VIDEO_POSTER}')` }}
@@ -80,13 +75,13 @@ export default function Home() {
           <div className="mw-hero__card">
             <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
             <h1 className="mw-hero__title">
-              AI SEO That Makes You the Business Los Angeles Finds First
+              Los Angeles SEO Company &amp; AI Search Optimization Agency
             </h1>
             <p className="mw-hero__excerpt">
-              AI SEO Los Angeles businesses call direct — an SEO agency where an SEO professional does the work. Celebrating 16 Years of Local Service!
+              An SEO services company for the age of artificial intelligence. We build custom websites, execute white-hat SEO, and make your business the #1 answer AI search tools quote.
             </p>
             <p className="mw-hero__description">
-              When rankings drop, Call Gobiya to Help! Expert SEO, paid advertising, Onpage &amp; Content publishing services AI can rely on for citing your business above your competitors.
+              Whether you need technical SEO fixes, high-converting web design, or AI citations in ChatGPT and Perplexity, Gobiya delivers transparent, data-backed results with no long-term contracts.
             </p>
             <div className="mw-hero__actions">
               <a href="/free-site-scan" className="mw-hero__btn">
@@ -103,21 +98,17 @@ export default function Home() {
       {/* ══ 2. Platform Strip ══ */}
       <PlatformStrip />
 
-      {/* ══ 3. Our Team Does it All For You ══ */}
-      <section className="mw-simple">
+      {/* ══ 3. Competitive Overview Section ══ */}
+      <section className="mw-simple" style={{ paddingBottom: '3rem' }}>
         <div className="container">
           <h2 className="mw-simple__heading">
-            Our Team Does it All For You
+            Los Angeles SEO Company That Generates Measurable Organic Growth &amp; AI Dominance
           </h2>
           <p className="mw-simple__intro">
-            Whether you have a drop in rankings, not found in AI, or not getting a return from ads, our experts have you covered the whole way.
+            Gobiya is a leading web design &amp; SEO company. Unlike generic marketing agencies that rely on outdated tactics, we combine technical code fixes, custom Next.js web development, and Generative Engine Optimization (GEO) to give your business total search engine control.
           </p>
         </div>
 
-        {/* The track holds the service list twice and travels -50%, so the
-            second copy is exactly where the first started when the loop
-            restarts. Copy 1 is hidden from assistive tech and taken out of the
-            tab order — it is the same six links a second time. */}
         <div className="mw-simple__marquee">
           <div className="mw-simple__track">
             {[0, 1].map((copy) =>
@@ -128,10 +119,6 @@ export default function Home() {
                   aria-hidden={copy === 1 ? 'true' : undefined}
                 >
                   <h3 className="mw-simple__col-title">{service.title}</h3>
-                  {/* The card itself is a plain div — this is the only link in
-                      it. Its ::after stretches over the whole card, so clicking
-                      anywhere still works without nesting or duplicating an
-                      anchor. */}
                   <a
                     href={service.href}
                     className="mw-simple__card-link"
@@ -148,26 +135,22 @@ export default function Home() {
         <div className="container">
           <div className="mw-simple__footer">
             <a href="/services" className="mw-simple__btn">
-              View All Services <span>→</span>
+              Explore All Services <span>→</span>
             </a>
           </div>
         </div>
       </section>
 
-
-
-      {/* Solid Navy Divider Line */}
       <div className="mw-navy-divider" />
 
-      {/* ══ 5. Trusted Los Angeles SEOs ══ */}
+      {/* ══ 4. Why You'll Love Working With Us / Value Proposition ══ */}
       <section className="mw-person">
         <div className="container">
-          <h2 className="mw-person__heading">Trusted Los Angeles SEOs</h2>
+          <h2 className="mw-person__heading">
+            Why You&apos;ll Love Working With Gobiya SEO
+          </h2>
 
           <div className="mw-person__card">
-            {/* Avatar and its caption share the grid's first column, so the
-                caption sits under the picture instead of becoming a third
-                column of its own. */}
             <figure className="mw-person__figure">
               <Image
                 src="/assets/img/sm.jpg"
@@ -177,28 +160,33 @@ export default function Home() {
                 className="mw-person__avatar"
               />
               <figcaption className="mw-person__caption">
-                Steve Martin — SEO Expert
+                Steve Martin — Founder &amp; Lead SEO
               </figcaption>
             </figure>
             <div>
-              <h3 className="mw-person__name">Professional SEO Recovery &amp; Service Since 2010</h3>
+              <h3 className="mw-person__name">
+                An SEO Services Company for the Age of Artificial Intelligence
+              </h3>
               <p className="mw-person__bio">
-                For over 16 years, the Gobiya SEO team has been completely honest, affordable and reliable SEO services in Los Angeles and throughout the San Fernando Valley. For the time we&apos;ve been doing business, we are proud to have served the local area and community by recovering their websites and pay per click issues.
+                For over 16 years, Gobiya SEO has provided honest, highly reliable SEO services, AI search optimization, and web design for Los Angeles businesses. We don&apos;t lock you into restrictive long-term agency contracts. Instead, we deliver verified ranking growth, AI citations, and high-converting websites backed by transparent performance data.
               </p>
             </div>
           </div>
 
           <div className="mw-person__btn-wrap">
             <a href="/free-site-scan" className="mw-person__btn">
-              Get a FREE Website Scan Today!
+              Get a Free Account &amp; Competitor Strategy Review Now!
             </a>
           </div>
         </div>
       </section>
 
-      {/* ══ 6. By the Numbers Banner ══ */}
+      {/* ══ 5. Proven Search Performance & Case Studies ══ */}
       <section className="mw-stats">
         <div className="container">
+          <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
+            Proven Search Performance: Real Verified Results &amp; AI Citations
+          </h3>
           <div className="mw-stats__grid">
             <div>
               <div className="mw-stats__num">16</div>
@@ -228,27 +216,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 8. The 4-Step Method Section ══ */}
+      {/* ══ 6. What SEO, Web Design & Digital Marketing Can Do ══ */}
+      <section style={{ backgroundColor: 'var(--mw-surface-dark, #0b132b)', color: '#ffffff', padding: '4rem 0' }}>
+        <div className="container">
+          <h2 style={{ fontSize: '2rem', fontWeight: 800, textAlign: 'center', marginBottom: '2.5rem' }}>
+            What Our Full-Service SEO &amp; Web Design Agency Can Do for You
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '1rem', color: '#64ffda' }}>
+                What SEO Can Do for You
+              </h3>
+              <p style={{ lineHeight: 1.6, color: '#e0e6ed' }}>
+                Organic SEO captures high-intent customers at the exact moment they search for your services. We fix technical code errors, optimize on-page copy, and build domain trust to put your business at the top of Google Search and Google Maps.
+              </p>
+            </div>
+            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '1rem', color: '#64ffda' }}>
+                What Web Design Can Do for You
+              </h3>
+              <p style={{ lineHeight: 1.6, color: '#e0e6ed' }}>
+                Custom web design engineered with Next.js ensures your site loads instantly and presents a stunning visual brand identity. Fast loading speeds and responsive UX keep visitors engaged and maximize conversion rates.
+              </p>
+            </div>
+            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '1rem', color: '#64ffda' }}>
+                What Digital Marketing &amp; AI Search Can Do for You
+              </h3>
+              <p style={{ lineHeight: 1.6, color: '#e0e6ed' }}>
+                Generative Engine Optimization (GEO) positions your brand as the primary source quoted by ChatGPT, Perplexity, and Google AI Overviews—building a future-proof lead engine for your business.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 7. The 4-Step Method Section ══ */}
       <section className="mw-steps" id="process">
         <div className="container">
           <p className="mw-steps__sub">Our Proven Approach</p>
-          <h2 className="mw-steps__heading">The Gobiya 4-Step Method</h2>
+          <h2 className="mw-steps__heading">Learn About Gobiya&apos;s Results-Driven 4-Step Method</h2>
           <p className="mw-steps__dek">
-            We&apos;ve spent over a decade perfecting the process of scaling search and AI rankings. Here&apos;s the result:
+            We&apos;ve spent over a decade perfecting our process of scaling search engine rankings and AI citations. Here&apos;s how we do it:
           </p>
 
           <div className="mw-steps__grid mw-steps__grid--accordion">
-            <StepAccordion title="Step 1: Assess">
-              Our technical scan helps you determine if your site is findable by Google and AI tools, and what exact steps to take before launching your growth campaign.
+            <StepAccordion title="Step 1: Assess & Audit">
+              Our technical scan assesses if your site is findable by Google and AI engines, highlighting exact technical issues holding your rankings back.
             </StepAccordion>
-            <StepAccordion title="Step 2: Prepare">
-              Once we begin, we clean up hidden code errors, optimize your site architecture, and package your company content for optimal presentation.
+            <StepAccordion title="Step 2: Prepare & Rebuild">
+              We clean up hidden code errors, optimize your site architecture, and package your company content for optimal search engine indexation.
             </StepAccordion>
-            <StepAccordion title="Step 3: Market">
-              We develop and execute a strategic search &amp; AI marketing campaign focused on placing your business directly in front of high-intent buyers.
+            <StepAccordion title="Step 3: Market & Optimize">
+              We execute targeted organic search, content marketing, and AI visibility strategies focused on putting your business in front of active buyers.
             </StepAccordion>
-            <StepAccordion title="Step 4: Scale">
-              We&apos;re with you every step of the way until your search leads clear, providing continuous optimization and guidance throughout the process.
+            <StepAccordion title="Step 4: Scale & Convert">
+              We monitor daily rank tracking, organic traffic, and conversion metrics to ensure continuous revenue growth and maximum ROI.
             </StepAccordion>
           </div>
 
@@ -260,27 +283,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 9. Pinned Stacked Testimonials ══ */}
+      {/* ══ 8. Stacked Testimonials ══ */}
       <TestimonialStack />
 
-      {/* ══ Excellence in Every Service ══ */}
+      {/* ══ 9. Excellence Grid ══ */}
       <ExcellenceGrid />
 
-      {/* ══ Exclusive Gobiya Savings / Coupon Section ══ */}
+      {/* ══ 10. Frequently Asked Questions Section ══ */}
+      <section style={{ backgroundColor: 'var(--mw-surface, #1c2541)', color: '#ffffff', padding: '4rem 0' }} id="faq">
+        <div className="container">
+          <h2 style={{ fontSize: '2.25rem', fontWeight: 800, textAlign: 'center', marginBottom: '1rem' }}>
+            Frequently Asked Questions (FAQs) — Los Angeles SEO &amp; AI Search
+          </h2>
+          <p style={{ textAlign: 'center', color: '#e0e6ed', maxWidth: '700px', margin: '0 auto 3rem auto', fontSize: '1.1rem' }}>
+            Clear, straight answers on how our Los Angeles SEO company and web design agency helps your business dominate search rankings and AI recommendations.
+          </p>
+
+          <div style={{ display: 'grid', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
+            {HOMEPAGE_FAQ.map((faq, i) => (
+              <div
+                key={i}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  padding: '1.75rem',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.75rem' }}>
+                  {faq.q}
+                </h3>
+                <p style={{ color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 11. Savings Offer ══ */}
       <SavingsOffer />
 
-      {/* ══ 10. Schedule a Free Consultation Calendar Section ══ */}
-
-      {/* ══ Consultation CTA Section ══ */}
+      {/* ══ 12. Consultation CTA Section ══ */}
       <section className="mw-consultation">
         <div className="container">
           <div className="mw-consultation__content">
             <p className="mw-consultation__sub">We&apos;re Here When You Need Us</p>
             <h2 className="mw-consultation__title">
-              Don&apos;t Wait, Get More Sales Today!
+              Get a Free Account &amp; Competitor Strategy Review Now!
             </h2>
             <p className="mw-consultation__dek">
-              Our expert team is ready to tackle your website, SEO, AI and PPC issues quickly. Call now and get reliable service you can trust.
+              Our expert team is ready to analyze your website, technical SEO, AI citations, and PPC campaigns. Call now or start your free audit online.
             </p>
             <a href="/free-site-scan" className="mw-consultation__btn">
               Get a FREE Site Scan <span>→</span>
@@ -292,7 +346,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
