@@ -81,16 +81,23 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
     video.pause();
 
     let navH = document.getElementById('nav')?.offsetHeight ?? 0;
-    const heroH = hero.offsetHeight;
+    const heroH = hero.offsetHeight || 520;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
 
     if (container) {
       container.style.position = 'relative';
-      container.style.height = `${heroH + SCRUB_PX}px`;
+      container.style.height = isDesktop ? `${heroH + SCRUB_PX}px` : 'auto';
     }
 
-    hero.style.position = 'sticky';
-    hero.style.top = `${navH}px`;
-    hero.style.zIndex = '10';
+    if (isDesktop) {
+      hero.style.position = 'sticky';
+      hero.style.top = `${navH}px`;
+      hero.style.zIndex = '10';
+    } else {
+      hero.style.position = 'relative';
+      hero.style.top = '0px';
+      hero.style.zIndex = '';
+    }
 
     // --- Hero card fade (desktop only) ---
     const card = hero.querySelector('.mw-hero__card');
@@ -217,8 +224,20 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
 
     const onResize = () => {
       navH = document.getElementById('nav')?.offsetHeight ?? 0;
-      container.style.height = `${hero.offsetHeight + SCRUB_PX}px`;
-      hero.style.top = `${navH}px`;
+      const isDesk = window.matchMedia('(min-width: 768px)').matches;
+      const hH = hero.offsetHeight || 520;
+      if (container) {
+        container.style.height = isDesk ? `${hH + SCRUB_PX}px` : 'auto';
+      }
+      if (isDesk) {
+        hero.style.position = 'sticky';
+        hero.style.top = `${navH}px`;
+        hero.style.zIndex = '10';
+      } else {
+        hero.style.position = 'relative';
+        hero.style.top = '0px';
+        hero.style.zIndex = '';
+      }
       updateTarget();
       wake();
     };
