@@ -74,6 +74,8 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
     const hero = video.closest('.mw-hero');
     if (!hero) return;
 
+    const container = video.closest('[data-hero-pin]') || hero.parentElement;
+
     video.muted = true;
     video.playsInline = true;
     video.pause();
@@ -81,12 +83,10 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
     let navH = document.getElementById('nav')?.offsetHeight ?? 0;
     const heroH = hero.offsetHeight;
 
-    // Wrap hero in a containing block to bound the sticky pin
-    const container = document.createElement('div');
-    container.setAttribute('data-hero-pin', '');
-    container.style.cssText = `position:relative;height:${heroH + SCRUB_PX}px;`;
-    hero.parentNode.insertBefore(container, hero);
-    container.appendChild(hero);
+    if (container) {
+      container.style.position = 'relative';
+      container.style.height = `${heroH + SCRUB_PX}px`;
+    }
 
     hero.style.position = 'sticky';
     hero.style.top = `${navH}px`;
@@ -266,8 +266,6 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
       observer.disconnect();
       clearCardFade();
       if (rafId !== null) cancelAnimationFrame(rafId);
-      container.parentNode?.insertBefore(hero, container);
-      container.remove();
       hero.style.position = '';
       hero.style.top = '';
       hero.style.zIndex = '';

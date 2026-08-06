@@ -61,39 +61,41 @@ export default function Home() {
       />
 
       {/* ══ 1. Hero ══ */}
-      <section
-        className="mw-hero"
-        style={{ backgroundImage: `url('${HERO_VIDEO_POSTER}')` }}
-      >
-        <HomeHeroVideo
-          mp4Src={HERO_VIDEO_MP4}
-          mp4SmSrc={HERO_VIDEO_MP4_SM}
-          poster={HERO_VIDEO_POSTER}
-        />
-        <div className="mw-hero__overlay" />
-        <div className="container">
-          <div className="mw-hero__card">
-            <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
-            <h1 className="mw-hero__title">
-              Los Angeles SEO Company &amp; AI Search Optimization Agency
-            </h1>
-            <p className="mw-hero__excerpt">
-              An SEO services company for the age of artificial intelligence. We build custom websites, execute white-hat SEO, and make your business the #1 answer AI search tools quote.
-            </p>
-            <p className="mw-hero__description">
-              Whether you need technical SEO fixes, high-converting web design, or AI citations in ChatGPT and Perplexity, Gobiya delivers transparent, data-backed results with no long-term contracts.
-            </p>
-            <div className="mw-hero__actions">
-              <a href="/free-site-scan" className="mw-hero__btn">
-                Get Your Free Site Scan
-              </a>
-              <a href="/process" className="mw-hero__btn mw-hero__btn--ghost">
-                View Our Process
-              </a>
+      <div data-hero-pin style={{ position: 'relative' }}>
+        <section
+          className="mw-hero"
+          style={{ backgroundImage: `url('${HERO_VIDEO_POSTER}')` }}
+        >
+          <HomeHeroVideo
+            mp4Src={HERO_VIDEO_MP4}
+            mp4SmSrc={HERO_VIDEO_MP4_SM}
+            poster={HERO_VIDEO_POSTER}
+          />
+          <div className="mw-hero__overlay" />
+          <div className="container">
+            <div className="mw-hero__card">
+              <div className="mw-hero__eyebrow">Proudly Serving Los Angeles Since 2010</div>
+              <h1 className="mw-hero__title">
+                Los Angeles SEO Company &amp; AI Search Optimization Agency
+              </h1>
+              <p className="mw-hero__excerpt">
+                An SEO services company for the age of artificial intelligence. We build custom websites, execute white-hat SEO, and make your business the #1 answer AI search tools quote.
+              </p>
+              <p className="mw-hero__description">
+                Whether you need technical SEO fixes, high-converting web design, or AI citations in ChatGPT and Perplexity, Gobiya delivers transparent, data-backed results with no long-term contracts.
+              </p>
+              <div className="mw-hero__actions">
+                <a href="/free-site-scan" className="mw-hero__btn">
+                  Get Your Free Site Scan
+                </a>
+                <a href="/process" className="mw-hero__btn mw-hero__btn--ghost">
+                  View Our Process
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* ══ 2. Platform Strip ══ */}
       <PlatformStrip />
