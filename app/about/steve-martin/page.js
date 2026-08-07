@@ -70,13 +70,22 @@ export default function SteveMartinPage() {
             {/* Bio Card Header */}
             <div id="biography" className="mw-cluster-block" style={{ background: 'var(--surface-raised)', padding: '1.75rem', border: '1px solid var(--rule)', borderRadius: '4px' }}>
               <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
-                <Image
-                  src="/assets/img/sm.jpg"
-                  alt="Steve Martin"
-                  width={100}
-                  height={100}
-                  style={{ borderRadius: '4px', objectFit: 'cover' }}
-                />
+                <div className="mw-avatar-stack">
+                  <Image
+                    src="/assets/img/sm.webp"
+                    alt="Steve Martin — Founder"
+                    width={116}
+                    height={116}
+                    className="mw-avatar-stack__main"
+                  />
+                  <Image
+                    src="/assets/img/grid-1-sm.webp"
+                    alt="Gobiya Strategy & Operations"
+                    width={116}
+                    height={116}
+                    className="mw-avatar-stack__secondary"
+                  />
+                </div>
                 <div>
                   <h2 style={{ fontSize: '1.5rem', color: 'var(--text)', margin: 0 }}>
                     Steve Martin

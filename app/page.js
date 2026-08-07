@@ -27,13 +27,37 @@ const CLIENT_LOGOS = [
   { src: '/assets/img/dgplumbing-logo.webp', alt: 'DGPlumbingandRooter.com' },
 ];
 
-const SIMPLE_SERVICES = [
-  { title: 'Get Found on Google', href: '/seo-services/technical-seo' },
-  { title: 'Get Quoted by ChatGPT', href: '/seo-services/geo' },
-  { title: 'Content That Sells Itself', href: '/seo-services/content-marketing' },
-  { title: 'Earn Real Backlinks', href: '/seo-services/link-building' },
-  { title: 'Leads Today, Not Someday', href: '/seo-services/ppc' },
-  { title: 'Turn Visitors Into Buyers', href: '/seo-services/cro' },
+const BENTO_SERVICES = [
+  {
+    title: 'Get Found on Google',
+    href: '/seo-services/technical-seo',
+    image: '/assets/img/developer-dashboard-review.webp',
+    spanClass: 'mw-bento-card--lg',
+  },
+  {
+    title: 'Get Quoted by ChatGPT & AI Search',
+    href: '/seo-services/geo',
+    image: '/assets/img/tech-lab-standup.webp',
+    spanClass: 'mw-bento-card--md',
+  },
+  {
+    title: 'Content That Sells Itself',
+    href: '/seo-services/content-marketing',
+    image: '/assets/img/hallway-code-review.webp',
+    spanClass: 'mw-bento-card--sm',
+  },
+  {
+    title: 'Earn Real Backlinks & Authority',
+    href: '/seo-services/link-building',
+    image: '/assets/img/office-lounge-meeting.webp',
+    spanClass: 'mw-bento-card--sm',
+  },
+  {
+    title: 'Turn Site Visitors Into Buyers',
+    href: '/seo-services/cro',
+    image: '/assets/img/open-office-team-table.webp',
+    spanClass: 'mw-bento-card--sm',
+  },
 ];
 
 const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
@@ -107,42 +131,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 3. Competitive Overview Section ══ */}
-      <section className="mw-simple" style={{ paddingBottom: '3rem' }}>
+      {/* ══ 3. Competitive Bento Grid Section ══ */}
+      <section className="mw-bento-section">
         <div className="container">
-          <h2 className="mw-simple__heading">
+          <h2 className="mw-simple__heading" style={{ textAlign: 'center' }}>
             Your Business, Everywhere People Search
           </h2>
-          <p className="mw-simple__intro">
+          <p className="mw-simple__intro" style={{ textAlign: 'center', marginInline: 'auto' }}>
             Technical fixes, custom web builds, and AI search optimization — all under one roof. Pick what your business needs.
           </p>
-        </div>
 
-        <div className="mw-simple__marquee">
-          <div className="mw-simple__track">
-            {[0, 1].map((copy) =>
-              SIMPLE_SERVICES.map((service) => (
-                <div
-                  key={`${copy}-${service.href}`}
-                  className="mw-simple__card"
-                  aria-hidden={copy === 1 ? 'true' : undefined}
-                >
-                  <h3 className="mw-simple__col-title">{service.title}</h3>
-                  <a
-                    href={service.href}
-                    className="mw-simple__card-link"
-                    tabIndex={copy === 1 ? -1 : undefined}
-                  >
-                    Learn More <span aria-hidden="true">→</span>
-                  </a>
+          <div className="mw-bento-grid">
+            {BENTO_SERVICES.map((service, i) => (
+              <a
+                key={i}
+                href={service.href}
+                className={`mw-bento-card ${service.spanClass}`}
+                style={{ backgroundImage: `url('${service.image}')` }}
+              >
+                <div className="mw-bento-card__overlay" />
+                <div className="mw-bento-card__content">
+                  <h3 className="mw-bento-card__title">{service.title}</h3>
                 </div>
-              ))
-            )}
+              </a>
+            ))}
           </div>
-        </div>
 
-        <div className="container">
-          <div className="mw-simple__footer">
+          <div className="mw-simple__footer" style={{ marginTop: '2.5rem' }}>
             <a href="/seo-services" className="mw-simple__btn">
               Explore All Services <span>→</span>
             </a>
@@ -161,13 +176,22 @@ export default function Home() {
 
           <div className="mw-person__card">
             <figure className="mw-person__figure">
-              <Image
-                src="/assets/img/sm.jpg"
-                alt="Steve Martin — Gobiya Internet Marketing"
-                width={120}
-                height={120}
-                className="mw-person__avatar"
-              />
+              <div className="mw-avatar-stack">
+                <Image
+                  src="/assets/img/sm.webp"
+                  alt="Steve Martin — Gobiya Founder"
+                  width={116}
+                  height={116}
+                  className="mw-avatar-stack__main"
+                />
+                <Image
+                  src="/assets/img/grid-1-sm.webp"
+                  alt="Gobiya Strategy & Operations"
+                  width={116}
+                  height={116}
+                  className="mw-avatar-stack__secondary"
+                />
+              </div>
               <figcaption className="mw-person__caption">
                 Steve Martin — Founder &amp; Lead Internet Marketer
               </figcaption>
@@ -225,41 +249,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 6. What Internet Marketing, Web Design & AI Search Can Do ══ */}
-      <section style={{ backgroundColor: 'var(--mw-surface-dark, #0b132b)', color: '#ffffff', padding: '4rem 0' }}>
-        <div className="container">
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, textAlign: 'center', marginBottom: '2.5rem' }}>
-            What We Actually Do for Your Business
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '1rem', color: '#64ffda' }}>
-                Internet Marketing That Gets You Found
-              </h3>
-              <p style={{ lineHeight: 1.6, color: '#e0e6ed' }}>
-                We fix technical errors, optimize your content, and build domain trust — so your business shows up first on Google and Google Maps, right when people are ready to buy.
-              </p>
-            </div>
-            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '1rem', color: '#64ffda' }}>
-                Websites Built to Convert
-              </h3>
-              <p style={{ lineHeight: 1.6, color: '#e0e6ed' }}>
-                Custom-built on Next.js, your site loads instantly and looks sharp on every device. Fast pages keep visitors around — and turn them into customers.
-              </p>
-            </div>
-            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '1rem', color: '#64ffda' }}>
-                Get Quoted by AI, Not Buried by It
-              </h3>
-              <p style={{ lineHeight: 1.6, color: '#e0e6ed' }}>
-                Generative Engine Optimization puts your brand in the answers ChatGPT, Perplexity, and Google AI Overviews give — a lead engine that keeps working even when people stop clicking search results.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ══ 7. The 4-Step Method Section ══ */}
       <section className="mw-steps" id="process">
         <div className="container">
@@ -297,39 +286,6 @@ export default function Home() {
 
       {/* ══ 9. Excellence Grid ══ */}
       <ExcellenceGrid />
-
-      {/* ══ 10. Frequently Asked Questions Section ══ */}
-      <section style={{ backgroundColor: 'var(--mw-surface, #1c2541)', color: '#ffffff', padding: '4rem 0' }} id="faq">
-        <div className="container">
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 800, textAlign: 'center', marginBottom: '1rem' }}>
-            Questions? We&apos;ve Got Straight Answers.
-          </h2>
-          <p style={{ textAlign: 'center', color: '#e0e6ed', maxWidth: '700px', margin: '0 auto 3rem auto', fontSize: '1.1rem' }}>
-            No fluff — just what you need to know about how we get your business found.
-          </p>
-
-          <div style={{ display: 'grid', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
-            {HOMEPAGE_FAQ.map((faq, i) => (
-              <div
-                key={i}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  padding: '1.75rem',
-                  borderRadius: '10px',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                }}
-              >
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.75rem' }}>
-                  {faq.q}
-                </h3>
-                <p style={{ color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>
-                  {faq.a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ══ 11. Savings Offer ══ */}
       <SavingsOffer />

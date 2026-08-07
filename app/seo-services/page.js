@@ -1,9 +1,5 @@
-import Breadcrumbs from '../../components/Breadcrumbs';
 import SubHero from '../../components/SubHero';
 import PlatformStrip from '../../components/PlatformStrip';
-import ClientLogos from '../../components/ClientLogos';
-import CollapsibleSidebar from '../../components/CollapsibleSidebar';
-import { CONSULTING_ITEMS } from '../../lib/consultingIndex';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
@@ -14,10 +10,67 @@ export const metadata = buildMetadata({
   path: '/seo-services',
 });
 
+const ALL_SERVICES_BENTO = [
+  {
+    title: 'Local & Technical SEO',
+    href: '/seo-services/technical-seo',
+    image: '/assets/img/developer-dashboard-review.webp',
+    spanClass: 'mw-bento-card--lg',
+  },
+  {
+    title: 'AI & GEO Search Optimization',
+    href: '/seo-services/geo',
+    image: '/assets/img/tech-lab-standup.webp',
+    spanClass: 'mw-bento-card--md',
+  },
+  {
+    title: 'Content Strategy & Marketing',
+    href: '/seo-services/content-marketing',
+    image: '/assets/img/hallway-code-review.webp',
+    spanClass: 'mw-bento-card--sm',
+  },
+  {
+    title: 'Digital PR & Link Building',
+    href: '/seo-services/link-building',
+    image: '/assets/img/office-lounge-meeting.webp',
+    spanClass: 'mw-bento-card--sm',
+  },
+  {
+    title: 'PPC & Lead Generation',
+    href: '/seo-services/ppc',
+    image: '/assets/img/corporate-atrium-walking.webp',
+    spanClass: 'mw-bento-card--sm',
+  },
+  {
+    title: 'CRO & Conversion Optimization',
+    href: '/seo-services/cro',
+    image: '/assets/img/open-office-team-table.webp',
+    spanClass: 'mw-bento-card--md',
+  },
+  {
+    title: 'Web UX & Interface Design',
+    href: '/seo-services/web-ux',
+    image: '/assets/img/office-collage-montage.webp',
+    spanClass: 'mw-bento-card--lg',
+  },
+  {
+    title: 'Web Design & Development',
+    href: '/seo-services/web-dev',
+    image: '/assets/img/open-office-desks.webp',
+    spanClass: 'mw-bento-card--half',
+  },
+  {
+    title: 'AI Systems & Consulting',
+    href: '/seo-services/ai-consulting',
+    image: '/assets/img/office-huddle-skyline.webp',
+    spanClass: 'mw-bento-card--half',
+  },
+];
+
 export default function ServicesPage() {
   return (
     <main id="top">
-      {/* ══ 2. SubHero Banner ══ */}
+      {/* ══ 1. SubHero Banner ══ */}
       <SubHero
         image={heroImage(1)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
@@ -31,44 +84,35 @@ export default function ServicesPage() {
       {/* ══ Platform Strip — directly under hero ══ */}
       <PlatformStrip />
 
-      {/* ══ 3. Hierarchical Pillar Grid (Sidebar + Sub-Clusters) ══ */}
-      <div className="container">
-        <div className="mw-pillar-grid">
-          {/* Left Sidebar */}
-          <CollapsibleSidebar headerText="Services Index">
-            {CONSULTING_ITEMS.map((s, idx) => (
-              <a
-                key={s.slug}
-                href={`#${s.slug}`}
-                className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
-              >
-                {s.title}
-              </a>
-            ))}
-          </CollapsibleSidebar>
+      {/* ══ 2. All Services Bento Grid ══ */}
+      <section className="mw-bento-section">
+        <div className="container">
+          <h2 className="mw-simple__heading" style={{ textAlign: 'center' }}>
+            All Services & Capabilities
+          </h2>
+          <p className="mw-simple__intro" style={{ textAlign: 'center', marginInline: 'auto' }}>
+            From technical SEO foundation to custom Next.js builds and AI search grounding — explore our full suite of services.
+          </p>
 
-          {/* Right Content Area (Sub-Clusters) */}
-          <div className="mw-cluster-list">
-            {CONSULTING_ITEMS.map((s) => (
-              <div key={s.slug} id={s.slug} className="mw-cluster-block">
-                <h2 className="mw-cluster-block__title">
-                  <a href={s.href}>{s.title}</a>
-                </h2>
-                <p className="mw-cluster-block__desc">
-                  {s.desc}
-                </p>
-                <div style={{ marginTop: '1rem' }}>
-                  <a href={s.href} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
-                    Explore {s.title} &rarr;
-                  </a>
+          <div className="mw-bento-grid">
+            {ALL_SERVICES_BENTO.map((service, i) => (
+              <a
+                key={i}
+                href={service.href}
+                className={`mw-bento-card ${service.spanClass}`}
+                style={{ backgroundImage: `url('${service.image}')` }}
+              >
+                <div className="mw-bento-card__overlay" />
+                <div className="mw-bento-card__content">
+                  <h3 className="mw-bento-card__title">{service.title}</h3>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ══ 5. Bottom Navy CTA Banner ══ */}
+      {/* ══ 3. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">

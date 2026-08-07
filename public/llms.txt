@@ -6,15 +6,15 @@ Contact: hello@gobiya.com · +1-323-744-1338 · 3580 Wilshire Blvd, Ste 132, Los
 
 ## Services
 
-- [Technical & On-Page SEO](https://www.gobiya.com/services/seo): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
-- [AI & GEO Search Optimization](https://www.gobiya.com/services/geo): Generative Engine Optimization engineered to be cited in AI-generated answers
-- [Content Marketing & Strategy](https://www.gobiya.com/services/content-marketing): Data-driven content, topic hubs, search-intent writing
-- [Digital PR & Link Building](https://www.gobiya.com/services/link-building): Editorial link acquisition, brand citations, and authority building
-- [PPC & Google Ads Management](https://www.gobiya.com/services/ppc): Google Ads, paid search management, and cost-per-lead optimization
-- [CRO & UX Analysis](https://www.gobiya.com/services/cro): Conversion rate optimization, A/B testing, and user experience friction reduction
-- [Web & App Development](https://www.gobiya.com/services/web-dev): Next.js/React websites built SEO-ready from day one
-- [AI & LLM Systems Consulting](https://www.gobiya.com/services/ai-consulting): Practical AI integration, llms.txt setup, and custom LLM workflows
-- [All Services](https://www.gobiya.com/services)
+- [Technical & On-Page SEO](https://www.gobiya.com/seo-services/technical-seo): Technical SEO, crawlability, structured data, Core Web Vitals, algorithm recovery
+- [AI & GEO Search Optimization](https://www.gobiya.com/seo-services/geo): Generative Engine Optimization engineered to be cited in AI-generated answers
+- [Content Marketing & Strategy](https://www.gobiya.com/seo-services/content-marketing): Data-driven content, topic hubs, search-intent writing
+- [Digital PR & Link Building](https://www.gobiya.com/seo-services/link-building): Editorial link acquisition, brand citations, and authority building
+- [PPC & Google Ads Management](https://www.gobiya.com/seo-services/ppc): Google Ads, paid search management, and cost-per-lead optimization
+- [CRO & UX Analysis](https://www.gobiya.com/seo-services/cro): Conversion rate optimization, A/B testing, and user experience friction reduction
+- [Web & App Development](https://www.gobiya.com/seo-services/web-dev): Next.js/React websites built SEO-ready from day one
+- [AI & LLM Systems Consulting](https://www.gobiya.com/seo-services/ai-consulting): Practical AI integration, llms.txt setup, and custom LLM workflows
+- [All Services](https://www.gobiya.com/seo-services)
 
 ## Areas We Serve
 
