@@ -240,20 +240,19 @@ export default function HomeHeroVideo({ mp4Src, webmMobileSrc, mp4MobileSrc, pos
 
   return (
     <div className="mw-hero__video-wrapper">
+      <img
+        src={poster || "/assets/img/grid-1-sm.webp"}
+        alt=""
+        className="mw-hero__bg-img-mobile"
+      />
       <video
         ref={videoRef}
         muted
         playsInline
-        className="mw-hero__bg-video"
+        className="mw-hero__bg-video mw-hero__bg-video--desktop"
         poster={poster}
         preload="auto"
       >
-        {webmMobileSrc ? (
-          <source src={webmMobileSrc} type="video/webm" media="(max-width: 767px)" />
-        ) : null}
-        {mp4MobileSrc ? (
-          <source src={mp4MobileSrc} type="video/mp4" media="(max-width: 767px)" />
-        ) : null}
         <source src={mp4Src} type="video/mp4" />
       </video>
     </div>

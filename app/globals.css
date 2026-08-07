@@ -4257,34 +4257,43 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   color: #ffffff;
 }
 
-[data-theme='dark'] .mw-hero__btn:not(.mw-hero__btn--ghost):hover {
-  background: #a32d49;
+/* Mobile image background helper */
+.mw-hero__bg-img-mobile {
+  display: none;
 }
 
-/* Mobile-only layout adjustment (< 768px): Hero visual top (16:9 ratio), card content below on solid white background */
+/* Mobile-only layout adjustment (< 768px): WebP hero top image, floating padded card below with clean stacking */
 @media (max-width: 767px) {
   .mw-hero {
     position: relative;
     display: flex;
     flex-direction: column;
     min-height: auto;
-    padding-top: max(56.25vw, 220px);
-    padding-bottom: 2rem;
+    padding-top: max(48vw, 190px);
+    padding-bottom: 2.5rem;
+    padding-inline: 1rem;
     align-items: stretch;
     background-size: 100% auto;
     background-position: top center;
     background-repeat: no-repeat;
     background-color: var(--surface);
+    overflow: hidden;
   }
 
-  .mw-hero__bg-video {
+  .mw-hero__bg-video--desktop {
+    display: none !important;
+  }
+
+  .mw-hero__bg-img-mobile {
+    display: block !important;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: max(56.25vw, 220px);
+    height: max(48vw, 190px);
     object-fit: cover;
-    object-position: center right;
+    object-position: center;
+    z-index: 1;
   }
 
   .mw-hero__overlay {
@@ -4292,22 +4301,96 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
     top: 0;
     left: 0;
     width: 100%;
-    height: max(56.25vw, 220px);
-    background: linear-gradient(180deg, rgba(11,30,54,0.15) 0%, rgba(11,30,54,0.4) 100%);
+    height: max(48vw, 190px);
+    background: linear-gradient(180deg, rgba(11,30,54,0.2) 0%, rgba(11,30,54,0.5) 100%);
+    z-index: 2;
   }
 
   .mw-hero .container {
     position: relative;
     z-index: 3;
-    margin-top: 1.5rem;
-    background-color: var(--surface);
+    margin-top: 1.25rem;
+    padding-inline: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .mw-hero__card {
-    max-width: 100%;
-    padding: 0;
-    box-shadow: none;
-    background: var(--surface-raised);
+    max-width: 100% !important;
+    padding: 1.85rem 1.5rem !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+    background: var(--surface-raised, #ffffff) !important;
+    border: 1px solid var(--border, rgba(11, 30, 54, 0.12)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  .mw-hero__eyebrow {
+    font-size: 0.8125rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    color: var(--link, #E63946) !important;
+    margin-bottom: 0.75rem !important;
+    display: block !important;
+  }
+
+  .mw-hero__title {
+    font-size: clamp(1.75rem, 5.5vw, 2.25rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    color: var(--text, #0b1e36) !important;
+    margin-bottom: 1rem !important;
+    word-break: break-word;
+  }
+
+  .mw-hero__secondary-heading,
+  .mw-hero__excerpt {
+    font-size: clamp(1.05rem, 3.8vw, 1.25rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: var(--ink-700, #2b3a4a) !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 1.5rem !important;
+    display: block !important;
+  }
+
+  [data-theme='dark'] .mw-hero__card {
+    background: #0e1a2b !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  [data-theme='dark'] .mw-hero__title {
+    color: #ffffff !important;
+  }
+
+  [data-theme='dark'] .mw-hero__secondary-heading,
+  [data-theme='dark'] .mw-hero__excerpt {
+    color: #e2e8f0 !important;
+  }
+
+  .mw-hero__actions {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .mw-hero__btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.875rem 1.25rem !important;
+    box-sizing: border-box !important;
   }
 }
 
@@ -9126,6 +9209,11 @@ html.a11y-grayscale {
 [data-theme='dark'] .mw-hero__card,
 [data-theme='dark'] .mw-glass {
   background: rgba(17, 28, 46, 0.82);
+}
+
+[data-theme='dark'] .mw-hero__secondary-heading,
+[data-theme='dark'] .mw-hero__excerpt {
+  color: var(--ink-100, #e2e8f0) !important;
 }
 
 /* Photographic heroes are exposed for a white page. A slight knock-down keeps
