@@ -69,9 +69,9 @@ export default function SubHero({
             {title}
           </h1>
           {excerpt && (
-            <p className={noCard ? 'mw-hero__excerpt mw-hero__excerpt--light' : 'mw-hero__excerpt'}>
+            <h2 className={noCard ? 'mw-hero__secondary-heading mw-hero__secondary-heading--light' : 'mw-hero__secondary-heading'}>
               {excerpt}
-            </p>
+            </h2>
           )}
           {primary && (
             <div className="mw-hero__actions">

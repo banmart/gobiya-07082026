@@ -12,9 +12,9 @@ import { HERO_VIDEO_MP4, HERO_VIDEO_WEBM_MOBILE, HERO_VIDEO_MP4_MOBILE, HERO_VID
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 export const metadata = buildMetadata({
-  title: 'Los Angeles Internet Marketing Agency | Found First, Chosen Every Time',
+  title: 'Los Angeles Internet Marketing & Web Engineering | Gobiya',
   description:
-    'Los Angeles Internet Marketing and web design agency built around one outcome: your business as the first answer Google and ChatGPT give. Real rankings, real AI citations, real revenue.',
+    'Turn organic search and AI assistants into a steady customer pipeline. Built for business owners who need revenue, designers who demand clean code, and marketing teams that need clear ROI.',
   path: '/',
 });
 

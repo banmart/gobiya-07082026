@@ -29,11 +29,11 @@ const openSans = Open_Sans({
 
 export const metadata = {
   title: {
-    default: 'Gobiya — Digital Marketing Agency & Internet Marketing Consulting, Los Angeles',
+    default: 'Gobiya — Predictable Search Growth & High-Converting Web Engineering',
     template: '%s — Gobiya',
   },
   description:
-    'Gobiya is a Los Angeles digital marketing agency and internet marketing consulting firm, founded in 2010. We deliver SEO services, organic search strategy, AI marketing tools, and AI visibility that gets brands cited in ChatGPT and Google AI Overviews.',
+    'We engineer search-ready websites, AI citation authority, and technical SEO foundations for business owners, creative designers, and in-house marketing teams in Los Angeles.',
   metadataBase: new URL('https://www.gobiya.com'),
   icons: {
     icon: [

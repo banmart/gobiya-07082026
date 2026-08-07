@@ -8,9 +8,9 @@ import { buildMetadata } from '../../lib/meta';
 import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO | Gobiya SEO',
+  title: 'About Gobiya | 16 Years of Honest Search Engineering & Web Design',
   description:
-    'Gobiya SEO takes pride in affordable, reliable, & trustworthy service since 2010. Call our Los Angeles SEOs now for a free site scan.',
+    'Founded in 2010 by Steve Martin, Gobiya delivers transparent search growth, fast Next.js web builds, and AI citation authority without lock-in contracts.',
   path: '/about',
 });
 

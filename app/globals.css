@@ -4215,12 +4215,16 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   margin-bottom: 1rem;
 }
 
+.mw-hero__secondary-heading,
 .mw-hero__excerpt {
-  font-size: 1.125rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
   font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
+  color: var(--navy-800, #0B1E36);
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
 
 .mw-hero__description {
