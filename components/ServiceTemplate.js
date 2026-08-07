@@ -71,7 +71,7 @@ export default function ServiceTemplate({ service }) {
         image={hero?.image}
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
+          { label: 'Services', href: '/seo-services' },
           { label: displayTitle },
         ]}
         eyebrow="Affordable Solutions, Exceptional Service"
@@ -81,7 +81,7 @@ export default function ServiceTemplate({ service }) {
         // repeated across all eight pages. The fallback only fires for a
         // service with no authored h1 and no heroLines.
         title={service.headline || 'Exclusive Gobiya Savings'}
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt={hero?.excerpt}
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -138,7 +138,7 @@ export default function ServiceTemplate({ service }) {
                     </li>
                   ))}
                 </ul>
-                <a href="/services" className="mw-area-body__other-all">
+                <a href="/seo-services" className="mw-area-body__other-all">
                   All services <span aria-hidden="true">→</span>
                 </a>
               </div>

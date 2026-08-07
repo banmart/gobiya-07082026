@@ -100,7 +100,7 @@ export default function TestimonialStack() {
   return (
     <section className="mw-stories-pinned" ref={containerRef}>
       <div className="container">
-        <h2 className="mw-stories__heading">Real Stories from Real Clients</h2>
+        <h2 className="mw-stories__heading">Real Clients. Real Results.</h2>
 
         <div className="mw-stories-stack">
           {items.map((item, idx) => (

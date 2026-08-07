@@ -1,7 +1,7 @@
 import IridescenceCanvas from './IridescenceCanvas';
 import OfferCountdown from './OfferCountdown';
 
-/* The CRM offer panel. Lives on the homepage and on /services/web-dev, which
+/* The CRM offer panel. Lives on the homepage and on /seo-services/web-dev, which
    is why it's a component rather than markup in a page — the offer copy, the
    end date and the countdown all have to say the same thing in both places,
    and two copies of this drift the first time one of them is edited.
@@ -28,13 +28,13 @@ export default function SavingsOffer() {
                 <div className="mw-savings__coupon-value">$1,200 Value</div>
               </div>
               <h2 className="mw-savings__title">
-                FREE Native CRM Included with All New Website Builds
+                A Free CRM. Built Into Every New Site.
               </h2>
               <h3 className="mw-savings__coupon-offer">
-                Affordable Solutions, Exceptional Service
+                No Extra Cost. No Extra Steps.
               </h3>
               <p className="mw-savings__desc">
-                Every site we build ships with our native CRM wired in — lead capture, follow-up, and reporting working from day one, at no extra cost. Claim it before the offer closes.
+                Lead capture, follow-up, and reporting — wired in from day one, on every site we build. Claim it before the offer closes.
               </p>
             </div>
 

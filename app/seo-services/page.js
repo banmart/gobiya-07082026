@@ -8,10 +8,10 @@ import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'SEO & Growth Services for Business',
+  title: 'Los Angeles SEO & Growth Services | Built Around Your Next Win',
   description:
-    'Custom SEO, GEO content, Google Ads management, link building, and CRO services for Los Angeles businesses.',
-  path: '/services',
+    'Los Angeles SEO, GEO, content, PPC, CRO, and web design services — all built around one goal: the growth outcome you actually want, not just more tactics.',
+  path: '/seo-services',
 });
 
 export default function ServicesPage() {
@@ -22,8 +22,8 @@ export default function ServicesPage() {
         image={heroImage(1)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
         eyebrow="Affordable Solutions, Exceptional Service"
-        title="Everything It Takes to Get Found, Under One Roof"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        title="Every Outcome You've Been Chasing, Under One Roof"
+        excerpt="Pick the win you need. We'll show you exactly how we get there."
         primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

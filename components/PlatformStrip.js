@@ -27,7 +27,7 @@ export default function PlatformStrip() {
     <section className="mw-platforms">
       <div className="container">
         <p className="mw-platforms__label">
-          Getting you found across search and AI
+          Where we get you found
         </p>
         <ul className="mw-platforms__logos">
           {PLATFORM_LOGOS.map((logo) => (

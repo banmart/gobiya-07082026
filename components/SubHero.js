@@ -8,8 +8,8 @@
 // about that, which is the point of having one component instead of a hero per
 // page.
 //
-// `eyebrow`, `excerpt` and `description` are all optional and render in the
-// homepage order: eyebrow, headline, bold standfirst, body paragraph, actions.
+// `eyebrow` and `excerpt` are both optional. Render order is fixed:
+// breadcrumbs, eyebrow, heading (title), secondary heading (excerpt), CTA.
 
 import Breadcrumbs from './Breadcrumbs';
 
@@ -19,7 +19,6 @@ export default function SubHero({
   eyebrow,
   title,
   excerpt,
-  description,
   primary,
   secondary,
   noCard = false,
@@ -72,11 +71,6 @@ export default function SubHero({
           {excerpt && (
             <p className={noCard ? 'mw-hero__excerpt mw-hero__excerpt--light' : 'mw-hero__excerpt'}>
               {excerpt}
-            </p>
-          )}
-          {description && (
-            <p className={noCard ? 'mw-hero__description mw-hero__description--light' : 'mw-hero__description'}>
-              {description}
             </p>
           )}
           {primary && (

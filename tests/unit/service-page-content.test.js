@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { SERVICES_FLAT } from '../../lib/servicesFlat.js';
 
-const seo = SERVICES_FLAT['seo'];
+const seo = SERVICES_FLAT['technical-seo'];
 
 describe('seo-services content', () => {
   it('covers capabilities', () => {
@@ -62,7 +62,7 @@ describe('every service page is reachable from the services index', () => {
     const hrefs = CONSULTING_ITEMS.map((s) => s.href);
     expect(new Set(hrefs).size, 'duplicate service links').toBe(hrefs.length);
     for (const slug of SERVICE_SLUGS) {
-      expect(hrefs, slug).toContain(`/services/${slug}`);
+      expect(hrefs, slug).toContain(`/seo-services/${slug}`);
     }
   });
 });

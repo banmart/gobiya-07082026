@@ -216,7 +216,7 @@ h1, h2, h3, h4, h5, h6,
 .mw-about-hero__title,
 .mw-work-hero__title {
   font-family: var(--font-heading);
-  font-weight: 300;
+  font-weight: 700;
 }
 
 h2 {
@@ -246,7 +246,7 @@ h2 {
 
 .statement {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.1rem, 4.6vw, 4.4rem);
   line-height: 1.12;
   letter-spacing: -0.015em;
@@ -308,7 +308,7 @@ h2 {
 .faq__item dt {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2vw, 1.6rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.3;
   margin-bottom: 0.75rem;
 }
@@ -346,7 +346,7 @@ h2 {
 }
 .founder__name {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   line-height: 1.1;
   margin-top: 0.5rem;
@@ -418,7 +418,7 @@ a.contact__value:hover { color: var(--link); }
 }
 .capability-card__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   margin-bottom: 0.75rem;
 }
@@ -466,7 +466,7 @@ a.contact__value:hover { color: var(--link); }
 }
 .process__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   margin-bottom: 0.5rem;
 }
@@ -892,7 +892,7 @@ a.contact__value:hover { color: var(--link); }
      from the font load for LCP (see app/layout.js). Optical weight for the
      editorial feel comes from size, tighter tracking, and a hairline text
      stroke instead of a second font-weight download. */
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.5rem, 4.6vw, 4.75rem);
   line-height: 1.02;
   letter-spacing: -0.025em;
@@ -1168,7 +1168,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .stack__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.2rem, 4.2vw, 4rem);
   line-height: 1.02;
   letter-spacing: -0.015em;
@@ -1214,7 +1214,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 /* ═══════════ offices ═══════════ */
 .offices__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 4.6rem);
   line-height: 1.08;
   margin-bottom: clamp(3rem, 6vw, 5rem);
@@ -1314,7 +1314,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .testimonial-rotator__stage { min-height: clamp(9rem, 22vw, 11rem); }
 .testimonial-rotator__quote p {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.4rem, 2.7vw, 2.25rem);
   line-height: 1.34;
   letter-spacing: -0.01em;
@@ -1481,7 +1481,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   transition: color 0.4s;
   cursor: default;
 }
-.marquee__item--serif { font-family: var(--font-heading); font-weight: 400; letter-spacing: 0; }
+.marquee__item--serif { font-family: var(--font-heading); font-weight: 700; letter-spacing: 0; }
 .marquee__item:hover { color: var(--darkest); }
 .marquee__track i { font-style: normal; color: var(--link); font-size: 1rem; }
 
@@ -1496,7 +1496,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .team__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.2rem, 4.6vw, 4.2rem);
   line-height: 1.05;
 }
@@ -1520,7 +1520,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   transition: filter 0.7s var(--p2-out), transform 4s var(--expo-out);
 }
 .team__card:hover .team__photo img { filter: grayscale(0); transform: scale(1); }
-.team__name { font-family: var(--font-heading); font-weight: 400; font-size: 1.45rem; line-height: 1.2; }
+.team__name { font-family: var(--font-heading); font-weight: 700; font-size: 1.45rem; line-height: 1.2; }
 .team__role { font-size: 0.8125rem; color: var(--hint); margin-top: 0.25rem; }
 
 /* ═══════════ cta ═══════════ */
@@ -1530,7 +1530,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .cta > .container { position: relative; z-index: 1; }
 .cta__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.6rem, 6.5vw, 6rem);
   line-height: 1.05;
   letter-spacing: -0.015em;
@@ -1615,7 +1615,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .tool-copy h2 {
   font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text);
   text-align: left;
   margin-top: 2.75rem;
@@ -1723,7 +1723,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .article__toc h3 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1rem;
 }
@@ -1760,7 +1760,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .article__body h2 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   line-height: 1.25;
   margin-top: clamp(3rem, 6vw, 4.5rem);
@@ -1857,7 +1857,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .article__takeaways h3 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1rem;
 }
@@ -1920,7 +1920,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .insights__card-title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   line-height: 1.25;
   margin-bottom: 0.75rem;
@@ -2022,7 +2022,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .stepper__legend {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.4rem, 2.4vw, 1.9rem);
   line-height: 1.25;
   margin-bottom: 1.75rem;
@@ -2116,7 +2116,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .stepper--done { text-align: center; }
 .stepper__done-title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   line-height: 1.25;
   margin-bottom: 1rem;
@@ -2327,7 +2327,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .svc-card__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.15rem, 1.8vw, 1.4rem);
   line-height: 1.25;
   margin-bottom: 0.6rem;
@@ -2345,7 +2345,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .pillar { text-align: left; }
 .pillar__glyph { color: var(--darkest); margin-bottom: 1.1rem; }
-.pillar__title { font-family: var(--font-heading); font-weight: 400; font-size: 1.35rem; margin-bottom: 0.5rem; }
+.pillar__title { font-family: var(--font-heading); font-weight: 700; font-size: 1.35rem; margin-bottom: 0.5rem; }
 .pillar__desc { font-size: 0.9rem; line-height: 1.65; color: var(--hint); }
 @media (max-width: 64rem) { .pillars__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 40rem) { .pillars__grid { grid-template-columns: 1fr; } }
@@ -2422,7 +2422,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .seo-hero__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(3rem, 7vw, 6.5rem);
   line-height: 0.96;
   letter-spacing: -0.025em;
@@ -2537,7 +2537,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .seo-pin__card-title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.5rem, 2.8vw, 2.2rem);
   line-height: 1.15;
   letter-spacing: -0.015em;
@@ -2574,7 +2574,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .seo-process__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -2642,7 +2642,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .seo-cta__title {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   line-height: 1.05;
   letter-spacing: -0.025em;
@@ -3024,7 +3024,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .pricing-card__name {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
@@ -3458,14 +3458,14 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .glossary-letter-group:first-child { margin-top: 0; }
 .glossary-letter-heading {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 1.5rem;
   color: var(--link);
 }
 .glossary-letter-group .archive-list { margin-top: 0.75rem; }
 
 .glossary-related { margin-top: 3rem; }
-.glossary-related h3 { font-family: var(--font-heading); font-weight: 400; font-size: 1.2rem; margin-bottom: 1rem; }
+.glossary-related h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; }
 .glossary-related__list { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
 
 /* ─── Subhero eyebrow modifier (category badge in dark banner) ─── */
@@ -4151,6 +4151,12 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   overflow: hidden;
 }
 
+/* Extra breathing room above/below the card on the homepage hero only —
+   sub-page heroes (.mw-hero--sub) keep the tighter default. */
+.mw-hero:not(.mw-hero--sub) {
+  padding-block: clamp(5rem, 10vw, 8.5rem);
+}
+
 .mw-hero__video-wrapper {
   position: absolute;
   inset: 0;
@@ -4203,7 +4209,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-hero__title {
   font-family: var(--font-heading);
   font-size: clamp(2.25rem, 4vw, 3rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   line-height: 1.15;
   margin-bottom: 1rem;
@@ -4311,7 +4317,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-trust__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3vw, 2.375rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 2.5rem;
 }
@@ -4347,6 +4353,25 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
   background: var(--surface);
   border-bottom: 1px solid var(--rule);
+}
+
+/* The homepage hero's former body paragraph, relocated below the platform
+   strip and set like a heading — centered, bold, on its own line — rather
+   than the small muted copy it read as inside the hero card. */
+.mw-hero-statement {
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  background: var(--surface);
+}
+
+.mw-hero-statement__text {
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
 }
 
 .mw-platforms__label {
@@ -4432,7 +4457,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-simple__heading {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
   margin-bottom: 1.25rem;
@@ -4706,7 +4731,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-person__heading {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--link);
   margin-bottom: 3rem;
 }
@@ -4815,7 +4840,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-excellence__heading {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
   margin-bottom: 1rem;
@@ -4932,7 +4957,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-local-areas__heading {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
   margin-bottom: 1rem;
@@ -5100,7 +5125,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-contact__details-title {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.5rem;
 }
@@ -5188,7 +5213,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-cform__title {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 0.5rem;
 }
@@ -5374,7 +5399,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-savings__title {
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 3.4vw, 2.9rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-on-inverse);
   line-height: 1.15;
   letter-spacing: -0.01em;
@@ -5632,7 +5657,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-savings__coupon-offer {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2.4vw, 1.7rem);
-  font-weight: 400;
+  font-weight: 700;
   color: #F5B83D;
   line-height: 1.3;
   margin-bottom: 0.9rem;
@@ -5877,7 +5902,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-navy-banner__title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.3;
   margin-bottom: 1.75rem;
   max-width: 48rem;
@@ -5952,7 +5977,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-steps__heading {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--link);
   text-align: center;
   margin-bottom: 1rem;
@@ -6099,7 +6124,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-stories__heading {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--link);
   text-align: center;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
@@ -6240,7 +6265,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-book__title {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 2.5rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 0.75rem;
 }
@@ -6324,7 +6349,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-consultation__title {
   font-family: var(--font-heading);
   font-size: clamp(2.25rem, 4vw, 3.25rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.25rem;
   line-height: 1.15;
@@ -6793,7 +6818,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   color: var(--text-on-inverse) !important;
   font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3.25rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.15;
   margin-bottom: 0.75rem;
 }
@@ -6826,7 +6851,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-subhero__title {
   font-family: var(--font-heading);
   font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-on-inverse);
   line-height: 1.15;
   margin-bottom: 0.75rem;
@@ -7020,7 +7045,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 .mw-cluster-block__title {
   font-family: var(--font-heading);
   font-size: 1.625rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 0.625rem;
 }
@@ -7687,7 +7712,7 @@ html.a11y-grayscale {
 .mw-svc-block__title {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 2.8vw, 2rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.5rem;
 }
@@ -7805,7 +7830,7 @@ html.a11y-grayscale {
 .mw-area-body__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.5rem;
 }
@@ -7862,7 +7887,7 @@ html.a11y-grayscale {
 .mw-area-body__services-heading {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.5rem;
   margin-top: 2.5rem;
@@ -8076,7 +8101,7 @@ html.a11y-grayscale {
 .mw-area-body__cta-title {
   font-family: var(--font-heading);
   font-size: 1.375rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-on-inverse);
   margin-bottom: 0.75rem;
   line-height: 1.3;
@@ -8292,7 +8317,7 @@ html.a11y-grayscale {
 .mw-areas-index__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
   margin-bottom: 0.75rem;
@@ -8338,7 +8363,7 @@ html.a11y-grayscale {
 .mw-areas-index__city {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 0.5rem;
   line-height: 1.25;
@@ -8378,7 +8403,7 @@ html.a11y-grayscale {
 .mw-areas-coverage__county-name {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.25rem;
   padding-bottom: 0.5rem;
@@ -8423,7 +8448,7 @@ html.a11y-grayscale {
 .mw-area-services__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
   margin-bottom: 0.75rem;
@@ -8447,7 +8472,7 @@ html.a11y-grayscale {
 .mw-area-bottom-cta__title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-on-inverse);
   margin-bottom: 1rem;
   max-width: 44rem;
@@ -8504,7 +8529,7 @@ html.a11y-grayscale {
 .fss-heading {
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 3.6vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -8525,7 +8550,7 @@ html.a11y-grayscale {
 .mw-tcompact__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
   margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -8622,7 +8647,7 @@ html.a11y-grayscale {
 .scan-report__title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3.4vw, 2.6rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -8703,7 +8728,7 @@ html.a11y-grayscale {
 .scan-report__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.3rem, 2.2vw, 1.6rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1rem;
 }
@@ -8743,7 +8768,7 @@ html.a11y-grayscale {
 .scan-report__finding-title {
   font-family: var(--font-heading);
   font-size: 1.125rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 0.5rem;
 }
@@ -8823,7 +8848,7 @@ html.a11y-grayscale {
 .scan-cta__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.25rem;
 }
@@ -8971,7 +8996,7 @@ html.a11y-high-contrast .nav__theme-btn {
 .fss-hero-title {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.15;
   margin-bottom: 1rem;
 }
@@ -9104,7 +9129,7 @@ html.a11y-high-contrast .nav__theme-btn {
 }
 .fss-progress-title {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 .fss-progress-dek {
@@ -9209,7 +9234,7 @@ html.a11y-high-contrast .nav__theme-btn {
 }
 .fss-report-url {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 600;
+  font-weight: 700;
   word-break: break-all;
   margin: 0;
 }
@@ -9270,7 +9295,7 @@ html.a11y-high-contrast .nav__theme-btn {
 }
 .fss-section-heading {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1.25rem;
 }
 .fss-summary-text {
@@ -9305,7 +9330,7 @@ html.a11y-high-contrast .nav__theme-btn {
 .fss-finding-card--medium .fss-finding-badge { color: #b7791f; }
 .fss-finding-card--low .fss-finding-badge { color: #475569; }
 
-.fss-finding-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+.fss-finding-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
 .fss-finding-why { font-size: 0.9rem; line-height: 1.55; color: var(--hint); margin-bottom: 0.5rem; }
 .fss-finding-fix { font-size: 0.9rem; line-height: 1.55; color: var(--darkest); }
 
@@ -9366,7 +9391,7 @@ html.a11y-high-contrast .nav__theme-btn {
 }
 .fss-lead-title {
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 .fss-lead-subtitle {

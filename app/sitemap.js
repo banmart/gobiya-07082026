@@ -15,7 +15,7 @@ export default function sitemap() {
     '/free-site-scan',
     '/insights',
     '/glossary',
-    '/services',
+    '/seo-services',
     '/pricing',
     '/seo-myths',
     '/work',

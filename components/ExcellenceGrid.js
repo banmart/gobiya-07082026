@@ -9,7 +9,7 @@ export default function ExcellenceGrid() {
           Excellence in Every Service
         </h2>
         <p className="mw-excellence__intro">
-          From our clear communication to our premium output and quality, we always put your business first.
+          No jargon, no shortcuts, no surprises. Just work that puts your business first.
         </p>
 
         <div className="mw-excellence__grid">
@@ -21,7 +21,7 @@ export default function ExcellenceGrid() {
             </div>
             <h3 className="mw-excellence__card-title">Communication You Can Count On</h3>
             <p className="mw-excellence__card-desc">
-              Our expert SEO strategy team ensures clear, direct, and transparent communication every step of the way — with no account manager middlemen.
+              Straight talk, every step. No account managers, no runaround — you deal directly with the people doing the work.
             </p>
           </div>
 
@@ -34,7 +34,7 @@ export default function ExcellenceGrid() {
             </div>
             <h3 className="mw-excellence__card-title">Transparency You Can Trust</h3>
             <p className="mw-excellence__card-desc">
-              You’ll always know what to expect with our open, no-surprise pricing, month-to-month contracts, and free site scans.
+              No-surprise pricing. Month-to-month contracts. Free site scans. You&apos;ll always know exactly what you&apos;re getting.
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export default function ExcellenceGrid() {
             </div>
             <h3 className="mw-excellence__card-title">White-Hat Standards You Can Rely On</h3>
             <p className="mw-excellence__card-desc">
-              Our team maintains strict search engine guidelines and white-hat SEO practices to protect your brand authority and search rankings.
+              We play by Google&apos;s rules, not around them — protecting your rankings and your brand for the long run.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export default function ExcellenceGrid() {
             </div>
             <h3 className="mw-excellence__card-title">Sixteen Years of Service Excellence</h3>
             <p className="mw-excellence__card-desc">
-              Proudly serving Los Angeles and Southern California businesses since 2010 with the same commitment to quality, rankings, and care.
+              Serving Los Angeles and Southern California since 2010, with the same care on day 5,000 as day one.
             </p>
           </div>
         </div>

@@ -3,9 +3,9 @@ import ServiceTemplate from '../../../components/ServiceTemplate';
 import { getService, servicePath, SERVICE_SLUGS } from '../../../lib/serviceIndex';
 import { buildMetadata } from '../../../lib/meta';
 
-// One route for all eight services, replacing the eight near-identical flat
-// pages (/seo-services and friends) that each did nothing but call getService
-// and render this template. Those URLs are 301s in next.config.mjs.
+// One route for all nine services, replacing the near-identical flat pages
+// that each did nothing but call getService and render this template. Those
+// old flat URLs are 301s in next.config.mjs.
 export function generateStaticParams() {
   return SERVICE_SLUGS.map((slug) => ({ slug }));
 }

@@ -24,8 +24,8 @@ describe('service page metadata', () => {
     }
   });
 
-  it('names Los Angeles in the SEO page description', () => {
-    expect(SERVICES_FLAT['seo'].metaDescription).toMatch(/Los Angeles/);
+  it('names Los Angeles in the technical SEO page description', () => {
+    expect(SERVICES_FLAT['technical-seo'].metaDescription).toMatch(/Los Angeles/);
   });
 });
 

@@ -14,7 +14,13 @@ const CARD_FADE_LIFT = 24;
 const CARD_FADE_QUERY =
   '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
 
-export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
+// Mirrors CARD_FADE_QUERY's motion check but for the opposite width — mobile
+// gets a normal autoplay+loop background instead of the desktop scrub, and
+// both stay off together under prefers-reduced-motion.
+const MOBILE_AUTOPLAY_QUERY =
+  '(max-width: 767px) and (prefers-reduced-motion: no-preference)';
+
+export default function HomeHeroVideo({ mp4Src, webmMobileSrc, mp4MobileSrc, poster }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -29,11 +35,31 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
 
     video.muted = true;
     video.playsInline = true;
-    video.pause();
 
     let navH = document.getElementById('nav')?.offsetHeight ?? 0;
     const card = hero.querySelector('.mw-hero__card');
     const fadeQuery = window.matchMedia(CARD_FADE_QUERY);
+    const mobileAutoplayQuery = window.matchMedia(MOBILE_AUTOPLAY_QUERY);
+
+    // Desktop scrubs the video by hand via seekTo() below, so it stays
+    // paused until scroll drives it. Mobile has no scrub — it just plays
+    // and loops like an ordinary background video. Anyone with
+    // prefers-reduced-motion set matches neither query, so the video stays
+    // paused on its poster frame regardless of width.
+    const applyPlaybackMode = () => {
+      if (mobileAutoplayQuery.matches) {
+        video.loop = true;
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => {});
+        }
+      } else {
+        video.loop = false;
+        video.pause();
+      }
+    };
+    applyPlaybackMode();
+    mobileAutoplayQuery.addEventListener('change', applyPlaybackMode);
 
     const clearCardFade = () => {
       if (!card) return;
@@ -201,6 +227,7 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       fadeQuery.removeEventListener('change', onFadeQueryChange);
+      mobileAutoplayQuery.removeEventListener('change', applyPlaybackMode);
       observer.disconnect();
       clearCardFade();
       if (rafId !== null) cancelAnimationFrame(rafId);
@@ -221,8 +248,11 @@ export default function HomeHeroVideo({ mp4Src, mp4SmSrc, poster }) {
         poster={poster}
         preload="auto"
       >
-        {mp4SmSrc ? (
-          <source src={mp4SmSrc} type="video/mp4" media="(max-width: 767px)" />
+        {webmMobileSrc ? (
+          <source src={webmMobileSrc} type="video/webm" media="(max-width: 767px)" />
+        ) : null}
+        {mp4MobileSrc ? (
+          <source src={mp4MobileSrc} type="video/mp4" media="(max-width: 767px)" />
         ) : null}
         <source src={mp4Src} type="video/mp4" />
       </video>
