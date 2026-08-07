@@ -103,9 +103,9 @@ export default function Home() {
               <h1 className="mw-hero__title">
                 Found First. Chosen Every Time.
               </h1>
-              <p className="mw-hero__excerpt">
+              <h2 className="mw-hero__secondary-heading">
                 The moment someone searches, you&apos;re already there.
-              </p>
+              </h2>
               <div className="mw-hero__actions">
                 <a href="/free-site-scan" className="mw-hero__btn">
                   Get Your Free Site Scan
