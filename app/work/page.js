@@ -23,7 +23,7 @@ export default function WorkPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="See What Getting Found Actually Looks Like"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
@@ -85,7 +85,7 @@ export default function WorkPage() {
           <h2 className="mw-navy-banner__title">
             Become the next verified result on this page
           </h2>
-          <a href="/free-site-scan" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

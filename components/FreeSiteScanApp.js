@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const STAGES = [
   'Fetching live page structure & metadata',
@@ -19,6 +20,7 @@ function scoreTone(score) {
 }
 
 export default function FreeSiteScanApp() {
+  const searchParams = useSearchParams();
   const [inputUrl, setInputUrl] = useState('');
   const [phase, setPhase] = useState('input'); // input | scanning | report | failed
   const [auditId, setAuditId] = useState(null);
@@ -55,6 +57,14 @@ export default function FreeSiteScanApp() {
   const [leadError, setLeadError] = useState('');
 
   const tickerRef = useRef(null);
+
+  // The homepage hero widget hands the domain over as ?url=. Prefill only —
+  // the visitor still presses the button, so a shared or bookmarked link can't
+  // fire a scan (and burn the API quota) just by being opened.
+  useEffect(() => {
+    const fromQuery = searchParams.get('url');
+    if (fromQuery) setInputUrl(fromQuery);
+  }, [searchParams]);
 
   const startScan = async (e) => {
     e.preventDefault();

@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function ThreatTool() {
   const [domain, setDomain] = useState('');
@@ -41,13 +38,10 @@ export default function ThreatTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Threat Intelligence' }]} />
-          <h1 className="statement" data-split>Spot a Threat Before It Reaches Your Business</h1>
-          <p className="lede" data-reveal>Check an IP or domain against global security feeds to catch active threats, malware flags, and suspicious network activity.</p>
+          <h1 className="statement">Spot a Threat Before It Reaches Your Business</h1>
+          <p className="lede">Check an IP or domain against global security feeds to catch active threats, malware flags, and suspicious network activity.</p>
         </div>
       </section>
 

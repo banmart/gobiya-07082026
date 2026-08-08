@@ -12,7 +12,7 @@ export default function sitemap() {
     '/about/approach',
     '/about/steve-martin',
     '/contact',
-    '/free-site-scan',
+    '?onboarding=true',
     '/insights',
     '/glossary',
     '/seo-services',

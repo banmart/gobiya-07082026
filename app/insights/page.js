@@ -27,14 +27,6 @@ export default function InsightsPage() {
         imageOnly={true}
       />
 
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
-        <div className="container container--narrow">
-          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
-          <h1 className="statement" data-split>Everything We Know About Getting Found, Written Down</h1>
-          <p className="lede" data-reveal>Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written to actually answer the question, not just rank for it.</p>
-        </div>
-      </section>
-
       {/* ══ 3. All Articles Archive List ══ */}
       <section className="section" id="all-articles" style={{ paddingBlock: 'clamp(3.5rem, 6vw, 5rem)', background: 'var(--surface-raised)' }}>
         <div className="container container--narrow">
@@ -51,7 +43,7 @@ export default function InsightsPage() {
           <h2 className="mw-navy-banner__title">
             Have a question these guides didn&apos;t answer?
           </h2>
-          <a href="/free-site-scan" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

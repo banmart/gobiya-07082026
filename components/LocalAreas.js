@@ -37,8 +37,8 @@ export default function LocalAreas({
         <div className="mw-local-areas__cta">
           <p className="mw-local-areas__cta-text">
             Call us today! <a href="tel:323-744-1338" className="mw-local-areas__phone">323-744-1338</a> or{' '}
-            <a href="/free-site-scan" className="mw-local-areas__btn">
-              Get a FREE Site Scan <span>&rarr;</span>
+            <a href="?onboarding=true" className="mw-local-areas__btn">
+              Request a Quote <span>&rarr;</span>
             </a>
           </p>
         </div>

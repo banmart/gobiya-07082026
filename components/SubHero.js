@@ -12,6 +12,7 @@
 // breadcrumbs, eyebrow, heading (title), secondary heading (excerpt), CTA.
 
 import Breadcrumbs from './Breadcrumbs';
+import IridescenceCanvas from './IridescenceCanvas';
 
 export default function SubHero({
   image,
@@ -29,7 +30,6 @@ export default function SubHero({
     return (
       <section
         className="mw-hero mw-hero--sub mw-hero--image-only"
-        style={image ? { backgroundImage: `url('${image}')` } : undefined}
       >
         <div className="mw-hero__overlay" />
       </section>
@@ -38,9 +38,11 @@ export default function SubHero({
 
   return (
     <section
-      className={`mw-hero mw-hero--sub ${noCard ? 'mw-hero--no-card' : ''}`.trim()}
-      style={image ? { backgroundImage: `url('${image}')` } : undefined}
+      className={`mw-hero mw-hero--sub mw-hero--waves ${noCard ? 'mw-hero--no-card' : ''}`.trim()}
     >
+      <div className="mw-hero__waves" aria-hidden="true">
+        <IridescenceCanvas intensity={0.92} speed={0.65} amplitude={0.12} />
+      </div>
       <div className="mw-hero__overlay" />
       <div className="container">
         <div className={noCard ? 'mw-hero__banner-plain' : 'mw-hero__card'}>

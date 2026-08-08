@@ -37,7 +37,11 @@ export default function HomeHeroVideo({ mp4Src, webmMobileSrc, mp4MobileSrc, pos
     video.playsInline = true;
 
     let navH = document.getElementById('nav')?.offsetHeight ?? 0;
-    const card = hero.querySelector('.mw-hero__card');
+    // The whole hero column set fades on scrub, not just the copy card — the
+    // scan widget sits beside it now and would otherwise hang in mid-air over
+    // the video after the card has gone. Falls back to the card alone for any
+    // hero that predates the two-column layout.
+    const card = hero.querySelector('.mw-hero__layout') || hero.querySelector('.mw-hero__card');
     const fadeQuery = window.matchMedia(CARD_FADE_QUERY);
     const mobileAutoplayQuery = window.matchMedia(MOBILE_AUTOPLAY_QUERY);
 

@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function EmailTool() {
   const [email, setEmail] = useState('');
@@ -35,13 +32,10 @@ export default function EmailTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Email Verification' }]} />
-          <h1 className="statement" data-split>Know an Address Is Real Before You Hit Send</h1>
-          <p className="lede" data-reveal>Check whether an email address is real and can actually receive mail, to help protect your sender reputation.</p>
+          <h1 className="statement">Know an Address Is Real Before You Hit Send</h1>
+          <p className="lede">Check whether an email address is real and can actually receive mail, to help protect your sender reputation.</p>
         </div>
       </section>
 

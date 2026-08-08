@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function ReputationTool() {
   const [domain, setDomain] = useState('');
@@ -41,13 +38,10 @@ export default function ReputationTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Domain Reputation Check' }]} />
-          <h1 className="statement" data-split>Know a Domain Is Safe Before You Trust It</h1>
-          <p className="lede" data-reveal>Instantly check any domain for spam flags, malware warnings, and email blacklist reports across security blocklists.</p>
+          <h1 className="statement">Know a Domain Is Safe Before You Trust It</h1>
+          <p className="lede">Instantly check any domain for spam flags, malware warnings, and email blacklist reports across security blocklists.</p>
         </div>
       </section>
 

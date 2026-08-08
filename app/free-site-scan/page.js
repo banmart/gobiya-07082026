@@ -8,7 +8,7 @@ export const metadata = buildMetadata({
   title: 'Free Site Scan & AI Visibility Audit',
   description:
     'Enter your website domain to get an instant AI and technical audit report covering speed, SEO tags, mobile performance, and AI search readiness.',
-  path: '/free-site-scan',
+  path: '?onboarding=true',
 });
 
 export default function OnboardingPage() {

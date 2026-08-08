@@ -61,7 +61,7 @@ export default function Header() {
             <span className="mw-topbar__text mw-topbar__text--mobile">
               Search &amp; AI Visibility Specialists
             </span>
-            <a href="/free-site-scan" className="mw-topbar__btn">
+            <a href="?onboarding=true" className="mw-topbar__btn">
               Schedule a Consultation
             </a>
           </div>
@@ -220,8 +220,8 @@ export default function Header() {
         </nav>
 
         <div className="menu__foot">
-          <a className="menu__cta" href="/free-site-scan" onClick={closeMenu}>
-            Get a FREE site scan
+          <a className="menu__cta" href="?onboarding=true" onClick={closeMenu}>
+            Request a Quote
           </a>
           <a className="menu__phone" href={CONTACT.phoneHref}>{CONTACT.phone}</a>
           <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>

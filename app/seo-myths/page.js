@@ -47,7 +47,7 @@ export default function SeoMythsPage() {
 
             <dl className="faq__list myth-key">
               {MYTHS.map((m) => (
-                <div className="faq__item" key={m.id} data-reveal>
+                <div className="faq__item" key={m.id}>
                   <dt>
                     <span className={`myth-key__tag myth-key__tag--${m.answer}`}>
                       {m.answer}

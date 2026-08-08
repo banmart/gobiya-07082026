@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function DomainLookupTool() {
   const [domain, setDomain] = useState('');
@@ -37,13 +34,10 @@ export default function DomainLookupTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Domain WHOIS Lookup' }]} />
-          <h1 className="statement" data-split>Know Who Owns a Domain Before You Make an Offer</h1>
-          <p className="lede" data-reveal>Look up any domain to instantly see if it&apos;s available, who registered it, when, and which servers manage it.</p>
+          <h1 className="statement">Know Who Owns a Domain Before You Make an Offer</h1>
+          <p className="lede">Look up any domain to instantly see if it&apos;s available, who registered it, when, and which servers manage it.</p>
         </div>
       </section>
 

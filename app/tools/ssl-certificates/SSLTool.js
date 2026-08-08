@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function SSLTool() {
   const [domain, setDomain] = useState('');
@@ -35,13 +32,10 @@ export default function SSLTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'SSL Certificate Lookup' }]} />
-          <h1 className="statement" data-split>Know Your Padlock Will Still Be There Tomorrow</h1>
-          <p className="lede" data-reveal>Check whether a website&apos;s security certificate is valid, see which other domains it covers, and verify who issued it.</p>
+          <h1 className="statement">Know Your Padlock Will Still Be There Tomorrow</h1>
+          <p className="lede">Check whether a website&apos;s security certificate is valid, see which other domains it covers, and verify who issued it.</p>
         </div>
       </section>
 
@@ -91,7 +85,7 @@ export default function SSLTool() {
                 {Array.isArray(data) && data.length > 0 ? (
                   data.map((cert, index) => (
                     <div key={index} className="capability-card" style={{ padding: '2rem', margin: 0 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '2rem' }}>
                         <div>
                           <h4 style={{ fontSize: '1.125rem', margin: '0 0 0.25rem 0', fontWeight: 600 }}>{cert.subject?.commonName || 'Unknown Common Name'}</h4>
                           <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.875rem' }}>Issued by: {cert.issuer?.organization || cert.issuer?.commonName || 'Unknown'}</p>

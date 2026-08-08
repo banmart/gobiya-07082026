@@ -132,8 +132,8 @@ export default function SpecialOfferBar() {
             </div>
           </div>
 
-          <a href="/free-site-scan" className="mw-offer-bar__btn">
-            Claim Free Scan
+          <a href="?onboarding=true" className="mw-offer-bar__btn">
+            Request a Quote
           </a>
 
           <button

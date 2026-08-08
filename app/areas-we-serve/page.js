@@ -1,12 +1,10 @@
-import SubHero from '../../components/SubHero';
-import PlatformStrip from '../../components/PlatformStrip';
-import { heroImage } from '../../lib/heroImages';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { buildMetadata } from '../../lib/meta';
 import { CONTACT } from '../../lib/nav';
 
 export const metadata = buildMetadata({
   title: 'Areas We Serve in Los Angeles | Gobiya SEO',
-  description: 'Gobiya SEO serves businesses across Los Angeles — Burbank, Glendale, Hollywood, Silver Lake, Studio City, Sherman Oaks, Koreatown, Echo Park, Los Feliz, Downtown LA, and more. Get a FREE site scan today.',
+  description: 'Gobiya SEO serves businesses across Los Angeles — Burbank, Glendale, Hollywood, Silver Lake, Studio City, Sherman Oaks, Koreatown, Echo Park, Los Feliz, Downtown LA, and more. Request a Quote today.',
   path: '/areas-we-serve',
 });
 
@@ -92,22 +90,6 @@ export default function AreasWeServePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(areasSchema) }}
       />
 
-      <SubHero
-        image={heroImage(19)}
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Areas We Serve' },
-        ]}
-        eyebrow="Serving Los Angeles & Orange County Since 2010"
-        title="Wherever You Are in Southern California, Be the First Result"
-        excerpt="SEO, AI search, and paid ads for businesses across Los Angeles County and Orange County."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
-        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
-      />
-
-      {/* ══ Platform Strip — directly under hero ══ */}
-      <PlatformStrip />
-
       {/* ══ Coverage listing ══ */}
       <section className="mw-areas-index">
         <div className="container">
@@ -159,8 +141,8 @@ export default function AreasWeServePage() {
             SEO, AI search, and PPC across Los Angeles and Orange County since 2010. Month-to-month, no long-term contracts, no surprises.
           </p>
           <div className="mw-area-bottom-cta__actions">
-            <a href="/free-site-scan" className="mw-area-cta__btn mw-area-cta__btn--primary">
-              Get Your Free Site Scan
+            <a href="?onboarding=true" className="mw-area-cta__btn mw-area-cta__btn--primary">
+              Request a Quote
             </a>
             <a href="/contact" className="mw-area-cta__btn mw-area-cta__btn--secondary">
               Contact Us

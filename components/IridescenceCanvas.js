@@ -92,9 +92,9 @@ void main() {
      the full weight, and the other two are scaled down *and* gated with a
      smoothstep so they surface as ribbons at the crests rather than as
      washes across the whole panel. */
-  vec3 w = pow(f, vec3(1.6)) + 0.02;
-  w.r *= 0.30 * smoothstep(0.30, 0.95, f.r);
-  w.g *= 0.20 * smoothstep(0.42, 1.00, f.g);
+  vec3 w = pow(f, vec3(1.3)) + 0.02;
+  w.r *= 0.60 * smoothstep(0.20, 0.85, f.r);
+  w.g *= 0.45 * smoothstep(0.28, 0.92, f.g);
 
   float total = w.r + w.g + w.b;
   vec3 brand = (uRed * w.r + uYellow * w.g + uBlue * w.b) / total;

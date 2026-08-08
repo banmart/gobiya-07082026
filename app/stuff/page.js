@@ -1,10 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import SubHero from '../../components/SubHero';
-import ClientLogos from '../../components/ClientLogos';
 import BentoVideoCard from '../../components/BentoVideoCard';
-import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const dynamic = 'force-dynamic';
@@ -78,26 +75,6 @@ export default async function StuffPage() {
 
   return (
     <main id="top">
-      {/* ══ 2. Hero — Image Background ONLY ══ */}
-      <SubHero
-        image={heroImage(17)}
-        imageOnly={true}
-      />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
-        <div className="container container--narrow">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Resources', href: '/insights' },
-              { label: 'Video Showcase' },
-            ]}
-          />
-          <h1 className="statement" data-split>Scroll-Stopping Video Without the Agency Price Tag</h1>
-          <p className="lede" data-reveal>Stop burning budget on slow camera crews. We combine generative AI workflows with SEO-backed metadata to produce high-converting commercial ads, social reels, and web background videos delivered in days.</p>
-        </div>
-      </section>
 
       {/* ══ 3. Bento & Masonry Portfolio Showcase ══ */}
       <section className="section" style={{ background: 'var(--paper)', minHeight: '60vh', paddingBlock: 'clamp(3rem, 5vw, 5rem)' }}>
@@ -153,15 +130,13 @@ export default async function StuffPage() {
             Ready for scroll-stopping AI video ads that actually bring in real leads?
           </h2>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/free-site-scan" className="mw-navy-banner__btn">
+            <a href="?onboarding=true" className="mw-navy-banner__btn">
               Schedule a Video Strategy Session
             </a>
           </div>
         </div>
       </section>
 
-      {/* ══ Client Logo Strip ══ */}
-      <ClientLogos />
 
       {/* Embedded Bento Mobile & Desktop Responsiveness CSS */}
       <style>{`

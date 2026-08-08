@@ -1,7 +1,6 @@
-import SubHero from '../../components/SubHero';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import ContactForm from '../../components/ContactForm';
 import { CONTACT } from '../../lib/nav';
-import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
@@ -17,15 +16,6 @@ const DIRECTIONS_URL =
 export default function ContactPage() {
   return (
     <main id="top">
-      <SubHero
-        image={heroImage(4)}
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
-        eyebrow="We'd Like to Hear From You"
-        title="One Call, and the Person Who Does the Work Picks Up"
-        excerpt="Call, email, or send us a note below. You'll talk to the person who does the work — not a call center."
-        primary={{ text: `Call ${CONTACT.phone}`, href: CONTACT.phoneHref }}
-        secondary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
-      />
 
       {/* ══ Form + office details ══ */}
       <section className="mw-contact">
@@ -111,7 +101,7 @@ export default function ContactPage() {
           <h2 className="mw-navy-banner__title">
             Prefer a 5-step structured questionnaire?
           </h2>
-          <a href="/free-site-scan" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

@@ -99,7 +99,7 @@ export default function PricingPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="Know Exactly What You’ll Pay Before You Say Yes"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
       <TopicMarquee topics={["Transparent Monthly Plans", "No Long-Term Contracts", "Full Audit Included", "Custom Enterprise Tier", "Measurable ROI"]} />
@@ -123,7 +123,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
                 <div className="pricing-card__cta">
-                  <a href={`/free-site-scan?tier=${t.name.toLowerCase()}`} className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
+                  <a href="?onboarding=true" className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
                     Get started with {t.name}
                   </a>
                 </div>
@@ -161,9 +161,9 @@ export default function PricingPage() {
 
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <h2 className="cta__title" data-split>Tell us about your goals — we&apos;ll recommend the right scope.</h2>
-          <div className="cta__actions" data-reveal>
-            <a href="/free-site-scan" className="btn btn--solid btn--big">Get a free proposal</a>
+          <h2 className="cta__title">Tell us about your goals — we&apos;ll recommend the right scope.</h2>
+          <div className="cta__actions">
+            <a href="?onboarding=true" className="btn btn--solid btn--big">Get a free proposal</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
           <div className="mw-cta-arrow-wrapper">

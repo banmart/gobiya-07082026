@@ -89,7 +89,7 @@ export default function ProcessPage() {
         eyebrow="Our Proven Growth Framework"
         title="The Process That Turns Search Into Steady, Compounding Growth"
         excerpt="We've spent over 16 years refining a structured 4-step framework that turns technical search engineering and AI optimization into reliable, compounding business growth."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
@@ -195,11 +195,11 @@ export default function ProcessPage() {
             Ready to experience our proprietary growth process?
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.85)', marginBottom: '1.75rem', fontSize: '1.125rem', maxWidth: '36rem', margin: '0 auto 1.75rem auto' }}>
-            Get a free site scan today to pinpoint your exact technical opportunities before starting your campaign.
+            Request a quote today to pinpoint your exact technical opportunities before starting your campaign.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/free-site-scan" className="mw-navy-banner__btn">
-              Get Your Free Site Scan
+            <a href="?onboarding=true" className="mw-navy-banner__btn">
+              Request a Quote
             </a>
             <a href="tel:+13237441338" className="mw-navy-banner__btn" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.4)', color: '#fff' }}>
               Call 323-744-1338

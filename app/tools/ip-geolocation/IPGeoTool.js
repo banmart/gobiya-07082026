@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function IPGeoTool() {
   const [ip, setIp] = useState('');
@@ -35,13 +32,10 @@ export default function IPGeoTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'IP Geolocation' }]} />
-          <h1 className="statement" data-split>See Exactly Where an IP Address Sits on the Map</h1>
-          <p className="lede" data-reveal>Run a GEO IP lookup on any address and find out roughly where it is located and which internet provider it belongs to. IP geolocation free, with no signup.</p>
+          <h1 className="statement">See Exactly Where an IP Address Sits on the Map</h1>
+          <p className="lede">Run a GEO IP lookup on any address and find out roughly where it is located and which internet provider it belongs to. IP geolocation free, with no signup.</p>
         </div>
       </section>
 
@@ -129,23 +123,23 @@ export default function IPGeoTool() {
       {/* ══ Explainer copy ══ */}
       <section className="section section--tint">
         <div className="container container--narrow tool-copy">
-          <h2 data-reveal>What IP geolocation tells you</h2>
-          <p data-reveal>
+          <h2>What IP geolocation tells you</h2>
+          <p>
             Every device on the internet has an IP address, and every IP address is
             registered to a network in a particular place. IP geolocation matches the
             address to that registration and reports the country, region, and usually the
             city, along with the internet provider that owns the block. It is how a site
             can guess your country before you tell it anything.
           </p>
-          <p data-reveal>
+          <p>
             The result is a neighborhood, not a doorstep. City-level answers are usually
             right; anything more precise is an estimate, and mobile and VPN traffic often
             reports the location of the provider rather than the person. Treat the answer
             as a strong hint, not proof.
           </p>
 
-          <h2 data-reveal>How to run a GEO IP lookup</h2>
-          <p data-reveal>
+          <h2>How to run a GEO IP lookup</h2>
+          <p>
             Paste an IPv4 or IPv6 address into the box above and press Track IP Address.
             You will get the location, the internet provider, the autonomous system the
             address belongs to, the connection type, whether it looks like a proxy, and
@@ -153,19 +147,19 @@ export default function IPGeoTool() {
             nothing to sign up for.
           </p>
 
-          <h2 data-reveal>Why people use it</h2>
-          <p data-reveal>
+          <h2>Why people use it</h2>
+          <p>
             Site owners check unfamiliar addresses in their server logs to tell real
             visitors from bots. Support teams confirm that a login came from somewhere the
             customer has actually been. Marketers sanity-check where their traffic is
             coming from before they read too much into an analytics report. All of it
             starts with the same question this tool answers.
           </p>
-          <p data-reveal>
+          <p>
             Gobiya keeps IP geolocation free because we use it ourselves every week. If it
             was useful, our other <a href="/tools">free tools</a> cover DNS records, SSL
             certificates, domain reputation, and email verification, and our{' '}
-            <a href="/free-site-scan">free site scan</a> checks your whole website.
+            <a href="?onboarding=true">free site scan</a> checks your whole website.
           </p>
         </div>
       </section>

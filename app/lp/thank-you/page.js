@@ -21,7 +21,7 @@ export default function LpThankYouPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="You’re In. Your Growth Plan Is on Its Way."
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
@@ -37,7 +37,7 @@ export default function LpThankYouPage() {
               <h3 className="mw-simple__col-title">See where you stand</h3>
               <p className="mw-simple__col-desc">
                 Run a free scan of your site and we&apos;ll show you what search engines and AI crawlers
-                can currently read. <a href="/free-site-scan">Start a free site scan</a>.
+                can currently read. <a href="?onboarding=true">Start a free site scan</a>.
               </p>
             </div>
             <div>

@@ -1,8 +1,5 @@
 import Breadcrumbs from './Breadcrumbs';
-import SubHero from './SubHero';
-import ClientLogos from './ClientLogos';
 import { getGlossaryTerm } from '../lib/glossary';
-import { heroImage } from '../lib/heroImages';
 
 export default function GlossaryTermTemplate({ entry }) {
   const relatedTerms = (entry.relatedSlugs || [])
@@ -22,11 +19,6 @@ export default function GlossaryTermTemplate({ entry }) {
     <main id="top">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(termSchema) }} />
 
-      {/* ══ 2. Hero — Image Background ONLY ══ */}
-      <SubHero
-        image={heroImage(7)}
-        imageOnly={true}
-      />
 
       <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
         <div className="container container--narrow">
@@ -108,8 +100,6 @@ export default function GlossaryTermTemplate({ entry }) {
         </div>
       </section>
 
-      {/* ══ Client Logo Strip ══ */}
-      <ClientLogos />
     </main>
   );
 }

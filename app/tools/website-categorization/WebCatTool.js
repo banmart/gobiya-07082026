@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function WebCatTool() {
   const [domain, setDomain] = useState('');
@@ -41,13 +38,10 @@ export default function WebCatTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'Website Categorization' }]} />
-          <h1 className="statement" data-split>See How the Rest of the Web Classifies Your Site</h1>
-          <p className="lede" data-reveal>See how security filters, ad networks, and AI content analyzers classify any domain.</p>
+          <h1 className="statement">See How the Rest of the Web Classifies Your Site</h1>
+          <p className="lede">See how security filters, ad networks, and AI content analyzers classify any domain.</p>
         </div>
       </section>
 
@@ -99,7 +93,7 @@ export default function WebCatTool() {
                     <h4 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Detected Categories</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                       {data.categories.map((cat, i) => (
-                        <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '2rem' }}>
                           <div>
                             <p style={{ margin: 0, fontWeight: 600, fontSize: '1.125rem' }}>{cat.name}</p>
                             <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-muted)' }}>ID: {cat.id}</p>

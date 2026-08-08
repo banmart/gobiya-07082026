@@ -1,4 +1,3 @@
-import IridescenceCanvas from './IridescenceCanvas';
 import OfferCountdown from './OfferCountdown';
 
 /* The CRM offer panel. Lives on the homepage and on /seo-services/web-dev, which
@@ -18,7 +17,6 @@ export const OFFER_ENDS = '2026-12-31T23:59:59-08:00';
 export default function SavingsOffer() {
   return (
     <section className="mw-savings">
-      <IridescenceCanvas />
       <div className="container">
         <div className="mw-savings__coupon">
           <div className="mw-savings__coupon-inner">
@@ -39,7 +37,7 @@ export default function SavingsOffer() {
             </div>
 
             <div className="mw-savings__coupon-cta">
-              <a href="/free-site-scan" className="mw-savings__btn">
+              <a href="?onboarding=true" className="mw-savings__btn">
                 Claim Your FREE CRM <span>→</span>
               </a>
               <p className="mw-savings__coupon-validity">

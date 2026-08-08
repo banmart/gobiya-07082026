@@ -1,67 +1,55 @@
 import Image from 'next/image';
-import TestimonialStack from '../components/TestimonialStack';
-import StepAccordion from '../components/StepAccordion';
 import PlatformStrip from '../components/PlatformStrip';
 import ExcellenceGrid from '../components/ExcellenceGrid';
 import SavingsOffer from '../components/SavingsOffer';
-import HomeHeroVideo from '../components/HomeHeroVideo';
+import IridescenceCanvas from '../components/IridescenceCanvas';
+import HeroScanWidget from '../components/HeroScanWidget';
+import NextMoveCards from '../components/NextMoveCards';
+import ReliableService from '../components/ReliableService';
+import HomeFeatureRows from '../components/HomeFeatureRows';
 import { buildMetadata } from '../lib/meta';
-import { TESTIMONIALS } from '../lib/testimonials';
 import { SEARCH_WINS } from '../lib/searchWins';
-import { HERO_VIDEO_MP4, HERO_VIDEO_WEBM_MOBILE, HERO_VIDEO_MP4_MOBILE, HERO_VIDEO_POSTER } from '../lib/heroImages';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
+// Written to the page as it now reads: the two outcomes the hero promises
+// (found on Google, quoted by AI), the three things the service rail sells,
+// and the no-contract line the feature rows make. 48 and 153 characters —
+// the title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
-  title: 'Los Angeles Internet Marketing & Web Engineering | Gobiya',
+  title: 'Los Angeles SEO, AI Search & Web Design | Gobiya',
   description:
-    'Turn organic search and AI assistants into a steady customer pipeline. Built for business owners who need revenue, designers who demand clean code, and marketing teams that need clear ROI.',
+    'Get found on Google and quoted by ChatGPT. Technical SEO, AI search optimization and web builds for Los Angeles businesses. Month to month, no contracts.',
   path: '/',
 });
 
-const CLIENT_LOGOS = [
-  { src: '/assets/img/americanlivescan.webp', alt: 'American Livescan' },
-  { src: '/assets/img/smilecenter.webp', alt: 'SmileCenter.com' },
-  { src: '/assets/img/totalcapital.webp', alt: 'TotalCapitalInc.Com' },
-  { src: '/assets/img/remodelmepros.webp', alt: 'RemodelMePros.com' },
-  { src: '/assets/img/safetycentric-logo.png', alt: 'Safety-Centric.com' },
-  { src: '/assets/img/dgplumbing-logo.webp', alt: 'DGPlumbingandRooter.com' },
-];
-
-const BENTO_SERVICES = [
-  {
-    title: 'Get Found on Google',
-    href: '/seo-services/technical-seo',
-    image: '/assets/img/developer-dashboard-review.webp',
-    spanClass: 'mw-bento-card--lg',
-  },
-  {
-    title: 'Get Quoted by ChatGPT & AI Search',
-    href: '/seo-services/geo',
-    image: '/assets/img/tech-lab-standup.webp',
-    spanClass: 'mw-bento-card--md',
-  },
-  {
-    title: 'Content That Sells Itself',
-    href: '/seo-services/content-marketing',
-    image: '/assets/img/hallway-code-review.webp',
-    spanClass: 'mw-bento-card--sm',
-  },
-  {
-    title: 'Earn Real Backlinks & Authority',
-    href: '/seo-services/link-building',
-    image: '/assets/img/office-lounge-meeting.webp',
-    spanClass: 'mw-bento-card--sm',
-  },
-  {
-    title: 'Turn Site Visitors Into Buyers',
-    href: '/seo-services/cro',
-    image: '/assets/img/open-office-team-table.webp',
-    spanClass: 'mw-bento-card--sm',
-  },
-];
-
 const winById = (id) => SEARCH_WINS.cards.find((c) => c.id === id);
 const STAT_IDS = ['ai-citations', 'impressions', 'clicks'];
+
+// The four numbered steps, previously an accordion. They read as a single
+// left-to-right method now, so the copy has to stay short enough to sit in a
+// column — one sentence each, no exceptions.
+const METHOD_STEPS = [
+  {
+    lead: 'Assess',
+    rest: 'your site',
+    body: 'We scan for every technical issue blocking Google and AI engines from finding you.',
+  },
+  {
+    lead: 'Rebuild',
+    rest: 'what’s broken',
+    body: 'We fix the code and package your content so search engines can actually index it.',
+  },
+  {
+    lead: 'Market',
+    rest: 'and optimize',
+    body: 'Organic search, content and AI visibility campaigns aimed at people ready to buy.',
+  },
+  {
+    lead: 'Scale',
+    rest: 'and convert',
+    body: 'We track rankings, traffic and conversions daily so growth keeps compounding.',
+  },
+];
 
 export default function Home() {
   const faqSchema = {
@@ -84,36 +72,59 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* ══ 1. Hero ══ */}
-      <div data-hero-pin style={{ position: 'relative' }}>
-        <section
-          className="mw-hero"
-          style={{ backgroundImage: `url('${HERO_VIDEO_POSTER}')` }}
-        >
-          <HomeHeroVideo
-            mp4Src={HERO_VIDEO_MP4}
-            webmMobileSrc={HERO_VIDEO_WEBM_MOBILE}
-            mp4MobileSrc={HERO_VIDEO_MP4_MOBILE}
-            poster={HERO_VIDEO_POSTER}
-          />
+      {/* ══ 1. Hero ══
+             Background is React Bits GradientWaves in brand colors. Nothing
+             pins or scrubs any more — the old [data-hero-pin] wrapper went out
+             with the scrub video. */}
+      <div>
+        <section className="mw-hero mw-hero--waves">
+          <div className="mw-hero__waves" aria-hidden="true">
+            <IridescenceCanvas intensity={0.92} speed={0.65} amplitude={0.12} />
+          </div>
           <div className="mw-hero__overlay" />
           <div className="container">
-            <div className="mw-hero__card">
-              <div className="mw-hero__eyebrow">Trusted in Los Angeles Since 2010</div>
-              <h1 className="mw-hero__title">
-                Found First. Chosen Every Time.
-              </h1>
-              <h2 className="mw-hero__secondary-heading">
-                The moment someone searches, you&apos;re already there.
-              </h2>
-              <div className="mw-hero__actions">
-                <a href="/free-site-scan" className="mw-hero__btn">
-                  Get Your Free Site Scan
-                </a>
-                <a href="/process" className="mw-hero__btn mw-hero__btn--ghost">
-                  View Our Process
-                </a>
+            <div className="mw-hero__layout">
+              <div className="mw-hero__card">
+                <div className="mw-hero__eyebrow">Trusted in Los Angeles Since 2010</div>
+                <h1 className="mw-hero__title">
+                  Found First. Chosen Every Time.
+                </h1>
+                <h2 className="mw-hero__secondary-heading">
+                  The moment someone searches, you&apos;re already there.
+                </h2>
+                <div className="mw-hero__actions">
+                  <a href="?onboarding=true" className="mw-hero__btn">
+                    Request a Quote
+                  </a>
+                  <a href="/process" className="mw-hero__btn mw-hero__btn--ghost">
+                    View Our Process
+                  </a>
+                </div>
+
+                <div className="mw-hero__trust">
+                  <div className="mw-hero__trust-since">
+                    <span>Trusted</span>
+                    <strong>since 2010</strong>
+                  </div>
+                  <div className="mw-hero__trust-rating">
+                    <div className="mw-hero__trust-stars" aria-hidden="true">
+                      {[0, 1, 2, 3, 4].map((i) => (
+                        <svg key={i} viewBox="0 0 20 20" width="14" height="14">
+                          <path
+                            fill="currentColor"
+                            d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.9z"
+                          />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="mw-hero__trust-label">
+                      Five-star Google reviews from Los Angeles business owners
+                    </span>
+                  </div>
+                </div>
               </div>
+
+              <HeroScanWidget />
             </div>
           </div>
         </section>
@@ -131,39 +142,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 3. Competitive Bento Grid Section ══ */}
-      <section className="mw-bento-section">
-        <div className="container">
-          <h2 className="mw-simple__heading" style={{ textAlign: 'center' }}>
-            Your Business, Everywhere People Search
-          </h2>
-          <p className="mw-simple__intro" style={{ textAlign: 'center', marginInline: 'auto' }}>
-            Technical fixes, custom web builds, and AI search optimization — all under one roof. Pick what your business needs.
-          </p>
-
-          <div className="mw-bento-grid">
-            {BENTO_SERVICES.map((service, i) => (
-              <a
-                key={i}
-                href={service.href}
-                className={`mw-bento-card ${service.spanClass}`}
-                style={{ backgroundImage: `url('${service.image}')` }}
-              >
-                <div className="mw-bento-card__overlay" />
-                <div className="mw-bento-card__content">
-                  <h3 className="mw-bento-card__title">{service.title}</h3>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          <div className="mw-simple__footer" style={{ marginTop: '2.5rem' }}>
-            <a href="/seo-services" className="mw-simple__btn">
-              Explore All Services <span>→</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ══ 3. Pick Your Next Move — tabbed service picker ══ */}
+      <NextMoveCards />
 
       <div className="mw-navy-divider" />
 
@@ -207,20 +187,20 @@ export default function Home() {
           </div>
 
           <div className="mw-person__btn-wrap">
-            <a href="/free-site-scan" className="mw-person__btn">
+            <a href="?onboarding=true" className="mw-person__btn">
               Get Your Free Strategy Review
             </a>
           </div>
         </div>
       </section>
 
-      {/* ══ 5. Proven Search Performance & Case Studies ══ */}
-      <section className="mw-stats">
+      {/* ══ 5. Proven Search Performance — stat bar floating on a dark band ══ */}
+      <section className="mw-stats mw-stats--band">
         <div className="container">
-          <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
-            The Numbers, Not the Sales Pitch
+          <h3 className="mw-stats__heading">
+            The numbers, not the sales pitch
           </h3>
-          <div className="mw-stats__grid">
+          <div className="mw-stats__grid mw-stats__grid--bar">
             <div>
               <div className="mw-stats__num">16</div>
               <div className="mw-stats__label">Years Experience</div>
@@ -249,43 +229,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 7. The 4-Step Method Section ══ */}
-      <section className="mw-steps" id="process">
+      {/* ══ 6. The 4-Step Method — numbered row inside a single panel ══ */}
+      <section className="mw-method" id="process">
         <div className="container">
-          <p className="mw-steps__sub">Our Proven Approach</p>
-          <h2 className="mw-steps__heading">How We Get You There — In 4 Steps</h2>
-          <p className="mw-steps__dek">
-            A decade of scaling rankings and AI citations, boiled down to four steps.
-          </p>
+          <div className="mw-method__panel">
+            <div className="mw-method__head">
+              <h2 className="mw-method__heading">Your search visibility, in four steps</h2>
+              <a href="/process" className="mw-method__more">See the full process &rarr;</a>
+            </div>
 
-          <div className="mw-steps__grid mw-steps__grid--accordion">
-            <StepAccordion title="Step 1: Assess & Audit">
-              We scan your site for every technical issue blocking Google and AI engines from finding you — no guesswork, just a clear list.
-            </StepAccordion>
-            <StepAccordion title="Step 2: Prepare & Rebuild">
-              We fix the code, rebuild the architecture, and package your content so search engines can actually index it.
-            </StepAccordion>
-            <StepAccordion title="Step 3: Market & Optimize">
-              We run organic search, content, and AI visibility campaigns built to put your business in front of people ready to buy.
-            </StepAccordion>
-            <StepAccordion title="Step 4: Scale & Convert">
-              We track rankings, traffic, and conversions every day — so growth keeps compounding, not plateauing.
-            </StepAccordion>
-          </div>
-
-          <div className="mw-steps__btn-wrap">
-            <a href="/process" className="mw-steps__btn">
-              See the Full Process
-            </a>
+            <ol className="mw-method__grid">
+              {METHOD_STEPS.map((step, i) => (
+                <li key={step.lead} className="mw-method__step">
+                  <div className="mw-method__marker">
+                    <span className="mw-method__num">{i + 1}</span>
+                    <span className="mw-method__arrow" aria-hidden="true">
+                      {i === METHOD_STEPS.length - 1 ? '✓✓' : '→'}
+                    </span>
+                  </div>
+                  <h3 className="mw-method__step-title">
+                    <strong>{step.lead}</strong> {step.rest}
+                  </h3>
+                  <p className="mw-method__step-body">{step.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
-      {/* ══ 8. Stacked Testimonials ══ */}
-      <TestimonialStack />
+      {/* ══ 7. Reliable Service — reviews + client marks ══ */}
+      <ReliableService />
+
+      {/* ══ 8. Alternating feature rows ══ */}
+      <HomeFeatureRows />
 
       {/* ══ 9. Excellence Grid ══ */}
       <ExcellenceGrid />
+
+      {/* ══ 10. Live dashboard band ══ */}
+      <section className="mw-appband">
+        <div className="container">
+          <div className="mw-appband__inner">
+            <div className="mw-appband__copy">
+              <h2 className="mw-appband__title">Your results, on a dashboard you can open</h2>
+              <p className="mw-appband__dek">
+                Every client gets a live view of rankings, traffic, AI citations and
+                leads. Same numbers we look at — no monthly slide deck, no spin.
+              </p>
+              <div className="mw-appband__badges">
+                <a href="?onboarding=true" className="mw-appband__badge">
+                  <span className="mw-appband__badge-sub">Start here</span>
+                  <span className="mw-appband__badge-main">Request Quote</span>
+                </a>
+                <a href="/login" className="mw-appband__badge mw-appband__badge--ghost">
+                  <span className="mw-appband__badge-sub">Already a client</span>
+                  <span className="mw-appband__badge-main">Client Login</span>
+                </a>
+              </div>
+            </div>
+            <div className="mw-appband__art">
+              <Image
+                src="/assets/img/analytics-dashboard-review.webp"
+                alt="The Gobiya client dashboard showing rankings and traffic"
+                width={720}
+                height={480}
+                className="mw-appband__img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ══ 11. Savings Offer ══ */}
       <SavingsOffer />
@@ -301,8 +315,8 @@ export default function Home() {
             <p className="mw-consultation__dek">
               We&apos;ll analyze your site, your internet marketing, your AI citations, and your PPC — free. Call now or start your audit online.
             </p>
-            <a href="/free-site-scan" className="mw-consultation__btn">
-              Get a FREE Site Scan <span>→</span>
+            <a href="?onboarding=true" className="mw-consultation__btn">
+              Request a Quote <span>→</span>
             </a>
             <div className="mw-cta-arrow-wrapper">
               <img src="/assets/img/get-started-grey.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--light" />

@@ -5,13 +5,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SiteSchema from '../components/SiteSchema';
 import ConsentAnalytics from '../components/ConsentAnalytics';
-import BrandWatermark from '../components/BrandWatermark';
 import Motion from '../components/Motion';
 import AIChatBubble from '../components/AIChatBubble';
 import ChromeGate from '../components/ChromeGate';
 import AccessibilityControls from '../components/AccessibilityControls';
 import ScrollAnimate from '../components/ScrollAnimate';
-import SpecialOfferBar from '../components/SpecialOfferBar';
+import GlobalLeadModal from '../components/GlobalLeadModal';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -70,14 +69,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <SiteSchema />
-        <BrandWatermark />
         <ChromeGate>
           <Header />
         </ChromeGate>
         {children}
         <ChromeGate>
           <AIChatBubble />
-          <SpecialOfferBar />
           <Footer />
         </ChromeGate>
         <Motion />
@@ -85,6 +82,7 @@ export default function RootLayout({ children }) {
         <ConsentAnalytics />
         <AccessibilityControls />
         <ScrollAnimate />
+        <GlobalLeadModal />
       </body>
     </html>
   );

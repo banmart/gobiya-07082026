@@ -42,7 +42,7 @@ export default function CaseStudyTemplate({ cs }) {
         eyebrow={`${cs.client} · ${cs.tag}`}
         title={`${cs.client}: ${cs.result}`}
         excerpt={cs.study?.dek || cs.desc}
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
@@ -231,7 +231,7 @@ export default function CaseStudyTemplate({ cs }) {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Your business could be the next case study.</h2>
           <div className="cta__actions" data-reveal>
-            <a href="/free-site-scan" className="btn btn--solid btn--big">Start onboarding</a>
+            <a href="?onboarding=true" className="btn btn--solid btn--big">Start onboarding</a>
             <a href="/work" className="btn btn--ghost btn--big">More client work</a>
           </div>
         </div>

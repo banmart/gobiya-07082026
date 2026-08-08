@@ -28,7 +28,7 @@ export default function ApproachPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="An SEO Process That Takes the Guesswork Out of Rankings"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
@@ -39,26 +39,26 @@ export default function ApproachPage() {
       {/* ══════════ Principles ══════════ */}
       <section className="section" id="principles">
         <div className="container container--narrow" style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <h2 className="statement statement--small" data-split>Four principles that shape every engagement.</h2>
+          <h2 className="statement statement--small">Four principles that shape every engagement.</h2>
         </div>
         <div className="container">
           <div className="capability-grid">
-            <div className="capability-card" data-reveal>
+            <div className="capability-card">
               <span className="capability-card__tag">01 · Sequence</span>
               <h3 className="capability-card__title">Technical foundation before anything else</h3>
               <p className="capability-card__desc">If Google can&apos;t actually read your page, nothing else matters — no amount of content, links, or ad spend on top of it will help. We fix those basic technical problems first, before touching anything else.</p>
             </div>
-            <div className="capability-card" data-reveal>
+            <div className="capability-card">
               <span className="capability-card__tag">02 · Evidence</span>
               <h3 className="capability-card__title">We look before we act</h3>
               <p className="capability-card__desc">We don&apos;t run the same playbook for every client. Every project starts with a real look at your website to find out what&apos;s actually holding it back — not a guess carried over from someone else&apos;s business.</p>
             </div>
-            <div className="capability-card" data-reveal>
+            <div className="capability-card">
               <span className="capability-card__tag">03 · Accountability</span>
               <h3 className="capability-card__title">We report on results that matter, not just numbers</h3>
               <p className="capability-card__desc">Traffic and rankings only matter because of what they lead to. Whenever we can track it, we report on real leads, bookings, and sales — not just movement that looks good but doesn&apos;t mean much on its own.</p>
             </div>
-            <div className="capability-card" data-reveal>
+            <div className="capability-card">
               <span className="capability-card__tag">04 · Structure</span>
               <h3 className="capability-card__title">A clear process, not an open-ended bill</h3>
               <p className="capability-card__desc">Every service follows a clear, four-step process with a visible end point for the first phase of work, so you always know what we&apos;re doing and why — not just that a monthly invoice went out.</p>
@@ -70,7 +70,7 @@ export default function ApproachPage() {
       {/* ══════════ Three pillars ══════════ */}
       <section className="solutions section section--tint" id="pillars">
         <div className="container container--narrow solutions__head">
-          <h2 className="statement statement--small" data-split>Performance, Creativity, and Relations — three parts of your marketing that work together, not against each other.</h2>
+          <h2 className="statement statement--small">Performance, Creativity, and Relations — three parts of your marketing that work together, not against each other.</h2>
         </div>
 
         <div className="stack">
@@ -142,9 +142,9 @@ export default function ApproachPage() {
       {/* ══════════ CTA ══════════ */}
       <section className="cta section" id="contact">
         <div className="container container--narrow">
-          <h2 className="cta__title" data-split>See how this approach applies to your site.</h2>
-          <div className="cta__actions" data-reveal>
-            <a href="/free-site-scan" className="btn btn--solid btn--big">Schedule a Consultation</a>
+          <h2 className="cta__title">See how this approach applies to your site.</h2>
+          <div className="cta__actions">
+            <a href="?onboarding=true" className="btn btn--solid btn--big">Schedule a Consultation</a>
             <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
         </div>

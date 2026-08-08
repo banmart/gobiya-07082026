@@ -1,10 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import SubHero from '../../components/SubHero';
 import ClientLogos from '../../components/ClientLogos';
-import { heroImage } from '../../lib/heroImages';
 
 const TOOLS = [
   {
@@ -93,16 +90,10 @@ export default function ToolsHub() {
   return (
     <main id="top">
       {/* ══ Hero — Image Background ONLY ══ */}
-      <SubHero
-        image={heroImage(5)}
-        imageOnly={true}
-      />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
-          <h1 className="statement" data-split>Answers About Your Site in Seconds, Free</h1>
-          <p className="lede" data-reveal>Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
+          <h1 className="statement">Answers About Your Site in Seconds, Free</h1>
+          <p className="lede">Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
         </div>
       </section>
 
@@ -179,9 +170,9 @@ export default function ToolsHub() {
       {/* Conversion Bridge */}
       <section className="section section--dark" style={{ padding: '4rem 0' }}>
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
-          <h2 className="statement" data-split style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Want a full check of your whole site, not just one piece?</h2>
-          <p className="lede" data-reveal style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our team checks your whole site — how well it loads, whether Google and AI tools can read it, and where you&apos;re missing out.</p>
-          <a href="/free-site-scan?goal=ai-visibility" className="btn btn--solid">Get a free full site check</a>
+          <h2 className="statement" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', marginBottom: '1rem' }}>Want a full check of your whole site, not just one piece?</h2>
+          <p className="lede" style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>Our team checks your whole site — how well it loads, whether Google and AI tools can read it, and where you&apos;re missing out.</p>
+          <a href="?onboarding=true" className="btn btn--solid">Get a free full site check</a>
         </div>
       </section>
     </main>

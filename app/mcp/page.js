@@ -1,9 +1,6 @@
 import { buildMetadata } from '../../lib/meta';
 import CopyButton from '../../components/CopyButton';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import SubHero from '../../components/SubHero';
-import ClientLogos from '../../components/ClientLogos';
-import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'MCP Server for AI Agents',
@@ -42,30 +39,21 @@ const CURL_SNIPPET = `curl -X POST ${MCP_URL} \\
 export default function McpPage() {
   return (
     <main id="top">
-      <SubHero
-        image={heroImage(18)}
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'mcp' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
-        title="Your Business, Answerable by Any AI Agent"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
-        secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
-      />
 
       <section className="section section--tint" id="connect">
         <div className="container container--narrow">
-          <h2 className="statement statement--small" data-split>One URL, no API key required.</h2>
-          <p className="lede" data-reveal>Streamable HTTP transport, live at:</p>
+          <h2 className="statement statement--small">One URL, no API key required.</h2>
+          <p className="lede">Streamable HTTP transport, live at:</p>
           <div className="code-block">
             <pre style={{ background: 'var(--overlay)', color: '#f4f7fb', padding: '1.25rem 1.5rem', paddingRight: '6rem', overflowX: 'auto', fontSize: '0.9rem' }}>{MCP_URL}</pre>
             <CopyButton text={MCP_URL} />
           </div>
-          <p className="lede" data-reveal>Claude Desktop, Cursor, and other MCP-client config:</p>
+          <p className="lede">Claude Desktop, Cursor, and other MCP-client config:</p>
           <div className="code-block">
             <pre style={{ background: 'var(--overlay)', color: '#f4f7fb', padding: '1.25rem 1.5rem', paddingRight: '6rem', overflowX: 'auto', fontSize: '0.85rem' }}>{CONFIG_SNIPPET}</pre>
             <CopyButton text={CONFIG_SNIPPET} />
           </div>
-          <p className="lede" data-reveal>Or call it directly:</p>
+          <p className="lede">Or call it directly:</p>
           <div className="code-block">
             <pre style={{ background: 'var(--overlay)', color: '#f4f7fb', padding: '1.25rem 1.5rem', paddingRight: '6rem', overflowX: 'auto', fontSize: '0.85rem' }}>{CURL_SNIPPET}</pre>
             <CopyButton text={CURL_SNIPPET} />
@@ -75,7 +63,7 @@ export default function McpPage() {
 
       <section className="section" id="tools">
         <div className="container">
-          <h2 className="statement statement--small" data-split style={{ textAlign: 'left' }}>9 callable actions — 7 free lookups, 2 ways to reach us.</h2>
+          <h2 className="statement statement--small" style={{ textAlign: 'left' }}>9 callable actions — 7 free lookups, 2 ways to reach us.</h2>
           <div className="svc-grid">
             {TOOLS.map((t) => (
               <div className="svc-card" key={t.name}>
@@ -90,17 +78,15 @@ export default function McpPage() {
 
       <section className="section section--tint" id="resources">
         <div className="container container--narrow">
-          <h2 className="statement statement--small" data-split>Browse our content directly, not just links to it.</h2>
-          <p className="lede" data-reveal>Every <a href="/insights">insights article</a>, <a href="/work">client case study</a>, and <a href="/seo-services">consulting service page</a> on this site is also exposed as a readable MCP resource — <code>gobiya://insights/{'{slug}'}</code>, <code>gobiya://work/{'{slug}'}</code>, and <code>gobiya://seo-services/{'{slug}'}</code> — so an agent can read the actual content, not just crawl the HTML.</p>
+          <h2 className="statement statement--small">Browse our content directly, not just links to it.</h2>
+          <p className="lede">Every <a href="/insights">insights article</a>, <a href="/work">client case study</a>, and <a href="/seo-services">consulting service page</a> on this site is also exposed as a readable MCP resource — <code>gobiya://insights/{'{slug}'}</code>, <code>gobiya://work/{'{slug}'}</code>, and <code>gobiya://seo-services/{'{slug}'}</code> — so an agent can read the actual content, not just crawl the HTML.</p>
         </div>
       </section>
 
-      {/* ══ Client Logo Strip ══ */}
-      <ClientLogos />
 
       <section className="section" id="also">
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
-          <p className="lede" data-reveal>Plain-text crawlers and AI systems that don&apos;t speak MCP can still read <a href="/llms.txt">/llms.txt</a> for a lighter-weight summary of this site.</p>
+          <p className="lede">Plain-text crawlers and AI systems that don&apos;t speak MCP can still read <a href="/llms.txt">/llms.txt</a> for a lighter-weight summary of this site.</p>
         </div>
       </section>
 

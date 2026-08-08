@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="Your Data Stays Yours"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
       <TopicMarquee topics={["Data Privacy", "User Confidentiality", "Analytics Consent Policy", "Information Security", "GDPR & CCPA Compliance"]} />

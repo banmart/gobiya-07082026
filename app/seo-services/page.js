@@ -77,7 +77,7 @@ export default function ServicesPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="Every Outcome You've Been Chasing, Under One Roof"
         excerpt="Pick the win you need. We'll show you exactly how we get there."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
 
@@ -118,7 +118,7 @@ export default function ServicesPage() {
           <h2 className="mw-navy-banner__title">
             Not sure which service your business needs?
           </h2>
-          <a href="/free-site-scan" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

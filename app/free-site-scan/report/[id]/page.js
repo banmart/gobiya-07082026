@@ -12,7 +12,7 @@ import { buildMetadata } from '../../../../lib/meta';
 export const metadata = buildMetadata({
   title: 'Your Site Scan Report',
   description: 'The results of your free Gobiya site scan.',
-  path: '/free-site-scan',
+  path: '?onboarding=true',
   robots: { index: false, follow: false },
 });
 

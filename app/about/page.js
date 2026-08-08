@@ -30,7 +30,7 @@ export default function AboutPage() {
         eyebrow="Affordable Solutions, Exceptional Service"
         title="16 Years of Getting Los Angeles Businesses Found"
         excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
-        primary={{ text: 'Get Your Free Site Scan', href: '/free-site-scan' }}
+        primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Meet Steve Martin', href: '/about/steve-martin' }}
       />
 
@@ -66,7 +66,7 @@ export default function AboutPage() {
             Ready to make the call to one of the most trusted local SEOs in the area? Reach out to us at{' '}
             <a href="tel:+13237441338">(323) 744-1338</a>!
           </p>
-          <a href="/free-site-scan" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn">
             Contact Us To See How We Can Help You
           </a>
         </div>
@@ -138,7 +138,7 @@ export default function AboutPage() {
             <p className="mw-consultation__dek">
               You&apos;ve invested your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees. The moment has finally come for you to start a new chapter in your digital growth. Explore your options now.
             </p>
-            <a href="/free-site-scan" className="mw-consultation__btn">
+            <a href="?onboarding=true" className="mw-consultation__btn">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />

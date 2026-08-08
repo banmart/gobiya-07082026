@@ -2,10 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import MythGame from './MythGame';
-import SubHero from '../../components/SubHero';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import ClientLogos from '../../components/ClientLogos';
-import { heroImage } from '../../lib/heroImages';
 
 export default function GameShell({ children }) {
   const [unlocked, setUnlocked] = useState(false);
@@ -13,7 +10,6 @@ export default function GameShell({ children }) {
 
   return (
     <>
-      <SubHero image={heroImage(4)} imageOnly={true} />
 
       <section className="section section--tint myth-section">
         <div className="container container--narrow">
@@ -25,7 +21,6 @@ export default function GameShell({ children }) {
         </div>
       </section>
 
-      <ClientLogos />
 
       <div className={`myth-locked${unlocked ? ' is-open' : ''}`}>{children}</div>
     </>

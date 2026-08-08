@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Breadcrumbs from '../../../components/Breadcrumbs';
-import SubHero from '../../../components/SubHero';
-import { heroImage } from '../../../lib/heroImages';
 
 export default function DNSLookupTool() {
   const [domain, setDomain] = useState('');
@@ -52,13 +49,10 @@ export default function DNSLookupTool() {
 
   return (
     <main id="top">
-      <SubHero image={heroImage(5)} imageOnly={true} />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free Tools', href: '/tools' }, { label: 'DNS Lookup' }]} />
-          <h1 className="statement" data-split>See Exactly Where Your Domain Points, in Seconds</h1>
-          <p className="lede" data-reveal>Look up any domain&apos;s technical records to spot connection problems, check email setup, and see which servers it points to.</p>
+          <h1 className="statement">See Exactly Where Your Domain Points, in Seconds</h1>
+          <p className="lede">Look up any domain&apos;s technical records to spot connection problems, check email setup, and see which servers it points to.</p>
         </div>
       </section>
 

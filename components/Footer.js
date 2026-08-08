@@ -32,7 +32,7 @@ export default function Footer() {
               <a href="/about/steve-martin">Leadership</a>
               <a href="/contact">Contact Us</a>
               <a href="/areas-we-serve">Areas We Serve</a>
-              <a href="/free-site-scan">Free Site Scan</a>
+              <a href="?onboarding=true">Request a Quote</a>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div className="mw-footer__bottom">
           <div className="mw-footer__bottom-cta">
-            <a href="/free-site-scan" className="mw-footer__cta-btn">Get a FREE site scan</a>
+            <a href="?onboarding=true" className="mw-footer__cta-btn">Request a Quote</a>
           </div>
           <div className="mw-footer__legal-links">
             <a href="/privacy">Privacy Policy</a>

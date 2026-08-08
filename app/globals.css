@@ -1646,12 +1646,16 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 /* Clips the homepage mark to the page box. Without it the mark's negative
    `right` offset extends the document and the homepage — and only the
    homepage — scrolls sideways on a phone. */
+/* z-index 3, and clipped to the hero rather than to <body>: the mark renders
+   inside the homepage hero now, so it stacks against the video (1) and the
+   overlay (2) and stays under the hero copy and the scan widget (16). At the
+   old body-level 15 it printed straight over the widget's tabs. */
 .brand-watermark-clip {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 15;
+  z-index: 3;
 }
 
 .brand-watermark {
@@ -1662,7 +1666,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   height: clamp(30.8rem, 58.8vw, 61.6rem);
   opacity: 0.35;
   pointer-events: none;
-  z-index: 15;
+  z-index: 3;
 }
 @media (max-width: 48rem) {
   .brand-watermark { width: clamp(22.4rem, 84vw, 36.4rem); height: clamp(22.4rem, 84vw, 36.4rem); }
@@ -2316,7 +2320,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   transition: background 0.3s var(--expo-out);
 }
 .svc-card:hover { background: var(--lightest); }
-.svc-card__icon { color: var(--link); margin-bottom: 0.9rem; flex: 0 0 auto; }
+.svc-card__icon { display: none; }
 .svc-card__tag {
   font-size: 0.65rem;
   font-weight: 600;
@@ -2327,14 +2331,23 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .svc-card__title {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--text);
   line-height: 1.25;
   margin-bottom: 0.6rem;
 }
-.svc-card__desc { font-size: 0.875rem; line-height: 1.6; color: var(--hint); flex-grow: 1; margin-bottom: 1.25rem; }
+.svc-card__desc { 
+  font-family: var(--font-heading); 
+  font-size: 1.125rem; 
+  font-weight: 600; 
+  line-height: 1.4; 
+  color: var(--ink-700); 
+  flex-grow: 1; 
+  margin-bottom: 1.25rem; 
+}
 @media (max-width: 64rem) { .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 40rem) { .svc-grid { grid-template-columns: 1fr; } }
+@media (max-width: 40rem) { .svc-grid { grid-template-columns: 1fr 1fr; } }
 
 /* ═══════════ pillars ═══════════ */
 .pillars__grid {
@@ -3506,6 +3519,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   grid-column: 1 / -1;
   border-left: 4px solid #C9A84C;
   background: var(--surface-highlight);
+  padding-block: 1rem;
 }
 
 /* Body — spans both columns */
@@ -5632,7 +5646,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 .mw-savings {
   padding-block: clamp(4.5rem, 8vw, 7rem);
-  background: var(--surface-inverse);
+  background: linear-gradient(135deg, #0B1628 0%, #1A0812 45%, #0E1828 100%);
   position: relative;
   overflow: hidden;
 }
@@ -8068,6 +8082,11 @@ html.a11y-grayscale {
     grid-template-columns: 1fr;
   }
 }
+
+/* No sticky rail on this page — see ServiceTemplate's `hasRail`. */
+.mw-area-body__grid--full {
+  grid-template-columns: 1fr;
+}
 .mw-area-body__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
@@ -8233,8 +8252,13 @@ html.a11y-grayscale {
    content column. Shared by the city pages and the areas index. */
 .mw-svc-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+}
+@media (min-width: 900px) {
+  .mw-svc-cards {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
 }
 
 /* A service page with exactly four capabilities lands three-up plus a stranded
@@ -8249,11 +8273,6 @@ html.a11y-grayscale {
    leaves the fourth card stranded on its own row. Two-up pairs them instead. */
 .mw-svc-cards--two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-@media (max-width: 34rem) {
-  .mw-svc-cards--two {
-    grid-template-columns: 1fr;
-  }
 }
 .mw-svc-card {
   display: flex;
@@ -8281,16 +8300,18 @@ html.a11y-grayscale {
 }
 .mw-svc-card__title {
   font-family: var(--font-heading);
-  font-size: 1.1875rem;
-  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
   color: var(--text);
   margin-bottom: 0.5rem;
   line-height: 1.3;
 }
 .mw-svc-card__desc {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--ink-600);
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink-700);
   flex-grow: 1;
   margin-bottom: 1.25rem;
 }
@@ -9751,3 +9772,1220 @@ html.a11y-high-contrast .nav__theme-btn {
   display: block;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   Homepage — 2026-08 restructure
+   The page now runs: split hero (copy + scan widget) → service
+   picker → stat bar → method → reviews → feature rows → dashboard.
+   Everything below is homepage-only and resolves through the
+   tokens at the top of this file; no bare hexes except over
+   photography, where the theme underneath does not move.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── split hero ──
+   Two columns from 1024px up: copy card left, scan widget right. Below that
+   the grid collapses and the widget stacks under the card, which is why no
+   height is pinned on either side. */
+/* z-index 16, not 3: the homepage brand watermark (.brand-watermark, z-index
+   15) hangs off the top-right of the page, which is exactly where the scan
+   widget now sits. At 0.35 opacity over a white panel it prints as a grey
+   block across the tabs. Hero content wins that overlap; the mark still reads
+   over the photography beside it. */
+.mw-hero__layout {
+  position: relative;
+  z-index: 16;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .mw-hero__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 25rem);
+  }
+
+  .mw-hero__card {
+    max-width: 38rem;
+  }
+}
+
+/* The trust line under the hero CTAs — "since 2010" split from the star row by
+   a hairline, the way a review badge sits next to a tenure claim. */
+.mw-hero__trust {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1.75rem, 3vw, 2.25rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+
+.mw-hero__trust-since {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  flex-shrink: 0;
+}
+
+.mw-hero__trust-since span {
+  font-size: 0.8125rem;
+  color: var(--ink-500);
+}
+
+.mw-hero__trust-since strong {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.mw-hero__trust-rating {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+}
+
+.mw-hero__trust-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.mw-hero__trust-label {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ink-500);
+  max-width: 18rem;
+}
+
+/* ── hero scan widget ── */
+.mw-scanwidget {
+  position: relative;
+  z-index: 3;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.25rem, 2vw, 1.5rem);
+  box-shadow: 0 24px 48px rgba(var(--shadow-rgb), 0.18);
+  width: 100%;
+}
+
+.mw-scanwidget__body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Names the panel now that the tab row is gone — without it the widget opens
+   on a bare input with no idea what it is for. */
+.mw-scanwidget__title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-500);
+  margin-bottom: 0.85rem;
+}
+
+.mw-scanwidget__field {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.mw-scanwidget__label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-500);
+  margin-bottom: 0.25rem;
+}
+
+.mw-scanwidget__input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  padding: 0;
+}
+
+.mw-scanwidget__input:focus {
+  outline: none;
+}
+
+.mw-scanwidget__input::placeholder {
+  color: var(--ink-400);
+  font-weight: 400;
+}
+
+.mw-scanwidget__meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.875rem;
+}
+
+.mw-scanwidget__note {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink-500);
+}
+
+.mw-scanwidget__chip {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: var(--surface-sunken-2);
+  color: var(--ink-600);
+}
+
+.mw-scanwidget__submit {
+  margin-top: 1rem;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.95rem 1.5rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  background: var(--main);
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s var(--expo-out), box-shadow 0.2s var(--expo-out);
+}
+
+.mw-scanwidget__submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(140, 29, 47, 0.3);
+}
+
+.mw-scanwidget__footnote {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ink-500);
+}
+
+.mw-scanwidget__footnote a {
+  color: var(--link);
+  font-weight: 600;
+}
+
+/* ── pick your next move ── */
+.mw-move {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  background: var(--surface);
+}
+
+.mw-move__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.mw-move__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.mw-move__tab {
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  border-radius: 999px;
+  padding: 0.55rem 1.15rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-600);
+  cursor: pointer;
+  transition: border-color 0.2s var(--expo-out), color 0.2s var(--expo-out), background 0.2s var(--expo-out);
+}
+
+.mw-move__tab:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.mw-move__tab.is-active {
+  border-color: var(--main);
+  color: var(--main);
+  background: var(--surface);
+}
+
+/* Desktop: horizontal flow so cards sit side by side.
+   Mobile: 2×2 grid — no scroll, art hidden to keep cards compact. */
+.mw-move__rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(17rem, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 767px) {
+  .mw-move__rail {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: unset;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+}
+
+.mw-move-card {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  min-height: 22rem;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s var(--expo-out), box-shadow 0.3s var(--expo-out);
+}
+
+.mw-move-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(var(--shadow-rgb), 0.16);
+}
+
+/* Card tints. These are washes over the page surface rather than solid brand
+   fills, so the ink ramp still clears contrast on them in both themes. */
+.mw-move-card--navy {
+  background: linear-gradient(160deg, var(--surface-sunken-2) 0%, var(--surface-raised) 70%);
+}
+
+.mw-move-card--carmine {
+  background: linear-gradient(160deg, rgba(140, 29, 47, 0.1) 0%, var(--surface-raised) 70%);
+}
+
+.mw-move-card--gold {
+  background: linear-gradient(160deg, rgba(245, 184, 61, 0.16) 0%, var(--surface-raised) 70%);
+}
+
+.mw-move-card__eyebrow {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-500);
+  margin-bottom: 0.5rem;
+}
+
+.mw-move-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.mw-move-card__art {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: 1.25rem;
+}
+
+@media (max-width: 767px) {
+  .mw-move-card__art {
+    display: none;
+  }
+}
+
+.mw-move-card__art-svg {
+  width: 100%;
+  height: auto;
+}
+
+.mw-move-card__grid line {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.mw-move-card__line {
+  fill: none;
+  stroke: var(--main);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mw-move-card__dot {
+  fill: var(--main);
+}
+
+.mw-move-card__edges line {
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+
+.mw-move-card__node {
+  fill: var(--surface-raised);
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+
+.mw-move-card__hub {
+  fill: var(--surface-inverse);
+}
+
+/* AI answer mock */
+.mw-move-card__answer {
+  width: 100%;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem;
+}
+
+.mw-move-card__answer-q {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-600);
+  margin-bottom: 0.65rem;
+}
+
+.mw-move-card__answer-bar {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--rule);
+  margin-bottom: 0.4rem;
+}
+
+.mw-move-card__answer-bar--short {
+  width: 62%;
+}
+
+.mw-move-card__answer-cite {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--link);
+}
+
+.mw-move-card__answer-num {
+  display: grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  background: var(--main);
+  color: #ffffff;
+  font-size: 0.625rem;
+}
+
+/* Stacked content pages */
+.mw-move-card__pages {
+  position: relative;
+  width: 100%;
+  height: 8rem;
+}
+
+.mw-move-card__page {
+  position: absolute;
+  inset-inline: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.mw-move-card__page span {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--rule);
+}
+
+.mw-move-card__page span:last-child { width: 55%; }
+.mw-move-card__page--0 { top: 0; left: 1.5rem; right: 0; opacity: 0.55; }
+.mw-move-card__page--1 { top: 1.5rem; left: 0.75rem; right: 0.75rem; opacity: 0.8; }
+.mw-move-card__page--2 { top: 3rem; left: 0; right: 1.5rem; }
+
+/* Conversion funnel */
+.mw-move-card__funnel {
+  width: 100%;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.mw-move-card__funnel-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mw-move-card__funnel-row span {
+  height: 12px;
+  border-radius: 6px;
+  background: var(--main);
+  opacity: 0.85;
+}
+
+.mw-move-card__funnel-row em {
+  font-style: normal;
+  font-size: 0.6875rem;
+  color: var(--ink-500);
+  white-space: nowrap;
+}
+
+/* Build wireframe */
+.mw-move-card__build {
+  width: 100%;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.mw-move-card__build-bar {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--surface-inverse);
+  margin-bottom: 0.6rem;
+  width: 45%;
+}
+
+.mw-move-card__build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.mw-move-card__build-grid span {
+  height: 30px;
+  border-radius: 6px;
+  background: var(--rule-soft);
+  border: 1px solid var(--border-light);
+}
+
+.mw-move-card__go {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--link);
+}
+
+.mw-move__footer {
+  text-align: center;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* ── stat bar ──
+   The stats band gets a photograph behind it and the numbers float on a
+   translucent panel, so the section reads as evidence rather than a colored
+   strip. The panel keeps its own dark backing: the photo underneath does not
+   flip with the theme, so neither does the text on it. */
+.mw-stats--band {
+  position: relative;
+  background:
+    linear-gradient(rgba(11, 30, 54, 0.86), rgba(11, 30, 54, 0.92)),
+    url('/assets/img/office-huddle-skyline.webp') center / cover no-repeat;
+}
+
+.mw-stats__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.mw-stats__grid--bar {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.25rem, 3vw, 2.5rem);
+  backdrop-filter: blur(6px);
+}
+
+@media (min-width: 768px) {
+  .mw-stats__grid--bar {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .mw-stats__grid--bar > * {
+    padding-inline: clamp(0.5rem, 1.5vw, 1rem);
+  }
+
+  .mw-stats__grid--bar > * + * {
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* ── method row ── */
+.mw-method {
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+  background: var(--surface);
+}
+
+.mw-method__panel {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.mw-method__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.mw-method__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.mw-method__more {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.mw-method__grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mw-method__marker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.mw-method__num {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink-400);
+}
+
+.mw-method__arrow {
+  font-size: 1.125rem;
+  color: var(--main);
+}
+
+.mw-method__step-title {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.mw-method__step-title strong {
+  font-weight: 700;
+}
+
+.mw-method__step-body {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-600);
+}
+
+/* ── reliable service ── */
+.mw-reliable {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  background: var(--surface-sunken);
+}
+
+.mw-reliable__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.mw-reliable__grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  align-items: stretch;
+}
+
+.mw-reliable__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin: 0;
+}
+
+.mw-reliable__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.mw-reliable__quote {
+  flex: 1;
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-700);
+}
+
+.mw-reliable__person {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mw-reliable__avatar {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* A service page's own client quote ships with a photo; the Google reviews
+   don't, and fall back to the initials chip above. */
+.mw-reliable__avatar--photo {
+  object-fit: cover;
+}
+
+.mw-reliable__name {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.mw-reliable__role {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--ink-500);
+}
+
+.mw-reliable__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  list-style: none;
+  padding: 0;
+  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+}
+
+.mw-reliable__logo {
+  height: auto;
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.mw-reliable__logo-item:hover .mw-reliable__logo {
+  opacity: 1;
+}
+
+.mw-reliable__cta {
+  text-align: center;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.mw-reliable__btn {
+  display: inline-block;
+  padding: 0.8rem 1.75rem;
+  border-radius: 8px;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mw-reliable__btn:hover {
+  background: var(--main);
+  transform: translateY(-1px);
+}
+
+/* ── alternating feature rows ── */
+.mw-frows {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  background: var(--surface);
+}
+
+.mw-frow {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+
+.mw-frow + .mw-frow {
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 900px) {
+  .mw-frow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Even rows flip: art left, copy right. */
+  .mw-frow:nth-child(even) .mw-frow__copy { order: 2; }
+  .mw-frow:nth-child(even) .mw-frow__art { order: 1; }
+}
+
+.mw-frow__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 3vw, 2.375rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+}
+
+/* The bold standfirst a service row can carry between its title and its body
+   copy — the `excerpt` block from the old prose column. */
+.mw-frow__lede {
+  font-family: var(--font-heading);
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+  max-width: 34rem;
+}
+
+.mw-frow__dek {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-600);
+  max-width: 34rem;
+}
+
+/* A row can run several paragraphs; they need space between them. */
+.mw-frow__dek + .mw-frow__dek {
+  margin-top: 0.85rem;
+}
+
+.mw-frow__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  margin-top: 1.75rem;
+  max-width: 26rem;
+}
+
+.mw-frow__stat-num {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--main);
+}
+
+.mw-frow__stat-label {
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  color: var(--ink-500);
+}
+
+.mw-frow__range {
+  margin-top: 1.75rem;
+  max-width: 30rem;
+}
+
+.mw-frow__range-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--main), var(--gold));
+}
+
+.mw-frow__range-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--ink-500);
+}
+
+.mw-frow__list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mw-frow__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-700);
+}
+
+.mw-frow__check {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--main);
+}
+
+.mw-frow__link {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.mw-frow__link:hover {
+  text-decoration: underline;
+}
+
+.mw-frow__img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* ── dashboard band ── */
+.mw-appband {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  background: var(--surface-sunken);
+}
+
+.mw-appband__inner {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .mw-appband__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.mw-appband__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+}
+
+.mw-appband__dek {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-600);
+  max-width: 32rem;
+}
+
+.mw-appband__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.mw-appband__badge {
+  display: flex;
+  flex-direction: column;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mw-appband__badge:hover {
+  transform: translateY(-2px);
+}
+
+.mw-appband__badge-sub {
+  font-size: 0.6875rem;
+  opacity: 0.75;
+}
+
+.mw-appband__badge-main {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.mw-appband__badge--ghost {
+  background: transparent;
+  border: 1px solid var(--border-contrast);
+  color: var(--text);
+}
+
+.mw-appband__img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* The scan widget sits on the same photography as the hero card, so it takes
+   the same frosted treatment on dark — see the .mw-glass group above. Its
+   inner fields have to lift off that glass rather than sit on the page
+   surface, which is why they go to a white wash instead of a token. */
+[data-theme='dark'] .mw-scanwidget {
+  background: rgba(17, 28, 46, 0.88);
+  backdrop-filter: blur(10px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme='dark'] .mw-scanwidget__field {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .mw-scanwidget__chip {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-on-inverse-muted);
+}
+
+/* Same problem on the service cards: --surface-inverse is a LIGHTER navy on
+   dark, so the wireframe bar and the link hub would vanish into the card. */
+[data-theme='dark'] .mw-move-card__build-bar,
+[data-theme='dark'] .mw-move-card__hub {
+  background: var(--main);
+}
+
+[data-theme='dark'] .mw-move-card__hub {
+  fill: var(--main);
+}
+
+/* ── service pages, on the homepage frame ──
+   The service pages reuse .mw-hero__layout, .mw-move, .mw-stats--band,
+   .mw-method and .mw-reliable as authored above. Only the two variants those
+   pages need that the homepage does not are defined here. */
+
+/* The problem statement runs in the hero-statement slot, with the authored
+   eyebrow above it. The homepage statement is one line and is set at heading
+   size; a service's problem is a full paragraph, so the modifier drops it to
+   reading size — at 1.75rem it ran seven lines and read as a second h1. */
+.mw-hero-statement--problem .mw-hero-statement__text {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-700);
+  max-width: 44rem;
+}
+
+.mw-hero-statement__eyebrow {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--link);
+  margin-bottom: 0.85rem;
+}
+
+/* A capability card carries a sentence where a homepage card carries a
+   diagram, so the body copy takes the space the art would have used and the
+   card sizes to its text instead of holding a fixed height. */
+.mw-move-card--text {
+  min-height: 0;
+  background: linear-gradient(160deg, var(--surface-sunken-2) 0%, var(--surface-raised) 70%);
+}
+
+.mw-move-card__desc {
+  flex: 1;
+  margin: 1rem 0 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-600);
+}
+
+/* ═══════════ GradientWaves hero background ═══════════
+   React Bits GradientWaves (components/GradientWaves.js) is the background on
+   the homepage hero and every service hero. The shader paints premultiplied
+   RGBA with a transparent horizon, so the section underneath has to supply a
+   base color — that base is the brand navy, which is also what the white copy
+   card and the white scan widget were always designed to sit on. */
+
+/* Upstream's co-located GradientWaves.css, moved here so the site keeps one
+   stylesheet. The component only needs its container to fill and clip. */
+.gradient-waves-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mw-hero--waves {
+  background-color: var(--surface-inverse);
+  background-image: none;
+}
+
+/* The shader sits below the overlay (2), the watermark (3) and the copy
+   layout (16). Pointer events stay on so the shader's own parallax can track
+   the cursor; nothing inside it is interactive. */
+.mw-hero__waves {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Over the iridescence shader the overlay should be light-handed — the shader
+   already renders dark navy as its base, and heavy scrim kills the color. A
+   gentle left-pull darkens just behind the copy card while letting carmine and
+   gold breathe on the right. */
+.mw-hero--waves .mw-hero__overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(8, 18, 36, 0.50) 0%,
+    rgba(8, 18, 36, 0.18) 45%,
+    rgba(8, 18, 36, 0.08) 100%
+  );
+}
+
+/* Mobile: the shared .mw-hero rules below 768px lift a photo into a 16:9 band
+   at the top and stack the card under it on white. There is no photo any more,
+   so the waves hero opts out and simply runs full-bleed behind the card. */
+@media (max-width: 767px) {
+  .mw-hero--waves,
+  .mw-hero--waves:not(.mw-hero--sub) {
+    padding-top: clamp(2.5rem, 8vw, 4rem) !important;
+    padding-bottom: clamp(2.5rem, 8vw, 4rem) !important;
+    background-color: var(--surface-inverse);
+    min-height: 0 !important;
+  }
+
+  .mw-hero--waves .mw-hero__overlay {
+    position: absolute;
+    inset: 0;
+    height: 100% !important;
+    background: linear-gradient(
+      180deg,
+      rgba(11, 30, 54, 0.35) 0%,
+      rgba(11, 30, 54, 0.15) 100%
+    );
+  }
+}
+
+
+/* ═══════════ Global Lead Modal ═══════════ */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.modal-input {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: var(--main);
+}

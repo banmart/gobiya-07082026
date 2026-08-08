@@ -20,7 +20,7 @@ export function renderBlock(block, i) {
   if (block.button) {
     return (
       <p key={i} className="mw-area-body__btn-wrap">
-        <a href={block.button.href || '/free-site-scan'} className="mw-area-body__btn">
+        <a href={block.button.href || '?onboarding=true'} className="mw-area-body__btn">
           {block.button.text} <span aria-hidden="true">→</span>
         </a>
       </p>
