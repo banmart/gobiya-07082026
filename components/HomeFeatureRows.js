@@ -42,7 +42,7 @@ const ROWS = [
       'llms.txt and crawler access checked, not assumed',
       'Citations tracked across ChatGPT, Gemini and Perplexity',
     ],
-    link: { text: 'More on AI search', href: '/seo-services/geo' },
+    link: { text: 'More on AI search', href: '/services/geo' },
     image: {
       src: '/assets/img/tech-lab-standup.webp',
       alt: 'Team reviewing AI search citation data',
@@ -57,7 +57,7 @@ const ROWS = [
       'Speed and Core Web Vitals budgeted before launch',
       'Clean, handoff-ready code you own outright',
     ],
-    link: { text: 'More on web builds', href: '/seo-services/web-dev' },
+    link: { text: 'More on web builds', href: '/services/web-dev' },
     image: {
       src: '/assets/img/hallway-code-review.webp',
       alt: 'Code review before a site launch',

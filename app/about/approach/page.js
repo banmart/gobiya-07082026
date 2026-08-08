@@ -80,7 +80,7 @@ export default function ApproachPage() {
                 <span className="stack__index">01</span>
                 <h3 className="stack__title">Performance<br /><em>Engineering</em></h3>
                 <p className="stack__desc">The technical groundwork everything else depends on — making sure your site loads fast and Google can actually read it, before content or links are asked to do any work.</p>
-                <a href="/seo-services/technical-seo" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/technical-seo" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -100,7 +100,7 @@ export default function ApproachPage() {
                 <span className="stack__index">02</span>
                 <h3 className="stack__title">Creativity<br /><em>&amp; Content</em></h3>
                 <p className="stack__desc">Great content only works once the technical foundation is solid — the same well-written page falls flat if Google can&apos;t properly read it in the first place.</p>
-                <a href="/seo-services/geo" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/geo" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -120,7 +120,7 @@ export default function ApproachPage() {
                 <span className="stack__index">03</span>
                 <h3 className="stack__title">Relations<br /><em>&amp; Authority</em></h3>
                 <p className="stack__desc">Building real trust — other sites linking to you, consistent listings, a business people actually recognize — works best once the technical and content pieces underneath are already solid.</p>
-                <a href="/seo-services/link-building" className="link-arrow">Explore Relations<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/link-building" className="link-arrow">Explore Relations<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image

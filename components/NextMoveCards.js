@@ -24,7 +24,7 @@ const CARDS = [
     id: 'technical',
     title: 'Fix what Google can’t crawl',
     blurb: 'Technical SEO',
-    href: '/seo-services/technical-seo',
+    href: '/services/technical-seo',
     groups: ['popular', 'found'],
     tone: 'navy',
     art: 'chart',
@@ -33,7 +33,7 @@ const CARDS = [
     id: 'geo',
     title: 'Get quoted by ChatGPT & Gemini',
     blurb: 'AI search optimization',
-    href: '/seo-services/geo',
+    href: '/services/geo',
     groups: ['popular', 'cited'],
     tone: 'carmine',
     art: 'answer',
@@ -42,7 +42,7 @@ const CARDS = [
     id: 'content',
     title: 'Content that answers the question',
     blurb: 'Content marketing',
-    href: '/seo-services/content-marketing',
+    href: '/services/content-marketing',
     groups: ['cited', 'found'],
     tone: 'gold',
     art: 'pages',
@@ -51,7 +51,7 @@ const CARDS = [
     id: 'links',
     title: 'Earn links that actually count',
     blurb: 'Link building',
-    href: '/seo-services/link-building',
+    href: '/services/link-building',
     groups: ['found'],
     tone: 'navy',
     art: 'links',
@@ -60,7 +60,7 @@ const CARDS = [
     id: 'cro',
     title: 'Turn visitors into booked jobs',
     blurb: 'Conversion optimization',
-    href: '/seo-services/cro',
+    href: '/services/cro',
     groups: ['popular', 'convert'],
     tone: 'carmine',
     art: 'funnel',
@@ -69,7 +69,7 @@ const CARDS = [
     id: 'web',
     title: 'A site built to be indexed',
     blurb: 'Web design & development',
-    href: '/seo-services/web-dev',
+    href: '/services/web-dev',
     groups: ['convert', 'found'],
     tone: 'gold',
     art: 'build',
@@ -201,7 +201,7 @@ export default function NextMoveCards() {
         </div>
 
         <div className="mw-move__footer">
-          <a href="/seo-services" className="mw-simple__btn">
+          <a href="/services" className="mw-simple__btn">
             Explore All Services <span>&rarr;</span>
           </a>
         </div>

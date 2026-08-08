@@ -2,6 +2,7 @@ import { INSIGHTS } from '../lib/insights';
 import { SERVICE_LINKS } from '../lib/serviceIndex';
 import { CASE_STUDIES } from '../lib/work';
 import { GLOSSARY } from '../lib/glossary';
+import { SOLUTION_SLUGS, solutionPath } from '../lib/solutions';
 
 const BASE_URL = 'https://www.gobiya.com';
 
@@ -15,7 +16,8 @@ export default function sitemap() {
     '?onboarding=true',
     '/insights',
     '/glossary',
-    '/seo-services',
+    '/services',
+    '/solutions',
     '/pricing',
     '/seo-myths',
     '/work',
@@ -54,9 +56,14 @@ export default function sitemap() {
     url: `${BASE_URL}/work/${c.slug}`,
   }));
 
+  const solutionRoutes = SOLUTION_SLUGS.map((slug) => ({
+    url: `${BASE_URL}${solutionPath(slug)}`,
+  }));
+
   return [
     ...staticRoutes,
     ...serviceRoutes,
+    ...solutionRoutes,
     ...insightRoutes,
     ...glossaryRoutes,
     ...caseStudyRoutes,

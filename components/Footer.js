@@ -10,15 +10,15 @@ export default function Footer() {
           <div>
             <h4 className="mw-footer__col-title">Services</h4>
             <div className="mw-footer__links">
-              <a href="/seo-services">All Services</a>
-              <a href="/seo-services/technical-seo">SEO</a>
-              <a href="/seo-services/geo">AI Search</a>
-              <a href="/seo-services/content-marketing">Content</a>
-              <a href="/seo-services/link-building">Link Building</a>
-              <a href="/seo-services/ppc">PPC</a>
-              <a href="/seo-services/cro">CRO</a>
-              <a href="/seo-services/web-dev">Web Dev</a>
-              <a href="/seo-services/ai-consulting">AI Consulting</a>
+              <a href="/services">All Services</a>
+              <a href="/services/technical-seo">SEO</a>
+              <a href="/services/geo">AI Search</a>
+              <a href="/services/content-marketing">Content</a>
+              <a href="/services/link-building">Link Building</a>
+              <a href="/services/ppc">PPC</a>
+              <a href="/services/cro">CRO</a>
+              <a href="/services/web-dev">Web Dev</a>
+              <a href="/services/ai-consulting">AI Consulting</a>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 import OfferCountdown from './OfferCountdown';
 
-/* The CRM offer panel. Lives on the homepage and on /seo-services/web-dev, which
+/* The CRM offer panel. Lives on the homepage and on /services/web-dev, which
    is why it's a component rather than markup in a page — the offer copy, the
    end date and the countdown all have to say the same thing in both places,
    and two copies of this drift the first time one of them is edited.

@@ -5,9 +5,9 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // ── Services hub moved to /seo-services (2026-08-07) ──
-      { source: '/services', destination: '/seo-services', permanent: true },
-      { source: '/services/seo', destination: '/seo-services/technical-seo', permanent: true },
+      // ── Services hub canonical path is /services ──
+      { source: '/seo-services', destination: '/services', permanent: true },
+      { source: '/services/seo', destination: '/services/technical-seo', permanent: true },
 
       // ── Service pages moved under /services/* (2026-07-31) ──
       // The eight flat slugs below were the live, indexed service URLs, so
@@ -190,7 +190,6 @@ const nextConfig = {
       { source: '/onboard', destination: '/contact', permanent: true },
       { source: '/resources', destination: '/insights', permanent: true },
       { source: '/contact-us', destination: '/contact', permanent: true },
-      { source: '/solutions', destination: '/seo-services', permanent: true },
       { source: '/reviews', destination: '/work', permanent: true },
 
       // Old guides/* -> topically matching new page
@@ -264,14 +263,8 @@ const nextConfig = {
       { source: '/areas-served', destination: '/areas-we-serve', permanent: true },
       { source: '/locations', destination: '/areas-we-serve', permanent: true },
 
-      // ── Generic /services/:slug fallback (2026-08-07) ── MUST stay last.
-      // Every specific old vanity slug above (web-design-development,
-      // cro-ux, seo-discoverability, etc.) needs to keep matching its own
-      // rule first. Anything that reaches this point is a current slug
-      // (geo, content-marketing, link-building, ppc, cro, web-ux, web-dev,
-      // ai-consulting — 'seo' already has its own rule above) simply moving
-      // prefix from /services/ to /seo-services/.
-      { source: '/services/:slug', destination: '/seo-services/:slug', permanent: true },
+      // ── Generic /seo-services/:slug fallback -> /services/:slug ── MUST stay last.
+      { source: '/seo-services/:slug', destination: '/services/:slug', permanent: true },
     ];
   },
 };

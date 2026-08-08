@@ -97,7 +97,7 @@ export default function ServiceTemplate({ service }) {
               <Breadcrumbs
                 items={[
                   { label: 'Home', href: '/' },
-                  { label: 'Services', href: '/seo-services' },
+                  { label: 'Services', href: '/services' },
                   { label: displayTitle },
                 ]}
                 inHero
@@ -333,7 +333,7 @@ export default function ServiceTemplate({ service }) {
                     </li>
                   ))}
                 </ul>
-                <a href="/seo-services" className="mw-area-body__other-all">
+                <a href="/services" className="mw-area-body__other-all">
                   All services <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>

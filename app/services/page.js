@@ -6,7 +6,7 @@ import { buildMetadata } from '../../lib/meta';
 export const metadata = buildMetadata({
   title: 'Los Angeles SEO & Growth Services | Built Around Your Next Win',
   description:
-    'Los Angeles SEO, GEO, content, PPC, CRO, and web design services — all built around one goal: the growth outcome you actually want, not just more tactics.',
+    'Los Angeles SEO, GEO, content, PPC, CRO, and web design services — canonical taxonomy built around one goal: the growth outcome you actually want.',
   path: '/services',
 });
 
@@ -48,12 +48,6 @@ const ALL_SERVICES_BENTO = [
     spanClass: 'mw-bento-card--md',
   },
   {
-    title: 'Web UX & Interface Design',
-    href: '/services/web-ux',
-    image: '/assets/img/office-collage-montage.webp',
-    spanClass: 'mw-bento-card--lg',
-  },
-  {
     title: 'Web Design & Development',
     href: '/services/web-dev',
     image: '/assets/img/open-office-desks.webp',
@@ -74,9 +68,9 @@ export default function ServicesPage() {
       <SubHero
         image={heroImage(1)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
-        title="Every Outcome You've Been Chasing, Under One Roof"
-        excerpt="Pick the win you need. We'll show you exactly how we get there."
+        eyebrow="Canonical Taxonomy, Outcome-Driven Engineering"
+        title="Every Service Engineered to Drive Search & Revenue Growth"
+        excerpt="Choose the capability your business requires. Explore clear scopes and technical execution standards."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -88,10 +82,10 @@ export default function ServicesPage() {
       <section className="mw-bento-section">
         <div className="container">
           <h2 className="mw-simple__heading" style={{ textAlign: 'center' }}>
-            All Services & Capabilities
+            Canonical Services & Core Capabilities
           </h2>
           <p className="mw-simple__intro" style={{ textAlign: 'center', marginInline: 'auto' }}>
-            From technical SEO foundation to custom Next.js builds and AI search grounding — explore our full suite of services.
+            From technical SEO foundations to custom Next.js builds and AI search grounding — explore our canonical services.
           </p>
 
           <div className="mw-bento-grid">
@@ -119,7 +113,7 @@ export default function ServicesPage() {
             Not sure which service your business needs?
           </h2>
           <a href="?onboarding=true" className="mw-navy-banner__btn">
-            Schedule a Consultation
+            Request a Quote
           </a>
         </div>
       </section>
