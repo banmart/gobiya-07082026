@@ -56,7 +56,7 @@ export default function Header() {
         <div className="mw-topbar">
           <div className="container mw-topbar__inner">
             <span className="mw-topbar__text mw-topbar__text--desktop">
-              Search &amp; AI Visibility – They say ranking a business is an art – we&apos;ve turned it into a science
+              Expert SEO &amp; AI Search Visibility Strategies to Dominate Your Market
             </span>
             <span className="mw-topbar__text mw-topbar__text--mobile">
               Search &amp; AI Visibility Specialists

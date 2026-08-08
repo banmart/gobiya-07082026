@@ -100,6 +100,7 @@ function ModalContent() {
               <select className="modal-input" id="lead-source" name="how_found">
                 <option value="">Select an option...</option>
                 <option value="google">Google Search</option>
+                <option value="ai">ChatGPT / AI Assistant</option>
                 <option value="social">Social Media</option>
                 <option value="referral">Referral</option>
                 <option value="other">Other</option>
