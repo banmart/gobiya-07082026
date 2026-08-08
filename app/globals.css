@@ -4264,13 +4264,13 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 
 /* Mobile-only layout adjustment (< 768px): Hero visual top (16:9 ratio), card content below on solid background */
 @media (max-width: 767px) {
-  .mw-hero {
+  .mw-hero, .mw-hero:not(.mw-hero--sub) {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: auto;
-    padding-top: max(56.25vw, 220px);
-    padding-bottom: 2rem;
+    min-height: auto !important;
+    padding-top: max(56.25vw, 220px) !important;
+    padding-bottom: 2rem !important;
     align-items: stretch;
     background-size: 100% auto;
     background-position: top center;
@@ -4288,7 +4288,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
     top: 0;
     left: 0;
     width: 100%;
-    height: max(56.25vw, 220px);
+    height: max(56.25vw, 220px) !important;
     object-fit: cover;
     object-position: center;
     z-index: 1;
@@ -4299,7 +4299,7 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
     top: 0;
     left: 0;
     width: 100%;
-    height: max(56.25vw, 220px);
+    height: max(56.25vw, 220px) !important;
     background: linear-gradient(180deg, rgba(11,30,54,0.15) 0%, rgba(11,30,54,0.4) 100%);
     z-index: 2;
   }
@@ -4308,18 +4308,27 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
     position: relative;
     z-index: 3;
     margin-top: 1.5rem;
-    background-color: var(--surface);
-    /* Ensure the container applies its default padding so content doesn't touch edges */
-    padding-inline: 1.25rem;
+    background-color: transparent;
+    padding-inline: 1rem;
   }
 
   .mw-hero__card {
     max-width: 100%;
-    padding: 0;
-    box-shadow: none;
-    background: transparent;
+    padding: 1.85rem 1.5rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    background: var(--surface-raised, #ffffff);
+    border: 1px solid var(--border, rgba(11, 30, 54, 0.12));
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  [data-theme='dark'] .mw-hero__card {
+    background: #0e1a2b !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4) !important;
   }
 
   .mw-hero__eyebrow {
