@@ -16,9 +16,9 @@ import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 // and the no-contract line the feature rows make. 48 and 153 characters —
 // the title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO, AI Search & Web Design | Gobiya',
+  title: 'SEO, AI Search & Web Design | Gobiya',
   description:
-    'Get found on Google and quoted by ChatGPT. Technical SEO, AI search optimization and web builds for Los Angeles businesses. Month to month, no contracts.',
+    'Get found on Google and quoted by ChatGPT. Technical SEO, AI search optimization and web builds for businesses. Month to month, no contracts.',
   path: '/',
 });
 
@@ -85,7 +85,7 @@ export default function Home() {
           <div className="container">
             <div className="mw-hero__layout">
               <div className="mw-hero__card">
-                <div className="mw-hero__eyebrow">Trusted in Los Angeles Since 2010</div>
+                <div className="mw-hero__eyebrow">Trusted Since 2010</div>
                 <h1 className="mw-hero__title">
                   Found First. Chosen Every Time.
                 </h1>
@@ -118,7 +118,7 @@ export default function Home() {
                       ))}
                     </div>
                     <span className="mw-hero__trust-label">
-                      Five-star Google reviews from Los Angeles business owners
+                      Five-star Google reviews from business owners
                     </span>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function Home() {
                 Built for the Age of AI Search
               </h3>
               <p className="mw-person__bio">
-                For over 16 years, Gobiya has delivered honest internet marketing, AI search optimization, and web design for Los Angeles businesses. No restrictive contracts. Just verified rankings, real AI citations, and websites that convert — backed by data you can see for yourself.
+                For over 16 years, Gobiya has delivered honest internet marketing, AI search optimization, and web design for businesses. No restrictive contracts. Just verified rankings, real AI citations, and websites that convert — backed by data you can see for yourself.
               </p>
             </div>
           </div>

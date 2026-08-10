@@ -32,7 +32,7 @@ export const metadata = {
     template: '%s — Gobiya',
   },
   description:
-    'We engineer search-ready websites, AI citation authority, and technical SEO foundations for business owners, creative designers, and in-house marketing teams in Los Angeles.',
+    'We engineer search-ready websites, AI citation authority, and technical SEO foundations for business owners, creative designers, and in-house marketing teams.',
   metadataBase: new URL('https://www.gobiya.com'),
   icons: {
     icon: [
