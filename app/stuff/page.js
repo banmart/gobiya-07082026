@@ -36,8 +36,8 @@ function formatBytes(bytes) {
 
 export default async function StuffPage() {
   const targetDirs = [
-    { dirPath: path.join(/*turbopackIgnore: true*/ process.cwd(), 'public/assets/videos'), urlPrefix: '/assets/videos/' },
-    { dirPath: path.join(/*turbopackIgnore: true*/ process.cwd(), 'public/videos'), urlPrefix: '/videos/' },
+    { dirPath: path.join(process.cwd(), 'public', 'assets', 'videos'), urlPrefix: '/assets/videos/' },
+    { dirPath: path.join(process.cwd(), 'public', 'videos'), urlPrefix: '/videos/' },
   ];
 
   let videoList = [];
