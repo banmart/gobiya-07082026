@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {
-    root: process.cwd(),
+    root: import.meta.dirname,
   },
   async redirects() {
+
     return [
       // ── Services hub canonical path is /services ──
       { source: '/seo-services', destination: '/services', permanent: true },
