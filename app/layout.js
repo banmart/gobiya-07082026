@@ -18,10 +18,8 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Every heading on the site resolves to Open Sans Thin through --font-heading in globals.css.
 const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
   variable: '--font-open-sans',
   display: 'swap',
 });
