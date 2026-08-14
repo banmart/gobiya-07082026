@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { resend } from '../../../lib/resend';
 
 const SYSTEM_PROMPT = `You are a friendly, knowledgeable AI chat assistant for Gobiya, a premier SEO and Digital Marketing Agency based in Los Angeles. 
 Your goal is to assist visitors, answer questions about SEO, AI, and digital marketing, and convert them into leads.

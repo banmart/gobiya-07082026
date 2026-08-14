@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { createAdminSupabase } from '../../../../lib/supabase/admin';
 import { checkRateLimit } from '../../../../lib/rate-limit';
 
 export const runtime = 'nodejs';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { resend } from '../../../../lib/resend';
 
 function escapeHtml(value) {
   return String(value ?? '')
