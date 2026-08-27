@@ -43,9 +43,10 @@ export default async function LpPage({ searchParams }) {
     <main id="top">
       <SubHero
         image={heroImage(15)}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Quarterly Growth Bundle · Los Angeles"
         title="Everything You Need to Grow, Bundled Into One Quarter"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="One Fixed Scope, One Price, Ninety Days"
+        dek="Technical fixes, content, and AI search work that normally get quoted separately — bundled into a single engagement with the price on it."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

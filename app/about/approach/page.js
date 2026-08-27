@@ -25,9 +25,10 @@ export default function ApproachPage() {
           { label: 'About', href: '/about' },
           { label: 'Our Approach' },
         ]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Our Approach · Confidentiality & Security"
         title="An SEO Process That Takes the Guesswork Out of Rankings"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="A Documented Method, Used on Every Los Angeles Engagement"
+        dek="How we scope the work, protect your data and your logins, and report on what actually changed. Nothing here is a black box."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

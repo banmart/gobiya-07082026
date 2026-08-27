@@ -81,7 +81,7 @@ export async function POST(request) {
       subject: `Call requested — ${name || audit.email || audit.url}`,
       html: `
         <div style="font-family:'Helvetica Neue',Arial,sans-serif;max-width:640px;margin:0 auto;">
-          <h1 style="font-size:18px;font-weight:600;color:#0B1E36;">Call requested from a site scan report</h1>
+          <h1 style="font-size:18px;font-weight:600;color:#0C1050;">Call requested from a site scan report</h1>
           <p style="font-size:14px;color:#334155;"><strong>Site:</strong> ${escapeHtml(audit.url)}</p>
           <p style="font-size:14px;color:#334155;"><strong>Score:</strong> ${escapeHtml(audit.score ?? '—')}/100</p>
           <p style="font-size:14px;color:#334155;"><strong>Contact:</strong> ${escapeHtml(name)} ${escapeHtml(audit.email || '')}</p>

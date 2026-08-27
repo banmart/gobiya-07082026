@@ -152,15 +152,16 @@ function createProgram(gl, vertexSource, fragmentSource) {
   return program;
 }
 
-/* The three brand primaries as 0..1 triplets. Red and yellow are carmine and
-   gold verbatim from lib/brand.js. Blue is the primary — a dark navy just off
-   the #142F52 brand navy, lifted only enough to hold some tonal variation
-   instead of going flat. DEEP is what the field fades toward as intensity
-   drops. */
-const BLUE = [0.086, 0.220, 0.416];   // #16386A
-const RED = [0.784, 0.063, 0.180];    // #C8102E
-const YELLOW = [0.961, 0.722, 0.239]; // #F5B83D
-const DEEP = [0.024, 0.063, 0.125];   // #061020
+/* The three brand primaries as 0..1 triplets. RED is the carmine-orange
+   accent verbatim from lib/brand.js and WARM is the same hue lifted, standing
+   in for the gold the palette no longer carries. Blue is the primary — a dark
+   indigo just off the #0C1050 brand navy, lifted only enough to hold some
+   tonal variation instead of going flat. DEEP is what the field fades toward
+   as intensity drops. */
+const BLUE = [0.102, 0.125, 0.439];   // #1A2070
+const RED = [0.882, 0.259, 0.059];    // #E1420F
+const YELLOW = [1.000, 0.478, 0.302]; // #FF7A4D
+const DEEP = [0.020, 0.024, 0.122];   // #05061F
 
 export default function IridescenceCanvas({
   className = '',

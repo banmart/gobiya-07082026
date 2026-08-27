@@ -42,9 +42,10 @@ export default function SteveMartinPage() {
           { label: 'About', href: '/about' },
           { label: 'Steve Martin' },
         ]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Leadership · Founder & Head of Search Strategy"
         title="The SEO Professional Who Actually Does Your Work"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="Fifteen Years of Hands-On Search Work in Los Angeles"
+        dek="Steve answers the phone, runs the audit, and writes the plan. The person you talk to is the person doing the work."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

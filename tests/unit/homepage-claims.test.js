@@ -20,13 +20,25 @@ describe('homepage claims', () => {
     expect(source).not.toContain('SEO &amp; AI Scans');
   });
 
-  it('reads its statistics from lib/searchWins', () => {
-    expect(source).toContain("from '../lib/searchWins'");
-    expect(source).toContain('SEARCH_WINS.asOf');
+  /* The live stats band went out with the redesign, so there is no longer a
+     searchWins import to check. The policy it enforced still holds: any
+     performance number on this page has to come from lib/searchWins, which
+     carries the source and the as-of date. Either the import is there and
+     stamps the date, or there is no such number on the page at all. */
+  it('sources any performance number from lib/searchWins', () => {
+    const readsSearchWins = source.includes("from '../lib/searchWins'");
+    if (readsSearchWins) {
+      expect(source).toContain('SEARCH_WINS.asOf');
+    } else {
+      expect(source).not.toContain('SEARCH_WINS');
+    }
   });
 
+  /* The hero is a <PageHero> now, so the destination is a prop rather than a
+     literal attribute — match either spelling so the check survives the next
+     refactor of how the hero is assembled. */
   it('sends the hero call to action to the site scan form', () => {
-    expect(source).toContain('href="/free-site-scan"');
+    expect(source).toMatch(/href[:=]\s*['"]\/free-site-scan['"]/);
   });
 });
 

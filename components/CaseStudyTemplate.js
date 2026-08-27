@@ -41,7 +41,9 @@ export default function CaseStudyTemplate({ cs }) {
         ]}
         eyebrow={`${cs.client} · ${cs.tag}`}
         title={`${cs.client}: ${cs.result}`}
-        excerpt={cs.study?.dek || cs.desc}
+        /* No accent line here: the result is already the second half of the h1,
+           and the industry is already the eyebrow. */
+        dek={cs.study?.dek || cs.desc}
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

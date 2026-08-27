@@ -1,7 +1,5 @@
 import { INSIGHTS } from '../../lib/insights';
 import { buildMetadata } from '../../lib/meta';
-import { heroImage } from '../../lib/heroImages';
-import Breadcrumbs from '../../components/Breadcrumbs';
 import SubHero from '../../components/SubHero';
 import ClientLogos from '../../components/ClientLogos';
 import InsightsArchive from '../../components/InsightsArchive';
@@ -21,10 +19,17 @@ const ARCHIVE = [...INSIGHTS].sort((a, b) => b.date.localeCompare(a.date));
 export default function InsightsPage() {
   return (
     <main id="top">
-      {/* ══ 2. Hero — Image Background ONLY ══ */}
+      {/* ══ 2. Hero ══
+             Carries the page's h1. It used to be a background band with no
+             copy in it, which left /insights with no h1 at all. */}
       <SubHero
-        image={heroImage(8)}
-        imageOnly={true}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Insights' }]}
+        eyebrow="Knowledge Base · Search & AI Visibility"
+        title="Plain-English Answers on Search and AI Visibility"
+        excerpt={`${ARCHIVE.length} Guides for Los Angeles Business Owners`}
+        dek="Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written by the people doing the work."
+        primary={{ text: 'Get Your Analysis', href: '/free-site-scan' }}
+        secondary={{ text: 'Contact Us', href: '/contact' }}
       />
 
       {/* ══ 3. All Articles Archive List ══ */}

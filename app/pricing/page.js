@@ -96,9 +96,10 @@ export default function PricingPage() {
       <SubHero
         image={heroImage(9)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'pricing' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Pricing · Transparent Monthly Plans"
         title="Know Exactly What You’ll Pay Before You Say Yes"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="Straightforward Pricing for Los Angeles and the San Fernando Valley"
+        dek="Every plan and every add-on, with the price on it. Month to month, no long-term contracts, and a free audit before you commit to anything."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

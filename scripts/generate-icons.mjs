@@ -1,9 +1,9 @@
 // scripts/generate-icons.mjs — rasterize brand SVG geometry into favicons + OG.
 // Run: node scripts/generate-icons.mjs
 import sharp from 'sharp';
-import { markInner, BRAND_CARMINE } from '../lib/brand.js';
+import { markInner, BRAND_CARMINE, BRAND_NAVY } from '../lib/brand.js';
 
-const DEEP = '#0b1f3a';
+const DEEP = BRAND_NAVY;
 
 // Favicons: navy mark on white, small padding.
 async function icon(px, out) {

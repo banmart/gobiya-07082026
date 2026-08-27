@@ -27,9 +27,10 @@ export default function AboutPage() {
           { label: 'About', href: '/about' },
           { label: 'What We Do' },
         ]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="About Gobiya · Los Angeles Since 2009"
         title="16 Years of Getting Los Angeles Businesses Found"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="Expert Service in Los Angeles and the San Fernando Valley"
+        dek="Technical SEO, AI search, and web architecture for local businesses — same team on every job, no account managers in between."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Meet Steve Martin', href: '/about/steve-martin' }}
       />

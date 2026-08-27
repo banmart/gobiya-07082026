@@ -1,10 +1,8 @@
-import Breadcrumbs from './Breadcrumbs';
-import SubHero from './SubHero';
+import PageHero from './PageHero';
 import ClientLogos from './ClientLogos';
 import DataPanel from './sections/DataPanel';
 import StepList from './sections/StepList';
 import ReadingProgress from './sections/ReadingProgress';
-import { heroImage } from '../lib/heroImages';
 
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -34,33 +32,28 @@ export default function ArticleTemplate({ article }) {
       <ReadingProgress />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
-      {/* ══ Hero — background image ONLY ══ */}
-      <SubHero
-        image={heroImage(article.title.length % 5 + 1)}
-        imageOnly={true}
-      />
-
-      <section className="page-hero section" style={{ paddingBottom: '1rem' }}>
-        <div className="container container--narrow">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Insights', href: '/insights' },
-              { label: article.slug },
-            ]}
-          />
-          <h1 className="statement" data-split>{article.title}</h1>
-          <p className="lede" data-reveal>{article.dek}</p>
-          <p className="article__meta" data-reveal>
-            By <a href="/about/steve-martin">Steve Martin</a> ·{' '}
-            <time dateTime={article.date}>
-              {new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </time>{' '}
-            · {article.readTime}
-          </p>
-        </div>
-      </section>
+      {/* ══ Hero ══
+             The article header runs on the shared navy hero rather than under a
+             decorative band: the h1 was previously the second thing on the page
+             with 350px of empty navy above it. */}
+      <PageHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Insights', href: '/insights' },
+          { label: article.title },
+        ]}
+        eyebrow={article.category ? `Insights · ${article.category}` : 'Insights'}
+        title={article.title}
+        dek={article.dek}
+      >
+        <p className="gb-hero__meta">
+          By <a href="/about/steve-martin">Steve Martin</a> ·{' '}
+          <time dateTime={article.date}>
+            {new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>{' '}
+          · {article.readTime}
+        </p>
+      </PageHero>
 
       <section className="section" style={{ paddingTop: '2rem', paddingBottom: 0 }}>
         <div className="container container--narrow">

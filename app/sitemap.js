@@ -13,7 +13,10 @@ export default function sitemap() {
     '/about/approach',
     '/about/steve-martin',
     '/contact',
-    '?onboarding=true',
+    // '?onboarding=true' was listed here. It is the lead modal on the homepage,
+    // not a page: it rendered as https://www.gobiya.com?onboarding=true, whose
+    // canonical points at the homepage. A sitemap must not advertise a URL that
+    // canonicalises somewhere else.
     '/insights',
     '/glossary',
     '/services',

@@ -7,8 +7,8 @@
 // not colour.
 
 const STROKE = 'rgba(11, 31, 58, 0.22)';
-const INK = '#142f52';
-const ACCENT = '#c8102e';
+const INK = '#0C1050';
+const ACCENT = '#E1420F';
 
 function Grid() {
   // a crawler sweeping a page: rows resolve, one line lights up

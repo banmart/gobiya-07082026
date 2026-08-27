@@ -18,9 +18,10 @@ export default function SolutionsPage() {
       <SubHero
         image={heroImage(2)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Solutions' }]}
-        eyebrow="Problem-Phrased Growth Guides"
+        eyebrow="Solutions · Problem-Phrased Growth Guides"
         title="Start With the Problem You’re Facing — We’ll Build the Path Out"
-        excerpt="Whether traffic dropped after a core update, your brand is absent from ChatGPT, or your site is leaking leads — select your challenge below."
+        excerpt="Diagnosis First, for Los Angeles and the San Fernando Valley"
+        dek="Whether traffic dropped after a core update, your brand is absent from ChatGPT, or your site is leaking leads — select your challenge below."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

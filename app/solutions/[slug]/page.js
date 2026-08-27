@@ -40,7 +40,8 @@ export default async function SolutionDetailPage({ params }) {
         ]}
         eyebrow={sol.eyebrow}
         title={sol.title}
-        excerpt={sol.subtitle}
+        excerpt="Expert Service in Los Angeles and the San Fernando Valley"
+        dek={sol.subtitle}
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

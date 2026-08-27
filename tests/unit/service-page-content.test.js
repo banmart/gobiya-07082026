@@ -55,14 +55,18 @@ describe('service sidebar is section navigation', () => {
 });
 
 describe('every service page is reachable from the services index', () => {
-  it('lists all eight services exactly once', async () => {
+  // The canonical URL is /services/<slug>. /seo-services/<slug> is a 301 to it
+  // (next.config.mjs), so linking the old path from the index — or from the
+  // ItemList schema and the MCP resources, which read the same list — would
+  // point Google and every AI crawler at a redirect instead of the page.
+  it('lists every service exactly once, on its canonical path', async () => {
     const { CONSULTING_ITEMS } = await import('../../lib/consultingIndex.js');
     const { SERVICE_SLUGS } = await import('../../lib/serviceIndex.js');
     expect(CONSULTING_ITEMS).toHaveLength(SERVICE_SLUGS.length);
     const hrefs = CONSULTING_ITEMS.map((s) => s.href);
     expect(new Set(hrefs).size, 'duplicate service links').toBe(hrefs.length);
     for (const slug of SERVICE_SLUGS) {
-      expect(hrefs, slug).toContain(`/seo-services/${slug}`);
+      expect(hrefs, slug).toContain(`/services/${slug}`);
     }
   });
 });

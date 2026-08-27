@@ -19,9 +19,9 @@ export default function PrivacyPage() {
       <SubHero
         image={heroImage(10)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'privacy' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Privacy Policy"
         title="Your Data Stays Yours"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="How Gobiya Collects, Uses, and Protects Your Information"
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

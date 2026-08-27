@@ -20,9 +20,10 @@ export default function WorkPage() {
       <SubHero
         image={heroImage(13)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Work' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Client Work · Los Angeles & Southern California"
         title="See What Getting Found Actually Looks Like"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="Real Results for Real Businesses Across Los Angeles"
+        dek="Case studies with the numbers attached — what the site looked like before, what we changed, and what Search Console said afterwards."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -47,13 +48,13 @@ export default function WorkPage() {
           <div className="mw-cluster-list">
             {CASE_STUDIES.map((c, idx) => (
               <div key={c.client} id={`case-${idx}`} className="mw-cluster-block">
-                <div style={{ fontSize: '0.8125rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#8B263E', marginBottom: '0.35rem' }}>
+                <div style={{ fontSize: '0.8125rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#E1420F', marginBottom: '0.35rem' }}>
                   {c.tag}
                 </div>
                 <h2 className="mw-cluster-block__title">
                   {c.study ? <a href={`/work/${c.slug}`}>{c.client}</a> : c.client}
                 </h2>
-                <p className="mw-cluster-block__desc" style={{ color: '#0B1E36', fontWeight: '600', marginBottom: '0.5rem' }}>
+                <p className="mw-cluster-block__desc" style={{ color: '#0C1050', fontWeight: '600', marginBottom: '0.5rem' }}>
                   {c.result}
                 </p>
                 <p className="mw-cluster-block__desc">

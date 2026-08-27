@@ -88,7 +88,8 @@ export default function ProcessPage() {
         ]}
         eyebrow="Our Proven Growth Framework"
         title="The Process That Turns Search Into Steady, Compounding Growth"
-        excerpt="We've spent over 16 years refining a structured 4-step framework that turns technical search engineering and AI optimization into reliable, compounding business growth."
+        excerpt="Four Steps, Run the Same Way on Every Engagement"
+        dek="We've spent over 16 years refining a structured 4-step framework that turns technical search engineering and AI optimization into reliable, compounding business growth."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -138,8 +139,8 @@ export default function ProcessPage() {
                       fontWeight: '700',
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
-                      color: 'var(--brand, #8B263E)',
-                      background: 'rgba(139, 38, 62, 0.08)',
+                      color: 'var(--brand, #E1420F)',
+                      background: 'rgba(225, 66, 15, 0.08)',
                       padding: '0.35rem 0.75rem',
                       borderRadius: '4px',
                     }}
@@ -166,7 +167,7 @@ export default function ProcessPage() {
                   <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem', paddingLeft: 0, listStyle: 'none' }}>
                     {step.details.map((item, idx) => (
                       <li key={idx} style={{ display: 'flex', gap: '0.625rem', fontSize: '0.9375rem', color: 'var(--text-muted, #4A5568)', lineHeight: '1.5' }}>
-                        <span style={{ color: 'var(--brand, #8B263E)', fontWeight: '700' }}>✓</span>
+                        <span style={{ color: 'var(--brand, #E1420F)', fontWeight: '700' }}>✓</span>
                         <span>{item}</span>
                       </li>
                     ))}

@@ -18,9 +18,10 @@ export default function LpThankYouPage() {
       <SubHero
         image={heroImage(16)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Thanks' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Thanks · We’ll Be in Touch"
         title="You’re In. Your Growth Plan Is on Its Way."
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="Expect to Hear From Us Within One Business Day"
+        dek="Steve reviews every request himself. In the meantime, here is what usually comes up on the first call."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

@@ -18,9 +18,9 @@ export default function TermsPage() {
       <SubHero
         image={heroImage(11)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'terms' }]}
-        eyebrow="Affordable Solutions, Exceptional Service"
+        eyebrow="Terms & Conditions"
         title="The Terms, in Plain English"
-        excerpt="Keep your website running smoothly and your ROI increase with our latest savings and special offers."
+        excerpt="The Agreement Between You and Gobiya LLC"
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

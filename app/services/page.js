@@ -3,10 +3,15 @@ import PlatformStrip from '../../components/PlatformStrip';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
+// Same pattern the nine service pages generate from their slug (see
+// serviceMetaTitle in lib/serviceIndex.js): city-led title, geo segment, brand
+// last; description opens on the offer and closes on the call to action. The
+// keyword list is what keeps this from reading as a duplicate of the homepage
+// description, which is otherwise the same sentence.
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO & Growth Services | Built Around Your Next Win',
+  title: 'Los Angeles SEO Services | The Valley & Glendale | Gobiya',
   description:
-    'Los Angeles SEO, GEO, content, PPC, CRO, and web design services — canonical taxonomy built around one goal: the growth outcome you actually want.',
+    'Get top-ranking Los Angeles and San Fernando Valley SEO, GEO, PPC and web services when you contact Gobiya today. Free online audits. Call now!',
   path: '/services',
 });
 
@@ -68,9 +73,10 @@ export default function ServicesPage() {
       <SubHero
         image={heroImage(1)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
-        eyebrow="Canonical Taxonomy, Outcome-Driven Engineering"
+        eyebrow="All Services · Los Angeles"
         title="Every Service Engineered to Drive Search & Revenue Growth"
-        excerpt="Choose the capability your business requires. Explore clear scopes and technical execution standards."
+        excerpt="Expert Service in Los Angeles and the San Fernando Valley"
+        dek="Choose the capability your business requires. Explore clear scopes and technical execution standards."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
