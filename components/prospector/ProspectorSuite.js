@@ -87,7 +87,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Status');
   const [categoryFilter, setCategoryFilter] = useState('All Categories');
+  const [sourceFilter, setSourceFilter] = useState('All Sources');
   const [loadingDb, setLoadingDb] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [deletingProspects, setDeletingProspects] = useState(false);
 
   // Campaign Drip state
   const [sequences, setSequences] = useState(initialSequences);
@@ -97,6 +100,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const [testEmail, setTestEmail] = useState('');
   const [testTargetSeq, setTestTargetSeq] = useState('Prospector Drip - 4 Step');
   const [sendingTest, setSendingTest] = useState(false);
+  const [togglingSeqId, setTogglingSeqId] = useState(null);
+  const [configureSeq, setConfigureSeq] = useState(null); // the sequence object currently open in the Configure modal
+  const [configureSteps, setConfigureSteps] = useState([]);
+  const [savingConfig, setSavingConfig] = useState(false);
 
   // CSV Import state
   const [csvRawRows, setCsvRawRows] = useState([]); // all parsed rows, including the header row if present
@@ -114,6 +121,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
         search,
         status: statusFilter,
         category: categoryFilter,
+        source: sourceFilter,
         limit: pageSize.toString(),
         offset: offset.toString(),
       });
@@ -122,6 +130,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
         const json = await res.json();
         setProspects(json.prospects || []);
         setTotal(json.total || 0);
+        setSelectedIds([]);
       }
     } catch (err) {
       console.error('Fetch prospects failed:', err);
@@ -134,7 +143,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     if (activeTab === 'database') {
       fetchProspects();
     }
-  }, [search, statusFilter, categoryFilter, page, pageSize, activeTab]);
+  }, [search, statusFilter, categoryFilter, sourceFilter, page, pageSize, activeTab]);
 
   // Reset page to 1 when filters change
   function handleSearchChange(e) {
@@ -152,9 +161,87 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     setPage(1);
   }
 
+  function handleSourceChange(e) {
+    setSourceFilter(e.target.value);
+    setPage(1);
+  }
+
   function handlePageSizeChange(e) {
     setPageSize(parseInt(e.target.value, 10));
     setPage(1);
+  }
+
+  function toggleSelectOne(id) {
+    setSelectedIds((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
+  }
+
+  function toggleSelectAllOnPage() {
+    const pageIds = prospects.map((p) => p.id);
+    const allSelected = pageIds.length > 0 && pageIds.every((id) => selectedIds.includes(id));
+    setSelectedIds(allSelected ? [] : pageIds);
+  }
+
+  // Delete a specific set of prospect ids
+  async function deleteProspectIds(ids) {
+    if (!ids || ids.length === 0) return;
+    setDeletingProspects(true);
+    try {
+      const res = await fetch('/api/prospector/database', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids }),
+      });
+      const json = await res.json();
+      if (json.ok) {
+        setSelectedIds([]);
+        fetchProspects();
+      } else {
+        alert(`Delete failed: ${json.error || 'Server error'}`);
+      }
+    } catch (err) {
+      alert('Failed to delete prospects.');
+    } finally {
+      setDeletingProspects(false);
+    }
+  }
+
+  function handleDeleteSelected() {
+    if (selectedIds.length === 0) return;
+    if (!confirm(`Delete ${selectedIds.length} selected prospect${selectedIds.length === 1 ? '' : 's'}? This can't be undone.`)) return;
+    deleteProspectIds(selectedIds);
+  }
+
+  function handleDeleteOne(id, label) {
+    if (!confirm(`Delete ${label || 'this prospect'}? This can't be undone.`)) return;
+    deleteProspectIds([id]);
+  }
+
+  // Delete every prospect matching the current filters, not just the current page —
+  // this is how you clean up an entire bad import (e.g. filter Source to CSV Import, then wipe it).
+  async function handleDeleteAllMatching() {
+    if (!hasActiveFilter) return;
+    if (!confirm(`Delete ALL ${total} prospects matching the current filters? This can't be undone.`)) return;
+
+    setDeletingProspects(true);
+    try {
+      const res = await fetch('/api/prospector/database', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ search, status: statusFilter, category: categoryFilter, source: sourceFilter }),
+      });
+      const json = await res.json();
+      if (json.ok) {
+        setSelectedIds([]);
+        setPage(1);
+        fetchProspects();
+      } else {
+        alert(`Delete failed: ${json.error || 'Server error'}`);
+      }
+    } catch (err) {
+      alert('Failed to delete matching prospects.');
+    } finally {
+      setDeletingProspects(false);
+    }
   }
 
   // Handle Perplexity AI Scout launch
@@ -375,6 +462,61 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     }
   }
 
+  // Flip a sequence between active and paused
+  async function handleToggleStatus(seq) {
+    const nextStatus = seq.status === 'active' ? 'paused' : 'active';
+    setTogglingSeqId(seq.id);
+    try {
+      const res = await fetch('/api/prospector/sequences', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: seq.id, status: nextStatus }),
+      });
+      const json = await res.json();
+      if (json.ok) {
+        setSequences((cur) => cur.map((s) => (s.id === seq.id ? { ...s, status: nextStatus } : s)));
+      } else {
+        alert(`Couldn't update status: ${json.error || 'Server error'}`);
+      }
+    } catch (err) {
+      alert('Failed to update sequence status.');
+    } finally {
+      setTogglingSeqId(null);
+    }
+  }
+
+  function openConfigure(seq) {
+    setConfigureSeq(seq);
+    setConfigureSteps((Array.isArray(seq.steps) ? seq.steps : []).map((s) => ({ ...s })));
+  }
+
+  function updateConfigureStep(index, field, value) {
+    setConfigureSteps((cur) => cur.map((s, i) => (i === index ? { ...s, [field]: value } : s)));
+  }
+
+  async function handleSaveConfigure() {
+    if (!configureSeq) return;
+    setSavingConfig(true);
+    try {
+      const res = await fetch('/api/prospector/sequences', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: configureSeq.id, steps: configureSteps }),
+      });
+      const json = await res.json();
+      if (json.ok) {
+        setSequences((cur) => cur.map((s) => (s.id === configureSeq.id ? { ...s, steps: configureSteps } : s)));
+        setConfigureSeq(null);
+      } else {
+        alert(`Couldn't save changes: ${json.error || 'Server error'}`);
+      }
+    } catch (err) {
+      alert('Failed to save sequence changes.');
+    } finally {
+      setSavingConfig(false);
+    }
+  }
+
   const promptPreviewText = `"MANDATORY: EVERY RETURNED LEAD MUST HAVE A DIRECT BUSINESS EMAIL ADDRESS. Search the live web for ${limit} active businesses in ${location || '[Location]'}${keyword ? ` matching "${keyword}"` : ''}. Extract authentic direct email addresses (contact@, sales@, info@, owner email), contact names, and phone numbers."`;
 
   // Derived CSV mapping state
@@ -389,6 +531,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const startIdx = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const endIdx = Math.min(total, page * pageSize);
+
+  const hasActiveFilter =
+    statusFilter !== 'All Status' || categoryFilter !== 'All Categories' || sourceFilter !== 'All Sources' || search.trim() !== '';
+  const allOnPageSelected = prospects.length > 0 && prospects.every((p) => selectedIds.includes(p.id));
 
   return (
     <div className="prospector">
@@ -711,6 +857,12 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 <option value="Security">Security Systems</option>
               </select>
 
+              <select className="db-select" value={sourceFilter} onChange={handleSourceChange}>
+                <option value="All Sources">All Sources</option>
+                <option value="csv_import">CSV Import</option>
+                <option value="perplexity_ai_live">AI Search</option>
+              </select>
+
               <select className="db-select" value={pageSize} onChange={handlePageSizeChange}>
                 <option value={10}>10 per page</option>
                 <option value={25}>25 per page</option>
@@ -724,9 +876,37 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
             </div>
           </div>
 
+          <div className="drip-alert-box" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '1rem' }}>
+            <span>
+              {selectedIds.length > 0
+                ? `${selectedIds.length} selected on this page`
+                : 'Select rows to delete them, or filter (e.g. Source: CSV Import) to clean up a whole bad import at once.'}
+            </span>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {selectedIds.length > 0 && (
+                <button type="button" className="btn-app btn-app--quiet" onClick={handleDeleteSelected} disabled={deletingProspects}>
+                  {deletingProspects ? 'Deleting…' : `Delete Selected (${selectedIds.length})`}
+                </button>
+              )}
+              {hasActiveFilter && (
+                <button type="button" className="btn-app btn-app--quiet" onClick={handleDeleteAllMatching} disabled={deletingProspects}>
+                  {deletingProspects ? 'Deleting…' : `Delete ALL ${total} Matching Filters`}
+                </button>
+              )}
+            </div>
+          </div>
+
           <table className="table db-table">
             <thead>
               <tr>
+                <th scope="col">
+                  <input
+                    type="checkbox"
+                    checked={allOnPageSelected}
+                    onChange={toggleSelectAllOnPage}
+                    aria-label="Select all prospects on this page"
+                  />
+                </th>
                 <th scope="col">COMPANY</th>
                 <th scope="col">CONTACT</th>
                 <th scope="col">CONTACT DATA</th>
@@ -737,13 +917,21 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
             <tbody>
               {prospects.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="table__empty">
+                  <td colSpan="6" className="table__empty">
                     No prospects match your search criteria. Launch an AI Search to find real business leads.
                   </td>
                 </tr>
               ) : (
                 prospects.map((p) => (
                   <tr key={p.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.includes(p.id)}
+                        onChange={() => toggleSelectOne(p.id)}
+                        aria-label={`Select ${p.company}`}
+                      />
+                    </td>
                     <td>
                       <strong className="company-title">{p.company}</strong>
                       {p.website && (
@@ -772,10 +960,17 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                         {p.status}
                       </span>
                     </td>
-                    <td>
+                    <td style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                       <a href={`mailto:${p.email}?subject=Custom AI CRM Offer`} className="btn-action-sm">
                         Send Direct Email
                       </a>
+                      <button
+                        type="button"
+                        className="btn-action-sm"
+                        onClick={() => handleDeleteOne(p.id, p.company)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -862,7 +1057,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 <div className="sequence-card__stats">
                   <div>
                     <span className="stat-label">SUBSCRIBERS</span>
-                    <span className="stat-val">{seq.id === 'seq-prospector-drip' ? (total || 650) : 0}</span>
+                    <span className="stat-val">{seq.title === 'Prospector Drip - 4 Step' ? total : 0}</span>
                   </div>
                   <div>
                     <span className="stat-label">STAGES</span>
@@ -871,17 +1066,18 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 </div>
 
                 <div className="sequence-card__footer">
-                  <button
-                    onClick={() => {
-                      setTestTargetSeq(seq.title);
-                      setTestModalOpen(true);
-                    }}
-                    className="seq-action-link"
-                  >
+                  <button onClick={() => openConfigure(seq)} className="seq-action-link">
                     Configure &rarr;
                   </button>
 
                   <div className="seq-action-buttons">
+                    <button
+                      onClick={() => handleToggleStatus(seq)}
+                      className="seq-btn-quiet"
+                      disabled={togglingSeqId === seq.id}
+                    >
+                      {togglingSeqId === seq.id ? '…' : seq.status === 'active' ? 'Pause' : 'Activate'}
+                    </button>
                     <button
                       onClick={() => {
                         setTestTargetSeq(seq.title);
@@ -899,6 +1095,55 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Configure Sequence Modal */}
+      {configureSeq && (
+        <div className="modal-backdrop">
+          <div className="modal-card" style={{ maxWidth: '40rem', maxHeight: '85vh', overflowY: 'auto' }}>
+            <h3>Configure &mdash; {configureSeq.title}</h3>
+            <p className="text-muted text-sm" style={{ marginBottom: '1rem' }}>
+              Edit the subject line and body for each step. Use {'{{company}}'}, {'{{contact_name}}'}, {'{{location}}'}, {'{{industry}}'}, {'{{offer_link}}'}, and {'{{site_url}}'} as merge fields.
+            </p>
+
+            {configureSteps.map((step, i) => (
+              <div key={i} style={{ marginBottom: '1.25rem', paddingBottom: '1.25rem', borderBottom: '1px solid var(--border)' }}>
+                <h4 style={{ marginBottom: '0.5rem' }}>Step {step.step ?? i + 1} &mdash; sends {step.delay_days ? `${step.delay_days} day${step.delay_days === 1 ? '' : 's'} after enrollment` : 'immediately'}</h4>
+
+                <div className="auth__field">
+                  <label className="auth__label" htmlFor={`step-subject-${i}`}>Subject</label>
+                  <input
+                    id={`step-subject-${i}`}
+                    className="auth__input"
+                    type="text"
+                    value={step.subject || ''}
+                    onChange={(e) => updateConfigureStep(i, 'subject', e.target.value)}
+                  />
+                </div>
+
+                <div className="auth__field">
+                  <label className="auth__label" htmlFor={`step-body-${i}`}>Body (HTML)</label>
+                  <textarea
+                    id={`step-body-${i}`}
+                    className="auth__input"
+                    rows="6"
+                    value={step.body || ''}
+                    onChange={(e) => updateConfigureStep(i, 'body', e.target.value)}
+                  />
+                </div>
+              </div>
+            ))}
+
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+              <button type="button" className="btn-app btn-app--quiet" onClick={() => setConfigureSeq(null)}>
+                Cancel
+              </button>
+              <button type="button" className="btn-teal-lg" style={{ width: 'auto' }} onClick={handleSaveConfigure} disabled={savingConfig}>
+                {savingConfig ? 'Saving…' : 'Save Changes'}
+              </button>
+            </div>
           </div>
         </div>
       )}
