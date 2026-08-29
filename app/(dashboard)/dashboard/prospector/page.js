@@ -24,7 +24,7 @@ export default async function ClientProspectorPage() {
           <div>
             <h2 className="app__welcome">AI Lead Scout &amp; Cold Outreach</h2>
             <p className="app__welcome-sub">
-              Crawl verified local business leads using Perplexity AI and automate cold email drip sequences pitching the Q3 Growth Bundle Offer.
+              Crawl verified local business leads using Perplexity AI and automate cold email drip sequences pitching the Custom AI CRM Offer.
             </p>
           </div>
         </header>

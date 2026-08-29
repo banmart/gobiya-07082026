@@ -2,6 +2,70 @@
 
 import { useState, useEffect } from 'react';
 
+const TARGET_FIELDS = [
+  { key: 'company', label: 'Company', required: false, guesses: ['company', 'business', 'organization', 'name'] },
+  { key: 'contact_name', label: 'Contact Name', required: false, guesses: ['contact', 'first name', 'full name'] },
+  { key: 'email', label: 'Email', required: true, guesses: ['email', 'e-mail'] },
+  { key: 'phone', label: 'Phone', required: false, guesses: ['phone', 'tel', 'mobile'] },
+  { key: 'website', label: 'Website', required: false, guesses: ['website', 'url', 'domain', 'site'] },
+  { key: 'industry', label: 'Industry', required: false, guesses: ['industry', 'category', 'keyword'] },
+  { key: 'location', label: 'Location', required: false, guesses: ['location', 'city', 'area', 'state'] },
+];
+
+// Parses CSV text into rows of cells, honoring quoted fields (including embedded commas/newlines/escaped quotes).
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += c;
+      }
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ',') {
+      row.push(field);
+      field = '';
+    } else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(field);
+      field = '';
+      rows.push(row);
+      row = [];
+    } else {
+      field += c;
+    }
+  }
+  if (field !== '' || row.length > 0) {
+    row.push(field);
+    rows.push(row);
+  }
+
+  return rows
+    .map((r) => r.map((c) => c.trim()))
+    .filter((r) => r.some((c) => c !== ''));
+}
+
+function guessFieldMap(headerRow) {
+  const map = {};
+  TARGET_FIELDS.forEach((f) => {
+    const idx = headerRow.findIndex((h) => f.guesses.some((g) => String(h).toLowerCase().includes(g)));
+    map[f.key] = idx >= 0 ? idx : '';
+  });
+  return map;
+}
+
 export default function ProspectorSuite({ initialProspects = [], totalCount = 0, initialSequences = [] }) {
   const [activeTab, setActiveTab] = useState('scout'); // scout | import | database | campaigns
   
@@ -35,7 +99,10 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   const [sendingTest, setSendingTest] = useState(false);
 
   // CSV Import state
-  const [csvContent, setCsvContent] = useState('');
+  const [csvRawRows, setCsvRawRows] = useState([]); // all parsed rows, including the header row if present
+  const [csvHasHeader, setCsvHasHeader] = useState(true);
+  const [csvFileName, setCsvFileName] = useState('');
+  const [fieldMap, setFieldMap] = useState({}); // target field key -> csv column index (or '' if unmapped)
   const [importingCsv, setImportingCsv] = useState(false);
 
   // Fetch prospects from database when filters or pagination change
@@ -142,7 +209,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
 
       const json = await res.json();
       if (json.ok) {
-        alert(json.message || `Successfully saved ${json.savedCount} verified prospects and enrolled ${json.enrolledCount} in the Q3 Growth Bundle email drip campaign!`);
+        alert(json.message || `Successfully saved ${json.savedCount} verified prospects and enrolled ${json.enrolledCount} in the Custom AI CRM email drip campaign!`);
         setScoutResults(null);
         setActiveTab('database');
         setPage(1);
@@ -158,35 +225,73 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
     }
   }
 
-  // Handle CSV Import
-  async function handleCsvImport(e) {
-    e.preventDefault();
-    if (!csvContent.trim()) return;
+  // Handle CSV file selection: parse it and auto-guess the field mapping
+  function handleCsvFileSelected(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const parsed = parseCsv(String(reader.result || ''));
+      if (parsed.length === 0) {
+        alert('That file has no readable rows.');
+        return;
+      }
+      setCsvRawRows(parsed);
+      setCsvFileName(file.name);
+      setFieldMap(guessFieldMap(parsed[0]));
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  }
+
+  function handleFieldMapChange(key, value) {
+    setFieldMap((m) => ({ ...m, [key]: value === '' ? '' : Number(value) }));
+  }
+
+  function handleClearCsv() {
+    setCsvRawRows([]);
+    setCsvFileName('');
+    setFieldMap({});
+  }
+
+  // Handle CSV Import using the current column-to-field mapping
+  async function handleCsvImport() {
+    if (fieldMap.email === '' || fieldMap.email === undefined) {
+      alert('Map a column to Email before importing — every prospect needs one.');
+      return;
+    }
+    if (csvDataRows.length === 0) {
+      alert('Upload a CSV file with at least one data row first.');
+      return;
+    }
     setImportingCsv(true);
 
     try {
-      const lines = csvContent.split('\n').map((l) => l.trim()).filter(Boolean);
-      const prospectsList = [];
+      const getCell = (row, key) => {
+        const idx = fieldMap[key];
+        return idx === '' || idx === undefined ? '' : (row[idx] || '').trim();
+      };
 
-      for (let i = (lines[0].toLowerCase().includes('email') ? 1 : 0); i < lines.length; i++) {
-        const parts = lines[i].split(',').map((p) => p.replace(/^"|"$/g, '').trim());
-        if (parts.length >= 2) {
-          const emailCandidate = parts.find((p) => p.includes('@'));
-          if (emailCandidate) {
-            prospectsList.push({
-              company: parts[0] || 'Imported Business',
-              contact_name: parts[1] || parts[0],
-              email: emailCandidate,
-              phone: parts[3] || null,
-              website: parts[4] || null,
-              source: 'csv_import',
-            });
-          }
-        }
-      }
+      const prospectsList = csvDataRows
+        .map((row) => {
+          const email = getCell(row, 'email');
+          if (!email.includes('@')) return null;
+          return {
+            company: getCell(row, 'company') || 'Imported Business',
+            contact_name: getCell(row, 'contact_name') || getCell(row, 'company') || 'there',
+            email,
+            phone: getCell(row, 'phone') || null,
+            website: getCell(row, 'website') || null,
+            industry: getCell(row, 'industry') || null,
+            location: getCell(row, 'location') || null,
+            source: 'csv_import',
+          };
+        })
+        .filter(Boolean);
 
       if (prospectsList.length === 0) {
-        alert('No valid email rows found in CSV text.');
+        alert('No rows with a valid email address were found.');
         setImportingCsv(false);
         return;
       }
@@ -199,8 +304,8 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
 
       const json = await res.json();
       if (json.ok) {
-        alert(json.message || `Successfully imported ${json.savedCount} prospects and enrolled them into the email drip campaign!`);
-        setCsvContent('');
+        alert(json.message || `Successfully imported ${prospectsList.length} prospects and enrolled them into the email drip campaign!`);
+        handleClearCsv();
         setActiveTab('database');
         setPage(1);
         fetchProspects();
@@ -228,7 +333,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
 
       const json = await res.json();
       if (json.ok) {
-        setDripMessage(`Processed! ${json.processed || 0} cold drip emails dispatched to active prospects pitching the Q3 Growth Bundle Offer.`);
+        setDripMessage(`Processed! ${json.processed || 0} cold drip emails dispatched to active prospects pitching the Custom AI CRM Offer.`);
       } else {
         setDripMessage(`Drip processing notice: ${json.error || 'Failed'}`);
       }
@@ -271,6 +376,14 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
   }
 
   const promptPreviewText = `"MANDATORY: EVERY RETURNED LEAD MUST HAVE A DIRECT BUSINESS EMAIL ADDRESS. Search the live web for ${limit} active businesses in ${location || '[Location]'}${keyword ? ` matching "${keyword}"` : ''}. Extract authentic direct email addresses (contact@, sales@, info@, owner email), contact names, and phone numbers."`;
+
+  // Derived CSV mapping state
+  const csvColumnCount = csvRawRows[0] ? csvRawRows[0].length : 0;
+  const csvHeaders = csvRawRows.length
+    ? (csvHasHeader ? csvRawRows[0] : Array.from({ length: csvColumnCount }, (_, i) => `Column ${i + 1}`))
+    : [];
+  const csvDataRows = csvRawRows.length ? (csvHasHeader ? csvRawRows.slice(1) : csvRawRows) : [];
+  const csvPreviewRows = csvDataRows.slice(0, 5);
 
   // Pagination calculation
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
@@ -467,30 +580,97 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
 
       {/* ── TAB 2: IMPORT CSV ── */}
       {activeTab === 'import' && (
-        <div className="prospector__card" style={{ maxWidth: '42rem' }}>
+        <div className="prospector__card" style={{ maxWidth: '48rem' }}>
           <h3 className="prospector__card-title">Bulk CSV Prospect Import</h3>
           <p className="panel__desc" style={{ marginBottom: '1rem' }}>
-            Paste CSV rows of business leads to import and automatically enroll into the Q3 Growth Bundle cold email drip campaign.
+            Upload a CSV of business leads, map its columns to prospect fields, and auto-enroll them into the Custom AI CRM cold email drip campaign.
           </p>
 
-          <form onSubmit={handleCsvImport}>
-            <div className="auth__field">
-              <label className="auth__label" htmlFor="csv-input">CSV DATA (Format: Company, Contact Name, email@domain.com, Phone, Website)</label>
-              <textarea
-                id="csv-input"
-                className="auth__input"
-                rows="8"
-                placeholder="Company Name, Contact Person, email@domain.com, (818) 555-0199, https://website.com"
-                value={csvContent}
-                onChange={(e) => setCsvContent(e.target.value)}
-                required
-              />
-            </div>
+          <div className="auth__field">
+            <label className="auth__label" htmlFor="csv-file">CSV FILE</label>
+            <input
+              id="csv-file"
+              type="file"
+              accept=".csv,text/csv"
+              onChange={handleCsvFileSelected}
+              className="auth__input"
+            />
+          </div>
 
-            <button type="submit" className="btn-teal-lg" disabled={importingCsv}>
-              {importingCsv ? 'Processing Import…' : 'Import Prospects & Auto-Enroll in Drip'}
-            </button>
-          </form>
+          <label className="text-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', margin: '0.5rem 0 1.25rem' }}>
+            <input type="checkbox" checked={csvHasHeader} onChange={(e) => setCsvHasHeader(e.target.checked)} />
+            First row is a header row
+          </label>
+
+          {csvFileName && (
+            <>
+              <div className="drip-alert-box" style={{ marginBottom: '1.25rem' }}>
+                Loaded <strong>{csvFileName}</strong> — {csvDataRows.length} row{csvDataRows.length === 1 ? '' : 's'} detected across {csvHeaders.length} column{csvHeaders.length === 1 ? '' : 's'}.
+              </div>
+
+              <h4 className="prospector__card-title" style={{ fontSize: '0.95rem' }}>Map Columns to Fields</h4>
+              <p className="panel__desc" style={{ marginBottom: '1rem' }}>
+                Match each prospect field to the matching column from your file. Email is required — everything else is optional.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                {TARGET_FIELDS.map((f) => (
+                  <div className="auth__field" key={f.key}>
+                    <label className="auth__label" htmlFor={`map-${f.key}`}>
+                      {f.label}{f.required ? ' *' : ''}
+                    </label>
+                    <select
+                      id={`map-${f.key}`}
+                      className="db-select"
+                      style={{ width: '100%' }}
+                      value={fieldMap[f.key] === undefined ? '' : fieldMap[f.key]}
+                      onChange={(e) => handleFieldMapChange(f.key, e.target.value)}
+                    >
+                      <option value="">— Not mapped —</option>
+                      {csvHeaders.map((h, idx) => (
+                        <option value={idx} key={idx}>{h || `Column ${idx + 1}`}</option>
+                      ))}
+                    </select>
+                  </div>
+                ))}
+              </div>
+
+              {csvPreviewRows.length > 0 && (
+                <>
+                  <h4 className="prospector__card-title" style={{ fontSize: '0.95rem' }}>Preview (first {csvPreviewRows.length})</h4>
+                  <div style={{ overflowX: 'auto', marginBottom: '1.5rem' }}>
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          {TARGET_FIELDS.map((f) => <th key={f.key}>{f.label}</th>)}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {csvPreviewRows.map((row, ri) => (
+                          <tr key={ri}>
+                            {TARGET_FIELDS.map((f) => {
+                              const idx = fieldMap[f.key];
+                              const val = idx === '' || idx === undefined ? '' : (row[idx] || '');
+                              return <td key={f.key}>{val || <span className="text-muted">—</span>}</td>;
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button type="button" className="btn-teal-lg" style={{ width: 'auto' }} onClick={handleCsvImport} disabled={importingCsv}>
+                  {importingCsv ? 'Importing…' : `Import ${csvDataRows.length} Prospect${csvDataRows.length === 1 ? '' : 's'} & Auto-Enroll in Drip`}
+                </button>
+                <button type="button" className="btn-app btn-app--quiet" onClick={handleClearCsv}>
+                  Clear
+                </button>
+              </div>
+            </>
+          )}
         </div>
       )}
 
@@ -593,7 +773,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
                       </span>
                     </td>
                     <td>
-                      <a href={`mailto:${p.email}?subject=Q3 Growth Bundle Offer`} className="btn-action-sm">
+                      <a href={`mailto:${p.email}?subject=Custom AI CRM Offer`} className="btn-action-sm">
                         Send Direct Email
                       </a>
                     </td>
@@ -729,7 +909,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
           <div className="modal-card">
             <h3>Send Test Email &mdash; {testTargetSeq}</h3>
             <p className="text-muted text-sm" style={{ marginBottom: '1rem' }}>
-              Preview how cold prospects will see your Q3 Growth Bundle email campaign (pointing to /lp?ref=drip).
+              Preview how cold prospects will see your Custom AI CRM email campaign (pointing to /lp?ref=drip).
             </p>
 
             <form onSubmit={handleSendTest}>

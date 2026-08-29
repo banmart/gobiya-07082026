@@ -7,7 +7,7 @@ import { heroImage } from '../../../lib/heroImages';
 
 export const metadata = buildMetadata({
   title: 'Thanks',
-  description: 'Your Q3 Growth Bundle request was received.',
+  description: 'Your Custom AI CRM request was received.',
   robots: { index: false, follow: true },
   path: '/lp/thank-you',
 });

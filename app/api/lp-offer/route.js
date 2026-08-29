@@ -61,7 +61,7 @@ export async function POST(request) {
       from: process.env.ONBOARDING_FROM_EMAIL || 'Gobiya Contact <onboarding@gobiya.com>',
       to: 'banmart@gmail.com',
       replyTo: email,
-      subject: `New Q3 Growth Bundle lead — ${name} (ref: ${ref || 'direct'})`,
+      subject: `New ${String(offer || 'offer').replace(/[\r\n]/g, ' ')} lead — ${name} (ref: ${ref || 'direct'})`,
       html,
     });
 

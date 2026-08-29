@@ -24,7 +24,7 @@ export default async function AdminProspectorPage() {
           <div>
             <h2 className="app__welcome">Leads Prospector &amp; Email Campaigns</h2>
             <p className="app__welcome-sub">
-              Crawl live business prospects with Perplexity AI and automate cold email drip sequences pitching the Q3 Growth Bundle Offer ($2,500 Web Dev + CRM + YouTube Ads).
+              Crawl live business prospects with Perplexity AI and automate cold email drip sequences pitching the Custom AI CRM Offer (lead capture + AI follow-up + lead scoring, starting at $999).
             </p>
           </div>
         </header>

@@ -25,8 +25,8 @@ export async function POST(request) {
     }
 
     const message = saveRes.count > 0
-      ? `Successfully saved ${saveRes.count} new unique prospects and enrolled ${enrolledCount} in the Q3 Growth Bundle email drip campaign!`
-      : `Enrolled ${enrolledCount} prospects into the Q3 Growth Bundle email drip campaign (all emails already existed in database without duplicates).`;
+      ? `Successfully saved ${saveRes.count} new unique prospects and enrolled ${enrolledCount} in the Custom AI CRM email drip campaign!`
+      : `Enrolled ${enrolledCount} prospects into the Custom AI CRM email drip campaign (all emails already existed in database without duplicates).`;
 
     return NextResponse.json({
       ok: true,

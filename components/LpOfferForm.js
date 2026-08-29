@@ -39,7 +39,7 @@ export default function LpOfferForm({ source }) {
 
   return (
     <div className="lp-form">
-      <h2 className="lp-form__title">Claim the Q3 Growth Bundle</h2>
+      <h2 className="lp-form__title">Claim the Custom AI CRM Offer</h2>
       <p className="lp-form__sub">
         Tell us where to send the details — Steve replies within one business day.
       </p>
@@ -48,7 +48,7 @@ export default function LpOfferForm({ source }) {
         {/* Honeypot — a real user never sees this, a bot fills it in. */}
         <input type="text" name="company_website" className="lp-form__honeypot" tabIndex="-1" autoComplete="off" aria-hidden="true" />
         <input type="hidden" name="ref" value={source} />
-        <input type="hidden" name="offer" value="Q3 Growth Bundle" />
+        <input type="hidden" name="offer" value="Custom AI CRM" />
 
         <div className="lp-form__field">
           <label htmlFor="lpf-name" className="lp-form__label">
