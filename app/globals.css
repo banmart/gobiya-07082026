@@ -3883,6 +3883,51 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   .data-panel__table tbody th { position: static; }
 }
 
+/* ── hierarchy diagram (article framework diagrams) ──
+   Framed like the data panel, and scrolled like it on a phone: the SVG holds a
+   min-width so the labels stay readable instead of scaling down with the
+   viewport. Every fill resolves through a token so the diagram flips with the
+   theme — a hard-coded navy here would go invisible on the dark surface. */
+.hier {
+  margin: clamp(2rem, 5vw, 3rem) 0;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+}
+.hier__scroll { overflow-x: auto; padding: clamp(1.25rem, 3vw, 1.75rem); }
+.hier__svg { display: block; width: 100%; min-width: 32rem; height: auto; }
+.hier__apex { fill: var(--surface-inverse); }
+.hier__apex-title {
+  fill: var(--text-on-inverse);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+}
+.hier__apex-note {
+  fill: var(--text-on-inverse-muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+.hier__rule { fill: none; stroke: var(--rule-strong); stroke-width: 1.5; }
+.hier__box { fill: var(--surface-sunken); stroke: var(--border-strong); stroke-width: 1; }
+.hier__box-cap { fill: var(--accent); }
+.hier__box-title {
+  fill: var(--text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+}
+.hier__dot { fill: var(--accent); }
+.hier__leaf { fill: var(--text-muted); font-size: 13.5px; }
+.hier__cap {
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  color: var(--hint);
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 48rem) {
+  .hier__svg { min-width: 0; }
+}
+
 /* ── step list (article lists) ── */
 .step-list {
   list-style: none;

@@ -1,6 +1,7 @@
 import PageHero from './PageHero';
 import ClientLogos from './ClientLogos';
 import DataPanel from './sections/DataPanel';
+import HierarchyDiagram from './sections/HierarchyDiagram';
 import StepList from './sections/StepList';
 import ReadingProgress from './sections/ReadingProgress';
 
@@ -100,6 +101,17 @@ export default function ArticleTemplate({ article }) {
                   }
                   if (p.type === 'table') {
                     return <DataPanel key={i} headers={p.headers} rows={p.rows} caption={p.caption} />;
+                  }
+                  if (p.type === 'hierarchy') {
+                    return (
+                      <HierarchyDiagram
+                        key={i}
+                        apex={p.apex}
+                        apexNote={p.apexNote}
+                        branches={p.branches}
+                        caption={p.caption}
+                      />
+                    );
                   }
                   if (p.type === 'image') {
                     return (
