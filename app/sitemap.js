@@ -38,6 +38,8 @@ export default function sitemap() {
     '/mcp',
     '/process',
     '/areas-we-serve',
+    '/van-nuys-seo',
+    '/los-angeles-seo',
   ].map((path) => ({
     url: `${BASE_URL}${path}`,
   }));

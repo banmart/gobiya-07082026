@@ -36,10 +36,9 @@ export default function Footer() {
 
         <div className="gb-footer__office">
           <div className="gb-footer__office-block">
-            <h5 className="gb-footer__office-title">Los Angeles</h5>
-            <p>{CONTACT.address1}</p>
-            <p>{CONTACT.address2}</p>
-            <p>{CONTACT.region}</p>
+            <h5 className="gb-footer__office-title">Locations</h5>
+            <p><a href="/van-nuys-seo">Van Nuys</a></p>
+            <p><a href="/los-angeles-seo">Los Angeles</a></p>
           </div>
           <div className="gb-footer__office-block">
             <h5 className="gb-footer__office-title">Hours</h5>
