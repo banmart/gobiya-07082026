@@ -43,8 +43,8 @@ export default function HomeSplitHero() {
             <Image
               src="/assets/img/hero-analytics-man.webp"
               alt="Digital marketing results — campaign analytics, AI search rankings, and lead capture dashboard"
-              width={2752}
-              height={1536}
+              width={800}
+              height={447}
               priority
               className="gh-split-hero__img"
             />
