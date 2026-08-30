@@ -1,5 +1,7 @@
 import SubHero from '../../components/SubHero';
 import PlatformStrip from '../../components/PlatformStrip';
+import TestimonialsCompact from '../../components/TestimonialsCompact';
+import ClientLogos from '../../components/ClientLogos';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
@@ -112,7 +114,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ══ 3. Bottom Navy CTA Banner ══ */}
+      {/* ══ 3. Client social proof ══ */}
+      <TestimonialsCompact heading="What Los Angeles Clients Say" />
+      <ClientLogos />
+
+      {/* ══ 4. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">

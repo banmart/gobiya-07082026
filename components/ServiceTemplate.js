@@ -1,5 +1,6 @@
 import PageHero from './PageHero';
-import DisciplineRail from './DisciplineRail';
+import PlatformStrip from './PlatformStrip';
+import ClientLogos from './ClientLogos';
 import PackagesOffer from './PackagesOffer';
 import CommunityReviews from './CommunityReviews';
 import ClosingCta from './ClosingCta';
@@ -93,8 +94,8 @@ export default function ServiceTemplate({ service }) {
         secondary={{ text: `Call ${CONTACT.phone}`, href: CONTACT.phoneHref }}
       />
 
-      {/* ══ 2. Discipline rail ══ */}
-      <DisciplineRail active={service.slug} />
+      {/* ══ 2. Platform strip ══ */}
+      <PlatformStrip />
 
       {/* ══ 3. Body — prose beside the service sidebar ══ */}
       <section className="gb-body">
@@ -281,7 +282,10 @@ export default function ServiceTemplate({ service }) {
         </section>
       )}
 
-      {/* ══ 5. Packages ══ */}
+      {/* ══ 5. Client logos ══ */}
+      <ClientLogos />
+
+      {/* ══ 6. Packages ══ */}
       <PackagesOffer
         title={`Exclusive Savings on Expert ${displayTitle}`}
         sub="Exclusive Gobiya Performance Packages"

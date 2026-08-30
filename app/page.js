@@ -1,5 +1,7 @@
-import PageHero from '../components/PageHero';
-import DisciplineRail, { Icon } from '../components/DisciplineRail';
+import HomeSplitHero from '../components/HomeSplitHero';
+import { Icon } from '../components/DisciplineRail';
+import PlatformStrip from '../components/PlatformStrip';
+import ClientLogos from '../components/ClientLogos';
 import ProofBar from '../components/ProofBar';
 import CommunityReviews from '../components/CommunityReviews';
 import ExcellenceGrid from '../components/ExcellenceGrid';
@@ -11,7 +13,7 @@ import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 // The title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
-  title: 'Gobiya -  Digital marketing for every touchpoint.',
+  title: 'Gobiya — Digital marketing for every touchpoint.',
   description:
     'Digital marketing that meets your buyers at every touchpoint — Google, AI answers, maps, and ads. Free Los Angeles site audit. Call now!',
   path: '/',
@@ -45,17 +47,10 @@ export default function Home() {
       />
 
       {/* ══ 1. Hero ══ */}
-      <PageHero
-        badge="Proudly Serving Los Angeles Since 2009"
-        title="Digital Marketing for Every Touchpoint"
-        accent="Celebrating Over 15 Years of Strategic Digital Growth!"
-        dek="Digital marketing that reaches your buyers everywhere they look — Google, AI answers, maps, and ads. Expert SEO, GEO, web architecture, and conversion solutions you can rely on for any business."
-        primary={{ text: 'Get Your Analysis', href: '/free-site-scan' }}
-        secondary={{ text: 'Contact Us', href: '/contact' }}
-      />
+      <HomeSplitHero />
 
-      {/* ══ 2. Discipline rail ══ */}
-      <DisciplineRail />
+      {/* ══ 2. Platform strip ══ */}
+      <PlatformStrip />
 
       {/* ══ 3. We Handle It All ══ */}
       <section className="gb-handle">
@@ -112,7 +107,10 @@ export default function Home() {
       {/* ══ 5. Proof bar ══ */}
       <ProofBar />
 
-      {/* ══ 6. Hear From the Community ══ */}
+      {/* ══ 6. Client logos ══ */}
+      <ClientLogos heading={null} className="mw-trust--strip" />
+
+      {/* ══ 7. Hear From the Community ══ */}
       <CommunityReviews />
 
       {/* ══ 7. Excellence in Every Optimization ══ */}

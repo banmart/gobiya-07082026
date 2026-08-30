@@ -1,5 +1,7 @@
 import SubHero from '../../components/SubHero';
 import PlatformStrip from '../../components/PlatformStrip';
+import TestimonialsCompact from '../../components/TestimonialsCompact';
+import ClientLogos from '../../components/ClientLogos';
 import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 import { SOLUTIONS, SOLUTION_SLUGS, solutionPath } from '../../lib/solutions';
@@ -83,7 +85,11 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* ══ 3. Bottom Navy CTA Banner ══ */}
+      {/* ══ 3. Client social proof ══ */}
+      <TestimonialsCompact heading="What Los Angeles Clients Say" />
+      <ClientLogos />
+
+      {/* ══ 4. Bottom Navy CTA Banner ══ */}
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">Need an expert diagnostic on your site?</h2>

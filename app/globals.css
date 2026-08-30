@@ -12303,3 +12303,138 @@ a.gb-checklist__title:hover { color: var(--link); }
   text-decoration: none;
 }
 .gb-hero__meta a:hover { color: var(--accent-on-inverse); }
+
+/* ══════════════════════════════════════════════════════════
+   Homepage split hero  (HomeSplitHero.js)
+   ══════════════════════════════════════════════════════════ */
+.gh-split-hero {
+  background: #0C1050;
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(4rem, 9vw, 6rem);
+  overflow: hidden;
+  position: relative;
+}
+
+.gh-split-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.gh-split-hero__copy { position: relative; z-index: 1; }
+
+.gh-split-hero__badge {
+  display: inline-block;
+  background: rgba(225, 66, 15, 0.15);
+  border: 1px solid rgba(225, 66, 15, 0.45);
+  color: #FF8A5C;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.35rem 1.1rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+
+.gh-split-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.gh-split-hero__dek {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 36rem;
+  margin-bottom: 2rem;
+}
+
+.gh-split-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Make the primary CTA a touch larger in the hero */
+.gh-split-hero__cta-primary {
+  font-size: 1rem;
+  padding-inline: 1.75rem;
+  padding-block: 0.9rem;
+}
+
+.gh-split-hero__trust {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  flex-wrap: wrap;
+}
+
+.gh-split-hero__dot { opacity: 0.4; }
+
+/* ── Image column ── */
+.gh-split-hero__visual { position: relative; }
+
+.gh-split-hero__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1.25rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .gh-split-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .gh-split-hero__visual { order: -1; }
+  .gh-split-hero__dek { max-width: 100%; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Client logo strip variant — no heading, greyscale logos
+   Used on homepage directly below ProofBar
+   ══════════════════════════════════════════════════════════ */
+.mw-trust--strip {
+  padding-block: clamp(2rem, 4vw, 2.75rem);
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.mw-trust--strip .mw-trust__logos {
+  gap: clamp(2rem, 5vw, 4rem);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mw-trust--strip .mw-trust__logos::-webkit-scrollbar { display: none; }
+
+.mw-trust--strip .mw-trust__logo-item {
+  opacity: 0.55;
+  flex: 0 0 auto;
+  transition: opacity 0.2s;
+}
+
+.mw-trust--strip .mw-trust__logo-item:hover { opacity: 0.85; }
+
+.mw-trust--strip .mw-trust__logo-item img {
+  filter: grayscale(100%);
+  max-height: 44px;
+  width: auto;
+}
+
+[data-theme='dark'] .mw-trust--strip .mw-trust__logo-item img {
+  filter: grayscale(100%) invert(1);
+}

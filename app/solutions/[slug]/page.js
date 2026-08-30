@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import SubHero from '../../../components/SubHero';
 import PlatformStrip from '../../../components/PlatformStrip';
+import TestimonialsCompact from '../../../components/TestimonialsCompact';
+import ClientLogos from '../../../components/ClientLogos';
 import { heroImage } from '../../../lib/heroImages';
 import { buildMetadata } from '../../../lib/meta';
 import { getSolution, SOLUTION_SLUGS, solutionPath } from '../../../lib/solutions';
@@ -155,6 +157,10 @@ export default async function SolutionDetailPage({ params }) {
           )}
         </div>
       </section>
+
+      {/* ══ Client social proof ══ */}
+      <TestimonialsCompact heading="What Los Angeles Clients Say" />
+      <ClientLogos />
 
       {/* ══ Bottom CTA Banner ══ */}
       <section className="mw-navy-banner">
