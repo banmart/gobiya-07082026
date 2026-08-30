@@ -31,6 +31,16 @@ const nextConfig = {
       // every legacy city slug elsewhere in this file all 301 straight there —
       // one hop, no chains. The silver-lake → silverlake hop is absorbed into
       // the wildcard, since both now land on the same destination.
+      // Studio City and Glendale are listed ahead of the wildcard because
+      // Next.js takes the first matching rule, and these two now have pages of
+      // their own. They were the only city URLs in the retired set still
+      // earning anything — between them 196 impressions and both of the site's
+      // attributable clicks in the 28 days to 2026-08-27 — so sending them to
+      // a generic Los Angeles page discarded the city relevance that earned
+      // those positions. The other eight cities have no measured demand and
+      // still fold into /los-angeles-seo via the wildcard.
+      { source: '/areas-we-serve/studio-city', destination: '/studio-city-seo', permanent: true },
+      { source: '/areas-we-serve/glendale', destination: '/glendale-seo', permanent: true },
       { source: '/areas-we-serve', destination: '/los-angeles-seo', permanent: true },
       { source: '/areas-we-serve/:city', destination: '/los-angeles-seo', permanent: true },
 
@@ -109,10 +119,15 @@ const nextConfig = {
       // the two AI-framed ones -> /ai-visibility. A city page redirecting to
       // the homepage passes essentially nothing; redirecting it to the service
       // it was actually about at least keeps the topic aligned.
-      { source: '/glendale-seo', destination: '/los-angeles-seo', permanent: true },
-      { source: '/local-seo-glendale', destination: '/los-angeles-seo', permanent: true },
-      { source: '/locations/glendale-seo', destination: '/los-angeles-seo', permanent: true },
-      { source: '/industries/local-service/glendale-seo', destination: '/los-angeles-seo', permanent: true },
+      // '/glendale-seo' was in this list. It is now a real page — Search
+      // Console shows 81 impressions on "glendale seo" and its variants at
+      // position 56-61 with nothing rendering for them — so the redirect is
+      // gone and the three aliases below point at the page itself rather than
+      // at /los-angeles-seo. A redirect whose source is a live route wins over
+      // the route: leaving it here would have made the new page unreachable.
+      { source: '/local-seo-glendale', destination: '/glendale-seo', permanent: true },
+      { source: '/locations/glendale-seo', destination: '/glendale-seo', permanent: true },
+      { source: '/industries/local-service/glendale-seo', destination: '/glendale-seo', permanent: true },
       { source: '/seo-company-encino', destination: '/services/technical-seo', permanent: true },
       { source: '/locations/encino', destination: '/services/technical-seo', permanent: true },
       { source: '/industries/local-service/encino-seo', destination: '/services/technical-seo', permanent: true },
@@ -244,21 +259,21 @@ const nextConfig = {
       { source: '/industries/local-service/burbank-seo', destination: '/los-angeles-seo', permanent: true },
       { source: '/locations/silverlake', destination: '/los-angeles-seo', permanent: true },
       { source: '/industries/local-service/silverlake-seo', destination: '/los-angeles-seo', permanent: true },
-      { source: '/locations/studio-city', destination: '/los-angeles-seo', permanent: true },
-      { source: '/industries/local-service/studio-city-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations/studio-city', destination: '/studio-city-seo', permanent: true },
+      { source: '/industries/local-service/studio-city-seo', destination: '/studio-city-seo', permanent: true },
       { source: '/locations/sherman-oaks', destination: '/los-angeles-seo', permanent: true },
       { source: '/industries/local-service/sherman-oaks-seo', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-silverlake', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-burbank', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-hollywood', destination: '/los-angeles-seo', permanent: true },
-      { source: '/seo-studio-city', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-studio-city', destination: '/studio-city-seo', permanent: true },
       { source: '/seo-koreatown', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-downtown-la', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-echo-park', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-los-feliz', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-sherman-oaks', destination: '/los-angeles-seo', permanent: true },
-      { source: '/seo-glendale', destination: '/los-angeles-seo', permanent: true },
-      { source: '/locations/glendale', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-glendale', destination: '/glendale-seo', permanent: true },
+      { source: '/locations/glendale', destination: '/glendale-seo', permanent: true },
       { source: '/areas-served', destination: '/los-angeles-seo', permanent: true },
       { source: '/locations', destination: '/los-angeles-seo', permanent: true },
 

@@ -1,7 +1,19 @@
-/* The local-coverage band. All city sub-pages are retired, so the names are
-   plain text on a hairline grid rather than links; the one link is on
-   "& Beyond!", which goes to the Los Angeles SEO page — the coverage claim
-   now lives on a page that targets a keyword rather than on a bare city list. */
+/* The local-coverage band.
+
+   Most city names here are plain text: those cities have no page, and a link
+   to a URL that 301s elsewhere is worth less than no link at all. The four
+   that do have pages are linked, because this band is the main internal path
+   to them — /studio-city-seo and /glendale-seo in particular were brand new
+   when this was written, and an orphaned page is one Google has no reason to
+   crawl. "& Beyond!" still goes to the Los Angeles page, which owns the
+   coverage claim for everything unlinked. */
+
+// Cities with a real page, mapped to it. Anything not in here renders as text.
+const AREA_LINKS = {
+  Glendale: '/glendale-seo',
+  'Studio City': '/studio-city-seo',
+  'Van Nuys': '/van-nuys-seo',
+};
 
 const AREAS = [
   'Burbank',
@@ -31,7 +43,11 @@ export default function LocalAreas({
         <ul className="mw-local-areas__columns">
           {areas.map((area) => (
             <li key={area} className="mw-local-areas__item">
-              {area}
+              {AREA_LINKS[area] ? (
+                <a href={AREA_LINKS[area]}>{area}</a>
+              ) : (
+                area
+              )}
             </li>
           ))}
         </ul>

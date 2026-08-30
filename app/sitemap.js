@@ -3,6 +3,7 @@ import { SERVICE_LINKS } from '../lib/serviceIndex';
 import { CASE_STUDIES } from '../lib/work';
 import { GLOSSARY } from '../lib/glossary';
 import { SOLUTION_SLUGS, solutionPath } from '../lib/solutions';
+import { LIVE_AREAS } from '../lib/areas';
 
 const BASE_URL = 'https://www.gobiya.com';
 
@@ -43,6 +44,13 @@ export default function sitemap() {
     url: `${BASE_URL}${path}`,
   }));
 
+  // The service-area pages, from the same list the routes read, so a city
+  // gaining or losing a liveSlug never leaves the sitemap advertising a URL
+  // that 301s somewhere else.
+  const areaRoutes = LIVE_AREAS.map((a) => ({
+    url: `${BASE_URL}/${a.liveSlug}`,
+  }));
+
   const serviceRoutes = SERVICE_LINKS.map((s) => ({
     url: `${BASE_URL}${s.href}`,
   }));
@@ -66,6 +74,7 @@ export default function sitemap() {
 
   return [
     ...staticRoutes,
+    ...areaRoutes,
     ...serviceRoutes,
     ...solutionRoutes,
     ...insightRoutes,

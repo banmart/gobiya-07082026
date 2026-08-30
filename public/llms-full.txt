@@ -49,8 +49,9 @@
 ### 8. AI & LLM Systems Consulting (`/services/ai-consulting`)
 - Business AI readiness audits, workflow automation, and custom model context tools.
 
-## Geographic Coverage (`/los-angeles-seo`, `/van-nuys-seo`)
+## Geographic Coverage (`/los-angeles-seo`, `/van-nuys-seo`, `/studio-city-seo`, `/glendale-seo`)
 - **Primary Market**: Los Angeles and Greater Southern California.
+- **Dedicated City Pages**: Studio City (`/studio-city-seo`) and Glendale (`/glendale-seo`) have their own service pages; all other cities below are covered by `/los-angeles-seo`.
 - **Cities & Neighborhoods Served**: Burbank, Glendale, Hollywood, Silver Lake, Studio City, Sherman Oaks, Koreatown, Echo Park, Los Feliz, Downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Encino, Woodland Hills, Northridge, Culver City, Van Nuys, Long Beach, and Anaheim.
 
 ## Interactive AI Capabilities (`/mcp`)
@@ -62,6 +63,8 @@
 - Services Index: https://www.gobiya.com/services
 - Los Angeles SEO: https://www.gobiya.com/los-angeles-seo
 - Van Nuys SEO: https://www.gobiya.com/van-nuys-seo
+- Studio City SEO: https://www.gobiya.com/studio-city-seo
+- Glendale SEO: https://www.gobiya.com/glendale-seo
 - Insights & Articles: https://www.gobiya.com/insights
 - Search & AI Glossary: https://www.gobiya.com/glossary
 - Free Online Tools: https://www.gobiya.com/tools
