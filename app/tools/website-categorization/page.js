@@ -2,8 +2,8 @@ import { buildMetadata } from '../../../lib/meta';
 import WebCatTool from './WebCatTool';
 
 export const metadata = buildMetadata({
-  title: 'Free Website Categorization Tool | Gobiya',
-  description: 'Instantly sort any website into standard industry categories, powered by AI. Free tool, no signup required.',
+  title: 'Website Categorization | See How the Web Reads You | Gobiya',
+  description: 'Free website categorization — see instantly how security filters, ad networks, and AI content analyzers classify any domain, and whether it matches.',
   path: '/tools/website-categorization',
 });
 

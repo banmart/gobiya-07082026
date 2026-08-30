@@ -292,7 +292,7 @@ function ContactBlock({ id }) {
           {state === 'error' && (
             <p className="scan-cta__error">
               That did not send. Call <a href="tel:+13237441338">323-744-1338</a> or email{' '}
-              <a href="mailto:hello@gobiya.com">hello@gobiya.com</a>.
+              <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
             </p>
           )}
         </form>
@@ -300,7 +300,7 @@ function ContactBlock({ id }) {
 
       <p className="scan-cta__alt">
         Or reach us directly: <a href="tel:+13237441338">323-744-1338</a> ·{' '}
-        <a href="mailto:hello@gobiya.com">hello@gobiya.com</a>
+        <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>
       </p>
     </div>
   );

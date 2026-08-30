@@ -192,9 +192,9 @@ export default function FreeSiteScanApp() {
       {phase === 'input' && (
         <div className="fss-hero-box">
           <div className="fss-badge">Real-Time Domain &amp; AI Audit</div>
-          <h1 className="fss-hero-title">Find Out Why You’re Not Being Found, Free</h1>
+          <h1 className="fss-hero-title">Free Site Scan: Find Out Why You’re Not Being Found</h1>
           <p className="fss-hero-subtitle">
-            Enter your domain to instantly scan your website for Core Web Vitals, on-page SEO, security, and AI search readiness (ChatGPT, Perplexity &amp; Google Overviews).
+            Enter your domain and the free site scan checks your Core Web Vitals, on-page SEO, security, and AI search readiness (ChatGPT, Perplexity &amp; Google Overviews) in about a minute.
           </p>
 
           <form className="fss-url-form" onSubmit={startScan} noValidate>
@@ -354,7 +354,7 @@ export default function FreeSiteScanApp() {
                   We have received your project details. Steve will review your requirements and reach out within 24 business hours to discuss your new website build.
                 </p>
                 <p className="fss-direct-contact">
-                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:hello@gobiya.com">hello@gobiya.com</a>.
+                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
                 </p>
               </div>
             ) : (
@@ -593,7 +593,7 @@ export default function FreeSiteScanApp() {
                   We have emailed your site report to <strong>{leadForm.email}</strong> and attached it to your consultation request. Steve will review your website data and reach out within 24 business hours.
                 </p>
                 <p className="fss-direct-contact">
-                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:hello@gobiya.com">hello@gobiya.com</a>.
+                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
                 </p>
               </div>
             ) : (

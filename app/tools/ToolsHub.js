@@ -92,8 +92,8 @@ export default function ToolsHub() {
       {/* ══ Hero — Image Background ONLY ══ */}
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">Answers About Your Site in Seconds, Free</h1>
-          <p className="lede">Free tools anyone can use to check a domain&apos;s details, security, and reputation — the same kind of research we do ourselves before taking on a new client.</p>
+          <h1 className="statement">Free SEO Tools — Answers About Your Site in Seconds</h1>
+          <p className="lede">Free SEO tools anyone can use to check a domain&apos;s details, security, and reputation — the same research we do ourselves before taking on a new client.</p>
         </div>
       </section>
 

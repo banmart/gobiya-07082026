@@ -55,7 +55,7 @@ export async function POST(request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
   if (!checkRateLimit(ip, 'site-scan', 6, 24)) {
     return NextResponse.json(
-      { error: 'You have reached the scan limit for today. Email hello@gobiya.com and we will run it for you.' },
+      { error: 'You have reached the scan limit for today. Email steve@gobiya.com and we will run it for you.' },
       { status: 429 }
     );
   }

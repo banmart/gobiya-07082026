@@ -163,7 +163,7 @@ export default function OnboardingStepper() {
         <span style={{ color: 'var(--text-muted)' }}>Prefer a direct quick response?</span>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <a href="tel:+13237441338" style={{ fontWeight: 600, color: 'var(--main)', textDecoration: 'none' }}>📞 323-744-1338</a>
-          <a href="mailto:hello@gobiya.com" style={{ fontWeight: 600, color: 'var(--text)', textDecoration: 'none' }}>✉️ hello@gobiya.com</a>
+          <a href="mailto:steve@gobiya.com" style={{ fontWeight: 600, color: 'var(--text)', textDecoration: 'none' }}>✉️ steve@gobiya.com</a>
         </div>
       </div>
 

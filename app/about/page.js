@@ -8,9 +8,9 @@ import { buildMetadata } from '../../lib/meta';
 import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'About Gobiya | 16 Years of Honest Search Engineering & Web Design',
+  title: 'About Gobiya | 16 Years of Getting LA Businesses Found',
   description:
-    'Founded in 2010 by Steve Martin, Gobiya delivers transparent search growth, fast Next.js web builds, and AI citation authority without lock-in contracts.',
+    'About Gobiya: since 2009, a Los Angeles team that answers its own phone and does its own work — honest search growth, fast web builds, no lock-in deals.',
   path: '/about',
 });
 
@@ -28,9 +28,9 @@ export default function AboutPage() {
           { label: 'What We Do' },
         ]}
         eyebrow="About Gobiya · Los Angeles Since 2009"
-        title="16 Years of Getting Los Angeles Businesses Found"
+        title="About Gobiya: 16 Years of Getting Los Angeles Businesses Found"
         excerpt="Expert Service in Los Angeles and the San Fernando Valley"
-        dek="Technical SEO, AI search, and web architecture for local businesses — same team on every job, no account managers in between."
+        dek="About Gobiya in one line: technical SEO, AI search, and web architecture for local businesses — same team on every job, no account managers in between."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Meet Steve Martin', href: '/about/steve-martin' }}
       />

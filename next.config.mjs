@@ -24,15 +24,15 @@ const nextConfig = {
       { source: '/web-development-services-los-angeles', destination: '/services/web-dev', permanent: true },
       { source: '/ai-consulting-services-los-angeles', destination: '/services/ai-consulting', permanent: true },
 
-      // ── Areas We Serve sub-pages → index (2026-08-05) ──
-      // The individual /areas-we-serve/[city] pages are being retired in favour
-      // of the single /areas-we-serve listing page, which covers all locations
-      // honestly with one authoritative areaServed schema block. Every city slug
-      // 301s to the index so existing inbound links and any indexed city URLs
-      // consolidate their signal there rather than stranding on a dead page.
-      // The silver-lake → silverlake hop is absorbed into this wildcard, since
-      // both now land on /areas-we-serve.
-      { source: '/areas-we-serve/:city', destination: '/areas-we-serve', permanent: true },
+      // ── Areas We Serve retired entirely (2026-08-30) ──
+      // /areas-we-serve was a bare city list with no page-level topic of its
+      // own. /los-angeles-seo now owns the same coverage claim on a page that
+      // actually targets a keyword, so the index, the [city] sub-pages, and
+      // every legacy city slug elsewhere in this file all 301 straight there —
+      // one hop, no chains. The silver-lake → silverlake hop is absorbed into
+      // the wildcard, since both now land on the same destination.
+      { source: '/areas-we-serve', destination: '/los-angeles-seo', permanent: true },
+      { source: '/areas-we-serve/:city', destination: '/los-angeles-seo', permanent: true },
 
       // ── Legacy URLs still in Google's index that were returning 404 ──
       // Found 2026-07-25 by checking what actually surfaces for gobiya.com in
@@ -109,10 +109,10 @@ const nextConfig = {
       // the two AI-framed ones -> /ai-visibility. A city page redirecting to
       // the homepage passes essentially nothing; redirecting it to the service
       // it was actually about at least keeps the topic aligned.
-      { source: '/glendale-seo', destination: '/areas-we-serve', permanent: true },
-      { source: '/local-seo-glendale', destination: '/areas-we-serve', permanent: true },
-      { source: '/locations/glendale-seo', destination: '/areas-we-serve', permanent: true },
-      { source: '/industries/local-service/glendale-seo', destination: '/areas-we-serve', permanent: true },
+      { source: '/glendale-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/local-seo-glendale', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations/glendale-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/industries/local-service/glendale-seo', destination: '/los-angeles-seo', permanent: true },
       { source: '/seo-company-encino', destination: '/services/technical-seo', permanent: true },
       { source: '/locations/encino', destination: '/services/technical-seo', permanent: true },
       { source: '/industries/local-service/encino-seo', destination: '/services/technical-seo', permanent: true },
@@ -236,33 +236,31 @@ const nextConfig = {
       // their original /insights/<slug> URL. They're now rebuilt as real articles at that exact
       // same slug in lib/insights.js, so the redirect entries are gone — the URL just serves the
       // real page again.
-      // ── Areas We Serve — redirect old /locations/* city slugs and
-      // bare city SEO slugs to the new /areas-we-serve/<city> canonical pages
-      // Old bare city-SEO slugs and /locations/* → now all go to /areas-we-serve
-      // (the /areas-we-serve/:city wildcard above already catches any direct hit
-      //  on the old city sub-page; these cover the legacy flat & /locations paths)
-      { source: '/locations/burbank', destination: '/areas-we-serve', permanent: true },
-      { source: '/local-seo-company-burbank', destination: '/areas-we-serve', permanent: true },
-      { source: '/industries/local-service/burbank-seo', destination: '/areas-we-serve', permanent: true },
-      { source: '/locations/silverlake', destination: '/areas-we-serve', permanent: true },
-      { source: '/industries/local-service/silverlake-seo', destination: '/areas-we-serve', permanent: true },
-      { source: '/locations/studio-city', destination: '/areas-we-serve', permanent: true },
-      { source: '/industries/local-service/studio-city-seo', destination: '/areas-we-serve', permanent: true },
-      { source: '/locations/sherman-oaks', destination: '/areas-we-serve', permanent: true },
-      { source: '/industries/local-service/sherman-oaks-seo', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-silverlake', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-burbank', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-hollywood', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-studio-city', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-koreatown', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-downtown-la', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-echo-park', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-los-feliz', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-sherman-oaks', destination: '/areas-we-serve', permanent: true },
-      { source: '/seo-glendale', destination: '/areas-we-serve', permanent: true },
-      { source: '/locations/glendale', destination: '/areas-we-serve', permanent: true },
-      { source: '/areas-served', destination: '/areas-we-serve', permanent: true },
-      { source: '/locations', destination: '/areas-we-serve', permanent: true },
+      // ── Old /locations/* city slugs and bare city SEO slugs ──
+      // These used to land on /areas-we-serve. That page is gone (2026-08-30),
+      // so they go direct to /los-angeles-seo rather than through it.
+      { source: '/locations/burbank', destination: '/los-angeles-seo', permanent: true },
+      { source: '/local-seo-company-burbank', destination: '/los-angeles-seo', permanent: true },
+      { source: '/industries/local-service/burbank-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations/silverlake', destination: '/los-angeles-seo', permanent: true },
+      { source: '/industries/local-service/silverlake-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations/studio-city', destination: '/los-angeles-seo', permanent: true },
+      { source: '/industries/local-service/studio-city-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations/sherman-oaks', destination: '/los-angeles-seo', permanent: true },
+      { source: '/industries/local-service/sherman-oaks-seo', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-silverlake', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-burbank', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-hollywood', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-studio-city', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-koreatown', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-downtown-la', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-echo-park', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-los-feliz', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-sherman-oaks', destination: '/los-angeles-seo', permanent: true },
+      { source: '/seo-glendale', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations/glendale', destination: '/los-angeles-seo', permanent: true },
+      { source: '/areas-served', destination: '/los-angeles-seo', permanent: true },
+      { source: '/locations', destination: '/los-angeles-seo', permanent: true },
 
       // ── Generic /seo-services/:slug fallback -> /services/:slug ── MUST stay last.
       { source: '/seo-services/:slug', destination: '/services/:slug', permanent: true },

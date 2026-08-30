@@ -11,9 +11,9 @@ import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 // The title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO & Marketing | The Valley & Glendale | Gobiya',
+  title: 'Gobiya -  Digital marketing for every touchpoint.',
   description:
-    'Get top-ranking Los Angeles and San Fernando Valley SEO services when you contact Gobiya SEO today. We also offer free, online audits. Call now!',
+    'Digital marketing that meets your buyers at every touchpoint — Google, AI answers, maps, and ads. Free Los Angeles site audit. Call now!',
   path: '/',
 });
 
@@ -47,9 +47,9 @@ export default function Home() {
       {/* ══ 1. Hero ══ */}
       <PageHero
         badge="Proudly Serving Los Angeles Since 2009"
-        title="Built on Experience. Backed by Data."
+        title="Digital Marketing for Every Touchpoint"
         accent="Celebrating Over 15 Years of Strategic Digital Growth!"
-        dek="When in Doubt, Call Gobiya Out! Expert SEO, GEO, Web Architecture & Conversion Solutions You Can Rely On for Any Business."
+        dek="Digital marketing that reaches your buyers everywhere they look — Google, AI answers, maps, and ads. Expert SEO, GEO, web architecture, and conversion solutions you can rely on for any business."
         primary={{ text: 'Get Your Analysis', href: '/free-site-scan' }}
         secondary={{ text: 'Contact Us', href: '/contact' }}
       />
@@ -92,7 +92,7 @@ export default function Home() {
       <section className="gb-trusted">
         <div className="container">
           <h2 className="gb-trusted__title">
-            Trusted Los Angeles SEO &amp; Conversion Specialists
+            Trusted Los Angeles Digital Marketing &amp; Conversion Specialists
           </h2>
           <p className="gb-trusted__sub">
             Professional Search Engine Optimization &amp; Development Since 2009

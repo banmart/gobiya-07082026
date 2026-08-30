@@ -7,9 +7,9 @@ import ClientLogos from '../../../components/ClientLogos';
 import { heroImage } from '../../../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Our SEO Process | How Gobiya Works With Clients',
+  title: 'Our Approach to SEO | A Process, Not a Black Box | Gobiya',
   description:
-    'How Gobiya works: fix the technical basics first, report on real results you can see, and follow a clear process — not an open-ended bill.',
+    'Our approach to SEO: fix the technical basics first, report results you can actually see, and follow a documented process — not an open-ended bill.',
   path: '/about/approach',
 });
 
@@ -26,9 +26,9 @@ export default function ApproachPage() {
           { label: 'Our Approach' },
         ]}
         eyebrow="Our Approach · Confidentiality & Security"
-        title="An SEO Process That Takes the Guesswork Out of Rankings"
+        title="Our Approach: An SEO Process That Takes the Guesswork Out"
         excerpt="A Documented Method, Used on Every Los Angeles Engagement"
-        dek="How we scope the work, protect your data and your logins, and report on what actually changed. Nothing here is a black box."
+        dek="Our approach, start to finish: how we scope the work, protect your data and your logins, and report on what actually changed. Nothing here is a black box."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

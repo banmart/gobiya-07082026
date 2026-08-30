@@ -34,8 +34,8 @@ export default function SSLTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">Know Your Padlock Will Still Be There Tomorrow</h1>
-          <p className="lede">Check whether a website&apos;s security certificate is valid, see which other domains it covers, and verify who issued it.</p>
+          <h1 className="statement">SSL Certificate Check: Know Your Padlock Will Still Be There Tomorrow</h1>
+          <p className="lede">Check any SSL certificate to confirm it is valid, see which other domains it covers, and verify who issued it and when it expires.</p>
         </div>
       </section>
 

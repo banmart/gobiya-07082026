@@ -37,7 +37,6 @@ export default function sitemap() {
     '/tools/website-categorization',
     '/mcp',
     '/process',
-    '/areas-we-serve',
     '/van-nuys-seo',
     '/los-angeles-seo',
   ].map((path) => ({

@@ -184,7 +184,7 @@ export default function ContactForm() {
         {status === 'error' && (
           <p className="mw-cform__error" role="alert">
             {errorMsg} You can also email{' '}
-            <a href="mailto:hello@gobiya.com">hello@gobiya.com</a>.
+            <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
           </p>
         )}
 

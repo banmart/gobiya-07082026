@@ -2,8 +2,8 @@ import { buildMetadata } from '../../../lib/meta';
 import SSLTool from './SSLTool';
 
 export const metadata = buildMetadata({
-  title: 'Free SSL Certificate Checker | Gobiya',
-  description: 'Check whether a website\'s security certificate is valid, who issued it, and when it expires. Free tool, no signup required.',
+  title: 'SSL Certificate Checker | Your Padlock, Verified | Gobiya',
+  description: "Free SSL certificate checker — confirm a site's certificate is valid, see who issued it, which domains it covers, and exactly when it expires.",
   path: '/tools/ssl-certificates',
 });
 

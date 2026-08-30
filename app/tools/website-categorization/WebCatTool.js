@@ -40,8 +40,8 @@ export default function WebCatTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">See How the Rest of the Web Classifies Your Site</h1>
-          <p className="lede">See how security filters, ad networks, and AI content analyzers classify any domain.</p>
+          <h1 className="statement">Website Categorization: See How the Rest of the Web Classifies Your Site</h1>
+          <p className="lede">Free website categorization sorts any domain into standard industry categories — the same way security filters, ad networks, and AI content analyzers see it.</p>
         </div>
       </section>
 

@@ -5,9 +5,9 @@ import ClientLogos from '../../components/ClientLogos';
 import InsightsArchive from '../../components/InsightsArchive';
 
 export const metadata = buildMetadata({
-  title: 'Insights — Search & AI Visibility Guides',
+  title: 'SEO Insights | Plain-English Search & AI Guides | Gobiya',
   description:
-    'Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy from the Gobiya team.',
+    'SEO insights in plain English: guides on technical SEO, algorithm recovery, AI visibility (GEO), and local search — written by the people doing the work.',
   path: '/insights',
 });
 
@@ -25,9 +25,9 @@ export default function InsightsPage() {
       <SubHero
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Insights' }]}
         eyebrow="Knowledge Base · Search & AI Visibility"
-        title="Plain-English Answers on Search and AI Visibility"
+        title="SEO Insights: Plain-English Answers on Search and AI Visibility"
         excerpt={`${ARCHIVE.length} Guides for Los Angeles Business Owners`}
-        dek="Practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written by the people doing the work."
+        dek="Insights and practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written by the people doing the work."
         primary={{ text: 'Get Your Analysis', href: '/free-site-scan' }}
         secondary={{ text: 'Contact Us', href: '/contact' }}
       />

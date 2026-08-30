@@ -11818,6 +11818,27 @@ html.a11y-high-contrast .nav__theme-btn {
   display: block;
 }
 
+/* Office photo in the location-page prose column. Same hairline frame as the
+   map beside it, so the two read as one pair. */
+.gb-office-photo {
+  margin: 1.75rem 0;
+}
+
+.gb-office-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.gb-office-photo figcaption {
+  margin-top: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-600);
+}
+
 /* ── prose ── */
 
 .gb-prose { max-width: 46rem; }

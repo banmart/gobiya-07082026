@@ -1,6 +1,7 @@
 /* The local-coverage band. All city sub-pages are retired, so the names are
    plain text on a hairline grid rather than links; the one link is on
-   "& Beyond!", which goes to the full coverage page. */
+   "& Beyond!", which goes to the Los Angeles SEO page — the coverage claim
+   now lives on a page that targets a keyword rather than on a bare city list. */
 
 const AREAS = [
   'Burbank',
@@ -36,7 +37,7 @@ export default function LocalAreas({
         </ul>
 
         <p className="mw-local-areas__beyond">
-          <a href="/areas-we-serve" className="mw-local-areas__beyond-link">
+          <a href="/los-angeles-seo" className="mw-local-areas__beyond-link">
             &amp; Beyond!
           </a>{' '}
           <span>(Greater Los Angeles Area &amp; San Fernando Valley)</span>

@@ -4,9 +4,9 @@ import { MYTHS, TOPICS, TOTAL_QUESTIONS } from '../../lib/seoMyths';
 import GameShell from './GameShell';
 
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO Myths vs Facts | Gobiya',
+  title: 'SEO Myths vs Facts | Settle 12 Claims in 3 Minutes | Gobiya',
   description:
-    'Test your search knowledge with our Los Angeles SEO myth-busting game. Learn what actually works for local rankings and traffic.',
+    'SEO myths, settled. Play the Los Angeles myth-or-fact game and find out what actually moves local rankings — and what has never worked at all.',
   path: '/seo-myths',
 });
 

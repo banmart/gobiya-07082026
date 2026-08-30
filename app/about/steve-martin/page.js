@@ -7,9 +7,9 @@ import { heroImage } from '../../../lib/heroImages';
 import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Steve Martin — Founder & Head of Strategy | Gobiya',
+  title: 'Steve Martin | Founder & Head of Strategy | Gobiya',
   description:
-    'Meet Steve Martin, founder of Gobiya. Over 30 years of web design, technical development, and SEO experience in Los Angeles.',
+    'Steve Martin founded Gobiya in Los Angeles. Thirty years of web design, technical development, and SEO — and he is the person who actually does your work.',
   path: '/about/steve-martin',
 });
 
@@ -43,9 +43,9 @@ export default function SteveMartinPage() {
           { label: 'Steve Martin' },
         ]}
         eyebrow="Leadership · Founder & Head of Search Strategy"
-        title="The SEO Professional Who Actually Does Your Work"
+        title="Steve Martin: The SEO Professional Who Actually Does Your Work"
         excerpt="Fifteen Years of Hands-On Search Work in Los Angeles"
-        dek="Steve answers the phone, runs the audit, and writes the plan. The person you talk to is the person doing the work."
+        dek="Steve Martin answers the phone, runs the audit, and writes the plan. The person you talk to is the person doing the work."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

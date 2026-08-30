@@ -7,9 +7,9 @@ import { heroImage } from '../../lib/heroImages';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Our Work | Los Angeles SEO Client Results & Case Studies',
+  title: 'Our Work | Los Angeles SEO Case Studies & Results | Gobiya',
   description:
-    'See real case studies and search growth results from our Los Angeles SEO agency. Learn how we help California businesses grow online.',
+    'Our work, with the numbers attached: Los Angeles SEO case studies showing what changed on each site and what Search Console said afterwards.',
   path: '/work',
 });
 
@@ -21,9 +21,9 @@ export default function WorkPage() {
         image={heroImage(13)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Work' }]}
         eyebrow="Client Work · Los Angeles & Southern California"
-        title="See What Getting Found Actually Looks Like"
+        title="Our Work: See What Getting Found Actually Looks Like"
         excerpt="Real Results for Real Businesses Across Los Angeles"
-        dek="Case studies with the numbers attached — what the site looked like before, what we changed, and what Search Console said afterwards."
+        dek="Our work, with the numbers attached — what each site looked like before, what we changed, and what Search Console said afterwards."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

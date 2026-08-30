@@ -40,8 +40,8 @@ export default function ReputationTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">Know a Domain Is Safe Before You Trust It</h1>
-          <p className="lede">Instantly check any domain for spam flags, malware warnings, and email blacklist reports across security blocklists.</p>
+          <h1 className="statement">Domain Reputation: Know a Domain Is Safe Before You Trust It</h1>
+          <p className="lede">Check any domain&apos;s reputation instantly for spam flags, malware warnings, and email blacklist reports across the major security blocklists.</p>
         </div>
       </section>
 

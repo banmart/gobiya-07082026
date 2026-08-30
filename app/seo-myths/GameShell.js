@@ -15,7 +15,7 @@ export default function GameShell({ children }) {
         <div className="container container--narrow">
           <Breadcrumbs inHero items={[{ label: 'Home', href: '/' }, { label: 'seo-myths' }]} />
           <h1 className="myth-title">
-            Los Angeles SEO: Myth or <em>Fact</em>
+            Los Angeles SEO Myths or <em>Facts</em>
           </h1>
           <MythGame onFinish={onFinish} />
         </div>

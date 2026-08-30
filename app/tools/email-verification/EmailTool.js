@@ -34,8 +34,8 @@ export default function EmailTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">Know an Address Is Real Before You Hit Send</h1>
-          <p className="lede">Check whether an email address is real and can actually receive mail, to help protect your sender reputation.</p>
+          <h1 className="statement">Email Verification: Know an Address Is Real Before You Hit Send</h1>
+          <p className="lede">Run free email verification on any address to check whether it is real and can actually receive mail — and protect your sender reputation.</p>
         </div>
       </section>
 

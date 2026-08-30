@@ -40,8 +40,8 @@ export default function ThreatTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">Spot a Threat Before It Reaches Your Business</h1>
-          <p className="lede">Check an IP or domain against global security feeds to catch active threats, malware flags, and suspicious network activity.</p>
+          <h1 className="statement">Threat Intelligence: Spot a Threat Before It Reaches Your Business</h1>
+          <p className="lede">Run a free threat intelligence check on any IP or domain against global security feeds to catch active threats, malware flags, and suspicious network activity.</p>
         </div>
       </section>
 

@@ -3,9 +3,9 @@ import CopyButton from '../../components/CopyButton';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = buildMetadata({
-  title: 'MCP Server for AI Agents',
+  title: 'MCP Server for AI Agents | Free Tools, No API Key | Gobiya',
   description:
-    "Gobiya's public MCP server — free SEO/domain lookup tools, lead-gen forms, and our full content library, callable by any Model Context Protocol client.",
+    "An MCP server your AI agent can call today — free SEO and domain lookup tools, lead-gen forms, and our full content library. One URL, no API key.",
   path: '/mcp',
 });
 
@@ -39,6 +39,22 @@ const CURL_SNIPPET = `curl -X POST ${MCP_URL} \\
 export default function McpPage() {
   return (
     <main id="top">
+
+      {/* The page carried no h1 — it opened on the "One URL" h2. The heading
+          and the line under it are the page's only prose above the fold, so
+          they carry the keyword. */}
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'MCP Server' }]} />
+          <h1 className="statement">An MCP Server Your AI Agent Can Call Today</h1>
+          <p className="lede">
+            Gobiya&rsquo;s public MCP server gives any Model Context Protocol client
+            nine live tools &mdash; DNS, WHOIS, SSL, reputation, threat and
+            categorisation lookups, plus our lead forms and full content library.
+            One URL, no API key, no account.
+          </p>
+        </div>
+      </section>
 
       <section className="section section--tint" id="connect">
         <div className="container container--narrow">

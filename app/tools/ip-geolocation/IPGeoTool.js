@@ -34,8 +34,8 @@ export default function IPGeoTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">See Exactly Where an IP Address Sits on the Map</h1>
-          <p className="lede">Run a GEO IP lookup on any address and find out roughly where it is located and which internet provider it belongs to. IP geolocation free, with no signup.</p>
+          <h1 className="statement">IP Geolocation: See Exactly Where an Address Sits on the Map</h1>
+          <p className="lede">Run a free IP geolocation lookup on any address and find out roughly where it is located and which internet provider it belongs to. No signup.</p>
         </div>
       </section>
 

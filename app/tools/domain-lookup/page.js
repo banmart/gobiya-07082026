@@ -2,8 +2,8 @@ import { buildMetadata } from '../../../lib/meta';
 import DomainLookupTool from './DomainLookupTool';
 
 export const metadata = buildMetadata({
-  title: 'Free WHOIS Domain Lookup Tool | Gobiya',
-  description: 'Free tool to check if a domain is available, who registered it, when, and which servers manage it. No signup required.',
+  title: 'Domain Lookup | Know Who Owns It Before You Bid | Gobiya',
+  description: 'Free WHOIS domain lookup — find out instantly whether a domain is available, who registered it, when, and which servers manage it. No signup.',
   path: '/tools/domain-lookup',
 });
 

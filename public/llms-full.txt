@@ -7,7 +7,7 @@
 - **Founder & Lead Strategist**: Steve Martin (25+ years in web development, search engine optimization, and system architecture)
 - **Headquarters**: 3580 Wilshire Blvd, Ste 132, Los Angeles, CA 90010
 - **Phone**: +1-323-744-1338
-- **Email**: hello@gobiya.com
+- **Email**: steve@gobiya.com
 - **Website**: https://www.gobiya.com
 - **Ratings & Credentials**: BBB A+ Rated, Google Partner (2015–2019)
 - **Contract Terms**: Month-to-month, no long-term contracts, no minimum commitments.
@@ -49,7 +49,7 @@
 ### 8. AI & LLM Systems Consulting (`/services/ai-consulting`)
 - Business AI readiness audits, workflow automation, and custom model context tools.
 
-## Geographic Coverage (`/areas-we-serve`)
+## Geographic Coverage (`/los-angeles-seo`, `/van-nuys-seo`)
 - **Primary Market**: Los Angeles and Greater Southern California.
 - **Cities & Neighborhoods Served**: Burbank, Glendale, Hollywood, Silver Lake, Studio City, Sherman Oaks, Koreatown, Echo Park, Los Feliz, Downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Encino, Woodland Hills, Northridge, Culver City, Van Nuys, Long Beach, and Anaheim.
 
@@ -60,7 +60,8 @@
 ## Official Canonical Web Addresses
 - Homepage: https://www.gobiya.com
 - Services Index: https://www.gobiya.com/services
-- Local Areas: https://www.gobiya.com/areas-we-serve
+- Los Angeles SEO: https://www.gobiya.com/los-angeles-seo
+- Van Nuys SEO: https://www.gobiya.com/van-nuys-seo
 - Insights & Articles: https://www.gobiya.com/insights
 - Search & AI Glossary: https://www.gobiya.com/glossary
 - Free Online Tools: https://www.gobiya.com/tools

@@ -4,9 +4,9 @@ import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Contact Us | Los Angeles SEO Agency',
+  title: 'Contact Us | Talk Straight to a Los Angeles SEO | Gobiya',
   description:
-    'Contact Gobiya SEO in Los Angeles. Direct founder access, quick response within 1 business day, & clear advice. Call 323-744-1338.',
+    'Contact Gobiya SEO in Los Angeles and talk straight to the founder — a real answer within one business day, no sales script. Call 323-744-1338.',
   path: '/contact',
 });
 
@@ -16,6 +16,22 @@ const DIRECTIONS_URL =
 export default function ContactPage() {
   return (
     <main id="top">
+
+      {/* ══ Page heading ══
+          The page carried no h1 at all — the form and the office card both
+          open on h2s. The heading and the line under it are the page's only
+          prose, so they carry the keyword. */}
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+          <h1 className="statement">Contact Us — Talk Straight to a Los Angeles SEO</h1>
+          <p className="lede">
+            Contact Gobiya and you reach the person who does the work, not a queue.
+            Tell us what your site is doing wrong and you&rsquo;ll get a straight
+            answer within one business day &mdash; no sales script, no obligation.
+          </p>
+        </div>
+      </section>
 
       {/* ══ Form + office details ══ */}
       <section className="mw-contact">
@@ -67,7 +83,7 @@ export default function ContactPage() {
                   Los Angeles, the San Fernando Valley, and the wider Southern California
                   region &mdash; plus remote clients nationwide.
                 </p>
-                <a className="mw-contact__action" href="/areas-we-serve">
+                <a className="mw-contact__action" href="/los-angeles-seo">
                   See Areas We Serve <span aria-hidden="true">→</span>
                 </a>
               </div>

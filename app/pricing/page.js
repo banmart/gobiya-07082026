@@ -8,9 +8,9 @@ import ClientLogos from '../../components/ClientLogos';
 import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO Services Pricing & Packages | Gobiya',
+  title: 'SEO Pricing & Packages | Know the Number Up Front | Gobiya',
   description:
-    'Clear, transparent pricing for Los Angeles SEO services, web development, PPC ad management, and AI visibility programs. Packages from $999/mo.',
+    'SEO pricing you can read without a sales call — Los Angeles packages for search, web development, PPC ad management, and AI visibility. From $999/mo.',
   path: '/pricing',
 });
 
@@ -97,9 +97,9 @@ export default function PricingPage() {
         image={heroImage(9)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'pricing' }]}
         eyebrow="Pricing · Transparent Monthly Plans"
-        title="Know Exactly What You’ll Pay Before You Say Yes"
+        title="SEO Pricing You Can Read Before You Say Yes"
         excerpt="Straightforward Pricing for Los Angeles and the San Fernando Valley"
-        dek="Every plan and every add-on, with the price on it. Month to month, no long-term contracts, and a free audit before you commit to anything."
+        dek="Our pricing, in full: every plan and every add-on with the number on it. Month to month, no long-term contracts, and a free audit before you commit to anything."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

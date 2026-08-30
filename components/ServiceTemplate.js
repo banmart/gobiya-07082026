@@ -272,7 +272,7 @@ export default function ServiceTemplate({ service }) {
               ))}
             </ul>
             <p className="mw-local-areas__beyond">
-              <a href="/areas-we-serve" className="mw-local-areas__beyond-link">
+              <a href="/los-angeles-seo" className="mw-local-areas__beyond-link">
                 &amp; Beyond!
               </a>{' '}
               <span>(Greater Los Angeles Area &amp; San Fernando Valley)</span>

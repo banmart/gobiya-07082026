@@ -5,9 +5,9 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import { buildMetadata } from '../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'SEO & AI Search Glossary | Plainly Defined',
+  title: 'SEO Glossary | Search & AI Terms, Plainly Defined | Gobiya',
   description:
-    'Definitions for technical SEO, AI citations, GEO, web development, and Google Ads terms — plain English, written for site owners.',
+    'An SEO glossary in plain English — every term across technical SEO, AI citations, GEO, web development, and Google Ads, defined for site owners.',
   path: '/glossary',
 });
 
@@ -35,7 +35,23 @@ export default function GlossaryPage() {
 
       <TopicMarquee topics={["AI & GEO Terms", "Website & Technical Terms", "SEO Terms", "PPC & Google Ads Terms"]} />
 
-      <section className="section" id="terms">
+      {/* The page carried no h1 — the index below opens straight on the A/B/C
+          letter headings. The heading and the line under it are the page's
+          only prose, so they carry the keyword. */}
+      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
+        <div className="container container--narrow">
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Glossary' }]} />
+          <h1 className="statement">SEO Glossary: Search and AI Terms, Plainly Defined</h1>
+          <p className="lede">
+            An SEO glossary written for site owners, not for other agencies. Every
+            term covers technical SEO, AI citations, GEO, web development, and
+            Google Ads &mdash; defined in one sentence you can act on, then
+            explained in full.
+          </p>
+        </div>
+      </section>
+
+      <section className="section" id="terms" style={{ paddingTop: 0 }}>
         <div className="container container--narrow">
           <GlossaryIndex terms={GLOSSARY} />
         </div>

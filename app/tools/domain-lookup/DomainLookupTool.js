@@ -36,8 +36,8 @@ export default function DomainLookupTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">Know Who Owns a Domain Before You Make an Offer</h1>
-          <p className="lede">Look up any domain to instantly see if it&apos;s available, who registered it, when, and which servers manage it.</p>
+          <h1 className="statement">Domain Lookup: Know Who Owns a Domain Before You Make an Offer</h1>
+          <p className="lede">Run a free WHOIS domain lookup to instantly see if a name is available, who registered it, when, and which servers manage it.</p>
         </div>
       </section>
 

@@ -158,9 +158,9 @@ export default function MythGame({ onFinish }) {
     return (
       <div className="myth-game myth-game--intro">
         <p className="myth-intro__lede">
-          Twelve claims about SEO. Some are true, some are things people repeat because
-          they heard them somewhere. Call each one, then see what you should actually be
-          working on.
+          Twelve SEO myths people still repeat about local rankings. Some turn out to be
+          true, some are things they heard somewhere. Call each one, then see what you
+          should actually be working on.
         </p>
         <ul className="myth-intro__how">
           <li>Swipe left for myth, right for fact</li>

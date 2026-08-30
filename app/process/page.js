@@ -7,9 +7,9 @@ import ExcellenceGrid from '../../components/ExcellenceGrid';
 import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Our Proprietary Process for Business Growth | Gobiya',
+  title: 'Our SEO Process | Four Steps to Compounding Growth | Gobiya',
   description:
-    'Discover the Gobiya 4-Step Method: Assess, Prepare, Market, and Scale. Our proven search engineering and AI ranking framework for sustainable business growth.',
+    'Our SEO process in four steps — Assess, Prepare, Market, Scale. The same framework on every Los Angeles engagement, so you always know what comes next.',
   path: '/process',
 });
 
@@ -87,9 +87,9 @@ export default function ProcessPage() {
           { label: 'Our Process' },
         ]}
         eyebrow="Our Proven Growth Framework"
-        title="The Process That Turns Search Into Steady, Compounding Growth"
+        title="Our Process: Four Steps That Turn Search Into Steady Growth"
         excerpt="Four Steps, Run the Same Way on Every Engagement"
-        dek="We've spent over 16 years refining a structured 4-step framework that turns technical search engineering and AI optimization into reliable, compounding business growth."
+        dek="Our process is the same on every engagement: a structured 4-step framework, refined over 16 years, that turns technical search engineering and AI optimization into reliable, compounding business growth."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

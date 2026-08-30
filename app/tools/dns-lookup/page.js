@@ -2,8 +2,8 @@ import { buildMetadata } from '../../../lib/meta';
 import DNSLookupTool from './DNSLookupTool';
 
 export const metadata = buildMetadata({
-  title: 'Free DNS Lookup Tool | Check DNS Records Instantly',
-  description: 'Instantly look up a domain\'s DNS records to spot connection problems and verify server setup. Free tool, no signup required.',
+  title: 'DNS Lookup | See Where Your Domain Points, Free | Gobiya',
+  description: 'DNS lookup for any domain — see the A, MX, TXT, and NS records behind it, spot connection problems, and verify email setup. Free, no signup.',
   path: '/tools/dns-lookup',
 });
 

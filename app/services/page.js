@@ -9,9 +9,9 @@ import { buildMetadata } from '../../lib/meta';
 // keyword list is what keeps this from reading as a duplicate of the homepage
 // description, which is otherwise the same sentence.
 export const metadata = buildMetadata({
-  title: 'Los Angeles SEO Services | The Valley & Glendale | Gobiya',
+  title: 'Digital Marketing Services in Los Angeles | Gobiya',
   description:
-    'Get top-ranking Los Angeles and San Fernando Valley SEO, GEO, PPC and web services when you contact Gobiya today. Free online audits. Call now!',
+    'Digital marketing services for Los Angeles: technical SEO, AI search (GEO), content, digital PR, PPC, CRO, and web development. Free audit. Call now!',
   path: '/services',
 });
 
@@ -74,9 +74,9 @@ export default function ServicesPage() {
         image={heroImage(1)}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
         eyebrow="All Services · Los Angeles"
-        title="Every Service Engineered to Drive Search & Revenue Growth"
+        title="Digital Marketing Services Engineered for Search & Revenue Growth"
         excerpt="Expert Service in Los Angeles and the San Fernando Valley"
-        dek="Choose the capability your business requires. Explore clear scopes and technical execution standards."
+        dek="Nine digital marketing services, each with a clear scope and a technical execution standard you can hold us to. Choose the capability your business needs and see exactly what it covers."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import PageHero from './PageHero';
 import CommunityReviews from './CommunityReviews';
 import ClosingCta from './ClosingCta';
@@ -72,6 +73,23 @@ export default function LocationTemplate({ location }) {
             <div className="gb-body__main gb-prose">
               <h2>{location.name} Office</h2>
               <p>{location.intro}</p>
+
+              {/* Office photo. Optional per location — see `image` in
+                  lib/locations.js; a location without one renders nothing. */}
+              {location.image && (
+                <figure className="gb-office-photo">
+                  <Image
+                    src={location.image.src}
+                    width={location.image.width}
+                    height={location.image.height}
+                    alt={location.image.alt}
+                    sizes="(max-width: 900px) 100vw, 42rem"
+                  />
+                  {location.image.caption && (
+                    <figcaption>{location.image.caption}</figcaption>
+                  )}
+                </figure>
+              )}
 
               <p className="gb-prose__lead-in">What We Do From Here:</p>
               <ul className="gb-checklist">

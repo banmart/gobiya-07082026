@@ -51,8 +51,8 @@ export default function DNSLookupTool() {
     <main id="top">
       <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
         <div className="container container--narrow">
-          <h1 className="statement">See Exactly Where Your Domain Points, in Seconds</h1>
-          <p className="lede">Look up any domain&apos;s technical records to spot connection problems, check email setup, and see which servers it points to.</p>
+          <h1 className="statement">DNS Lookup: See Exactly Where Your Domain Points, in Seconds</h1>
+          <p className="lede">Run a free DNS lookup on any domain to spot connection problems, check email setup, and see which servers it points to.</p>
         </div>
       </section>
 

@@ -21,7 +21,7 @@ export async function POST(request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
   if (!checkRateLimit(ip, 'scan-start', 10, 24)) {
     return NextResponse.json(
-      { error: 'You have reached the scan limit for today. Email hello@gobiya.com for a manual audit.' },
+      { error: 'You have reached the scan limit for today. Email steve@gobiya.com for a manual audit.' },
       { status: 429 }
     );
   }
