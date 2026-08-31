@@ -232,16 +232,6 @@ export default function Header() {
         </div>
 
         <nav className="menu__links" aria-label="Mobile">
-          {TOP_NAV.map((item, i) => (
-            <div className="menu__block" key={item.href} style={{ '--i': i }}>
-              <div className="menu__row">
-                <a className="menu__row-link" href={item.href} onClick={closeMenu}>
-                  {item.label}
-                </a>
-              </div>
-            </div>
-          ))}
-
           {PRACTICE_NAV.map((item, i) => {
             const hasPanel = Array.isArray(item.items) && item.items.length > 0;
             const isExpanded = hasPanel && openSection === item.label;
@@ -251,7 +241,7 @@ export default function Header() {
               <div
                 className={`menu__block ${isExpanded ? 'is-open' : ''}`}
                 key={item.href}
-                style={{ '--i': TOP_NAV.length + i }}
+                style={{ '--i': i }}
               >
                 <div className="menu__row">
                   {/* Split control: the label navigates to the discipline page,
@@ -293,6 +283,16 @@ export default function Header() {
               </div>
             );
           })}
+
+          {TOP_NAV.map((item, i) => (
+            <div className="menu__block" key={item.href} style={{ '--i': PRACTICE_NAV.length + i }}>
+              <div className="menu__row">
+                <a className="menu__row-link" href={item.href} onClick={closeMenu}>
+                  {item.label}
+                </a>
+              </div>
+            </div>
+          ))}
         </nav>
 
         <div className="menu__foot">
