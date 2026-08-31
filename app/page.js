@@ -12,7 +12,7 @@ import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 // The title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
-  title: 'Gobiya | AI, SEO, Websites, Paid Ads (Los Angeles)',
+  title: 'Gobiya | AI, SEO, Websites, Paid Ads (Los Angeles & Van Nuys)',
   description:
     'Digital marketing that meets your buyers at every touchpoint — Google, AI answers, maps, and ads. Free Los Angeles site audit. Call now!',
   path: '/',
