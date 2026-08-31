@@ -54,7 +54,7 @@ export default async function AdminLeadsPage() {
                   <td>
                     <strong>{sub.name}</strong>
                     <br />
-                    <a href={`mailto:${sub.email}`} className="text-muted">
+                    <a href={`mailto:${sub.email}`} className="text-muted" title="Email this lead">
                       {sub.email}
                     </a>
                   </td>
@@ -62,7 +62,7 @@ export default async function AdminLeadsPage() {
                   <td>
                     {sub.company && <div>{sub.company}</div>}
                     {sub.website && (
-                      <a href={sub.website} target="_blank" rel="noreferrer" className="text-sm">
+                      <a href={sub.website} target="_blank" rel="noreferrer" className="text-sm" title="Visit this lead's website">
                         {sub.website.replace(/^https?:\/\//, '')}
                       </a>
                     )}

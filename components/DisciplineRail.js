@@ -36,6 +36,13 @@ const ICONS = {
       <circle cx="12" cy="12" r="0.6" fill="currentColor" />
     </>
   ),
+  pin: (
+    <>
+      <path d="M3 6.6l6-2.6v13.4l-6 2.6zM9 4l6 2.6M15 6.6v3.2M15 15.4v2.2l6-2.6V4l-6 2.6" />
+      <path d="M15 6.4a3.1 3.1 0 0 1 3.1 3.1c0 2.3-3.1 5.6-3.1 5.6s-3.1-3.3-3.1-5.6A3.1 3.1 0 0 1 15 6.4z" />
+      <circle cx="15" cy="9.5" r="0.9" />
+    </>
+  ),
   code: <path d="M9 8l-4 4 4 4M15 8l4 4-4 4" />,
   bars: <path d="M5 20V11M10 20V5M15 20v-6M20 20v-9" />,
 };
@@ -78,6 +85,7 @@ export default function DisciplineRail({ active = null }) {
                 href={d.href}
                 className={`gb-rail__item${d.slug === active ? ' is-active' : ''}`}
                 aria-current={d.slug === active ? 'page' : undefined}
+                title={`${d.label} services`}
               >
                 <span className="gb-rail__icon">
                   <Icon name={d.icon} size={26} />

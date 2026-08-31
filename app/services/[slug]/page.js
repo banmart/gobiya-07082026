@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import ServiceTemplate from '../../../components/ServiceTemplate';
-import { getService, servicePath, SERVICE_SLUGS } from '../../../lib/serviceIndex';
+import { getService, servicePath, SERVICE_SLUGS, keywordFromSlug } from '../../../lib/serviceIndex';
 import { buildMetadata } from '../../../lib/meta';
 
 export function generateStaticParams() {
@@ -14,9 +14,10 @@ export async function generateMetadata({ params }) {
   const service = getService(slug);
   if (!service) return {};
   return buildMetadata({
-    title: service.metaTitle,
+    title: keywordFromSlug(slug),
     description: service.metaDescription,
     path: servicePath(slug),
+    parent: 'Services',
   });
 }
 

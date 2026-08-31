@@ -7,10 +7,11 @@ import { heroImage } from '../../../lib/heroImages';
 import { buildMetadata } from '../../../lib/meta';
 
 export const metadata = buildMetadata({
-  title: 'Steve Martin | Founder & Head of Strategy | Gobiya',
+  title: 'Steve Martin',
   description:
     'Steve Martin founded Gobiya in Los Angeles. Thirty years of web design, technical development, and SEO — and he is the person who actually does your work.',
   path: '/about/steve-martin',
+  parent: 'About',
 });
 
 const STEVE_TOPICS = [
@@ -48,6 +49,7 @@ export default function SteveMartinPage() {
         dek="Steve Martin answers the phone, runs the audit, and writes the plan. The person you talk to is the person doing the work."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>}
       />
 
       {/* ══ 3. Pillar Hierarchical Grid (Left Sidebar + Right Column) ══ */}
@@ -60,6 +62,7 @@ export default function SteveMartinPage() {
                 key={t.id}
                 href={`#${t.id}`}
                 className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+                title={t.title}
               >
                 {t.title}
               </a>
@@ -108,7 +111,7 @@ export default function SteveMartinPage() {
             {STEVE_TOPICS.slice(1).map((t) => (
               <div key={t.id} id={t.id} className="mw-cluster-block">
                 <h2 className="mw-cluster-block__title">
-                  <a href="/process">{t.title}</a>
+                  <a href="/process" title={t.title}>{t.title}</a>
                 </h2>
                 <p className="mw-cluster-block__desc">
                   {t.desc}
@@ -128,7 +131,7 @@ export default function SteveMartinPage() {
           <h2 className="mw-navy-banner__title">
             Work directly with the person doing the work
           </h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" title="Schedule a Consultation" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

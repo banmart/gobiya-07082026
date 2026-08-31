@@ -2,7 +2,6 @@ import Image from 'next/image';
 import PageHero from './PageHero';
 import CommunityReviews from './CommunityReviews';
 import ClosingCta from './ClosingCta';
-import ExcellenceGrid from './ExcellenceGrid';
 import { AREA_SERVICES } from '../lib/areas';
 
 const BASE = 'https://www.gobiya.com';
@@ -57,11 +56,13 @@ export default function LocationTemplate({ location }) {
 
       {/* ══ 1. Hero ══ */}
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: location.name }]}
-        eyebrow={`SEO & Digital Marketing · ${location.name}`}
         title={location.h1}
-        accent={location.tagline}
         dek={location.dek}
+        icon={
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        }
         primary={{ text: 'Get Your Analysis', href: '/free-site-scan' }}
         secondary={{ text: `Call ${location.phone}`, href: location.phoneHref }}
       />
@@ -95,7 +96,7 @@ export default function LocationTemplate({ location }) {
               <ul className="gb-checklist">
                 {AREA_SERVICES.map((s) => (
                   <li key={s.title}>
-                    <a href={s.href} className="gb-checklist__title">
+                    <a href={s.href} className="gb-checklist__title" title={s.title}>
                       {s.title}
                     </a>
                     <span className="gb-checklist__desc">{s.desc}</span>
@@ -105,8 +106,8 @@ export default function LocationTemplate({ location }) {
 
               <p className="gb-prose__contact">
                 For immediate assistance,{' '}
-                <a href="/contact">contact us</a> or call{' '}
-                <a href={location.phoneHref}>{location.phone}</a>.
+                <a href="/contact" title="Contact Gobiya">contact us</a> or call{' '}
+                <a href={location.phoneHref} title={`Call Gobiya at ${location.phone}`}>{location.phone}</a>.
               </p>
             </div>
 
@@ -121,7 +122,7 @@ export default function LocationTemplate({ location }) {
                     <br />
                     {location.addressLocality}, {location.addressRegion} {location.postalCode}
                   </p>
-                  <a className="mw-contact__action" href={directionsUrl} target="_blank" rel="noopener noreferrer">
+                  <a className="mw-contact__action" href={directionsUrl} target="_blank" rel="noopener noreferrer" title="Get directions to this office">
                     Get Directions <span aria-hidden="true">→</span>
                   </a>
                 </div>
@@ -129,7 +130,7 @@ export default function LocationTemplate({ location }) {
                 <div className="mw-contact__block">
                   <h4 className="mw-contact__label">Phone</h4>
                   <p className="mw-contact__value">
-                    <a href={location.phoneHref}>{location.phone}</a>
+                    <a href={location.phoneHref} title={`Call Gobiya at ${location.phone}`}>{location.phone}</a>
                   </p>
                 </div>
 
@@ -145,12 +146,23 @@ export default function LocationTemplate({ location }) {
                 {location.reviewUrl && (
                   <div className="mw-contact__block mw-contact__block--last">
                     <h4 className="mw-contact__label">Reviews</h4>
-                    <a className="mw-contact__action" href={location.reviewUrl} target="_blank" rel="noopener noreferrer">
+                    <a className="mw-contact__action" href={location.reviewUrl} target="_blank" rel="noopener noreferrer" title="Leave a Google review for Gobiya">
                       Leave Us a Review <span aria-hidden="true">→</span>
                     </a>
                   </div>
                 )}
               </div>
+
+              {location.clients && location.clients.length > 0 && (
+                <div className="mw-contact__block mw-contact__block--last gb-location-clients">
+                  <h4 className="mw-contact__label">Local Clients</h4>
+                  <ul className="gb-location-clients__list">
+                    {location.clients.map((c) => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <div className="gb-office-map">
                 <iframe
@@ -181,8 +193,6 @@ export default function LocationTemplate({ location }) {
         phone={false}
       />
 
-      {/* ══ 5. The four standards ══ */}
-      <ExcellenceGrid />
     </main>
   );
 }

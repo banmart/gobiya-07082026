@@ -38,21 +38,21 @@ export default function LpThankYouPage() {
               <h3 className="mw-simple__col-title">See where you stand</h3>
               <p className="mw-simple__col-desc">
                 Run a free scan of your site and we&apos;ll show you what search engines and AI crawlers
-                can currently read. <a href="?onboarding=true">Start a free site scan</a>.
+                can currently read. <a href="?onboarding=true" title="Schedule a free strategy consultation">Start a free site scan</a>.
               </p>
             </div>
             <div>
               <h3 className="mw-simple__col-title">Read the guides</h3>
               <p className="mw-simple__col-desc">
                 Five books on search and AI visibility, free to download — including the technical
-                foundation behind every build we ship. <a href="/about">Browse the library</a>.
+                foundation behind every build we ship. <a href="/about" title="Browse the library">Browse the library</a>.
               </p>
             </div>
             <div>
               <h3 className="mw-simple__col-title">Check the work</h3>
               <p className="mw-simple__col-desc">
                 Real client outcomes with real numbers, not stock testimonials.{' '}
-                <a href="/work">See client stories</a>.
+                <a href="/work" title="See client stories">See client stories</a>.
               </p>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function LpThankYouPage() {
           <p className="lp-banner__dek">
             Reply to the confirmation email or call us directly — it all reaches the same place.
           </p>
-          <a href="/" className="mw-navy-banner__btn">Back to Home</a>
+          <a href="/" className="mw-navy-banner__btn" title="Back to Home">Back to Home</a>
         </div>
       </section>
     </main>

@@ -102,7 +102,7 @@ export default function LoginForm({ next }) {
         />
       </div>
 
-      <button className="auth__submit" type="submit" disabled={busy}>
+      <button className="auth__submit" type="submit" title="Sign in" disabled={busy}>
         {busy ? 'Signing in…' : 'Sign in'}
       </button>
     </form>

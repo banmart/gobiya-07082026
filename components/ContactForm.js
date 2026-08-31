@@ -54,9 +54,9 @@ export default function ContactForm() {
         <h2 className="mw-cform__title">Thanks — your message is in.</h2>
         <p className="mw-cform__dek">
           Steve reads these himself and replies within one business day. If it&apos;s
-          urgent, call <a href="tel:+13237441338">323-744-1338</a>.
+          urgent, call <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338">323-744-1338</a>.
         </p>
-        <button type="button" className="mw-cform__btn" onClick={() => setStatus('idle')}>
+        <button type="button" className="mw-cform__btn" onClick={() => setStatus('idle')} title="Send another message">
           Send another message
         </button>
       </div>
@@ -184,17 +184,17 @@ export default function ContactForm() {
         {status === 'error' && (
           <p className="mw-cform__error" role="alert">
             {errorMsg} You can also email{' '}
-            <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
+            <a href="mailto:steve@gobiya.com" title="Email steve@gobiya.com">steve@gobiya.com</a>.
           </p>
         )}
 
         <div className="mw-cform__actions">
-          <button type="submit" className="mw-cform__btn" disabled={status === 'submitting'}>
+          <button type="submit" className="mw-cform__btn" disabled={status === 'submitting'} title="Submit your request">
             {status === 'submitting' ? 'Sending…' : 'Send Message'}
           </button>
           <p className="mw-cform__fine">
-            By submitting this form you agree to our <a href="/privacy">Privacy Policy</a> and{' '}
-            <a href="/terms">Terms of Service</a>. We never share your information.
+            By submitting this form you agree to our <a href="/privacy" title="Privacy Policy">Privacy Policy</a> and{' '}
+            <a href="/terms" title="Terms of Service">Terms of Service</a>. We never share your information.
           </p>
         </div>
       </form>

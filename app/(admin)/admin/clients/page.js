@@ -28,7 +28,7 @@ export default async function ClientsPage() {
           <p className="app__welcome-sub" style={{ marginBottom: 0 }}>
             {clients.length} {clients.length === 1 ? 'account' : 'accounts'}
           </p>
-          <a className="btn-app" href="/admin/clients/new">
+          <a className="btn-app" href="/admin/clients/new" title="Add a new client">
             New client
           </a>
         </div>
@@ -54,7 +54,7 @@ export default async function ClientsPage() {
                   <td>{client.contact_email}</td>
                   <td>
                     {client.website ? (
-                      <a href={client.website} target="_blank" rel="noreferrer">
+                      <a href={client.website} target="_blank" rel="noreferrer" title="Visit this client's website">
                         {client.website.replace(/^https?:\/\//, '')}
                       </a>
                     ) : (

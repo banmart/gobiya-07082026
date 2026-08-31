@@ -1,9 +1,51 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { LogoMark } from './Logo';
-import ThemeToggle from './ThemeToggle';
 import { TOP_NAV, PRACTICE_NAV, HEADER_CTA, CONTACT } from '../lib/nav';
+
+const TAGLINES = {
+  '/': 'SEO & AI Search Agency',
+  '/services/technical-seo': 'Technical SEO',
+  '/services/geo': 'AI Search & GEO',
+  '/services/content-marketing': 'Content Marketing',
+  '/services/link-building': 'Digital PR & Link Building',
+  '/services/ppc': 'PPC & Lead Generation',
+  '/services/web-dev': 'Web Design & Development',
+  '/services/web-ux': 'Web UX & Interface Design',
+  '/services/cro': 'Conversion Rate Optimization',
+  '/services/ai-consulting': 'AI Systems & Consulting',
+  '/services': 'Our Services',
+  '/solutions': 'SEO Solutions',
+  '/work': 'Client Case Studies',
+  '/insights': 'SEO & Marketing Insights',
+  '/glossary': 'Search & AI Glossary',
+  '/about': 'About Gobiya',
+  '/about/steve-martin': 'Steve Martin — Founder',
+  '/about/approach': 'Our Approach',
+  '/contact': 'Contact Us',
+  '/pricing': 'Pricing & Plans',
+  '/process': 'Our Process',
+  '/free-site-scan': 'Free Site Scan',
+  '/mcp': 'MCP Server for AI Agents',
+  '/tools': 'Free SEO Tools',
+  '/los-angeles-seo': 'Los Angeles SEO',
+  '/van-nuys-seo': 'Van Nuys SEO',
+  '/studio-city-seo': 'Studio City SEO',
+  '/glendale-seo': 'Glendale SEO',
+  '/seo-myths': 'SEO Myth or Fact',
+};
+
+function getTagline(pathname) {
+  if (TAGLINES[pathname]) return TAGLINES[pathname];
+  if (pathname.startsWith('/insights/')) return 'SEO & Marketing Insights';
+  if (pathname.startsWith('/work/')) return 'Client Case Studies';
+  if (pathname.startsWith('/solutions/')) return 'SEO Solutions';
+  if (pathname.startsWith('/services/')) return 'Our Services';
+  if (pathname.startsWith('/tools/')) return 'Free SEO Tools';
+  return 'SEO & AI Search Agency';
+}
 
 /* Two rows.
  *
@@ -16,9 +58,12 @@ import { TOP_NAV, PRACTICE_NAV, HEADER_CTA, CONTACT } from '../lib/nav';
  * The ids (#nav, #burger, #menu) are load-bearing: public/js/main.js attaches
  * the scroll and escape-key behaviour to them. */
 export default function Header() {
+  const pathname = usePathname();
+  const tagline = getTagline(pathname);
   const [openIndex, setOpenIndex] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
   // Which mobile accordion section is expanded. One at a time — seven sections
   // open at once is a wall of links rather than a menu.
   const [openSection, setOpenSection] = useState(null);
@@ -51,6 +96,28 @@ export default function Header() {
 
   return (
     <>
+      {showAnnouncement && (
+        <div className="gb-announcement" role="region" aria-label="Announcement">
+          <div className="container gb-announcement__inner">
+            <span className="gb-announcement__badge">NEW</span>
+            <p className="gb-announcement__text">
+              ✨ Say goodbye to lost search rankings. Introducing <strong>Gobiya AI Citation Engine</strong>.{' '}
+              <a href="/services/geo" className="gb-announcement__link">
+                Learn more
+              </a>
+            </p>
+            <button
+              type="button"
+              className="gb-announcement__close"
+              onClick={() => setShowAnnouncement(false)}
+              aria-label="Dismiss banner"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
+
       <header
         className={`gb-nav ${isScrolled ? 'is-scrolled' : ''}`}
         id="nav"
@@ -66,32 +133,23 @@ export default function Header() {
               <span className="gb-nav__brand-word">Gobiya</span>
               <span className="gb-nav__brand-dot" aria-hidden="true" />
               <span className="gb-nav__brand-rule" aria-hidden="true" />
-              <span className="gb-nav__brand-tag">SEO &amp; AI Search Agency</span>
+              <span className="gb-nav__brand-tag">{tagline}</span>
             </a>
 
             <nav className="gb-nav__top-links" aria-label="Primary">
               {TOP_NAV.map((item) => (
-                <a key={item.href} href={item.href} className="gb-nav__top-link">
+                <a key={item.href} href={item.href} className="gb-nav__top-link" title={item.label}>
                   {item.label}
                 </a>
               ))}
             </nav>
 
             <div className="gb-nav__actions">
-              <a href={HEADER_CTA.href} className="gb-nav__cta">
-                {HEADER_CTA.label}
+              <a href="/login" className="gb-nav__login-link" title="Log in to your Gobiya account">
+                LOGIN
               </a>
-              <ThemeToggle />
-              <a
-                href="/login"
-                className="gb-nav__icon-btn"
-                aria-label="Account login"
-                title="Account login"
-              >
-                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
+              <a href={HEADER_CTA.href} className="gb-nav__cta" title="Start your free site scan">
+                GET STARTED
               </a>
               <button
                 className={`nav__burger ${isMenuOpen ? 'is-open' : ''}`}
@@ -122,6 +180,7 @@ export default function Header() {
                   <a
                     href={item.href}
                     className={`gb-nav__practice-link ${isOpen ? 'is-open' : ''}`}
+                    title={item.label}
                   >
                     <span>{item.label}</span>
                     {hasPanel && (

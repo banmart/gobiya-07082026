@@ -113,6 +113,7 @@ export default function AIChatBubble() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle AI Chat"
+        title="Toggle AI chat"
         style={{
           position: 'fixed',
           bottom: 'calc(2rem + var(--offer-bar-height, 0px))',
@@ -190,6 +191,7 @@ export default function AIChatBubble() {
             </div>
             <button
               onClick={handleReset}
+              title="Reset chat history"
               style={{
                 background: 'none',
                 border: 'none',
@@ -303,6 +305,7 @@ export default function AIChatBubble() {
             <button
               type="submit"
               disabled={!input.trim() || loading}
+              title="Send message"
               style={{
                 width: '40px',
                 height: '40px',

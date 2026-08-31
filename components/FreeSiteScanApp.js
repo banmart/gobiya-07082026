@@ -208,7 +208,7 @@ export default function FreeSiteScanApp() {
                 onChange={(e) => setInputUrl(e.target.value)}
                 autoFocus
               />
-              <button type="submit" className="fss-scan-btn">
+              <button type="submit" className="fss-scan-btn" title="Scan my site">
                 Scan Site Free
               </button>
             </div>
@@ -219,6 +219,7 @@ export default function FreeSiteScanApp() {
             <button
               type="button"
               className="fss-no-website-btn"
+              title="Get a website consultation instead"
               onClick={() => {
                 setPhase('no-website');
                 setLeadStatus('idle');
@@ -321,14 +322,14 @@ export default function FreeSiteScanApp() {
                     />
                   </div>
                 </div>
-                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'}>
+                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'} title="Submit your request">
                   {leadStatus === 'submitting' ? 'Submitting…' : 'Request Manual Audit'}
                 </button>
               </form>
             )}
           </div>
 
-          <button type="button" className="fss-retry-btn" onClick={() => setPhase('input')}>
+          <button type="button" className="fss-retry-btn" onClick={() => setPhase('input')} title="Return to site scan form">
             ← Try another URL
           </button>
         </div>
@@ -354,7 +355,7 @@ export default function FreeSiteScanApp() {
                   We have received your project details. Steve will review your requirements and reach out within 24 business hours to discuss your new website build.
                 </p>
                 <p className="fss-direct-contact">
-                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
+                  Need immediate help? Call Steve directly at <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338">323-744-1338</a> or email <a href="mailto:steve@gobiya.com" title="Email steve@gobiya.com">steve@gobiya.com</a>.
                 </p>
               </div>
             ) : (
@@ -432,17 +433,17 @@ export default function FreeSiteScanApp() {
 
                 {leadError && <p className="fss-error-text" role="alert">{leadError}</p>}
 
-                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'}>
+                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'} title="Submit your request">
                   {leadStatus === 'submitting' ? 'Submitting Request…' : 'Request New Website Consultation'}
                 </button>
 
                 <p className="fss-disclaimer">
-                  No pushy sales calls. Steve personally reviews every submission. By submitting, you agree to our <a href="/privacy">Privacy Policy</a>.
+                  No pushy sales calls. Steve personally reviews every submission. By submitting, you agree to our <a href="/privacy" title="Privacy Policy">Privacy Policy</a>.
                 </p>
               </form>
             )}
 
-            <button type="button" className="fss-retry-btn" style={{ marginTop: '1.5rem' }} onClick={() => setPhase('input')}>
+            <button type="button" className="fss-retry-btn" style={{ marginTop: '1.5rem' }} onClick={() => setPhase('input')} title="Return to site scan form">
               &larr; Back to free site scan
             </button>
           </div>
@@ -472,6 +473,7 @@ export default function FreeSiteScanApp() {
                 className={`fss-accordion-header ${openAccordions.summary ? 'fss-accordion-header--open' : ''}`}
                 onClick={() => toggleAccordion('summary')}
                 aria-expanded={openAccordions.summary}
+                title="Toggle executive AI summary section"
               >
                 <h2 className="fss-section-heading">Executive AI Summary</h2>
                 <span className="fss-accordion-icon">{openAccordions.summary ? '▲' : '▼'}</span>
@@ -492,6 +494,7 @@ export default function FreeSiteScanApp() {
                 className={`fss-accordion-header ${openAccordions.findings ? 'fss-accordion-header--open' : ''}`}
                 onClick={() => toggleAccordion('findings')}
                 aria-expanded={openAccordions.findings}
+                title="Toggle key findings section"
               >
                 <h2 className="fss-section-heading">Key Findings &amp; High-Impact Fixes</h2>
                 <span className="fss-accordion-icon">{openAccordions.findings ? '▲' : '▼'}</span>
@@ -523,6 +526,7 @@ export default function FreeSiteScanApp() {
                 className={`fss-accordion-header ${openAccordions.checklist ? 'fss-accordion-header--open' : ''}`}
                 onClick={() => toggleAccordion('checklist')}
                 aria-expanded={openAccordions.checklist}
+                title="Toggle technical audit checklist section"
               >
                 <h2 className="fss-section-heading">Technical &amp; On-Page Audit Checklist</h2>
                 <span className="fss-accordion-icon">{openAccordions.checklist ? '▲' : '▼'}</span>
@@ -553,6 +557,7 @@ export default function FreeSiteScanApp() {
                 className={`fss-accordion-header ${openAccordions.nextSteps ? 'fss-accordion-header--open' : ''}`}
                 onClick={() => toggleAccordion('nextSteps')}
                 aria-expanded={openAccordions.nextSteps}
+                title="Toggle priority next steps section"
               >
                 <h2 className="fss-section-heading">Priority Next Steps</h2>
                 <span className="fss-accordion-icon">{openAccordions.nextSteps ? '▲' : '▼'}</span>
@@ -593,7 +598,7 @@ export default function FreeSiteScanApp() {
                   We have emailed your site report to <strong>{leadForm.email}</strong> and attached it to your consultation request. Steve will review your website data and reach out within 24 business hours.
                 </p>
                 <p className="fss-direct-contact">
-                  Need immediate help? Call Steve directly at <a href="tel:+13237441338">323-744-1338</a> or email <a href="mailto:steve@gobiya.com">steve@gobiya.com</a>.
+                  Need immediate help? Call Steve directly at <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338">323-744-1338</a> or email <a href="mailto:steve@gobiya.com" title="Email steve@gobiya.com">steve@gobiya.com</a>.
                 </p>
               </div>
             ) : (
@@ -670,12 +675,12 @@ export default function FreeSiteScanApp() {
 
                 {leadError && <p className="fss-error-text" role="alert">{leadError}</p>}
 
-                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'}>
+                <button type="submit" className="fss-submit-btn" disabled={leadStatus === 'submitting'} title="Submit your request">
                   {leadStatus === 'submitting' ? 'Attaching & Emailing Report…' : 'Attach Report & Submit Request'}
                 </button>
 
                 <p className="fss-disclaimer">
-                  No pushy sales calls. Steve personally reviews every submission. By submitting, you agree to our <a href="/privacy">Privacy Policy</a>.
+                  No pushy sales calls. Steve personally reviews every submission. By submitting, you agree to our <a href="/privacy" title="Privacy Policy">Privacy Policy</a>.
                 </p>
               </form>
             )}

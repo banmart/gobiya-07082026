@@ -95,14 +95,14 @@ export default function McpPage() {
       <section className="section section--tint" id="resources">
         <div className="container container--narrow">
           <h2 className="statement statement--small">Browse our content directly, not just links to it.</h2>
-          <p className="lede">Every <a href="/insights">insights article</a>, <a href="/work">client case study</a>, and <a href="/services">consulting service page</a> on this site is also exposed as a readable MCP resource — <code>gobiya://insights/{'{slug}'}</code>, <code>gobiya://work/{'{slug}'}</code>, and <code>gobiya://services/{'{slug}'}</code> — so an agent can read the actual content, not just crawl the HTML.</p>
+          <p className="lede">Every <a href="/insights" title="Browse Gobiya SEO insights articles">insights article</a>, <a href="/work" title="View Gobiya client case studies">client case study</a>, and <a href="/services" title="Browse Gobiya consulting services">consulting service page</a> on this site is also exposed as a readable MCP resource — <code>gobiya://insights/{'{slug}'}</code>, <code>gobiya://work/{'{slug}'}</code>, and <code>gobiya://services/{'{slug}'}</code> — so an agent can read the actual content, not just crawl the HTML.</p>
         </div>
       </section>
 
 
       <section className="section" id="also">
         <div className="container container--narrow" style={{ textAlign: 'center' }}>
-          <p className="lede">Plain-text crawlers and AI systems that don&apos;t speak MCP can still read <a href="/llms.txt">/llms.txt</a> for a lighter-weight summary of this site.</p>
+          <p className="lede">Plain-text crawlers and AI systems that don&apos;t speak MCP can still read <a href="/llms.txt" title="Plain-text summary of this site for AI systems">/llms.txt</a> for a lighter-weight summary of this site.</p>
         </div>
       </section>
 

@@ -67,7 +67,7 @@ function ModalContent() {
   return (
     <div className="modal-backdrop" onClick={close}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={close} aria-label="Close modal">&times;</button>
+        <button className="modal-close" onClick={close} aria-label="Close modal" title="Close this modal">&times;</button>
         <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>Request a Quote</h2>
         
         {status === 'success' ? (
@@ -119,7 +119,7 @@ function ModalContent() {
 
             {errorMsg && <div style={{ color: '#ef4444', fontSize: '0.875rem' }}>{errorMsg}</div>}
 
-            <button type="submit" className="btn btn--solid" disabled={status === 'submitting'} style={{ marginTop: '0.5rem', width: '100%' }}>
+            <button type="submit" className="btn btn--solid" disabled={status === 'submitting'} style={{ marginTop: '0.5rem', width: '100%' }} title="Submit your request">
               {status === 'submitting' ? 'Submitting...' : 'Request Quote'}
             </button>
           </form>

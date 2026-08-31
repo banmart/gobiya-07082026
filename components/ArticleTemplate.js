@@ -38,17 +38,12 @@ export default function ArticleTemplate({ article }) {
              decorative band: the h1 was previously the second thing on the page
              with 350px of empty navy above it. */}
       <PageHero
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Insights', href: '/insights' },
-          { label: article.title },
-        ]}
-        eyebrow={article.category ? `Insights · ${article.category}` : 'Insights'}
         title={article.title}
         dek={article.dek}
+        showTrust={false}
       >
         <p className="gb-hero__meta">
-          By <a href="/about/steve-martin">Steve Martin</a> ·{' '}
+          By <a href="/about/steve-martin" title="About Steve Martin">Steve Martin</a> ·{' '}
           <time dateTime={article.date}>
             {new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>{' '}
@@ -76,7 +71,7 @@ export default function ArticleTemplate({ article }) {
             <ol>
               {article.body.map((block) => (
                 <li key={block.heading}>
-                  <a href={`#${slugifyHeading(block.heading)}`}>{block.heading}</a>
+                  <a href={`#${slugifyHeading(block.heading)}`} title={block.heading}>{block.heading}</a>
                 </li>
               ))}
             </ol>
@@ -146,8 +141,8 @@ export default function ArticleTemplate({ article }) {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>See how we approach {article.relatedLabel}.</h2>
           <div className="cta__actions" data-reveal>
-            <a href={article.relatedHref} className="btn btn--solid btn--big">{article.relatedLabel}</a>
-            <a href="/insights" className="btn btn--ghost btn--big">More Insights</a>
+            <a href={article.relatedHref} className="btn btn--solid btn--big" title={article.relatedLabel}>{article.relatedLabel}</a>
+            <a href="/insights" className="btn btn--ghost btn--big" title="Browse all insights">More Insights</a>
           </div>
         </div>
       </section>

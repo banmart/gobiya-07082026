@@ -130,7 +130,7 @@ export default async function StuffPage() {
             Ready for scroll-stopping AI video ads that actually bring in real leads?
           </h2>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="?onboarding=true" className="mw-navy-banner__btn">
+            <a href="?onboarding=true" className="mw-navy-banner__btn" title="Schedule a free strategy consultation">
               Schedule a Video Strategy Session
             </a>
           </div>

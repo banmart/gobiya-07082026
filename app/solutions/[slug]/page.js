@@ -22,6 +22,7 @@ export async function generateMetadata({ params }) {
     title: sol.metaTitle,
     description: sol.metaDescription,
     path: solutionPath(slug),
+    parent: 'Solutions',
   });
 }
 
@@ -93,6 +94,7 @@ export default async function SolutionDetailPage({ params }) {
                 </p>
                 <a
                   href={item.serviceLink.href}
+                  title={item.serviceLink.title}
                   style={{
                     fontWeight: 600,
                     color: 'var(--link)',
@@ -119,6 +121,7 @@ export default async function SolutionDetailPage({ params }) {
                   key={svcSlug}
                   href={`/services/${svcSlug}`}
                   className="mw-excellence__card"
+                  title={svc.navTitle}
                   style={{ textDecoration: 'none' }}
                 >
                   <h3 className="mw-excellence__card-title" style={{ fontSize: '1.25rem' }}>
@@ -166,7 +169,7 @@ export default async function SolutionDetailPage({ params }) {
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">Ready to fix this on your site?</h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn" title="Request a Quote">
             Request a Quote
           </a>
         </div>

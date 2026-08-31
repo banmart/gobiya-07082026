@@ -1,4 +1,4 @@
-import Breadcrumbs from '../../components/Breadcrumbs';
+import SubHero from '../../components/SubHero';
 import ContactForm from '../../components/ContactForm';
 import { CONTACT } from '../../lib/nav';
 import { buildMetadata } from '../../lib/meta';
@@ -17,21 +17,15 @@ export default function ContactPage() {
   return (
     <main id="top">
 
-      {/* ══ Page heading ══
-          The page carried no h1 at all — the form and the office card both
-          open on h2s. The heading and the line under it are the page's only
-          prose, so they carry the keyword. */}
-      <section className="page-hero section" style={{ paddingBottom: '2rem' }}>
-        <div className="container container--narrow">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
-          <h1 className="statement">Contact Us — Talk Straight to a Los Angeles SEO</h1>
-          <p className="lede">
-            Contact Gobiya and you reach the person who does the work, not a queue.
-            Tell us what your site is doing wrong and you&rsquo;ll get a straight
-            answer within one business day &mdash; no sales script, no obligation.
-          </p>
-        </div>
-      </section>
+      <SubHero
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+        eyebrow="Contact · Los Angeles"
+        title="Contact Us — Talk Straight to a Los Angeles SEO"
+        dek="Contact Gobiya and you reach the person who does the work, not a queue. Tell us what your site is doing wrong and you'll get a straight answer within one business day — no sales script, no obligation."
+        primary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        secondary={{ text: 'Email Us', href: `mailto:${CONTACT.email}` }}
+        showTrust={false}
+      />
 
       {/* ══ Form + office details ══ */}
       <section className="mw-contact">
@@ -49,7 +43,7 @@ export default function ContactPage() {
                   <br />
                   {CONTACT.address2}
                 </p>
-                <a className="mw-contact__action" href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">
+                <a className="mw-contact__action" href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" title="Get directions to our Los Angeles office">
                   Get Directions <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -57,14 +51,14 @@ export default function ContactPage() {
               <div className="mw-contact__block">
                 <h3 className="mw-contact__label">Phone</h3>
                 <p className="mw-contact__value">
-                  <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+                  <a href={CONTACT.phoneHref} title="Call Gobiya">{CONTACT.phone}</a>
                 </p>
               </div>
 
               <div className="mw-contact__block">
                 <h3 className="mw-contact__label">Email</h3>
                 <p className="mw-contact__value">
-                  <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                  <a href={`mailto:${CONTACT.email}`} title="Email Gobiya">{CONTACT.email}</a>
                 </p>
               </div>
 
@@ -83,7 +77,7 @@ export default function ContactPage() {
                   Los Angeles, the San Fernando Valley, and the wider Southern California
                   region &mdash; plus remote clients nationwide.
                 </p>
-                <a className="mw-contact__action" href="/los-angeles-seo">
+                <a className="mw-contact__action" href="/los-angeles-seo" title="See areas we serve in Los Angeles">
                   See Areas We Serve <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -92,16 +86,16 @@ export default function ContactPage() {
                 <h3 className="mw-contact__label">Elsewhere</h3>
                 <ul className="mw-contact__social">
                   <li>
-                    <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" title="Gobiya on LinkedIn">LinkedIn</a>
                   </li>
                   <li>
-                    <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+                    <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" title="Gobiya on Facebook">Facebook</a>
                   </li>
                   <li>
-                    <a href={CONTACT.twitter} target="_blank" rel="noopener noreferrer">X</a>
+                    <a href={CONTACT.twitter} target="_blank" rel="noopener noreferrer" title="Gobiya on X (Twitter)">X</a>
                   </li>
                   <li>
-                    <a href={CONTACT.yelp} target="_blank" rel="noopener noreferrer">Yelp</a>
+                    <a href={CONTACT.yelp} target="_blank" rel="noopener noreferrer" title="Gobiya on Yelp">Yelp</a>
                   </li>
                 </ul>
               </div>
@@ -117,7 +111,7 @@ export default function ContactPage() {
           <h2 className="mw-navy-banner__title">
             Prefer a 5-step structured questionnaire?
           </h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn" title="Schedule a free strategy consultation">
             Schedule a Consultation
           </a>
         </div>

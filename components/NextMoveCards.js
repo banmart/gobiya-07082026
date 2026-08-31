@@ -175,6 +175,7 @@ export default function NextMoveCards() {
               aria-selected={g.id === group}
               className={`mw-move__tab${g.id === group ? ' is-active' : ''}`}
               onClick={() => setGroup(g.id)}
+              title={g.label}
             >
               {g.label}
             </button>
@@ -187,6 +188,7 @@ export default function NextMoveCards() {
               key={card.id}
               href={card.href}
               className={`mw-move-card mw-move-card--${card.tone}`}
+              title={card.blurb}
             >
               <div className="mw-move-card__head">
                 <span className="mw-move-card__eyebrow">{card.blurb}</span>
@@ -201,7 +203,7 @@ export default function NextMoveCards() {
         </div>
 
         <div className="mw-move__footer">
-          <a href="/services" className="mw-simple__btn">
+          <a href="/services" className="mw-simple__btn" title="Explore all services">
             Explore All Services <span>&rarr;</span>
           </a>
         </div>

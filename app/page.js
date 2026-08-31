@@ -1,29 +1,22 @@
 import HomeSplitHero from '../components/HomeSplitHero';
-import { Icon } from '../components/DisciplineRail';
+import HomeScanChooser from '../components/HomeScanChooser';
+import HomeBenefitTabs from '../components/HomeBenefitTabs';
+import HomeServicesGrid from '../components/HomeServicesGrid';
 import PlatformStrip from '../components/PlatformStrip';
-import ClientLogos from '../components/ClientLogos';
-import ProofBar from '../components/ProofBar';
 import CommunityReviews from '../components/CommunityReviews';
-import ExcellenceGrid from '../components/ExcellenceGrid';
-import LocalAreas from '../components/LocalAreas';
-import PackagesOffer from '../components/PackagesOffer';
+import HomeFaq from '../components/HomeFaq';
+import HomeDomainScanBanner from '../components/HomeDomainScanBanner';
 import ClosingCta from '../components/ClosingCta';
 import { buildMetadata } from '../lib/meta';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
 // The title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
-  title: 'Gobiya — Digital marketing for every touchpoint.',
+  title: 'Gobiya | AI, SEO, Websites, Paid Ads (Los Angeles)',
   description:
     'Digital marketing that meets your buyers at every touchpoint — Google, AI answers, maps, and ads. Free Los Angeles site audit. Call now!',
   path: '/',
 });
-
-const HEADLINE_SERVICES = [
-  { title: 'Technical & Semantic SEO', icon: 'bars', href: '/services/technical-seo' },
-  { title: 'Generative Engine Optimization (GEO)', icon: 'globe', href: '/services/geo' },
-  { title: 'High-Converting Web Architecture', icon: 'code', href: '/services/web-dev' },
-];
 
 export default function Home() {
   const faqSchema = {
@@ -52,78 +45,81 @@ export default function Home() {
       {/* ══ 2. Platform strip ══ */}
       <PlatformStrip />
 
-      {/* ══ 3. We Handle It All ══ */}
-      <section className="gb-handle">
-        <div className="container">
-          <div className="gb-sechead">
-            <div>
-              <h2 className="gb-sechead__title">We Handle It All So You Don&apos;t Have To</h2>
-              <p className="gb-sechead__dek">
-                Whether it&rsquo;s an algorithmic drop, poor conversion rates, or invisible
-                search rankings, our specialists have you covered.
-              </p>
-            </div>
-            <a href="/services" className="gb-sechead__link">
-              View All Digital Services <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-
-          <ul className="gb-handle__grid">
-            {HEADLINE_SERVICES.map((s) => (
-              <li key={s.title}>
-                <a href={s.href} className="gb-svc">
-                  <span className="gb-svc__icon">
-                    <Icon name={s.icon} size={20} />
-                  </span>
-                  <span className="gb-svc__title">{s.title}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* ══ 3. Scan or pick a track ══ */}
+      <HomeScanChooser />
 
       {/* ══ 4. Trusted specialists ══ */}
       <section className="gb-trusted">
         <div className="container">
           <h2 className="gb-trusted__title">
-            Trusted Los Angeles Digital Marketing &amp; Conversion Specialists
+            Trusted by 500+ Los Angeles Businesses
           </h2>
           <p className="gb-trusted__sub">
-            Professional Search Engine Optimization &amp; Development Since 2009
+            Professional SEO &amp; Digital Marketing Since 2009
           </p>
-          <p className="gb-trusted__body">
-            For over 15 years, the Gobiya team has delivered targeted, reliable, and
-            high-ROI digital solutions across Los Angeles and the San Fernando Valley.
-            Throughout our history, we have proudly served local businesses by tackling
-            their toughest organic visibility and technical hurdles.
-          </p>
-          <a href="?onboarding=true" className="gb-btn gb-btn--accent">
+
+          {/* ── Credential badges ── */}
+          <div className="gb-trusted__badges">
+            <div className="gb-trusted__badge">
+              <span className="gb-trusted__badge-num">15+</span>
+              <span className="gb-trusted__badge-label">Years in Business</span>
+            </div>
+            <div className="gb-trusted__badge">
+              <span className="gb-trusted__badge-num">500+</span>
+              <span className="gb-trusted__badge-label">Clients Served</span>
+            </div>
+            <div className="gb-trusted__badge">
+              <span className="gb-trusted__badge-num">Top 1%</span>
+              <span className="gb-trusted__badge-label">LA SEO Agencies</span>
+            </div>
+            <div className="gb-trusted__badge">
+              <span className="gb-trusted__badge-num">Google</span>
+              <span className="gb-trusted__badge-label">Partner Agency</span>
+            </div>
+          </div>
+
+          {/* ── Review platform row ── */}
+          <div className="gb-trusted__platforms">
+            <div className="gb-trusted__platform">
+              <span className="gb-trusted__platform-stars">★★★★★</span>
+              <span className="gb-trusted__platform-name">Trustpilot</span>
+              <span className="gb-trusted__platform-score">5.0</span>
+            </div>
+            <div className="gb-trusted__platform">
+              <span className="gb-trusted__platform-stars">★★★★★</span>
+              <span className="gb-trusted__platform-name">Clutch</span>
+              <span className="gb-trusted__platform-score">5.0</span>
+            </div>
+            <div className="gb-trusted__platform">
+              <span className="gb-trusted__platform-stars">★★★★★</span>
+              <span className="gb-trusted__platform-name">Google</span>
+              <span className="gb-trusted__platform-score">5.0</span>
+            </div>
+          </div>
+
+          <a href="?onboarding=true" className="gb-btn gb-btn--accent" title="Schedule your free strategy consultation">
             Schedule Your Free Strategy Consultation Today!
           </a>
         </div>
       </section>
 
-      {/* ══ 5. Proof bar ══ */}
-      <ProofBar />
+      {/* ══ 5. Benefit tabs ══ */}
+      <HomeBenefitTabs />
 
-      {/* ══ 6. Client logos ══ */}
-      <ClientLogos heading={null} className="mw-trust--strip" />
+      {/* ══ 6. Services grid ══ */}
+      <HomeServicesGrid />
 
-      {/* ══ 7. Hear From the Community ══ */}
+      {/* ══ 7. Closing CTA ══ */}
+      <ClosingCta />
+
+      {/* ══ 8. Hear From the Community ══ */}
       <CommunityReviews />
 
-      {/* ══ 7. Excellence in Every Optimization ══ */}
-      <ExcellenceGrid />
+      {/* ══ 9. FAQ ══ */}
+      <HomeFaq />
 
-      {/* ══ 8. Local communities ══ */}
-      <LocalAreas />
-
-      {/* ══ 9. Performance packages ══ */}
-      <PackagesOffer />
-
-      {/* ══ 10. Closing CTA ══ */}
-      <ClosingCta />
+      {/* ══ 10. Domain scan banner ══ */}
+      <HomeDomainScanBanner />
     </main>
   );
 }

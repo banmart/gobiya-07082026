@@ -16,29 +16,30 @@
 import PageHero from './PageHero';
 
 export default function SubHero({
-  image, // eslint-disable-line no-unused-vars -- retained for callers
-  breadcrumbs,
-  eyebrow,
+  image,    // eslint-disable-line no-unused-vars -- retained for callers
+  breadcrumbs, // eslint-disable-line no-unused-vars -- retained for callers
+  eyebrow,  // eslint-disable-line no-unused-vars -- retained for callers
   title,
-  excerpt,
+  excerpt,  // eslint-disable-line no-unused-vars -- retained for callers
   dek,
   primary,
   secondary,
   noCard = false, // eslint-disable-line no-unused-vars -- retained for callers
   imageOnly = false,
+  showTrust = false,
   logo,
+  icon,
 }) {
   return (
     <PageHero
-      breadcrumbs={breadcrumbs}
-      eyebrow={eyebrow}
       title={title}
-      accent={excerpt}
       dek={dek}
       primary={primary}
       secondary={secondary}
       logo={logo}
+      icon={icon}
       imageOnly={imageOnly}
+      showTrust={showTrust}
     />
   );
 }

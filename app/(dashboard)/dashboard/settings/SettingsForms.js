@@ -68,7 +68,7 @@ export function NameForm({ userId, initialName }) {
         />
       </div>
       {status ? <p className="card__body">{status}</p> : null}
-      <button className="btn-app" type="submit" disabled={busy}>
+      <button className="btn-app" type="submit" title="Save your name" disabled={busy}>
         {busy ? 'Saving…' : 'Save'}
       </button>
     </form>
@@ -150,7 +150,7 @@ export function PasswordForm() {
         />
       </div>
       {status ? <p className="card__body">{status}</p> : null}
-      <button className="btn-app" type="submit" disabled={busy}>
+      <button className="btn-app" type="submit" title="Update your password" disabled={busy}>
         {busy ? 'Saving…' : 'Update password'}
       </button>
     </form>

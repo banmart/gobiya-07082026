@@ -56,7 +56,7 @@ export default function SeoMythsPage() {
                   </dt>
                   <dd>
                     <strong>{m.verdict}</strong> {m.detail}{' '}
-                    <Link href={TOPICS[m.topic].href} className="myth-key__link">
+                    <Link href={TOPICS[m.topic].href} className="myth-key__link" title={`More on ${TOPICS[m.topic].label}`}>
                       More on {TOPICS[m.topic].label.toLowerCase()}
                     </Link>
                   </dd>
@@ -77,10 +77,10 @@ export default function SeoMythsPage() {
               contract.
             </p>
             <div className="hero__ctas">
-              <Link href="/contact" className="btn btn--solid btn--big">
+              <Link href="/contact" className="btn btn--solid btn--big" title="Schedule a free strategy consultation">
                 Schedule a Consultation
               </Link>
-              <Link href="/pricing" className="btn btn--ghost btn--big">
+              <Link href="/pricing" className="btn btn--ghost btn--big" title="See Gobiya SEO pricing">
                 See pricing
               </Link>
             </div>

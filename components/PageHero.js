@@ -1,99 +1,84 @@
-import IridescenceCanvas from './IridescenceCanvas';
-import Breadcrumbs from './Breadcrumbs';
+'use client';
 
-/* One hero for every page on the site — homepage, services, solutions, work,
- * about, legal.
+/* Sub-page hero — 800.com integration-page pattern.
  *
- * The background is two layers: the WebGL iridescence field, and a scrim over
- * it. The scrim is a horizontal gradient, heavy under the copy column and
- * nearly clear on the right — that is what lets the field actually read on the
- * page while keeping the headline and the carmine accent line above contrast
- * where the text sits. It is not decoration: the canvas's warm passes are
- * bright enough on their own to drop white text below 3:1.
- *
- * Render order inside the copy column is fixed: logo, breadcrumbs, badge or
- * eyebrow, h1, accent line, dek, actions. Everything except `title` is
- * optional, so a legal page passes three props and a service page passes seven
- * and both come out on the same frame.
+ * Centred layout: optional icon card → title → dek → pill buttons.
+ * Breadcrumbs, eyebrow, badge, accent heading, and trust badges are gone.
+ * Props are kept in the signature so existing callers don't need to change.
  */
 export default function PageHero({
+  // eslint-disable-next-line no-unused-vars
   badge,
+  // eslint-disable-next-line no-unused-vars
   eyebrow,
+  // eslint-disable-next-line no-unused-vars
   breadcrumbs,
   title,
+  // eslint-disable-next-line no-unused-vars
   accent,
   dek,
   primary,
   secondary,
-  logo = null,
+  icon = null,   // React node (SVG) shown in a white rounded card
+  logo = null,   // legacy image logo — still rendered if icon is absent
   imageOnly = false,
+  // eslint-disable-next-line no-unused-vars
+  showTrust,
   children = null,
 }) {
   if (imageOnly) {
     return (
       <section className="gb-hero gb-hero--band">
-        <div className="gb-hero__waves" aria-hidden="true">
-          <IridescenceCanvas intensity={0.92} speed={0.65} amplitude={0.12} />
-        </div>
-        <div className="gb-hero__scrim" aria-hidden="true" />
+        <span className="gb-hero__dot gb-hero__dot--left"  aria-hidden="true" />
+        <span className="gb-hero__dot gb-hero__dot--right" aria-hidden="true" />
       </section>
     );
   }
 
   return (
     <section className="gb-hero">
-      <div className="gb-hero__waves" aria-hidden="true">
-        <IridescenceCanvas intensity={0.92} speed={0.65} amplitude={0.12} />
-      </div>
-      <div className="gb-hero__scrim" aria-hidden="true" />
+      <span className="gb-hero__dot gb-hero__dot--left"  aria-hidden="true" />
+      <span className="gb-hero__dot gb-hero__dot--right" aria-hidden="true" />
 
       <div className="container">
-        <div className="gb-hero__layout">
-          <div className="gb-hero__copy">
-            {logo && (
-              <div className="gb-hero__logo">
-                <img
-                  src={typeof logo === 'string' ? logo : logo.src}
-                  alt={typeof logo === 'string' ? '' : (logo.alt || '')}
-                />
-              </div>
-            )}
+        <div className="gb-hero__body">
 
-            {breadcrumbs &&
-              (Array.isArray(breadcrumbs) ? (
-                <Breadcrumbs items={breadcrumbs} inHero light />
-              ) : (
-                breadcrumbs
-              ))}
+          {/* Icon card */}
+          {icon && (
+            <div className="gb-hero__icon-card" aria-hidden="true">
+              {icon}
+            </div>
+          )}
 
-            {badge && <p className="gb-hero__badge">{badge}</p>}
-            {eyebrow && <p className="gb-hero__eyebrow">{eyebrow}</p>}
+          {/* Legacy logo fallback */}
+          {!icon && logo && (
+            <div className="gb-hero__logo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={typeof logo === 'string' ? logo : logo.src}
+                alt={typeof logo === 'string' ? '' : (logo.alt || '')}
+              />
+            </div>
+          )}
 
-            <h1 className="gb-hero__title">{title}</h1>
+          <h1 className="gb-hero__title">{title}</h1>
 
-            {/* The secondary heading is an h2 on sub pages, where it carries the
-                city and the service — it is the page's second real heading, not
-                decoration. The homepage passes a plain accent line instead. */}
-            {accent && <h2 className="gb-hero__accent">{accent}</h2>}
-            {dek && <p className="gb-hero__dek">{dek}</p>}
+          {dek && <p className="gb-hero__dek">{dek}</p>}
 
-            {primary && (
-              <div className="gb-hero__actions">
-                <a href={primary.href} className="gb-btn gb-btn--accent">
-                  {primary.text}
+          {primary && (
+            <div className="gb-hero__actions">
+              <a href={primary.href} className="gb-btn gb-btn--accent" title={primary.text}>
+                {primary.text}
+              </a>
+              {secondary && (
+                <a href={secondary.href} className="gb-btn gb-btn--ghost" title={secondary.text}>
+                  {secondary.text}
                 </a>
-                {secondary && (
-                  <a href={secondary.href} className="gb-btn gb-btn--ghost">
-                    {secondary.text}
-                  </a>
-                )}
-              </div>
-            )}
+              )}
+            </div>
+          )}
 
-            {/* Anything a page needs under the actions — the byline and read
-                time on an article, for instance. */}
-            {children}
-          </div>
+          {children}
         </div>
       </div>
     </section>

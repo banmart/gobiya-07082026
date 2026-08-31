@@ -62,8 +62,8 @@ export default function GlossaryPage() {
         <div className="container container--narrow">
           <h2 className="cta__title">Don&apos;t see a term you&apos;re looking for?</h2>
           <div className="cta__actions">
-            <a href="?onboarding=true" className="btn btn--solid btn--big">Schedule a Consultation</a>
-            <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
+            <a href="?onboarding=true" className="btn btn--solid btn--big" title="Schedule a free strategy consultation">Schedule a Consultation</a>
+            <a href="tel:+13237441338" className="btn btn--ghost btn--big" title="Call Gobiya at 323-744-1338">323-744-1338</a>
           </div>
         </div>
       </section>

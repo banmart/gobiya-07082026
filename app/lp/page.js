@@ -98,9 +98,9 @@ export default async function LpPage({ searchParams }) {
           <h2 className="mw-navy-banner__title">Claim the Custom AI CRM Offer Before September 30</h2>
           <p className="lp-banner__dek">
             Tell us what you need and Steve will reply within one business day — or call{' '}
-            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a> and skip the form entirely.
+            <a href={CONTACT.phoneHref} title="Call Gobiya at 323-744-1338">{CONTACT.phone}</a> and skip the form entirely.
           </p>
-          <a href="#claim" className="mw-navy-banner__btn">Claim the Custom AI CRM Offer</a>
+          <a href="#claim" className="mw-navy-banner__btn" title="Claim the Custom AI CRM Offer">Claim the Custom AI CRM Offer</a>
           <p className="lp-fine">
             Starting price shown; final price depends on project scope. Includes CRM setup, integration
             with your website and inbox, and AI-powered lead follow-up and scoring. Offer valid through

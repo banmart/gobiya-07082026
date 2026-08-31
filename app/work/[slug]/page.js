@@ -12,9 +12,10 @@ export async function generateMetadata({ params }) {
   const cs = getCaseStudy(slug);
   if (!cs) return {};
   return buildMetadata({
-    title: `${cs.client} Case Study — ${cs.result}`,
+    title: cs.client,
     description: cs.study.metaDescription,
     path: `/work/${cs.slug}`,
+    parent: 'Work',
   });
 }
 

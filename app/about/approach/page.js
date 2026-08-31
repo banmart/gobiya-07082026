@@ -7,10 +7,11 @@ import ClientLogos from '../../../components/ClientLogos';
 import { heroImage } from '../../../lib/heroImages';
 
 export const metadata = buildMetadata({
-  title: 'Our Approach to SEO | A Process, Not a Black Box | Gobiya',
+  title: 'Our Approach to SEO',
   description:
     'Our approach to SEO: fix the technical basics first, report results you can actually see, and follow a documented process — not an open-ended bill.',
   path: '/about/approach',
+  parent: 'About',
 });
 
 export default function ApproachPage() {
@@ -31,6 +32,7 @@ export default function ApproachPage() {
         dek="Our approach, start to finish: how we scope the work, protect your data and your logins, and report on what actually changed. Nothing here is a black box."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"/></svg>}
       />
 
       <TopicMarquee topics={["Technical Foundation", "Schema & Entity Engineering", "Content Silos", "White-Hat Link Building", "Sustainable Ranking Growth"]} />
@@ -81,7 +83,7 @@ export default function ApproachPage() {
                 <span className="stack__index">01</span>
                 <h3 className="stack__title">Performance<br /><em>Engineering</em></h3>
                 <p className="stack__desc">The technical groundwork everything else depends on — making sure your site loads fast and Google can actually read it, before content or links are asked to do any work.</p>
-                <a href="/services/technical-seo" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/technical-seo" title="Explore Performance" className="link-arrow">Explore Performance<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -101,7 +103,7 @@ export default function ApproachPage() {
                 <span className="stack__index">02</span>
                 <h3 className="stack__title">Creativity<br /><em>&amp; Content</em></h3>
                 <p className="stack__desc">Great content only works once the technical foundation is solid — the same well-written page falls flat if Google can&apos;t properly read it in the first place.</p>
-                <a href="/services/geo" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/geo" title="Explore Creativity" className="link-arrow">Explore Creativity<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -121,7 +123,7 @@ export default function ApproachPage() {
                 <span className="stack__index">03</span>
                 <h3 className="stack__title">Relations<br /><em>&amp; Authority</em></h3>
                 <p className="stack__desc">Building real trust — other sites linking to you, consistent listings, a business people actually recognize — works best once the technical and content pieces underneath are already solid.</p>
-                <a href="/services/link-building" className="link-arrow">Explore Relations<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
+                <a href="/services/link-building" title="Explore Relations" className="link-arrow">Explore Relations<svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></a>
               </div>
               <figure className="stack__media">
                 <Image
@@ -145,8 +147,8 @@ export default function ApproachPage() {
         <div className="container container--narrow">
           <h2 className="cta__title">See how this approach applies to your site.</h2>
           <div className="cta__actions">
-            <a href="?onboarding=true" className="btn btn--solid btn--big">Schedule a Consultation</a>
-            <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
+            <a href="?onboarding=true" title="Schedule a Consultation" className="btn btn--solid btn--big">Schedule a Consultation</a>
+            <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
         </div>
       </section>

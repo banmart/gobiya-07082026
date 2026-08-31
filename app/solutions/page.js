@@ -26,6 +26,7 @@ export default function SolutionsPage() {
         dek="Solutions for the three problems we get called about most: traffic dropped after a core update, your brand is absent from ChatGPT, or your site is leaking leads. Select your challenge below."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>}
       />
 
       <PlatformStrip />
@@ -46,6 +47,7 @@ export default function SolutionsPage() {
                   key={slug}
                   href={solutionPath(slug)}
                   className="mw-excellence__card"
+                  title={sol.title}
                   style={{ textDecoration: 'none', height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
                   <span
@@ -93,7 +95,7 @@ export default function SolutionsPage() {
       <section className="mw-navy-banner">
         <div className="container">
           <h2 className="mw-navy-banner__title">Need an expert diagnostic on your site?</h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn" title="Schedule a free strategy consultation">
             Request a Quote
           </a>
         </div>

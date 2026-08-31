@@ -3,7 +3,6 @@ import { buildMetadata } from '../../lib/meta';
 import SubHero from '../../components/SubHero';
 import TopicMarquee from '../../components/TopicMarquee';
 import ClientLogos from '../../components/ClientLogos';
-import ExcellenceGrid from '../../components/ExcellenceGrid';
 import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
@@ -92,6 +91,7 @@ export default function ProcessPage() {
         dek="Our process is the same on every engagement: a structured 4-step framework, refined over 16 years, that turns technical search engineering and AI optimization into reliable, compounding business growth."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>}
       />
 
       <TopicMarquee
@@ -183,9 +183,6 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      {/* ══ Excellence in Every Service ══ */}
-      <ExcellenceGrid />
-
       {/* ══ Client Logos ══ */}
       <ClientLogos />
 
@@ -199,10 +196,10 @@ export default function ProcessPage() {
             Request a quote today to pinpoint your exact technical opportunities before starting your campaign.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="?onboarding=true" className="mw-navy-banner__btn">
+            <a href="?onboarding=true" className="mw-navy-banner__btn" title="Request a Quote">
               Request a Quote
             </a>
-            <a href="tel:+13237441338" className="mw-navy-banner__btn" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.4)', color: '#fff' }}>
+            <a href="tel:+13237441338" className="mw-navy-banner__btn" title="Call Gobiya at 323-744-1338" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.4)', color: '#fff' }}>
               Call 323-744-1338
             </a>
           </div>

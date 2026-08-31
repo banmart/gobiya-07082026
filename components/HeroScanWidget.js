@@ -62,12 +62,12 @@ export default function HeroScanWidget() {
           <span className="mw-scanwidget__chip">No credit card</span>
         </div>
 
-        <button type="submit" className="mw-scanwidget__submit">
+        <button type="submit" className="mw-scanwidget__submit" title="Scan my site">
           Run My Free Scan
         </button>
 
         <p className="mw-scanwidget__footnote">
-          Results in about 60 seconds. <a href="/pricing">See what a full audit covers</a>
+          Results in about 60 seconds. <a href="/pricing" title="See what a full audit covers">See what a full audit covers</a>
         </p>
       </form>
     </div>

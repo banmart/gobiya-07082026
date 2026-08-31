@@ -22,6 +22,7 @@ export default function PrivacyPage() {
         eyebrow="Privacy Policy"
         title="Your Data Stays Yours"
         excerpt="How Gobiya Collects, Uses, and Protects Your Information"
+        showTrust={false}
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -41,11 +42,11 @@ export default function PrivacyPage() {
             </div>
             <div>
               <h2>Information collected automatically</h2>
-              <p>If you accept analytics cookies from the banner shown on your first visit, we use Google Analytics 4 to understand aggregate site traffic (pages visited, referral sources, approximate location, device type) and Microsoft Clarity to understand how visitors use the site, including session replays, heatmaps, and interaction data. Neither loads, and neither sets a cookie, unless you accept — declining or closing the banner without accepting keeps both off for that visit. Both services collect usage data under their own privacy policies: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a> and <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement</a>. The site is hosted on Vercel, which logs standard server request data (IP address, user agent) for security and operations regardless of your cookie choice.</p>
+              <p>If you accept analytics cookies from the banner shown on your first visit, we use Google Analytics 4 to understand aggregate site traffic (pages visited, referral sources, approximate location, device type) and Microsoft Clarity to understand how visitors use the site, including session replays, heatmaps, and interaction data. Neither loads, and neither sets a cookie, unless you accept — declining or closing the banner without accepting keeps both off for that visit. Both services collect usage data under their own privacy policies: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" title="View Google's Privacy Policy">Google Privacy Policy</a> and <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" title="View Microsoft's Privacy Statement">Microsoft Privacy Statement</a>. The site is hosted on Vercel, which logs standard server request data (IP address, user agent) for security and operations regardless of your cookie choice.</p>
             </div>
             <div>
               <h2>Cookies</h2>
-              <p>Analytics cookies are opt-in, set only after you accept them from the banner. You can change your choice at any time via &ldquo;Cookie preferences&rdquo; in the footer, which re-opens the banner, or by blocking/deleting cookies in your browser settings — the site works fully without them. If you&apos;ve accepted, you can also opt out of Google Analytics specifically with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out browser add-on</a>.</p>
+              <p>Analytics cookies are opt-in, set only after you accept them from the banner. You can change your choice at any time via &ldquo;Cookie preferences&rdquo; in the footer, which re-opens the banner, or by blocking/deleting cookies in your browser settings — the site works fully without them. If you&apos;ve accepted, you can also opt out of Google Analytics specifically with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" title="Install the Google Analytics opt-out browser add-on">Google Analytics opt-out browser add-on</a>.</p>
             </div>
             <div>
               <h2>How long we keep information</h2>
@@ -53,11 +54,11 @@ export default function PrivacyPage() {
             </div>
             <div>
               <h2>Your California privacy rights</h2>
-              <p>If you are a California resident, the California Consumer Privacy Act (CCPA/CPRA) gives you the right to know what personal information we hold about you, to request its deletion, to correct inaccurate information, and to opt out of the sale or sharing of personal information. We do not sell personal information. To exercise any of these rights, email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or call <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>. We will not discriminate against you for exercising your rights.</p>
+              <p>If you are a California resident, the California Consumer Privacy Act (CCPA/CPRA) gives you the right to know what personal information we hold about you, to request its deletion, to correct inaccurate information, and to opt out of the sale or sharing of personal information. We do not sell personal information. To exercise any of these rights, email <a href={`mailto:${CONTACT.email}`} title="Email Gobiya">{CONTACT.email}</a> or call <a href={CONTACT.phoneHref} title="Call Gobiya at 323-744-1338">{CONTACT.phone}</a>. We will not discriminate against you for exercising your rights.</p>
             </div>
             <div>
               <h2>Changes and contact</h2>
-              <p>We may update this policy from time to time; the date at the top reflects the latest revision. Questions about this policy or your information can be sent to <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.</p>
+              <p>We may update this policy from time to time; the date at the top reflects the latest revision. Questions about this policy or your information can be sent to <a href={`mailto:${CONTACT.email}`} title="Email Gobiya">{CONTACT.email}</a>.</p>
             </div>
           </div>
         </div>

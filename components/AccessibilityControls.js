@@ -102,6 +102,7 @@ export default function AccessibilityControls() {
               className="a11y-panel__close"
               onClick={() => setIsOpen(false)}
               aria-label="Close accessibility menu"
+              title="Close accessibility menu"
             >
               &times;
             </button>
@@ -116,6 +117,7 @@ export default function AccessibilityControls() {
                   type="button"
                   className={`a11y-option-btn ${textSize === 'normal' ? 'is-active' : ''}`}
                   onClick={() => setTextSize('normal')}
+                  title="Set text size to normal (100%)"
                 >
                   100%
                 </button>
@@ -123,6 +125,7 @@ export default function AccessibilityControls() {
                   type="button"
                   className={`a11y-option-btn ${textSize === 'large' ? 'is-active' : ''}`}
                   onClick={() => setTextSize('large')}
+                  title="Set text size to large (115%)"
                 >
                   115%
                 </button>
@@ -130,6 +133,7 @@ export default function AccessibilityControls() {
                   type="button"
                   className={`a11y-option-btn ${textSize === 'xlarge' ? 'is-active' : ''}`}
                   onClick={() => setTextSize('xlarge')}
+                  title="Set text size to extra large (130%)"
                 >
                   130%
                 </button>
@@ -142,6 +146,7 @@ export default function AccessibilityControls() {
                 type="button"
                 className={`a11y-toggle-btn ${highContrast ? 'is-active' : ''}`}
                 onClick={() => setHighContrast(!highContrast)}
+                title="Toggle high contrast mode"
               >
                 <span className="a11y-toggle-btn__icon">🌓</span>
                 <span>High Contrast Mode</span>
@@ -155,6 +160,7 @@ export default function AccessibilityControls() {
                 type="button"
                 className={`a11y-toggle-btn ${highlightLinks ? 'is-active' : ''}`}
                 onClick={() => setHighlightLinks(!highlightLinks)}
+                title="Toggle link highlighting"
               >
                 <span className="a11y-toggle-btn__icon">🔗</span>
                 <span>Highlight All Links</span>
@@ -168,6 +174,7 @@ export default function AccessibilityControls() {
                 type="button"
                 className={`a11y-toggle-btn ${grayscale ? 'is-active' : ''}`}
                 onClick={() => setGrayscale(!grayscale)}
+                title="Toggle grayscale / invert colors mode"
               >
                 <span className="a11y-toggle-btn__icon">👁️</span>
                 <span>Grayscale / Invert Colors</span>
@@ -177,7 +184,7 @@ export default function AccessibilityControls() {
 
             {/* Reset Button */}
             <div className="a11y-panel__footer">
-              <button type="button" className="a11y-reset-btn" onClick={resetAll}>
+              <button type="button" className="a11y-reset-btn" onClick={resetAll} title="Reset all accessibility settings to default">
                 Reset to Default
               </button>
             </div>

@@ -4,7 +4,6 @@ import ClientLogos from './ClientLogos';
 import PackagesOffer from './PackagesOffer';
 import CommunityReviews from './CommunityReviews';
 import ClosingCta from './ClosingCta';
-import ExcellenceGrid from './ExcellenceGrid';
 import { renderBlock } from './ContentBlocks';
 import { servicePath, SERVICE_LINKS } from '../lib/serviceIndex';
 import { SERVICE_BODIES } from '../lib/serviceBodies';
@@ -24,6 +23,54 @@ import { CONTACT } from '../lib/nav';
 // Everything each service authors in servicesFlat.js / services.js — intro,
 // problem, capabilities, featureRows, process, datapoint, serviceAreas,
 // testimonial — lands on the page. Only `faqs` stays schema-only.
+
+const SERVICE_ICONS = {
+  'technical-seo': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
+    </svg>
+  ),
+  'geo': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><path d="M18 2l2 2-2 2M20 4h-4"/>
+    </svg>
+  ),
+  'content-marketing': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+  ),
+  'link-building': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </svg>
+  ),
+  'ppc': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/>
+    </svg>
+  ),
+  'cro': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+    </svg>
+  ),
+  'web-dev': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/>
+    </svg>
+  ),
+  'web-ux': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+  ),
+  'ai-consulting': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  ),
+};
 
 export default function ServiceTemplate({ service }) {
   const displayTitle = service.navTitle || service.title;
@@ -78,15 +125,9 @@ export default function ServiceTemplate({ service }) {
 
       {/* ══ 1. Hero ══ */}
       <PageHero
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: displayTitle },
-        ]}
-        eyebrow={`${displayTitle} · Los Angeles`}
         title={service.headline || `${displayTitle} in Los Angeles`}
-        accent="Expert Service in Los Angeles and the San Fernando Valley"
         dek={hero?.excerpt}
+        icon={SERVICE_ICONS[service.slug] || null}
         primary={{
           text: service.heroCtaText || 'Get Your Analysis',
           href: service.heroCtaHref || '/free-site-scan',
@@ -123,7 +164,7 @@ export default function ServiceTemplate({ service }) {
                     {service.capabilities.map((cap) => (
                       <li key={cap.title}>
                         {cap.href ? (
-                          <a href={cap.href} className="gb-checklist__title">
+                          <a href={cap.href} className="gb-checklist__title" title={cap.title}>
                             {cap.title}
                           </a>
                         ) : (
@@ -144,7 +185,7 @@ export default function ServiceTemplate({ service }) {
                   </strong>{' '}
                   {service.datapoint.label}.{' '}
                   {service.datapoint.href ? (
-                    <a href={service.datapoint.href}>{service.datapoint.sourceNote}</a>
+                    <a href={service.datapoint.href} title={service.datapoint.sourceNote}>{service.datapoint.sourceNote}</a>
                   ) : (
                     service.datapoint.sourceNote
                   )}
@@ -180,7 +221,7 @@ export default function ServiceTemplate({ service }) {
                   )}
                   {row.link && (
                     <p className="gb-prose__more">
-                      <a href={row.link.href}>
+                      <a href={row.link.href} title={row.link.text}>
                         {row.link.text} <span aria-hidden="true">&rarr;</span>
                       </a>
                     </p>
@@ -209,14 +250,14 @@ export default function ServiceTemplate({ service }) {
 
               <p className="gb-prose__contact">
                 For immediate assistance with your {displayTitle.toLowerCase()} project,{' '}
-                <a href="/contact">contact us</a> at{' '}
-                <a href={CONTACT.phoneHref}>(323) 744-1338</a>.
+                <a href="/contact" title="Contact Gobiya">contact us</a> at{' '}
+                <a href={CONTACT.phoneHref} title="Call Gobiya at 323-744-1338">(323) 744-1338</a>.
               </p>
             </div>
 
             <aside className="gb-body__aside">
               <nav className="gb-sidebar" aria-label="Services">
-                <a href="/services" className="gb-sidebar__title">
+                <a href="/services" className="gb-sidebar__title" title="All services">
                   Services
                 </a>
                 <ul className="gb-sidebar__list">
@@ -226,6 +267,7 @@ export default function ServiceTemplate({ service }) {
                         href={s.href}
                         className={s.slug === service.slug ? 'is-current' : undefined}
                         aria-current={s.slug === service.slug ? 'page' : undefined}
+                        title={s.title}
                       >
                         {s.title}
                       </a>
@@ -241,11 +283,11 @@ export default function ServiceTemplate({ service }) {
                   We check your site for hidden errors, Google ranking problems, and AI
                   search gaps, then send you the findings. No cost, no obligation.
                 </p>
-                <a href="/free-site-scan" className="gb-btn gb-btn--accent gb-cta-card__btn">
+                <a href="/free-site-scan" className="gb-btn gb-btn--accent gb-cta-card__btn" title="Get your free site analysis">
                   Get Your Analysis
                 </a>
                 <p className="gb-cta-card__divider">or call us directly</p>
-                <a href={CONTACT.phoneHref} className="gb-cta-card__phone">
+                <a href={CONTACT.phoneHref} className="gb-cta-card__phone" title="Call Gobiya at 323-744-1338">
                   {CONTACT.phone}
                 </a>
               </div>
@@ -273,7 +315,7 @@ export default function ServiceTemplate({ service }) {
               ))}
             </ul>
             <p className="mw-local-areas__beyond">
-              <a href="/los-angeles-seo" className="mw-local-areas__beyond-link">
+              <a href="/los-angeles-seo" className="mw-local-areas__beyond-link" title="SEO services in Greater Los Angeles and San Fernando Valley">
                 &amp; Beyond!
               </a>{' '}
               <span>(Greater Los Angeles Area &amp; San Fernando Valley)</span>
@@ -316,8 +358,6 @@ export default function ServiceTemplate({ service }) {
         phone
       />
 
-      {/* ══ 8. The four standards ══ */}
-      <ExcellenceGrid />
     </main>
   );
 }

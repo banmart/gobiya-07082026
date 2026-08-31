@@ -48,7 +48,7 @@ export default function ForgotForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <button className="auth__submit" type="submit" disabled={busy}>
+      <button className="auth__submit" type="submit" title="Send reset link" disabled={busy}>
         {busy ? 'Sending…' : 'Send reset link'}
       </button>
     </form>

@@ -16,7 +16,7 @@ export default function ForgotPage() {
       </p>
       <ForgotForm />
       <p className="auth__foot">
-        <a href="/login">Back to sign in</a>
+        <a href="/login" title="Back to sign in">Back to sign in</a>
       </p>
     </div>
   );

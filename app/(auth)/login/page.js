@@ -41,13 +41,13 @@ export default async function LoginPage({ searchParams }) {
 
       {errorMessage ? (
         <p className="auth__note" role="alert">
-          {errorMessage} <a href="/forgot">Send me a new link</a>.
+          {errorMessage} <a href="/forgot" title="Request a new password reset link">Send me a new link</a>.
         </p>
       ) : null}
 
       <LoginForm next={next} />
       <p className="auth__foot">
-        <a href="/forgot">Forgot your password?</a>
+        <a href="/forgot" title="Forgot your password?">Forgot your password?</a>
       </p>
     </div>
   );

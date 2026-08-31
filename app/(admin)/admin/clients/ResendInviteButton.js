@@ -13,7 +13,7 @@ export default function ResendInviteButton({ clientId }) {
   return (
     <form action={formAction}>
       <input type="hidden" name="clientId" value={clientId} />
-      <button className="btn-app btn-app--quiet" type="submit" disabled={pending}>
+      <button className="btn-app btn-app--quiet" type="submit" title="Resend invite email to this client" disabled={pending}>
         {pending ? 'Sending…' : 'Resend invite'}
       </button>
       {state?.error ? (

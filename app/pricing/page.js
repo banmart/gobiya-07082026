@@ -102,6 +102,7 @@ export default function PricingPage() {
         dek="Our pricing, in full: every plan and every add-on with the number on it. Month to month, no long-term contracts, and a free audit before you commit to anything."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>}
       />
       <TopicMarquee topics={["Transparent Monthly Plans", "No Long-Term Contracts", "Full Audit Included", "Custom Enterprise Tier", "Measurable ROI"]} />
 
@@ -119,12 +120,12 @@ export default function PricingPage() {
                   {t.features.map((f, i) => (
                     <li className="pricing-card__feature" key={i}>
                       <span className="pricing-card__check">✓</span>
-                      {f.href ? <a href={f.href}>{f.label}</a> : f.label}
+                      {f.href ? <a href={f.href} title={f.label}>{f.label}</a> : f.label}
                     </li>
                   ))}
                 </ul>
                 <div className="pricing-card__cta">
-                  <a href="?onboarding=true" className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
+                  <a href="?onboarding=true" title={`Get started with ${t.name}`} className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
                     Get started with {t.name}
                   </a>
                 </div>
@@ -139,7 +140,7 @@ export default function PricingPage() {
           <Chapter n={2} label="Individual services" title="Or pick a single service to add to your plan." />
           <div className="addons-grid" data-stagger>
             {ADDONS.map((a) => (
-              <a className="addon-card" href={a.href} key={a.name}>
+              <a className="addon-card" href={a.href} key={a.name} title={a.name}>
                 <div className="addon-card__body">
                   <h3 className="addon-card__name">{a.name}</h3>
                   <p className="addon-card__price">{a.price}</p>
@@ -164,8 +165,8 @@ export default function PricingPage() {
         <div className="container container--narrow">
           <h2 className="cta__title">Tell us about your goals — we&apos;ll recommend the right scope.</h2>
           <div className="cta__actions">
-            <a href="?onboarding=true" className="btn btn--solid btn--big">Get a free proposal</a>
-            <a href="tel:+13237441338" className="btn btn--ghost btn--big">323-744-1338</a>
+            <a href="?onboarding=true" title="Get a free proposal" className="btn btn--solid btn--big">Get a free proposal</a>
+            <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338" className="btn btn--ghost btn--big">323-744-1338</a>
           </div>
           <div className="mw-cta-arrow-wrapper">
             <img src="/assets/img/get-started-grey.png" alt="Get started today" className="mw-arrow-img mw-arrow-img--light" />

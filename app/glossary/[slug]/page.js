@@ -12,9 +12,10 @@ export async function generateMetadata({ params }) {
   const entry = getGlossaryTerm(slug);
   if (!entry) return {};
   return buildMetadata({
-    title: `${entry.term} — Glossary`,
+    title: entry.term,
     description: entry.shortDefinition,
     path: `/glossary/${entry.slug}`,
+    parent: 'Glossary',
   });
 }
 

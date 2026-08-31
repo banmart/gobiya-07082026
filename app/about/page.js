@@ -1,7 +1,6 @@
 import Breadcrumbs from '../../components/Breadcrumbs';
 import SubHero from '../../components/SubHero';
 import PlatformStrip from '../../components/PlatformStrip';
-import ExcellenceGrid from '../../components/ExcellenceGrid';
 import TestimonialStack from '../../components/TestimonialStack';
 import ClientLogos from '../../components/ClientLogos';
 import { buildMetadata } from '../../lib/meta';
@@ -33,6 +32,7 @@ export default function AboutPage() {
         dek="About Gobiya in one line: technical SEO, AI search, and web architecture for local businesses — same team on every job, no account managers in between."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Meet Steve Martin', href: '/about/steve-martin' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>}
       />
 
       {/* ══ 3. Platform Strip ══ */}
@@ -49,7 +49,7 @@ export default function AboutPage() {
           </p>
           <p className="mw-simple__excerpt">
             Ready to make the call to one of the most trusted local SEOs in the area? Reach out to us at{' '}
-            <a href="tel:+13237441338">(323) 744-1338</a>!
+            <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338">(323) 744-1338</a>!
           </p>
         </div>
       </section>
@@ -65,16 +65,13 @@ export default function AboutPage() {
           </p>
           <p className="mw-navy-banner__note">
             Ready to make the call to one of the most trusted local SEOs in the area? Reach out to us at{' '}
-            <a href="tel:+13237441338">(323) 744-1338</a>!
+            <a href="tel:+13237441338" title="Call Gobiya at 323-744-1338">(323) 744-1338</a>!
           </p>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" title="Contact Us To See How We Can Help You" className="mw-navy-banner__btn">
             Contact Us To See How We Can Help You
           </a>
         </div>
       </section>
-
-      {/* ══ 6. Excellence in Every Service ══ */}
-      <ExcellenceGrid />
 
       {/* ══ 7. The 4-Step Method ══ */}
       <section className="mw-steps" id="process">
@@ -113,7 +110,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mw-steps__btn-wrap">
-            <a href="/process" className="mw-steps__btn">
+            <a href="/process" title="View our proprietary process for growing a business" className="mw-steps__btn">
               View our proprietary process for growing a business
             </a>
           </div>
@@ -139,7 +136,7 @@ export default function AboutPage() {
             <p className="mw-consultation__dek">
               You&apos;ve invested your blood, sweat, and tears into an enterprise that has provided for you, your family and your employees. The moment has finally come for you to start a new chapter in your digital growth. Explore your options now.
             </p>
-            <a href="?onboarding=true" className="mw-consultation__btn">
+            <a href="?onboarding=true" title="Schedule Your Consultation" className="mw-consultation__btn">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />

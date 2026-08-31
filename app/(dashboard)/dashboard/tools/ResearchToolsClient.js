@@ -56,6 +56,7 @@ export default function ResearchToolsClient({ defaultDomain }) {
       <div className="tools__tabs">
         <button
           className={`tools__tab ${activeTab === 'whois' ? 'tools__tab--active' : ''}`}
+          title="Switch to WHOIS lookup"
           onClick={() => {
             setActiveTab('whois');
             setData(null);
@@ -65,6 +66,7 @@ export default function ResearchToolsClient({ defaultDomain }) {
         </button>
         <button
           className={`tools__tab ${activeTab === 'dns' ? 'tools__tab--active' : ''}`}
+          title="Switch to DNS records"
           onClick={() => {
             setActiveTab('dns');
             setData(null);
@@ -74,6 +76,7 @@ export default function ResearchToolsClient({ defaultDomain }) {
         </button>
         <button
           className={`tools__tab ${activeTab === 'ssl' ? 'tools__tab--active' : ''}`}
+          title="Switch to SSL health check"
           onClick={() => {
             setActiveTab('ssl');
             setData(null);
@@ -94,7 +97,7 @@ export default function ResearchToolsClient({ defaultDomain }) {
             required
           />
         </div>
-        <button type="submit" className="btn-app" disabled={loading}>
+        <button type="submit" className="btn-app" title="Inspect this domain" disabled={loading}>
           {loading ? 'Performing Lookup…' : 'Inspect Domain'}
         </button>
       </form>

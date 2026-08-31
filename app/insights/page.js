@@ -30,6 +30,7 @@ export default function InsightsPage() {
         dek="Insights and practical guides on technical SEO, algorithm recovery, AI visibility (GEO), local SEO, and search marketing strategy — written by the people doing the work."
         primary={{ text: 'Get Your Analysis', href: '/free-site-scan' }}
         secondary={{ text: 'Contact Us', href: '/contact' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>}
       />
 
       {/* ══ 3. All Articles Archive List ══ */}
@@ -48,7 +49,7 @@ export default function InsightsPage() {
           <h2 className="mw-navy-banner__title">
             Have a question these guides didn&apos;t answer?
           </h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" className="mw-navy-banner__btn" title="Schedule a free strategy consultation">
             Schedule a Consultation
           </a>
         </div>

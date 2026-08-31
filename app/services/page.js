@@ -81,6 +81,7 @@ export default function ServicesPage() {
         dek="Nine digital marketing services, each with a clear scope and a technical execution standard you can hold us to. Choose the capability your business needs and see exactly what it covers."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>}
       />
 
       {/* ══ Platform Strip — directly under hero ══ */}
@@ -103,6 +104,7 @@ export default function ServicesPage() {
                 href={service.href}
                 className={`mw-bento-card ${service.spanClass}`}
                 style={{ backgroundImage: `url('${service.image}')` }}
+                title={service.title}
               >
                 <div className="mw-bento-card__overlay" />
                 <div className="mw-bento-card__content">
@@ -124,7 +126,7 @@ export default function ServicesPage() {
           <h2 className="mw-navy-banner__title">
             Not sure which service your business needs?
           </h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" title="Request a Quote" className="mw-navy-banner__btn">
             Request a Quote
           </a>
         </div>

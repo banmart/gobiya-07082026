@@ -34,7 +34,7 @@ export default async function AdminPage() {
             <p className="card__body">
               {activeClientsCount} active tenant {activeClientsCount === 1 ? 'account' : 'accounts'}
             </p>
-            <a href="/admin/clients" className="card__link">
+            <a href="/admin/clients" className="card__link" title="Manage client accounts">
               Manage accounts &rarr;
             </a>
           </article>
@@ -47,7 +47,7 @@ export default async function AdminPage() {
             <p className="card__body">
               {newSubmissionsCount} unread lead {newSubmissionsCount === 1 ? 'submission' : 'submissions'}
             </p>
-            <a href="/admin/leads" className="card__link">
+            <a href="/admin/leads" className="card__link" title="View lead enquiries">
               View enquiries &rarr;
             </a>
           </article>
@@ -65,7 +65,7 @@ export default async function AdminPage() {
         <section className="app__section" style={{ marginTop: '2.5rem' }}>
           <div className="app__actions">
             <h3 className="app__section-title">Recent Enquiries</h3>
-            <a href="/admin/leads" className="btn-app btn-app--quiet">
+            <a href="/admin/leads" className="btn-app btn-app--quiet" title="View all enquiries">
               View all
             </a>
           </div>
@@ -92,7 +92,7 @@ export default async function AdminPage() {
                     </td>
                     <td>{sub.name}</td>
                     <td>
-                      <a href={`mailto:${sub.email}`}>{sub.email}</a>
+                      <a href={`mailto:${sub.email}`} title="Email this lead">{sub.email}</a>
                     </td>
                     <td>{sub.company || sub.website || '—'}</td>
                     <td>{new Date(sub.created_at).toLocaleDateString()}</td>

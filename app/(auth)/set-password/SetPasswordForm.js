@@ -90,7 +90,7 @@ export default function SetPasswordForm({ role }) {
         />
       </div>
 
-      <button className="auth__submit" type="submit" disabled={busy}>
+      <button className="auth__submit" type="submit" title="Save password" disabled={busy}>
         {busy ? 'Saving…' : 'Save password'}
       </button>
     </form>

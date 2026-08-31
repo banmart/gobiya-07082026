@@ -38,7 +38,7 @@ export default async function DashboardPage() {
             <h2 className="app__welcome">Welcome back, {businessName}</h2>
             <p className="app__welcome-sub">
               {website ? (
-                <a href={website} target="_blank" rel="noreferrer">
+                <a href={website} target="_blank" rel="noreferrer" title="Visit your website">
                   {website.replace(/^https?:\/\//, '')} &nearr;
                 </a>
               ) : (
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
             </div>
             <h2 className="card__stat-number card__stat-number--green">{auditScore}/100</h2>
             <p className="card__body">Website readability & search optimization</p>
-            <a href="/dashboard/audit" className="card__link">
+            <a href="/dashboard/audit" className="card__link" title="Go to your audit tool">
               Run new scan &rarr;
             </a>
           </article>
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
               {avgRating} <span className="star">&starf;</span>
             </h2>
             <p className="card__body">{reviews.length} total review entries</p>
-            <a href="/dashboard/reviews" className="card__link">
+            <a href="/dashboard/reviews" className="card__link" title="Manage your Google reviews">
               Manage reviews &rarr;
             </a>
           </article>
@@ -86,7 +86,7 @@ export default async function DashboardPage() {
             </div>
             <h2 className="card__stat-number">3 Tools</h2>
             <p className="card__body">WHOIS, DNS records & SSL security suite</p>
-            <a href="/dashboard/tools" className="card__link">
+            <a href="/dashboard/tools" className="card__link" title="Open research tools">
               Open research tools &rarr;
             </a>
           </article>
@@ -97,7 +97,7 @@ export default async function DashboardPage() {
           <div className="dashboard__panel">
             <div className="panel__header">
               <h3 className="panel__title">Google Business Reputation</h3>
-              <a href="/dashboard/reviews" className="btn-app btn-app--quiet">
+              <a href="/dashboard/reviews" className="btn-app btn-app--quiet" title="View all reviews">
                 View All
               </a>
             </div>
@@ -107,7 +107,7 @@ export default async function DashboardPage() {
             {reviews.length === 0 ? (
               <div className="panel__stub">
                 <p>No Google reviews imported yet.</p>
-                <a href="/dashboard/reviews" className="btn-app" style={{ marginTop: '0.75rem' }}>
+                <a href="/dashboard/reviews" className="btn-app" style={{ marginTop: '0.75rem' }} title="Explore the reviews suite">
                   Explore Reviews Suite
                 </a>
               </div>
@@ -129,7 +129,7 @@ export default async function DashboardPage() {
           <div className="dashboard__panel">
             <div className="panel__header">
               <h3 className="panel__title">Website Scan &amp; AI Visibility</h3>
-              <a href="/dashboard/audit" className="btn-app btn-app--quiet">
+              <a href="/dashboard/audit" className="btn-app btn-app--quiet" title="Scan your site">
                 Scan Site
               </a>
             </div>

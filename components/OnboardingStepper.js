@@ -162,8 +162,8 @@ export default function OnboardingStepper() {
       <div className="stepper__fast-contact" style={{ marginBottom: '1.25rem', padding: '0.75rem 1.25rem', background: 'rgba(255,255,255,0.03)', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
         <span style={{ color: 'var(--text-muted)' }}>Prefer a direct quick response?</span>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <a href="tel:+13237441338" style={{ fontWeight: 600, color: 'var(--main)', textDecoration: 'none' }}>📞 323-744-1338</a>
-          <a href="mailto:steve@gobiya.com" style={{ fontWeight: 600, color: 'var(--text)', textDecoration: 'none' }}>✉️ steve@gobiya.com</a>
+          <a href="tel:+13237441338" style={{ fontWeight: 600, color: 'var(--main)', textDecoration: 'none' }} title="Call Gobiya at 323-744-1338">📞 323-744-1338</a>
+          <a href="mailto:steve@gobiya.com" style={{ fontWeight: 600, color: 'var(--text)', textDecoration: 'none' }} title="Email steve@gobiya.com">✉️ steve@gobiya.com</a>
         </div>
       </div>
 
@@ -220,6 +220,7 @@ export default function OnboardingStepper() {
                 key={opt.value}
                 className={`stepper__option${form.industry === opt.value ? ' stepper__option--selected' : ''}`}
                 onClick={() => update('industry', opt.value)}
+                title={opt.label}
               >
                 {opt.label}
               </button>
@@ -238,6 +239,7 @@ export default function OnboardingStepper() {
                 key={opt.value}
                 className={`stepper__option${form.goal === opt.value ? ' stepper__option--selected' : ''}`}
                 onClick={() => update('goal', opt.value)}
+                title={opt.label}
               >
                 {opt.label}
               </button>
@@ -256,6 +258,7 @@ export default function OnboardingStepper() {
                 key={opt.value}
                 className={`stepper__option${form.challenges.includes(opt.value) ? ' stepper__option--selected' : ''}`}
                 onClick={() => update('challenges', toggleChallenge(form.challenges, opt.value))}
+                title={opt.label}
               >
                 {opt.label}
               </button>
@@ -275,6 +278,7 @@ export default function OnboardingStepper() {
                 key={opt.value}
                 className={`stepper__option${form.budget === opt.value ? ' stepper__option--selected' : ''}`}
                 onClick={() => update('budget', opt.value)}
+                title={opt.label}
               >
                 {opt.label}
               </button>
@@ -288,6 +292,7 @@ export default function OnboardingStepper() {
                 key={opt.value}
                 className={`stepper__option${form.timeline === opt.value ? ' stepper__option--selected' : ''}`}
                 onClick={() => update('timeline', opt.value)}
+                title={opt.label}
               >
                 {opt.label}
               </button>
@@ -304,24 +309,24 @@ export default function OnboardingStepper() {
 
       <div className="stepper__nav">
         {step > 1 && (
-          <button type="button" className="btn btn--ghost" onClick={goBack} disabled={status === 'submitting'}>
+          <button type="button" className="btn btn--ghost" onClick={goBack} disabled={status === 'submitting'} title="Go back to previous step">
             Back
           </button>
         )}
         {step < STEP_COUNT && (
-          <button type="button" className="btn btn--solid" onClick={goNext}>
+          <button type="button" className="btn btn--solid" onClick={goNext} title="Continue to next step">
             Continue
           </button>
         )}
         {step === STEP_COUNT && (
-          <button type="submit" className="btn btn--solid" disabled={status === 'submitting'}>
+          <button type="submit" className="btn btn--solid" disabled={status === 'submitting'} title="Submit your request">
             {status === 'submitting' ? 'Sending…' : 'Submit'}
           </button>
         )}
       </div>
 
       <p className="stepper__disclaimer">
-        By submitting this form, you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. We will never share your information. Submitting this form does not guarantee specific rankings, traffic, or results — every engagement starts with Steve reviewing your actual data before any recommendation is made.
+        By submitting this form, you agree to our <a href="/privacy" title="Privacy Policy">Privacy Policy</a> and <a href="/terms" title="Terms of Service">Terms of Service</a>. We will never share your information. Submitting this form does not guarantee specific rankings, traffic, or results — every engagement starts with Steve reviewing your actual data before any recommendation is made.
       </p>
     </form>
   );

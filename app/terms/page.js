@@ -21,6 +21,7 @@ export default function TermsPage() {
         eyebrow="Terms & Conditions"
         title="The Terms, in Plain English"
         excerpt="The Agreement Between You and Gobiya LLC"
+        showTrust={false}
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
       />
@@ -48,11 +49,11 @@ export default function TermsPage() {
             </div>
             <div>
               <h2>Third-party links</h2>
-              <p>The Site links to third-party websites and services we do not control. We are not responsible for their content or privacy practices. See our <a href="/privacy">Privacy Policy</a> for how visitor data is handled on this Site.</p>
+              <p>The Site links to third-party websites and services we do not control. We are not responsible for their content or privacy practices. See our <a href="/privacy" title="Privacy Policy">Privacy Policy</a> for how visitor data is handled on this Site.</p>
             </div>
             <div>
               <h2>Governing law and contact</h2>
-              <p>These terms are governed by the laws of the State of California. Questions can be sent to <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or {CONTACT.address1}, {CONTACT.address2}.</p>
+              <p>These terms are governed by the laws of the State of California. Questions can be sent to <a href={`mailto:${CONTACT.email}`} title="Email Gobiya">{CONTACT.email}</a> or {CONTACT.address1}, {CONTACT.address2}.</p>
             </div>
           </div>
         </div>

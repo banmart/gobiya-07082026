@@ -56,13 +56,13 @@ export const metadata = {
  * already painted, so a dark-mode visitor gets a white flash on every
  * navigation. Stored choice wins; absent one we follow the OS.
  */
-const THEME_INIT = `(function(){try{var s=localStorage.getItem('gobiya-theme');var d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}})();`;
+const THEME_INIT = `(function(){try{localStorage.removeItem('gobiya-theme');document.documentElement.dataset.theme='light';}catch(e){document.documentElement.dataset.theme='light';}})();`;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${openSans.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={`${inter.variable} ${openSans.variable}`} suppressHydrationWarning>
       <head>
-        <meta name="color-scheme" content="light dark" />
+        <meta name="color-scheme" content="light" />
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
       </head>
       <body>

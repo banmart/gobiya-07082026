@@ -18,7 +18,7 @@ export default function Footer() {
               <h4 className="gb-footer__col-title">{col.heading}</h4>
               <div className="gb-footer__links">
                 {col.items.map((item) => (
-                  <a key={item.href} href={item.href}>{item.label}</a>
+                  <a key={item.href} href={item.href} title={item.label}>{item.label}</a>
                 ))}
               </div>
             </div>
@@ -27,9 +27,9 @@ export default function Footer() {
           <div>
             <h4 className="gb-footer__col-title">Company</h4>
             <div className="gb-footer__links">
-              <a href={HEADER_CTA.href}>{HEADER_CTA.label}</a>
-              <a href="/privacy">Privacy</a>
-              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+              <a href={HEADER_CTA.href} title={HEADER_CTA.label}>{HEADER_CTA.label}</a>
+              <a href="/privacy" title="Privacy Policy">Privacy</a>
+              <a href={`mailto:${CONTACT.email}`} title={`Email ${CONTACT.email}`}>{CONTACT.email}</a>
             </div>
           </div>
         </div>
@@ -37,8 +37,8 @@ export default function Footer() {
         <div className="gb-footer__office">
           <div className="gb-footer__office-block">
             <h5 className="gb-footer__office-title">Locations</h5>
-            <p><a href="/van-nuys-seo">Van Nuys</a></p>
-            <p><a href="/los-angeles-seo">Los Angeles</a></p>
+            <p><a href="/van-nuys-seo" title="Van Nuys SEO office">Van Nuys</a></p>
+            <p><a href="/los-angeles-seo" title="Los Angeles SEO office">Los Angeles</a></p>
           </div>
           <div className="gb-footer__office-block">
             <h5 className="gb-footer__office-title">Hours</h5>
@@ -47,8 +47,8 @@ export default function Footer() {
           </div>
           <div className="gb-footer__office-block">
             <h5 className="gb-footer__office-title">Direct</h5>
-            <p><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
-            <p><a href={CONTACT.phoneHref}>(323) 744-1338</a></p>
+            <p><a href={`mailto:${CONTACT.email}`} title={`Email ${CONTACT.email}`}>{CONTACT.email}</a></p>
+            <p><a href={CONTACT.phoneHref} title="Call Gobiya at 323-744-1338">(323) 744-1338</a></p>
           </div>
         </div>
 
@@ -57,11 +57,11 @@ export default function Footer() {
             Gobiya — search engineering, Los Angeles · Est. 2010
           </span>
           <div className="gb-footer__legal">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
+            <a href="/privacy" title="Privacy Policy">Privacy</a>
+            <a href="/terms" title="Terms of Service">Terms</a>
             <CookiePreferencesLink />
           </div>
-          <a href="#top" className="gb-footer__top">Back to top <span aria-hidden="true">&uarr;</span></a>
+          <a href="#top" className="gb-footer__top" title="Back to top of page">Back to top <span aria-hidden="true">&uarr;</span></a>
         </div>
       </div>
 

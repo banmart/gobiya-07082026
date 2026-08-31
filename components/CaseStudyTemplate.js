@@ -220,7 +220,7 @@ export default function CaseStudyTemplate({ cs }) {
       <section className="section section--tint" id="related">
         <div className="container container--narrow">
           <div className="hero__ctas" data-reveal>
-            <a href={cs.serviceHref} className="btn btn--ghost">{cs.serviceLabel}</a>
+            <a href={cs.serviceHref} className="btn btn--ghost" title={cs.serviceLabel}>{cs.serviceLabel}</a>
           </div>
         </div>
       </section>
@@ -233,8 +233,8 @@ export default function CaseStudyTemplate({ cs }) {
         <div className="container container--narrow">
           <h2 className="cta__title" data-split>Your business could be the next case study.</h2>
           <div className="cta__actions" data-reveal>
-            <a href="?onboarding=true" className="btn btn--solid btn--big">Start onboarding</a>
-            <a href="/work" className="btn btn--ghost btn--big">More client work</a>
+            <a href="?onboarding=true" className="btn btn--solid btn--big" title="Schedule a free strategy consultation">Start onboarding</a>
+            <a href="/work" className="btn btn--ghost btn--big" title="View more client work and case studies">More client work</a>
           </div>
         </div>
       </section>

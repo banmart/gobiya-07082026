@@ -62,7 +62,7 @@ export default function GlossaryTermTemplate({ entry }) {
                 <ul className="gls-related-list">
                   {relatedTerms.map((t) => (
                     <li key={t.slug}>
-                      <a href={`/glossary/${t.slug}`} className="gls-related-link">
+                      <a href={`/glossary/${t.slug}`} className="gls-related-link" title={t.term}>
                         <span>{t.term}</span>
                         <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                           <path d="M2 8h11M9 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -79,7 +79,7 @@ export default function GlossaryTermTemplate({ entry }) {
               <div className="gls-card gls-card--cta">
                 <span className="gls-card__label">Put it to work</span>
                 <p className="gls-card__cta-text">See how we apply this for Los Angeles businesses.</p>
-                <a href={entry.relatedHref} className="btn btn--solid" style={{ marginTop: '1.25rem' }}>
+                <a href={entry.relatedHref} className="btn btn--solid" style={{ marginTop: '1.25rem' }} title={entry.relatedLabel ?? 'Learn more about this service'}>
                   {entry.relatedLabel ?? 'Learn more'}
                 </a>
               </div>
@@ -87,7 +87,7 @@ export default function GlossaryTermTemplate({ entry }) {
 
             {/* Back to glossary — always shown */}
             <div className="gls-card gls-card--back">
-              <a href="/glossary" className="gls-back-link">
+              <a href="/glossary" className="gls-back-link" title="Back to the full glossary">
                 <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                   <path d="M14 8H3M7 13L2 8l5-5" fill="none" stroke="currentColor" strokeWidth="1.5" />
                 </svg>

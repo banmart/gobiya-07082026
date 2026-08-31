@@ -15,6 +15,7 @@ export async function generateMetadata({ params }) {
     title: article.title,
     description: article.metaDescription,
     path: `/insights/${article.slug}`,
+    parent: 'Insights',
   });
 }
 

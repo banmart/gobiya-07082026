@@ -46,6 +46,7 @@ export default function InsightsGrid({ articles }) {
             className={`insights__filter${cat === activeCategory ? ' is-active' : ''}`}
             aria-pressed={cat === activeCategory}
             onClick={() => selectCategory(cat)}
+            title={cat === 'All' ? 'Show all articles' : `Filter by ${cat}`}
           >
             {cat}
           </button>
@@ -54,7 +55,7 @@ export default function InsightsGrid({ articles }) {
 
       <div className="insights__grid" ref={gridRef}>
         {paginated.map((a) => (
-          <a className="insights__card" href={`/insights/${a.slug}`} key={a.slug}>
+          <a className="insights__card" href={`/insights/${a.slug}`} key={a.slug} title={a.title}>
             <span className="insights__card-cat">{a.category}</span>
             <h2 className="insights__card-title">{a.title}</h2>
             <p className="insights__card-dek">{a.dek}</p>
@@ -70,6 +71,7 @@ export default function InsightsGrid({ articles }) {
             className="insights__page-btn insights__page-btn--nav"
             onClick={() => goToPage(currentPage - 1)}
             disabled={currentPage === 1}
+            title="Go to previous page"
           >
             Prev
           </button>
@@ -80,6 +82,7 @@ export default function InsightsGrid({ articles }) {
               className={`insights__page-btn${n === currentPage ? ' is-active' : ''}`}
               aria-current={n === currentPage ? 'page' : undefined}
               onClick={() => goToPage(n)}
+              title={`Go to page ${n}`}
             >
               {n}
             </button>
@@ -89,6 +92,7 @@ export default function InsightsGrid({ articles }) {
             className="insights__page-btn insights__page-btn--nav"
             onClick={() => goToPage(currentPage + 1)}
             disabled={currentPage === totalPages}
+            title="Go to next page"
           >
             Next
           </button>

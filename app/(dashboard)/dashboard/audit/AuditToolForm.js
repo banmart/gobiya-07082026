@@ -51,7 +51,7 @@ export default function AuditToolForm({ defaultUrl }) {
             required
           />
         </div>
-        <button type="submit" className="btn-app" disabled={loading}>
+        <button type="submit" className="btn-app" title="Run website scan" disabled={loading}>
           {loading ? 'Scanning Website…' : 'Run Scan'}
         </button>
       </form>

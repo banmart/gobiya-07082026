@@ -26,6 +26,7 @@ export default function WorkPage() {
         dek="Our work, with the numbers attached — what each site looked like before, what we changed, and what Search Console said afterwards."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>}
       />
 
       {/* ══ 3. Pillar Hierarchical Grid (Left Sidebar + Right Column) ══ */}
@@ -38,6 +39,7 @@ export default function WorkPage() {
                 key={c.client}
                 href={`#case-${idx}`}
                 className={`mw-sidebar__link ${idx === 0 ? 'is-active' : ''}`}
+                title={c.client}
               >
                 {c.client}
               </a>
@@ -52,7 +54,7 @@ export default function WorkPage() {
                   {c.tag}
                 </div>
                 <h2 className="mw-cluster-block__title">
-                  {c.study ? <a href={`/work/${c.slug}`}>{c.client}</a> : c.client}
+                  {c.study ? <a href={`/work/${c.slug}`} title="Read this case study">{c.client}</a> : c.client}
                 </h2>
                 <p className="mw-cluster-block__desc" style={{ color: '#0C1050', fontWeight: '600', marginBottom: '0.5rem' }}>
                   {c.result}
@@ -62,11 +64,11 @@ export default function WorkPage() {
                 </p>
                 <div style={{ marginTop: '1rem' }}>
                   {c.study ? (
-                    <a href={`/work/${c.slug}`} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
+                    <a href={`/work/${c.slug}`} title="Read case study" className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
                       Read Case Study &rarr;
                     </a>
                   ) : (
-                    <a href={c.outcomeHref} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
+                    <a href={c.outcomeHref} title={`See ${c.tag}`} className="mw-story-card__btn" style={{ padding: '0.625rem 1.25rem' }}>
                       See {c.tag} &rarr;
                     </a>
                   )}
@@ -86,7 +88,7 @@ export default function WorkPage() {
           <h2 className="mw-navy-banner__title">
             Become the next verified result on this page
           </h2>
-          <a href="?onboarding=true" className="mw-navy-banner__btn">
+          <a href="?onboarding=true" title="Schedule a Consultation" className="mw-navy-banner__btn">
             Schedule a Consultation
           </a>
         </div>

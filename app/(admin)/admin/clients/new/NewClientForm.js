@@ -27,7 +27,7 @@ export default function NewClientForm() {
         <p style={{ marginBottom: '1.25rem' }}>
           <CopyButton text={state.inviteLink} label="Copy invite link" />
         </p>
-        <a className="btn-app" href="/admin/clients">
+        <a className="btn-app" href="/admin/clients" title="Back to clients list">
           Back to clients
         </a>
       </div>
@@ -79,7 +79,7 @@ export default function NewClientForm() {
         <input className="auth__input" id="website" name="website" type="text" />
       </div>
 
-      <button className="btn-app" type="submit" disabled={pending}>
+      <button className="btn-app" type="submit" title="Create client and send invite" disabled={pending}>
         {pending ? 'Creating…' : 'Create client and send invite'}
       </button>
     </form>
