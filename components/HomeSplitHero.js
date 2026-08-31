@@ -49,10 +49,10 @@ export default function HomeSplitHero() {
                 Trusted by over 500+ companies
               </span>
               <div className="gh-split-hero__badges">
-                {/* Trustpilot */}
-                <div className="gh-badge-pill gh-badge-pill--trustpilot" title="Trustpilot 5-Star Rated">
-                  <span className="gh-badge-pill__icon">★</span>
-                  <span className="gh-badge-pill__brand">Trustpilot</span>
+                {/* Google */}
+                <div className="gh-badge-pill gh-badge-pill--google" title="Google 5-Star Rated">
+                  <span className="gh-badge-pill__icon">G</span>
+                  <span className="gh-badge-pill__brand">Google</span>
                   <span className="gh-badge-pill__stars">★★★★★</span>
                 </div>
 

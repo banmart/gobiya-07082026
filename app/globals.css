@@ -13248,14 +13248,15 @@ a.gb-checklist__title:hover { color: var(--link); }
   line-height: 1;
 }
 
-.gh-badge-pill--trustpilot {
-  background: #00B67A;
+.gh-badge-pill--google {
+  background: #4285F4;
   color: #ffffff;
 }
-.gh-badge-pill--trustpilot .gh-badge-pill__icon {
+.gh-badge-pill--google .gh-badge-pill__icon {
   font-size: 0.875rem;
+  font-weight: 700;
 }
-.gh-badge-pill--trustpilot .gh-badge-pill__stars {
+.gh-badge-pill--google .gh-badge-pill__stars {
   letter-spacing: 0.08em;
   font-size: 0.75rem;
 }
