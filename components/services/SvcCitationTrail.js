@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -45,7 +47,7 @@ export default function SvcCitationTrail({ service }) {
           />
           <div className="svc-trail__heroGrid">
             <div>
-              <p className="svc-trail__eyebrow">{service.eyebrow || service.pillar}</p>
+              <p className="svc-trail__eyebrow">{serviceEyebrow(service)}</p>
               <h1 className="svc-trail__h1">{service.h1 || service.title}</h1>
               <p className="lede">{service.lede || service.blurb || service.standfirst}</p>
               <a
@@ -188,6 +190,7 @@ export default function SvcCitationTrail({ service }) {
 
       <ServiceAreas service={service} />
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

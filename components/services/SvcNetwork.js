@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -35,7 +37,7 @@ export default function SvcNetwork({ service }) {
           />
           <div className="svc-net__heroGrid">
             <div>
-              <p className="svc-net__eyebrow">{service.eyebrow || service.pillar}</p>
+              <p className="svc-net__eyebrow">{serviceEyebrow(service)}</p>
               <h1 className="svc-net__h1">{service.h1 || service.title}</h1>
               <p className="lede">{service.lede || service.blurb || service.intro}</p>
               <a href="/contact" className="btn btn--solid btn--big" style={{ marginTop: '1.5rem' }}>
@@ -148,6 +150,7 @@ export default function SvcNetwork({ service }) {
       <ServiceProof service={service} packages={false} />
 
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

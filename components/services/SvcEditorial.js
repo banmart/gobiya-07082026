@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -34,7 +36,7 @@ export default function SvcEditorial({ service }) {
               { label: service.navTitle || service.title },
             ]}
           />
-          <p className="svc-ed__kicker">{service.eyebrow || service.pillar}</p>
+          <p className="svc-ed__kicker">{serviceEyebrow(service)}</p>
           <h1 className="svc-ed__h1">{service.h1 || service.title}</h1>
           <div className="svc-ed__rule" aria-hidden="true" />
           {intro && <p className="svc-ed__standfirst">{intro}</p>}
@@ -131,6 +133,7 @@ export default function SvcEditorial({ service }) {
       <ExperienceBlock slug={service.slug} variant="svc-exp--editorial" />
       <ServiceAreas service={service} />
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

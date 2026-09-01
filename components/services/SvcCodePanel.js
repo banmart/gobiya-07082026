@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -35,7 +37,7 @@ export default function SvcCodePanel({ service }) {
           />
           <div className="svc-code__heroGrid">
             <div>
-              <p className="svc-code__eyebrow">{service.eyebrow || service.pillar}</p>
+              <p className="svc-code__eyebrow">{serviceEyebrow(service)}</p>
               <h1 className="svc-code__h1">{service.h1 || service.title}</h1>
               <p className="svc-code__lede">{service.lede || service.blurb || service.intro}</p>
               <a href="/contact" className="btn btn--solid btn--big" style={{ marginTop: '1.5rem' }}>
@@ -158,6 +160,7 @@ export default function SvcCodePanel({ service }) {
       <ServiceProof service={service} packages={false} />
 
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

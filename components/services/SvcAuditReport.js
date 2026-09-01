@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -33,7 +35,7 @@ export default function SvcAuditReport({ service }) {
               { label: service.navTitle || service.title },
             ]}
           />
-          <p className="svc-audit__eyebrow">{service.eyebrow}</p>
+          <p className="svc-audit__eyebrow">{serviceEyebrow(service)}</p>
           <h1 className="svc-audit__h1">{service.h1 || service.title}</h1>
 
           <div className="svc-audit__statusbar">
@@ -164,6 +166,7 @@ export default function SvcAuditReport({ service }) {
 
       <ServiceAreas service={service} />
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

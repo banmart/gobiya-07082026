@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -34,7 +36,7 @@ export default function SvcDashboard({ service }) {
               { label: service.navTitle || service.title },
             ]}
           />
-          <p className="svc-dash__eyebrow">{service.eyebrow || service.pillar}</p>
+          <p className="svc-dash__eyebrow">{serviceEyebrow(service)}</p>
           <h1 className="svc-dash__h1">{service.h1 || service.title}</h1>
           <p className="lede">{service.lede || service.blurb || service.intro}</p>
           <a
@@ -167,6 +169,7 @@ export default function SvcDashboard({ service }) {
 
       <ServiceAreas service={service} />
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

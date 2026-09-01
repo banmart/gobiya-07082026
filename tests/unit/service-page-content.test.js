@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { SERVICES_FLAT } from '../../lib/servicesFlat.js';
 
@@ -38,19 +38,36 @@ describe('seo-services content', () => {
   });
 });
 
-// The left rail is section navigation, not a table of contents: it links the
-// sibling service pages so a visitor reading one service can reach the rest of
-// the offer. It previously listed only the current page's own capability
-// headings as #anchors, which dead-ended every service page in itself.
-describe('service sidebar is section navigation', () => {
-  const sidebar = readFileSync(path.resolve(process.cwd(), 'components/ServiceTemplate.js'), 'utf8');
+// Every service page links its siblings, so a visitor reading one service can
+// reach the rest of the offer. It previously listed only the current page's own
+// capability headings as #anchors, which dead-ended every service page in
+// itself.
+//
+// The nine layouts replaced the single ServiceTemplate on 2026-09-01. The
+// sibling nav lives in serviceShared.js and each layout renders it, so this
+// checks the source of the nav and that no layout forgets it.
+describe('service pages link their siblings', () => {
+  const shared = readFileSync(
+    path.resolve(process.cwd(), 'components/services/serviceShared.js'),
+    'utf8'
+  );
 
-  it('links the sibling service pages', () => {
-    expect(sidebar).toContain('SERVICE_LINKS');
+  it('builds the sibling nav from the canonical service list', () => {
+    expect(shared).toContain('SERVICE_LINKS');
   });
 
-  it('does not build the rail from the page’s own capability headings', () => {
-    expect(sidebar).not.toContain('capability-');
+  it('does not build navigation from the page’s own capability headings', () => {
+    expect(shared).not.toContain('capability-');
+  });
+
+  it('renders the sibling nav on every one of the nine layouts', () => {
+    const dir = path.resolve(process.cwd(), 'components/services');
+    const layouts = readdirSync(dir).filter((f) => f.startsWith('Svc'));
+    expect(layouts.length, 'expected nine service layouts').toBe(9);
+    const missing = layouts.filter(
+      (f) => !readFileSync(path.join(dir, f), 'utf8').includes('<ServiceSiblings')
+    );
+    expect(missing).toEqual([]);
   });
 });
 

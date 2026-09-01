@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -33,7 +35,7 @@ export default function SvcSplitTest({ service }) {
               { label: service.navTitle || service.title },
             ]}
           />
-          <p className="svc-split__eyebrow">{service.eyebrow || service.pillar}</p>
+          <p className="svc-split__eyebrow">{serviceEyebrow(service)}</p>
           <h1 className="svc-split__h1">{service.h1 || service.title}</h1>
           <p className="lede">{service.lede || service.blurb || service.intro}</p>
 
@@ -142,6 +144,7 @@ export default function SvcSplitTest({ service }) {
       <ServiceProof service={service} />
 
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );

@@ -1,7 +1,7 @@
 import ClientLogos from '../ClientLogos';
 import PackagesOffer from '../PackagesOffer';
 import CommunityReviews from '../CommunityReviews';
-import { servicePath } from '../../lib/serviceIndex';
+import { servicePath, SERVICE_LINKS, serviceEyebrow } from '../../lib/serviceIndex';
 import { experienceFor } from '../../lib/serviceExperience';
 import { FOUNDER, yearsExperience } from '../../lib/authority';
 import { FOUNDED_YEAR } from '../../lib/authority';
@@ -15,6 +15,8 @@ import { FOUNDED_YEAR } from '../../lib/authority';
  * nothing that decides visual structure lives here.
  */
 
+export { serviceEyebrow };
+
 export function serviceSchema(service) {
   const url = `https://www.gobiya.com${servicePath(service.slug)}`;
   const graph = [
@@ -26,7 +28,12 @@ export function serviceSchema(service) {
       description: service.metaDescription || service.standfirst || service.blurb,
       url,
       provider: { '@id': 'https://www.gobiya.com/#organization' },
-      areaServed: { '@type': 'City', name: 'Los Angeles' },
+      // Los Angeles and California only. Claiming the whole country here would
+      // be a national-coverage signal the business cannot support.
+      areaServed: [
+        { '@type': 'City', name: 'Los Angeles' },
+        { '@type': 'State', name: 'California' },
+      ],
     },
     {
       '@type': 'BreadcrumbList',
@@ -166,6 +173,32 @@ export function ServiceProof({ service, packages = true }) {
         more={{ text: 'View all client work', href: '/work' }}
       />
     </>
+  );
+}
+
+/**
+ * Links to the other eight service pages.
+ *
+ * Not decoration: without it a visitor who lands on one service page has no
+ * route to the rest of the offer, and each page dead-ends in itself. The old
+ * ServiceTemplate carried this as a left rail; the nine layouts place it
+ * wherever suits them, but every one of them carries it.
+ */
+export function ServiceSiblings({ service }) {
+  const others = SERVICE_LINKS.filter((s) => s.slug !== service.slug);
+  return (
+    <nav className="svc-siblings" aria-label="Our other services">
+      <div className="container">
+        <h2 className="svc-siblings__title">The rest of what we do</h2>
+        <ul className="svc-siblings__list">
+          {others.map((s) => (
+            <li key={s.href}>
+              <a href={s.href}>{s.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
 }
 

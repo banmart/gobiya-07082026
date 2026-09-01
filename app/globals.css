@@ -14541,3 +14541,363 @@ a.gb-checklist__title:hover { color: var(--link); }
   .loc-home__years li { grid-template-columns: 1fr; gap: 0.25rem; }
   .loc-brief__serviceList li { grid-template-columns: 1fr; gap: 0.25rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Solution pages — three layouts
+   Each solution is a different kind of problem, so each page is
+   a different kind of document: a differential diagnosis, a
+   per-platform check, and a timing scale.
+   ═══════════════════════════════════════════════════════════ */
+
+.sol h2 { font-family: var(--font-heading); }
+.sol p { margin: 0 0 1rem; }
+
+/* ── shared: recommended services, FAQs ── */
+.sol-rec { padding: clamp(2rem,4vw,3rem) 0; background: var(--surface-sunken); }
+.sol-rec__title { font-size: 1.5rem; margin: 0 0 1.25rem; }
+.sol-rec__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.sol-rec__list a {
+  display: block; padding: 1.125rem; background: var(--surface-raised);
+  border: 1px solid var(--border); border-radius: 0.625rem; text-decoration: none;
+}
+.sol-rec__list a:hover { border-color: var(--accent); }
+.sol-rec__list strong { display: block; color: var(--text); font-size: 1.0625rem; margin-bottom: 0.25rem; }
+.sol-rec__list span { font-size: 0.875rem; color: var(--ink-600); line-height: 1.55; }
+
+.sol-faq { padding: clamp(2rem,4vw,3rem) 0; }
+.sol-faq__list { margin-top: 1.25rem; border-top: 1px solid var(--rule); }
+.sol-faq__item { border-bottom: 1px solid var(--rule); }
+.sol-faq__item summary {
+  cursor: pointer; padding: 1rem 0; font-weight: 600; font-size: 1.0625rem;
+  color: var(--text); list-style: none; display: flex; justify-content: space-between; gap: 1rem;
+}
+.sol-faq__item summary::-webkit-details-marker { display: none; }
+.sol-faq__item summary::after { content: "+"; color: var(--accent); font-size: 1.375rem; line-height: 1; flex: none; }
+.sol-faq__item[open] summary::after { content: "\2212"; }
+.sol-faq__item p { padding: 0 0 1.125rem; color: var(--ink-600); margin: 0; }
+
+/* ── 1. Triage — traffic dropped ── */
+.sol-triage__hero { padding: 3rem 0 2rem; background: var(--surface-inverse); color: var(--text-on-inverse); }
+.sol-triage__eyebrow { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent-on-inverse); margin: 0.75rem 0 0.625rem; }
+.sol-triage__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4.2vw,2.875rem); line-height: 1.08; margin: 0 0 1rem; color: var(--text-on-inverse); }
+.sol-triage__sub { color: var(--text-on-inverse-soft); font-size: 1.0625rem; line-height: 1.7; margin: 0; }
+.sol-triage__complaint { padding: 2rem 0; border-bottom: 3px solid var(--accent); }
+.sol-triage__complaintLabel { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.5rem; }
+.sol-triage__complaintText { font-size: 1.125rem; line-height: 1.7; color: var(--ink-700); margin: 0; }
+.sol-triage__differential { padding: clamp(2rem,4vw,3rem) 0; }
+.sol-triage__diffTitle { font-size: 1.5rem; margin: 0 0 0.375rem; }
+.sol-triage__diffNote { font-size: 0.9375rem; color: var(--ink-500); margin-bottom: 1.5rem; }
+.sol-triage__findings { list-style: none; padding: 0; margin: 0; counter-reset: tri; }
+.sol-triage__finding { padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+.sol-triage__findingHead { display: flex; align-items: baseline; gap: 0.875rem; margin-bottom: 0.5rem; }
+.sol-triage__findingNum { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.875rem; color: var(--accent); font-weight: 700; }
+.sol-triage__finding h3 { font-size: 1.1875rem; margin: 0; }
+.sol-triage__finding p { color: var(--ink-600); line-height: 1.7; margin: 0 0 0.5rem; }
+.sol-triage__findingLink { font-size: 0.875rem; font-weight: 600; color: var(--link); text-decoration: none; }
+.sol-triage__findingLink:hover { text-decoration: underline; }
+
+/* ── 2. Visibility check — not in ChatGPT ── */
+.sol-check__hero { padding: 2.5rem 0 1.75rem; }
+.sol-check__eyebrow { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0.75rem 0 0.5rem; }
+.sol-check__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4.2vw,2.875rem); line-height: 1.08; margin: 0 0 0.875rem; }
+.sol-check__sub { color: var(--ink-600); font-size: 1.0625rem; line-height: 1.7; margin: 0; }
+.sol-check__surfaces { padding: clamp(2rem,4vw,3rem) 0; background: var(--surface-sunken); }
+.sol-check__surfacesTitle { font-size: 1.375rem; margin: 0 0 0.375rem; }
+.sol-check__surfacesNote { font-size: 0.9375rem; color: var(--ink-500); max-width: 62ch; margin-bottom: 1.5rem; }
+.sol-check__surfaceRow { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(12rem,1fr)); gap: 0.75rem; }
+.sol-check__surface { padding: 1.125rem; background: var(--surface-raised); border: 1px solid var(--border); border-radius: 0.625rem; }
+.sol-check__surfaceMark {
+  display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  border: 2px solid var(--accent); color: var(--accent); font-weight: 700; font-size: 0.8125rem;
+  margin-bottom: 0.625rem;
+}
+.sol-check__surface strong { display: block; color: var(--text); margin-bottom: 0.25rem; }
+.sol-check__surfaceNote { font-size: 0.8125rem; color: var(--ink-500); line-height: 1.5; }
+.sol-check__complaint { padding: 2rem 0; }
+.sol-check__complaintLabel { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.5rem; }
+.sol-check__complaintText { font-size: 1.0625rem; line-height: 1.7; color: var(--ink-700); margin: 0; }
+.sol-check__list { padding: 0 0 clamp(2rem,4vw,3rem); }
+.sol-check__listTitle { font-size: 1.5rem; margin: 0 0 1.25rem; }
+.sol-check__checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.sol-check__check { display: grid; grid-template-columns: 1.5rem minmax(0,1fr); gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+.sol-check__box { width: 1.25rem; height: 1.25rem; border: 2px solid var(--border-strong); border-radius: 0.25rem; margin-top: 0.25rem; }
+.sol-check__check h3 { font-size: 1.1875rem; margin: 0 0 0.375rem; }
+.sol-check__check p { color: var(--ink-600); line-height: 1.7; margin: 0 0 0.5rem; }
+.sol-check__check a { font-size: 0.875rem; font-weight: 600; color: var(--link); text-decoration: none; }
+
+/* ── 3. Stopwatch — slow site ── */
+.sol-watch__hero { padding: 2.5rem 0 1.75rem; }
+.sol-watch__eyebrow { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0.75rem 0 0.5rem; }
+.sol-watch__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4.2vw,2.875rem); line-height: 1.08; margin: 0 0 0.875rem; }
+.sol-watch__sub { color: var(--ink-600); font-size: 1.0625rem; line-height: 1.7; margin: 0; }
+.sol-watch__scale { padding: 0 0 clamp(2rem,4vw,3rem); }
+.sol-watch__ticks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0.75rem; }
+.sol-watch__tick { padding-top: 0.75rem; }
+.sol-watch__tickBar {
+  display: block; height: 6px; border-radius: 3px; margin-bottom: 0.75rem;
+  /* Each tick reads hotter than the last. */
+  background: color-mix(in srgb, var(--accent) calc(25% + var(--tick) * 25%), var(--light));
+}
+.sol-watch__tick strong { display: block; font-family: var(--font-heading); font-size: 1.375rem; color: var(--text); margin-bottom: 0.25rem; font-variant-numeric: tabular-nums; }
+.sol-watch__tick span { font-size: 0.875rem; color: var(--ink-600); line-height: 1.5; }
+.sol-watch__scaleNote { font-size: 0.75rem; color: var(--ink-400); margin-top: 1rem; }
+.sol-watch__complaint { padding: 2rem 0; background: var(--surface-sunken); }
+.sol-watch__complaintLabel { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.5rem; }
+.sol-watch__complaintText { font-size: 1.0625rem; line-height: 1.7; color: var(--ink-700); margin: 0; }
+.sol-watch__stages { padding: clamp(2rem,4vw,3rem) 0; }
+.sol-watch__stagesTitle { font-size: 1.5rem; margin: 0 0 1.25rem; }
+.sol-watch__stageList { display: grid; gap: 1rem; }
+.sol-watch__stage { display: grid; grid-template-columns: 3rem minmax(0,1fr); gap: 1rem; padding: 1.125rem; background: var(--surface-sunken); border-radius: 0.625rem; }
+.sol-watch__stageTime { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1rem; color: var(--accent); font-weight: 700; }
+.sol-watch__stage h3 { font-size: 1.1875rem; margin: 0 0 0.375rem; }
+.sol-watch__stage p { color: var(--ink-600); line-height: 1.7; margin: 0 0 0.5rem; }
+.sol-watch__stage a { font-size: 0.875rem; font-weight: 600; color: var(--link); text-decoration: none; }
+
+@media (max-width: 48rem) {
+  .sol-watch__ticks { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .sol-watch__stage { grid-template-columns: 1fr; gap: 0.375rem; }
+  .sol-check__check { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Case study pages — nine layouts
+   Replaced components/CaseStudyTemplate.js. Only the shared
+   primitives carry a .case- prefix; each study's structure
+   lives in its own namespace and is used by exactly one page.
+   ═══════════════════════════════════════════════════════════ */
+
+.case h2 { font-family: var(--font-heading); }
+.case p { margin: 0 0 1rem; line-height: 1.75; color: var(--ink-600); }
+.case-logo { height: auto; max-height: 42px; width: auto; object-fit: contain; margin-bottom: 1rem; }
+.case-chapter { margin-bottom: 2rem; }
+.case-chapter h2 { font-size: 1.5rem; margin: 0 0 0.75rem; color: var(--text); }
+
+.case-takeaways { margin: 2.5rem 0; padding: 1.5rem; background: var(--surface-sunken); border-radius: 0.75rem; }
+.case-takeaways h2 { font-size: 1.25rem; margin: 0 0 0.875rem; color: var(--text); }
+.case-takeaways ul { margin: 0; padding-left: 1.25rem; }
+.case-takeaways li { color: var(--ink-600); line-height: 1.7; margin-bottom: 0.5rem; }
+
+.case-quote { padding: clamp(2rem,4vw,3rem) 0; background: var(--surface-inverse); }
+.case-quote blockquote { margin: 0; }
+.case-quote p { font-size: clamp(1.125rem,2.2vw,1.5rem); line-height: 1.6; color: var(--text-on-inverse); font-style: italic; }
+.case-quote footer { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; }
+.case-quote__photo { border-radius: 50%; }
+.case-quote footer strong { display: block; color: var(--text-on-inverse); font-style: normal; }
+.case-quote__role { display: block; font-size: 0.875rem; color: var(--text-on-inverse-muted); }
+
+/* ── 1. Outcome — SmileCenter ── */
+.case-out__hero { padding: 2.5rem 0 2rem; text-align: center; }
+.case-out__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 1.5rem; }
+.case-out__figures { display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; margin-bottom: 2rem; }
+.case-out__figure { display: flex; flex-direction: column; }
+.case-out__value { font-family: var(--font-heading); font-size: clamp(3rem,8vw,5.5rem); font-weight: 800; color: var(--accent); line-height: 1; }
+.case-out__label { font-size: 0.875rem; color: var(--ink-500); max-width: 16ch; margin: 0.5rem auto 0; }
+.case-out__h1 { font-family: var(--font-heading); font-size: clamp(1.5rem,3vw,2.25rem); margin: 0 0 0.75rem; }
+.case-out__dek { color: var(--ink-600); max-width: 62ch; margin: 0 auto; }
+.case-out__answer { padding: 2rem 0; background: var(--surface-sunken); }
+.case-out__answer p { margin: 0; font-size: 1.0625rem; }
+.case-out__body { padding: 2.5rem 0; }
+
+/* ── 2. Funnel — American LiveScan ── */
+.case-fun__hero { padding: 2.5rem 0 2rem; }
+.case-fun__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-fun__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 0.75rem; }
+.case-fun__dek { font-size: 1.0625rem; color: var(--ink-600); }
+.case-fun__answer { padding: 1rem; background: var(--surface-sunken); border-radius: 0.625rem; margin: 0; }
+.case-fun__stack { padding: 2.5rem 0; }
+/* Each stage is narrower than the one above it. */
+.case-fun__stage { display: flex; justify-content: center; margin-bottom: 1rem; }
+.case-fun__stageInner {
+  width: calc(100% - (var(--stage) * 7%));
+  max-width: 62rem;
+  padding: 1.5rem;
+  background: var(--surface-sunken);
+  border-top: 4px solid var(--accent);
+  border-radius: 0.5rem;
+}
+.case-fun__stageNum { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); font-weight: 700; }
+.case-fun__stageInner h2 { font-size: 1.375rem; margin: 0.375rem 0 0.625rem; color: var(--text); }
+.case-fun__stageMetric { margin: 0.875rem 0 0; font-size: 0.9375rem; }
+.case-fun__stageMetric strong { color: var(--accent); font-size: 1.25rem; }
+.case-fun__rest { padding: 0 0 2rem; }
+.case-fun__rest strong { color: var(--accent); font-size: 1.25rem; }
+.case-fun__body { padding-bottom: 2rem; }
+
+/* ── 3. Build log — SafetyCentric ── */
+.case-log__hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+.case-log__heroGrid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,18rem); gap: 2.5rem; align-items: end; }
+.case-log__tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.75rem; color: var(--ink-500); margin: 0 0 0.5rem; }
+.case-log__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 0.75rem; }
+.case-log__dek { color: var(--ink-600); }
+.case-log__stack { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8125rem; color: var(--ink-600); padding: 1rem; background: var(--surface-sunken); border-radius: 0.5rem; margin: 0; }
+.case-log__stackLabel { display: block; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 0.375rem; }
+.case-log__answer { padding: 2rem 0; }
+.case-log__answer p { margin: 0; font-size: 1.0625rem; }
+.case-log__entries { list-style: none; padding: 0; margin: 2rem 0; border-left: 2px solid var(--rule); }
+.case-log__entry { display: grid; grid-template-columns: 4rem minmax(0,1fr); gap: 1rem; padding: 1.25rem 0 1.25rem 1.5rem; }
+.case-log__entryId { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8125rem; color: var(--accent); font-weight: 700; }
+.case-log__entryBody h2 { font-size: 1.3125rem; margin: 0 0 0.5rem; color: var(--text); }
+.case-log__result { padding: 2.5rem 0; background: var(--surface-sunken); }
+.case-log__resultTitle { font-size: 1.375rem; margin: 0 0 1rem; }
+.case-log__metrics { display: grid; grid-template-columns: repeat(auto-fit,minmax(12rem,1fr)); gap: 1.5rem; margin: 0; }
+.case-log__metrics dt { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent); }
+.case-log__metrics dd { margin: 0.25rem 0 0; font-size: 0.875rem; color: var(--ink-500); }
+.case-log__takeaways { padding-bottom: 2rem; }
+
+/* ── 4. Product tour — QuickPass Aid ── */
+.case-tour__hero { padding: 2.5rem 0 1.5rem; }
+.case-tour__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-tour__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 0.75rem; }
+.case-tour__dek { font-size: 1.0625rem; color: var(--ink-600); }
+.case-tour__stage { padding: 1rem 0 2.5rem; background: var(--surface-inverse); }
+.case-tour__grid { display: grid; grid-template-columns: 18rem minmax(0,1fr); gap: 3rem; padding: 2.5rem 0; align-items: start; }
+.case-tour__rail { position: sticky; top: calc(var(--nav-h) + 1.5rem); padding: 1.25rem; background: var(--surface-sunken); border-radius: 0.75rem; }
+.case-tour__railLabel { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.5rem; }
+.case-tour__railText { font-size: 0.9375rem; }
+.case-tour__railMetrics { list-style: none; padding: 1rem 0 0; margin: 1rem 0 0; border-top: 1px solid var(--rule); display: grid; gap: 0.875rem; }
+.case-tour__railMetrics strong { display: block; font-family: var(--font-heading); font-size: 1.625rem; color: var(--accent); line-height: 1; }
+.case-tour__railMetrics span { font-size: 0.8125rem; color: var(--ink-500); }
+.case-tour__note { margin-bottom: 2rem; }
+.case-tour__note h2 { font-size: 1.4375rem; margin: 0 0 0.625rem; color: var(--text); }
+
+/* ── 5. Marketplace — RemodelMePros ── */
+.case-mkt__hero { padding: 2.5rem 0 2rem; text-align: center; }
+.case-mkt__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-mkt__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 1.25rem; }
+.case-mkt__sides { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.25rem; }
+.case-mkt__side { padding: 0.5rem 1rem; background: var(--surface-sunken); border-radius: 999px; font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.case-mkt__join { width: 3rem; height: 2px; background: var(--accent); }
+.case-mkt__dek { color: var(--ink-600); max-width: 62ch; margin: 0 auto; }
+.case-mkt__answer { padding: 2rem 0; background: var(--surface-sunken); }
+.case-mkt__metrics { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1rem; }
+.case-mkt__metrics p { margin: 0; }
+.case-mkt__metrics strong { color: var(--accent); font-size: 1.375rem; }
+.case-mkt__axis { position: relative; padding: 2.5rem 0; }
+.case-mkt__axis::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--rule); transform: translateX(-50%); }
+.case-mkt__row { display: flex; margin-bottom: 1.25rem; }
+.case-mkt__row--left { justify-content: flex-start; }
+.case-mkt__row--right { justify-content: flex-end; }
+.case-mkt__rowInner { width: calc(50% - 2rem); padding: 1.5rem; background: var(--surface-raised); border: 1px solid var(--border); border-radius: 0.75rem; }
+.case-mkt__rowInner h2 { font-size: 1.3125rem; margin: 0 0 0.5rem; color: var(--text); }
+.case-mkt__body { padding-bottom: 2rem; }
+
+/* ── 6. Citation — The Healing Metta ── */
+.case-cite__hero { padding: 3rem 0 1.5rem; }
+.case-cite__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-cite__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0; }
+.case-cite__answer { padding: 1.75rem 0 2rem; }
+.case-cite__answerLabel { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.625rem; }
+.case-cite__answerText {
+  font-size: clamp(1.125rem,2.2vw,1.4375rem); line-height: 1.6; color: var(--text);
+  padding-left: 1.25rem; border-left: 4px solid var(--accent); margin: 0;
+}
+.case-cite__dek { padding: 0 0 1.5rem; }
+.case-cite__metric { margin: 0.375rem 0 0; }
+.case-cite__metric strong { color: var(--accent); font-size: 1.25rem; }
+.case-cite__body { padding: 2rem 0; }
+.case-cite__chapter { margin-bottom: 2rem; }
+.case-cite__chapter h2 { font-size: 1.4375rem; margin: 0 0 0.625rem; color: var(--text); }
+.case-cite__body p { max-width: 66ch; }
+
+/* ── 7. System — Total Capital ── */
+.case-sys__hero { padding: 2.5rem 0 2rem; background: var(--surface-sunken); }
+.case-sys__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-sys__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 0.75rem; }
+.case-sys__dek { color: var(--ink-600); max-width: 62ch; }
+.case-sys__diagram { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.case-sys__node { padding: 0.75rem 1.125rem; background: var(--surface-raised); border: 1px solid var(--border-strong); border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.case-sys__node--core { border-color: var(--accent); color: var(--accent); }
+.case-sys__wire { width: 2.5rem; height: 2px; background: var(--rule-strong); }
+.case-sys__diagramNote { font-size: 0.8125rem; color: var(--ink-400); margin-top: 0.75rem; }
+.case-sys__answer { padding: 2rem 0; }
+.case-sys__answer p { margin: 0; font-size: 1.0625rem; }
+.case-sys__components { display: grid; grid-template-columns: repeat(auto-fit,minmax(20rem,1fr)); gap: 1.25rem; padding: 2rem 0; }
+.case-sys__component { padding: 1.5rem; border: 1px solid var(--border); border-radius: 0.75rem; }
+.case-sys__componentHead { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.625rem; }
+.case-sys__componentId { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.75rem; color: var(--accent); font-weight: 700; }
+.case-sys__component h2 { font-size: 1.1875rem; margin: 0; color: var(--text); }
+.case-sys__spec { padding: 2rem 0; background: var(--surface-sunken); }
+.case-sys__metrics { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.625rem; }
+.case-sys__metrics strong { color: var(--accent); font-size: 1.25rem; }
+
+/* ── 8. Dispatch — DG Plumbing ── */
+.case-dis__hero { padding: 2.5rem 0 1.5rem; }
+.case-dis__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-dis__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 0.75rem; }
+.case-dis__dek { color: var(--ink-600); }
+.case-dis__board { padding-bottom: 1.5rem; }
+.case-dis__cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(13rem,1fr)); gap: 0.75rem; }
+.case-dis__card { padding: 1.125rem; background: var(--surface-inverse); border-radius: 0.5rem; }
+.case-dis__card strong { display: block; font-family: var(--font-heading); font-size: 1.75rem; color: var(--accent-on-inverse); line-height: 1; }
+.case-dis__card span { display: block; font-size: 0.8125rem; color: var(--text-on-inverse-muted); margin-top: 0.375rem; }
+.case-dis__answer { padding: 1.5rem 0; }
+.case-dis__answer p { margin: 0; font-size: 1.0625rem; }
+.case-dis__tickets { padding: 2rem 0; border-top: 2px solid var(--text); }
+.case-dis__ticket { display: grid; grid-template-columns: 8rem minmax(0,1fr); gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+.case-dis__ticketMeta { display: flex; flex-direction: column; gap: 0.375rem; }
+.case-dis__ticketId { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8125rem; color: var(--ink-400); }
+.case-dis__ticketStatus { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #157a47; }
+.case-dis__ticketBody h2 { font-size: 1.3125rem; margin: 0 0 0.5rem; color: var(--text); }
+.case-dis__body { padding-bottom: 2rem; }
+
+/* ── 9. Doc flow — MTW ── */
+.case-doc__hero { padding: 2.5rem 0 1.5rem; }
+.case-doc__tag { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 0.5rem; }
+.case-doc__h1 { font-family: var(--font-heading); font-size: clamp(1.875rem,4vw,2.75rem); margin: 0 0 0.75rem; }
+.case-doc__dek { color: var(--ink-600); }
+.case-doc__pipeline { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; counter-reset: pl; }
+.case-doc__pipeline li {
+  position: relative; padding: 0.5rem 1rem; background: var(--surface-sunken);
+  border-radius: 999px; font-size: 0.8125rem; font-weight: 600; color: var(--ink-700);
+}
+.case-doc__pipeline li:not(:last-child)::after { content: "\2192"; margin-left: 0.75rem; color: var(--accent); }
+.case-doc__answer { padding: 1.75rem 0; background: var(--surface-sunken); }
+.case-doc__metrics { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 0.75rem; }
+.case-doc__metrics p { margin: 0; }
+.case-doc__metrics strong { color: var(--accent); font-size: 1.375rem; }
+.case-doc__stations { list-style: none; padding: 0; margin: 2.5rem 0; position: relative; }
+.case-doc__station { position: relative; display: grid; grid-template-columns: 3rem minmax(0,1fr); gap: 1.25rem; padding-bottom: 2rem; }
+.case-doc__station::before { content: ""; position: absolute; left: 1.0625rem; top: 2.25rem; bottom: 0; width: 2px; background: var(--rule); }
+.case-doc__station:last-child::before { display: none; }
+.case-doc__stationDot {
+  width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--accent); color: #fff;
+  display: grid; place-items: center; font-weight: 700; font-size: 0.875rem; position: relative; z-index: 1;
+}
+.case-doc__stationBody h2 { font-size: 1.3125rem; margin: 0.25rem 0 0.5rem; color: var(--text); }
+.case-doc__body { padding-bottom: 2rem; }
+
+@media (max-width: 62rem) {
+  .case-log__heroGrid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .case-tour__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .case-tour__rail { position: static; }
+  .case-mkt__axis::before { display: none; }
+  .case-mkt__rowInner { width: 100%; }
+  .case-fun__stageInner { width: 100%; }
+}
+@media (max-width: 48rem) {
+  .case-out__figures { gap: 1.5rem; }
+  .case-log__entry { grid-template-columns: 1fr; gap: 0.375rem; }
+  .case-dis__ticket { grid-template-columns: 1fr; gap: 0.5rem; }
+  .case-dis__ticketMeta { flex-direction: row; gap: 0.75rem; align-items: center; }
+  .case-sys__diagram { flex-direction: column; align-items: stretch; }
+  .case-sys__wire { width: 2px; height: 1.25rem; margin-left: 1.5rem; }
+}
+
+/* ── Sibling service navigation ──
+   Every service layout carries this. Without it each service page dead-ends
+   in itself and a visitor has no route to the rest of the offer. */
+.svc-siblings { padding: clamp(2rem,4vw,3rem) 0; border-top: 1px solid var(--rule); }
+.svc-siblings__title {
+  font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--ink-400); margin: 0 0 1rem;
+}
+.svc-siblings__list {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fit,minmax(14rem,1fr)); gap: 0.5rem;
+}
+.svc-siblings__list a {
+  display: block; padding: 0.75rem 1rem; border: 1px solid var(--border);
+  border-radius: 0.5rem; color: var(--text); text-decoration: none;
+  font-size: 0.9375rem; font-weight: 600;
+}
+.svc-siblings__list a:hover { border-color: var(--accent); color: var(--accent); }

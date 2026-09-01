@@ -6,6 +6,8 @@ import {
   ServiceCta,
   ServiceAreas,
   ServiceProof,
+  ServiceSiblings,
+  serviceEyebrow,
 } from './serviceShared';
 
 /**
@@ -36,7 +38,7 @@ export default function SvcDeviceFrames({ service }) {
           />
           <div className="svc-dev__heroGrid">
             <div>
-              <p className="svc-dev__eyebrow">{service.eyebrow || service.pillar}</p>
+              <p className="svc-dev__eyebrow">{serviceEyebrow(service)}</p>
               <h1 className="svc-dev__h1">{service.h1 || service.title}</h1>
               <p className="lede">{service.lede || service.blurb || service.intro}</p>
               {dp && (
@@ -181,6 +183,7 @@ export default function SvcDeviceFrames({ service }) {
 
       <ServiceAreas service={service} />
       <ServiceFaqs service={service} />
+      <ServiceSiblings service={service} />
       <ServiceCta service={service} />
     </main>
   );
