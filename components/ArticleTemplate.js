@@ -1,5 +1,6 @@
 import PageHero from './PageHero';
 import ClientLogos from './ClientLogos';
+import AuthorCard from './AuthorCard';
 import DataPanel from './sections/DataPanel';
 import HierarchyDiagram from './sections/HierarchyDiagram';
 import StepList from './sections/StepList';
@@ -10,23 +11,54 @@ function slugifyHeading(text) {
 }
 
 export default function ArticleTemplate({ article }) {
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.metaDescription,
-    datePublished: article.date,
-    dateModified: article.date,
-    image: 'https://www.gobiya.com/assets/img/og-default.jpg',
-    author: {
-      '@type': 'Person',
-      '@id': 'https://www.gobiya.com/about/steve-martin#person',
-      name: 'Steve Martin',
-      url: 'https://www.gobiya.com/about/steve-martin',
+  const articleUrl = `https://www.gobiya.com/insights/${article.slug}`;
+  const schemaGraph = [
+    {
+      '@type': 'Article',
+      '@id': `${articleUrl}#article`,
+      headline: article.title,
+      description: article.metaDescription,
+      url: articleUrl,
+      datePublished: article.date,
+      // A real revision date when the article carries one. Aliasing the publish
+      // date told Google every article had never been touched since the day it
+      // went up, which is both untrue and the opposite of the freshness signal
+      // dateModified exists to carry.
+      dateModified: article.updated || article.date,
+      image: {
+        '@type': 'ImageObject',
+        url: 'https://www.gobiya.com/assets/img/og-default.jpg',
+        width: 1200,
+        height: 630,
+      },
+      author: {
+        '@type': 'Person',
+        '@id': 'https://www.gobiya.com/about/steve-martin#person',
+        name: 'Steve Martin',
+        url: 'https://www.gobiya.com/about/steve-martin',
+      },
+      publisher: { '@id': 'https://www.gobiya.com/#organization' },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+      isPartOf: { '@id': 'https://www.gobiya.com/#website' },
     },
-    publisher: { '@id': 'https://www.gobiya.com/#organization' },
-    mainEntityOfPage: `https://www.gobiya.com/insights/${article.slug}`,
-  };
+  ];
+
+  if (article.faqs && article.faqs.length > 0) {
+    schemaGraph.push({
+      '@type': 'FAQPage',
+      '@id': `${articleUrl}#faqpage`,
+      mainEntity: article.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.a.replace(/<[^>]*>/g, ''),
+        },
+      })),
+    });
+  }
+
+  const articleSchema = { '@context': 'https://schema.org', '@graph': schemaGraph };
 
   return (
     <main id="top">
@@ -47,6 +79,14 @@ export default function ArticleTemplate({ article }) {
           <time dateTime={article.date}>
             {new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>{' '}
+          {article.updated && (
+            <>
+              · Updated{' '}
+              <time dateTime={article.updated}>
+                {new Date(`${article.updated}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>{' '}
+            </>
+          )}
           · {article.readTime}
         </p>
       </PageHero>
@@ -130,6 +170,24 @@ export default function ArticleTemplate({ article }) {
               ))}
             </ul>
           </div>
+
+          {article.faqs && article.faqs.length > 0 && (
+            <div className="article__faqs" data-reveal>
+              <h2>Frequently Asked Questions</h2>
+              <dl className="faq__list">
+                {article.faqs.map((faq) => (
+                  <div key={faq.q} className="faq__item">
+                    <dt>{faq.q}</dt>
+                    <dd dangerouslySetInnerHTML={{ __html: faq.a }} />
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+
+          {/* The byline sits after the argument, where a reader who has just
+              read a claim wants to know who is making it. */}
+          <AuthorCard reviewed={article.updated || article.date} />
         </div>
       </section>
 

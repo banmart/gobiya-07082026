@@ -16,6 +16,12 @@ export async function generateMetadata({ params }) {
     description: article.metaDescription,
     path: `/insights/${article.slug}`,
     parent: 'Insights',
+    ogType: 'article',
+    publishedTime: article.date,
+    // Falls back to the publish date only when the article has never been
+    // revised. Aliasing the two outright claims nothing has ever been updated.
+    modifiedTime: article.updated || article.date,
+    authors: ['https://www.gobiya.com/about/steve-martin'],
   });
 }
 

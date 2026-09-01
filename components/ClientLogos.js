@@ -10,7 +10,7 @@ export const CLIENT_LOGOS = [
 ];
 
 export default function ClientLogos({
-  heading = "Southern California businesses we've run search for since 2010",
+  heading = "Southern California businesses we've run search for since 2009",
   className = '',
 }) {
   return (

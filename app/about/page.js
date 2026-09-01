@@ -45,7 +45,7 @@ export default function AboutPage() {
             Los Angeles SEO Company that is Dedicated to Honesty &amp; Integrity
           </h2>
           <p className="mw-simple__intro">
-            If you are searching for a SEO company in Los Angeles that proudly provides honest, reliable, and trustworthy service, no need to look any further than Gobiya SEO. Since 2010, we&apos;ve been a beacon in the community for our wide spectrum of high-quality SEO services that are always done to make you successful online. From SEO and PPC management to the new AI SEO, GEO, and other new technologies, our professional SEOs are trained to excel in these services that meets standards and guidelines. We are also Google Partners so you can rest assured knowing that your business is in good hands.
+            If you are searching for a SEO company in Los Angeles that proudly provides honest, reliable, and trustworthy service, no need to look any further than Gobiya SEO. Since 2009, we&apos;ve been a beacon in the community for our wide spectrum of high-quality SEO services that are always done to make you successful online. From SEO and PPC management to the new AI SEO, GEO, and other new technologies, our professional SEOs are trained to excel in these services that meets standards and guidelines. We are also Google Partners so you can rest assured knowing that your business is in good hands.
           </p>
           <p className="mw-simple__excerpt">
             Ready to make the call to one of the most trusted local SEOs in the area? Reach out to us at{' '}

@@ -180,7 +180,7 @@ export default function LocationTemplate({ location }) {
       {/* ══ 3. Reviews ══ */}
       <CommunityReviews
         heading={`Trusted by Businesses Near ${location.name}`}
-        dek="Since 2010, businesses have trusted us for honest, reliable search work."
+        dek="Since 2009, businesses have trusted us for honest, reliable search work."
         more={{ text: 'View all client work', href: '/work' }}
       />
 

@@ -1,5 +1,6 @@
 import { CONTACT } from '../lib/nav';
 import { CONSULTING_ITEMS } from '../lib/consultingIndex';
+import { FOUNDED_YEAR, personSchema } from '../lib/authority';
 
 const BASE = 'https://www.gobiya.com';
 
@@ -19,7 +20,9 @@ const SCHEMA = {
       image: `${BASE}/assets/img/og-default.jpg`,
       description:
         'Los Angeles technical SEO and AI visibility agency. Algorithm and penalty recovery, GEO/AI-citation engineering, content strategy, authority building, and custom Next.js development.',
-      foundingDate: '2010',
+      // Said 2010 while the rest of the site said 2009. Gobiya began trading in
+      // 2009 and was registered as an LLC in 2012.
+      foundingDate: String(FOUNDED_YEAR),
       founder: { '@id': `${BASE}/about/steve-martin#person` },
       telephone: '+1-323-744-1338',
       email: CONTACT.email,
@@ -52,15 +55,11 @@ const SCHEMA = {
       },
     },
     {
-      '@type': 'Person',
-      '@id': `${BASE}/about/steve-martin#person`,
-      name: 'Steve Martin',
-      url: `${BASE}/about/steve-martin`,
-      image: `${BASE}/assets/img/steve-portrait.webp`,
-      jobTitle: 'Founder & Principal',
+      // Name, image, job title, knowsAbout and the derived experience figure
+      // all come from lib/authority.js, so the schema cannot disagree with the
+      // prose on /about/steve-martin.
+      ...personSchema(),
       worksFor: { '@id': `${BASE}/#organization` },
-      homeLocation: { '@type': 'Place', name: 'Glendale, CA' },
-      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Glendale College' },
       sameAs: [CONTACT.linkedin, CONTACT.twitter],
     },
     {

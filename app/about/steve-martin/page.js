@@ -5,11 +5,22 @@ import ClientLogos from '../../../components/ClientLogos';
 import CollapsibleSidebar from '../../../components/CollapsibleSidebar';
 import { heroImage } from '../../../lib/heroImages';
 import { buildMetadata } from '../../../lib/meta';
+import {
+  CAREER_START_YEAR,
+  FOUNDED_YEAR,
+  LLC_YEAR,
+  yearsExperience,
+} from '../../../lib/authority';
+
+// Every figure on this page comes from lib/authority.js. It previously said
+// "Thirty years" in the meta description and "Fifteen Years of Hands-On Search
+// Work" in the hero — two different numbers for the same fact, on the page
+// Google reads as the site's author-credibility source.
+const YEARS = yearsExperience();
 
 export const metadata = buildMetadata({
   title: 'Steve Martin',
-  description:
-    'Steve Martin founded Gobiya in Los Angeles. Thirty years of web design, technical development, and SEO — and he is the person who actually does your work.',
+  description: `Steve Martin founded Gobiya in Los Angeles in ${FOUNDED_YEAR}. ${YEARS} years of web design, technical development, and SEO — and he is the person who actually does your work.`,
   path: '/about/steve-martin',
   parent: 'About',
 });
@@ -17,8 +28,13 @@ export const metadata = buildMetadata({
 const STEVE_TOPICS = [
   {
     id: 'background',
-    title: 'Background & 30-Year Web Career',
-    desc: 'Steve started building commercial websites in 1996, watching the internet evolve from early static HTML pages to modern AI-driven search engines. Over three decades, he has designed, developed, and managed hundreds of custom websites and search strategies.',
+    title: `Background & ${YEARS}-Year Web Career`,
+    desc: `Steve started building commercial websites in ${CAREER_START_YEAR}, watching the internet evolve from early static HTML pages to modern AI-driven search engines. Over ${YEARS} years, he has designed, developed, and managed hundreds of custom websites and search strategies.`,
+  },
+  {
+    id: 'gobiya',
+    title: `Founding Gobiya in ${FOUNDED_YEAR}`,
+    desc: `Steve started Gobiya in ${FOUNDED_YEAR} and registered it as an LLC in ${LLC_YEAR}. It has been a Los Angeles business the whole time, working with businesses across Glendale, Van Nuys, Studio City, and the wider Valley.`,
   },
   {
     id: 'philosophy',
@@ -45,7 +61,7 @@ export default function SteveMartinPage() {
         ]}
         eyebrow="Leadership · Founder & Head of Search Strategy"
         title="Steve Martin: The SEO Professional Who Actually Does Your Work"
-        excerpt="Fifteen Years of Hands-On Search Work in Los Angeles"
+        excerpt={`${YEARS} Years of Hands-On Web and Search Work in Los Angeles`}
         dek="Steve Martin answers the phone, runs the audit, and writes the plan. The person you talk to is the person doing the work."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}

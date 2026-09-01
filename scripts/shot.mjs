@@ -112,7 +112,15 @@ for (const url of urls) {
     `,
   });
   await sleep(900);
-  await send('Runtime.evaluate', { expression: 'window.scrollTo(0,0)' });
+  // SCROLL_TO="<css selector>" frames a specific block instead of the top.
+  if (process.env.SCROLL_TO) {
+    await send('Runtime.evaluate', {
+      expression: `document.querySelector(${JSON.stringify(process.env.SCROLL_TO)})
+        ?.scrollIntoView({ block: 'center' })`,
+    });
+  } else {
+    await send('Runtime.evaluate', { expression: 'window.scrollTo(0,0)' });
+  }
   await sleep(700);
 
   let clip;
