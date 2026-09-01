@@ -6,6 +6,15 @@ const nextConfig = {
   async redirects() {
 
     return [
+      // ── /stuff retired (2026-09-01) ──
+      // A force-dynamic video gallery that read public/ off the filesystem per
+      // request. It was never in the sitemap and nothing linked to it, but it
+      // was still indexable: no <h1>, a meta description promising "AI Video
+      // Marketing", and a body that rendered a .webm file listing with byte
+      // sizes — and on Vercel the filesystem read does not resolve, so what
+      // actually served was the empty state. /work is the real portfolio page.
+      { source: '/stuff', destination: '/work', permanent: true },
+
       // ── Services hub canonical path is /services ──
       { source: '/seo-services', destination: '/services', permanent: true },
       { source: '/services/seo', destination: '/services/technical-seo', permanent: true },

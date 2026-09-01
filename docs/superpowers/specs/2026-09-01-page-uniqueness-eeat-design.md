@@ -14,7 +14,7 @@ template components, and content depth is badly uneven:
 | Insights articles | 36 | `ArticleTemplate` | substantial copy |
 | Case studies | 9 | `CaseStudyTemplate` | |
 | Tool pages | 8 | 13-line wrappers | wrap real interactive tools |
-| Service pages | 5 | `ServiceTemplate` | |
+| Service pages | 9 | `ServiceTemplate` | canonical list is `SERVICE_SLUGS` |
 | Location pages | 4 | `LocationTemplate`, `ServiceAreaTemplate` | 15-line page files |
 | Solutions | 3 | own layouts | |
 | Hand-built statics | ~25 | individual | already unique |
@@ -54,7 +54,7 @@ already committed to the repository or supplied above.
 
 ## Decisions
 
-- **De-templating scope:** bespoke layouts for the 21 commercial pages; a
+- **De-templating scope:** bespoke layouts for the 25 commercial pages; a
   variant system for glossary hubs and insights. Not 167 one-off layouts.
 - **Glossary:** consolidate 77 terms into 8 topic hubs, 301 every term URL to
   its anchor.
@@ -141,9 +141,12 @@ in `lib/insights.js`, `lib/work.js` case studies, testimonials, real NAP data).
 
 ### Wave 4 — De-templating
 
-**21 bespoke pages,** each a genuinely distinct layout:
+**25 bespoke pages,** each a genuinely distinct layout:
 
-- 5 service pages (`technical-seo`, `geo`, `ppc`, `content-marketing`, `web-ux`)
+- 9 service pages — the canonical `SERVICE_SLUGS` list in `lib/serviceIndex.js`:
+  `technical-seo`, `geo`, `content-marketing`, `link-building`, `ppc`, `cro`,
+  `web-ux`, `web-dev`, `ai-consulting`. Copy is split across `servicesFlat.js`
+  (5) and `services.js` (4), normalised by `getService()`.
 - 4 location pages (`van-nuys-seo`, `los-angeles-seo`, `glendale-seo`, `studio-city-seo`)
 - 3 solution pages
 - 9 case studies
