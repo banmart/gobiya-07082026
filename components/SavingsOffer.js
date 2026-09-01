@@ -6,7 +6,7 @@ import OfferCountdown from './OfferCountdown';
    and two copies of this drift the first time one of them is edited.
 
    To put it on another service page, set `showOffer: true` on that service in
-   lib/services.js. ServiceTemplate reads the flag; nothing here needs editing. */
+   lib/services.js. Read by components/services/serviceShared.js. */
 
 /* End of the CRM offer, pinned to an explicit Pacific offset rather than a
    bare local-time string — the countdown otherwise ends at a different moment

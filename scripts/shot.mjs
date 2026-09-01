@@ -112,16 +112,26 @@ for (const url of urls) {
     `,
   });
   await sleep(900);
-  // SCROLL_TO="<css selector>" frames a specific block instead of the top.
-  if (process.env.SCROLL_TO) {
-    await send('Runtime.evaluate', {
-      expression: `document.querySelector(${JSON.stringify(process.env.SCROLL_TO)})
-        ?.scrollIntoView({ block: 'center' })`,
-    });
-  } else {
-    await send('Runtime.evaluate', { expression: 'window.scrollTo(0,0)' });
-  }
-  await sleep(700);
+  // The site sets scroll-behavior: smooth, so a scroll back to the top from the
+  // bottom of a long page animates and the capture lands mid-flight. Disable it
+  // for the duration, and offset by the sticky header so a targeted element is
+  // not hidden behind it.
+  await send('Runtime.evaluate', {
+    expression: `(() => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      const sel = ${JSON.stringify(process.env.SCROLL_TO || '')};
+      if (!sel) { window.scrollTo(0, 0); return 'top'; }
+      const el = document.querySelector(sel);
+      if (!el) return 'selector not found: ' + sel;
+      const navH = parseFloat(getComputedStyle(document.documentElement)
+        .getPropertyValue('--nav-h')) || 0;
+      const offset = navH * 16 + 40;
+      window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - offset);
+      return 'scrolled';
+    })()`,
+    returnByValue: true,
+  });
+  await sleep(900);
 
   let clip;
   if (FULL) {

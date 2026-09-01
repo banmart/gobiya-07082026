@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import ServiceTemplate from '../../../components/ServiceTemplate';
+import { layoutForService } from '../../../components/services';
 import { getService, servicePath, SERVICE_SLUGS, keywordFromSlug } from '../../../lib/serviceIndex';
 import { buildMetadata } from '../../../lib/meta';
 
@@ -25,5 +25,16 @@ export default async function Page({ params }) {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
-  return <ServiceTemplate service={service} />;
+
+  // Every service has its own layout. A missing one is a build-time error
+  // rather than a silent fallback, so a new service cannot quietly reintroduce
+  // a shared template.
+  const Layout = layoutForService(slug);
+  if (!Layout) {
+    throw new Error(
+      `No layout registered for service "${slug}". Add one in components/services/index.js.`
+    );
+  }
+
+  return <Layout service={service} />;
 }
