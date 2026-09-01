@@ -1894,6 +1894,16 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   width: 6px; height: 6px;
   background: var(--main);
 }
+.article__faqs {
+  max-width: 42rem;
+  margin: clamp(2.5rem, 5vw, 4rem) auto;
+}
+.article__faqs h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
 .insights__filters {
   display: flex;
   flex-wrap: wrap;
@@ -3506,180 +3516,594 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
   margin-bottom: 0.75rem;
 }
 
-/* ═══════════ Glossary Bento Grid ═══════════ */
-.gls-body { background: var(--surface-sunken); }
+/* ═══════════════════════════════════════════════════════════
+   Glossary hubs
+   Six pages, six layouts. The .ghub- prefix carries only what is
+   genuinely shared — term type scale, the FAQ block, the closing
+   link. Everything that decides how a hub reads lives in its own
+   ghub-<layout>- namespace and is used by exactly one page.
 
-.gls-bento {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 1.25rem;
-  padding-block: clamp(2.5rem, 5vw, 4rem);
-  width: 100%;
+   Replaced the .gls-* bento grid, which served the 77 retired
+   single-term pages.
+   ═══════════════════════════════════════════════════════════ */
+
+.ghub { --ghub-measure: 68ch; }
+
+/* Shared term type scale, so a definition reads the same weight on
+   every hub even though its container differs. */
+.ghub h3 { font-size: 1.1875rem; line-height: 1.3; margin: 0 0 0.5rem; }
+.ghub p { margin: 0 0 0.75rem; }
+.ghub p:last-child { margin-bottom: 0; }
+
+.ghub-related {
+  font-size: 0.8125rem;
+  color: var(--ink-500);
+  margin-top: 0.75rem;
 }
-
-/* Card base */
-.gls-card {
-  background: var(--surface-raised);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  display: flex;
-  flex-direction: column;
+.ghub-related__label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  margin-right: 0.5rem;
+  color: var(--ink-400);
 }
+.ghub-related a { color: var(--link); text-decoration: none; }
+.ghub-related a:hover { text-decoration: underline; }
 
-/* Short answer — spans full width */
-.gls-card--answer {
-  grid-column: 1 / -1;
-  border-left: 4px solid #C9A84C;
-  background: var(--surface-highlight);
-  padding-block: 1rem;
-}
-
-/* Body — spans both columns */
-.gls-card--body {
-  grid-column: 1 / -1;
+/* ── shared: FAQ + closing ── */
+.ghub-faq { background: var(--surface-sunken); }
+.ghub-faq__list { margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+.ghub-faq__item { border-bottom: 1px solid var(--rule); }
+.ghub-faq__q {
+  cursor: pointer;
+  padding: 1.125rem 0;
+  font-weight: 600;
   font-size: 1.0625rem;
-  line-height: 1.75;
-  color: var(--ink-700);
-}
-
-/* Related terms — left column */
-.gls-card--related {
-  grid-column: 1 / 2;
-}
-
-/* CTA card — right column */
-.gls-card--cta {
-  grid-column: 2 / 3;
-  background: var(--surface-inverse);
-  border-color: #0C1050;
-  color: var(--text-on-inverse-muted);
-}
-
-/* Back link — full width strip */
-.gls-card--back {
-  grid-column: 1 / -1;
-  background: transparent;
-  border: none;
-  border-top: 1px solid var(--rule);
-  border-radius: 0;
-  padding-block: 1.25rem;
-  flex-direction: row;
-  align-items: center;
+  color: var(--text);
+  list-style: none;
+  display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
-
-/* Card internals */
-.gls-card__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-ink);
-  margin-bottom: 1rem;
+.ghub-faq__q::-webkit-details-marker { display: none; }
+.ghub-faq__q::after {
+  content: '+';
+  color: var(--accent);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1;
+  flex: none;
 }
-
-.gls-card__dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: #C9A84C;
-  border-radius: 50%;
-  flex-shrink: 0;
+.ghub-faq__item[open] .ghub-faq__q::after { content: '−'; }
+.ghub-faq__a {
+  padding: 0 0 1.25rem;
+  color: var(--ink-600);
+  max-width: var(--ghub-measure);
 }
+.ghub-backlink { margin-top: 2rem; font-size: 0.875rem; }
+.ghub-backlink a { color: var(--ink-500); text-decoration: none; }
+.ghub-backlink a:hover { color: var(--accent); }
 
-.gls-card__answer {
-  font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-  line-height: 1.6;
-  color: var(--text);
-  margin: 0;
+/* ═══ /glossary index — the six hub cards ═══ */
+.ghub-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1.25rem;
 }
-
-.gls-card__label {
-  display: block;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-500);
-  margin-bottom: 1rem;
-}
-
-.gls-card--cta .gls-card__label { color: var(--text-on-inverse-faint); }
-
-.gls-card__cta-text {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: var(--text-on-inverse);
-  margin: 0;
-}
-
-/* Related term links */
-.gls-related-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.ghub-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+  background: var(--surface-raised);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s var(--expo-out), transform 0.2s var(--expo-out);
+}
+.ghub-card:hover {
+  border-color: var(--border-contrast);
+  transform: translateY(-2px);
+}
+.ghub-card__index {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.ghub-card__title {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 0.25rem;
+  color: var(--text);
+}
+.ghub-card__count {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-400);
+  margin: 0 0 0.875rem;
+}
+.ghub-card__intro {
+  font-size: 0.9375rem;
+  color: var(--ink-600);
+  line-height: 1.55;
+  margin: 0 0 1rem;
+}
+.ghub-card__peek {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+.ghub-card__peek li {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background: var(--surface-sunken-2);
+  color: var(--ink-600);
+}
+.ghub-card__more { color: var(--accent) !important; background: transparent !important; }
+.ghub-card__go {
+  margin-top: auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
-.gls-related-link {
+/* ═══ 1. Pipeline — AI Search & GEO ═══ */
+.ghub-pipeline__hero {
+  padding: 3rem 0 2.5rem;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}
+.ghub-pipeline__h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.08;
+  margin: 0.75rem 0 1rem;
+  color: var(--text-on-inverse);
+}
+.ghub-pipeline__hero .lede { color: var(--text-on-inverse-soft); max-width: var(--ghub-measure); }
+.ghub-pipeline__count {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-inverse-muted);
+}
+.ghub-pipeline__count strong { color: var(--accent-on-inverse); }
+
+.ghub-pipeline__stages {
+  list-style: none;
+  padding: 3rem 0;
+  margin: 0;
+  position: relative;
+}
+.ghub-stage {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+}
+.ghub-stage__marker { position: relative; }
+/* The spine: a rule running the height of the stage, behind the number. */
+.ghub-stage__marker::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 2.75rem;
+  bottom: -3rem;
+  width: 2px;
+  background: var(--rule);
+}
+.ghub-stage:last-child .ghub-stage__marker::before { display: none; }
+.ghub-stage__num {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  background: var(--surface);
+}
+.ghub-stage__label { font-size: 1.5rem; margin: 0.5rem 0 0.375rem; color: var(--text); }
+.ghub-stage__note { color: var(--ink-500); font-size: 0.9375rem; margin-bottom: 1.5rem; }
+.ghub-stage__terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+.ghub-term {
+  padding: 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-sunken);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.ghub-term__name { color: var(--text); }
+.ghub-term__short { font-weight: 500; color: var(--text); }
+.ghub-term__body { font-size: 0.9375rem; color: var(--ink-600); }
+
+/* ═══ 2. Ledger — PPC & Paid Media ═══ */
+.ghub-ledger__hero { padding: 2.5rem 0 2rem; border-bottom: 2px solid var(--text); }
+.ghub-ledger__heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: end;
+}
+.ghub-ledger__h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 4vw, 2.875rem);
+  line-height: 1.1;
+  margin: 0.75rem 0 0.875rem;
+}
+.ghub-ledger__hero .lede { max-width: var(--ghub-measure); }
+.ghub-ledger__stats { display: flex; gap: 2rem; margin: 0; }
+.ghub-ledger__stats dt {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-400);
+}
+.ghub-ledger__stats dd {
+  margin: 0.125rem 0 0;
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.ghub-ledger__grid {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 3rem;
+  padding: 2.5rem 0 3rem;
+  align-items: start;
+}
+.ghub-ledger__index { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+.ghub-ledger__indexTitle {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-400);
+  margin-bottom: 0.75rem;
+}
+.ghub-ledger__index ol { list-style: none; padding: 0; margin: 0; counter-reset: led; }
+.ghub-ledger__index li {
+  counter-increment: led;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 0.875rem;
+}
+.ghub-ledger__index li::before {
+  content: counter(led, decimal-leading-zero);
+  color: var(--ink-400);
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.5rem;
+}
+.ghub-ledger__index a { color: var(--ink-700); text-decoration: none; flex: 1; }
+.ghub-ledger__index a:hover { color: var(--accent); }
+.ghub-ledger__indexCount { color: var(--ink-400); font-variant-numeric: tabular-nums; }
+
+.ghub-ledger__band { margin-bottom: 3rem; }
+.ghub-ledger__bandHead {
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--text);
+  margin-bottom: 0;
+}
+.ghub-ledger__bandHead h2 { font-size: 1.375rem; margin: 0 0 0.25rem; }
+.ghub-ledger__bandHead p { font-size: 0.875rem; color: var(--ink-500); margin: 0; }
+.ghub-ledger__rows { margin: 0; }
+.ghub-ledger__row {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ghub-ledger__row:hover { background: var(--surface-sunken); }
+.ghub-ledger__term {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.ghub-ledger__def { margin: 0; }
+.ghub-ledger__short { font-weight: 500; color: var(--text); }
+.ghub-ledger__long { font-size: 0.9375rem; color: var(--ink-600); }
+
+/* ═══ 3. Waterfall — Site Speed, UX & Conversion ═══ */
+.ghub-wf__hero { padding: 3rem 0 1.5rem; }
+.ghub-wf__h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 4vw, 2.875rem);
+  line-height: 1.1;
+  margin: 0.75rem 0 0.875rem;
+}
+.ghub-wf__hero .lede { max-width: var(--ghub-measure); }
+
+.ghub-wf__chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--surface-inverse);
+  border-radius: 0.75rem;
+  margin-bottom: 3rem;
+}
+.ghub-wf__bar {
+  margin-left: var(--wf-offset);
+  width: var(--wf-width);
+  min-width: 8rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-on-inverse));
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  color: var(--text);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: border-color 0.18s, background 0.18s;
+  padding: 0 0.75rem;
+}
+.ghub-wf__barLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.gls-related-link:hover {
-  border-color: #C9A84C;
-  background: var(--surface-highlight);
-  color: var(--text);
+.ghub-wf__phases { padding-bottom: 3rem; }
+.ghub-wf__phase {
+  /* Each phase steps further right, echoing the chart above it. */
+  margin-left: calc(var(--wf-step) * 2rem);
+  padding: 1.75rem 0 1.75rem 1.75rem;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 1.5rem;
 }
-
-/* Back link */
-.gls-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--ink-500);
-  text-decoration: none;
-  transition: color 0.18s;
+.ghub-wf__phaseIndex {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
+.ghub-wf__phaseLabel { font-size: 1.375rem; margin: 0.375rem 0 0.25rem; }
+.ghub-wf__phaseNote { color: var(--ink-500); font-size: 0.9375rem; margin-bottom: 1.25rem; }
+.ghub-wf__terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+.ghub-wf__term {
+  padding: 1.125rem;
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  background: var(--surface-raised);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.ghub-wf__term h3 { color: var(--text); }
+.ghub-wf__short { font-weight: 500; color: var(--text); }
+.ghub-wf__term p:not(.ghub-wf__short) { font-size: 0.9375rem; color: var(--ink-600); }
 
-.gls-back-link:hover { color: var(--text); }
+/* ═══ 4. Gates — Technical SEO & Indexing ═══ */
+.ghub-gates__hero { padding: 3rem 0 2rem; }
+.ghub-gates__h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 4vw, 2.875rem);
+  line-height: 1.1;
+  margin: 0.75rem 0 0.875rem;
+}
+.ghub-gates__hero .lede { max-width: var(--ghub-measure); }
 
-.gls-card__count {
-  font-size: 0.8125rem;
+.ghub-gates__gate { padding: 2.5rem 0; }
+.ghub-gates__gate--alt { background: var(--surface-sunken); }
+.ghub-gates__rule {
+  height: 4px;
+  width: 4rem;
+  background: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.ghub-gates__gateHead { margin-bottom: 1.75rem; max-width: var(--ghub-measure); }
+.ghub-gates__gateLabel { font-size: 1.625rem; margin: 0 0 0.375rem; }
+.ghub-gates__gateNote { color: var(--ink-500); margin: 0; }
+.ghub-gates__terms { display: flex; flex-direction: column; gap: 0; }
+.ghub-gates__term {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.ghub-gates__termHead h3 { margin: 0; color: var(--text); }
+.ghub-gates__short { font-weight: 500; color: var(--text); }
+.ghub-gates__termBody p:not(.ghub-gates__short) { font-size: 0.9375rem; color: var(--ink-600); }
+
+/* ═══ 5. Anatomy — On-Page & Content SEO ═══ */
+.ghub-anat__hero { padding: 3rem 0 2rem; }
+.ghub-anat__h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 4vw, 2.875rem);
+  line-height: 1.1;
+  margin: 0.75rem 0 0.875rem;
+}
+.ghub-anat__hero .lede { max-width: var(--ghub-measure); }
+
+.ghub-anat__grid {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  gap: 3rem;
+  padding-bottom: 3rem;
+  align-items: start;
+}
+.ghub-anat__figure { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+.ghub-anat__wire {
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  background: var(--surface-raised);
+}
+.ghub-anat__wireTab {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-400);
+  background: var(--surface-sunken-2);
+  border-bottom: 1px solid var(--border);
+}
+.ghub-anat__wirePage { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.ghub-anat__wireH1 {
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+.ghub-anat__wireH2 {
+  height: 1.125rem;
+  width: 60%;
+  border-radius: 0.25rem;
+  background: var(--ink-400);
+  color: #fff;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  margin-top: 0.375rem;
+}
+.ghub-anat__wireLine { height: 0.5rem; border-radius: 0.25rem; background: var(--rule); width: 85%; }
+.ghub-anat__wireLine--long { width: 100%; }
+.ghub-anat__wireLine--short { width: 55%; }
+.ghub-anat__wireSchema {
+  margin-top: 0.625rem;
+  padding: 0.375rem 0.5rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 0.25rem;
+  font-size: 0.625rem;
+  color: var(--ink-400);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.ghub-anat__part { margin-bottom: 2.5rem; }
+.ghub-anat__partHead {
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 1.25rem;
+}
+.ghub-anat__partHead h2 { font-size: 1.375rem; margin: 0 0 0.25rem; }
+.ghub-anat__partHead p { font-size: 0.875rem; color: var(--ink-500); margin: 0; }
+.ghub-anat__term {
+  padding: 1rem 0 1rem 1.125rem;
+  border-left: 2px solid var(--rule);
+  margin-bottom: 0.75rem;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.ghub-anat__term:hover { border-left-color: var(--accent); }
+.ghub-anat__term h3 { color: var(--text); }
+.ghub-anat__short { font-weight: 500; color: var(--text); }
+.ghub-anat__term p:not(.ghub-anat__short) { font-size: 0.9375rem; color: var(--ink-600); }
+
+/* ═══ 6. Dossier — Authority, Links & Local SEO ═══ */
+.ghub-dos__masthead {
+  padding: 3rem 0 2.5rem;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}
+.ghub-dos__kicker {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent-on-inverse);
+  margin: 0.75rem 0 0.5rem;
+}
+.ghub-dos__h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.06;
+  margin: 0 0 1rem;
+  color: var(--text-on-inverse);
+}
+.ghub-dos__lede {
+  color: var(--text-on-inverse-soft);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: var(--ghub-measure);
   margin: 0;
 }
 
-/* Mobile: single column */
+.ghub-dos__halves {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3.5rem;
+  padding: 3rem 0;
+}
+.ghub-dos__halfHead { margin-bottom: 1.75rem; }
+.ghub-dos__halfIndex {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.ghub-dos__halfHead h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.375rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 3px solid var(--text);
+}
+.ghub-dos__halfHead p { color: var(--ink-500); font-size: 0.9375rem; margin: 0.625rem 0 0; }
+.ghub-dos__term {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.ghub-dos__term h3 { color: var(--text); font-size: 1.25rem; }
+.ghub-dos__short {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.55;
+}
+.ghub-dos__body { font-size: 0.9375rem; color: var(--ink-600); line-height: 1.7; }
+
+/* ═══ Responsive ═══ */
+@media (max-width: 62rem) {
+  .ghub-ledger__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ghub-ledger__index { position: static; }
+  .ghub-anat__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ghub-anat__figure { display: none; }
+  .ghub-dos__halves { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
 @media (max-width: 48rem) {
-  .gls-bento { grid-template-columns: 1fr; }
-  .gls-card--answer,
-  .gls-card--body,
-  .gls-card--related,
-  .gls-card--cta,
-  .gls-card--back { grid-column: 1 / -1; }
-  .gls-card--back { flex-direction: column; align-items: flex-start; }
+  .ghub-stage { grid-template-columns: 2.75rem minmax(0, 1fr); gap: 1rem; }
+  .ghub-stage__num { width: 2.5rem; height: 2.5rem; font-size: 0.8125rem; }
+  .ghub-stage__marker::before { left: 1.15rem; top: 2.25rem; }
+  .ghub-ledger__heroGrid { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
+  .ghub-ledger__row { grid-template-columns: 1fr; gap: 0.5rem; }
+  .ghub-gates__term { grid-template-columns: 1fr; gap: 0.5rem; }
+  /* The waterfall stagger is a desktop affordance; indenting on a phone
+     just eats the measure. */
+  .ghub-wf__phase { margin-left: 0; padding-left: 1.25rem; }
+  .ghub-wf__chart { display: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════

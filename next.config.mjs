@@ -1,3 +1,6 @@
+import { GLOSSARY } from './lib/glossary.js';
+import { termRedirects } from './lib/glossaryHubs.js';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {
@@ -285,6 +288,16 @@ const nextConfig = {
       { source: '/locations/glendale', destination: '/glendale-seo', permanent: true },
       { source: '/areas-served', destination: '/los-angeles-seo', permanent: true },
       { source: '/locations', destination: '/los-angeles-seo', permanent: true },
+
+      // ── Glossary consolidated onto hub pages (2026-09-01) ──
+      // The 77 term URLs each carried ~69 words. They now 301 to an anchored
+      // section on one of six hub pages, generated from lib/glossaryHubs.js so
+      // the mapping cannot drift from the pages that render it.
+      //
+      // Enumerated one rule per term on purpose. A '/glossary/:slug*' wildcard
+      // would be applied before routing and shadow the hub pages themselves,
+      // taking the whole /glossary/[slug] route down with it.
+      ...termRedirects(GLOSSARY.map((entry) => entry.slug)),
 
       // ── Generic /seo-services/:slug fallback -> /services/:slug ── MUST stay last.
       { source: '/seo-services/:slug', destination: '/services/:slug', permanent: true },

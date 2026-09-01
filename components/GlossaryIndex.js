@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { GLOSSARY_CATEGORIES } from '../lib/glossary';
+import { hubForTerm } from '../lib/glossaryHubs';
 
 export default function GlossaryIndex({ terms }) {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -41,14 +42,19 @@ export default function GlossaryIndex({ terms }) {
         <div key={letter} className="glossary-letter-group">
           <h2 className="glossary-letter-heading">{letter}</h2>
           <ul className="archive-list">
-            {entries.map((t) => (
-              <li key={t.slug} className="archive-list__item">
-                <a href={`/glossary/${t.slug}`} className="archive-list__link">
-                  <span className="archive-list__title">{t.term}</span>
-                  <span className="archive-list__meta">{t.category}</span>
-                </a>
-              </li>
-            ))}
+            {/* Straight to the term's anchor on its hub. Linking the retired
+                standalone URL would send every click through a 301. */}
+            {entries.map((t) => {
+              const hub = hubForTerm(t.slug);
+              return (
+                <li key={t.slug} className="archive-list__item">
+                  <a href={`/glossary/${hub.slug}#${t.slug}`} className="archive-list__link">
+                    <span className="archive-list__title">{t.term}</span>
+                    <span className="archive-list__meta">{t.category}</span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       ))}

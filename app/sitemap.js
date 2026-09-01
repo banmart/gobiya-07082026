@@ -1,7 +1,7 @@
 import { INSIGHTS } from '../lib/insights';
 import { SERVICE_LINKS } from '../lib/serviceIndex';
 import { CASE_STUDIES } from '../lib/work';
-import { GLOSSARY } from '../lib/glossary';
+import { HUB_SLUGS } from '../lib/glossaryHubs';
 import { SOLUTION_SLUGS, solutionPath } from '../lib/solutions';
 import { LIVE_AREAS } from '../lib/areas';
 
@@ -19,6 +19,7 @@ export default function sitemap() {
     // canonical points at the homepage. A sitemap must not advertise a URL that
     // canonicalises somewhere else.
     '/insights',
+    '/free-site-scan',
     '/glossary',
     '/services',
     '/solutions',
@@ -60,8 +61,11 @@ export default function sitemap() {
     lastModified: insight.date,
   }));
 
-  const glossaryRoutes = GLOSSARY.map((term) => ({
-    url: `${BASE_URL}/glossary/${term.slug}`,
+  // The 77 term URLs were consolidated onto six hubs on 2026-09-01 and now 301
+  // to an anchor on one of them. A sitemap must not advertise a URL that
+  // redirects, so it lists the hubs only.
+  const glossaryRoutes = HUB_SLUGS.map((slug) => ({
+    url: `${BASE_URL}/glossary/${slug}`,
   }));
 
   const caseStudyRoutes = CASE_STUDIES.filter((c) => c.study).map((c) => ({
