@@ -1,4 +1,4 @@
-import ServiceAreaTemplate from '../../components/ServiceAreaTemplate';
+import LocAreaBrief from '../../components/locations/LocAreaBrief';
 import { getLiveArea } from '../../lib/areas';
 import { buildMetadata } from '../../lib/meta';
 
@@ -12,5 +12,5 @@ export const metadata = buildMetadata({
 });
 
 export default function StudioCitySeoPage() {
-  return <ServiceAreaTemplate area={area} />;
+  return <LocAreaBrief area={area} />;
 }

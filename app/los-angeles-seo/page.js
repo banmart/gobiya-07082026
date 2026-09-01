@@ -1,4 +1,4 @@
-import LocationTemplate from '../../components/LocationTemplate';
+import LocCityCoverage from '../../components/locations/LocCityCoverage';
 import { getLocation } from '../../lib/locations';
 import { buildMetadata } from '../../lib/meta';
 
@@ -11,5 +11,5 @@ export const metadata = buildMetadata({
 });
 
 export default function LosAngelesSeoPage() {
-  return <LocationTemplate location={location} />;
+  return <LocCityCoverage location={location} />;
 }

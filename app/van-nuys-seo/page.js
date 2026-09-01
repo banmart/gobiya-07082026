@@ -1,4 +1,4 @@
-import LocationTemplate from '../../components/LocationTemplate';
+import LocOfficeVisit from '../../components/locations/LocOfficeVisit';
 import { getLocation } from '../../lib/locations';
 import { buildMetadata } from '../../lib/meta';
 
@@ -11,5 +11,5 @@ export const metadata = buildMetadata({
 });
 
 export default function VanNuysSeoPage() {
-  return <LocationTemplate location={location} />;
+  return <LocOfficeVisit location={location} />;
 }

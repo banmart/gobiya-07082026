@@ -1,4 +1,4 @@
-import ServiceAreaTemplate from '../../components/ServiceAreaTemplate';
+import LocHometown from '../../components/locations/LocHometown';
 import { getLiveArea } from '../../lib/areas';
 import { buildMetadata } from '../../lib/meta';
 
@@ -12,5 +12,5 @@ export const metadata = buildMetadata({
 });
 
 export default function GlendaleSeoPage() {
-  return <ServiceAreaTemplate area={area} />;
+  return <LocHometown area={area} />;
 }
