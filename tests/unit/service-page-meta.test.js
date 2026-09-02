@@ -10,6 +10,10 @@ import { SERVICE_SLUGS, getService, keywordFromSlug } from '../../lib/serviceInd
 const SUFFIX = ' — Gobiya';
 const rendered = (t) => (t.toLowerCase().includes('gobiya') ? t : t + SUFFIX);
 
+// Keywords contain regex metacharacters ('C++'-style slugs would break a bare
+// interpolation), so escape before building a pattern from one.
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 describe('service page metadata', () => {
   it('keeps every rendered title within 60 characters', () => {
     for (const slug of SERVICE_SLUGS) {
@@ -118,22 +122,46 @@ describe('service pages name their city', () => {
   });
 });
 
-describe('service page metadata follows the homepage pattern', () => {
-  // Homepage: 'Los Angeles SEO & Marketing | The Valley & Glendale | Gobiya'
-  it('leads with the city, closes with the brand, and names a geo segment', () => {
+// Service metadata is generated in lib/serviceIndex.js from the slug plus the
+// OUTCOMES map, not hand-authored nine times — the raw metaTitle and
+// metaDescription in servicesFlat.js and services.js still exist but only feed
+// the /services index cards through SERVICE_LINKS.
+//
+// The four-position format is keyword-first, outcome-second:
+//   title  '<Keyword> Los Angeles | <outcome.short> | Gobiya'
+//   desc   '<Keyword> in Los Angeles: <outcome.long>. Free audit — call now!'
+//
+// These assertions check the contract that format promises rather than
+// restating the template string, so rewording an outcome clause does not fail
+// the suite but dropping the keyword, the city or the call to action does.
+describe('service page metadata follows the four-position format', () => {
+  it('leads with the keyword, names the city, and closes with the brand', () => {
     for (const slug of SERVICE_SLUGS) {
       const t = getService(slug).metaTitle;
-      expect(t, slug).toMatch(/^Los Angeles .+ \| The Valley( & Glendale)? \| Gobiya$/);
+      const keyword = keywordFromSlug(slug);
+      expect(t, slug).toMatch(new RegExp(`^${escapeRe(keyword)} Los Angeles \\|`));
+      expect(t, slug).toMatch(/\| Gobiya$/);
     }
   });
 
-  // Homepage: 'Get top-ranking Los Angeles and San Fernando Valley SEO services
-  // when you contact Gobiya SEO today. We also offer free, online audits. Call now!'
-  it('opens on the offer and closes on the call to action', () => {
+  it('opens the description on the keyword and city, and closes on the call to action', () => {
     for (const slug of SERVICE_SLUGS) {
       const d = getService(slug).metaDescription;
-      expect(d, slug).toMatch(/^Get top-ranking Los Angeles and San Fernando Valley /);
-      expect(d, slug).toMatch(/We also offer free, online audits\. Call now!$/);
+      const keyword = keywordFromSlug(slug);
+      expect(d, slug).toMatch(new RegExp(`^${escapeRe(keyword)} in Los Angeles: `));
+      expect(d, slug).toMatch(/Free audit — call now!$/);
+    }
+  });
+
+  // The generator drops the outcome clause rather than the keyword or the brand
+  // when a title would exceed its budget. Whichever branch it takes, both of
+  // those have to survive — that is the point of the fallback.
+  it('keeps the keyword and the brand even when the outcome is dropped', () => {
+    for (const slug of SERVICE_SLUGS) {
+      const t = getService(slug).metaTitle;
+      expect(t, slug).toContain(keywordFromSlug(slug));
+      expect(t, slug).toContain('Los Angeles');
+      expect(t, slug).toContain('Gobiya');
     }
   });
 
