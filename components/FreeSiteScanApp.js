@@ -13,6 +13,56 @@ const STAGES = [
 
 const SEVERITY_LABEL = { high: 'High priority', medium: 'Worth fixing', low: 'Minor' };
 
+// Every service page's CTA sends visitors here with the goal it promised —
+// ?goal=rankings from the technical SEO page, ?goal=ai-visibility from GEO,
+// and so on (see the featureRows links and HERO map in lib/serviceIndex.js).
+// Without this, every one of those CTAs dead-ends on the same generic
+// headline, so the page never finishes the sentence the button started.
+// `unsure`/`recovery` and an absent or unrecognized goal all fall through to
+// DEFAULT_HERO_COPY, which is the original, channel-neutral copy.
+const DEFAULT_HERO_COPY = {
+  badge: 'Real-Time Domain & AI Audit',
+  title: 'Free Site Scan: Find Out Why You’re Not Being Found',
+  subtitle:
+    'Enter your domain and the free site scan checks your Core Web Vitals, on-page SEO, security, and AI search readiness (ChatGPT, Perplexity & Google Overviews) in about a minute.',
+};
+
+const GOAL_HERO_COPY = {
+  rankings: {
+    badge: 'Free Technical SEO Check',
+    title: 'Free Site Scan: See What’s Blocking Your Rankings',
+    subtitle:
+      'You asked for a technical SEO check — here it is. Enter your domain and the free scan checks your Core Web Vitals, crawlability, and on-page SEO for what’s actually holding your rankings back.',
+  },
+  traffic: {
+    badge: 'Free Content & Traffic Check',
+    title: 'Free Site Scan: See What’s Keeping Your Traffic Flat',
+    subtitle:
+      'You asked for a content and traffic check — here it is. Enter your domain and the free scan checks your on-page SEO, content structure, and AI search readiness in about a minute.',
+  },
+  sales: {
+    badge: 'Free Conversion Check',
+    title: 'Free Site Scan: See What’s Stopping Visitors From Buying',
+    subtitle:
+      'You asked for a conversion check — here it is. Enter your domain and the free scan checks your Core Web Vitals, mobile performance, and the on-page issues that cost you sales.',
+  },
+  'ai-visibility': {
+    badge: 'Free AI Visibility Check',
+    title: 'Free Site Scan: See If ChatGPT & Google AI Overviews Can Find You',
+    subtitle:
+      'You asked for an AI visibility check — here it is. Enter your domain and the free scan checks your AI search readiness for ChatGPT, Perplexity, and Google AI Overviews in about a minute.',
+  },
+  ux: {
+    badge: 'Free UX Check',
+    title: 'Free Site Scan: See What’s Confusing Your Visitors',
+    subtitle:
+      'You asked for a UX check — here it is. Enter your domain and the free scan checks your mobile performance, Core Web Vitals, and on-page experience in about a minute.',
+  },
+};
+// A couple of CTAs still link with ?goal=ai rather than ?goal=ai-visibility —
+// same promise, same copy.
+GOAL_HERO_COPY.ai = GOAL_HERO_COPY['ai-visibility'];
+
 function scoreTone(score) {
   if (score >= 80) return 'good';
   if (score >= 50) return 'warn';
@@ -186,16 +236,16 @@ export default function FreeSiteScanApp() {
     .filter(([, value]) => value?.state && value.state !== 'ok')
     .map(([key, value]) => ({ key, reason: value.reason }));
 
+  const heroCopy = GOAL_HERO_COPY[searchParams.get('goal')] || DEFAULT_HERO_COPY;
+
   return (
     <div className="fss-app">
       {/* ══ PHASE 1: URL ENTRY FORM ══ */}
       {phase === 'input' && (
         <div className="fss-hero-box">
-          <div className="fss-badge">Real-Time Domain &amp; AI Audit</div>
-          <h1 className="fss-hero-title">Free Site Scan: Find Out Why You’re Not Being Found</h1>
-          <p className="fss-hero-subtitle">
-            Enter your domain and the free site scan checks your Core Web Vitals, on-page SEO, security, and AI search readiness (ChatGPT, Perplexity &amp; Google Overviews) in about a minute.
-          </p>
+          <div className="fss-badge">{heroCopy.badge}</div>
+          <h1 className="fss-hero-title">{heroCopy.title}</h1>
+          <p className="fss-hero-subtitle">{heroCopy.subtitle}</p>
 
           <form className="fss-url-form" onSubmit={startScan} noValidate>
             <div className="fss-input-group">

@@ -5,6 +5,7 @@ import Chapter from '../../components/sections/Chapter';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import SubHero from '../../components/SubHero';
 import ClientLogos from '../../components/ClientLogos';
+import HomeFaq from '../../components/HomeFaq';
 import { heroImage } from '../../lib/heroImages';
 
 export const metadata = buildMetadata({
@@ -57,6 +58,28 @@ const TIERS = [
   },
 ];
 
+// The four things somebody staring at these prices is actually asking
+// themselves before they click a button. Every answer restates a fact this
+// page (or the homepage FAQ) already publishes — no new policy invented here.
+const PRICING_FAQ = [
+  {
+    q: 'Is there a contract?',
+    a: 'No. Every plan is month to month, so you’re never locked into a term you want out of.',
+  },
+  {
+    q: 'Am I obligated to sign up after the free audit?',
+    a: 'No. The audit comes first and it’s free. You’ll see exactly what we’d fix and what it costs before you decide anything.',
+  },
+  {
+    q: 'How do I know this will work for my business?',
+    a: 'The plan we recommend comes out of your actual audit, not a generic package — so it’s built around what’s holding your specific site back, not a one-size-fits-all checklist.',
+  },
+  {
+    q: 'How fast will I see results?',
+    a: 'It depends on the work. Technical fixes often show up in Search Console within a few weeks; content and authority work builds over months and compounds the longer it runs. Your monthly report shows the trend either way.',
+  },
+];
+
 const ADDONS = [
   {
     name: 'A New Website',
@@ -103,6 +126,7 @@ export default function PricingPage() {
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
         icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>}
+        showTrust
       />
       <TopicMarquee topics={["Transparent Monthly Plans", "No Long-Term Contracts", "Full Audit Included", "Custom Enterprise Tier", "Measurable ROI"]} />
 
@@ -128,12 +152,15 @@ export default function PricingPage() {
                   <a href="?onboarding=true" title={`Get started with ${t.name}`} className={`btn ${t.featured ? 'btn--solid' : 'btn--ghost'}`}>
                     Get started with {t.name}
                   </a>
+                  <p className="pricing-card__reassurance">No long-term contract — month to month.</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <HomeFaq faqs={PRICING_FAQ} title="Before you commit" />
 
       <section className="section section--tint" id="addons">
         <div className="container">
