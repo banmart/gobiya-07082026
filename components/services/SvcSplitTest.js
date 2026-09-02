@@ -1,151 +1,134 @@
-import Breadcrumbs from '../Breadcrumbs';
+import SplitHero from '../SplitHero';
+import PlatformStrip from '../PlatformStrip';
+import TrustBand from '../TrustBand';
+import TrackCards from '../TrackCards';
+import HomeBenefitTabs from '../HomeBenefitTabs';
+import HomeFaq from '../HomeFaq';
+import CommunityReviews from '../CommunityReviews';
+import ClosingCta from '../ClosingCta';
 import {
   ServiceSchema,
   ExperienceBlock,
-  ServiceFaqs,
-  ServiceCta,
   ServiceAreas,
-  ServiceProof,
   ServiceSiblings,
-  serviceEyebrow,
+  leadSentence,
+  afterLeadSentence,
 } from './serviceShared';
 
 /**
- * CRO — a split test.
+ * CRO.
  *
- * The service is comparison, so the page is built as one: a hero divided down
- * the middle into control and variant, and content sections that alternate
- * sides against a centre line running the length of the page. The only service
- * page with a persistent vertical axis.
+ * Built out of the same homepage sections as technical-seo — see
+ * SvcAuditReport for the reasoning. This replaces what was here before: a
+ * bespoke layout built around a persistent A/B split axis, matching no other
+ * page on the site.
  */
+
+const TAG_ICONS = {
+  Services: 'wrench',
+  'AI CRO': 'code',
+  Ecommerce: 'target',
+  Audit: 'doc',
+  Experts: 'signal',
+  'UX Design': 'bars',
+};
+
 export default function SvcSplitTest({ service }) {
-  const rows = service.featureRows || [];
+  const dp = service.datapoint;
+  const intro = service.intro || service.lede || service.blurb;
 
   return (
-    <main id="top" className="svc svc--split">
+    <main id="top" className="svc">
       <ServiceSchema service={service} />
 
-      <header className="svc-split__hero">
-        <div className="container">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Services', href: '/services' },
-              { label: service.navTitle || service.title },
-            ]}
-          />
-          <p className="svc-split__eyebrow">{serviceEyebrow(service)}</p>
-          <h1 className="svc-split__h1">{service.h1 || service.title}</h1>
-          <p className="lede">{service.lede || service.blurb || service.intro}</p>
+      <SplitHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: service.navTitle || service.title },
+        ]}
+        eyebrow={service.hero?.excerpt || service.navTitle}
+        title={service.h1 || service.title}
+        dek={leadSentence(intro)}
+        primary={{
+          text: service.heroCtaText || 'Get a Free Site Review',
+          href: service.heroCtaHref || '/free-site-scan?goal=sales',
+        }}
+        secondary={{ text: 'CONTACT US', href: '/contact' }}
+        image={service.hero?.image}
+      />
 
-          <div className="svc-split__ab" aria-hidden="true">
-            <div className="svc-split__abSide svc-split__abSide--a">
-              <span className="svc-split__abLabel">A · what you have</span>
-              <div className="svc-split__abBar" style={{ '--fill': '34%' }}>
-                <span />
-              </div>
-              <p className="svc-split__abNote">Traffic arrives. Most of it leaves.</p>
-            </div>
-            <div className="svc-split__abDivider" />
-            <div className="svc-split__abSide svc-split__abSide--b">
-              <span className="svc-split__abLabel">B · what we test toward</span>
-              <div className="svc-split__abBar svc-split__abBar--win" style={{ '--fill': '78%' }}>
-                <span />
-              </div>
-              <p className="svc-split__abNote">Same traffic. More of it does something.</p>
-            </div>
-          </div>
-          <p className="svc-split__abCaption">
-            Illustrative. Real lift depends entirely on where your page currently
-            loses people, which is what the first round of research finds out.
-          </p>
-        </div>
-      </header>
+      <PlatformStrip />
 
-      {service.problem && (
-        <section className="svc-split__problem">
-          <div className="container container--narrow">
-            <p className="svc-split__problemEyebrow">{service.problem.eyebrow}</p>
-            <p className="svc-split__problemText">{service.problem.statement}</p>
-          </div>
-        </section>
+      <TrustBand
+        title={service.problem?.eyebrow || 'Trusted by 500+ Los Angeles Businesses'}
+        sub={service.problem?.statement}
+        badges={
+          dp
+            ? [
+                { num: `${dp.value}${dp.suffix || ''}`, label: dp.label },
+                { num: '500+', label: 'Clients Served' },
+                { num: 'Google', label: 'Partner Agency' },
+              ]
+            : undefined
+        }
+        note={dp?.sourceNote}
+        cta={{
+          text: service.heroCtaText || 'Get a Free Site Review',
+          href: service.heroCtaHref || '/free-site-scan?goal=sales',
+        }}
+      />
+
+      {(service.featureRows || []).length > 0 && (
+        <HomeBenefitTabs
+          tabs={service.featureRows.map((row) => ({
+            label: row.title,
+            heading: row.lede || row.title,
+            bullets: row.list || (Array.isArray(row.dek) ? row.dek : [row.dek]).filter(Boolean),
+            img: { src: row.image?.src, alt: row.image?.alt || '' },
+          }))}
+          title="What conversion optimization changes for your business"
+          sub="The traffic you already paid for, working harder"
+          cta={service.featureRows[0]?.link}
+        />
       )}
 
-      <ExperienceBlock slug={service.slug} variant="svc-exp--split" />
+      <TrackCards
+        title="What we test"
+        dek={afterLeadSentence(intro)}
+        items={service.capabilities.map((c) => ({
+          icon: TAG_ICONS[c.tag] || 'wrench',
+          title: c.title,
+          dek: c.desc,
+          cta: c.href ? { text: `About ${c.tag}`, href: c.href } : null,
+        }))}
+      />
 
-      {/* Content alternates against a centre axis. */}
-      <div className="svc-split__axis">
-        <div className="container">
-          {rows.map((row, i) => (
-            <section
-              key={row.title}
-              className={`svc-split__row ${i % 2 === 0 ? 'svc-split__row--left' : 'svc-split__row--right'}`}
-            >
-              <div className="svc-split__rowInner">
-                <h2>{row.title}</h2>
-                {row.lede && <p className="svc-split__rowLede">{row.lede}</p>}
-                {Array.isArray(row.dek)
-                  ? row.dek.map((d, j) => <p key={j}>{d}</p>)
-                  : row.dek && <p>{row.dek}</p>}
-                {row.list && (
-                  <ul className="svc-split__list">
-                    {row.list.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-                {row.link && (
-                  <p>
-                    <a href={row.link.href} className="btn btn--ghost">
-                      {row.link.text}
-                    </a>
-                  </p>
-                )}
-              </div>
-            </section>
-          ))}
-        </div>
-      </div>
+      <TrackCards
+        tint
+        title="How a test cycle runs"
+        dek="The same four steps on every test cycle"
+        items={service.process.map((p) => ({
+          step: p.step,
+          title: p.title,
+          dek: p.desc,
+        }))}
+      />
 
-      <section className="svc-split__caps">
-        <div className="container">
-          <h2 className="statement statement--small">What we test</h2>
-          <div className="svc-split__capPairs">
-            {(service.capabilities || []).map((c) => (
-              <article key={c.title} className="svc-split__cap">
-                <span className="svc-split__capTag">{c.tag}</span>
-                <h3>{c.href ? <a href={c.href}>{c.title}</a> : c.title}</h3>
-                <p>{c.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExperienceBlock slug={service.slug} />
 
-      <section className="svc-split__process">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small">How a test cycle runs</h2>
-          <ol className="svc-split__cycle">
-            {(service.process || []).map((p) => (
-              <li key={p.step}>
-                <span className="svc-split__cycleNum">{p.step}</span>
-                <div>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <CommunityReviews
+        heading="Clients love Gobiya"
+        dek="Let our clients tell you their story of growth, performance, and revenue impact."
+        featured={service.testimonial}
+      />
+
+      <HomeFaq faqs={service.faqs} title="Conversion optimization questions, answered" />
 
       <ServiceAreas service={service} />
-      <ServiceProof service={service} />
-
-      <ServiceFaqs service={service} />
       <ServiceSiblings service={service} />
-      <ServiceCta service={service} />
+
+      <ClosingCta title={service.ctaTitle} phone />
     </main>
   );
 }

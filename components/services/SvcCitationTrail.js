@@ -1,197 +1,132 @@
-import Breadcrumbs from '../Breadcrumbs';
+import SplitHero from '../SplitHero';
+import PlatformStrip from '../PlatformStrip';
+import TrustBand from '../TrustBand';
+import TrackCards from '../TrackCards';
+import HomeBenefitTabs from '../HomeBenefitTabs';
+import HomeFaq from '../HomeFaq';
+import CommunityReviews from '../CommunityReviews';
+import ClosingCta from '../ClosingCta';
 import {
   ServiceSchema,
   ExperienceBlock,
-  ServiceFaqs,
-  ServiceCta,
   ServiceAreas,
-  ServiceProof,
   ServiceSiblings,
-  serviceEyebrow,
+  leadSentence,
+  afterLeadSentence,
 } from './serviceShared';
 
 /**
- * GEO — a citation trail.
+ * GEO.
  *
- * The page follows one question from a person typing it to a model quoting you,
- * because that path is the whole product and clients rarely picture it. The
- * hero is a mocked assistant answer with the citation highlighted; capabilities
- * hang off the four points on the trail where the work actually happens.
- *
- * The mock is decorative and marked aria-hidden — every claim it illustrates is
- * stated in the prose underneath.
+ * Built out of the same homepage sections as technical-seo — see
+ * SvcAuditReport for the reasoning. This replaces what was here before: a
+ * bespoke "citation trail" layout with its own mocked assistant answer and a
+ * four-stop path graphic, matching no other page on the site.
  */
+
+const TAG_ICONS = {
+  Structure: 'doc',
+  Research: 'globe',
+  Format: 'bars',
+  Voice: 'signal',
+};
+
 export default function SvcCitationTrail({ service }) {
   const dp = service.datapoint;
-
-  const TRAIL = [
-    { at: 'Someone asks', note: 'A question gets typed into ChatGPT, Perplexity or Google.' },
-    { at: 'The model searches', note: 'It runs a retrieval pass over the live web, not just its training data.' },
-    { at: 'Your page is read', note: 'If it is crawlable and the answer is extractable. This is where most sites lose.' },
-    { at: 'You get named', note: 'The model quotes the passage and attributes it to you.' },
-  ];
+  const intro = service.intro || service.lede || service.blurb;
 
   return (
-    <main id="top" className="svc svc--trail">
+    <main id="top" className="svc">
       <ServiceSchema service={service} />
 
-      <header className="svc-trail__hero">
-        <div className="container">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Services', href: '/services' },
-              { label: service.navTitle || service.title },
-            ]}
-          />
-          <div className="svc-trail__heroGrid">
-            <div>
-              <p className="svc-trail__eyebrow">{serviceEyebrow(service)}</p>
-              <h1 className="svc-trail__h1">{service.h1 || service.title}</h1>
-              <p className="lede">{service.lede || service.blurb || service.standfirst}</p>
-              <a
-                href={service.heroCtaHref || '/free-site-scan?goal=ai'}
-                className="btn btn--solid btn--big"
-                style={{ marginTop: '1.5rem' }}
-              >
-                {service.heroCtaText || 'Check your AI visibility'}
-              </a>
-            </div>
+      <SplitHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: service.navTitle || service.title },
+        ]}
+        eyebrow={service.hero?.excerpt || service.navTitle}
+        title={service.h1 || service.title}
+        dek={leadSentence(intro)}
+        primary={{
+          text: service.heroCtaText || 'Check your AI visibility',
+          href: service.heroCtaHref || '/free-site-scan?goal=ai',
+        }}
+        secondary={{ text: 'CONTACT US', href: '/contact' }}
+        image={service.hero?.image}
+      />
 
-            <figure className="svc-trail__mock" aria-hidden="true">
-              <div className="svc-trail__mockBar">
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="svc-trail__mockBody">
-                <p className="svc-trail__mockQ">
-                  &ldquo;Who does technical SEO in Los Angeles?&rdquo;
-                </p>
-                <p className="svc-trail__mockA">
-                  Several firms work in this space. <mark>Gobiya</mark>, a Los Angeles agency,
-                  specialises in technical SEO and AI search visibility&hellip;
-                </p>
-                <p className="svc-trail__mockCite">
-                  <span className="svc-trail__mockCiteDot" /> gobiya.com
-                </p>
-              </div>
-            </figure>
-          </div>
-        </div>
-      </header>
+      <PlatformStrip />
 
-      {/* The trail itself: four stops, horizontal on desktop. */}
-      <section className="svc-trail__path">
-        <div className="container">
-          <ol className="svc-trail__stops">
-            {TRAIL.map((t, i) => (
-              <li key={t.at} className="svc-trail__stop">
-                <span className="svc-trail__stopNum" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h2 className="svc-trail__stopTitle">{t.at}</h2>
-                <p>{t.note}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <TrustBand
+        title={service.problem?.eyebrow || 'Trusted by 500+ Los Angeles Businesses'}
+        sub={service.problem?.statement}
+        badges={
+          dp
+            ? [
+                { num: `${dp.value}${dp.suffix || ''}`, label: dp.label },
+                { num: '500+', label: 'Clients Served' },
+                { num: 'Google', label: 'Partner Agency' },
+              ]
+            : undefined
+        }
+        note={dp?.sourceNote}
+        cta={{
+          text: service.heroCtaText || 'Check your AI visibility',
+          href: service.heroCtaHref || '/free-site-scan?goal=ai',
+        }}
+      />
 
-      {service.problem && (
-        <section className="svc-trail__problem">
-          <div className="container container--narrow">
-            <p className="svc-trail__problemEyebrow">{service.problem.eyebrow}</p>
-            <p className="svc-trail__problemText">{service.problem.statement}</p>
-          </div>
-        </section>
+      {(service.featureRows || []).length > 0 && (
+        <HomeBenefitTabs
+          tabs={service.featureRows.map((row) => ({
+            label: row.title,
+            heading: row.lede || row.title,
+            bullets: row.list || (Array.isArray(row.dek) ? row.dek : [row.dek]).filter(Boolean),
+            img: { src: row.image?.src, alt: row.image?.alt || '' },
+          }))}
+          title="What GEO changes for your business"
+          sub="The difference between being findable and being the answer AI gives"
+          cta={service.featureRows[0]?.link}
+        />
       )}
 
-      {dp && (
-        <section className="svc-trail__dp">
-          <div className="container container--narrow">
-            <p className="svc-trail__dpValue">
-              {dp.value}
-              {dp.suffix}
-            </p>
-            <p className="svc-trail__dpLabel">{dp.label}</p>
-            {dp.sourceNote && <p className="svc-trail__dpSource">{dp.sourceNote}</p>}
-          </div>
-        </section>
-      )}
+      <TrackCards
+        title="What the work involves"
+        dek={afterLeadSentence(intro)}
+        items={service.capabilities.map((c) => ({
+          icon: TAG_ICONS[c.tag] || 'wrench',
+          title: c.title,
+          dek: c.desc,
+          cta: c.href ? { text: `About ${c.tag}`, href: c.href } : null,
+        }))}
+      />
 
-      <ExperienceBlock slug={service.slug} variant="svc-exp--trail" />
+      <TrackCards
+        tint
+        title="How we run it"
+        dek="The same four steps on every GEO engagement"
+        items={service.process.map((p) => ({
+          step: p.step,
+          title: p.title,
+          dek: p.desc,
+        }))}
+      />
 
-      {service.intro && (
-        <section className="section">
-          <div className="container container--narrow">
-            <p className="svc-trail__intro">{service.intro}</p>
-          </div>
-        </section>
-      )}
+      <ExperienceBlock slug={service.slug} />
 
-      {(service.featureRows || []).map((row) => (
-        <section key={row.title} className="svc-trail__block">
-          <div className="container container--narrow">
-            <h2>{row.title}</h2>
-            {row.lede && <p className="svc-trail__blockLede">{row.lede}</p>}
-            {Array.isArray(row.dek)
-              ? row.dek.map((d, j) => <p key={j}>{d}</p>)
-              : row.dek && <p>{row.dek}</p>}
-            {row.list && (
-              <ul className="svc-trail__list">
-                {row.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            )}
-            {row.link && (
-              <p>
-                <a href={row.link.href} className="btn btn--ghost">
-                  {row.link.text}
-                </a>
-              </p>
-            )}
-          </div>
-        </section>
-      ))}
+      <CommunityReviews
+        heading="Clients love Gobiya"
+        dek="Let our clients tell you their story of growth, performance, and revenue impact."
+        featured={service.testimonial}
+      />
 
-      <section className="svc-trail__caps">
-        <div className="container">
-          <h2 className="statement statement--small">What the work involves</h2>
-          <div className="svc-trail__capGrid">
-            {(service.capabilities || []).map((c) => (
-              <article key={c.title} className="svc-trail__cap">
-                <span className="svc-trail__capTag">{c.tag}</span>
-                <h3>{c.href ? <a href={c.href}>{c.title}</a> : c.title}</h3>
-                <p>{c.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="svc-trail__process">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small">How we run it</h2>
-          <ol className="svc-trail__processList">
-            {(service.process || []).map((p) => (
-              <li key={p.step}>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <ServiceProof service={service} />
+      <HomeFaq faqs={service.faqs} title="GEO questions, answered" />
 
       <ServiceAreas service={service} />
-      <ServiceFaqs service={service} />
       <ServiceSiblings service={service} />
-      <ServiceCta service={service} />
+
+      <ClosingCta title={service.ctaTitle} phone />
     </main>
   );
 }

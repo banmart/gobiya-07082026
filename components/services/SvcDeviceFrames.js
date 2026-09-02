@@ -1,190 +1,134 @@
-import Breadcrumbs from '../Breadcrumbs';
+import SplitHero from '../SplitHero';
+import PlatformStrip from '../PlatformStrip';
+import TrustBand from '../TrustBand';
+import TrackCards from '../TrackCards';
+import HomeBenefitTabs from '../HomeBenefitTabs';
+import HomeFaq from '../HomeFaq';
+import CommunityReviews from '../CommunityReviews';
+import ClosingCta from '../ClosingCta';
 import {
   ServiceSchema,
   ExperienceBlock,
-  ServiceFaqs,
-  ServiceCta,
   ServiceAreas,
-  ServiceProof,
   ServiceSiblings,
-  serviceEyebrow,
+  leadSentence,
+  afterLeadSentence,
 } from './serviceShared';
 
 /**
- * Web UX & Interface Design — device frames.
+ * Web UX & Interface Design.
  *
- * The argument of the page is that a site is designed on a monitor and used on
- * a phone, so the page states that visually: a phone frame beside a desktop
- * frame in the hero, and content sections presented inside browser chrome. The
- * only service page where the content sits in a drawn container.
+ * Built out of the same homepage sections as technical-seo — see
+ * SvcAuditReport for the reasoning. This replaces what was here before: a
+ * bespoke layout built around drawn phone and desktop device frames, matching
+ * no other page on the site.
  */
+
+const TAG_ICONS = {
+  Audit: 'wrench',
+  Mobile: 'signal',
+  Wireframes: 'bars',
+  Accessibility: 'globe',
+  Information: 'doc',
+  Design: 'code',
+};
+
 export default function SvcDeviceFrames({ service }) {
   const dp = service.datapoint;
-  const t = service.testimonial;
+  const intro = service.intro || service.lede || service.blurb;
 
   return (
-    <main id="top" className="svc svc--device">
+    <main id="top" className="svc">
       <ServiceSchema service={service} />
 
-      <header className="svc-dev__hero">
-        <div className="container">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Services', href: '/services' },
-              { label: service.navTitle || service.title },
-            ]}
-          />
-          <div className="svc-dev__heroGrid">
-            <div>
-              <p className="svc-dev__eyebrow">{serviceEyebrow(service)}</p>
-              <h1 className="svc-dev__h1">{service.h1 || service.title}</h1>
-              <p className="lede">{service.lede || service.blurb || service.intro}</p>
-              {dp && (
-                <p className="svc-dev__dp">
-                  <strong>
-                    {dp.value}
-                    {dp.suffix}
-                  </strong>{' '}
-                  {dp.label}
-                </p>
-              )}
-              <a
-                href={service.heroCtaHref || '/contact'}
-                className="btn btn--solid btn--big"
-                style={{ marginTop: '1.5rem' }}
-              >
-                {service.heroCtaText || 'Talk about your interface'}
-              </a>
-            </div>
+      <SplitHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: service.navTitle || service.title },
+        ]}
+        eyebrow={service.hero?.excerpt || service.navTitle}
+        title={service.h1 || service.title}
+        dek={leadSentence(intro)}
+        primary={{
+          text: service.heroCtaText || 'Talk about your interface',
+          href: service.heroCtaHref || '/contact',
+        }}
+        secondary={{ text: 'CONTACT US', href: '/contact' }}
+        image={service.hero?.image}
+      />
 
-            <div className="svc-dev__devices" aria-hidden="true">
-              <div className="svc-dev__desktop">
-                <div className="svc-dev__chrome">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="svc-dev__screen">
-                  <div className="svc-dev__ln svc-dev__ln--title" />
-                  <div className="svc-dev__ln" />
-                  <div className="svc-dev__ln svc-dev__ln--short" />
-                  <div className="svc-dev__cta" />
-                </div>
-              </div>
-              <div className="svc-dev__phone">
-                <div className="svc-dev__notch" />
-                <div className="svc-dev__screen svc-dev__screen--sm">
-                  <div className="svc-dev__ln svc-dev__ln--title" />
-                  <div className="svc-dev__ln svc-dev__ln--short" />
-                  <div className="svc-dev__cta svc-dev__cta--thumb" />
-                </div>
-                <span className="svc-dev__thumb" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PlatformStrip />
 
-      {service.problem && (
-        <section className="svc-dev__problem">
-          <div className="container container--narrow">
-            <p className="svc-dev__problemEyebrow">{service.problem.eyebrow}</p>
-            <p className="svc-dev__problemText">{service.problem.statement}</p>
-          </div>
-        </section>
+      <TrustBand
+        title={service.problem?.eyebrow || 'Trusted by 500+ Los Angeles Businesses'}
+        sub={service.problem?.statement}
+        badges={
+          dp
+            ? [
+                { num: `${dp.value}${dp.suffix || ''}`, label: dp.label },
+                { num: '500+', label: 'Clients Served' },
+                { num: 'Google', label: 'Partner Agency' },
+              ]
+            : undefined
+        }
+        note={dp?.sourceNote}
+        cta={{
+          text: service.heroCtaText || 'Talk about your interface',
+          href: service.heroCtaHref || '/contact',
+        }}
+      />
+
+      {(service.featureRows || []).length > 0 && (
+        <HomeBenefitTabs
+          tabs={service.featureRows.map((row) => ({
+            label: row.title,
+            heading: row.lede || row.title,
+            bullets: row.list || (Array.isArray(row.dek) ? row.dek : [row.dek]).filter(Boolean),
+            img: { src: row.image?.src, alt: row.image?.alt || '' },
+          }))}
+          title="What web UX changes for your business"
+          sub="The layer between a visitor showing up and a visitor buying"
+          cta={service.featureRows[0]?.link}
+        />
       )}
 
-      <ExperienceBlock slug={service.slug} variant="svc-exp--device" />
+      <TrackCards
+        title="What we design"
+        dek={afterLeadSentence(intro)}
+        items={service.capabilities.map((c) => ({
+          icon: TAG_ICONS[c.tag] || 'wrench',
+          title: c.title,
+          dek: c.desc,
+          cta: c.href ? { text: `About ${c.tag}`, href: c.href } : null,
+        }))}
+      />
 
-      {/* Each content section sits inside browser chrome. */}
-      {(service.featureRows || []).map((row) => (
-        <section key={row.title} className="svc-dev__framed">
-          <div className="container container--narrow">
-            <article className="svc-dev__window">
-              <div className="svc-dev__chrome svc-dev__chrome--wide">
-                <span />
-                <span />
-                <span />
-                <p className="svc-dev__chromeUrl">{row.title}</p>
-              </div>
-              <div className="svc-dev__windowBody">
-                <h2>{row.title}</h2>
-                {row.lede && <p className="svc-dev__rowLede">{row.lede}</p>}
-                {Array.isArray(row.dek)
-                  ? row.dek.map((d, j) => <p key={j}>{d}</p>)
-                  : row.dek && <p>{row.dek}</p>}
-                {row.list && (
-                  <ul className="svc-dev__list">
-                    {row.list.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-                {row.link && (
-                  <p>
-                    <a href={row.link.href} className="btn btn--ghost">
-                      {row.link.text}
-                    </a>
-                  </p>
-                )}
-              </div>
-            </article>
-          </div>
-        </section>
-      ))}
+      <TrackCards
+        tint
+        title="How a redesign runs"
+        dek="The same four steps on every redesign"
+        items={service.process.map((p) => ({
+          step: p.step,
+          title: p.title,
+          dek: p.desc,
+        }))}
+      />
 
-      <section className="svc-dev__caps">
-        <div className="container">
-          <h2 className="statement statement--small">What we design</h2>
-          <div className="svc-dev__capGrid">
-            {(service.capabilities || []).map((c) => (
-              <article key={c.title} className="svc-dev__cap">
-                <span className="svc-dev__capTag">{c.tag}</span>
-                <h3>{c.href ? <a href={c.href}>{c.title}</a> : c.title}</h3>
-                <p>{c.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExperienceBlock slug={service.slug} />
 
-      <section className="svc-dev__process">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small">How a redesign runs</h2>
-          <ol className="svc-dev__steps">
-            {(service.process || []).map((p) => (
-              <li key={p.step}>
-                <span className="svc-dev__stepNum">{p.step}</span>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <CommunityReviews
+        heading="Clients love Gobiya"
+        dek="Let our clients tell you their story of growth, performance, and revenue impact."
+        featured={service.testimonial}
+      />
 
-      {t && (
-        <section className="svc-dev__quote">
-          <div className="container container--narrow">
-            <blockquote>
-              <p>&ldquo;{t.quote}&rdquo;</p>
-              <footer>
-                <strong>{t.name}</strong>
-                {t.company && <span> · {t.company}</span>}
-              </footer>
-            </blockquote>
-          </div>
-        </section>
-      )}
-
-      <ServiceProof service={service} />
+      <HomeFaq faqs={service.faqs} title="Web UX questions, answered" />
 
       <ServiceAreas service={service} />
-      <ServiceFaqs service={service} />
       <ServiceSiblings service={service} />
-      <ServiceCta service={service} />
+
+      <ClosingCta title={service.ctaTitle} phone />
     </main>
   );
 }

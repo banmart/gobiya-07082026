@@ -1,167 +1,132 @@
-import Breadcrumbs from '../Breadcrumbs';
+import SplitHero from '../SplitHero';
+import PlatformStrip from '../PlatformStrip';
+import TrustBand from '../TrustBand';
+import TrackCards from '../TrackCards';
+import HomeBenefitTabs from '../HomeBenefitTabs';
+import HomeFaq from '../HomeFaq';
+import CommunityReviews from '../CommunityReviews';
+import ClosingCta from '../ClosingCta';
 import {
   ServiceSchema,
   ExperienceBlock,
-  ServiceFaqs,
-  ServiceCta,
   ServiceAreas,
-  ServiceProof,
   ServiceSiblings,
-  serviceEyebrow,
+  leadSentence,
+  afterLeadSentence,
 } from './serviceShared';
 
 /**
- * Web Design & Development — a code panel.
+ * Web Design & Development.
  *
- * A build page for people who will read the source. Dark editor-style hero with
- * a gutter of line numbers, capabilities as a file tree, and the process as
- * commits. The only service page that runs dark above the fold and uses a
- * monospace face for structure rather than decoration.
+ * Built out of the same homepage sections as technical-seo — see
+ * SvcAuditReport for the reasoning. This replaces what was here before: a
+ * bespoke dark, editor-style layout with a line-numbered code hero, matching
+ * no other page on the site.
  */
+
+const TAG_ICONS = {
+  Framework: 'code',
+  Migration: 'globe',
+  Systems: 'bars',
+  Performance: 'signal',
+};
+
 export default function SvcCodePanel({ service }) {
-  const caps = service.capabilities || [];
+  const dp = service.datapoint;
+  const intro = service.intro || service.lede || service.blurb;
 
   return (
-    <main id="top" className="svc svc--code">
+    <main id="top" className="svc">
       <ServiceSchema service={service} />
 
-      <header className="svc-code__hero">
-        <div className="container">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Services', href: '/services' },
-              { label: service.navTitle || service.title },
-            ]}
-          />
-          <div className="svc-code__heroGrid">
-            <div>
-              <p className="svc-code__eyebrow">{serviceEyebrow(service)}</p>
-              <h1 className="svc-code__h1">{service.h1 || service.title}</h1>
-              <p className="svc-code__lede">{service.lede || service.blurb || service.intro}</p>
-              <a href="/contact" className="btn btn--solid btn--big" style={{ marginTop: '1.5rem' }}>
-                Talk about a build
-              </a>
-            </div>
+      <SplitHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: service.navTitle || service.title },
+        ]}
+        eyebrow={service.hero?.excerpt || service.navTitle}
+        title={service.h1 || service.title}
+        dek={leadSentence(intro)}
+        primary={{
+          text: service.heroCtaText || 'Talk about a build',
+          href: service.heroCtaHref || '/contact',
+        }}
+        secondary={{ text: 'CONTACT US', href: '/contact' }}
+        image={service.hero?.image}
+      />
 
-            <pre className="svc-code__editor" aria-hidden="true">
-              <code>
-                <span className="svc-code__ln" data-n="1">
-                  <span className="svc-code__kw">export default async function</span>{' '}
-                  <span className="svc-code__fn">Page</span>() {'{'}
-                </span>
-                <span className="svc-code__ln" data-n="2">
-                  {'  '}
-                  <span className="svc-code__cm">// content in the first response,</span>
-                </span>
-                <span className="svc-code__ln" data-n="3">
-                  {'  '}
-                  <span className="svc-code__cm">// not after a script runs</span>
-                </span>
-                <span className="svc-code__ln" data-n="4">
-                  {'  '}
-                  <span className="svc-code__kw">const</span> data ={' '}
-                  <span className="svc-code__kw">await</span> getContent();
-                </span>
-                <span className="svc-code__ln" data-n="5">
-                  {'  '}
-                  <span className="svc-code__kw">return</span>{' '}
-                  <span className="svc-code__tag">&lt;Article</span> {'{...data}'}{' '}
-                  <span className="svc-code__tag">/&gt;</span>;
-                </span>
-                <span className="svc-code__ln" data-n="6">
-                  {'}'}
-                </span>
-              </code>
-            </pre>
-          </div>
-        </div>
-      </header>
+      <PlatformStrip />
 
-      {service.problem && (
-        <section className="svc-code__problem">
-          <div className="container container--narrow">
-            <p className="svc-code__problemEyebrow">{service.problem.eyebrow}</p>
-            <p className="svc-code__problemText">{service.problem.statement}</p>
-          </div>
-        </section>
+      <TrustBand
+        title={service.problem?.eyebrow || 'Trusted by 500+ Los Angeles Businesses'}
+        sub={service.problem?.statement}
+        badges={
+          dp
+            ? [
+                { num: `${dp.value}${dp.suffix || ''}`, label: dp.label },
+                { num: '500+', label: 'Clients Served' },
+                { num: 'Google', label: 'Partner Agency' },
+              ]
+            : undefined
+        }
+        note={dp?.sourceNote}
+        cta={{
+          text: service.heroCtaText || 'Talk about a build',
+          href: service.heroCtaHref || '/contact',
+        }}
+      />
+
+      {(service.featureRows || []).length > 0 && (
+        <HomeBenefitTabs
+          tabs={service.featureRows.map((row) => ({
+            label: row.title,
+            heading: row.lede || row.title,
+            bullets: row.list || (Array.isArray(row.dek) ? row.dek : [row.dek]).filter(Boolean),
+            img: { src: row.image?.src, alt: row.image?.alt || '' },
+          }))}
+          title="What a new build changes for your business"
+          sub="The build decisions that decide whether you rank on day one"
+          cta={service.featureRows[0]?.link}
+        />
       )}
 
-      <ExperienceBlock slug={service.slug} variant="svc-exp--code" />
+      <TrackCards
+        title="What a build includes"
+        dek={afterLeadSentence(intro)}
+        items={service.capabilities.map((c) => ({
+          icon: TAG_ICONS[c.tag] || 'wrench',
+          title: c.title,
+          dek: c.desc,
+          cta: c.href ? { text: `About ${c.tag}`, href: c.href } : null,
+        }))}
+      />
 
-      {/* Capabilities as a file tree. */}
-      <section className="svc-code__tree">
-        <div className="container">
-          <h2 className="statement statement--small">What a build includes</h2>
-          <ul className="svc-code__files">
-            {caps.map((c) => (
-              <li key={c.title} className="svc-code__file">
-                <span className="svc-code__filePath" aria-hidden="true">
-                  {c.tag.toLowerCase().replace(/\s+/g, '-')}/
-                </span>
-                <div className="svc-code__fileBody">
-                  <h3>{c.href ? <a href={c.href}>{c.title}</a> : c.title}</h3>
-                  <p>{c.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <TrackCards
+        tint
+        title="How a build progresses"
+        dek="The same four steps on every build"
+        items={service.process.map((p) => ({
+          step: p.step,
+          title: p.title,
+          dek: p.desc,
+        }))}
+      />
 
-      {(service.featureRows || []).map((row) => (
-        <section key={row.title} className="svc-code__block">
-          <div className="container container--narrow">
-            <h2>{row.title}</h2>
-            {row.lede && <p className="svc-code__blockLede">{row.lede}</p>}
-            {Array.isArray(row.dek)
-              ? row.dek.map((d, j) => <p key={j}>{d}</p>)
-              : row.dek && <p>{row.dek}</p>}
-            {row.list && (
-              <ul className="svc-code__list">
-                {row.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            )}
-            {row.link && (
-              <p>
-                <a href={row.link.href} className="btn btn--ghost">
-                  {row.link.text}
-                </a>
-              </p>
-            )}
-          </div>
-        </section>
-      ))}
+      <ExperienceBlock slug={service.slug} />
 
-      {/* Process as a commit log. */}
-      <section className="svc-code__log">
-        <div className="container container--narrow">
-          <h2 className="statement statement--small">How a build progresses</h2>
-          <ol className="svc-code__commits">
-            {(service.process || []).map((p) => (
-              <li key={p.step} className="svc-code__commit">
-                <span className="svc-code__sha" aria-hidden="true">
-                  {p.step}
-                </span>
-                <div>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <CommunityReviews
+        heading="Clients love Gobiya"
+        dek="Let our clients tell you their story of growth, performance, and revenue impact."
+        featured={service.testimonial}
+      />
+
+      <HomeFaq faqs={service.faqs} title="Web development questions, answered" />
 
       <ServiceAreas service={service} />
-      <ServiceProof service={service} packages={false} />
-
-      <ServiceFaqs service={service} />
       <ServiceSiblings service={service} />
-      <ServiceCta service={service} />
+
+      <ClosingCta title={service.ctaTitle} phone />
     </main>
   );
 }

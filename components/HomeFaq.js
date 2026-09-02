@@ -3,7 +3,16 @@
 import { useState } from 'react';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
 
-export default function HomeFaq() {
+/**
+ * The accordion FAQ.
+ *
+ * Same deal as HomeBenefitTabs: the questions are a prop, the homepage's set is
+ * the default, so <HomeFaq /> is unchanged and a sub page passes its own.
+ */
+export default function HomeFaq({
+  faqs = HOMEPAGE_FAQ,
+  title = 'Frequently asked questions',
+}) {
   const [open, setOpen] = useState(null);
 
   const toggle = (i) => setOpen(open === i ? null : i);
@@ -11,10 +20,10 @@ export default function HomeFaq() {
   return (
     <section className="hfaq">
       <div className="container">
-        <h2 className="hfaq__title">Frequently asked questions</h2>
+        <h2 className="hfaq__title">{title}</h2>
 
         <div className="hfaq__list">
-          {HOMEPAGE_FAQ.map((item, i) => {
+          {faqs.map((item, i) => {
             const isOpen = open === i;
             return (
               <div key={i} className={`hfaq__item${isOpen ? ' hfaq__item--open' : ''}`}>

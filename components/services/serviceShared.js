@@ -17,6 +17,24 @@ import { FOUNDED_YEAR } from '../../lib/authority';
 
 export { serviceEyebrow };
 
+/**
+ * The first sentence of a paragraph, and everything after it.
+ *
+ * Every layout built on the homepage's sections needs to split `intro` (or
+ * `lede`/`blurb`, whichever a service authored) between the hero dek — one
+ * short sentence — and the capabilities band below, which gets the rest. So
+ * the split lives here once rather than once per layout.
+ */
+export function leadSentence(text = '') {
+  const end = text.indexOf('. ');
+  return end === -1 ? text : text.slice(0, end + 1);
+}
+
+export function afterLeadSentence(text = '') {
+  const end = text.indexOf('. ');
+  return end === -1 ? '' : text.slice(end + 2);
+}
+
 export function serviceSchema(service) {
   const url = `https://www.gobiya.com${servicePath(service.slug)}`;
   const graph = [

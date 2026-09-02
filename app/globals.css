@@ -3098,6 +3098,13 @@ body.is-loaded .hero__media video { transform: scale(1.02); }
 }
 .pricing-card__features a { text-decoration: underline; text-underline-offset: 0.2em; }
 .pricing-card--featured .pricing-card__features a { color: var(--text-on-inverse); }
+.pricing-card__reassurance {
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 0.6rem;
+  color: var(--hint);
+}
+.pricing-card--featured .pricing-card__reassurance { color: rgba(255, 255, 255, 0.6); }
 @media (max-width: 64rem) { .pricing-grid { grid-template-columns: 1fr; } }
 
 /* ═══════════ à la carte add-on table ═══════════ */
@@ -14901,3 +14908,73 @@ a.gb-checklist__title:hover { color: var(--link); }
   font-size: 0.9375rem; font-weight: 600;
 }
 .svc-siblings__list a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════
+   Global section patterns
+   The homepage is the theme. These are the two additions its
+   sections needed to be reusable on a sub page — nothing else
+   here is new, because every other band a sub page renders is
+   the homepage's own class set through the components in
+   components/ (SplitHero, TrustBand, TrackCards, HomeBenefitTabs,
+   HomeFaq, CommunityReviews, ClosingCta).
+   ═══════════════════════════════════════════════════════════ */
+
+/* A grid that holds any number of .gb-track cards.
+   The homepage's own .gb-chooser__tracks is a fixed three-column
+   grid — card, the word "or", card — capped at 46rem, because it
+   holds exactly two doors. Six capabilities need one that wraps. */
+.gb-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  text-align: left;
+}
+.gb-cards .gb-track { height: 100%; }
+
+/* The step number, where a numbered sequence uses the card. Sits
+   in the icon's place and at the icon's size, so a process band and
+   a capability band on the same page read as one system. */
+.gb-track__step {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--accent);
+  margin: 0.75rem 0 0.5rem;
+}
+
+/* The tinted variant, for a second band of cards on one page. */
+.gb-chooser--tint { background: var(--surface-sunken); }
+
+/* Where a measured figure in the trust band came from. Small, under
+   the tiles: a performance number without its source does not belong
+   on the page at all, so the slot is part of the pattern. */
+.gb-trusted__note {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-500);
+  max-width: 44rem;
+  margin: 1rem auto 0;
+}
+
+/* Breadcrumbs inside the split hero sit on the blue, so they need the
+   light treatment the band's own text gets. */
+.gh-split-hero .mw-breadcrumbs-in-hero { margin-bottom: 1.25rem; }
+
+/* The bare hero band, for the pages that ask for the spacer only. */
+.gh-split-hero--bare { min-height: clamp(6rem, 12vw, 9rem); }
+
+/* Sub-page hero pictures are 2752x1536 rather than the homepage's
+   800x447, so they fill the column and crop instead of setting its
+   height. */
+.gh-split-hero__visual--fill {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+.gh-split-hero__visual--fill .gh-split-hero__img {
+  object-fit: cover;
+}

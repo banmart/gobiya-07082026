@@ -1,173 +1,160 @@
-import Breadcrumbs from '../Breadcrumbs';
+import SplitHero from '../SplitHero';
+import PlatformStrip from '../PlatformStrip';
+import TrustBand from '../TrustBand';
+import TrackCards from '../TrackCards';
+import HomeBenefitTabs from '../HomeBenefitTabs';
+import HomeFaq from '../HomeFaq';
+import CommunityReviews from '../CommunityReviews';
+import ClosingCta from '../ClosingCta';
 import {
   ServiceSchema,
   ExperienceBlock,
-  ServiceFaqs,
-  ServiceCta,
   ServiceAreas,
-  ServiceProof,
   ServiceSiblings,
-  serviceEyebrow,
+  leadSentence,
+  afterLeadSentence,
 } from './serviceShared';
 
 /**
- * Technical SEO — an audit report.
+ * Technical SEO.
  *
- * The service is diagnostic, so the page is set as findings: a status line at
- * the top, capabilities as numbered check rows with a monospace label column,
- * and the process as a remediation schedule. Tabular, unglamorous, and the
- * closest thing on the site to the document a client actually receives.
+ * Built entirely out of the homepage's sections: the split hero, the platform
+ * strip, the trust band, the tabbed benefits, the track cards, the accordion
+ * FAQ, the reviews grid and the closing card. Nothing on this page is a shape
+ * that exists only here — every band is a component the homepage either renders
+ * or defines, with this service's copy in it.
+ *
+ * That is deliberate and it replaces what was here before: a bespoke
+ * "audit report" layout whose hero, cards and panels were its own markup and
+ * its own CSS namespace, matching no other page on the site.
+ *
+ * Where the service record maps on:
+ *
+ *   eyebrow, h1, intro, heroCta  → the hero
+ *   datapoint                    → the trust band's first tile, with its source
+ *   featureRows                  → the benefit tabs
+ *   capabilities                 → track cards
+ *   process                      → the same cards, numbered
+ *   testimonial                  → the reviews grid
+ *   faqs                         → the accordion
+ *   ctaTitle                     → the closing card
  */
+
+// Capability tags to the icon set in DisciplineRail. A tag with no entry falls
+// back to the wrench rather than rendering an empty slot.
+const TAG_ICONS = {
+  Performance: 'signal',
+  Crawlability: 'globe',
+  Schema: 'code',
+  'On-Page': 'doc',
+  Local: 'pin',
+  Diagnostics: 'wrench',
+};
+
 export default function SvcAuditReport({ service }) {
   const dp = service.datapoint;
+  const t = service.testimonial;
+
+  // featureRows carry their detail as `list` (an array of points), `dek` (a
+  // string), or `dek` as an array of paragraphs. The tabs want bullets, so
+  // normalise all three to one shape.
+  const tabs = (service.featureRows || []).map((row) => ({
+    label: row.title,
+    heading: row.lede || row.title,
+    bullets: row.list || (Array.isArray(row.dek) ? row.dek : [row.dek]).filter(Boolean),
+    img: { src: row.image?.src, alt: row.image?.alt || '' },
+  }));
 
   return (
-    <main id="top" className="svc svc--audit">
+    <main id="top" className="svc">
       <ServiceSchema service={service} />
 
-      <header className="svc-audit__hero">
-        <div className="container">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Services', href: '/services' },
-              { label: service.navTitle || service.title },
-            ]}
-          />
-          <p className="svc-audit__eyebrow">{serviceEyebrow(service)}</p>
-          <h1 className="svc-audit__h1">{service.h1 || service.title}</h1>
+      <SplitHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: service.navTitle || service.title },
+        ]}
+        eyebrow={service.hero?.excerpt || service.navTitle}
+        title={service.h1 || service.title}
+        dek={leadSentence(service.intro)}
+        primary={{
+          text: service.heroCtaText || 'Request a Free Technical SEO Check',
+          href: service.heroCtaHref || '/free-site-scan',
+        }}
+        secondary={{ text: 'CONTACT US', href: '/contact' }}
+        image={service.hero?.image}
+      />
 
-          <div className="svc-audit__statusbar">
-            <div className="svc-audit__status svc-audit__status--fail">
-              <span className="svc-audit__statusDot" aria-hidden="true" />
-              Crawl errors
-            </div>
-            <div className="svc-audit__status svc-audit__status--fail">
-              <span className="svc-audit__statusDot" aria-hidden="true" />
-              Render blocking
-            </div>
-            <div className="svc-audit__status svc-audit__status--fail">
-              <span className="svc-audit__statusDot" aria-hidden="true" />
-              Missing schema
-            </div>
-            <div className="svc-audit__status svc-audit__status--pass">
-              <span className="svc-audit__statusDot" aria-hidden="true" />
-              After we are done
-            </div>
-          </div>
+      <PlatformStrip />
 
-          <div className="svc-audit__heroActions">
-            <a href={service.heroCtaHref || '/free-site-scan'} className="btn btn--solid btn--big">
-              {service.heroCtaText || 'Request a free check'}
-            </a>
-            {dp && (
-              <p className="svc-audit__dp">
-                <strong>
-                  {dp.value}
-                  {dp.suffix}
-                </strong>
-                <span>{dp.label}</span>
-              </p>
-            )}
-          </div>
-        </div>
-      </header>
+      {/* The measured figure leads the band. It is the one number on this page
+          that claims a result, and it carries its source — the case study it
+          came from is linked from the note. */}
+      <TrustBand
+        title={service.problem?.eyebrow || 'Trusted by 500+ Los Angeles Businesses'}
+        sub={service.problem?.statement}
+        badges={
+          dp
+            ? [
+                { num: `${dp.value}${dp.suffix || ''}`, label: dp.label },
+                { num: '500+', label: 'Clients Served' },
+                { num: 'Google', label: 'Partner Agency' },
+              ]
+            : undefined
+        }
+        note={dp?.sourceNote}
+        cta={{
+          text: service.heroCtaText || 'Get a Free Technical SEO Check',
+          href: service.heroCtaHref || '/free-site-scan',
+        }}
+      />
 
-      {service.problem && (
-        <section className="svc-audit__problem">
-          <div className="container container--narrow">
-            <p className="svc-audit__problemEyebrow">{service.problem.eyebrow}</p>
-            <p className="svc-audit__problemText">{service.problem.statement}</p>
-          </div>
-        </section>
+      {tabs.length > 0 && (
+        <HomeBenefitTabs
+          tabs={tabs}
+          title="What technical SEO changes for your business"
+          sub="The foundation Google and AI crawlers read before they read anything else"
+          cta={{ text: 'Get a Free Site Audit', href: '/free-site-scan?goal=rankings' }}
+        />
       )}
 
-      {service.intro && (
-        <section className="section">
-          <div className="container container--narrow">
-            <p className="svc-audit__intro">{service.intro}</p>
-          </div>
-        </section>
-      )}
+      <TrackCards
+        title="Every layer of your technical foundation"
+        dek={afterLeadSentence(service.intro)}
+        items={service.capabilities.map((c) => ({
+          icon: TAG_ICONS[c.tag] || 'wrench',
+          title: c.title,
+          dek: c.desc,
+          cta: c.href ? { text: `About ${c.tag}`, href: c.href } : null,
+        }))}
+      />
 
-      {/* Capabilities as audit line items — label column, finding column. */}
-      <section className="svc-audit__findings">
-        <div className="container">
-          <h2 className="svc-audit__sectionTitle">
-            <span className="svc-audit__sectionNum">01</span> What we inspect and fix
-          </h2>
-          <ol className="svc-audit__rows">
-            {(service.capabilities || []).map((c, i) => (
-              <li key={c.title} className="svc-audit__row">
-                <span className="svc-audit__rowId" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className="svc-audit__rowTag">{c.tag}</span>
-                <div className="svc-audit__rowBody">
-                  <h3>
-                    {c.href ? <a href={c.href}>{c.title}</a> : c.title}
-                  </h3>
-                  <p>{c.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <TrackCards
+        tint
+        title="How the work runs"
+        dek="The same four steps on every technical engagement"
+        items={service.process.map((p) => ({
+          step: p.step,
+          title: p.title,
+          dek: p.desc,
+        }))}
+      />
 
-      {/* The prose body, kept as plain sections so nothing indexed is lost. */}
-      {(service.featureRows || []).map((row, i) => (
-        <section key={row.title} className="svc-audit__note">
-          <div className="container container--narrow">
-            <h2>{row.title}</h2>
-            {row.lede && <p className="svc-audit__noteLede">{row.lede}</p>}
-            {Array.isArray(row.dek)
-              ? row.dek.map((d, j) => <p key={j}>{d}</p>)
-              : row.dek && <p>{row.dek}</p>}
-            {row.list && (
-              <ul className="svc-audit__checklist">
-                {row.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            )}
-            {row.link && (
-              <p>
-                <a href={row.link.href} className="btn btn--ghost">
-                  {row.link.text}
-                </a>
-              </p>
-            )}
-          </div>
-        </section>
-      ))}
+      <ExperienceBlock slug={service.slug} />
 
-      <ExperienceBlock slug={service.slug} variant="svc-exp--audit" />
+      <CommunityReviews
+        heading="Clients love Gobiya"
+        dek="Let our clients tell you their story of growth, performance, and revenue impact."
+        featured={t}
+      />
 
-      <section className="svc-audit__schedule">
-        <div className="container">
-          <h2 className="svc-audit__sectionTitle">
-            <span className="svc-audit__sectionNum">02</span> Remediation schedule
-          </h2>
-          <div className="svc-audit__steps">
-            {(service.process || []).map((p) => (
-              <div key={p.step} className="svc-audit__step">
-                <span className="svc-audit__stepNum">{p.step}</span>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <ServiceProof service={service} />
+      <HomeFaq faqs={service.faqs} title="Technical SEO questions, answered" />
 
       <ServiceAreas service={service} />
-      <ServiceFaqs service={service} />
       <ServiceSiblings service={service} />
-      <ServiceCta service={service} />
+
+      <ClosingCta title={service.ctaTitle} phone />
     </main>
   );
 }

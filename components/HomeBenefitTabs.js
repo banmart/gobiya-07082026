@@ -45,22 +45,35 @@ const TABS = [
   },
 ];
 
-export default function HomeBenefitTabs() {
+/**
+ * The tabbed benefit section.
+ *
+ * Content is props now, with the homepage's own values as the defaults — so
+ * <HomeBenefitTabs /> renders exactly what it rendered before, and a sub page
+ * gets the same section with its own tabs in it. Nothing about the arrangement
+ * is configurable, which is the point: the pattern is global, the copy is not.
+ */
+export default function HomeBenefitTabs({
+  tabs = TABS,
+  title = 'How Gobiya grows your business',
+  sub = 'Search, AI, maps, and conversions — every channel working together',
+  cta = { text: 'Get Started', href: '?onboarding=true' },
+}) {
   const [active, setActive] = useState(0);
-  const tab = TABS[active];
+  const tab = tabs[active];
 
   return (
     <section className="hbt">
       <div className="container">
 
         <div className="hbt__header">
-          <h2 className="hbt__title">How Gobiya grows your business</h2>
-          <p className="hbt__sub">Search, AI, maps, and conversions — every channel working together</p>
+          <h2 className="hbt__title">{title}</h2>
+          {sub && <p className="hbt__sub">{sub}</p>}
         </div>
 
         {/* ── Tab nav ── */}
         <div className="hbt__nav" role="tablist">
-          {TABS.map((t, i) => (
+          {tabs.map((t, i) => (
             <button
               key={t.label}
               role="tab"
@@ -97,11 +110,13 @@ export default function HomeBenefitTabs() {
           </div>
         </div>
 
-        <div className="hbt__footer">
-          <a href="?onboarding=true" className="gb-btn gb-btn--accent" title="Start your free strategy consultation">
-            Get Started
-          </a>
-        </div>
+        {cta && (
+          <div className="hbt__footer">
+            <a href={cta.href} className="gb-btn gb-btn--accent" title={cta.text}>
+              {cta.text}
+            </a>
+          </div>
+        )}
 
       </div>
     </section>

@@ -1,157 +1,134 @@
-import Breadcrumbs from '../Breadcrumbs';
+import SplitHero from '../SplitHero';
+import PlatformStrip from '../PlatformStrip';
+import TrustBand from '../TrustBand';
+import TrackCards from '../TrackCards';
+import HomeBenefitTabs from '../HomeBenefitTabs';
+import HomeFaq from '../HomeFaq';
+import CommunityReviews from '../CommunityReviews';
+import ClosingCta from '../ClosingCta';
 import {
   ServiceSchema,
   ExperienceBlock,
-  ServiceFaqs,
-  ServiceCta,
   ServiceAreas,
-  ServiceProof,
   ServiceSiblings,
-  serviceEyebrow,
+  leadSentence,
+  afterLeadSentence,
 } from './serviceShared';
 
 /**
- * Link Building & Digital PR — a network.
+ * Link Building & Digital PR.
  *
- * Links are relationships between sites, so the page is built out of nodes and
- * edges: an SVG constellation in the hero, capabilities as connected cards, and
- * the process as a chain of linked steps rather than a numbered list. The one
- * service page with a drawn diagram doing real explanatory work.
+ * Built out of the same homepage sections as technical-seo — see
+ * SvcAuditReport for the reasoning. This replaces what was here before: a
+ * bespoke layout built around a drawn node-and-edge graph, matching no other
+ * page on the site.
  */
+
+const TAG_ICONS = {
+  Outreach: 'signal',
+  Citations: 'pin',
+  Cleanup: 'wrench',
+  Strategy: 'bars',
+  'Digital PR': 'globe',
+  Audit: 'doc',
+};
+
 export default function SvcNetwork({ service }) {
-  const caps = service.capabilities || [];
+  const dp = service.datapoint;
+  const intro = service.intro || service.lede || service.blurb;
 
   return (
-    <main id="top" className="svc svc--network">
+    <main id="top" className="svc">
       <ServiceSchema service={service} />
 
-      <header className="svc-net__hero">
-        <div className="container">
-          <Breadcrumbs
-            inHero
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Services', href: '/services' },
-              { label: service.navTitle || service.title },
-            ]}
-          />
-          <div className="svc-net__heroGrid">
-            <div>
-              <p className="svc-net__eyebrow">{serviceEyebrow(service)}</p>
-              <h1 className="svc-net__h1">{service.h1 || service.title}</h1>
-              <p className="lede">{service.lede || service.blurb || service.intro}</p>
-              <a href="/contact" className="btn btn--solid btn--big" style={{ marginTop: '1.5rem' }}>
-                Talk about your link profile
-              </a>
-            </div>
+      <SplitHero
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: service.navTitle || service.title },
+        ]}
+        eyebrow={service.hero?.excerpt || service.navTitle}
+        title={service.h1 || service.title}
+        dek={leadSentence(intro)}
+        primary={{
+          text: service.heroCtaText || 'Talk about your link profile',
+          href: service.heroCtaHref || '/contact',
+        }}
+        secondary={{ text: 'CONTACT US', href: '/contact' }}
+        image={service.hero?.image}
+      />
 
-            {/* One authoritative source, several relevant sites, one target.
-                Decorative — the argument is made in the prose below. */}
-            <svg className="svc-net__graph" viewBox="0 0 320 240" aria-hidden="true">
-              <g className="svc-net__edges">
-                <line x1="160" y1="120" x2="60" y2="50" />
-                <line x1="160" y1="120" x2="270" y2="60" />
-                <line x1="160" y1="120" x2="50" y2="190" />
-                <line x1="160" y1="120" x2="260" y2="185" />
-                <line x1="160" y1="120" x2="160" y2="30" />
-              </g>
-              <g className="svc-net__nodes">
-                <circle cx="60" cy="50" r="9" />
-                <circle cx="270" cy="60" r="7" />
-                <circle cx="50" cy="190" r="7" />
-                <circle cx="260" cy="185" r="9" />
-                <circle cx="160" cy="30" r="6" />
-              </g>
-              <circle className="svc-net__target" cx="160" cy="120" r="20" />
-              <text className="svc-net__targetLabel" x="160" y="125" textAnchor="middle">
-                you
-              </text>
-            </svg>
-          </div>
-        </div>
-      </header>
+      <PlatformStrip />
 
-      {service.problem && (
-        <section className="svc-net__problem">
-          <div className="container container--narrow">
-            <p className="svc-net__problemEyebrow">{service.problem.eyebrow}</p>
-            <p className="svc-net__problemText">{service.problem.statement}</p>
-          </div>
-        </section>
+      <TrustBand
+        title={service.problem?.eyebrow || 'Trusted by 500+ Los Angeles Businesses'}
+        sub={service.problem?.statement}
+        badges={
+          dp
+            ? [
+                { num: `${dp.value}${dp.suffix || ''}`, label: dp.label },
+                { num: '500+', label: 'Clients Served' },
+                { num: 'Google', label: 'Partner Agency' },
+              ]
+            : undefined
+        }
+        note={dp?.sourceNote}
+        cta={{
+          text: service.heroCtaText || 'Talk about your link profile',
+          href: service.heroCtaHref || '/contact',
+        }}
+      />
+
+      {(service.featureRows || []).length > 0 && (
+        <HomeBenefitTabs
+          tabs={service.featureRows.map((row) => ({
+            label: row.title,
+            heading: row.lede || row.title,
+            bullets: row.list || (Array.isArray(row.dek) ? row.dek : [row.dek]).filter(Boolean),
+            img: { src: row.image?.src, alt: row.image?.alt || '' },
+          }))}
+          title="What digital PR changes for your business"
+          sub="The difference between a link count and a link profile Google trusts"
+          cta={service.featureRows[0]?.link}
+        />
       )}
 
-      <ExperienceBlock slug={service.slug} variant="svc-exp--network" />
+      <TrackCards
+        title="The work, node by node"
+        dek={afterLeadSentence(intro)}
+        items={service.capabilities.map((c) => ({
+          icon: TAG_ICONS[c.tag] || 'wrench',
+          title: c.title,
+          dek: c.desc,
+          cta: c.href ? { text: `About ${c.tag}`, href: c.href } : null,
+        }))}
+      />
 
-      {(service.featureRows || []).map((row) => (
-        <section key={row.title} className="svc-net__block">
-          <div className="container container--narrow">
-            <h2>{row.title}</h2>
-            {row.lede && <p className="svc-net__blockLede">{row.lede}</p>}
-            {Array.isArray(row.dek)
-              ? row.dek.map((d, j) => <p key={j}>{d}</p>)
-              : row.dek && <p>{row.dek}</p>}
-            {row.list && (
-              <ul className="svc-net__list">
-                {row.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            )}
-            {row.link && (
-              <p>
-                <a href={row.link.href} className="btn btn--ghost">
-                  {row.link.text}
-                </a>
-              </p>
-            )}
-          </div>
-        </section>
-      ))}
+      <TrackCards
+        tint
+        title="How a campaign runs"
+        dek="The same four steps on every campaign"
+        items={service.process.map((p) => ({
+          step: p.step,
+          title: p.title,
+          dek: p.desc,
+        }))}
+      />
 
-      {/* Capabilities as connected nodes: each card wired to the spine. */}
-      <section className="svc-net__caps">
-        <div className="container">
-          <h2 className="statement statement--small">The work, node by node</h2>
-          <div className="svc-net__capSpine">
-            {caps.map((c, i) => (
-              <article
-                key={c.title}
-                className={`svc-net__cap ${i % 2 === 0 ? 'svc-net__cap--left' : 'svc-net__cap--right'}`}
-              >
-                <span className="svc-net__capNode" aria-hidden="true" />
-                <span className="svc-net__capTag">{c.tag}</span>
-                <h3>{c.href ? <a href={c.href}>{c.title}</a> : c.title}</h3>
-                <p>{c.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExperienceBlock slug={service.slug} />
 
-      <section className="svc-net__process">
-        <div className="container">
-          <h2 className="statement statement--small">How a campaign runs</h2>
-          <div className="svc-net__chain">
-            {(service.process || []).map((p, i, arr) => (
-              <div key={p.step} className="svc-net__link">
-                <div className="svc-net__linkBody">
-                  <span className="svc-net__linkNum">{p.step}</span>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
-                {i < arr.length - 1 && <span className="svc-net__linkArrow" aria-hidden="true" />}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CommunityReviews
+        heading="Clients love Gobiya"
+        dek="Let our clients tell you their story of growth, performance, and revenue impact."
+        featured={service.testimonial}
+      />
+
+      <HomeFaq faqs={service.faqs} title="Link building questions, answered" />
 
       <ServiceAreas service={service} />
-      <ServiceProof service={service} packages={false} />
-
-      <ServiceFaqs service={service} />
       <ServiceSiblings service={service} />
-      <ServiceCta service={service} />
+
+      <ClosingCta title={service.ctaTitle} phone />
     </main>
   );
 }
