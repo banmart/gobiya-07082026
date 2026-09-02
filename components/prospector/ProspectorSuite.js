@@ -1105,7 +1105,7 @@ export default function ProspectorSuite({ initialProspects = [], totalCount = 0,
           <div className="modal-card" style={{ maxWidth: '40rem', maxHeight: '85vh', overflowY: 'auto' }}>
             <h3>Configure &mdash; {configureSeq.title}</h3>
             <p className="text-muted text-sm" style={{ marginBottom: '1rem' }}>
-              Edit the subject line and body for each step. Use {'{{company}}'}, {'{{contact_name}}'}, {'{{location}}'}, {'{{industry}}'}, {'{{offer_link}}'}, and {'{{site_url}}'} as merge fields.
+              Edit the subject line and body for each step. Use {'{{company}}'}, {'{{contact_name}}'}, {'{{location}}'}, {'{{industry}}'}, {'{{website}}'}, {'{{offer_link}}'}, and {'{{site_url}}'} as merge fields. {'{{offer_link}}'} opens the free site scan pre-filled with the prospect's {'{{website}}'} when one is on file.
             </p>
 
             {configureSteps.map((step, i) => (
