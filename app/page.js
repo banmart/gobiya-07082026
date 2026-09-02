@@ -9,6 +9,7 @@ import HomeDomainScanBanner from '../components/HomeDomainScanBanner';
 import ClosingCta from '../components/ClosingCta';
 import { buildMetadata } from '../lib/meta';
 import { HOMEPAGE_FAQ } from '../lib/homepageFaq';
+import { yearsInBusiness } from '../lib/authority';
 
 // The title already carries the brand, so buildMetadata appends no suffix.
 export const metadata = buildMetadata({
@@ -58,19 +59,24 @@ export default function Home() {
             Professional SEO &amp; Digital Marketing Since 2009
           </p>
 
-          {/* ── Credential badges ── */}
+          {/* ── Credential badges ──
+              A "Top 1% of LA SEO Agencies" badge sat here. Nothing backs it —
+              there is no ranking body that publishes such a list — and
+              tests/unit/homepage-claims.test.js bans it by name: a performance
+              number on this page has to come from lib/searchWins, which carries
+              its source and as-of date.
+
+              Years in business is derived from lib/authority.js rather than
+              written down. It read "15+" against a 2009 founding date, which
+              was both wrong and going to age badly. */}
           <div className="gb-trusted__badges">
             <div className="gb-trusted__badge">
-              <span className="gb-trusted__badge-num">15+</span>
+              <span className="gb-trusted__badge-num">{yearsInBusiness()}</span>
               <span className="gb-trusted__badge-label">Years in Business</span>
             </div>
             <div className="gb-trusted__badge">
               <span className="gb-trusted__badge-num">500+</span>
               <span className="gb-trusted__badge-label">Clients Served</span>
-            </div>
-            <div className="gb-trusted__badge">
-              <span className="gb-trusted__badge-num">Top 1%</span>
-              <span className="gb-trusted__badge-label">LA SEO Agencies</span>
             </div>
             <div className="gb-trusted__badge">
               <span className="gb-trusted__badge-num">Google</span>

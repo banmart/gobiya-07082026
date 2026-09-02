@@ -1,13 +1,21 @@
-/* The navy credentials bar. Four claims, one carmine check each. */
+/* The navy credentials bar. Four claims, one carmine check each.
+   Nothing imports this component at present — the tenure figure is derived
+   from lib/authority.js anyway, so it states the right number if it is ever
+   mounted again rather than the "15+" that contradicted the 2009 founding
+   date. */
 
-export const PROOF_POINTS = [
-  '15+ Years Experience',
-  '5-Star Client Rating',
-  'Proven Algorithmic Recovery',
-  'Featured in Top Industry Outlets',
-];
+import { yearsInBusiness } from '../lib/authority';
 
-export default function ProofBar({ points = PROOF_POINTS }) {
+export function proofPoints(now = new Date()) {
+  return [
+    `${yearsInBusiness(now)} Years in Business`,
+    '5-Star Client Rating',
+    'Proven Algorithmic Recovery',
+    'Featured in Top Industry Outlets',
+  ];
+}
+
+export default function ProofBar({ points = proofPoints() }) {
   return (
     <section className="gb-proof" aria-label="Credentials">
       <div className="container">

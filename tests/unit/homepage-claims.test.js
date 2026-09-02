@@ -5,7 +5,12 @@ import path from 'node:path';
 // app/page.js is JSX and the vitest environment has no JSX transform, so this
 // suite reads it as text. That is enough to lock in the claims policy: the
 // homepage must not carry a performance number that has no source.
-const source = readFileSync(path.resolve(process.cwd(), 'app/page.js'), 'utf8');
+//
+// Comments are stripped first. A comment naming a claim that was removed — and
+// saying why, so it does not come back — is exactly what should be there, and
+// asserting on raw text would forbid writing one.
+const raw = readFileSync(path.resolve(process.cwd(), 'app/page.js'), 'utf8');
+const source = raw.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 
 describe('homepage claims', () => {
   it('drops the unbacked Top 1% claim', () => {
@@ -34,11 +39,20 @@ describe('homepage claims', () => {
     }
   });
 
-  /* The hero is a <PageHero> now, so the destination is a prop rather than a
-     literal attribute — match either spelling so the check survives the next
-     refactor of how the hero is assembled. */
+  /* The hero owns its own call to action now: app/page.js renders
+     <HomeSplitHero /> and the link lives inside that component, so reading
+     app/page.js alone can no longer see it. Follow the hero to wherever it is
+     assembled rather than asserting on the page that mounts it. */
   it('sends the hero call to action to the site scan form', () => {
-    expect(source).toMatch(/href[:=]\s*['"]\/free-site-scan['"]/);
+    const hero = readFileSync(
+      path.resolve(process.cwd(), 'components/HomeSplitHero.js'),
+      'utf8'
+    );
+    expect(hero).toMatch(/href[:=]\s*['"]\/free-site-scan['"]/);
+  });
+
+  it('mounts that hero on the homepage', () => {
+    expect(source).toContain('<HomeSplitHero');
   });
 });
 

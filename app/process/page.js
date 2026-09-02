@@ -4,6 +4,7 @@ import SubHero from '../../components/SubHero';
 import TopicMarquee from '../../components/TopicMarquee';
 import ClientLogos from '../../components/ClientLogos';
 import { heroImage } from '../../lib/heroImages';
+import { yearsInBusiness } from '../../lib/authority';
 
 export const metadata = buildMetadata({
   title: 'Our SEO Process | Four Steps to Compounding Growth | Gobiya',
@@ -88,7 +89,7 @@ export default function ProcessPage() {
         eyebrow="Our Proven Growth Framework"
         title="Our Process: Four Steps That Turn Search Into Steady Growth"
         excerpt="Four Steps, Run the Same Way on Every Engagement"
-        dek="Our process is the same on every engagement: a structured 4-step framework, refined over 16 years, that turns technical search engineering and AI optimization into reliable, compounding business growth."
+        dek={`Our process is the same on every engagement: a structured 4-step framework, refined over ${yearsInBusiness()} years, that turns technical search engineering and AI optimization into reliable, compounding business growth.`}
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
         secondary={{ text: 'Call 323-744-1338', href: 'tel:+13237441338' }}
         icon={<svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>}

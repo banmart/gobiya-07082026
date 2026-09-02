@@ -1,8 +1,12 @@
-// The four service-standard cards. Shared by the homepage, /about and
-// /process so the same four promises are worded identically on all three.
+// The four service-standard cards.
+//
+// The header comment used to say these were shared by the homepage, /about and
+// /process. They are not — nothing imports this component any more.
 //
 // Titles keep their trailing colon: the card reads as one sentence broken over
 // two lines, which is how the copy was written.
+
+import { yearsInBusiness } from '../lib/authority';
 
 const STANDARDS = [
   {
@@ -18,7 +22,9 @@ const STANDARDS = [
     desc: 'Every line of code, schema markup, and content strategy follows strict search engine guidelines and modern web standards.',
   },
   {
-    title: '15+ Years of Proven Results:',
+    // "15+" sat one line above "since 2009" — the same card disagreed with
+    // itself. Derived, so the two halves stay in step.
+    title: `${yearsInBusiness()} Years of Proven Results:`,
     desc: 'Proudly scaling Los Angeles brands since 2009 with a relentless commitment to search dominance.',
   },
 ];

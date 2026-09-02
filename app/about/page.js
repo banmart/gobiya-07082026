@@ -5,9 +5,15 @@ import TestimonialStack from '../../components/TestimonialStack';
 import ClientLogos from '../../components/ClientLogos';
 import { buildMetadata } from '../../lib/meta';
 import { heroImage } from '../../lib/heroImages';
+import { yearsInBusiness } from '../../lib/authority';
+
+// This page said "16 years" in three places against a 2009 founding date it
+// also states twice. The figure is derived from lib/authority.js now, so the
+// two halves of the same sentence cannot disagree and neither ages badly.
+const YEARS = yearsInBusiness();
 
 export const metadata = buildMetadata({
-  title: 'About Gobiya | 16 Years of Getting LA Businesses Found',
+  title: `About Gobiya | ${YEARS} Years of Getting LA Businesses Found`,
   description:
     'About Gobiya: since 2009, a Los Angeles team that answers its own phone and does its own work — honest search growth, fast web builds, no lock-in deals.',
   path: '/about',
@@ -27,7 +33,7 @@ export default function AboutPage() {
           { label: 'What We Do' },
         ]}
         eyebrow="About Gobiya · Los Angeles Since 2009"
-        title="About Gobiya: 16 Years of Getting Los Angeles Businesses Found"
+        title={`About Gobiya: ${YEARS} Years of Getting Los Angeles Businesses Found`}
         excerpt="Expert Service in Los Angeles and the San Fernando Valley"
         dek="About Gobiya in one line: technical SEO, AI search, and web architecture for local businesses — same team on every job, no account managers in between."
         primary={{ text: 'Request a Quote', href: '?onboarding=true' }}
@@ -61,7 +67,7 @@ export default function AboutPage() {
             We Are The Real Deal Los Angeles SEOs
           </h2>
           <p className="mw-navy-banner__dek">
-            For nearly 16 years, Gobiya SEO has earned a diamond reputation with business owners in the Greater Los Angeles area including the San Fernando Valley and beyond. We are proud to be the only SEOs that our clients choose for any of their website needs. This is why for every SEO service that we perform, we make sure that we carry the values that our founder, Steve Martin has instilled in us, and that is to serve our local community with integrity and help our neighbors with any of their SEO needs at a fair, competitive rate. No matter the size of the SEO project you face, we build, analyze, and implement ourselves and never use other &apos;overseas&apos; SEOs to ensure the best user experience for your clients.
+            For {YEARS} years, Gobiya SEO has earned a diamond reputation with business owners in the Greater Los Angeles area including the San Fernando Valley and beyond. We are proud to be the only SEOs that our clients choose for any of their website needs. This is why for every SEO service that we perform, we make sure that we carry the values that our founder, Steve Martin has instilled in us, and that is to serve our local community with integrity and help our neighbors with any of their SEO needs at a fair, competitive rate. No matter the size of the SEO project you face, we build, analyze, and implement ourselves and never use other &apos;overseas&apos; SEOs to ensure the best user experience for your clients.
           </p>
           <p className="mw-navy-banner__note">
             Ready to make the call to one of the most trusted local SEOs in the area? Reach out to us at{' '}

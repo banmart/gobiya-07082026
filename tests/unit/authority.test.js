@@ -101,4 +101,28 @@ describe('site-wide consistency', () => {
       });
     expect(offenders).toEqual([]);
   });
+
+  /* The word-form check above missed the digit form, and five files drifted
+     underneath it: "15+ Years Experience", "15+ Years of Proven Results",
+     "16 Years of Getting LA Businesses Found", "refined over 16 years", and
+     three "16 years" claims in the Studio City copy — all against a founding
+     date of 2009 that several of the same sentences also stated.
+
+     Only 10–49 is banned. Content legitimately talks about short spans — the
+     6–12 month AI citation freshness window, "2–3 years" of evergreen SEO
+     content, "first 3 years" of patient value — and none of those is a claim
+     about how long Gobiya has existed. A tenure figure is always in the teens
+     or above, so the range separates the two cleanly without an allowlist that
+     would need maintaining. */
+  it('states no hardcoded tenure figure in digits either', () => {
+    const DIGITS = /\b([1-4]\d)\+?\s*years\b/i;
+    const offenders = sources
+      .filter(({ f }) => !f.endsWith(MYTHS))
+      .filter(({ src }) => DIGITS.test(src))
+      .map(({ f, src }) => {
+        const m = src.match(DIGITS);
+        return `${path.relative(process.cwd(), f)}: "${m[0]}"`;
+      });
+    expect(offenders).toEqual([]);
+  });
 });
